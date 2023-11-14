@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ApexTestSuite xmlns="http://soap.sforce.com/2006/04/metadata">
+    <testClassName>APTS_AgreementCountsTest</testClassName>
+    <testClassName>APTS_AgreementTriggerTst</testClassName>
+    <testClassName>APTS_AutoActivationViaFlowTest</testClassName>
+    <testClassName>APTS_AutoRenewExpiryScheduleBatchTest</testClassName>
+    <testClassName>APTS_Clm_Base_Accelerator_RecTest</testClassName>
+    <testClassName>APTS_CreateAgreementPageCtrlTest</testClassName>
+    <testClassName>APTS_CreateJSONBodyControllerTest</testClassName>
+    <testClassName>APTS_ImportFullySignedDocCtrlTest</testClassName>
+    <testClassName>APTS_IntegrationController_Test</testClassName>
+    <testClassName>APTS_IntegrationMasterWrapperTest</testClassName>
+    <testClassName>APTS_IntegrationServiceBaseImplTest</testClassName>
+    <testClassName>APTS_ItemsToApproveCtrlTest</testClassName>
+    <testClassName>APTS_JsonWebServiceMock</testClassName>
+    <testClassName>APTS_JsonWebServiceTestClass</testClassName>
+    <testClassName>APTS_MergeEventTriggerTest</testClassName>
+    <testClassName>APTS_RequestAgreementController_Test</testClassName>
+</ApexTestSuite>

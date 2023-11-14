@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ApexPage xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>46.0</apiVersion>
+    <availableInTouch>true</availableInTouch>
+    <confirmationTokenRequired>false</confirmationTokenRequired>
+    <label>APTS_CreateAgreementPage</label>
+    <packageVersions>
+        <majorNumber>10</majorNumber>
+        <minorNumber>491</minorNumber>
+        <namespace>Apttus</namespace>
+    </packageVersions>
+    <packageVersions>
+        <majorNumber>10</majorNumber>
+        <minorNumber>46</minorNumber>
+        <namespace>Apttus_Approval</namespace>
+    </packageVersions>
+    <packageVersions>
+        <majorNumber>3</majorNumber>
+        <minorNumber>38</minorNumber>
+        <namespace>Apttus_CMDSign</namespace>
+    </packageVersions>
+    <packageVersions>
+        <majorNumber>5</majorNumber>
+        <minorNumber>88</minorNumber>
+        <namespace>Apttus_DocuApi</namespace>
+    </packageVersions>
+</ApexPage>

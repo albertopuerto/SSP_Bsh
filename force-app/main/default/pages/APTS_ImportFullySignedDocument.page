@@ -1,0 +1,5 @@
+<!--<apex:page standardController="Apttus__APTS_Agreement__c" extensions="APTS_ImportFullySignedDocumentController" action="{!finalize}">-->
+<apex:page standardController="Apttus__APTS_Agreement__c">
+
+
+</apex:page>

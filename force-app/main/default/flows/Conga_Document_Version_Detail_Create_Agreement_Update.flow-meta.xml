@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>54.0</apiVersion>
+    <description>This Flow is used to update Agreement Id on Document Version Detail (DEV) when any DVD is created. This update of Agreement Id enables the DVD to be shown on Agreement Page Layout.</description>
+    <formulas>
+        <name>DocumentVersionAgreementId</name>
+        <dataType>String</dataType>
+        <expression>{!$Record.Apttus__DocumentVersionId__r.Apttus__AgreementId__c}</expression>
+    </formulas>
+    <interviewLabel>Conga Document Version Detail Create Agreement Update {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Conga Document Version Detail Create Agreement Update</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordUpdates>
+        <name>Update_Agreement_ID_on_DVD</name>
+        <label>Update Agreement ID on DVD</label>
+        <locationX>176</locationX>
+        <locationY>311</locationY>
+        <inputAssignments>
+            <field>Agreement__c</field>
+            <value>
+                <elementReference>DocumentVersionAgreementId</elementReference>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <start>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Update_Agreement_ID_on_DVD</targetReference>
+        </connector>
+        <object>Apttus__DocumentVersionDetail__c</object>
+        <recordTriggerType>Create</recordTriggerType>
+        <triggerType>RecordBeforeSave</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>

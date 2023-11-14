@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>54.0</apiVersion>
+    <assignments>
+        <name>Assign_Agreement_Ready_for_Signature</name>
+        <label>Assign Agreement Ready for Signature</label>
+        <locationX>928</locationX>
+        <locationY>493</locationY>
+        <assignmentItems>
+            <assignToReference>AgreementUpdateRec.Apttus__Status__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>Ready for Signatures</stringValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>AgreementUpdateRec.Apttus__Status_Category__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>In Signatures</stringValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>AgreementUpdateRec.Id</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Get_Agreements.Id</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Update_Agreement</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Assign_Agreement_Ready_for_Signatures_for_Generate_Event_for_Diff_Profess_Flow</name>
+        <label>Assign Agreement Ready for Signatures for Generate Event for Diff Profess Flow</label>
+        <locationX>1151</locationX>
+        <locationY>358</locationY>
+        <assignmentItems>
+            <assignToReference>AgreementUpdateRec.Apttus__Status__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>Author Contract</stringValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>AgreementUpdateRec.Apttus__Status_Category__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>In Authoring</stringValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>AgreementUpdateRec.Id</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Get_Agreements.Id</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Update_Agreement</targetReference>
+        </connector>
+    </assignments>
+    <decisions>
+        <name>Agreement_Process_Flow_Check</name>
+        <label>Agreement Process Flow Check</label>
+        <locationX>917</locationX>
+        <locationY>316</locationY>
+        <defaultConnector>
+            <targetReference>Assign_Agreement_Ready_for_Signatures_for_Generate_Event_for_Diff_Profess_Flow</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Check_Process_Flow_Same</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Get_Agreements.APTS_Process_Flow__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <elementReference>Get_Agreement_Process_Flow_Custom_Metadata.Agreement_Process_Flow_Short_Name__c</elementReference>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Assign_Agreement_Ready_for_Signature</targetReference>
+            </connector>
+            <label>Check Process Flow Same</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Check_Merge_Event_Trigger_Events</name>
+        <label>Check Merge Event Trigger Events</label>
+        <locationX>613</locationX>
+        <locationY>543</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Check_In_Merge_Event</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Name</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Check In</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Apttus__Action__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Check In</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Apttus__DocumentInfo__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Final</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Assign_Agreement_Ready_for_Signature</targetReference>
+            </connector>
+            <label>Check In Merge Event</label>
+        </rules>
+        <rules>
+            <name>Check_Generate_Merge_Event</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Name</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Generate</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Agreement_Process_Flow_Check</targetReference>
+            </connector>
+            <label>Check Generate Merge Event</label>
+        </rules>
+    </decisions>
+    <interviewLabel>Conga Merge Event After Insert/Update Flow {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Conga Merge Event After Insert/Update Flow</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>FREE_FORM_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordLookups>
+        <name>Get_Agreement_Process_Flow_Custom_Metadata</name>
+        <label>Get Agreement Process Flow Custom Metadata</label>
+        <locationX>617</locationX>
+        <locationY>410</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Check_Merge_Event_Trigger_Events</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>MasterLabel</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Self-serve process flow</stringValue>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>Agreement_Process_Flow_Setting__mdt</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordLookups>
+        <name>Get_Agreements</name>
+        <label>Get Agreements</label>
+        <locationX>616</locationX>
+        <locationY>309</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Get_Agreement_Process_Flow_Custom_Metadata</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.Apttus__AgreementId__c</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>Apttus__APTS_Agreement__c</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordUpdates>
+        <name>Update_Agreement</name>
+        <label>Update Agreement</label>
+        <locationX>1053</locationX>
+        <locationY>495</locationY>
+        <inputReference>AgreementUpdateRec</inputReference>
+    </recordUpdates>
+    <start>
+        <locationX>489</locationX>
+        <locationY>13</locationY>
+        <connector>
+            <targetReference>Get_Agreements</targetReference>
+        </connector>
+        <object>Apttus__MergeEvent__c</object>
+        <recordTriggerType>CreateAndUpdate</recordTriggerType>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Active</status>
+    <variables>
+        <name>AgreementUpdateRec</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>Apttus__APTS_Agreement__c</objectType>
+    </variables>
+</Flow>

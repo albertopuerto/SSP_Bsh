@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SharingRules xmlns="http://soap.sforce.com/2006/04/metadata">
+    <sharingCriteriaRules>
+        <fullName>Public</fullName>
+        <accessLevel>Edit</accessLevel>
+        <description>Public Conga Grid View Sharing</description>
+        <label>Public</label>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+        <criteriaItems>
+            <field>CRMC_PP__Privacy__c</field>
+            <operation>equals</operation>
+            <value>Public</value>
+        </criteriaItems>
+        <includeRecordsOwnedByAll>false</includeRecordsOwnedByAll>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Public_Read_Only</fullName>
+        <accessLevel>Read</accessLevel>
+        <description>Read-Only Conga Grid View Sharing</description>
+        <label>Public Read-Only</label>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+        <criteriaItems>
+            <field>CRMC_PP__Privacy__c</field>
+            <operation>equals</operation>
+            <value>Public Read-Only</value>
+        </criteriaItems>
+        <includeRecordsOwnedByAll>false</includeRecordsOwnedByAll>
+    </sharingCriteriaRules>
+</SharingRules>

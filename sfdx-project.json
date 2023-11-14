@@ -5,7 +5,7 @@
       "default": true
     }
   ],
-  "name": "dx-empty",
+  "name": "ETAS",
   "namespace": "",
   "sfdcLoginUrl": "https://login.salesforce.com",
   "sourceApiVersion": "59.0"

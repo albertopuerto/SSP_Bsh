@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebLink xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>APTS_Create_Agreement</fullName>
+    <availability>online</availability>
+    <description>It opens a Standard Agreement flow</description>
+    <displayType>button</displayType>
+    <encodingKey>UTF-8</encodingKey>
+    <height>600</height>
+    <linkType>url</linkType>
+    <masterLabel>Request Agreement</masterLabel>
+    <openType>noSidebar</openType>
+    <protected>false</protected>
+    <url>/apex/RequestAgreement?Id={!Account.Id}&amp;useRecordTypeCheck=true</url>
+</WebLink>

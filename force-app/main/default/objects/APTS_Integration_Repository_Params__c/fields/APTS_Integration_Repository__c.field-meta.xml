@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>APTS_Integration_Repository__c</fullName>
+    <externalId>false</externalId>
+    <label>Integration Repository</label>
+    <referenceTo>APTS_Integration_Repository__c</referenceTo>
+    <relationshipLabel>Integration Repository Params</relationshipLabel>
+    <relationshipName>Integration_Repository_Params</relationshipName>
+    <relationshipOrder>0</relationshipOrder>
+    <reparentableMasterDetail>false</reparentableMasterDetail>
+    <trackTrending>false</trackTrending>
+    <type>MasterDetail</type>
+    <writeRequiresMasterRead>false</writeRequiresMasterRead>
+</CustomField>

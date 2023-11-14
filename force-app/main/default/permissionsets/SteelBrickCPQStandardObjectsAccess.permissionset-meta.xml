@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PermissionSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Give the CPQ integration user access to standard objects used by Salesforce CPQ.</description>
+    <hasActivationRequired>true</hasActivationRequired>
+    <label>Salesforce CPQ Integration User (Unmanaged)</label>
+</PermissionSet>

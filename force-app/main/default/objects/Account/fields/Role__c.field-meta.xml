@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Role__c</fullName>
+    <description>Used by Sales Team to determine the role of the customer and which territory it belongs to</description>
+    <externalId>false</externalId>
+    <label>Role</label>
+    <required>true</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>ETDE Domestic Customer</fullName>
+                <default>false</default>
+                <label>ETDE Domestic Customer</label>
+            </value>
+            <value>
+                <fullName>ETUS Domestic Customer</fullName>
+                <default>false</default>
+                <label>ETUS Domestic Customer</label>
+            </value>
+            <value>
+                <fullName>ETCN Domestic Customer</fullName>
+                <default>false</default>
+                <label>ETCN Domestic Customer</label>
+            </value>
+            <value>
+                <fullName>ETJP Domestic Customer</fullName>
+                <default>false</default>
+                <label>ETJP Domestic Customer</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

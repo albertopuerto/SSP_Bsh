@@ -1,0 +1,5 @@
+<apex:page standardController="Account" extensions="APTS_CreateAgreementPageController" action="{!doRedirect}">
+  <!--<script>
+                    window.top.location.href= '/apex/wizard?wizardid={!$Label.APTS_Agreement_WizardID}';
+       </script> -->
+</apex:page>

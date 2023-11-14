@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>APTS_Brief_Description__c</fullName>
+    <description>Brief description about this integration.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Brief description about this integration.</inlineHelpText>
+    <label>Brief Description</label>
+    <length>200</length>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

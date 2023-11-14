@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Account_Group_Text__c</fullName>
+    <description>Account group text from C4C</description>
+    <externalId>false</externalId>
+    <label>Account Group Text</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <controllingField>Account_Group__c</controllingField>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>ETDE Domestic Customer</fullName>
+                <default>false</default>
+                <label>ETDE Domestic Customer</label>
+            </value>
+            <value>
+                <fullName>ETCN Domestic Customer</fullName>
+                <default>false</default>
+                <label>ETCN Domestic Customer</label>
+            </value>
+            <value>
+                <fullName>ETJP Domestic Customer</fullName>
+                <default>false</default>
+                <label>ETJP Domestic Customer</label>
+            </value>
+            <value>
+                <fullName>ETNA - OEM/Fleet Domestic Customer</fullName>
+                <default>false</default>
+                <label>ETNA - OEM/Fleet Domestic Customer</label>
+            </value>
+        </valueSetDefinition>
+        <valueSettings>
+            <controllingFieldValue>YDE1</controllingFieldValue>
+            <valueName>ETDE Domestic Customer</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>YCN1</controllingFieldValue>
+            <valueName>ETCN Domestic Customer</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>YJP1</controllingFieldValue>
+            <valueName>ETJP Domestic Customer</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>YOM1</controllingFieldValue>
+            <valueName>ETNA - OEM/Fleet Domestic Customer</valueName>
+        </valueSettings>
+    </valueSet>
+</CustomField>

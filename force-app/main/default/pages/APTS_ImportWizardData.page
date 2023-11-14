@@ -1,0 +1,36 @@
+<apex:page controller="APTS_ImportWizardDataController" tabStyle="Apttus__WizardDesign__c" showHeader="false" standardStylesheets="true">
+<apex:sectionHeader title="" subtitle="Import Wizard Data"/>
+    <apex:pageBlock > 
+ 	<apex:form >
+ 	<p style="font-size:15px"><b>Please paste the exported JSON you got from export wizard page and click on Import button.</b></p>
+ 	<apex:outputPanel id="out">
+ 	    <p></p>
+ 	    <apex:pageMessages id="showmessage" escape="false"></apex:pageMessages>
+ 	 	<apex:actionstatus id="status" startText="Importing....">
+ 	 	 	<apex:facet name="stop">
+ 	 	 	 	<apex:outputPanel >
+ 	 	 	 	 	<p></p>
+ 	 	 	 	 	<apex:sectionHeader title="" subtitle="Wizard Design"/>
+ 	 	 	 	 	<apex:inputTextArea value="{!wizardDesignJSON}" rows="10" cols="180"/>
+ 	 	 	 	 	<p></p>
+ 	 	 	 	 	<apex:sectionHeader title="" subtitle="Wizard Steps"/>
+ 	 	 	 	 	<apex:inputTextArea value="{!wizardStepJSON}" rows="10" cols="180"/>
+ 	 	 	 	 	<p></p>
+ 	 	 	 	 	<apex:sectionHeader title="" subtitle="Wizard Input Control"/>
+ 	 	 	 	 	<apex:inputTextArea value="{!wizardInputControlsJSON}" rows="10" cols="180"/>
+ 	 	 	 	 	<p></p>
+ 	 	 	 	 	<apex:sectionHeader title="" subtitle="Wizard Rule Sets"/>
+ 	 	 	 	 	<apex:inputTextArea value="{!wizardRulesetsJSON}" rows="10" cols="180"/>
+ 	 	 	 	 	<p></p>
+ 	 	 	 	 	<apex:sectionHeader title="" subtitle="Wizard Rules"/>
+ 	 	 	 	 	<apex:inputTextArea value="{!wizardRuleJSON}" rows="10" cols="180"/>
+ 	 	 	 	</apex:outputPanel>
+ 	 	 	</apex:facet>
+ 	 	</apex:actionstatus>
+ 	</apex:outputPanel>
+ 	<p></p>
+ 	<p></p>
+ 	<apex:commandButton value="Import" action="{!importData}" rerender="showmessage" status="status"/>
+ 	</apex:form>
+    </apex:pageBlock>   
+</apex:page>
