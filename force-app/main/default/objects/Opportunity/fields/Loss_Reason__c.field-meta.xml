@@ -11,29 +11,24 @@
         <valueSetDefinition>
             <sorted>false</sorted>
             <value>
-                <fullName>Competition</fullName>
+                <fullName>Lost to Competitor</fullName>
                 <default>false</default>
-                <label>Competition</label>
+                <label>Lost to Competitor</label>
             </value>
             <value>
-                <fullName>Disqualified</fullName>
+                <fullName>No Budget / Lost Funding</fullName>
                 <default>false</default>
-                <label>Disqualified</label>
+                <label>No Budget / Lost Funding</label>
+            </value>
+            <value>
+                <fullName>No Decision / Non-Responsive</fullName>
+                <default>false</default>
+                <label>No Decision / Non-Responsive</label>
             </value>
             <value>
                 <fullName>Price</fullName>
                 <default>false</default>
                 <label>Price</label>
-            </value>
-            <value>
-                <fullName>Timing</fullName>
-                <default>false</default>
-                <label>Timing</label>
-            </value>
-            <value>
-                <fullName>Non-Responsive</fullName>
-                <default>false</default>
-                <label>Non-Responsive</label>
             </value>
             <value>
                 <fullName>Other</fullName>

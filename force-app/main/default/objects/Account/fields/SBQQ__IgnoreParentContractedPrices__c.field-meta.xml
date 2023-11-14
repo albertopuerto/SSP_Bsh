@@ -8,6 +8,5 @@
     <inlineHelpText>Select if contracted prices should not be inherited from the parent account.</inlineHelpText>
     <label>Ignore Parent Contracted Prices</label>
     <trackFeedHistory>false</trackFeedHistory>
-    <trackHistory>false</trackHistory>
     <type>Checkbox</type>
 </CustomField>

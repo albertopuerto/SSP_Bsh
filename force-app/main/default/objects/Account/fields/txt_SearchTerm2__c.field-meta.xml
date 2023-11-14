@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>Additional_Name_2__c</fullName>
-    <description>Additional Name 2 for reference in C4C</description>
+    <fullName>txt_SearchTerm2__c</fullName>
+    <description>Field used by Sales team for categorization and searching</description>
     <externalId>false</externalId>
-    <label>Additional Name 2</label>
-    <length>255</length>
+    <label>Search Term 2</label>
+    <length>100</length>
     <required>false</required>
     <trackFeedHistory>false</trackFeedHistory>
-    <trackHistory>false</trackHistory>
     <type>Text</type>
     <unique>false</unique>
 </CustomField>

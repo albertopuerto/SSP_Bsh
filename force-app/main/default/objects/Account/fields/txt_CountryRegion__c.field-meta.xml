@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>Search_Term_2__c</fullName>
-    <description>Field used by Sales team for categorization and searching</description>
+    <fullName>txt_CountryRegion__c</fullName>
+    <description>Reference filed to C4C - e.g. DE, FR, US</description>
     <externalId>false</externalId>
-    <label>Search Term 2</label>
-    <length>100</length>
+    <label>Country/Region</label>
+    <length>3</length>
     <required>false</required>
     <trackFeedHistory>false</trackFeedHistory>
-    <trackHistory>false</trackHistory>
     <type>Text</type>
     <unique>false</unique>
 </CustomField>
