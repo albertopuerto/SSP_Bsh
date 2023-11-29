@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- This field is used to Keep Salesforce Id of the recording loaded in Salesforce as files. You can only add one Id. Also video loaded here will be shown on Page Layout to explain about business flow for specific Agreement. --></help>
+        <label><!-- Show Me Flow --></label>
+        <name>Show_Me_Flow__c</name>
+    </CustomFieldTranslation>
