@@ -11,7 +11,7 @@
     <isNavAutoTempTabsDisabled>false</isNavAutoTempTabsDisabled>
     <isNavPersonalizationDisabled>false</isNavPersonalizationDisabled>
     <isNavTabPersistenceDisabled>false</isNavTabPersistenceDisabled>
-    <label>ETAS SALES</label>
+    <label>ETAS SALES Cockpit</label>
     <navType>Standard</navType>
     <profileActionOverrides>
         <actionName>View</actionName>
