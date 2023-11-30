@@ -11,7 +11,7 @@
     <isNavAutoTempTabsDisabled>false</isNavAutoTempTabsDisabled>
     <isNavPersonalizationDisabled>false</isNavPersonalizationDisabled>
     <isNavTabPersistenceDisabled>false</isNavTabPersistenceDisabled>
-    <label>ETAS SALES</label>
+    <label>ETAS SALES Cockpit</label>
     <navType>Standard</navType>
     <profileActionOverrides>
         <actionName>View</actionName>
@@ -20,7 +20,7 @@
         <pageOrSobjectType>Account</pageOrSobjectType>
         <recordType>Account.Competitor</recordType>
         <type>Flexipage</type>
-        <profile>Sales Basic</profile>
+        <profile>Sales Read</profile>
     </profileActionOverrides>
     <profileActionOverrides>
         <actionName>View</actionName>
@@ -29,7 +29,7 @@
         <pageOrSobjectType>Account</pageOrSobjectType>
         <recordType>Account.Competitor</recordType>
         <type>Flexipage</type>
-        <profile>Sales Basic</profile>
+        <profile>Sales Read</profile>
     </profileActionOverrides>
     <profileActionOverrides>
         <actionName>View</actionName>
@@ -56,7 +56,7 @@
         <pageOrSobjectType>Account</pageOrSobjectType>
         <recordType>Account.Customer</recordType>
         <type>Flexipage</type>
-        <profile>Sales Basic</profile>
+        <profile>Sales Read</profile>
     </profileActionOverrides>
     <profileActionOverrides>
         <actionName>View</actionName>
@@ -65,7 +65,7 @@
         <pageOrSobjectType>Account</pageOrSobjectType>
         <recordType>Account.Customer</recordType>
         <type>Flexipage</type>
-        <profile>Sales Basic</profile>
+        <profile>Sales Read</profile>
     </profileActionOverrides>
     <profileActionOverrides>
         <actionName>View</actionName>
@@ -92,7 +92,7 @@
         <pageOrSobjectType>Account</pageOrSobjectType>
         <recordType>Account.Intercompany</recordType>
         <type>Flexipage</type>
-        <profile>Sales Basic</profile>
+        <profile>Sales Read</profile>
     </profileActionOverrides>
     <profileActionOverrides>
         <actionName>View</actionName>
@@ -101,7 +101,7 @@
         <pageOrSobjectType>Account</pageOrSobjectType>
         <recordType>Account.Intercompany</recordType>
         <type>Flexipage</type>
-        <profile>Sales Basic</profile>
+        <profile>Sales Read</profile>
     </profileActionOverrides>
     <profileActionOverrides>
         <actionName>View</actionName>
@@ -128,7 +128,7 @@
         <pageOrSobjectType>Account</pageOrSobjectType>
         <recordType>Account.Partner</recordType>
         <type>Flexipage</type>
-        <profile>Sales Basic</profile>
+        <profile>Sales Read</profile>
     </profileActionOverrides>
     <profileActionOverrides>
         <actionName>View</actionName>
@@ -137,7 +137,7 @@
         <pageOrSobjectType>Account</pageOrSobjectType>
         <recordType>Account.Partner</recordType>
         <type>Flexipage</type>
-        <profile>Sales Basic</profile>
+        <profile>Sales Read</profile>
     </profileActionOverrides>
     <profileActionOverrides>
         <actionName>View</actionName>
@@ -164,7 +164,7 @@
         <pageOrSobjectType>Account</pageOrSobjectType>
         <recordType>Account.Reseller</recordType>
         <type>Flexipage</type>
-        <profile>Sales Basic</profile>
+        <profile>Sales Read</profile>
     </profileActionOverrides>
     <profileActionOverrides>
         <actionName>View</actionName>
@@ -173,7 +173,7 @@
         <pageOrSobjectType>Account</pageOrSobjectType>
         <recordType>Account.Reseller</recordType>
         <type>Flexipage</type>
-        <profile>Sales Basic</profile>
+        <profile>Sales Read</profile>
     </profileActionOverrides>
     <profileActionOverrides>
         <actionName>View</actionName>
@@ -200,7 +200,7 @@
         <pageOrSobjectType>Account</pageOrSobjectType>
         <recordType>Account.Supplier</recordType>
         <type>Flexipage</type>
-        <profile>Sales Basic</profile>
+        <profile>Sales Read</profile>
     </profileActionOverrides>
     <profileActionOverrides>
         <actionName>View</actionName>
@@ -209,7 +209,7 @@
         <pageOrSobjectType>Account</pageOrSobjectType>
         <recordType>Account.Supplier</recordType>
         <type>Flexipage</type>
-        <profile>Sales Basic</profile>
+        <profile>Sales Read</profile>
     </profileActionOverrides>
     <profileActionOverrides>
         <actionName>View</actionName>
@@ -229,14 +229,14 @@
         <type>Flexipage</type>
         <profile>Admin</profile>
     </profileActionOverrides>
+    <tabs>standard-home</tabs>
     <tabs>standard-Account</tabs>
     <tabs>standard-Contact</tabs>
-    <tabs>standard-Opportunity</tabs>
     <tabs>standard-Lead</tabs>
+    <tabs>standard-Opportunity</tabs>
     <tabs>SBQQ__Quote__c</tabs>
     <tabs>standard-Order</tabs>
     <tabs>standard-Contract</tabs>
-    <tabs>standard-Asset</tabs>
     <tabs>standard-Task</tabs>
     <tabs>standard-report</tabs>
     <tabs>standard-Dashboard</tabs>
