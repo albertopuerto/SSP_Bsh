@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>pkl_SalesOrg__c</fullName>
+    <description>Structure sales based on a regional division of the market</description>
+    <externalId>false</externalId>
+    <label>Sales Org</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetName>gpkv_SalesOrg</valueSetName>
+    </valueSet>
+</CustomField>
