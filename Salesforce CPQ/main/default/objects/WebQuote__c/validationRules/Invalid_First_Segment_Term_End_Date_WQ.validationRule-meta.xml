@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>Invalid_First_Segment_Term_End_Date_WQ</fullName>
-    <active>true</active>
-    <errorConditionFormula>NOT(ISNULL(FirstSegmentTermEndDate__c)) &amp;&amp; NOT(ISNULL(StartDate__c)) &amp;&amp; (NOT(ISNULL(SubscriptionTerm__c)) || NOT(ISNULL(EndDate__c))) &amp;&amp;
-(FirstSegmentTermEndDate__c &lt; StartDate__c || IF(NOT(ISNULL(EndDate__c)),FirstSegmentTermEndDate__c &gt; EndDate__c, IF(LOWER($Setup.GeneralSettings__c.SubscriptionTermUnit__c)=&apos;day&apos;, FirstSegmentTermEndDate__c &gt; StartDate__c + SubscriptionTerm__c-1, FirstSegmentTermEndDate__c &gt; StartDate__c + (SubscriptionTerm__c * 30.4375))))</errorConditionFormula>
-    <errorDisplayField>FirstSegmentTermEndDate__c</errorDisplayField>
-    <errorMessage>First Segment Term End Date must fall between Quote Start Date and Quote End Date</errorMessage>
-</ValidationRule>

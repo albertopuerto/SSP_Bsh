@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>Configuration_Attribute_Validation</fullName>
-    <active>true</active>
-    <errorConditionFormula>ISPICKVAL(MatchType__c, &apos;Configuration Attribute Value&apos;) &amp;&amp; ISBLANK(ProductRule__c)</errorConditionFormula>
-    <errorDisplayField>MatchType__c</errorDisplayField>
-    <errorMessage>Testing Configuration Attributes is only supported for Lookup Queries associated with Product Rules.</errorMessage>
-</ValidationRule>
