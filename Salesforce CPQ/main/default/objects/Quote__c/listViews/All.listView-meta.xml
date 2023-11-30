@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>All</fullName>
+    <columns>NAME</columns>
+    <columns>Opportunity2__c</columns>
+    <columns>Type__c</columns>
+    <columns>Primary__c</columns>
+    <columns>LineItemsGrouped__c</columns>
+    <columns>NetAmount__c</columns>
+    <columns>Status__c</columns>
+    <columns>ExpirationDate__c</columns>
+    <columns>UPDATEDBY_USER</columns>
+    <filterScope>Everything</filterScope>
+    <label>All</label>
+</ListView>

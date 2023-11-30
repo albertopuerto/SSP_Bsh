@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>All</fullName>
+    <columns>NAME</columns>
+    <columns>DisplayOrder__c</columns>
+    <columns>TargetObject__c</columns>
+    <columns>TargetField__c</columns>
+    <columns>Operator__c</columns>
+    <columns>FilterValue__c</columns>
+    <columns>Hidden__c</columns>
+    <columns>HiddenSourceField__c</columns>
+    <columns>FilterSourceField__c</columns>
+    <columns>Action__c</columns>
+    <filterScope>Everything</filterScope>
+    <label>All</label>
+    <language>en_US</language>
+</ListView>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>CannotChangeBookingIndicatorOnActivation</fullName>
+    <active>true</active>
+    <description>Can’t edit the bookings status on an activated order product.</description>
+    <errorConditionFormula>AND(Activated__c, ISCHANGED(BookingsIndicator__c))</errorConditionFormula>
+    <errorDisplayField>BookingsIndicator__c</errorDisplayField>
+    <errorMessage>Can’t edit the bookings status on an activated order product.</errorMessage>
+</ValidationRule>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>EffectiveQuantity__c</fullName>
+    <deprecated>false</deprecated>
+    <description>Effective quantity used in computing totals. Same as quantity unless the product is block priced, covered by &quot;Slab&quot; discount schedule, or an existing subscription.</description>
+    <externalId>false</externalId>
+    <formula>IF(OR(ISPICKVAL(DiscountScheduleType__c, &apos;Slab&apos;),ISPICKVAL(PricingMethod__c, &apos;Block&apos;)),IF(OR(AND(!Existing__c, !CarryoverLine__c, Quantity__c == 0),AND(OR(Existing__c, CarryoverLine__c),OR(Quantity__c == PriorQuantity__c - UpgradedQuantity__c,AND(!AllowAssetRefund__c, ISPICKVAL(SubscriptionPricing__c, &apos;&apos;), Quantity__c &lt; PriorQuantity__c - UpgradedQuantity__c)))),0,1),IF(AND(!Existing__c, !CarryoverLine__c),Quantity__c,IF(Quantity__c &gt;= PriorQuantity__c - UpgradedQuantity__c,IF(ISPICKVAL(SubscriptionPricing__c, &apos;Percent Of Total&apos;),Quantity__c,Quantity__c - PriorQuantity__c + UpgradedQuantity__c),IF(AND(!AllowAssetRefund__c, ISPICKVAL(SubscriptionPricing__c, &apos;&apos;)),0,Quantity__c - PriorQuantity__c + UpgradedQuantity__c))))</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <inlineHelpText>Effective quantity used in computing totals. Same as quantity unless the product is block priced, covered by &quot;Slab&quot; discount schedule, or an existing subscription.</inlineHelpText>
+    <label>Effective Quantity</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

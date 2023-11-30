@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>CustomerAmount__c</fullName>
+    <deprecated>false</deprecated>
+    <description>This is a Roll-Up Summary field.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>This is a Roll-Up Summary field.</inlineHelpText>
+    <label>Customer Amount</label>
+    <summarizedField>QuoteLine__c.CustomerTotal__c</summarizedField>
+    <summaryFilterItems>
+        <field>QuoteLine__c.Optional__c</field>
+        <operation>equals</operation>
+        <value>False</value>
+    </summaryFilterItems>
+    <summaryForeignKey>QuoteLine__c.Quote__c</summaryForeignKey>
+    <summaryOperation>sum</summaryOperation>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Summary</type>
+</CustomField>
