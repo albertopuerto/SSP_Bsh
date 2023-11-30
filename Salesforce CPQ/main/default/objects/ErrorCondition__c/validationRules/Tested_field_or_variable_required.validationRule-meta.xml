@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>Tested_field_or_variable_required</fullName>
-    <active>true</active>
-    <description>Requires that either Tested Variable or Tested Field be specified.</description>
-    <errorConditionFormula>AND(ISPICKVAL(TestedField__c,&quot;&quot;),ISBLANK(TestedVariable__c))</errorConditionFormula>
-    <errorMessage>You must specify either Tested Field or Tested Variable.</errorMessage>
-</ValidationRule>

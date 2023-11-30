@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>Ensure_rule_type_nested_level_actions</fullName>
-    <active>true</active>
-    <description>Ensures the related Product Rule is of type Selection when specifying an action level.</description>
-    <errorConditionFormula>(TEXT(ProductRule__r.Type__c) != null &amp;&amp; TEXT(ProductRule__r.Type__c) != &apos;Selection&apos;) &amp;&amp; (TEXT(DescendingActionNesting__c) != null)</errorConditionFormula>
-    <errorMessage>Action Level only supported for Selection product rules.</errorMessage>
-</ValidationRule>
