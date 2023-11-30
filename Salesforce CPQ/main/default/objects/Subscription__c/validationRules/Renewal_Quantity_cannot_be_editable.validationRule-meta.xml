@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Renewal_Quantity_cannot_be_editable</fullName>
+    <active>true</active>
+    <description>Renewal Quantity cannot be editable.</description>
+    <errorConditionFormula>if ( (Contract__r.PreserveBundleStructureUponRenewals__c == true &amp;&amp; RenewalQuantity__c != Quantity__c &amp;&amp; ISCHANGED(RenewalQuantity__c)), true, false)</errorConditionFormula>
+    <errorMessage>Preserve Bundle Structure is checked on Contract, Renewal Quantity cannot be different from Quantity.</errorMessage>
+</ValidationRule>

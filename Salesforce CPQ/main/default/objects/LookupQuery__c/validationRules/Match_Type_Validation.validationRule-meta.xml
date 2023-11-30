@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Match_Type_Validation</fullName>
+    <active>true</active>
+    <errorConditionFormula>(ISPICKVAL(MatchType__c, &apos;Configuration Attribute Value&apos;) &amp;&amp; ISBLANK(TestedConfigurationAttribute__c)) ||(ISPICKVAL(MatchType__c, &apos;Static Value&apos;) &amp;&amp; ISBLANK( TestedValue__c)) || (ISPICKVAL(MatchType__c, &apos;Field Value&apos;) &amp;&amp; (ISPICKVAL(TestedField__c, &apos;&apos;) || ISPICKVAL(TestedObject__c, &apos;&apos;)))</errorConditionFormula>
+    <errorMessage>Tested Value is required if Match Type = Static Value. Tested Object and Tested Field are required if Match Type = Field Value. Tested Configuration Attribute is required if Match Type = Configuration Attribute.</errorMessage>
+</ValidationRule>
