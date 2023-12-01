@@ -43,3 +43,8 @@ $RECYCLE.BIN/
 **/__pycache__/
 **/.venv/
 **/venv/
+
+# Salesforce package classes we don't need
+force-app/main/default/classes/APTS__*
+force-app/main/default/classes/APTSMD__*
+force-app/main/default/classes/cnga__*
