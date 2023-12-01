@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomMetadata xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <label>Authentication</label>
+    <protected>false</protected>
+    <values>
+        <field>Apttus_DocuApi__DocusignAPIAccountID__c</field>
+        <value xsi:type="xsd:string">20e9e9c7-f234-4365-94c1-82880b2c97dd</value>
+    </values>
+    <values>
+        <field>Apttus_DocuApi__DocusignAccountBaseURI__c</field>
+        <value xsi:type="xsd:string">https://eu.docusign.net</value>
+    </values>
+    <values>
+        <field>Apttus_DocuApi__DocusignAccountID__c</field>
+        <value xsi:type="xsd:string">528636210</value>
+    </values>
+    <values>
+        <field>Apttus_DocuApi__DocusignAdminUserAPIID__c</field>
+        <value xsi:type="xsd:string">25b23559-c533-4a1e-867a-bfc283354433</value>
+    </values>
+    <values>
+        <field>Apttus_DocuApi__EnableAdminConsent__c</field>
+        <value xsi:type="xsd:boolean">false</value>
+    </values>
+    <values>
+        <field>Apttus_DocuApi__Environment__c</field>
+        <value xsi:type="xsd:string">Production</value>
+    </values>
+    <values>
+        <field>Apttus_DocuApi__IntegrationKey__c</field>
+        <value xsi:type="xsd:string">68e33315-cf19-4c30-8797-34d49c0977f8</value>
+    </values>
+    <values>
+        <field>Apttus_DocuApi__PrivateKey__c</field>
+        <value xsi:type="xsd:string">-----BEGIN RSA PRIVATE KEY-----
+MIIEpAIBAAKCAQEAgTo+nnVICdvcyl1VZnEbeVUJWvNiXCAmkWcEO9G+4eHi+cRY
+Ag7Q1t7v+B7PV0PN5Cg2W91yobYtd06pURojGnxEehWYGEHfhgNlCXnF6XXvHDoV
+7WC2hU8JoukfEXRj07lKs+puCNcA6UHzze22QXpHt6lcIFpeZ5MjpI9zBZLyMKxM
+6xzF4pCwTWhJMieNIgr4p6PRmwHLx7fwlLxoEWeFqtf2ovHnwJg31Vyx7pfihwvK
+etsx/MHHMspNCbv0mEVkdSXgaosucRVPzk8yBayFEe97pLM3qhb3L/wS+D8aV0hs
+a2eg2pomzOcN6pUR060ZCPOqwmrMGnnnQVUqTwIDAQABAoIBABEDY4zGFmK3OlAU
+I0hWOiPqYPht6YmvxpQcXW9+COTr3Ho98h5B6BcZ3mWqshPO6UjmoxLLdVTlS1gV
+Qu+wArtxF9eA3KIjmLN9N+ycRm+a52IueDDlK4fNJOYjTe6k2vhcFoHYVSiUcdoZ
+JOl8KHi3X2txKyABSxjUw3uzUmqDF2HJ0eioYcg0gnxOrwXJfddzDUdOdCQCIHLl
+CZdIVPvuQimCUFRoU00/SG7alf61sdBpIeaiQajOxkuXNau5Ac5VprZ8EvI6tbhy
+WM46Xwj0qeRB65T63ckBjhH7TThuPkOwf8BKrl6eID2C7eHfVPZbioCi0qOU9BXm
+yQ45tcECgYEA328bNby1cSQKgaSn8Y/tWNpkqI1f98gDeX1gaPYc8OwOkdCRxjml
+U/bia2EfPQHdm2+BXgCc5UCz4YIngarHSFq/D1nFeTmjVXCUVSUC7yqPujd7fuk5
+FOgSAX8lMuhDrDLo7J7ef8r42ulsuf/7PargG9Qmyw5Ly/HCbCPGisECgYEAlBAN
+r1sUE/s5zirBqGWj59nc6g0MyNB6do6FB5Aqd7d3YbBgIrZBFrSw8njyesGL/csb
+VDqgKdIXY37z8dmueNxvXH7pbCRUqjPOgUhxpxja9+9IQMn7gU5UcbEOSI3hDXLc
+5HiwgvqZUwUsXMioHWyqmvuG6wQHv76H2f2iSQ8CgYBBKH2e5jFjlUcbF5GCeJ6W
+0tmX7eKWt9WLkGyVL3CxMaXuEAzy6cy098J/3grmF60wrwvjBfq7QGs00GgFAHCt
+QQmGyH82IwDm4bXgPrLkXF0dySBSmmDzH9pgZVvLxMA3b4FNv+bTDbYU4Q28EFKM
+YVCJzQyjGsAv8YjpUGWOAQKBgQCFzEgBmcV4FQN0qjCck1TdlIPMwYQ3CCZScpIG
+dqHZ02I/VhpZ4+bHtPtd8iv1AGgYLW2B3QSVJjRahgO+Ht9KerDrnggj4GTd9bj8
+HVIPFSfy+zmIyr3LaNRodP6aVBP2ikDQ+btQcVMSsc8X/X/mLyewq/GM+PRjsrKj
+LE91wwKBgQCm3jS2wzmahQ7s9BlPuWdj3r77S1+I54MbOgKYtHCoEpbozb6/LxGA
+QHSCr6PQMRj40OcM6W5uQ8fMoMrnzzZfZIKZtK0TEskELLFB4KWmNs6qZs1rJvbg
+O1wLPzPOGpTQBo7NvL1X3TB9ZIMLpDv5H+7N/OrEtCe+g7Cla4WQ9A==
+-----END RSA PRIVATE KEY-----</value>
+    </values>
+    <values>
+        <field>Apttus_DocuApi__PublicKey__c</field>
+        <value xsi:type="xsd:string">-----BEGIN PUBLIC KEY-----
+MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAgTo+nnVICdvcyl1VZnEb
+eVUJWvNiXCAmkWcEO9G+4eHi+cRYAg7Q1t7v+B7PV0PN5Cg2W91yobYtd06pURoj
+GnxEehWYGEHfhgNlCXnF6XXvHDoV7WC2hU8JoukfEXRj07lKs+puCNcA6UHzze22
+QXpHt6lcIFpeZ5MjpI9zBZLyMKxM6xzF4pCwTWhJMieNIgr4p6PRmwHLx7fwlLxo
+EWeFqtf2ovHnwJg31Vyx7pfihwvKetsx/MHHMspNCbv0mEVkdSXgaosucRVPzk8y
+BayFEe97pLM3qhb3L/wS+D8aV0hsa2eg2pomzOcN6pUR060ZCPOqwmrMGnnnQVUq
+TwIDAQAB
+-----END PUBLIC KEY-----</value>
+    </values>
+</CustomMetadata>

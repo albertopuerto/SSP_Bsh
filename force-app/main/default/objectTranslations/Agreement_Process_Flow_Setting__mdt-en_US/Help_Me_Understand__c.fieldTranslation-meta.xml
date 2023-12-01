@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- This field is used to Keep Salesforce Id of the recording loaded in Salesforce as files. You can only add one Id. Also video loaded here will be shown on Page Layout to explain about specific page component. --></help>
+        <label><!-- Help Me Understand --></label>
+        <name>Help_Me_Understand__c</name>
+    </CustomFieldTranslation>
