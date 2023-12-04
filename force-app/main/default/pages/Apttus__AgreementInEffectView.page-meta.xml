@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ApexPage xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>50.0</apiVersion>
+    <availableInTouch>true</availableInTouch>
+    <confirmationTokenRequired>false</confirmationTokenRequired>
+    <description>This Page provides a detailed view of in effect for an agreement with tabs for Medata data changes, Clauses, Documents.</description>
+    <label>AgreementInEffectView</label>
+    <packageVersions>
+        <majorNumber>1</majorNumber>
+        <minorNumber>40</minorNumber>
+        <namespace>Apttus_Base2</namespace>
+    </packageVersions>
+</ApexPage>

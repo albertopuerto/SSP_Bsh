@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>SBQQ__Dynamic_OptionSelectionMethod_Validation</fullName>
+    <active>true</active>
+    <description>Option selection method for evergreen or renewable/evergreen configurable SKU cannot be Dynamic</description>
+    <errorConditionFormula>AND(OR(ISPICKVAL(SBQQ__ConfiguredSKU__r.SBQQ__SubscriptionType__c, &#39;Evergreen&#39;),  ISPICKVAL(SBQQ__ConfiguredSKU__r.SBQQ__SubscriptionType__c,&#39;Renewable/Evergreen&#39;)), ISPICKVAL(SBQQ__OptionSelectionMethod__c, &#39;Dynamic&#39;))</errorConditionFormula>
+    <errorMessage>Can’t create dynamic bundles for evergreen or renewable/evergreen products</errorMessage>
+</ValidationRule>

@@ -1,0 +1,748 @@
+<!-- 
+    Apttus Contract Management
+    AgreementHierarchy
+     
+    @2019-2021 Apttus Inc. All rights reserved.
+
+ -->
+<apex:page extensions="Apttus.AgreementHierarchyController" standardController="Apttus__APTS_Agreement__c" showHeader="true" sidebar="false"
+    action="{!buildjs}">
+	
+	
+	
+    <apex:includeScript value="{!URLFOR($Resource.Apttus__JQuery350Library, 'jquery-3.5.0.js')}" /> 
+    <apex:includeScript value="{!URLFOR($Resource.Apttus__AgreementHierarchyResource, 'AgreementHierarchy/js/jquery.ui.position.js')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.Apttus__AgreementHierarchyResource, 'AgreementHierarchy/js/jquery-ui.min.js')}" />
+    <apex:stylesheet value="{!URLFOR($Resource.Apttus__AgreementHierarchyResource, 'AgreementHierarchy/css/jquery-ui.min.css')}" />
+    <apex:stylesheet value="{!URLFOR($Resource.Apttus__SLDS080, 'assets/styles/salesforce-lightning-design-system-vf.css')}" />
+    <apex:stylesheet value="{!URLFOR($Resource.Apttus__AgreementHierarchyResource, 'AgreementHierarchy/css/AgreementHierarchyStyle.css')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.Apttus__AgreementHierarchyResource, 'AgreementHierarchy/js/panzoom.min.js')}" />
+    <style>
+        .pageTitleIconAV {
+            width: 32px;
+            height: 32px;
+            float: left;
+        }
+    </style>
+
+    <script type="text/javascript">
+        var parentDetailsForRelatedRecord = JSON.parse("{!JSENCODE(jsonParentAgreementForRelatedRecord)}");
+        var relatedDetailsForRelatedRecord = JSON.parse("{!JSENCODE(jsonRelatedAgreementForRelatedRecord)}");
+        var childDetailsForRelatedRecord = JSON.parse("{!JSENCODE(jsonChildAgreementForRelatedRecord)}");
+    </script>
+
+    <apex:outputText value="{!Apttus__APTS_Agreement__c.name}" rendered="false"></apex:outputText>
+    <apex:outputText value="{!Apttus__APTS_Agreement__c.Apttus__Agreement_Number__c}" rendered="false"></apex:outputText>
+    <apex:form >
+        <div class="bPageTitle bpageTitleExtra">
+            <div class="ptBody">
+                <div class="content">
+                    <img src="{!URLFOR($Resource.LightningResource, '/images/headericons/Hierarchy.png')}" class="pageTitleIconAV hierarchy-icon"
+                        title="{!$Label.AgreementHierarchy}" />
+                    <h1 class="pageType">{!$Label.AgreementHierarchy}
+                        <span class="titleSeparatingColon">:</span>
+                    </h1>
+                    <h2 class="pageDescription"> {!APTS_Agreement__c.Name}</h2>
+                    <div class="blank">&nbsp;</div>
+                </div>
+                <div style="float: right;padding-right: 20px;">
+                    <div class="{!lightningButtonClass}">
+                        <apex:commandButton styleclass="slds-button slds-button--brand" action="{!doCancel}" value="{!$Label.Apttus__BackToAgreement}" immediate="true"
+                        />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="headerfieldsContainer"> 
+            <apex:repeat value="{!$ObjectType.Apttus__APTS_Agreement__c.FieldSets.Apttus__AgreementHierarchyFields}" var="f">
+                <div class="fieldCls"> 
+                    <apex:outputLabel styleClass="labelCls" value="{!$ObjectType.Apttus__APTS_Agreement__c.fields[f].label}"></apex:outputLabel> <br/>
+                    <apex:outputField value="{!Apttus__APTS_Agreement__c[f]}"/>                        
+                </div>
+            </apex:repeat>
+        </div>
+        <apex:pageBlock >
+            <div id="container">
+                <div id="filter" class="filter">
+                    <table id='filter-toggle' class="filter-toggle">
+                        <tr>
+                            <td>
+                                <img class='filter-image' src="{!URLFOR($Resource.AgreementHierarchyResource, 'AgreementHierarchy/images/Filter.png')}"></img>
+                            </td>
+                        </tr>
+                    </table>
+                    <table style="display:none" class="top-corner">
+                        <tr>
+                            <td>
+                                <div class="filter-header">{!$Label.Filters}</div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span>{!$Label.ChildAgreements}</span>
+                            </td>
+                            <td>
+                                <input id="child-filter" class="mytoggle" type="checkbox" checked="true" />
+                                <label for="child-filter"></label>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <span>{!$Label.AmendmentAndRenewals}</span>
+                            </td>
+                            <td>
+                                <input id="amend-filter" class="mytoggle" type="checkbox" checked="true" />
+                                <label for="amend-filter"></label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span>{!$Label.OtherRelatedAgreements}</span>
+                            </td>
+                            <td>
+                                <input id="related-filter" class="mytoggle" type="checkbox" checked="true" />
+                                <label for="related-filter"></label>
+                            </td>
+                        </tr>
+                    </table>
+
+                </div>
+                <div class="tree zoomable" id="tree">
+                </div>
+                <div id="dialog">
+                    <div id="popup-tree" class="tree"></div>
+                </div>
+            </div>
+        </apex:pageBlock>
+        <apex:outPutPanel id="script_block">
+            <script>
+                parentDetailsForRelatedRecord = JSON.parse("{!JSENCODE(jsonParentAgreementForRelatedRecord)}");
+                relatedDetailsForRelatedRecord = JSON.parse("{!JSENCODE(jsonRelatedAgreementForRelatedRecord)}");
+                childDetailsForRelatedRecord = JSON.parse("{!JSENCODE(jsonChildAgreementForRelatedRecord)}");
+                popupName = "{!JSENCODE(popupName)}";
+            </script>
+        </apex:outPutPanel>
+        <apex:actionFunction name="viewRelatedRecord" reRender="script_block" action="{!viewRelatedRecord}" oncomplete="openDialogWrapper();">
+            <apex:param name="relatedAgreementId" value="" />
+        </apex:actionFunction>
+    </apex:form>
+
+    <script type="text/javascript">
+        var parentDetails = JSON.parse("{!JSENCODE(jsonParentAgreement)}");
+        var relatedDetails = JSON.parse("{!JSENCODE(jsonRelatedAgreement)}");
+        var childDetails = JSON.parse("{!JSENCODE(jsonChildAgreement)}");
+
+        var amendMostRecent = JSON.parse("{!JSENCODE(jsonMostRecentAmendment)}");
+        var amendInEffect = JSON.parse("{!JSENCODE(jsonCurrentlyInEffectAmendment)}");
+        var amendDetails = JSON.parse("{!JSENCODE(jsonPastAmendments)}");
+
+        var labelMostRecentAmendmentRenewal = "{!JSENCODE(labelMostRecentAmendmentRenewal)}";
+        var labelCurrentInEffectAmendRenewal = "{!JSENCODE(labelCurrentInEffectAmendRenewal)}";
+        var labelPastAmendmentsRenewal = "{!JSENCODE(labelPastAmendmentsRenewal)}";
+
+        var opacityDeltaAmend = 2;
+        var initialOpacityForPastAgr = 80;
+        var endOpacityForPastAgr = 50;
+
+        var salesforceUrl = "{!JSENCODE(baseURL)}";
+
+        $.fn.appendToWithIndex = function (to, index) {
+            if (!to instanceof jQuery) {
+                to = $(to);
+            }
+            if (index === 0) {
+                $(this)
+                    .slideUp()
+                    .prependTo(to);
+            } else if (index === 99) {
+                $(this).appendTo(to);
+            } else {
+                $(this).insertAfter(to.children().eq(index - 1));
+            }
+            $(this).attr('style', '');
+        };
+
+        var childStructure =
+            "<ul>" +
+            "<li><div id='related-group'></div></li>" +
+            "<li><div id='child-group'></div></li>" +
+            "<li><div id='amend-renew-group'>" +
+            "<div id='amend-group'></div>" +
+            "<div id='renew-group'></div>" +
+            "</div></li>" +
+            "</ul>";
+
+        var popupChildStructure =
+            "<ul>" +
+            "<li><div id='popup-related-group'></div></li>" +
+            "<li><div id='popup-child-group'></div></li>" +
+            "</div></li>" +
+            "</ul>";
+
+        function createMenu(agreementId, isAccount ) {
+            var downArrowIcon = "{!URLFOR($Resource.AgreementHierarchyResource, 'AgreementHierarchy/images/Down.png')}";
+            var showRelatedAgreement = (isAccount && isAccount == true) ? '' : "<a class='show-popup' data-agid='" + agreementId + "'>" + "{!$Label.ShowRelatedAgreements}" + "</a>";
+            return "<div class='dropdown'>" +
+                "<div class='dropbtn'><img class='down-icon' src='" + downArrowIcon + "' </img> </div>" +
+                "<div class='dropdown-content' style='background-color:white !important'>" +
+                "<a class='show-record' data-agid='" + agreementId + "'>" + "{!$Label.ViewRecord}" + "</a>" +
+                showRelatedAgreement + 
+                "</div>" +
+                "</div>";
+        }
+
+        window.onclick = function (event) {
+            if (!event.target.matches('.dropbtn')) {
+                removeExistingDropDowns();
+            }
+        }
+
+        function removeExistingDropDowns() {
+            var dropdowns = document.getElementsByClassName("dropdown-content");
+            var i;
+            for (i = 0; i < dropdowns.length; i++) {
+                var openDropdown = dropdowns[i];
+                if (openDropdown.classList.contains('show')) {
+                    openDropdown.classList.remove('show');
+                }
+            }
+            var buttons = document.getElementsByClassName("dropbtn");
+            var i;
+            for (i = 0; i < buttons.length; i++) {
+                var openButton = buttons[i];
+                if (openButton.classList.contains('show')) {
+                    openButton.classList.remove('show');
+                }
+            }
+        }
+
+        //Generic
+        function createHeader(headerName, className) {
+            return (
+                "<div class='" +
+                className +
+                "'><p>" +
+                headerName +
+                "&nbsp&nbsp</p>" +
+                "</div>"
+            );
+        }
+
+        function createAgreementNode(agreementDetail) {
+            if (agreementDetail[0]) {
+                var agrementDetailString = "";
+                if (agreementDetail[1]) {
+                    for (var i = 2; i < agreementDetail.length; i++) {
+                        agrementDetailString +=
+                            "<p class='agreement-detail bg-white'>" + agreementDetail[i] + "</p>";
+                    }
+                }
+
+                var showMoreClass = "";
+                if (agreementDetail["show-more"] && agreementDetail["show-more"] == true) {
+                    showMoreClass = "parent-show-more";
+                }
+
+                var idString = ""
+                if (agreementDetail["parent-id"]) {
+                    idString = " id='" + agreementDetail["parent-id"] + "' ";
+                }
+                var styleString = "";
+                if (agreementDetail["skip"] && agreementDetail["skip"] == true) {
+                    styleString = " style='display:none;' ";
+                }
+                var agreementIcon = "{!URLFOR($Resource.AgreementHierarchyResource, 'AgreementHierarchy/images/Capture.png')}";
+                if (agreementDetail["account"] && agreementDetail["account"] == true) {
+                    agreementIcon = "{!URLFOR($Resource.AgreementHierarchyResource, 'AgreementHierarchy/images/Account.png')}";
+                }
+
+                var rect =
+                    "<div " + idString + styleString + " class='rectangle " + showMoreClass + "' data-id='" + agreementDetail[0] + "' data-title='" + agreementDetail[1] + "'>" +
+                    "<div class='icon'>" +
+                    "<img class='document-icon'  src='" +
+                    agreementIcon +
+                    "'>" +
+                    "</div>" +
+                    "<div class='detail'>" +
+                    "<p class='agreement-name bg-white'>" +
+                    agreementDetail[1] +
+                    "</p>" +
+                    agrementDetailString +
+                    "</div>" + createMenu(agreementDetail[0], agreementDetail["account"]) +
+                    "</div>";
+                return rect;
+            }
+        }
+
+        function showMoreParent(event) {
+            $("#container").find(".parent-show-more").removeClass("parent-show-more");
+
+            var position = parseInt($(event.currentTarget).attr("id").replace("parent-rect-", ""));
+            var rootParentPosition = 0; // (position - loadCount);
+            if (rootParentPosition < 0) {
+                rootParentPosition = 0;
+            }
+            for (i = (position - 1); i > rootParentPosition; i--) {
+                $("#parent-ul-" + i.toString()).attr("style", "");
+                $("#parent-rect-" + i.toString()).slideDown(200);
+            }
+
+            if (rootParentPosition != 0) {
+                $("#parent-rect-" + (rootParentPosition + 1).toString()).addClass("parent-show-more");
+            }
+        }
+
+        //Generic
+        function createParentAgreements(nodeSelector, classPrefix, parentDetails, childStructure, skipFrom, skipTo) {
+            var pointToDeepestLi = null;
+            var isSkip = false;
+            for (var i = 0; i < parentDetails.length; i++) {
+                isSkip = false;
+                if (skipFrom && skipTo && i >= skipFrom && i <= skipTo && skipFrom <= skipTo) {
+                    isSkip = true;
+                }
+
+                var parentDetail = parentDetails[i];
+                if (skipTo && i == (skipTo + 1) && parentDetail.length > 3) {
+                    parentDetail["show-more"] = true;
+                }
+
+                var $ul = $("<ul>").attr("id", "parent-ul-" + i.toString());
+
+                if (isSkip) {
+                    $ul.attr("style", "padding:0");
+                }
+
+                if (i == 0) {
+                    parentDetail["account"] = true;
+                }
+
+                var $li = $("<li>");
+
+                parentDetail["parent-id"] = "parent-rect-" + i.toString();
+                parentDetail["skip"] = isSkip;
+
+                $li.html(createAgreementNode(parentDetail));
+                if (i == 0) {
+                    $li.attr("id", classPrefix + "account");
+                }
+                if (i == parentDetails.length - 1) {
+                    $li.attr("id", classPrefix + "root");
+                    $li.append(childStructure);
+                }
+                $ul.append($li);
+                if (pointToDeepestLi == null) {
+                    $(nodeSelector).append($ul);
+                } else {
+                    pointToDeepestLi.append($ul);
+                }
+                pointToDeepestLi = $li;
+            }
+        }
+
+        //Generic
+        function renderAmendments(nodeSelector, amendMostRecent, amendInEffect, amendDetails) {
+            var opacity = 100;
+            if (amendMostRecent && amendMostRecent.length > 0) {
+                $(nodeSelector).append(
+                    createAmendRenewBlock(
+                        amendMostRecent,
+                        opacity,
+                        "amend-most-recent",
+                        labelMostRecentAmendmentRenewal
+                    )
+                );
+            }
+            if (amendInEffect && amendInEffect.length > 0) {
+                $(nodeSelector).append(
+                    createAmendRenewBlock(
+                        amendInEffect,
+                        opacity - 5,
+                        "amend-in-effect",
+                        labelCurrentInEffectAmendRenewal
+                    )
+                );
+            }
+            if (amendDetails && amendDetails.length > 0) {
+                renderAmendMore(nodeSelector, initialOpacityForPastAgr, amendDetails);
+            }
+        }
+
+        //Generic
+        function renderAmendMore(nodeSelector, opacity, amendDetails) {
+            var plural = amendDetails.length == 1 ? "" : "s";
+            var otherCounts =
+                amendDetails.length.toString() + " other amendment" + plural;
+            var amendMore = createAmendRenewBlock(
+                [amendDetails.length, otherCounts, "{!$Label.ExpandAmendments}", ""],
+                opacity,
+                "amend-shadow-bottom amend-show-more-placeholder",
+                labelPastAmendmentsRenewal
+            );
+            $(nodeSelector).append(amendMore);
+        }
+
+        //Generic
+        function renderPastAmendments(nodeSelector, from, to, opacity, amendDetails) {
+            $(".amend-show-more-placeholder").remove();
+            $(nodeSelector)
+                .find(".amend-shadow-bottom")
+                .removeClass("amend-shadow-bottom");
+            if (to > amendDetails.length - 1) {
+                to = amendDetails.length - 1;
+            }
+            for (var i = from; i <= to; i++) {
+                var header = i == 0 ? labelPastAmendmentsRenewal : null;
+                $(nodeSelector).append(
+                    createAmendRenewBlock(amendDetails[i], opacity, "amend-past", header)
+                );
+                console.log(opacity);
+                opacity = opacity - opacityDeltaAmend;
+                console.log(opacity);
+            }
+            if (to < amendDetails.length - 1) {
+                $(nodeSelector + " .amend-past")
+                    .last()
+                    .addClass("amend-shadow-bottom");
+            }
+        }
+
+        //Generic
+        function createAmendRenewBlock(agreementDetail, opacity, classString, header) {
+            if (agreementDetail) {
+                var agrementDetailString = "";
+                if (agreementDetail[2]) {
+                    for (var i = 2; i < agreementDetail.length; i++) {
+                        agrementDetailString +=
+                            "<p class='agreement-detail'>" + agreementDetail[i] + "</p>";
+                    }
+                }
+                var headerString = header
+                    ? "<div class='amend-header'>" +
+                    header +
+                    " &nbsp<span class='dot'></span></div>"
+                    : "";
+
+                var dropMenu = classString.indexOf('show-more-placeholder') == -1 ? createMenu(agreementDetail[0]) : '';
+                var amendRect =
+                    "<div class='amend-block " + classString +
+                    "' data-id='" + agreementDetail[0] +
+                    "' data-title='" + agreementDetail[1] + "' >" +
+                    headerString +
+                    "<div class='amend-rect' >" +
+                    "<div class='timeline' style='opacity:" +
+                    opacity / 100 +
+                    "'>" +
+                    "<div class='amend-icon'>" +
+                    "<img class='amend-document-icon' src='" +
+                    "{!URLFOR($Resource.AgreementHierarchyResource, 'AgreementHierarchy/images/Capture.png')}" +
+                    "'>" +
+                    "</div>" +
+                    "<div class='box'>" +
+                    "<div class='box1'>" +
+                    "</div>" +
+                    "<div class='box2'>" +
+                    "</div>" +
+                    "</div>" +
+                    "</div>" +
+                    "<div  style='margin-left:12px;' >" +
+                    "<p class='agreement-name'>" +
+                    agreementDetail[1] +
+                    "</p>" +
+                    agrementDetailString +
+                    "</div>" + dropMenu +
+                    "</div>" +
+                    "</div>" +
+                    "</div>";
+                return amendRect;
+            }
+        }
+
+        //Generic
+        function renderRelatedItems(nodeSelector, from, to, relatedDetails) {
+            $(nodeSelector)
+                .find(".show-more")
+                .removeClass("show-more");
+
+            if (relatedDetails && relatedDetails.length == 0) {
+                $(nodeSelector).append("<div class='not-found'>{!$Label.NoRelatedAgreementsfound}</div>");
+            }
+            if (to > relatedDetails.length - 1) {
+                to = relatedDetails.length - 1;
+            }
+            for (var i = from; i <= to; i++) {
+                $(nodeSelector).append(createAgreementNode(relatedDetails[i]));
+            }
+            if (to < relatedDetails.length - 1) {
+                $(nodeSelector + " .rectangle")
+                    .last()
+                    .addClass("show-more");
+            }
+
+        }
+
+        //Generic
+        function renderChildAgreements(nodeSelector, from, to, childDetails) {
+            $(nodeSelector)
+                .find(".show-more")
+                .removeClass("show-more");
+            if (childDetails && childDetails.length == 0) {
+                $(nodeSelector).append("<div class='not-found'>{!$Label.NoChildAgreementsFound}</div>");
+            }
+            if (to > childDetails.length - 1) {
+                to = childDetails.length - 1;
+            }
+            for (var i = from; i <= to; i++) {
+                $(nodeSelector).append(createAgreementNode(childDetails[i]));
+            }
+            if (to < childDetails.length - 1) {
+                $(nodeSelector + " .rectangle")
+                    .last()
+                    .addClass("show-more");
+            }
+        }
+
+        var relatedDom = null;
+        var amendDom = null;
+        var childDom = null;
+
+        function showMoreChildDetails(event) {
+            showMoreDetail("#child-group", childDetails);
+        }
+
+        function showMoreRelatedDetails(event) {
+            showMoreDetail("#related-group", relatedDetails);
+        }
+
+        function showMoreChildDetailsForRelatedRecord(event) {
+            showMoreDetail("#popup-child-group", childDetailsForRelatedRecord);
+        }
+
+        function showMoreRelatedDetailsForRelatedRecord(event) {
+            showMoreDetail("#popup-related-group", relatedDetailsForRelatedRecord);
+        }
+
+        function showMoreDetail(nodeSelector, details) {
+            
+            var nodeCount = $(nodeSelector + " .rectangle").length;
+            if (nodeCount < details.length) {
+                renderChildAgreements(nodeSelector, nodeCount, details.length - 1, details);
+                bindDropButtonClick();
+            }
+        }
+        function bindDropButtonClick(){
+            $(".dropbtn").on("click touchstart", function (event) {
+                event.preventDefault();
+                event.stopPropagation();
+                event.stopImmediatePropagation();
+                removeExistingDropDowns();
+                $(event.currentTarget).toggleClass("show");
+                $(event.currentTarget).siblings(".dropdown-content").toggleClass("show");
+                return false;
+            });
+        }
+
+        $(document).ready(function () {
+
+
+            var body = document.body, html = document.documentElement;
+            var height = Math.max(body.scrollHeight, body.offsetHeight, html.clientHeight, html.scrollHeight, html.offsetHeight);
+            document.getElementById('container').style.height = (height) + 'px';
+
+            var area = document.querySelector('.zoomable');
+            var dims = area.getBoundingClientRect();
+            const pzInstance = panzoom(area, {
+                maxZoom: 1.1,
+                minZoom: 0.8,
+                zoomSpeed: 0.035, // 6.5% per mouse wheel event
+                onDoubleClick: function (e) { return true; },
+                zoomDoubleClickSpeed: 1,
+                bounds: {
+                    top: height / 3,
+                    left: dims.width / 2,
+                    right: dims.width / 2,
+                    bottom: height / 3 - 100,
+                }
+            });
+
+            createParentAgreements("#tree", "", parentDetails, childStructure, 1, parentDetails.length - 3);
+
+            $("#related-group")
+                .addClass("treeNode")
+                .html(createHeader("{!$Label.OtherRelatedAgreements}", "child-header"));
+            renderRelatedItems("#related-group", 0, 2, relatedDetails);
+
+            $("#child-group")
+                .addClass("treeNode")
+                .html(createHeader("{!$Label.ChildAgreements}", "child-group-header"));
+            renderChildAgreements("#child-group", 0, 2, childDetails);
+
+            //Render Amendment - Renew Header
+            $("#amend-renew-group")
+                .addClass("treeNode")
+                .prepend(createHeader("{!$Label.AmendmentAndRenewals}", "child-header"));
+
+            //Render Amendments
+            opacityDeltaAmend = (initialOpacityForPastAgr - endOpacityForPastAgr) / amendDetails.length;
+            renderAmendments("#amend-group", amendMostRecent, amendInEffect, amendDetails);
+
+            //for elipsis
+            $(document).on("mouseenter", "p", function () {
+                var $this = $(this);
+                if (this.offsetWidth < this.scrollWidth && !$this.attr("title")) {
+                    $this.attr("title", $this.text());
+                }
+            });
+
+            $("#parent-rect-0").find("img:first").removeClass("document-icon").addClass("account-icon");
+
+            function showMoreAmend(event) {
+
+                var nodeSelector = "#amend-group";
+                var amendNodeCount = $(nodeSelector + " .amend-past").length;
+                if (amendNodeCount < amendDetails.length) {
+                    renderPastAmendments(
+                        nodeSelector,
+                        amendNodeCount,
+                        amendDetails.length - 1,
+                        initialOpacityForPastAgr - opacityDeltaAmend * amendNodeCount,
+                        amendDetails
+                    );
+                    bindDropButtonClick();
+                }
+            }
+
+            $("#child-group").on("click touchstart", ".show-more", { "nodeSelector": "#child-group", "details": childDetails }, showMoreChildDetails);
+            $("#related-group").on("click touchstart", ".show-more", { "nodeSelector": "#related-group", "details": relatedDetails }, showMoreRelatedDetails);
+            $("#container").on("click touchstart", ".amend-shadow-bottom", { "nodeSelector": "#amend-group", "amendDetails": amendDetails }, showMoreAmend);
+            $("#container").on("click touchstart", ".parent-show-more", showMoreParent);
+            bindDropButtonClick();
+
+            $("#container").on("click touchstart", ".show-record", function (event) {
+                event.preventDefault();
+                event.stopPropagation();
+                window.open(salesforceUrl + $(event.currentTarget).data("agid"));
+                removeExistingDropDowns();
+            });
+
+            $("#container").on("click touchstart", ".show-popup", function (event) {
+                event.preventDefault();
+                event.stopPropagation();
+                viewRelatedRecord($(event.currentTarget).data("agid"));
+                removeExistingDropDowns();
+            });
+
+            $("#filter-toggle").on("click touchstart", function (event) {
+                event.stopPropagation();
+                event.preventDefault();
+                $(".top-corner").toggle();
+
+            });
+
+            function toggleTreeNode(source, domId, dom, pos) {
+                if (!$(source).is(":checked")) {
+                    dom = $(domId)
+                        .parent("li")
+                        .detach();
+                } else {
+                    if (dom != null) {
+                        var parent = $("#root")
+                            .find("ul")
+                            .first();
+                        dom.appendToWithIndex(parent, pos);
+                        dom = null;
+                    }
+                }
+                return dom;
+            }
+
+            $(document).on("change touchstart", "#related-filter", function (event) {
+                relatedDom = toggleTreeNode(this, "#related-group", relatedDom, 0);
+            });
+
+            $(document).on("change touchstart", "#amend-filter", function (event) {
+                amendDom = toggleTreeNode(this, "#amend-renew-group", amendDom, 99);
+            });
+            $(document).on("change  touchstart", "#child-filter", function (event) {
+                var amendExists = $("#amend-renew-group").length;
+                var relatedExists = $("#related-group").length;
+
+                var pos = 1;
+                if (amendExists > 0 && relatedExists > 0) {
+                    pos = 1;
+                } else if (relatedExists > 0) {
+                    pos = 99;
+                } else if (relatedExists == 0) {
+                    pos = 0;
+                }
+                childDom = toggleTreeNode(this, "#child-group", childDom, pos);
+
+            });
+        });
+
+        function openDialogWrapper() {
+            $("#dialog").dialog({
+                autoOpen: true,
+                modal: true,
+                open: openDialog,
+                height: 'auto',
+                width: 'auto',
+                title: popupName
+            });
+        }
+        function openDialog() {
+            var win = $(window);
+
+            var area = document.querySelector('#popup-tree');
+            var popupHeight = (win.height() - 100);
+            panzoom(area, {
+                maxZoom: 1.1,
+                minZoom: 0.8,
+                zoomSpeed: 0.065, // 6.5% per mouse wheel event
+                onDoubleClick: function (e) { e.preventDefault(); e.stopPropagation(); return false; },
+                bounds: {
+                    top: popupHeight / 3,
+                    left: 100,
+                    right: 100,
+                    bottom: popupHeight / 3,
+                }
+            });
+
+            $(this).parent().css({
+                position: 'fixed',
+                left: (win.width() - 800) / 2,
+                top: 20,
+
+            });
+
+            $(this).css({
+                height: win.height() - 100,
+                overflow: 'hidden'
+            })
+
+            $('.ui-widget-overlay').on('click', function () {
+                $('#dialog').dialog('close');
+            });
+
+            $('.ui-widget-overlay').addClass('custom-overlay');
+
+            $("#popup-tree").empty();
+
+            createParentAgreements("#popup-tree", "popup-", parentDetailsForRelatedRecord, popupChildStructure);
+
+            $("#popup-related-group")
+                .addClass("treeNode")
+                .html(createHeader("{!$Label.RelatedAgreements}", "child-header"));
+            renderRelatedItems("#popup-related-group", 0, 2, relatedDetailsForRelatedRecord);
+
+            $("#popup-child-group")
+                .addClass("treeNode")
+                .html(createHeader("{!$Label.ChildAgreements}", "child-group-header"));
+            renderChildAgreements("#popup-child-group", 0, 2, childDetailsForRelatedRecord);
+
+            $("#popup-child-group").on("click", ".show-more", { "nodeSelector": "#popup-child-group", "details": childDetailsForRelatedRecord }, showMoreChildDetailsForRelatedRecord);
+            $("#popup-related-group").on("click", ".show-more", { "nodeSelector": "#popup-related-group", "details": relatedDetailsForRelatedRecord }, showMoreRelatedDetailsForRelatedRecord);
+        }
+    </script>
+</apex:page>
