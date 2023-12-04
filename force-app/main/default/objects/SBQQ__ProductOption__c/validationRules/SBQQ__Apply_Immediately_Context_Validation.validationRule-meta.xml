@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>SBQQ__Apply_Immediately_Context_Validation</fullName>
+    <active>true</active>
+    <description>The &#39;Apply Immediately&#39; field must be checked before providing an &#39;Apply Immediately Context&#39;. Otherwise, please change the &#39;Apply Immediately Context&#39; field to ‘None&#39;.</description>
+    <errorConditionFormula>AND(TEXT(SBQQ__AppliedImmediatelyContext__c) != null, SBQQ__AppliedImmediately__c == false)</errorConditionFormula>
+    <errorMessage>The &#39;Apply Immediately&#39; field must be checked before providing an &#39;Apply Immediately Context&#39;. Otherwise, please change the &#39;Apply Immediately Context&#39; field to ‘None&#39;.</errorMessage>
+</ValidationRule>
