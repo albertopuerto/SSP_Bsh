@@ -178,28 +178,23 @@
         </platformActionListItems>
         <platformActionListItems>
             <actionName>SendEmail</actionName>
-            <actionType>StandardButton</actionType>
-            <sortOrder>6</sortOrder>
-        </platformActionListItems>
-        <platformActionListItems>
-            <actionName>SendEmail</actionName>
             <actionType>QuickAction</actionType>
-            <sortOrder>7</sortOrder>
+            <sortOrder>6</sortOrder>
         </platformActionListItems>
         <platformActionListItems>
             <actionName>FeedItem.ContentNote</actionName>
             <actionType>QuickAction</actionType>
-            <sortOrder>8</sortOrder>
+            <sortOrder>7</sortOrder>
         </platformActionListItems>
         <platformActionListItems>
             <actionName>FeedItem.TextPost</actionName>
             <actionType>QuickAction</actionType>
-            <sortOrder>9</sortOrder>
+            <sortOrder>8</sortOrder>
         </platformActionListItems>
         <platformActionListItems>
             <actionName>FeedItem.ContentPost</actionName>
             <actionType>QuickAction</actionType>
-            <sortOrder>10</sortOrder>
+            <sortOrder>9</sortOrder>
         </platformActionListItems>
     </platformActionList>
     <quickActionList>
@@ -237,16 +232,6 @@
         <fields>ContactEmail</fields>
         <fields>ContactAccountName</fields>
         <relatedList>RelatedContactRoleList</relatedList>
-    </relatedLists>
-    <relatedLists>
-        <fields>QUOTE.QUOTENUMBER</fields>
-        <fields>QUOTE.NAME</fields>
-        <fields>QUOTE.ISSYNCING</fields>
-        <fields>QUOTE.EXPIRATIONDATE</fields>
-        <fields>QUOTE.SUBTOTAL</fields>
-        <fields>QUOTE.TOTALPRICE</fields>
-        <fields>CreatedBy</fields>
-        <relatedList>RelatedQuoteList</relatedList>
     </relatedLists>
     <relatedLists>
         <fields>Product2</fields>
@@ -293,7 +278,7 @@
     <showRunAssignmentRulesCheckbox>false</showRunAssignmentRulesCheckbox>
     <showSubmitAndAttachButton>false</showSubmitAndAttachButton>
     <summaryLayout>
-        <masterLabel>00h36000003jARd</masterLabel>
+        <masterLabel>00h7S000001SpuB</masterLabel>
         <sizeX>4</sizeX>
         <sizeY>0</sizeY>
         <summaryLayoutStyle>Default</summaryLayoutStyle>
