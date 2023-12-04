@@ -172,4 +172,8 @@
         <name>SBQQ__QuoteQuickly</name>
         <type>CustomApplication</type>
     </appMenuItems>
+    <appMenuItems>
+        <name>ETAS_SALES_Cockpit</name>
+        <type>CustomApplication</type>
+    </appMenuItems>
 </AppMenu>
