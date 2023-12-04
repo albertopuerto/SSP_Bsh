@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- This is more for information to admin, indicating how the condition has been used for controlling action visibility based on the values provided in other fields. --></help>
+        <label><!-- Inclusion Or Exclusion --></label>
+        <name>Inclusion_Or_Exclusion__c</name>
+        <picklistValues>
+            <masterLabel>Exclude</masterLabel>
+            <translation><!-- Exclude --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Include</masterLabel>
+            <translation><!-- Include --></translation>
+        </picklistValues>
+    </CustomFieldTranslation>
