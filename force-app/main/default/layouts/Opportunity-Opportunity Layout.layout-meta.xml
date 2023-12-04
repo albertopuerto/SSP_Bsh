@@ -42,6 +42,10 @@
                 <behavior>Edit</behavior>
                 <field>txa_LossReasonDescription__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>rcnt_CountCompetitors__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
@@ -59,6 +63,10 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>Probability</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>pkl_CompetitionRating__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
@@ -258,6 +266,10 @@
         <fields>EVENT.LOCATION</fields>
         <fields>CORE.USERS.FULL_NAME</fields>
         <relatedList>RelatedHistoryList</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <fields>NAME</fields>
+        <relatedList>Competitor__c.mdr_Opportunity__c</relatedList>
     </relatedLists>
     <relatedObjects>AccountId</relatedObjects>
     <showEmailCheckbox>false</showEmailCheckbox>
