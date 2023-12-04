@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <label><!-- Account Group Text --></label>
+        <name>pkl_AccountGroupText__c</name>
+        <picklistValues>
+            <masterLabel>ETCN Domestic Customer</masterLabel>
+            <translation><!-- ETCN Domestic Customer --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ETDE Domestic Customer</masterLabel>
+            <translation><!-- ETDE Domestic Customer --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ETJP Domestic Customer</masterLabel>
+            <translation><!-- ETJP Domestic Customer --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ETNA - OEM/Fleet Domestic Customer</masterLabel>
+            <translation><!-- ETNA - OEM/Fleet Domestic Customer --></translation>
+        </picklistValues>
+    </CustomFieldTranslation>
