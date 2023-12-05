@@ -3,7 +3,7 @@
     <fullName>SBQQ__Validate_billing_frequency</fullName>
     <active>true</active>
     <description>When Charge Type is One-Time, Billing Frequency must not be selected.</description>
-    <errorConditionFormula>AND(ISPICKVAL(SBQQ__ChargeType__c, &#39;One-Time&#39;), NOT(ISPICKVAL(SBQQ__BillingFrequency__c, &#39;&#39;)))</errorConditionFormula>
+    <errorConditionFormula>AND(ISPICKVAL(SBQQ__ChargeType__c, &apos;One-Time&apos;), NOT(ISPICKVAL(SBQQ__BillingFrequency__c, &apos;&apos;)))</errorConditionFormula>
     <errorDisplayField>SBQQ__BillingFrequency__c</errorDisplayField>
     <errorMessage>When Charge Type is One-Time, a Billing Frequency value cannot be selected.</errorMessage>
 </ValidationRule>
