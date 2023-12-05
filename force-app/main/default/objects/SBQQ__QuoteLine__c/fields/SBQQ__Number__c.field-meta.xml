@@ -2,9 +2,9 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>SBQQ__Number__c</fullName>
     <deprecated>false</deprecated>
-    <description>Number indicating this line&#39;s position within its group or quote.</description>
+    <description>Number indicating this line&apos;s position within its group or quote.</description>
     <externalId>false</externalId>
-    <inlineHelpText>Number indicating this line&#39;s position within its group or quote.</inlineHelpText>
+    <inlineHelpText>Number indicating this line&apos;s position within its group or quote.</inlineHelpText>
     <label>Number</label>
     <precision>5</precision>
     <required>false</required>

@@ -3,7 +3,7 @@
     <fullName>SBQQ__RequiredBy__c</fullName>
     <deleteConstraint>SetNull</deleteConstraint>
     <deprecated>false</deprecated>
-    <description>Links this line to another line in the same quote whose product requires this line&#39;s product.</description>
+    <description>Links this line to another line in the same quote whose product requires this line&apos;s product.</description>
     <externalId>false</externalId>
     <inlineHelpText>Indicates which other product on this quote requires it.</inlineHelpText>
     <label>Required By</label>

@@ -2,9 +2,9 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>SBQQ__PreviousSegmentPrice__c</fullName>
     <deprecated>false</deprecated>
-    <description>When set, this value takes the place of the previous segment&#39;s regular price when calculating Uplift for this segment.</description>
+    <description>When set, this value takes the place of the previous segment&apos;s regular price when calculating Uplift for this segment.</description>
     <externalId>false</externalId>
-    <inlineHelpText>When set, this value takes the place of the previous segment&#39;s regular price when calculating Uplift for this segment.</inlineHelpText>
+    <inlineHelpText>When set, this value takes the place of the previous segment&apos;s regular price when calculating Uplift for this segment.</inlineHelpText>
     <label>Previous Segment Regular Price</label>
     <precision>14</precision>
     <required>false</required>
