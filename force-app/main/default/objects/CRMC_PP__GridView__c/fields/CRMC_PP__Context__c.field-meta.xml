@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>CRMC_PP__Context__c</fullName>
+    <deprecated>false</deprecated>
+    <description>Context the view was saved from, Page Layout as a related list, Conga Grid Explorer, or Custom VF page.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Context the view was saved from, Page Layout as a related list, Conga Grid Explorer, or Custom VF page.</inlineHelpText>
+    <label>Context</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Visualforce Page</fullName>
+                <default>true</default>
+                <label>Visualforce Page</label>
+            </value>
+            <value>
+                <fullName>Explorer</fullName>
+                <default>false</default>
+                <label>Explorer</label>
+            </value>
+            <value>
+                <fullName>Page Layout</fullName>
+                <default>false</default>
+                <label>Page Layout</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

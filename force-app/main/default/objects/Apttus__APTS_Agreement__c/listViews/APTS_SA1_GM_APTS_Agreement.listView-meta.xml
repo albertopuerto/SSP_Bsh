@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>APTS_SA1_GM_APTS_Agreement</fullName>
+    <filterScope>Queue</filterScope>
+    <label>SA1/GM</label>
+    <queue>APTS_SA1_GM</queue>
+    <sharedTo>
+        <allInternalUsers></allInternalUsers>
+    </sharedTo>
+</ListView>

@@ -1,0 +1,53 @@
+<!-- 
+    Conga Approvals
+    NextLevelApprover
+     
+    @2010-2021 Conga Inc. All rights reserved.
+
+ -->
+<apex:page standardController="Apttus_Approval__Approval_Matrix__c"
+        extensions="Apttus_Approval.NextLevelApproverController"
+        lightningStylesheets="{!$User.UIThemeDisplayed == 'Theme4d' ||
+                                $User.UIThemeDisplayed == 'Theme4u'}">
+
+    <apex:form >
+    
+        <apex:outputText value="{!Apttus_Approval__Approval_Matrix__c.Apttus_Approval__User__c}" rendered="false"/>
+        <apex:outputText value="{!Apttus_Approval__Approval_Matrix__c.Apttus_Approval__Matrix_Owner__c}" rendered="false"/>
+        <apex:outputText value="{!Apttus_Approval__Approval_Matrix__c.Apttus_Approval__Approval_Level__c}" rendered="false"/>
+        <apex:outputText value="{!Apttus_Approval__Approval_Matrix__c.Apttus_Approval__Next_Level_Approver__c}" rendered="false"/>
+        <apex:outputText value="{!Apttus_Approval__Approval_Matrix__c.Next_Level_Approver__r.Name}" rendered="false"/>
+    
+        <apex:pageBlock title="{!$Label.Apttus_Approval__ChangeNextLevelApprover}" mode="edit">
+
+            <apex:pageMessages />
+
+            <apex:pageBlockButtons location="top">
+                <apex:commandButton action="{!doSave}" value="{!$Label.Apttus_Approval__Save}" disabled="{!hasErrors}" rendered="{!hasUpdatePermissions}" />
+                <apex:commandButton action="{!doCancel}" value="{!$Label.Apttus_Approval__Cancel}" immediate="true"/>
+            </apex:pageBlockButtons>
+
+            <apex:pageBlockSection title="{!$Label.Apttus_Approval__Details}" columns="1" rendered="{!hasErrors == false}">
+                
+                <apex:outputField value="{!Apttus_Approval__Approval_Matrix__c.Apttus_Approval__User__c}"/>
+                <apex:outputField value="{!Apttus_Approval__Approval_Matrix__c.Apttus_Approval__Next_Level_Approver__c}"/>
+                
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="{!$Label.Apttus_Approval__Approver}" for="idNextLevelUser" />
+                    <apex:outputpanel >
+                        <apex:inputText id="idNextLevelUser" value="{!nextApproverName}" />
+                            <apex:commandLink action="{!doLaunchUserSearch}"  >
+                                <apex:outputPanel >
+                                    <img src="/img/s.gif" class="lookupIcon"/>
+                                </apex:outputPanel>
+                            </apex:commandLink>
+                    </apex:outputpanel>
+                </apex:pageBlockSectionItem>
+                
+            </apex:pageBlockSection>
+            
+        </apex:pageBlock>
+        
+    </apex:form>
+
+</apex:page>

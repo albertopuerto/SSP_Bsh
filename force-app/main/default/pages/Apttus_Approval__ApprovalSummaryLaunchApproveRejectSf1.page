@@ -1,0 +1,17 @@
+<!-- 
+    Conga Approvals
+    ApprovalSummaryLaunchApproveRejectSf1
+     
+    @2014-2021 Conga Inc. All rights reserved.
+
+ -->
+<apex:page standardController="Apttus_Approval__Approval_Request__c"
+           extensions="Apttus_Approval.ApprovalSummaryLaunchController" 
+           action="{!doLaunchApproveRejectSf1}" >
+
+    <!--  required fields -->
+    <apex:outputText value="{!Apttus_Approval__Approval_Request__c.Name}" rendered="false" />
+    <apex:outputText value="{!Apttus_Approval__Approval_Request__c.Apttus_Approval__Object_Type__c}" rendered="false" />
+    <apex:outputText value="{!Apttus_Approval__Approval_Request__c.Apttus_Approval__Approval_Process__c}" rendered="false" />
+        
+</apex:page>
