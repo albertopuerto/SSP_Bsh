@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomPageWebLink xmlns="http://soap.sforce.com/2006/04/metadata">
+    <availability>online</availability>
+    <description>Portal for requesting Agreement - MSA/NDA</description>
+    <displayType>link</displayType>
+    <encodingKey>UTF-8</encodingKey>
+    <height>600</height>
+    <linkType>url</linkType>
+    <masterLabel>Agreement Request Portal</masterLabel>
+    <openType>sidebar</openType>
+    <protected>false</protected>
+    <url>https://nirajittanv1921--apttus.visualforce.com/apex/apttus__wizard?wizardid=a1A3i000000YjmGEAS</url>
+</CustomPageWebLink>

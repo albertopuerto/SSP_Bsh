@@ -1,0 +1,65 @@
+<!-- 
+    Apttus XAuthor Apps
+    AppAssignmentOverview
+     
+    @2014 Apttus Inc. All rights reserved.
+
+ -->
+<apex:page standardController="Apttus_XApps__Application__c" extensions="Apttus_XAppsDS.AppAssignmentOverviewController">
+
+    <style type="text/css">
+        .tableCellCentered {
+            text-align: center;
+        }
+    </style>
+
+    <apex:sectionHeader title="{!$Label.Apttus_XAppsDS__AssignOverviewTitle}" subtitle="{!appName}"/>
+
+    <apex:form >
+        <apex:outputPanel rendered="{!isError}">
+            <apex:pageMessages />
+        </apex:outputPanel>
+
+        <apex:pageBlock title="{!$Label.Apttus_XAppsDS__Users}" mode="edit">
+
+            <apex:pageBlockButtons location="both">
+                <apex:commandButton action="{!editUsers}" value="{!$Label.Apttus_XAppsDS__Edit}" />
+            </apex:pageBlockButtons>
+
+            <apex:pageBlockSection columns="1">
+                    
+                    <apex:outputPanel rendered="{!NOT(isError)}">
+                        <apex:pageBlockTable value="{!assignedUsers}" var="user" rendered="{!hasUsers}">
+                            <apex:column value="{!user.Name}" />
+                        </apex:pageBlockTable>
+
+                        <apex:outputText rendered="{!NOT(hasUsers)}">{!$Label.Apttus_XAppsDS__NoUsersAssigned}</apex:outputText>
+
+                    </apex:outputPanel>
+
+            </apex:pageBlockSection>
+            
+        </apex:pageBlock>
+
+        <apex:pageBlock title="{!$Label.Apttus_XAppsDS__Profiles}" mode="edit">
+
+            <apex:pageBlockButtons location="both">
+                <apex:commandButton action="{!editProfiles}" value="{!$Label.Apttus_XAppsDS__Edit}" />
+            </apex:pageBlockButtons>
+
+            <apex:pageBlockSection columns="1">
+                    
+                    <apex:outputPanel rendered="{!NOT(isError)}">
+                        <apex:pageBlockTable value="{!assignedProfiles}" var="profile" rendered="{!hasProfiles}">
+                            <apex:column value="{!profile.Name}" />
+                        </apex:pageBlockTable>
+
+                        <apex:outputText rendered="{!NOT(hasProfiles)}">{!$Label.Apttus_XAppsDS__NoProfilesAssigned}</apex:outputText>
+                    </apex:outputPanel>
+
+            </apex:pageBlockSection>
+            
+        </apex:pageBlock>
+    </apex:form>
+
+</apex:page>

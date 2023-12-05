@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>CRMC_PP__IsDefault__c</fullName>
+    <defaultValue>false</defaultValue>
+    <deprecated>false</deprecated>
+    <description>Indicates this is the default view for the given context and the baseline that a Conga Grid will revert to when reset.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Indicates this is the default view for the given context and the baseline that a Conga Grid will revert to when reset.</inlineHelpText>
+    <label>Default</label>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>
