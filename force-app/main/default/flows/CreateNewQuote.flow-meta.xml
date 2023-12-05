@@ -13,7 +13,7 @@
     </processMetadataValues>
     <processMetadataValues>
         <name>CanvasMode</name>
-        <value>
+        <value> 
             <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
         </value>
     </processMetadataValues>
