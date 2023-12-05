@@ -1,0 +1,70 @@
+<!-- 
+    Apttus Contract Management
+    AgreementInEffectView
+     
+    @2019-2021 Apttus Inc. All rights reserved.
+
+ -->
+
+<apex:page sidebar="false" showHeader="true" lightningStylesheets="true" 
+    standardController="Apttus__APTS_Agreement__c" extensions="Apttus.AgreementInEffectViewController">
+    
+	
+	
+    <apex:includeLightning />
+    <apex:form >
+        <apex:actionFunction name="navigateToLWC" action="{!navigateToLWCComponent}"/> 
+    </apex:form>
+    <!-- container to hold LWC lightning out Component -->
+    <div id="container"></div>
+    
+    <!-- loading message -->
+    <div id="loading">{!$Label.LoadingPage}</div>
+	
+	<!-- hidden fields -->
+	<apex:outputText value="{!Apttus__APTS_Agreement__c.Apttus__Agreement_Number__c}" rendered="false"></apex:outputText>
+	<apex:outputText value="{!Apttus__APTS_Agreement__c.Apttus__FF_Agreement_Number__c}" rendered="false"></apex:outputText>
+	<apex:outputText value="{!Apttus__APTS_Agreement__c.Apttus__Status_Category__c}" rendered="false"></apex:outputText>	
+    
+	<script>
+
+       /** 
+        * display message and redirect back to agreement detail page if the agreement is never been In-Effect
+        */            
+        var displayNonInEffectMessage = '{!IF(displayNonInEffectMessage == true, true, false)}';
+        
+        if(displayNonInEffectMessage == 'true') {           
+            alert('{!$Label.AgreementInEffectInvalidStatusMessage}');
+            if((typeof sforce != 'undefined') && sforce && sforce.one) {
+                sforce.one.navigateToURL('{!URLFOR($Action.APTS_Agreement__c.View, inEffectAgreementId)}');
+            }
+            else {      
+                window.open('{!URLFOR($Action.APTS_Agreement__c.View, inEffectAgreementId)}', '_self');
+            }                        
+        } 
+        else {
+        
+            /**
+             * redirect to Lightning Aura component container if lightning experience else open in Lightning Out.
+             * using Aura container since redirection to Lightning Web Component directly is not supported 
+             */
+            if((typeof sforce != 'undefined') && sforce && sforce.one) {
+                navigateToLWC() ;
+            }
+            else {      
+                $Lightning.use("{!nsPrefix}:AgreementEditApp", function() {
+                $Lightning.createComponent(
+                    "{!nsPrefix}:agreementInEffectViewWebComponent",{
+						"agreementId" : "{!JSENCODE(inEffectAgreementId)}", 
+                        "agreementNumber" : "{!JSENCODE(APTS_Agreement__c.Agreement_Number__c)}",
+                        "agreementVersionNumber": "{!JSENCODE(agreementVersionNumber)}"
+					},
+                    "container",
+                    function(cmp) {                         
+                        document.getElementById('loading').style.display = 'none';
+                    });
+                });
+            }
+        }
+    </script>
+</apex:page>

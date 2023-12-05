@@ -1,0 +1,96 @@
+<!-- 
+    Apttus Contract Management
+    AgreementAmend
+     
+    @2009-2019 Apttus Inc. All rights reserved.
+
+	parameters
+    ==========
+    Name			     | Required | Description
+    =====================|==========|======================================================================================
+    id 				     | Yes      | The record id of the agreement
+    					 |		    |
+    autoSave	 		 | No	    | Indicates whether the amendment is saved automatically.  
+    					 |		    | The default value is false. 
+    					 |			|
+    retId 			     | No       | The id of the record to navigate to after the action is completed
+    				     |		    |
+    ===================================================================================================================
+    
+ -->
+<apex:page standardController="Apttus__APTS_Agreement__c" 
+		   extensions="Apttus.AgreementAmendController" >
+
+	<script language="Javascript">
+    
+        function SubmitOnClick (objSubmitBtn) {
+             var isFirefox = typeof InstallTrigger !== 'undefined';
+             var isChrome = !!window.chrome && !!window.chrome.webstore;
+             
+             if(isFirefox == true){
+                 objSubmitBtn.className = 'btnDisabled';
+             }
+             else if(isChrome == true){
+                 objSubmitBtn.disabled = true;
+                 objSubmitBtn.className = 'btnDisabled';
+                 doSubmit();
+             }
+             else{
+                 objSubmitBtn.className = 'btnDisabled';
+             }
+            return true;
+        }
+        
+    </script>
+	
+    <apex:form id="frmId">    
+		<!--  required fields -->
+		<apex:outputText value="{!Apttus__APTS_Agreement__c.Name}" rendered="false"/>
+		
+		<apex:pageBlock rendered="{!NOT(isInitialized) && NOT(hasErrors)}">
+			<apex:pageBlockButtons location="bottom">
+                <apex:actionStatus id="continueStatus">
+                        <apex:facet name="stop">
+                            <apex:commandButton value="{!$Label.Apttus__Continue}"  action="{!onLoad}" rerender="frmId" status="continueStatus"/> 
+                        </apex:facet>
+                        <apex:facet name="start">
+                            <apex:outputPanel >
+                                <apex:commandButton value="{!$Label.Apttus__Continue}" status="continueStatus" disabled="true"/>
+                            </apex:outputPanel>
+                        </apex:facet>
+                </apex:actionStatus>
+                <!--<apex:commandButton value="{!$Label.Apttus__Continue}" onclick="return SubmitOnClick(this);" action="{!onLoad}" />-->
+				<apex:commandButton value="{!$Label.Apttus__Cancel}" action="{!doCancel}" immediate="true" />
+		    </apex:pageBlockButtons>
+		    <apex:pageBlockSection title="{!$Label.Apttus__AmendAgreement}" columns="2" collapsible="false">
+				<apex:outputField value="{!Apttus__APTS_Agreement__c.Name}"/>
+				<apex:outputField value="{!Apttus__APTS_Agreement__c.Apttus__FF_Agreement_Number__c}"/>
+				<apex:outputField value="{!Apttus__APTS_Agreement__c.Apttus__Contract_Start_Date__c}"/>
+				<apex:outputField value="{!Apttus__APTS_Agreement__c.Apttus__Contract_End_Date__c}"/>
+				<apex:outputField value="{!Apttus__APTS_Agreement__c.Apttus__Status__c}"/>
+				<apex:outputField value="{!Apttus__APTS_Agreement__c.Apttus__Status_Category__c}"/>
+				<apex:outputField value="{!Apttus__APTS_Agreement__c.Apttus__Requestor__c}"/>
+				<apex:outputField value="{!Apttus__APTS_Agreement__c.OwnerId}"/>
+		    </apex:pageBlockSection>
+		    <apex:pageBlockSection title="{!$Label.Apttus__RecordType + ' ' + $Label.Apttus__Select}" columns="1" collapsible="false" rendered="{!IsRecordTypeUpdateAllowed}">
+		        <apex:outputLabel style="margin:9%;">{!$Label.RecordType} &nbsp;&nbsp;&nbsp;&nbsp; 
+		            <c:RecordTypeList id="idRecordType" 
+		                              recordType="{!recordType}" 
+		                              objectType="{!$ObjectType.Apttus__APTS_Agreement__c.Name}" >
+		            </c:RecordTypeList>
+		        </apex:outputLabel>
+		     </apex:pageBlockSection>
+		</apex:pageBlock>
+		
+		<apex:pageBlock mode="edit" rendered="{!hasErrors}" >
+			<apex:pageMessages />
+			<apex:pageBlockButtons location="bottom" >
+				<apex:commandButton action="{!doCancel}" value="{!$Label.Apttus__Cancel}" immediate="true"/>
+			</apex:pageBlockButtons>
+		</apex:pageBlock>
+		
+		<apex:actionFunction name="doSubmit" action="{!onLoad}" />
+		
+	</apex:form>
+	
+</apex:page>

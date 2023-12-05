@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>APTS_Solution_Fields__c</fullName>
+    <externalId>false</externalId>
+    <inlineHelpText>Select one or more solutions</inlineHelpText>
+    <label>Solution Fields</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>MultiselectPicklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>ETAS-DAP</fullName>
+                <default>false</default>
+                <label>ETAS-DAP</label>
+            </value>
+            <value>
+                <fullName>ETAS-DEV</fullName>
+                <default>false</default>
+                <label>ETAS-DEV</label>
+            </value>
+            <value>
+                <fullName>ETAS-SEC</fullName>
+                <default>false</default>
+                <label>ETAS-SEC</label>
+            </value>
+            <value>
+                <fullName>ETAS-VOS</fullName>
+                <default>false</default>
+                <label>ETAS-VOS</label>
+            </value>
+            <value>
+                <fullName>ETAS-MSS</fullName>
+                <default>false</default>
+                <label>ETAS-MSS</label>
+            </value>
+            <value>
+                <fullName>ETAS-VCS</fullName>
+                <default>false</default>
+                <label>ETAS-VCS</label>
+            </value>
+            <value>
+                <fullName>ETAS-E2E</fullName>
+                <default>false</default>
+                <label>ETAS-E2E</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+    <visibleLines>4</visibleLines>
+</CustomField>
