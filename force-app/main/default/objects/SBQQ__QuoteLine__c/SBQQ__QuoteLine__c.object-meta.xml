@@ -157,7 +157,7 @@
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>ControlledByParent</externalSharingModel>
-    <label>Quote Line</label>
+    <label>QuoteLine</label>
     <nameField>
         <displayFormat>QL-{0000000}</displayFormat>
         <label>Line Name</label>
