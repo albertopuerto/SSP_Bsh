@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>NonStandard_Data_Details_Field_Required</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND(ISPICKVAL( APTS_Data_Security__c ,&quot;Non-Standard&quot;),ISBLANK(  APTS_Non_Standard_Data_security_Details__c ))</errorConditionFormula>
+    <errorDisplayField>APTS_Non_Standard_Data_security_Details__c</errorDisplayField>
+    <errorMessage>Non-Standard Data Security Details</errorMessage>
+</ValidationRule>

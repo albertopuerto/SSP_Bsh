@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CompactLayout xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Apttus_Default</fullName>
+    <fields>Name</fields>
+    <fields>Apttus__Account__c</fields>
+    <fields>Apttus__Contract_Start_Date__c</fields>
+    <fields>Apttus__Requestor__c</fields>
+    <fields>OwnerId</fields>
+    <fields>APTS_Record_Type_Name__c</fields>
+    <label>Apttus Default</label>
+</CompactLayout>
