@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Apttus_DocuApi__DocusignAccountID__c</fullName>
+    <deprecated>false</deprecated>
+    <description>Docusign account number</description>
+    <externalId>false</externalId>
+    <fieldManageability>SubscriberControlled</fieldManageability>
+    <inlineHelpText>To get the Account Id, Click your profile image on the upper-right corner of the console; your account number is beneath your name and/or organization name in the drop-down menu</inlineHelpText>
+    <label>Docusign Account ID</label>
+    <length>255</length>
+    <required>false</required>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- Enter short name for the process flow for which you want to control visibility. You can add multiple process flows separated by comma. --></help>
+        <label><!-- Agreement Process Flow Short Name --></label>
+        <name>Agreement_Process_Flow_Short_Name__c</name>
+    </CustomFieldTranslation>
