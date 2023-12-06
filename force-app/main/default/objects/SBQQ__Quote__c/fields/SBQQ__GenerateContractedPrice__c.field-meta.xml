@@ -7,6 +7,7 @@
     <inlineHelpText>Will generate a contracted price based on all adjusted quote line on quote if flagged.</inlineHelpText>
     <label>Generate Contracted Price</label>
     <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
     <trackHistory>false</trackHistory>
     <trackTrending>false</trackTrending>
     <type>Picklist</type>
