@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>All</fullName>
+    <columns>NAME</columns>
+    <columns>pkl_SalesOrg__c</columns>
+    <columns>pkl_DistributionChannel__c</columns>
+    <columns>pkl_Division__c</columns>
+    <filterScope>Everything</filterScope>
+    <label>All</label>
+</ListView>
