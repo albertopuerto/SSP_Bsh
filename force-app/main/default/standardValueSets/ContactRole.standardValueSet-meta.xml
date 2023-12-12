@@ -14,7 +14,7 @@
     <standardValue>
         <fullName>Economic Buyer</fullName>
         <default>false</default>
-        <label>Economic Buyer</label>
+        <label>Economic Buyer</label> 
     </standardValue>
     <standardValue>
         <fullName>Economic Decision Maker</fullName>
