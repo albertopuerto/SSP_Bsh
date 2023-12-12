@@ -2,6 +2,13 @@
 <Queue xmlns="http://soap.sforce.com/2006/04/metadata">
     <doesSendEmailToMembers>true</doesSendEmailToMembers>
     <name>SA1/GM</name>
+    <queueMembers>
+        <users>
+            <user>kesingleton@conga.com</user>
+            <user>kesingleton@conga.com.etas</user>
+            <user>system.user@bosch-etas.com</user>
+        </users>
+    </queueMembers>
     <queueSobject>
         <sobjectType>Apttus_Approval__Approval_Request__c</sobjectType>
     </queueSobject>

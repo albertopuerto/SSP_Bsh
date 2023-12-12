@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>APTS_My_Queue_Agreements</fullName>
+    <columns>NAME</columns>
+    <filterScope>Queue</filterScope>
+    <label>Legal Queue</label>
+    <queue>APTS_Legal_Queue</queue>
+</ListView>
