@@ -42,6 +42,11 @@
         <label>Technical Buyer</label>
     </standardValue>
     <standardValue>
+        <fullName>Tool Coordinator</fullName>
+        <default>false</default>
+        <label>Tool Coordinator</label>
+    </standardValue>    
+    <standardValue>
         <fullName>Other</fullName>
         <default>false</default>
         <label>Other</label>
