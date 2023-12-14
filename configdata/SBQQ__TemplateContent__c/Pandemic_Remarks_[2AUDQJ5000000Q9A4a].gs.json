@@ -1,0 +1,17 @@
+{
+  "Object": "SBQQ__TemplateContent__c",
+  "Fields": {
+    "GearsetDisplayName": "Pandemic Remarks",
+    "GearsetExternalId__c": "2AUDQJ5000000Q9A4a",
+    "Name": "Pandemic Remarks",
+    "SBQQ__CustomSource__c": "",
+    "SBQQ__FontFamily__c": "Open Sans",
+    "SBQQ__FontSize__c": "10.0",
+    "SBQQ__Markup__c": "",
+    "SBQQ__RawMarkup__c": "<p style=\"text-align: justify;\"><strong>The Corona pandemic currently is ongoing and its duration and impact are unpredictable for the Parties. The Parties assume that the economic life relevant to the Contract will normalize in the next few weeks, in particular that the economic restrictions due to the Corona pandemic will be abolished. However, neither the duration nor the further effects of the measures taken by the affected states against this pandemic are predictable for the Parties. Against this background, the Parties define the Corona pandemic/epidemic as a case of Force Majeure. ETAS is not liable for the impossibility of supply / other performance or for delays insofar as these were caused by Acts of God or other events unforeseeable at the time the contract was concluded that ETAS is not responsible for (e.g. disruption of operations of all kinds, difficulties in material or energy procurement, transport delays, strikes, legitimate lockouts, lack of manpower, energy or raw materials, difficulties in obtaining the necessary official permits, official measures, pandemics, epidemics or the incorrect or untimely supply / other performance by ETAS suppliers / subcontractors).</strong></p>",
+    "SBQQ__TableStyle__c": "Standard",
+    "SBQQ__TextColor__c": "",
+    "SBQQ__Type__c": "HTML"
+  },
+  "References": []
+}
