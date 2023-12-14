@@ -7,6 +7,7 @@
     <inlineHelpText>Status indicating where quote is in its lifecycle.</inlineHelpText>
     <label>Status</label>
     <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
     <trackHistory>true</trackHistory>
     <trackTrending>false</trackTrending>
     <type>Picklist</type>
@@ -27,6 +28,11 @@
                 <fullName>Approved</fullName>
                 <default>false</default>
                 <label>Approved</label>
+            </value>
+            <value>
+                <fullName>Approval Pending</fullName>
+                <default>false</default>
+                <label>Approval Pending</label>
             </value>
             <value>
                 <fullName>Denied</fullName>
