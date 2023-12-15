@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Apttus_DocuApi__PrivateKey__c</fullName>
+    <deprecated>false</deprecated>
+    <description>This field for DocuSign Private Key.</description>
+    <externalId>false</externalId>
+    <fieldManageability>SubscriberControlled</fieldManageability>
+    <inlineHelpText>To generate the Private Key, you can log into DocuSign as an admin and go to Settings &gt; Apps and keys &gt; Add app and integration key &gt; Generate RSA key.</inlineHelpText>
+    <label>Private Key</label>
+    <length>131072</length>
+    <type>LongTextArea</type>
+    <visibleLines>10</visibleLines>
+</CustomField>

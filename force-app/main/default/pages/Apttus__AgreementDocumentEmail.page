@@ -1,0 +1,587 @@
+<!-- 
+    Apttus Contract Management
+    AgreementDocumentEmail
+     
+    @2019-2021 Apttus Inc. All rights reserved.
+
+ -->
+<apex:page standardController="Apttus__APTS_Agreement__c" lightningStylesheets="true" recordSetVar="agreementLstRecords"
+                                                extensions="Apttus.AgreementDocumentEmailController">
+    
+	
+	
+    <apex:includeScript value="{!URLFOR($Resource.Apttus__jszip, '/jszip.js')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.Apttus__JQuery350Library, 'jquery-3.5.0.js')}" />
+    <apex:includeScript value="{!URLFOR($Resource.Apttus__AgreementDocumentEmailUI, 'js/jquery.blockUI.min.js')}"/> 
+    <script type="text/javascript" src="/soap/ajax/50.0/connection.js"></script>
+    <script type="text/javascript" src="/soap/ajax/50.0/apex.js"></script>      
+    <apex:include pageName="Apttus__ComplyJSLibInclude" />
+    
+    <apex:stylesheet value="{!URLFOR($Resource.Apttus__AgreementDocumentEmailUI, 'css/agreementdocumentemail-uistyles.css')}"/>
+    <apex:includeLightning />
+	
+    <!-- render the lightning css files in lightning mode. -->
+    <apex:outputPanel rendered="{!OR($User.UIThemeDisplayed == 'Theme4d', $User.UIThemeDisplayed == 'Theme4t')}">
+        <apex:slds />
+        <apex:stylesheet value="{!URLFOR($Resource.Apttus__SLDS080, 'assets/styles/salesforce-lightning-design-system-vf.css')}" />        
+    </apex:outputPanel>    
+    
+    <script>
+    
+        var zipFile = new JSZip();
+        var listAttWrapper;
+        var j$ = jQuery.noConflict();
+        var selectedAgmtIds = [];
+        var unselectedAgmtIds = [];
+        
+        /**
+         * If user did not select any agreement before clicking on Email Agreement(s) document(s), should show validation message
+         */
+        j$( document ).ready(function() {             
+			var totalRecordsLength  = '{!agreementListIds.size == 0}';
+			if(totalRecordsLength == 'true') {
+				alert('{!$Label.AgreementDocumentEmailNoAgreementSelected}');            
+				redirectToPreviousPage();
+			}
+        });
+		
+		/**
+         * redirect back to previous page
+         */
+        function redirectToPreviousPage() {
+            var isLightning = (typeof sforce != 'undefined') && (sforce != null) && (sforce.one != null);
+            var retUrl = '{!JSENCODE($CurrentPage.parameters.retURL)}';
+            if(isLightning) {
+                sforce.one.back();
+            } 
+			else if(retUrl != null) {
+                window.open(retUrl, '_self');                     
+            }
+        }
+        
+        /**
+         * display loading icon on a pop up with message.
+         */
+        function onAjaxStart() { 
+            j$.blockUI({ 
+                message: '<img src="{!URLFOR($Resource.AgreementDocumentEmailUI, 'img/load-icon.gif')}"/><div>{!$Label.AgreementDocumentEmailGeneratingMessage}</div>' 
+            }); 
+                
+        }
+        
+        /**
+         * hide loading icon and message. 
+         */        
+        function onAjaxStop() {
+            j$.unblockUI();
+        }
+        
+        /**
+         * disable all checkboxes when user selects any file. 
+         */
+        function disableallCheckboxes() {
+            var attachElements = document.getElementsByClassName("checkBoxes");  
+        
+            for(var i=0, elemLength = attachElements.length; i < elemLength; i++ ) {
+                attachElements[i].disabled = true;
+            }
+        }
+        
+        /**
+         * method is invoked after user selects the files and clicks on Email button.
+         * creates a zipped file of all the selected files using JSZip Library.
+         * calls the ComplyWebService class method to insert a record into ContentDistribution. 
+         */
+        function generateDownloadLinkForEmail(selectedIds) {
+            try {
+            
+                //map used to manitain counter if same file name is repeated. 
+                var occurrence = { };
+                
+                //set the sessionId.
+                sforce.connection.sessionId = '{!$Api.Session_ID}';
+                
+                //call the complyMethod to fetch the body of all selected file ids.
+                var listBlobDocumentContent = getFilesBodyByIds(selectedIds);
+                                
+                //iterate through each file and pass the body to JSZIP function to create a Zipped file.
+                for (var i = 0; i < listBlobDocumentContent.length; i++) { 
+                    var documentObj = listBlobDocumentContent[i];
+                    
+                    //JSZip does not add the file with same name to final Zipped file if there are multiple files with same name. 
+                    //so, modifying the file name to append with  occurrence counter.  
+                    var fileValue = documentObj.documentName;
+                    var fileNameCounter = '';
+                    var modifiedFileName = '';
+                    var fileName = fileValue.substring(0, fileValue.lastIndexOf(".") );
+                    var fileExtension = fileValue.substring(fileValue.lastIndexOf(".") + 1);
+                    
+                    //map for store occurrence of the each file name.                
+                    if (occurrence[fileValue]) {
+                        occurrence[fileValue]++;
+                        fileNameCounter = ' (' + occurrence[fileValue] + ')';
+                    }
+                    else {
+                        occurrence[fileValue] = 1;
+                    } 
+                    
+                    //create unique fileName that can be passed to JSZip.
+                    if(fileValue.lastIndexOf(".") > -1) {
+                        modifiedFileName = fileName + fileNameCounter + '.' + fileExtension;
+                    }
+                    else{
+                        modifiedFileName = fileValue + fileNameCounter ;
+                    }
+                
+                    //JSZip function to compress the file body.
+                    zipFile.file(modifiedFileName, documentObj.documentBody, {base64:true});
+                }
+                
+                //after compress call the generate function ofJSZip to get the final zipped file.
+                var blobZippedContent = zipFile.generate({type:"blob"});
+                
+                //invoke the createContentDocumentLink in ComplyJS which calls ComplyWebserive to insert the content and generate distribution link.
+                createContentDocumentLink('{!JSENCODE(SUBSTITUTE($Label.AgreementDocumentEmailDownloadedZipName, "0", TEXT(NOW()) + " GMT"))}',
+                                                blobZippedContent, 
+                                                '{!JSENCODE($Label.AgreementDocumentEmailContentVersionReasonForChange)}') ;  
+            } catch(ex) {
+                
+                // display the error
+                erroralert(cERROR_UNKNOWN, ex);
+                
+            } 
+        }
+                  
+        
+        /**
+         * callback function invoked from -  createContentDocumentLink in ComplyJS.  
+         */
+        var createContentDocumentLinkCallback = {
+            onSuccess: function(result) {       
+                //on successful generation of ContentDistribution Link, invoke the action function passing ContentDownloadUrl.
+                navigateToEmailAuthorPage(result[0]);
+                onAjaxStop();
+            }, 
+            onFailure: function(error) {
+                alert('Error: ' + error);
+                onAjaxStop();
+            } 
+        };
+        function onAjaxLoadingStart() {
+          j$.blockUI({ message: '<img src="{!URLFOR($Resource.Image_LoadingPage)}"/><div>{!$Label.LoadingPage}</div>' });
+        }
+        
+        function selectAgreement(receivedInputID) {
+            var isExistingAgmt = new Boolean(false);             
+            for(var i=0; i<selectedAgmtIds.length; i++) {          
+                if(selectedAgmtIds[i] == receivedInputID) {
+                     selectedAgmtIds.splice(i, 1);
+                     isExistingAgmt = true; 
+                } 
+            }
+            if(isExistingAgmt == false) {
+                selectedAgmtIds.push(receivedInputID);
+            }
+        }
+        
+        function addSelected() {
+            if(selectedAgmtIds.length > 0) {
+                 onAgreementSelect(selectedAgmtIds.join(','));    
+                 selectedAgmtIds = [];                            
+            } else {
+                alert('{!$Label.Apttus__AgreementDocumentEmailNoRecordsFound}');
+            }
+        }
+        
+        function unselectAgreement(receivedInputID) {
+            var isExistingAgmt = new Boolean(false);             
+            for(var i=0; i < unselectedAgmtIds.length; i++) {          
+                if(unselectedAgmtIds[i] == receivedInputID) {
+                     unselectedAgmtIds.splice(i, 1);
+                     isExistingAgmt = true; 
+                } 
+            }
+            if(isExistingAgmt == false) {
+                unselectedAgmtIds.push(receivedInputID);
+            }
+            
+        }
+        
+        function removeSelected() {
+            if(unselectedAgmtIds.length > 0) {
+                 onAgreementUnSelect(unselectedAgmtIds.join(','));      
+                 unselectedAgmtIds = [];          
+            } else {
+                alert('{!$Label.Apttus__AgreementDocumentEmailNoRecordsFound}');
+            }
+        } 
+        
+        function isAgreementSelected(recordId) { 
+                var isExistingId = new Boolean(false);
+                for(var i=0; i<selectedAgmtIds.length; i++) {          
+                    if(selectedAgmtIds[i] == recordId) {
+                         document.getElementById(recordId).checked = true;
+                         isExistingId = true;
+                    } 
+                }                
+                if(isExistingId == false) {
+                    document.getElementById(recordId).checked = false;
+                }
+                
+        }
+        
+    </script>
+    <style>
+       .popupBackground{
+            width:100%;
+            min-height:100%;
+            position: fixed;
+            top: 0%;
+            background-color: #cccccc;
+            left: 0;
+            opacity: .95;z-index: 100;
+        }
+        .custPopupSub{
+            position: absolute;
+            background-color: rgb(243, 242, 242);
+            top: 10%;
+            left: 17%;
+            width: 70%;
+            overflow: auto;
+            height: 85%;
+        }
+        .ptBody.secondaryPalette.brandSecondaryBrd {
+            background-color: rgb(243, 242, 242);
+               margin-bottom: 3%;
+        }    
+        .box {
+          font-size:12pt !important;
+          margin:1% !important; 
+          font-weigth:bold !important;
+        }   
+        
+        .btnDisplay {
+            display: inline !important;
+        }
+        
+    </style> 
+     
+     
+    <!-- append div with class : slds-scope for lightning mode -->
+    <div class="{!IF(OR($User.UIThemeDisplayed == 'Theme4d', $User.UIThemeDisplayed == 'Theme4t'), 'slds-scope' ,'' )}">
+    
+        <apex:form id="frmId" rendered="{!isContentDistributionEnabled}">          
+            <!-- Modify Agreement Selection Pop Up  --> 
+            <apex:pageBlock id="agreementRecordsPanel" rendered="{!isAgreementSelectionEnabled}">
+                <apex:outputPanel id="agreementRecordsPanel" rendered="true" styleClass="popupBackground" >
+                       <apex:outputPanel styleClass="custPopupSub panel panel--single">     
+                              <!-- Lightning Loading SPINNER -->
+                                <apex:actionStatus id="lightningStatus">
+                                    <apex:facet name="start">
+                                        <div class="slds-spinner_container" style="position: fixed;" >
+                                            <div role="status" class="slds-spinner slds-spinner--large slds-spinner--brand">
+                                                <div class="slds-spinner__dot-a"></div>
+                                                <div class="slds-spinner__dot-b"></div>
+                                            </div>
+                                        </div>
+                                    </apex:facet>
+                                </apex:actionStatus>
+                                <!-- / SPINNER -->
+                                <!-- Classic Loading Status -->
+                                <apex:actionStatus id="classicStatus" onstart="onAjaxLoadingStart()" onstop="onAjaxStop()" />
+                                
+                                <!-- Classic Action Function to add Selected agreements -->
+                                <apex:actionFunction name="onAgreementSelect" action="{!addSelectedRecords}" reRender="agreementRecordsPanel" status="classicStatus"  rendered="{!!($User.UIThemeDisplayed == 'Theme4d' || $User.UIThemeDisplayed == 'Theme4t')}">
+                                    <apex:param value="selectedAgmtIds" name="selectedAgmtIds" assignTo="{!selectedAgmtIds}"/>
+                                </apex:actionFunction>
+                                
+                                <!-- Classic Action Function to remove Selected agreements -->
+                                <apex:actionFunction name="onAgreementUnSelect" action="{!removeSelectedRecords}" reRender="agreementRecordsPanel" status="classicStatus"  rendered="{!!($User.UIThemeDisplayed == 'Theme4d' || $User.UIThemeDisplayed == 'Theme4t')}">
+                                    <apex:param value="unselectedAgmtIds" name="unselectedAgmtIds" assignTo="{!unSelectedAgmtIds}"/>
+                                </apex:actionFunction>
+                                
+                                <!-- Lightning Action Function to add Selected agreement -->
+                                <apex:actionFunction name="onAgreementSelect" action="{!addSelectedRecords}" reRender="agreementRecordsPanel" status="lightningStatus" rendered="{!($User.UIThemeDisplayed == 'Theme4d' || $User.UIThemeDisplayed == 'Theme4t')}">
+                                    <apex:param value="selectedAgmtIds" name="selectedAgmtIds" assignTo="{!selectedAgmtIds}"/>
+                                </apex:actionFunction>
+                                
+                                <!-- Lightning Action Function to remove Selected agreement -->
+                                <apex:actionFunction name="onAgreementUnSelect" action="{!removeSelectedRecords}" reRender="agreementRecordsPanel" status="lightningStatus" rendered="{!($User.UIThemeDisplayed == 'Theme4d' || $User.UIThemeDisplayed == 'Theme4t')}">
+                                    <apex:param value="unselectedAgmtIds" name="unselectedAgmtIds" assignTo="{!unSelectedAgmtIds}"/>
+                                </apex:actionFunction>
+                                
+                                <!-- Lightning Header -->
+                                <apex:outputPanel rendered="{!($User.UIThemeDisplayed == 'Theme4d' || $User.UIThemeDisplayed == 'Theme4t')}">
+                                    <div class="slds-page-header slds-media slds-no-space slds-grow slds-header-background">
+                                         <div class="slds-media__figure">
+                                              <span class="slds-avatar slds-avatar--medium">
+                                                  <img src="{!$Resource.LightningResource + '/images/actions/sendforesign.png'}" />
+                                              </span>
+                                         </div>
+                                         <div class="slds-media__body">
+                                          <p class="slds-page-header__title slds-m-right--small slds-align-middle slds-truncate">{!$Label.Apttus__AgreementDocumentEmailModifyAgreementSelection}</p>
+                                              <h1 class="slds-text-title slds-line-height--reset">{!$Label.Apttus__AgreementDocumentEmailListofAgreements}</h1>
+                                         </div>
+                                    </div>
+                                </apex:outputPanel>
+                                <!-- Classic Header -->
+                                <apex:sectionHeader title="{!$Label.Apttus__AgreementDocumentEmailListofAgreements}" subtitle="{!$Label.Apttus__AgreementDocumentEmailModifyAgreementSelection}" rendered="{!!($User.UIThemeDisplayed == 'Theme4d' || $User.UIThemeDisplayed == 'Theme4t')}"/>
+                                
+                                <!-- List of Unselected Agreements -->                            
+                                <div class="box">{!$Label.AgreementDocumentEmailUnselectedAgreements}</div>
+                                <div style="margin:1%;">                                  
+                                  <apex:outputText styleclass="inputStyle" value="{!$Label.Apttus__Page} {!agreementsPaginator.PageNumber} {!$Label.Apttus__of} {!agreementsPaginator.totalPages}" />                    
+                                  <apex:outputPanel styleclass="inputStyle" style="margin-left:calc(50% - 150px)">
+                                      <apex:commandLink value="{!$Label.Apttus__PreviousPagination}" status="classicStatus" rendered="{!AND(agreementsPaginator.HasPrevious, !($User.UIThemeDisplayed == 'Theme4d' || $User.UIThemeDisplayed == 'Theme4t'))}" action="{!agreementsPaginator.previousPage}" reRender="agreementRecordsPanel"/>
+                                      <apex:commandLink value="{!$Label.Apttus__PreviousPagination}" status="lightningStatus" rendered="{!AND(agreementsPaginator.HasPrevious, ($User.UIThemeDisplayed == 'Theme4d' || $User.UIThemeDisplayed == 'Theme4t'))}" action="{!agreementsPaginator.previousPage}" reRender="agreementRecordsPanel"/>                            
+                                      <apex:outputText value="{!$Label.Apttus__PreviousPagination}" rendered="{!NOT(agreementsPaginator.HasPrevious)}" style="color: #ccc;"/>
+                                      <apex:outputText value="  "/>
+                                      <apex:commandLink value="{!$Label.Apttus__NextPagination}" status="classicStatus" rendered="{!AND(agreementsPaginator.HasNext, !($User.UIThemeDisplayed == 'Theme4d' || $User.UIThemeDisplayed == 'Theme4t'))}" action="{!agreementsPaginator.nextPage}" reRender="agreementRecordsPanel"/>                    
+                                      <apex:commandLink value="{!$Label.Apttus__NextPagination}" status="lightningStatus" rendered="{!AND(agreementsPaginator.HasNext, ($User.UIThemeDisplayed == 'Theme4d' || $User.UIThemeDisplayed == 'Theme4t'))}" action="{!agreementsPaginator.nextPage}" reRender="agreementRecordsPanel"/>                    
+                                      <apex:outputText value="{!$Label.Apttus__NextPagination}" rendered="{!NOT(agreementsPaginator.HasNext)}" style="color: #ccc;"/>
+                                  </apex:outputPanel>
+                    
+                                  <apex:outputPanel style="float:right; margin-bottom:5px;">
+                                    <apex:outputText value="{!$Label.Apttus__RecordsPerPage} " />
+                                    <apex:selectList value="{!pageSize}" size="1" rendered="{!!($User.UIThemeDisplayed == 'Theme4d' || $User.UIThemeDisplayed == 'Theme4t')}">
+                                        <apex:selectOption itemValue="5" itemLabel="{!$Label.Apttus__LabelFive}"/>
+                                        <apex:selectOption itemValue="10" itemLabel="{!$Label.Apttus__LabelTen}"/>
+                                          <apex:selectOption itemValue="25" itemLabel="{!$Label.Apttus__LabelTwentyFive}"/>
+                                          <apex:selectOption itemValue="50" itemLabel="{!$Label.Apttus__LabelFifty}"/>
+                                            <apex:actionSupport event="onchange" action="{!getAgreementRecords}" status="classicStatus" reRender="agreementRecordsPanel"/>
+                                    </apex:selectList>
+                                    <apex:selectList value="{!pageSize}" size="1" rendered="{!($User.UIThemeDisplayed == 'Theme4d' || $User.UIThemeDisplayed == 'Theme4t')}">
+                                        <apex:selectOption itemValue="5" itemLabel="{!$Label.Apttus__LabelFive}"/>
+                                        <apex:selectOption itemValue="10" itemLabel="{!$Label.Apttus__LabelTen}"/>
+                                          <apex:selectOption itemValue="25" itemLabel="{!$Label.Apttus__LabelTwentyFive}"/>
+                                          <apex:selectOption itemValue="50" itemLabel="{!$Label.Apttus__LabelFifty}"/>
+                                            <apex:actionSupport event="onchange" action="{!getAgreementRecords}" status="lightningStatus" reRender="agreementRecordsPanel"/> 
+                                     </apex:selectList>
+                                  </apex:outputPanel>
+                                  </div>
+                                <div style="margin:1%">                                    
+                                    <apex:pageBlockTable value="{!agreementsPaginator.Records}" var="agreement">
+                                        <apex:column headerValue="{!$Label.Apttus__Action}">     
+                                            <!-- checkbox for agreement selection -->
+                                            <input id="{!agreement.Id}" type="checkbox" styleClass="checkBoxes" name="SelectRecord" onclick="selectAgreement('{!agreement.Id}')" >
+                                              <script>
+                                                 isAgreementSelected('{!agreement.Id}')   
+                                              </script>
+                                            </input>                                                
+                                         </apex:column>
+                                         <apex:repeat value="{!AgreementResultFields}" var="field">
+                                            <apex:column headerValue="{!field.member.Label}">                
+                                               <apex:outputPanel rendered="{!agreement[field.member.FieldPath]!=null}">       
+                                                <apex:outputField value="{!agreement[field.member.FieldPath]}"/>
+                                               </apex:outputPanel>
+                                            </apex:column>
+                                        </apex:repeat>
+                                    </apex:pageBlockTable>
+                                    <apex:commandButton styleclass="slds-button slds-button--brand" value="{!$Label.Apttus__AgreementDocumentEmailAddSelected}" onclick="addSelected();return false;" />
+                                </div>
+                                <!-- List of Selected Agreements -->
+                                <div class="box">{!$Label.AgreementDocumentEmailSelectedAgreements}</div>
+                                <div style="margin:1%">
+                                    <apex:pageBlockTable value="{!agreementRecordsLstView}" var="agreement"> 
+                                         <apex:column headerValue="{!$Label.Apttus__Action}">                    
+                                            <!-- checkbox for agreement deselection -->
+                                            <input type="checkbox" styleClass="checkBoxes" name="UnselectRecord" onclick="unselectAgreement('{!agreement.Id}')" />
+                                         </apex:column>       
+                                         <apex:repeat value="{!AgreementResultFields}" var="field">
+                                            <apex:column headerValue="{!field.member.Label}">                
+                                               <apex:outputPanel rendered="{!agreement[field.member.FieldPath]!=null}">       
+                                                <apex:outputField value="{!agreement[field.member.FieldPath]}"/>
+                                               </apex:outputPanel>
+                                            </apex:column>
+                                        </apex:repeat>                    
+                                    </apex:pageBlockTable>
+                                    <apex:commandButton styleclass="slds-button slds-button--brand" value="{!$Label.Apttus__AgreementDocumentEmailRemoveSelected}" onclick="removeSelected();return false;" />
+                                </div> 
+                                <!-- Action Buttons -->
+                                <div style="float: right;margin-right : 1%"> 
+                                    <apex:commandButton styleclass="slds-button slds-button--neutral btnDisplay"  value="{!$Label.Apttus__Cancel}"  action="{!doCancel}" />
+                                    &nbsp;
+                                    <apex:commandButton styleclass="slds-button slds-button--brand btnDisplay" status="classicStatus" value="{!$Label.Apttus__Apply}" action="{!doApply}" />
+                                </div>
+                       </apex:outputPanel>       
+                </apex:outputPanel>            
+            </apex:pageBlock>
+        
+            <!-- actionFuntion -->
+            <apex:actionFunction name="onFileSelect" action="{!copySelectedIds}" status="statusId" reRender="frmId">
+                <apex:param value="" name="SelectedId" assignTo="{!SelectedId}"/>
+                <apex:param value="" name="SelectedParentId" assignTo="{!SelectedParentId}"/>
+                <apex:param value="" name="selectedType" assignTo="{!selectedType}"/>
+                <apex:param value="" name="selectedValue" assignTo="{!selectedValue}"/>
+            </apex:actionFunction>
+
+            <apex:actionFunction name="expandCollapse" action="{!expandCollapse}" status="statusId" reRender="dataPanelId">
+                <apex:param value="" name="SelectedParentId" assignTo="{!SelectedParentId}"/>
+            </apex:actionFunction>
+
+            <apex:actionFunction name="changePageSize" action="{!changePageSize}" status="statusId" reRender="dataPanelId">
+                <apex:param value="" name="selectedPageSize" assignTo="{!selectedPageSize}"/>
+            </apex:actionFunction>
+
+            <apex:actionFunction name="navigateToEmailAuthorPage" action="{!navigateToEmailAuthorPage}" status="statusId" reRender="dataPanelId">
+                <apex:param value="" name="downloadLink" assignTo="{!downloadLink}"/>
+            </apex:actionFunction> <!-- actionFuntion section ends here -->
+            
+            <!-- header -->
+            <apex:sectionHeader title="{!$Label.Apttus__AgreementDocumentEmailSectionHeaderTitle}"/>
+			
+			<!-- content delivery LWC component to generate content distribution link.-->
+            <apex:outputPanel id="showContentDistributionDownloadPanel"> 
+               
+                <!-- container to hold LWC lightning out Component -->
+                <div id="container"></div>
+                
+                <apex:outputPanel rendered="{!showContentDeliveryComponent}"> 
+				<apex:variable value="{!IF(LEN(nsPrefix) > 0, SUBSTITUTE(nsPrefix, '__', ''), 'c')}" var="nsPrefix"/>
+				
+                    <!-- loading message -->
+                    <div id="loading">{!$Label.loadingpage}</div>       
+                   
+                    <script>
+                        var documents = JSON.parse('{!JSENCODE(jsonSelectedDocumentIds)}');
+
+                        $Lightning.use("{!nsPrefix}:AgreementEditApp", function() {
+                        $Lightning.createComponent(
+                        "{!nsPrefix}:contentDeliveryLinksWebComponent",{
+                            "documents" : documents,
+                            "totalFileSize": "{!totalSelectedFileSize}",
+                            "redirectUrl": "{!JSENCODE(returnURL)}"
+                        },
+                        "container",
+                        function(cmp) {                         
+                            document.getElementById('loading').style.display = 'none';
+                        });
+                    });
+                    </script>
+                </apex:outputPanel>
+            </apex:outputPanel>
+            
+            <apex:pageBlock id="pgBlockId">
+                <!--button panel, displays SendEmail button -->
+                <apex:pageBlockButtons location="top" >
+                    <apex:commandButton styleclass="slds-button slds-button--brand btnDisplay" 
+                                        disabled="{!totalSelectedFileSize == 0}" 
+                                        reRender="showContentDistributionDownloadPanel" action="{!loadContentDeliveryComponent}"
+										value="{!$Label.Apttus__AgreementDocumentEmailEmailDocumentsButtonValue}" 
+										rendered="{!totalRecordsLength > 0}"/>                    
+                    <apex:commandButton styleclass="slds-button slds-button--brand slds-m-top--medium action-button"  value="{!$Label.Apttus__AgreementDocumentEmailModifyAgreementSelection}" action="{!getAgreementRecords}" />
+                </apex:pageBlockButtons>
+
+                <!-- section to display the total selected file size counter -->
+                <apex:outputPanel layout="block" styleclass="rightCls" rendered="{!totalRecordsLength > 0}">
+                    <apex:outputLabel styleClass="txtCls" value="{!$Label.Apttus__AgreementDocumentEmailSelectedFileSizeLabel} "/>
+                    <apex:outputText styleClass="labelCls" value="{!totalSelectedFileSizeDisplayFormat}"/>
+                </apex:outputPanel>
+                
+                <apex:outputPanel id="dataPanelId" layout="block">
+                    <apex:outputPanel rendered="{!totalRecordsLength > 0}">
+                        <ul class="outerUlCls">
+                            <apex:repeat value="{!agreementDocumentsPaginated}" var="agreement">
+                                <li style="margin-left:0px;">
+                                    <div class="agrmentCls"> 
+                                        <!--collapsible icon, expand-->
+                                        <apex:image styleClass="iconsCls" value="{!URLFOR($Resource.Apttus__AgreementDocumentEmailUI, 'img/arrow-right.png')}" rendered="{!agreement.boolHideRelatedDocumentRecords}" onclick="expandCollapse('{!agreement.agreementObj.Id}')"/>
+                                        
+                                        <!--collapsible icon, collapse-->
+                                        <apex:image styleClass="iconsCls" value="{!URLFOR($Resource.Apttus__AgreementDocumentEmailUI, 'img/arrow-down.png')}" rendered="{!NOT(agreement.boolHideRelatedDocumentRecords)}" onclick="expandCollapse('{!agreement.agreementObj.Id}')"/>
+                                        
+                                        <!-- checkbox for user selection -->
+                                        <apex:inputcheckbox styleClass="checkBoxes" value="{!agreement.boolAgreementSelected}" onclick="disableallCheckboxes();onFileSelect('{!agreement.agreementObj.Id}','{!agreement.agreementObj.Id}','Agreement', this.checked)"/>
+                                        
+                                        <!-- link to agreement records, opens in new tab -->
+                                        <apex:outputLink styleClass="linkCls labelCls" value="/{!agreement.agreementObj.Id}" title="{!agreement.agreementObj.Name}" target="_blank">
+                                            <apex:outputText value="{!agreement.agreementObj.Name}"/>
+                                        </apex:outputLink>
+                                    </div>
+                                    <ul class="innerUlCls">
+                                        <apex:repeat value="{!agreement.listDocumentsInfo}" var="relatedDocument" rendered="{!NOT(agreement.boolHideRelatedDocumentRecords)}">
+                                            <li class="fileContainerCls">
+                                                <div class="fileCls">
+                                                    <span style="display:inline-block">
+                                                        <apex:inputcheckbox styleClass="checkBoxes" value="{!relatedDocument.boolDocumentSelected}" onclick="disableallCheckboxes(); onFileSelect('{!relatedDocument.documentId}','{!agreement.agreementObj.Id}','Document', this.checked)"/>
+                                                    </span>
+                                                    
+                                                    <!-- filename -->
+                                                    <span style="display:inline-block;width:80%;">
+                                                        <apex:outputText styleClass="txtCls" value="{!relatedDocument.documentName}"/>
+                                                    </span>
+                                                    
+                                                    <!-- filesize -->
+                                                    <span style="display:inline-block;width:15%;">
+                                                        <apex:outputText styleClass="txtCls" value="{!relatedDocument.documentSizeDisplayFormat}"/>
+                                                    </span>
+                                                </div>
+                                            </li>
+                                        </apex:repeat>
+                                    </ul> 
+                                </li>  
+                            </apex:repeat>
+                        </ul>
+                    </apex:outputPanel>
+                    <!-- panel to display message when no records found -->
+                    <apex:outputPanel id="noRecordsPanel" rendered="{!totalRecordsLength == 0}">
+                        <apex:outputText styleClass="txtCls" value="{!$Label.Apttus__AgreementDocumentEmailNoRecordsFound}"/>                        
+                    </apex:outputPanel>
+                    <!-- panigation panel-->
+                    <apex:outputPanel id="paginationPanelId" rendered="{!totalRecordsLength > 0}" layout="block">
+                        <apex:outputPanel layout="inline">
+                            <apex:outputText styleClass="labelCls" value="{!$Label.Apttus__AgreementDocumentEmailPaginationRowsPerPageLabel}"/>
+                            <span class="linkCls {!IF(selectedPageSize == VALUE($Label.AgreementDocumentEmailPaginationMinRowsPerPage), 'highlightSelected', '')}"
+                                        onclick="changePageSize('{!$Label.Apttus__AgreementDocumentEmailPaginationMinRowsPerPage}')">
+                                <apex:outputText value="{!$Label.Apttus__AgreementDocumentEmailPaginationMinRowsPerPage}"/>
+                            </span> 
+                            <span class="linkCls {!IF(selectedPageSize == VALUE($Label.AgreementDocumentEmailPaginationIntermediateLimitRowsPerPage), 'highlightSelected', '')}"
+                                        onclick="changePageSize('{!$Label.Apttus__AgreementDocumentEmailPaginationIntermediateLimitRowsPerPage}')">
+                                <apex:outputText value="{!$Label.Apttus__AgreementDocumentEmailPaginationIntermediateLimitRowsPerPage}"/>
+                            </span> 
+                            <span class="linkCls {!IF(selectedPageSize == VALUE($Label.AgreementDocumentEmailPaginationMaxRowsPerPage), 'highlightSelected', '')}"
+                                        onclick="changePageSize('{!$Label.Apttus__AgreementDocumentEmailPaginationMaxRowsPerPage}')">
+                                <apex:outputText value="{!$Label.Apttus__AgreementDocumentEmailPaginationMaxRowsPerPage}"/>
+                            </span>
+                        </apex:outputPanel>
+
+                        <apex:outputPanel style="float:right">
+                            <apex:commandLink value=" {!$Label.Apttus__PreviousPagination} " styleClass="linkCls labelCls" action="{!previous}" rendered="{!hasPrevious}" reRender="frmId" /> 
+                            <apex:outputText styleClass="disable labelCls" rendered="{!NOT(hasPrevious)}" value=" {!$Label.Apttus__PreviousPagination} "/>
+                            <apex:outputText value="|"/>
+                            <apex:commandLink value=" {!$Label.Apttus__NextPagination} " action="{!next}" styleClass="linkCls labelCls" rendered="{!hasNext}" reRender="frmId" />
+                            <apex:outputText styleClass="disable labelCls" rendered="{!NOT(hasNext)}" value=" {!$Label.Apttus__NextPagination} "/>
+                        </apex:outputPanel>
+                    </apex:outputPanel>
+                </apex:outputPanel><!-- pagination panel ends here-->
+                
+            </apex:pageBlock>
+        </apex:form>
+		
+		<!-- display error message dialog when content delivery is off -->
+        <apex:outputPanel rendered="{!NOT(isContentDistributionEnabled)}">
+			
+			<!-- adding slds since slds modal is displayed using slds classes -->
+            <apex:slds />
+            <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+                <div class="slds-modal__container">
+                    <header class="slds-modal__header">
+                        <h2 class="slds-modal__title slds-hyphenate">{!$Label.AgreementDocumentEmailSubject}</h2>
+                    </header>
+                    
+                    <div class="slds-modal__content slds-p-around_medium">
+                        <div class="slds-align_absolute-center" style="height:4rem">{!$Label.ContentDeliveryTurnedOffMessage}</div>
+                    </div>
+                
+                    <footer class="slds-modal__footer">
+                        <button class="slds-button slds-button_neutral" onclick="redirectToPreviousPage()">{!$Label.Close}</button>
+                    </footer>
+                </div>
+            </section>
+            
+            <!-- background -->
+            <div class="slds-backdrop slds-backdrop_open"></div>
+        </apex:outputPanel>
+    </div>
+            
+</apex:page>

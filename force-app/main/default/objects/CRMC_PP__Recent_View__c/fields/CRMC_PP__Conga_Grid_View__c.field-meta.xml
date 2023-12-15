@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>CRMC_PP__Conga_Grid_View__c</fullName>
+    <deprecated>false</deprecated>
+    <externalId>false</externalId>
+    <label>Conga Grid View</label>
+    <referenceTo>CRMC_PP__GridView__c</referenceTo>
+    <relationshipLabel>Conga Grid Recent Views</relationshipLabel>
+    <relationshipName>Conga_Grid_Recent_Views</relationshipName>
+    <relationshipOrder>0</relationshipOrder>
+    <reparentableMasterDetail>true</reparentableMasterDetail>
+    <trackTrending>false</trackTrending>
+    <type>MasterDetail</type>
+    <writeRequiresMasterRead>true</writeRequiresMasterRead>
+</CustomField>

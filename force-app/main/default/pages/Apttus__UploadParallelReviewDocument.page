@@ -1,0 +1,97 @@
+<!--
+ *  Apttus Contract Management
+ *  UploadParallelReviewDocument
+ *   
+ *  @2019 Apttus Inc. All rights reserved.
+ -->
+<apex:page standardController="Apttus__APTS_Agreement__c" extensions="Apttus.UploadParallelReviewDocumentController" action="{!redirectToLightning}">
+ <apex:stylesheet value="{!URLFOR($Resource.Apttus__SLDS080, 'assets/styles/salesforce-lightning-design-system-vf.css')}"
+     />
+<style type="text/css">
+    .sectionWidth {
+        width : 434px;  
+    }
+    .pageDescription.headerFont {
+        font-size: 14px;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+</style>
+<!-- render the lightning css files in lightning mode. -->
+<apex:outputPanel rendered="{!OR($User.UIThemeDisplayed == 'Theme4d', $User.UIThemeDisplayed == 'Theme4t')}">
+<apex:slds />  
+</apex:outputPanel>   
+<apex:form >
+    <apex:outputPanel layout="block" id="endReviewPopUp" style="margin:10px">
+        <div class="content">
+            <img src="{!URLFOR($Resource.LightningResource, '/images/headericons/SendReview.png')}"
+                        alt="Review Cycle" class="pageTitleIcon" title="{!$Label.ReviewCycle}"/>
+            <span>{!$Label.Agreement}</span><br/>
+            <h2 class="pageDescription headerFont"><apex:outputText value="{!Apttus__APTS_Agreement__c.Name}"/></h2>
+            <div class="blank">&nbsp;</div>
+        </div>
+        <apex:pageBlock >
+            <apex:actionRegion >
+                <apex:outputPanel layout="block">
+                    <div class="popUpHeaderPanel">
+                        <h3 class="popUpHeaderText">{!$Label.UploadReviewedDocument}</h3>
+                    </div>
+                    <div class="popUpInputContainer"><br/>
+                        <apex:outputPanel rendered="{!displayError}">
+                            <span style="color:red;">{!$Label.Apttus__EndReviewFileUploadErrorMessage}</span><br/><br/>                     
+                        </apex:outputPanel>
+                        <apex:outputPanel rendered="{!displaySelectFileError}">
+                            <span style="color:red;">{!$Label.Apttus__DocumentToUpload}</span><br/><br/>                         
+                        </apex:outputPanel>
+                        <apex:outputPanel rendered="{!displayUploadFileError}">
+                            <span style="color:red;">{!$Label.Apttus__DocumentUploadBeforeEndReview}</span><br/> <br/>                           
+                        </apex:outputPanel>
+                        <apex:outputPanel rendered="{!displayUploadFileSuccess}">
+                            <span style="color:green;">{!$Label.Apttus__FileUploadedSuccessfully}</span><br/> <br/>                           
+                        </apex:outputPanel>
+                        <apex:outputPanel rendered="{!displayReviewEnded}">
+                            <span style="color:red;">{!$Label.Apttus__ReviewDocumentUploadError}</span><br/> <br/>                           
+                        </apex:outputPanel>
+                            <div class="sectionWidth">                              
+                                <apex:outputPanel >                              
+                                    <apex:inputFile value="{!fileBody}" fileName="{!fileName}" />
+                                </apex:outputPanel>
+                                <apex:outputPanel style="float:right">
+                                    <button type="button"   class="slds-button slds-button_brand" onclick="upload()">
+                                        <span>{!$Label.Upload}</span> 
+                                    </button>
+                                </apex:outputPanel>
+                            </div><br></br><br></br><br></br>
+                        <apex:outputPanel >
+                            <span style="padding-top:25px;font-family=Arial, Helvetica, sans-serif;font-size:12px">{!$Label.Apttus__Comments}</span><br/>
+                            <apex:inputTextArea style="width: 430px; height: 107px;" html-maxlength="32767"
+                                        rows="5" id="endReviewComments" label="Comments" value="{!reviewActionComment}"
+                                        styleClass="popUpInputLabel"/>
+                        </apex:outputPanel><br></br> 
+                    </div><br/>
+                    <div class="sectionWidth" style="height:60px;text-align: right;">
+                        <apex:outputPanel >
+                            <button type="button" style="margin-right:10px;" class="slds-button slds-button_neutral" text="{!$Label.Cancel}" onclick="cancel()">
+                                <span>{!$Label.Cancel}</span>
+                            </button>
+                        </apex:outputPanel>
+                        <apex:outputPanel >
+                            <button type="button" class="slds-button slds-button_brand" onclick="processEndReview()">
+                                <span>{!$Label.EndReview}</span> 
+                            </button>
+                        </apex:outputPanel>
+                        <apex:actionFunction name="cancel" action="{!closePage}"/>
+                        <apex:actionFunction name="upload" action="{!doUploadEndReviewDocument}"/>
+                        <apex:actionFunction name="save" action="{!doGetDocumentMetadata}"/>
+                    </div>
+                    <script>
+                        function  processEndReview() {
+                            alert('{!JSENCODE($Label.EndReviewIsProcessing)}');
+                            save();
+                       }
+                    </script>
+                </apex:outputPanel>
+            </apex:actionRegion>
+        </apex:pageBlock>
+    </apex:outputPanel>
+</apex:form>
+</apex:page>

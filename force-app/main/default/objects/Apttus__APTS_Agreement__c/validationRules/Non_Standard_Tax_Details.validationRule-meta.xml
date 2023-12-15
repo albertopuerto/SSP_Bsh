@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Non_Standard_Tax_Details</fullName>
+    <active>true</active>
+    <description>If Tax is set to &#39;Non-Standard&#39;, &#39;Non-Standard Tax Details&#39; field is required</description>
+    <errorConditionFormula>AND(
+ISPICKVAL(APTS_Tax__c,&#39;Non-Standard&#39;),
+ISBLANK(APTS_Non_Standard_Tax_Details__c)
+)</errorConditionFormula>
+    <errorDisplayField>APTS_Non_Standard_Tax_Details__c</errorDisplayField>
+    <errorMessage>Please enter &#39;Non-Standard Tax Details&#39;</errorMessage>
+</ValidationRule>
