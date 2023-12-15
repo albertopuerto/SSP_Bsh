@@ -55,6 +55,10 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
+                <field>RecordTypeId</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
                 <field>ParentId</field>
             </layoutItems>
             <layoutItems>
@@ -249,6 +253,11 @@
         </quickActionListItems>
     </quickActionList>
     <relatedLists>
+        <fields>MEMBER_NAME</fields>
+        <fields>TEAM_MEMBER_ROLE</fields>
+        <relatedList>RelatedAccountSalesTeam</relatedList>
+    </relatedLists>
+    <relatedLists>
         <fields>CONTACT.FULL_NAME</fields>
         <fields>CONTACT.ACCOUNT_NAME</fields>
         <fields>CONTACT.TITLE</fields>
@@ -306,6 +315,21 @@
         <fields>CORE.USERS.FULL_NAME</fields>
         <fields>TASK.WHAT_NAME</fields>
         <relatedList>RelatedHistoryList</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <fields>SalesArea__c.NAME</fields>
+        <fields>ftxt_SalesOrg__c</fields>
+        <fields>ftxt_DistributionChannel__c</fields>
+        <fields>ftxt_Division__c</fields>
+        <relatedList>SalesAreaLink__c.mdr_Account__c</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <fields>NAME</fields>
+        <fields>Opportunity.NAME</fields>
+        <fields>Opportunity.OPP_AMOUNT</fields>
+        <fields>Opportunity.OPP_STAGE_NAME</fields>
+        <fields>Opportunity.OPP_CLOSE_DATE</fields>
+        <relatedList>Competitor__c.mdr_Competitor__c</relatedList>
     </relatedLists>
     <relatedObjects>ParentId</relatedObjects>
     <showEmailCheckbox>false</showEmailCheckbox>
