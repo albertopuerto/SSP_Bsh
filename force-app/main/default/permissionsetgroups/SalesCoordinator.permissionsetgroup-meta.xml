@@ -4,6 +4,7 @@
     <hasActivationRequired>false</hasActivationRequired>
     <label>SalesCoordinator</label>
     <permissionSets>AccountContactMaster</permissionSets>
+    <permissionSets>CPQRead</permissionSets>
     <permissionSets>SalesBasic</permissionSets>
     <status>Updated</status>
 </PermissionSetGroup>
