@@ -1,0 +1,37 @@
+{
+  "Object": "SBQQ__CustomAction__c",
+  "Fields": {
+    "GearsetDisplayName": "Remove Product",
+    "GearsetExternalId__c": "AAQf6e1000000Q963a",
+    "Name": "Remove Product",
+    "SBQQ__Action__c": "Delete Line",
+    "SBQQ__Active__c": "true",
+    "SBQQ__BrandButton__c": "false",
+    "SBQQ__Class__c": "deleteBtn",
+    "SBQQ__ConditionsMet__c": "All",
+    "SBQQ__Default__c": "false",
+    "SBQQ__Description__c": "",
+    "SBQQ__DisplayOrder__c": "30.0",
+    "SBQQ__EventHandlerName__c": "onDeleteLine",
+    "SBQQ__IconClass__c": "sf-icon-clear",
+    "SBQQ__Icon__c": "clear",
+    "SBQQ__Label__c": "Delete Line",
+    "SBQQ__Location__c": "Line",
+    "SBQQ__PageHandlerName__c": "",
+    "SBQQ__Page__c": "Quote Line Editor",
+    "SBQQ__ReturnURL__c": "",
+    "SBQQ__TargetObject__c": "",
+    "SBQQ__Type__c": "Button",
+    "SBQQ__URLTarget__c": "",
+    "SBQQ__URL__c": ""
+  },
+  "References": [
+    {
+      "Name": "SBQQ__ParentCustomAction__r",
+      "ReferencedObject": "SBQQ__CustomAction__c",
+      "ReferencedFields": {
+        "GearsetExternalId__c": ""
+      }
+    }
+  ]
+}
