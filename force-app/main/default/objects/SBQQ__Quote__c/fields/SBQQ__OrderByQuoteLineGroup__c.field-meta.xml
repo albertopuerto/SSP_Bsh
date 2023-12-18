@@ -7,6 +7,7 @@
     <externalId>false</externalId>
     <inlineHelpText>If flagged while setting the Quote to &quot;Ordered&quot;, an Order will be created for each Quote Line Group with their associated Quote Lines.</inlineHelpText>
     <label>Order By Quote Line Group</label>
+    <trackFeedHistory>false</trackFeedHistory>
     <trackHistory>false</trackHistory>
     <trackTrending>false</trackTrending>
     <type>Checkbox</type>

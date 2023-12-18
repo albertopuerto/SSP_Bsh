@@ -1,0 +1,26 @@
+{
+  "Object": "PricebookEntry",
+  "Fields": {
+    "GearsetDisplayName": "Standard Price Book - ISW_ES820_EIP_SRV-ME52",
+    "GearsetExternalId__c": "IAQtXf8200000Q9u10",
+    "IsActive": "true",
+    "UnitPrice": "290.0",
+    "UseStandardPrice": "false"
+  },
+  "References": [
+    {
+      "Name": "Pricebook2",
+      "ReferencedObject": "Pricebook2",
+      "ReferencedFields": {
+        "GearsetExternalId__c": "StandardPriceBook"
+      }
+    },
+    {
+      "Name": "Product2",
+      "ReferencedObject": "Product2",
+      "ReferencedFields": {
+        "GearsetExternalId__c": "MAQxAF2300000Q9t10"
+      }
+    }
+  ]
+}
