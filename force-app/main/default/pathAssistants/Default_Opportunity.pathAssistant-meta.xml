@@ -5,7 +5,7 @@
     <fieldName>StageName</fieldName>
     <masterLabel>Default</masterLabel>
     <pathAssistantSteps>
-        <fieldNames>Loss_Reason__c</fieldNames>
+        <fieldNames>pkl_LossReason__c</fieldNames>
         <info>&lt;p&gt;&lt;b style=&quot;font-family: Arial; font-size: 10pt;&quot;&gt;Document your lost opportunities to increase future wins.&lt;/b&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;ul&gt;&lt;li&gt;&lt;span style=&quot;font-family: Arial; font-size: 10pt;&quot;&gt;Identify and log lessons learned&lt;/span&gt;&lt;/li&gt;&lt;li&gt;&lt;span style=&quot;font-family: Arial; font-size: 10pt;&quot;&gt;Schedule follow-ups if needed&lt;/span&gt;&lt;/li&gt;&lt;/ul&gt;</info>
         <picklistValueName>Closed Lost</picklistValueName>
     </pathAssistantSteps>
