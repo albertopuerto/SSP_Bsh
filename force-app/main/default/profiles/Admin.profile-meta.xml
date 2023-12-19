@@ -509,6 +509,11 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>true</editable>
+        <field>SBQQ__QuoteTemplate__c.SBQQ__LogoDocumentId__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>false</editable>
         <field>SBQQ__Quote__c.ftxt_OpportunityName__c</field>
         <readable>true</readable>
