@@ -525,6 +525,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>SBQQ__QuoteTemplate__c.SBQQ__LogoDocumentId__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Pricebook2.GearsetExternalId__c</field>
         <readable>true</readable>
     </fieldPermissions>
