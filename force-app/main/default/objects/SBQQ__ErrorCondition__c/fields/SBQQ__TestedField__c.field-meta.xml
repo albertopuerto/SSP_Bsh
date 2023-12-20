@@ -23,6 +23,11 @@
                 <default>false</default>
                 <label>Unit Price</label>
             </value>
+            <value>
+                <fullName>SBQQ__ProductCode__c</fullName>
+                <default>false</default>
+                <label>SBQQ__ProductCode__c</label>
+            </value>
         </valueSetDefinition>
         <valueSettings>
             <controllingFieldValue>Quote</controllingFieldValue>
@@ -32,6 +37,10 @@
             <controllingFieldValue>Product Option</controllingFieldValue>
             <controllingFieldValue>Configuration Attributes</controllingFieldValue>
             <valueName>Unit Price</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Product Option</controllingFieldValue>
+            <valueName>SBQQ__ProductCode__c</valueName>
         </valueSettings>
     </valueSet>
 </CustomField>
