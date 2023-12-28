@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- Enter Agreement Status one or more separated by comma for which you want to control visibility. --></help>
+        <label><!-- Agreement Status --></label>
+        <name>Agreement_Status__c</name>
+    </CustomFieldTranslation>

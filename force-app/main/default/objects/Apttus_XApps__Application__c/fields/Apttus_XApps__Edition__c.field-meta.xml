@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Apttus_XApps__Edition__c</fullName>
+    <deprecated>false</deprecated>
+    <description>The edition associated with the application</description>
+    <externalId>false</externalId>
+    <inlineHelpText>The edition associated with the application</inlineHelpText>
+    <label>Edition</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Essentials</fullName>
+                <default>false</default>
+                <label>Essentials</label>
+            </value>
+            <value>
+                <fullName>Enterprise</fullName>
+                <default>false</default>
+                <label>Enterprise</label>
+            </value>
+            <value>
+                <fullName>One-Way</fullName>
+                <default>false</default>
+                <label>One-Way</label>
+            </value>
+            <value>
+                <fullName>Presto</fullName>
+                <default>false</default>
+                <label>Presto</label>
+            </value>
+            <value>
+                <fullName>Power Admin</fullName>
+                <default>false</default>
+                <label>Power Admin</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

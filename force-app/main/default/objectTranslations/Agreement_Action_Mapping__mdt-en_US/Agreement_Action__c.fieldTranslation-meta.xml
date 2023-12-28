@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- Enter Agreement Action here for which you want to control visibility by Process/Business flow. --></help>
+        <label><!-- Agreement Action --></label>
+        <name>Agreement_Action__c</name>
+        <picklistValues>
+            <masterLabel>Activate</masterLabel>
+            <translation><!-- Activate --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Cancel</masterLabel>
+            <translation><!-- Cancel --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Check eSignature Status</masterLabel>
+            <translation><!-- Check eSignature Status --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Generate</masterLabel>
+            <translation><!-- Generate --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Generate Supporting Document</masterLabel>
+            <translation><!-- Generate Supporting Document --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Import Offline Document</masterLabel>
+            <translation><!-- Import Offline Document --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>My Approvals</masterLabel>
+            <translation><!-- My Approvals --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Preview</masterLabel>
+            <translation><!-- Preview --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Preview &amp; Submit Approvals</masterLabel>
+            <translation><!-- Preview &amp; Submit Approvals --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Recall E-Signature Request</masterLabel>
+            <translation><!-- Recall E-Signature Request --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Recall eSignature</masterLabel>
+            <translation><!-- Recall eSignature --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Regenerate</masterLabel>
+            <translation><!-- Regenerate --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Send For Review</masterLabel>
+            <translation><!-- Send For Review --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Send For Wet Signatures</masterLabel>
+            <translation><!-- Send For Wet Signatures --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Send For eSignature</masterLabel>
+            <translation><!-- Send For eSignature --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Submit Request</masterLabel>
+            <translation><!-- Submit Request --></translation>
+        </picklistValues>
+    </CustomFieldTranslation>

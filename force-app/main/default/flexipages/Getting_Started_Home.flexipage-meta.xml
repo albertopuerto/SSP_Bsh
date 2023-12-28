@@ -85,12 +85,6 @@
     <flexiPageRegions>
         <itemInstances>
             <componentInstance>
-                <componentName>APTS_HomePageLinks</componentName>
-                <identifier>c_APTS_HomePageLinks</identifier>
-            </componentInstance>
-        </itemInstances>
-        <itemInstances>
-            <componentInstance>
                 <componentName>home:assistant</componentName>
                 <identifier>home_assistant</identifier>
             </componentInstance>
