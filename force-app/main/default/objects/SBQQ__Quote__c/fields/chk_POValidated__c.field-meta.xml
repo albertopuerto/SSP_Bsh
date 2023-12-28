@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>SBQQ__Renewal__c</fullName>
+    <fullName>chk_POValidated__c</fullName>
     <defaultValue>false</defaultValue>
-    <deprecated>false</deprecated>
-    <description>Indicates this opportunity is a renewal opportunity.</description>
+    <description>Indicates if we have received and validated a PO from the customer.</description>
     <externalId>false</externalId>
-    <inlineHelpText>Indicates this opportunity is a renewal opportunity.</inlineHelpText>
-    <label>Renewal</label>
+    <inlineHelpText>Indicates if we have received and validated a PO from the customer.</inlineHelpText>
+    <label>PO Validated</label>
     <trackFeedHistory>false</trackFeedHistory>
     <trackHistory>false</trackHistory>
     <trackTrending>false</trackTrending>
