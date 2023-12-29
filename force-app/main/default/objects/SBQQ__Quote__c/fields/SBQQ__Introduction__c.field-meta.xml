@@ -7,6 +7,7 @@
     <inlineHelpText>Introduction that can be printed on the generated PDF document.</inlineHelpText>
     <label>Introduction</label>
     <length>2000</length>
+    <trackFeedHistory>false</trackFeedHistory>
     <trackHistory>true</trackHistory>
     <trackTrending>false</trackTrending>
     <type>LongTextArea</type>

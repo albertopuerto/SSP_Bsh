@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>CompetitorMandatory</fullName>
+    <active>true</active>
+    <description>Checks if the Opportunity&#39;s loss reason is Competition and if it has competitors assigned.</description>
+    <errorConditionFormula>AND(
+ISPICKVAL(pkl_LossReason__c ,&quot;Competition&quot;),
+rcnt_CountCompetitors__c  = 0,
+Not($Permission.BypassValidations)
+)</errorConditionFormula>
+    <errorDisplayField>pkl_LossReason__c</errorDisplayField>
+    <errorMessage>When selecting Competition as loss reason it is mandatory to add a competitor first.</errorMessage>
+</ValidationRule>
