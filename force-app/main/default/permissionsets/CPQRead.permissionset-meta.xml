@@ -597,6 +597,14 @@
         <object>SBQQ__WebQuote__c</object>
         <viewAllRecords>false</viewAllRecords>
     </objectPermissions>
+    <recordTypeVisibilities>
+        <recordType>SBQQ__ConfigurationAttribute__c.SBQQ__Configuration_Attribute</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <recordType>SBQQ__ConfigurationAttribute__c.SBQQ__Global_Attribute</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
     <tabSettings>
         <tab>SBQQ__QuoteProcess__c</tab>
         <visibility>Available</visibility>
@@ -613,12 +621,4 @@
         <tab>SBQQ__Quote__c</tab>
         <visibility>Visible</visibility>
     </tabSettings>
-    <recordTypeVisibilities>
-        <recordType>SBQQ__ConfigurationAttribute__c.SBQQ__Configuration_Attribute</recordType>
-        <visible>true</visible>
-    </recordTypeVisibilities>
-    <recordTypeVisibilities>
-        <recordType>SBQQ__ConfigurationAttribute__c.SBQQ__Global_Attribute</recordType>
-        <visible>true</visible>
-    </recordTypeVisibilities>
 </PermissionSet>
