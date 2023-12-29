@@ -3,9 +3,9 @@
     <fullName>SBQQ__DescriptionLocked__c</fullName>
     <defaultValue>false</defaultValue>
     <deprecated>false</deprecated>
-    <description>Flag that indicates this product&apos;s description is locked (not editable on the quote).</description>
+    <description>Flag that indicates this product&#39;s description is locked (not editable on the quote).</description>
     <externalId>false</externalId>
-    <inlineHelpText>Flag that indicates this product&apos;s description is locked (not editable on the quote).</inlineHelpText>
+    <inlineHelpText>Flag that indicates this product&#39;s description is locked (not editable on the quote).</inlineHelpText>
     <label>Lock Description</label>
     <trackHistory>false</trackHistory>
     <type>Checkbox</type>
