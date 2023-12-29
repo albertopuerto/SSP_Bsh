@@ -22,7 +22,8 @@
         <fieldNames>AccountId</fieldNames>
         <fieldNames>Probability</fieldNames>
         <fieldNames>CloseDate</fieldNames>
-        <fieldNames>LastModifiedById</fieldNames>
+        <fieldNames>LastModifiedById</fieldNames> 
+        <info>&lt;p&gt;&lt;em&gt;At this stage the naturing of the Opportunity begins in order to identify the client’s expectations and needs. 1. &lt;/em&gt;&lt;strong&gt;&lt;em&gt;Plan the first contact&lt;/em&gt;&lt;/strong&gt;&lt;em&gt; with your business partner to understand their current challenges. 2. &lt;/em&gt;&lt;strong&gt;&lt;em&gt;Make detailed meeting&lt;/em&gt;&lt;/strong&gt;&lt;em&gt; notes that help you with the time &lt;/em&gt;&lt;strong&gt;&lt;em&gt;to get the whole business perspective&lt;/em&gt;&lt;/strong&gt;&lt;em&gt;. 3. Based on the best understanding of the customer problem – &lt;/em&gt;&lt;strong&gt;&lt;em&gt;start creating solution&lt;/em&gt;&lt;/strong&gt;&lt;em&gt; by adding product to Opportunity. 4. &lt;/em&gt;&lt;strong&gt;&lt;em&gt;Repeat the steps&lt;/em&gt;&lt;/strong&gt;&lt;em&gt; until you have prepared a solution that will most &lt;/em&gt;&lt;strong&gt;&lt;em&gt;respond to the client’s challenges&lt;/em&gt;&lt;/strong&gt;&lt;em&gt;.&lt;/em&gt;&lt;/p&gt;</info>
         <picklistValueName>Needs Analysis</picklistValueName>
     </pathAssistantSteps>
     <pathAssistantSteps>
@@ -40,10 +41,12 @@
         <picklistValueName>Proposal</picklistValueName>
     </pathAssistantSteps>
     <pathAssistantSteps>
+        <fieldNames>CreatedById</fieldNames>
         <fieldNames>AccountId</fieldNames>
         <fieldNames>Probability</fieldNames>
         <fieldNames>CloseDate</fieldNames>
         <fieldNames>LastModifiedById</fieldNames>
+        <info>&lt;p&gt;&lt;em style=&quot;font-size: 14px;&quot;&gt;The Opportunity hasn’t been created by you. It needs to be approved by you in order to be analyzed.&lt;/em&gt;&lt;/p&gt;</info>
         <picklistValueName>Qualification</picklistValueName>
     </pathAssistantSteps>
     <pathAssistantSteps>

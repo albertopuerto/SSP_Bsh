@@ -8,6 +8,7 @@
     <inlineHelpText>Indicates this opportunity is a renewal opportunity.</inlineHelpText>
     <label>Renewal</label>
     <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
     <trackTrending>false</trackTrending>
     <type>Checkbox</type>
 </CustomField>
