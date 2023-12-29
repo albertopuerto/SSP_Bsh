@@ -6,6 +6,7 @@
     <label>Account Group Text</label>
     <required>false</required>
     <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
     <type>Picklist</type>
     <valueSet>
         <controllingField>pkl_AccountGroup__c</controllingField>
