@@ -1,0 +1,17 @@
+{
+  "Object": "SBQQ__TemplateContent__c",
+  "Fields": {
+    "GearsetDisplayName": "Line Item",
+    "GearsetExternalId__c": "EAUpzC5000000Q9A4a",
+    "Name": "Line Item",
+    "SBQQ__CustomSource__c": "",
+    "SBQQ__FontFamily__c": "",
+    "SBQQ__FontSize__c": "",
+    "SBQQ__Markup__c": "",
+    "SBQQ__RawMarkup__c": "",
+    "SBQQ__TableStyle__c": "Standard",
+    "SBQQ__TextColor__c": "",
+    "SBQQ__Type__c": "Line Items"
+  },
+  "References": []
+}

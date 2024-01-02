@@ -1,0 +1,37 @@
+{
+  "Object": "SBQQ__ProductAction__c",
+  "Fields": {
+    "GearsetDisplayName": "ES_Drive_Recorder_RCS_Add-On - Driver Recorder together on the Quote 2",
+    "GearsetExternalId__c": "WAQJlSC000000Q9g3a",
+    "SBQQ__FilterField__c": "",
+    "SBQQ__FilterValue__c": "",
+    "SBQQ__Operator__c": "",
+    "SBQQ__Required__c": "true",
+    "SBQQ__Type__c": "Add",
+    "SBQQ__ValueField__c": "",
+    "SBQQ__ValueObject__c": ""
+  },
+  "References": [
+    {
+      "Name": "SBQQ__Product__r",
+      "ReferencedObject": "Product2",
+      "ReferencedFields": {
+        "GearsetExternalId__c": "UAQDmH2300000Q9t10"
+      }
+    },
+    {
+      "Name": "SBQQ__Rule__r",
+      "ReferencedObject": "SBQQ__ProductRule__c",
+      "ReferencedFields": {
+        "GearsetExternalId__c": "EAQjiQ3000000Q9l3a"
+      }
+    },
+    {
+      "Name": "SBQQ__ValueAttribute__r",
+      "ReferencedObject": "SBQQ__ProductAttribute__c",
+      "ReferencedFields": {
+        "GearsetExternalId__c": ""
+      }
+    }
+  ]
+}
