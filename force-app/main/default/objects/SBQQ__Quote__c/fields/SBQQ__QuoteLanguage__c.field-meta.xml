@@ -7,6 +7,7 @@
     <inlineHelpText>Language used for this Quote when mass generating Quote Documents</inlineHelpText>
     <label>Quote Language</label>
     <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
     <trackHistory>false</trackHistory>
     <trackTrending>false</trackTrending>
     <type>Picklist</type>
