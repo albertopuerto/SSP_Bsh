@@ -51,6 +51,14 @@
                 <behavior>Edit</behavior>
                 <field>SBQQ__PrimaryContact__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>ftxt_OwnerDetails__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>ftxt_OpportunityName__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
