@@ -1,0 +1,22 @@
+{
+  "Object": "SBQQ__ProductRule__c",
+  "Fields": {
+    "GearsetDisplayName": "INCA AddOns together on the Quote 1",
+    "GearsetExternalId__c": "EAQxlQ3000000Q9l3a",
+    "Name": "INCA AddOns together on the Quote 1",
+    "SBQQ__Active__c": "true",
+    "SBQQ__AdvancedCondition__c": "",
+    "SBQQ__ConditionsMet__c": "All",
+    "SBQQ__ErrorMessage__c": "",
+    "SBQQ__EvaluationEvent__c": "Always",
+    "SBQQ__EvaluationOrder__c": "",
+    "SBQQ__LookupMessageField__c": "",
+    "SBQQ__LookupObject__c": "",
+    "SBQQ__LookupProductField__c": "",
+    "SBQQ__LookupRequiredField__c": "",
+    "SBQQ__LookupTypeField__c": "",
+    "SBQQ__Scope__c": "Product",
+    "SBQQ__Type__c": "Selection"
+  },
+  "References": []
+}

@@ -8,6 +8,7 @@
     <label>Co-Termination Event</label>
     <required>false</required>
     <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
     <type>Picklist</type>
     <valueSet>
         <controllingField>SBQQ__ContractCoTermination__c</controllingField>
