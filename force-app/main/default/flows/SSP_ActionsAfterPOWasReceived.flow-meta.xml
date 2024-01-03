@@ -3,12 +3,12 @@
     <actionCalls>
         <name>Notify_Opportunity_Team</name>
         <label>Notify Opportunity Team</label>
-        <locationX>176</locationX>
+        <locationX>182</locationX>
         <locationY>947</locationY>
         <actionName>chatterPost</actionName>
         <actionType>chatterPost</actionType>
         <connector>
-            <targetReference>Set_Create_Order</targetReference>
+            <targetReference>Check_quote_requirements</targetReference>
         </connector>
         <flowTransactionModel>CurrentTransaction</flowTransactionModel>
         <inputParameters>
@@ -31,7 +31,7 @@
     <assignments>
         <name>Add_Id_to_Mention</name>
         <label>Add Id to Mention</label>
-        <locationX>264</locationX>
+        <locationX>270</locationX>
         <locationY>647</locationY>
         <assignmentItems>
             <assignToReference>Mentions</assignToReference>
@@ -62,7 +62,7 @@
         <description>Hallo</description>
         <name>Set_Chatter_Post_Text</name>
         <label>Set Chatter Post Text</label>
-        <locationX>176</locationX>
+        <locationX>182</locationX>
         <locationY>431</locationY>
         <assignmentItems>
             <assignToReference>Mentions</assignToReference>
@@ -78,7 +78,7 @@
     <assignments>
         <name>Set_Rest_of_Chatter_Message_Text</name>
         <label>Set Rest of Chatter Message Text</label>
-        <locationX>176</locationX>
+        <locationX>182</locationX>
         <locationY>839</locationY>
         <assignmentItems>
             <assignToReference>Mentions</assignToReference>
@@ -91,6 +91,48 @@
             <targetReference>Notify_Opportunity_Team</targetReference>
         </connector>
     </assignments>
+    <customErrors>
+        <name>Quote_missing_values</name>
+        <label>Quote missing values</label>
+        <locationX>314</locationX>
+        <locationY>1163</locationY>
+        <customErrorMessages>
+            <errorMessage>Quote is not set as primary quote for Opportunity or quote lines are missing.</errorMessage>
+            <isFieldError>false</isFieldError>
+        </customErrorMessages>
+    </customErrors>
+    <decisions>
+        <name>Check_quote_requirements</name>
+        <label>Check quote requirements</label>
+        <locationX>182</locationX>
+        <locationY>1055</locationY>
+        <defaultConnector>
+            <targetReference>Quote_missing_values</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Quote not ok</defaultConnectorLabel>
+        <rules>
+            <name>Quote_is_ok</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.SBQQ__Primary__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.SBQQ__LineItemCount__c</leftValueReference>
+                <operator>GreaterThan</operator>
+                <rightValue>
+                    <numberValue>0.0</numberValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Copy_1_of_Set_Create_Order</targetReference>
+            </connector>
+            <label>Quote is ok</label>
+        </rules>
+    </decisions>
     <description>Triggers after PO validated Checkbox was set to perform several actions.</description>
     <environments>Default</environments>
     <interviewLabel>Actions after PO was received {!$Flow.CurrentDateTime}</interviewLabel>
@@ -98,7 +140,7 @@
     <loops>
         <name>Loop_Opportuntity_Team_Members</name>
         <label>Loop Opportuntity Team Members</label>
-        <locationX>176</locationX>
+        <locationX>182</locationX>
         <locationY>539</locationY>
         <collectionReference>Get_Opportunity_Team</collectionReference>
         <iterationOrder>Asc</iterationOrder>
@@ -131,7 +173,7 @@
     <recordLookups>
         <name>Get_Opportunity_Team</name>
         <label>Get Opportunity Team</label>
-        <locationX>176</locationX>
+        <locationX>182</locationX>
         <locationY>323</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
@@ -151,10 +193,10 @@
     </recordLookups>
     <recordUpdates>
         <description>Trigger creation of order and order line records.</description>
-        <name>Set_Create_Order</name>
-        <label>Set Create Order</label>
-        <locationX>176</locationX>
-        <locationY>1055</locationY>
+        <name>Copy_1_of_Set_Create_Order</name>
+        <label>Create order from quote</label>
+        <locationX>50</locationX>
+        <locationY>1163</locationY>
         <inputAssignments>
             <field>SBQQ__Ordered__c</field>
             <value>
@@ -164,7 +206,7 @@
         <inputReference>$Record</inputReference>
     </recordUpdates>
     <start>
-        <locationX>50</locationX>
+        <locationX>56</locationX>
         <locationY>0</locationY>
         <connector>
             <targetReference>Get_Opportunity_Team</targetReference>
@@ -172,7 +214,7 @@
         <doesRequireRecordChangedToMeetCriteria>true</doesRequireRecordChangedToMeetCriteria>
         <filterLogic>or</filterLogic>
         <filters>
-            <field>SSP_POValidated__c</field>
+            <field>chk_POValidated__c</field>
             <operator>EqualTo</operator>
             <value>
                 <booleanValue>true</booleanValue>
