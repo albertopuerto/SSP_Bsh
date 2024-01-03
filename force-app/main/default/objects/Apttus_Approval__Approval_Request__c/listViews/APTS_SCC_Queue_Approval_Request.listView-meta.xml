@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>APTS_SCC_Queue_Approval_Request</fullName>
+    <filterScope>Queue</filterScope>
+    <label>SCC Queue</label>
+    <queue>APTS_SCC_Queue</queue>
+    <sharedTo>
+        <allInternalUsers></allInternalUsers>
+    </sharedTo>
+</ListView>

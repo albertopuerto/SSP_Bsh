@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>APTS_EB_Approval_Request</fullName>
+    <columns>NAME</columns>
+    <columns>Apttus_Approval__Action__c</columns>
+    <columns>Apttus_Approval__Actual_Approver__c</columns>
+    <columns>Apttus_Approval__ApprovalFromEmail__c</columns>
+    <columns>Apttus_Approval__Approval_Status__c</columns>
+    <columns>Apttus_Approval__Assigned_To_Link__c</columns>
+    <filterScope>Queue</filterScope>
+    <label>EB</label>
+    <queue>APTS_EB</queue>
+    <sharedTo>
+        <allInternalUsers></allInternalUsers>
+    </sharedTo>
+</ListView>
