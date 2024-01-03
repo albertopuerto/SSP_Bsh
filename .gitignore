@@ -53,3 +53,5 @@ force-app/main/default/triggers/APTS__*
 force-app/main/default/settings/DevHub.settings-meta.xml
 force-app/main/default/settings/CodeBuilder.settings-meta.xml
 force-app/main/default/settings/LightningExperience.settings-meta.xml
+force-app/main/default/settings/Analytics.settings-meta.xml
+force-app/main/default/settings/Trailhead.settings-meta.xml
