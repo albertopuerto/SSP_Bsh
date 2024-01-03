@@ -49,3 +49,7 @@ force-app/main/default/classes/APTS__*
 force-app/main/default/classes/APTSMD__*
 force-app/main/default/classes/cnga__*
 force-app/main/default/components/cnga__*
+force-app/main/default/triggers/APTS__*
+force-app/main/default/settings/DevHub.settings-meta.xml
+force-app/main/default/settings/CodeBuilder.settings-meta.xml
+force-app/main/default/settings/LightningExperience.settings-meta.xml

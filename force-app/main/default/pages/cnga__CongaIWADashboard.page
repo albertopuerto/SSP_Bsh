@@ -1,0 +1,130 @@
+<!-- 
+    Conga Approvals
+    CongaIWADashboard
+
+    @2020-2022 Conga Inc. All rights reserved.
+
+-->
+<apex:page controller="cnga.DashboardController"
+        action="{!doLoadDashboard}"
+        title="{!$Label.cnga__ApprovalsCenter}"
+        sidebar="false" 
+        showHeader="true"
+        docType="html-5.0">
+
+    <apex:includescript value="{!URLFOR($Resource.Apttus_Approval__JQuery22, 'jquery-2.2.2.js')}" />
+    <style>
+        /*.k-grid .k-hierarchy-cell+td {
+            padding: 0;
+        }*/
+        /* hide filter icon on approval status columns */
+        [data-field="Apttus_DLApprov__Approval_Status__c"] > .k-grid-filter{
+            display:none;
+        }
+        [data-field="Apttus_QPApprov__Approval_Status__c"] > .k-grid-filter{
+            display:none;
+        }
+        [data-field="Apttus_CQApprov__Approval_Status__c"] > .k-grid-filter{
+            display:none;
+        }
+        [data-field="Apttus_CUApprov__Approval_Status__c"] > .k-grid-filter{
+            display:none;
+        }
+        [data-field="Apttus_Approval__Approval_Status__c"] > .k-grid-filter{
+            display:none;
+        }
+        [data-field="Approval_Status__c"] > .k-grid-filter{
+            display:none;
+        }
+        .k-detail-row * .k-grid-toolbar{
+            display:none;
+        }
+    </style>
+
+    <apex:slds />
+    <apex:outputPanel id="idFilterCardPanel">
+        <div id="filtercard" class="slds-p-bottom_small">
+            <c:FilterCardComponent id="idFilterCard" ctxObjTypeAttr="{!ctxObjName}"/>
+        </div>
+    </apex:outputPanel>
+    <div id="tabstrip" style="display:none;">
+        <!-- create tabs -->
+        <ul style="background: white; border-bottom: 3px solid rgba(0, 112, 210, 1);">
+            <apex:variable var="cnt" value="{!0}" />
+            <apex:variable var="class" value="" />
+            <apex:repeat value="{!ctxObjLabels}" var="ctxObjLabel" >
+                <apex:variable var="class" value="k-state-active" rendered="{!cnt==0}"/>
+                <apex:variable var="class" value="" rendered="{!cnt!=0}"/>
+                <li class="{!class}">
+                    {!ctxObjLabel}
+                </li>
+                <apex:variable var="cnt" value="{!cnt+1}"/> 
+            </apex:repeat>
+        </ul>
+
+        <!-- create grids for each tab -->
+        <apex:repeat value="{!ctxObjNames}" var="ctxObjName">
+            <div style="overflow:hidden;">
+                <CRMC_PP:Grid ObjectName="{!ctxObjName}"
+                                UniqueId="{!ctxObjName}"
+                                ViewID=""
+                                DelayLoad="true"
+                                EnableNewButton="false"
+                                EnableNewInline="false" 
+                                EnableEdit="true" 
+                                EnableActions="true"
+                                EnableFieldChooser="true" 
+                                EnableStickyViews="false" 
+                                EnableToolbar="true" 
+                                EnableViews="true" 
+                                EnableFormatting="true" 
+                                EnableReadingPane="false" />
+                <CRMC_PP:DrillUp />
+            </div>
+        </apex:repeat>
+        <apex:form >
+            <apex:actionFunction name="invokeIWAAction"
+                                 action="{!dummy}"
+                                 rerender="idFilterCardPanel">   
+                <apex:param name="ctxObjName" assignTo="{!ctxObjName}" value="" />
+            </apex:actionFunction>
+        </apex:form> 
+    </div>   
+    <script>
+    window.IWANamespaceAvailable = {!IWANamespaceAvailable};
+    $(document).ready(function() {
+        $("#tabstrip").kendoTabStrip({
+            activate: function(e){
+                setTimeout(function(){          
+                    $(window).resize();
+                });
+            }
+        });
+        
+        $("#tabstrip").css("display", "block");
+        $("#filtercard").css("display", "block");
+        
+        //Filter the grid data on page load
+        var filterOnLoadState = setInterval(function() {
+            if (document.readyState == "complete") {
+                var gridData = $("div[id$='_grid']:visible").data('kendoGrid').parent;
+                if(gridData != undefined){
+                    filter("{!$Label.cnga__PendingApproval}");
+                    clearInterval(filterOnLoadState);
+                }
+            }
+        },500);
+
+        //Filter the grid data on tab click
+        $('#tabstrip ul li.k-item').click(function(){
+            var filterOnClickState = setInterval(function() {
+                var selectedTab = $('#tabstrip div.k-state-active div.slds-scope').attr('Id');
+                if(selectedTab != undefined){
+                    filter("{!$Label.cnga__PendingApproval}");
+                    clearInterval(filterOnClickState);
+                }
+            },500);
+        });
+    });
+    </script>
+</apex:page>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- Please define if Auto Activation of Agreement needs to be enabled. --></help>
+        <label><!-- Auto Activation --></label>
+        <name>Auto_Activation__c</name>
+    </CustomFieldTranslation>
