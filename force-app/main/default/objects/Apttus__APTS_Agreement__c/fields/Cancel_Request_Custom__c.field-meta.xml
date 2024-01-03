@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Cancel_Request_Custom__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF (OR(AND (CONTAINS($CustomMetadata.Agreement_Action_Mapping__mdt.Cancel.Agreement_Process_Flow_Short_Name__c, APTS_Process_Flow__c), CONTAINS($CustomMetadata.Agreement_Action_Mapping__mdt.Cancel.Agreement_Status_Category__c, TEXT(Apttus__Status_Category__c)), CONTAINS($CustomMetadata.Agreement_Action_Mapping__mdt.Cancel.Agreement_Status__c, TEXT(Apttus__Status__c))) , CONTAINS($CustomMetadata.Agreement_Action_Mapping__mdt.Cancel.Additional_Inclusion__c, APTS_Process_Flow__c &amp; TEXT(Apttus__Status_Category__c) &amp; TEXT(Apttus__Status__c)) ), IF(OR($User.UIThemeDisplayed == &#39;Theme4d&#39;, $User.UIThemeDisplayed == &#39;Theme4t&#39;), $CustomMetadata.Agreement_Action_Mapping__mdt.Cancel.Lightning_Link__c , $CustomMetadata.Agreement_Action_Mapping__mdt.Cancel.Link__c),NULL)</formula>
+    <label>Cancel Request Custom</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

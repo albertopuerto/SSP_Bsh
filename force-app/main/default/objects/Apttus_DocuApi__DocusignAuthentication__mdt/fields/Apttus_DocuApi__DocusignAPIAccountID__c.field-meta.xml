@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Apttus_DocuApi__DocusignAPIAccountID__c</fullName>
+    <deprecated>false</deprecated>
+    <description>This field for DocuSign API Account ID.</description>
+    <externalId>false</externalId>
+    <fieldManageability>SubscriberControlled</fieldManageability>
+    <inlineHelpText>To get the API Account Id, you can log into DocuSign as an admin and go to Settings &gt; Apps and keys &gt; API Account Id.</inlineHelpText>
+    <label>Docusign API Account ID</label>
+    <length>255</length>
+    <required>true</required>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>
