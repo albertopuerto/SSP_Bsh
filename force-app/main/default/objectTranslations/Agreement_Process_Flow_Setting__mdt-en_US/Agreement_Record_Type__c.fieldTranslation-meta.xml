@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- Enter Agreement Record Type. You can add multiple values here separated by comma. --></help>
+        <label><!-- Agreement Record Type --></label>
+        <name>Agreement_Record_Type__c</name>
+    </CustomFieldTranslation>

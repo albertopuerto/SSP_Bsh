@@ -1,0 +1,49 @@
+<!-- 
+    Apttus Contract Management
+    AgreementReturnToRequestor
+     
+    @2009-2011 Apttus Inc. All rights reserved.
+
+ -->
+<apex:page standardController="Apttus__APTS_Agreement__c" 
+		   extensions="Apttus.AgreementReturnToRequestorController" >
+	
+	<apex:form >
+		<!--  required fields -->
+		<apex:outputText value="{!Apttus__APTS_Agreement__c.Apttus__Version_Number__c}" rendered="false"/>
+		<apex:outputText value="{!Apttus__APTS_Agreement__c.Apttus__Status__c}" rendered="false"/>
+		<apex:outputText value="{!Apttus__APTS_Agreement__c.Apttus__Status_Category__c}" rendered="false"/>
+		<apex:outputText value="{!Apttus__APTS_Agreement__c.Apttus__FF_Agreement_Number__c}" rendered="false"/>
+		<apex:outputText value="{!Apttus__APTS_Agreement__c.Apttus__Contract_Start_Date__c}" rendered="false"/>
+		<apex:outputText value="{!Apttus__APTS_Agreement__c.Apttus__Contract_End_Date__c}" rendered="false"/>
+		<apex:outputText value="{!Apttus__APTS_Agreement__c.Apttus__Agreement_Number__c}" rendered="false"/>
+		<apex:outputText value="{!Apttus__APTS_Agreement__c.Apttus__Agreement_Category__c}" rendered="false"/>
+		<apex:outputText value="{!Apttus__APTS_Agreement__c.Apttus__Requestor__c}" rendered="false"/>
+		<apex:outputText value="{!Apttus__APTS_Agreement__c.OwnerId}" rendered="false"/>
+		
+      	<apex:pageBlock rendered="{!NOT(isInitialized) && NOT(hasErrors)}">
+			<apex:pageBlockButtons location="bottom">
+				<apex:commandButton value="{!$Label.Apttus__Continue}" action="{!onLoad}" />
+				<apex:commandButton value="{!$Label.Apttus__Cancel}" action="{!doCancel}" immediate="true" />
+		    </apex:pageBlockButtons>
+		    <apex:pageBlockSection title="{!$Label.Apttus__ReturnAgreementToRequestor}" columns="2" collapsible="false">
+				<apex:outputField value="{!Apttus__APTS_Agreement__c.Name}"/>
+				<apex:outputField value="{!Apttus__APTS_Agreement__c.Apttus__FF_Agreement_Number__c}"/>
+				<apex:outputField value="{!Apttus__APTS_Agreement__c.Apttus__Contract_Start_Date__c}"/>
+				<apex:outputField value="{!Apttus__APTS_Agreement__c.Apttus__Contract_End_Date__c}"/>
+				<apex:outputField value="{!Apttus__APTS_Agreement__c.Apttus__Status__c}"/>
+				<apex:outputField value="{!Apttus__APTS_Agreement__c.Apttus__Status_Category__c}" />
+				<apex:outputField value="{!Apttus__APTS_Agreement__c.Apttus__Requestor__c}"/>
+				<apex:outputField value="{!Apttus__APTS_Agreement__c.OwnerId}"/>
+		    </apex:pageBlockSection>
+		</apex:pageBlock>
+		
+		<apex:pageBlock mode="edit" rendered="{!hasErrors}" >
+			<apex:pageMessages />
+			<apex:pageBlockButtons location="bottom" >
+				<apex:commandButton action="{!doCancel}" value="{!$Label.Apttus__Cancel}" immediate="true"/>
+			</apex:pageBlockButtons>
+		</apex:pageBlock>
+	</apex:form>
+	
+</apex:page>

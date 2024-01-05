@@ -1,0 +1,41 @@
+{
+  "Object": "SBQQ__TemplateSection__c",
+  "Fields": {
+    "GearsetDisplayName": "Pandemic Remarks",
+    "GearsetExternalId__c": "MAUdLS1000000Q9B4a",
+    "Name": "Pandemic Remarks",
+    "SBQQ__BorderColor__c": "",
+    "SBQQ__BottomMargin__c": "0.0",
+    "SBQQ__ColumnHeaderHidden__c": "false",
+    "SBQQ__ConditionalPrintField__c": "",
+    "SBQQ__DisplayOrder__c": "3.0",
+    "SBQQ__FilterField__c": "",
+    "SBQQ__FilterOperator__c": "",
+    "SBQQ__FilterValue__c": "",
+    "SBQQ__GroupField__c": "",
+    "SBQQ__KeepTogether__c": "Auto",
+    "SBQQ__KeepWithNext__c": "Auto",
+    "SBQQ__KeepWithPrevious__c": "Auto",
+    "SBQQ__PageBreak__c": "After",
+    "SBQQ__QuoteTotalsPrinted__c": "false",
+    "SBQQ__RollUpField__c": "",
+    "SBQQ__SummaryDisplay__c": "",
+    "SBQQ__TopMargin__c": "1.0"
+  },
+  "References": [
+    {
+      "Name": "SBQQ__Content__r",
+      "ReferencedObject": "SBQQ__TemplateContent__c",
+      "ReferencedFields": {
+        "GearsetExternalId__c": "2AUDQJ5000000Q9A4a"
+      }
+    },
+    {
+      "Name": "SBQQ__Template__r",
+      "ReferencedObject": "SBQQ__QuoteTemplate__c",
+      "ReferencedFields": {
+        "GearsetExternalId__c": "KAQdPfB000000Q9t3a"
+      }
+    }
+  ]
+}

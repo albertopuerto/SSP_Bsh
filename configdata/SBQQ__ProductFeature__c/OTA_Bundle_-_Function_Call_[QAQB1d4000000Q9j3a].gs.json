@@ -1,0 +1,32 @@
+{
+  "Object": "SBQQ__ProductFeature__c",
+  "Fields": {
+    "GearsetDisplayName": "OTA Bundle - Function Call",
+    "GearsetExternalId__c": "QAQB1d4000000Q9j3a",
+    "Name": "Function Call",
+    "SBQQ__Category__c": "",
+    "SBQQ__ConfigurationFieldSet__c": "",
+    "SBQQ__DynamicProductFilterFieldSet__c": "",
+    "SBQQ__DynamicProductLookupFieldSet__c": "",
+    "SBQQ__MaxOptionCount__c": "",
+    "SBQQ__MinOptionCount__c": "0.0",
+    "SBQQ__Number__c": "30.0",
+    "SBQQ__OptionSelectionMethod__c": "Click"
+  },
+  "References": [
+    {
+      "Name": "SBQQ__ConfiguredSKU__r",
+      "ReferencedObject": "Product2",
+      "ReferencedFields": {
+        "GearsetExternalId__c": "KAQiZxS300000Q9t10"
+      }
+    },
+    {
+      "Name": "SBQQ__DiscountSchedule__r",
+      "ReferencedObject": "SBQQ__DiscountSchedule__c",
+      "ReferencedFields": {
+        "GearsetExternalId__c": ""
+      }
+    }
+  ]
+}
