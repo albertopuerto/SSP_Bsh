@@ -4,7 +4,7 @@
     <deprecated>false</deprecated>
     <description>The conversion rate between this upgrade product and its source product.</description>
     <externalId>false</externalId>
-    <inlineHelpText>The conversion rate between this product&apos;s quantity and that of its source product.</inlineHelpText>
+    <inlineHelpText>The conversion rate between this product&#39;s quantity and that of its source product.</inlineHelpText>
     <label>Upgrade Ratio</label>
     <precision>8</precision>
     <required>false</required>
