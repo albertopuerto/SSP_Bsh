@@ -7,6 +7,7 @@
     <inlineHelpText>Terms that govern payment of the items in this quote.</inlineHelpText>
     <label>Payment Terms</label>
     <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
     <trackHistory>true</trackHistory>
     <trackTrending>false</trackTrending>
     <type>Picklist</type>

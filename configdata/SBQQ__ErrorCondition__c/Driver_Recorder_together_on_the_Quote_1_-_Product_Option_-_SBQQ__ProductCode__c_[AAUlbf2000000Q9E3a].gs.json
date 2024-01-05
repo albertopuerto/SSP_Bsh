@@ -1,0 +1,43 @@
+{
+  "Object": "SBQQ__ErrorCondition__c",
+  "Fields": {
+    "GearsetDisplayName": "Driver Recorder together on the Quote 1 - Product Option - SBQQ__ProductCode__c",
+    "GearsetExternalId__c": "AAUlbf2000000Q9E3a",
+    "SBQQ__FilterType__c": "Value",
+    "SBQQ__FilterValue__c": "F-00K-111-974",
+    "SBQQ__Index__c": "",
+    "SBQQ__Operator__c": "equals",
+    "SBQQ__TestedField__c": "SBQQ__ProductCode__c",
+    "SBQQ__TestedObject__c": "Product Option"
+  },
+  "References": [
+    {
+      "Name": "SBQQ__FilterVariable__r",
+      "ReferencedObject": "SBQQ__SummaryVariable__c",
+      "ReferencedFields": {
+        "GearsetExternalId__c": ""
+      }
+    },
+    {
+      "Name": "SBQQ__Rule__r",
+      "ReferencedObject": "SBQQ__ProductRule__c",
+      "ReferencedFields": {
+        "GearsetExternalId__c": "EAQ7hQ3000000Q9l3a"
+      }
+    },
+    {
+      "Name": "SBQQ__TestedAttribute__r",
+      "ReferencedObject": "SBQQ__ProductAttribute__c",
+      "ReferencedFields": {
+        "GearsetExternalId__c": ""
+      }
+    },
+    {
+      "Name": "SBQQ__TestedVariable__r",
+      "ReferencedObject": "SBQQ__SummaryVariable__c",
+      "ReferencedFields": {
+        "GearsetExternalId__c": ""
+      }
+    }
+  ]
+}

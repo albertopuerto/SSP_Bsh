@@ -1,0 +1,26 @@
+{
+  "Object": "PricebookEntry",
+  "Fields": {
+    "GearsetDisplayName": "Standard Price Book - ES_Drive_Recorder_RCS_Add-On",
+    "GearsetExternalId__c": "IAQuYe8200000Q9u10",
+    "IsActive": "true",
+    "UnitPrice": "1.0",
+    "UseStandardPrice": "false"
+  },
+  "References": [
+    {
+      "Name": "Pricebook2",
+      "ReferencedObject": "Pricebook2",
+      "ReferencedFields": {
+        "GearsetExternalId__c": "StandardPriceBook"
+      }
+    },
+    {
+      "Name": "Product2",
+      "ReferencedObject": "Product2",
+      "ReferencedFields": {
+        "GearsetExternalId__c": "UAQDmH2300000Q9t10"
+      }
+    }
+  ]
+}
