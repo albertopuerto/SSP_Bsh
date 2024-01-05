@@ -1,39 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>Loss_Reason__c</fullName>
+    <fullName>pkl_Category__c</fullName>
     <externalId>false</externalId>
-    <label>Loss Reason</label>
+    <label>Category</label>
     <required>false</required>
     <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
     <trackTrending>false</trackTrending>
     <type>Picklist</type>
     <valueSet>
+        <restricted>true</restricted>
         <valueSetDefinition>
             <sorted>false</sorted>
             <value>
-                <fullName>Lost to Competitor</fullName>
+                <fullName>Standard</fullName>
                 <default>false</default>
-                <label>Lost to Competitor</label>
+                <label>Standard</label>
             </value>
             <value>
-                <fullName>No Budget / Lost Funding</fullName>
+                <fullName>Renewal</fullName>
                 <default>false</default>
-                <label>No Budget / Lost Funding</label>
+                <label>Renewal</label>
             </value>
             <value>
-                <fullName>No Decision / Non-Responsive</fullName>
+                <fullName>Day2Day</fullName>
                 <default>false</default>
-                <label>No Decision / Non-Responsive</label>
+                <label>Day2Day</label>
             </value>
             <value>
-                <fullName>Price</fullName>
+                <fullName>Business</fullName>
                 <default>false</default>
-                <label>Price</label>
-            </value>
-            <value>
-                <fullName>Other</fullName>
-                <default>false</default>
-                <label>Other</label>
+                <label>Business</label>
             </value>
         </valueSetDefinition>
     </valueSet>
