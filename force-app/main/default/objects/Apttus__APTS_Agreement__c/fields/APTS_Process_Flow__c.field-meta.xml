@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>APTS_Process_Flow__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF(
+AND(CONTAINS($CustomMetadata.Agreement_Process_Flow_Setting__mdt.Self_serve_process_flow.Agreement_Record_Type__c, RecordType.Name),TEXT(Apttus__Submit_Request_Mode__c) = &#39;&#39;) ,
+$CustomMetadata.Agreement_Process_Flow_Setting__mdt.Self_serve_process_flow.Agreement_Process_Flow_Short_Name__c,
+
+IF(CONTAINS($CustomMetadata.Agreement_Process_Flow_Setting__mdt.Legal_Assist_Approval_process_flow.Agreement_Record_Type__c, RecordType.Name), $CustomMetadata.Agreement_Process_Flow_Setting__mdt.Legal_Assist_Approval_process_flow.Agreement_Process_Flow_Short_Name__c,$CustomMetadata.Agreement_Process_Flow_Setting__mdt.Legal_Assist_process_flow.Agreement_Process_Flow_Short_Name__c )
+
+)</formula>
+    <label>Process Flow</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>
