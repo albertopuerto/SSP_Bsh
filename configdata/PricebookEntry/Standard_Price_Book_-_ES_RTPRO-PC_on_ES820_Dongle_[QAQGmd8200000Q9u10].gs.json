@@ -1,0 +1,26 @@
+{
+  "Object": "PricebookEntry",
+  "Fields": {
+    "GearsetDisplayName": "Standard Price Book - ES_RTPRO-PC_on_ES820_Dongle",
+    "GearsetExternalId__c": "QAQGmd8200000Q9u10",
+    "IsActive": "true",
+    "UnitPrice": "1.0",
+    "UseStandardPrice": "false"
+  },
+  "References": [
+    {
+      "Name": "Pricebook2",
+      "ReferencedObject": "Pricebook2",
+      "ReferencedFields": {
+        "GearsetExternalId__c": "StandardPriceBook"
+      }
+    },
+    {
+      "Name": "Product2",
+      "ReferencedObject": "Product2",
+      "ReferencedFields": {
+        "GearsetExternalId__c": "EAQgeE2300000Q9t10"
+      }
+    }
+  ]
+}

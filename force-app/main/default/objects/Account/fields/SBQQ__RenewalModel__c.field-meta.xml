@@ -4,7 +4,7 @@
     <deprecated>false</deprecated>
     <description>The option to distinguish between Subscription or Asset based renewal.</description>
     <externalId>false</externalId>
-    <inlineHelpText>Choose Asset Based to make renewals based off of an account&apos;s assets, or choose Contract Based to make renewals based off of contracts created from a quote.</inlineHelpText>
+    <inlineHelpText>Choose Asset Based to make renewals based off of an account&#39;s assets, or choose Contract Based to make renewals based off of contracts created from a quote.</inlineHelpText>
     <label>Renewal Model</label>
     <required>false</required>
     <trackFeedHistory>false</trackFeedHistory>

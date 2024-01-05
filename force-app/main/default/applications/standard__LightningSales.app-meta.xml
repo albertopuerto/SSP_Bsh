@@ -14,7 +14,7 @@
         <logoVersion>1</logoVersion>
         <shouldOverrideOrgTheme>false</shouldOverrideOrgTheme>
     </brand>
-    <description>Sell smarter and faster with the world&apos;s #1 CRM solution.</description>
+    <description>Sell smarter and faster with the world&#39;s #1 CRM solution.</description>
     <formFactors>Large</formFactors>
     <isNavAutoTempTabsDisabled>false</isNavAutoTempTabsDisabled>
     <isNavPersonalizationDisabled>false</isNavPersonalizationDisabled>
@@ -37,6 +37,9 @@
     <tabs>standard-ListEmail</tabs>
     <tabs>standard-Quote</tabs>
     <tabs>standard-Feed</tabs>
+    <tabs>SalesArea__c</tabs>
+    <tabs>Competitor__c</tabs>
+    <tabs>standard-Product2</tabs>
     <uiType>Lightning</uiType>
     <utilityBar>Sales_UtilityBar</utilityBar>
 </CustomApplication>

@@ -9,5 +9,5 @@
     <masterLabel>Clone with Related</masterLabel>
     <openType>replace</openType>
     <protected>false</protected>
-    <url>{!URLFOR($Action.Product2.Clone, Product2.Id, [saveURL=&apos;/apex/SBQQ__CloneProductChildren?id=&apos; &amp; Product2.Id,cancelURL=&apos;&apos; &amp; Product2.Id])}</url>
+    <url>{!URLFOR($Action.Product2.Clone, Product2.Id, [saveURL=&#39;/apex/SBQQ__CloneProductChildren?id=&#39; &amp; Product2.Id,cancelURL=&#39;&#39; &amp; Product2.Id])}</url>
 </WebLink>
