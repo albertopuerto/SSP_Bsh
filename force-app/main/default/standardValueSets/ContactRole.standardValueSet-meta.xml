@@ -14,7 +14,7 @@
     <standardValue>
         <fullName>Economic Buyer</fullName>
         <default>false</default>
-        <label>Economic Buyer</label>
+        <label>Economic Buyer</label> 
     </standardValue>
     <standardValue>
         <fullName>Economic Decision Maker</fullName>
@@ -41,6 +41,11 @@
         <default>false</default>
         <label>Technical Buyer</label>
     </standardValue>
+    <standardValue>
+        <fullName>Tool Coordinator</fullName>
+        <default>false</default>
+        <label>Tool Coordinator</label>
+    </standardValue>    
     <standardValue>
         <fullName>Other</fullName>
         <default>false</default>
