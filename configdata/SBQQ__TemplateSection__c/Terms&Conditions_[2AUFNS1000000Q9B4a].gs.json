@@ -16,7 +16,7 @@
     "SBQQ__KeepTogether__c": "Auto",
     "SBQQ__KeepWithNext__c": "Auto",
     "SBQQ__KeepWithPrevious__c": "Auto",
-    "SBQQ__PageBreak__c": "After",
+    "SBQQ__PageBreak__c": "Before",
     "SBQQ__QuoteTotalsPrinted__c": "false",
     "SBQQ__RollUpField__c": "",
     "SBQQ__SummaryDisplay__c": "",
