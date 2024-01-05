@@ -5,7 +5,7 @@
     <deprecated>false</deprecated>
     <description>Indicates whether the product price should be displayed in the Product Search Results.</description>
     <externalId>false</externalId>
-    <inlineHelpText>Select checkbox to hide this product&apos;s price in the Product Search Results.</inlineHelpText>
+    <inlineHelpText>Select checkbox to hide this product&#39;s price in the Product Search Results.</inlineHelpText>
     <label>Hide Price in Search Results</label>
     <trackHistory>false</trackHistory>
     <type>Checkbox</type>

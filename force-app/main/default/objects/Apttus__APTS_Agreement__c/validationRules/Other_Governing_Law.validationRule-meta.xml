@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Other_Governing_Law</fullName>
+    <active>true</active>
+    <description>If Governing Law is set to &#39;Other&#39;, &#39;Other Governing Law&#39; field is required</description>
+    <errorConditionFormula>AND(
+ISPICKVAL(APTS_Governing_Law__c,&#39;Other&#39;),
+ISBLANK(APTS_Other_Governing_Law__c)
+)</errorConditionFormula>
+    <errorDisplayField>APTS_Other_Governing_Law__c</errorDisplayField>
+    <errorMessage>Please enter &#39;Other Governing Law&#39;</errorMessage>
+</ValidationRule>

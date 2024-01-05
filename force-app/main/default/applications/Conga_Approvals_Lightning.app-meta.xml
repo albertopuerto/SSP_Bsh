@@ -10,6 +10,7 @@
     </actionOverrides>
     <brand>
         <headerColor>#FF0000</headerColor>
+        <logo>servlet</logo>
         <logoVersion>1</logoVersion>
         <shouldOverrideOrgTheme>false</shouldOverrideOrgTheme>
     </brand>

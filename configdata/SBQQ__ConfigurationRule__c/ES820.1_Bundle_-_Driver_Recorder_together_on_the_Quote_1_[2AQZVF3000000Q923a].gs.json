@@ -1,0 +1,34 @@
+{
+  "Object": "SBQQ__ConfigurationRule__c",
+  "Fields": {
+    "GearsetDisplayName": "ES820.1 Bundle - Driver Recorder together on the Quote 1",
+    "GearsetExternalId__c": "2AQZVF3000000Q923a",
+    "SBQQ__Active__c": "true",
+    "SBQQ__AscendingNestedLevel__c": "",
+    "SBQQ__DescendingActionNesting__c": "",
+    "SBQQ__DescendingNestedLevel__c": ""
+  },
+  "References": [
+    {
+      "Name": "SBQQ__ProductFeature__r",
+      "ReferencedObject": "SBQQ__ProductFeature__c",
+      "ReferencedFields": {
+        "GearsetExternalId__c": ""
+      }
+    },
+    {
+      "Name": "SBQQ__ProductRule__r",
+      "ReferencedObject": "SBQQ__ProductRule__c",
+      "ReferencedFields": {
+        "GearsetExternalId__c": "EAQ7hQ3000000Q9l3a"
+      }
+    },
+    {
+      "Name": "SBQQ__Product__r",
+      "ReferencedObject": "Product2",
+      "ReferencedFields": {
+        "GearsetExternalId__c": "UAQQ4T2300000Q9t10"
+      }
+    }
+  ]
+}
