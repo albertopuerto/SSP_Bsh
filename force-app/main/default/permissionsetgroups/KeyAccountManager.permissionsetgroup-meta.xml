@@ -3,7 +3,7 @@
     <description>This permission set group allows Key Account Managers manage multiple action on given objects</description>
     <hasActivationRequired>false</hasActivationRequired>
     <label>Key Account Manager</label>
-    <permissionSets>CPQRead</permissionSets>
+    <permissionSets>CPQEnhancedUser</permissionSets>
     <permissionSets>QualifyOpportunities</permissionSets>
     <permissionSets>SalesBasic</permissionSets>
     <status>Updated</status>

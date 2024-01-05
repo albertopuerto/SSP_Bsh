@@ -1,5 +1,9 @@
-<?xml version="1.0" encoding="UTF-8"?> 
+<?xml version="1.0" encoding="UTF-8"?>
 <PermissionSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <applicationVisibilities>
+        <application>ETAS_SALES_Cockpit</application>
+        <visible>true</visible>
+    </applicationVisibilities>
     <description>Provides all edit access to Accounts and Contacts</description>
     <fieldPermissions>
         <editable>true</editable>
@@ -327,7 +331,7 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Contact.pkl_Contact_Source__c</field>
         <readable>true</readable>
     </fieldPermissions>

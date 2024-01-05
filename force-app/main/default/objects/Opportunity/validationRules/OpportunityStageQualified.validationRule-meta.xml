@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>OpportunityStageQualified</fullName>
+    <active>true</active>
+    <description>Only KAM can qualify opportunities.</description>
+    <errorConditionFormula>AND(
+     OR(
+       AND(ISCHANGED(StageName),
+           NOT(ISPICKVAL(PRIORVALUE(StageName),&quot;Qualification&quot;)),
+           ISPICKVAL(StageName, &quot;Qualification&quot;)
+       ),
+       AND(ISNEW(),ISPICKVAL(StageName, &quot;Qualification&quot;)
+     )
+   ),
+   Not($Permission.QualifyOpp),
+   Not($Permission.BypassValidations)
+)</errorConditionFormula>
+    <errorDisplayField>StageName</errorDisplayField>
+    <errorMessage>Only key account manager or other user with required permissions can qualify opportunites.</errorMessage>
+</ValidationRule>
