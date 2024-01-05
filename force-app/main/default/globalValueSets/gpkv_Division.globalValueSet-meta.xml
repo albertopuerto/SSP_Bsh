@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GlobalValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customValue>
+        <fullName>D0</fullName>
+        <default>false</default>
+        <label>Reference Division</label>
+    </customValue>
+    <description>Represent ETAS Solution Fields
+Division - D0</description>
+    <masterLabel>Division</masterLabel>
+    <sorted>false</sorted>
+</GlobalValueSet>

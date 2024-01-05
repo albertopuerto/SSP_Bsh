@@ -7,6 +7,7 @@
     <inlineHelpText>Indicates the status of your Document: Pending, Sent, Failed.</inlineHelpText>
     <label>Document Status</label>
     <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
     <trackHistory>false</trackHistory>
     <trackTrending>false</trackTrending>
     <type>Picklist</type>

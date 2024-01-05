@@ -7,6 +7,7 @@
     <inlineHelpText>When an order is created from this quote, the value in this field is copied to the order’s Billing Day of Month field.</inlineHelpText>
     <label>Proration Day Of Month</label>
     <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
     <trackHistory>false</trackHistory>
     <trackTrending>false</trackTrending>
     <type>Picklist</type>
