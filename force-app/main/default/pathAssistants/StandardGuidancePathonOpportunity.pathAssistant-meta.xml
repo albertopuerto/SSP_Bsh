@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PathAssistant xmlns="http://soap.sforce.com/2006/04/metadata">
+    <active>true</active>
+    <entityName>Opportunity</entityName>
+    <fieldName>StageName</fieldName>
+    <masterLabel>Standard Guidance Path on Opportunity</masterLabel>
+    <pathAssistantSteps>
+        <fieldNames>AccountId</fieldNames>
+        <fieldNames>Probability</fieldNames>
+        <fieldNames>CloseDate</fieldNames>
+        <fieldNames>LastModifiedById</fieldNames>
+        <picklistValueName>Closed Lost</picklistValueName>
+    </pathAssistantSteps>
+    <pathAssistantSteps>
+        <fieldNames>AccountId</fieldNames>
+        <fieldNames>Probability</fieldNames>
+        <fieldNames>CloseDate</fieldNames>
+        <fieldNames>LastModifiedById</fieldNames>
+        <picklistValueName>Closed Won</picklistValueName>
+    </pathAssistantSteps>
+    <pathAssistantSteps>
+        <fieldNames>AccountId</fieldNames>
+        <fieldNames>Probability</fieldNames>
+        <fieldNames>CloseDate</fieldNames>
+        <fieldNames>LastModifiedById</fieldNames>
+        <picklistValueName>Needs Analysis</picklistValueName>
+    </pathAssistantSteps>
+    <pathAssistantSteps>
+        <fieldNames>AccountId</fieldNames>
+        <fieldNames>Probability</fieldNames>
+        <fieldNames>CloseDate</fieldNames>
+        <fieldNames>LastModifiedById</fieldNames>
+        <picklistValueName>Negotiation</picklistValueName>
+    </pathAssistantSteps>
+    <pathAssistantSteps>
+        <fieldNames>AccountId</fieldNames>
+        <fieldNames>Probability</fieldNames>
+        <fieldNames>CloseDate</fieldNames>
+        <fieldNames>LastModifiedById</fieldNames>
+        <picklistValueName>Proposal</picklistValueName>
+    </pathAssistantSteps>
+    <pathAssistantSteps>
+        <fieldNames>AccountId</fieldNames>
+        <fieldNames>Probability</fieldNames>
+        <fieldNames>CloseDate</fieldNames>
+        <fieldNames>LastModifiedById</fieldNames>
+        <picklistValueName>Qualification</picklistValueName>
+    </pathAssistantSteps>
+    <pathAssistantSteps>
+        <fieldNames>AccountId</fieldNames>
+        <fieldNames>Probability</fieldNames>
+        <fieldNames>CloseDate</fieldNames>
+        <fieldNames>LastModifiedById</fieldNames>
+        <picklistValueName>Sales Chance</picklistValueName>
+    </pathAssistantSteps>
+    <recordTypeName>__MASTER__</recordTypeName>
+</PathAssistant>
