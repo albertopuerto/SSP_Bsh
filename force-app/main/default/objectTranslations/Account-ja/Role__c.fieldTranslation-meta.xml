@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <label><!-- Role --></label>
+        <name>Role__c</name>
+        <picklistValues>
+            <masterLabel>ETCN Domestic Customer</masterLabel>
+            <translation><!-- ETCN Domestic Customer --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ETDE Domestic Customer</masterLabel>
+            <translation><!-- ETDE Domestic Customer --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ETJP Domestic Customer</masterLabel>
+            <translation><!-- ETJP Domestic Customer --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ETUS Domestic Customer</masterLabel>
+            <translation><!-- ETUS Domestic Customer --></translation>
+        </picklistValues>
+    </CustomFieldTranslation>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>APTS_BBM_Sector_Board_APTS_Agreement</fullName>
+    <filterScope>Queue</filterScope>
+    <label>BBM Sector Board</label>
+    <queue>APTS_BBM_Sector_Board</queue>
+    <sharedTo>
+        <allInternalUsers></allInternalUsers>
+    </sharedTo>
+</ListView>

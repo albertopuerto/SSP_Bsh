@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Apttus_Base2__EnableRealtimeTelemetry__c</fullName>
+    <defaultValue>false</defaultValue>
+    <deprecated>false</deprecated>
+    <description>Enables collection of Conga product(s) telemetry data for proactive monitoring in real-time.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Enables collection of Conga product(s) telemetry data for proactive monitoring in real-time.</inlineHelpText>
+    <label>Enable Real-Time Telemetry</label>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

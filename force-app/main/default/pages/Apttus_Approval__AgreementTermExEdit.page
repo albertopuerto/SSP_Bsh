@@ -1,0 +1,47 @@
+<!-- 
+    Conga Approvals
+    AgreementTermExEdit
+     
+    @2010-2021 Conga Inc. All rights reserved.
+
+ -->
+<apex:page standardController="Apttus__Agreement_Term_Exception__c" 
+            extensions="Apttus_Approval.AgreementTermExEditController" 
+            showHeader="{!showHeader}" 
+            sidebar="{!showSidebar}" 
+            tabStyle="Apttus__APTS_Agreement__c" 
+            recordSetVar="agmtTermExceptions" >
+
+    <apex:sectionHeader title="{!$Label.Apttus_Approval__Agreement}"/>
+    <table>
+      <tr>
+        <td>{!$Label.Apttus_Approval__AgreementTermExEditMessage1}</td>
+      </tr>
+      <tr>
+        <td>{!$Label.Apttus_Approval__AgreementTermExEditMessage2}</td>
+      </tr>
+    </table>
+    <apex:form >
+        <apex:pageBlock title="{!$Label.Apttus_Approval__AgreementTermExEdit}">
+            <apex:pageMessages />
+            <apex:pageBlockButtons >
+                <apex:commandButton action="{!doSave}" value="{!$Label.Apttus_Approval__Save}" />
+                <apex:commandButton action="{!doCancel}" value="{!$Label.Apttus_Approval__Cancel}" /> 
+            </apex:pageBlockButtons>
+
+            <apex:pageBlockSection title="{!$Label.Apttus_Approval__AgreementTermEx}" columns="1"
+                collapsible="false" >
+                <apex:pageBlockTable value="{!selected}" var="agmtTermEx"
+                    width="100%" >
+                    <apex:column />
+                    <apex:column value="{!agmtTermEx.Apttus__Exception__c}" />
+                    <apex:column value="{!agmtTermEx.Apttus__Description__c}" />
+                    <apex:column headerValue="{!$Label.Apttus_Approval__Comments}">
+                        <apex:inputField value="{!agmtTermEx.Apttus__Comments__c}"
+                            style="width:300px" />
+                    </apex:column>
+                </apex:pageBlockTable>
+            </apex:pageBlockSection>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>
