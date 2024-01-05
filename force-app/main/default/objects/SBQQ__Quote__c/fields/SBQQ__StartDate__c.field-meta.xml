@@ -7,6 +7,7 @@
     <inlineHelpText>Start date for subscriptions in this quote.</inlineHelpText>
     <label>Start Date</label>
     <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
     <trackHistory>false</trackHistory>
     <trackTrending>false</trackTrending>
     <type>Date</type>

@@ -51,6 +51,14 @@
                 <behavior>Edit</behavior>
                 <field>SBQQ__PrimaryContact__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>ftxt_OwnerDetails__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>ftxt_OpportunityName__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
@@ -68,6 +76,14 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>SBQQ__Status__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>SBQQ__ExpirationDate__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>SBQQ__Ordered__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsTopToBottom</style>
@@ -266,13 +282,13 @@
         <layoutColumns>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>SSP_POValidated__c</field>
+                <field>chk_POValidated__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>SSP_PONo__c</field>
+                <field>txt_PONo__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsLeftToRight</style>
@@ -448,6 +464,13 @@
         <fields>CORE.USERS.FULL_NAME</fields>
         <fields>TASK.LAST_UPDATE</fields>
         <relatedList>RelatedHistoryList</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <fields>ORDERS.ORDER_NUMBER</fields>
+        <fields>SALES.ACCOUNT.NAME</fields>
+        <fields>ORDERS.STATUS</fields>
+        <fields>ORDERS.TOTAL_AMOUNT</fields>
+        <relatedList>Order.SBQQ__Quote__c</relatedList>
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
