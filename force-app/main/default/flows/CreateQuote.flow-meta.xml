@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>59.0</apiVersion>
+    <description>Helps Sales to create Quotes with the needed Data.</description>
+    <environments>Default</environments>
+    <formulas>
+        <name>fnum_calculate_version_number</name>
+        <dataType>Number</dataType>
+        <expression>IF(ISNULL({!get_Find_other_Quotes_for_this_Opportunity.num_QuoteVersion__c}), 1, {!get_Find_other_Quotes_for_this_Opportunity.num_QuoteVersion__c} +1)</expression>
+        <scale>0</scale>
+    </formulas>
+    <interviewLabel>Create Quote {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Create Quote</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordLookups>
+        <description>Querys for other quotes that are related to the parent Opportunity.</description>
+        <name>get_Find_other_Quotes_for_this_Opportunity</name>
+        <label>Find other Quotes for this Opportunity</label>
+        <locationX>176</locationX>
+        <locationY>287</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>upd_Update_Quote_Record</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>SBQQ__Opportunity2__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.SBQQ__Opportunity2__c</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>SBQQ__Quote__c</object>
+        <queriedFields>Id</queriedFields>
+        <queriedFields>num_QuoteVersion__c</queriedFields>
+        <sortField>CreatedDate</sortField>
+        <sortOrder>Desc</sortOrder>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordUpdates>
+        <description>Update Quote Record</description>
+        <name>upd_Update_Quote_Record</name>
+        <label>Update Quote Record</label>
+        <locationX>176</locationX>
+        <locationY>395</locationY>
+        <inputAssignments>
+            <field>num_QuoteVersion__c</field>
+            <value>
+                <elementReference>fnum_calculate_version_number</elementReference>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <start>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>get_Find_other_Quotes_for_this_Opportunity</targetReference>
+        </connector>
+        <object>SBQQ__Quote__c</object>
+        <recordTriggerType>Create</recordTriggerType>
+        <triggerType>RecordBeforeSave</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>
