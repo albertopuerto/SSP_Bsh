@@ -1,0 +1,26 @@
+{
+  "Object": "PricebookEntry",
+  "Fields": {
+    "GearsetDisplayName": "Standard Price Book - CBE252.1-8",
+    "GearsetExternalId__c": "QAQZ9d8200000Q9u10",
+    "IsActive": "true",
+    "UnitPrice": "280.0",
+    "UseStandardPrice": "false"
+  },
+  "References": [
+    {
+      "Name": "Pricebook2",
+      "ReferencedObject": "Pricebook2",
+      "ReferencedFields": {
+        "GearsetExternalId__c": "StandardPriceBook"
+      }
+    },
+    {
+      "Name": "Product2",
+      "ReferencedObject": "Product2",
+      "ReferencedFields": {
+        "GearsetExternalId__c": "MAQeTG2300000Q9t10"
+      }
+    }
+  ]
+}
