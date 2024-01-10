@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>LossDescriptionMustBeFilled</fullName>
+    <active>true</active>
+    <description>Loss description must be filled when the opportunity is closed lost and the Loss Reason is &#39;Other&#39;</description>
+    <errorConditionFormula>AND(
+ISPICKVAL( StageName , &quot;Closed Lost&quot;),
+ISPICKVAL(pkl_LossReason__c, &#39;Other&#39;),
+ISBLANK( txa_LossReasonDescription__c ),
+NOT($Permission.BypassValidations)
+)</errorConditionFormula>
+    <errorDisplayField>txa_LossReasonDescription__c</errorDisplayField>
+    <errorMessage>The loss reason description must be provided.</errorMessage>
+</ValidationRule>
