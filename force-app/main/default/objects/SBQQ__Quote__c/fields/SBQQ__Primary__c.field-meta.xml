@@ -7,6 +7,7 @@
     <externalId>false</externalId>
     <inlineHelpText>Select this checkbox to designate this quote as the primary one on the opportunity and sync quote line items with opportunity line items.</inlineHelpText>
     <label>Primary</label>
+    <trackFeedHistory>false</trackFeedHistory>
     <trackHistory>true</trackHistory>
     <trackTrending>false</trackTrending>
     <type>Checkbox</type>
