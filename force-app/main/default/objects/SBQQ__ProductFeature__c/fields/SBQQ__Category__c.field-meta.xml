@@ -22,6 +22,26 @@
                 <default>false</default>
                 <label>Software</label>
             </value>
+            <value>
+                <fullName>Recorder Hardware</fullName>
+                <default>false</default>
+                <label>Recorder Hardware</label>
+            </value>
+            <value>
+                <fullName>AddOns + Cables</fullName>
+                <default>false</default>
+                <label>AddOns + Cables</label>
+            </value>
+            <value>
+                <fullName>Remote Operation</fullName>
+                <default>false</default>
+                <label>Remote Operation</label>
+            </value>
+            <value>
+                <fullName>Maintenance</fullName>
+                <default>false</default>
+                <label>Maintenance</label>
+            </value>
         </valueSetDefinition>
     </valueSet>
 </CustomField>

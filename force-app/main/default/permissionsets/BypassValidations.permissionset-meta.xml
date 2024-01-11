@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PermissionSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customPermissions>
+        <enabled>true</enabled>
+        <name>BypassValidations</name>
+    </customPermissions>
+    <description>This permission set contains all custom permissions that will allow bypassing of validation rules of all objects.</description>
+    <hasActivationRequired>false</hasActivationRequired>
+    <label>BypassValidations</label>
+</PermissionSet>
