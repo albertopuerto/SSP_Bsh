@@ -7,6 +7,7 @@
     <inlineHelpText>Choose the paper size for this document.</inlineHelpText>
     <label>Paper Size</label>
     <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
     <trackHistory>false</trackHistory>
     <trackTrending>false</trackTrending>
     <type>Picklist</type>
