@@ -12,4 +12,4 @@
 )</errorConditionFormula>
     <errorDisplayField>StageName</errorDisplayField>
     <errorMessage>Once qualified, Sales Chances must be set to a different Stage.</errorMessage>
-</ValidationRule>
+</ValidationRule> 
