@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>txr_AdditionaInformation__c</fullName>
+    <description>This is Additional Product Description field that can be on the Quote flexibly adjusted to Sales person’s and Customer’s needs.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>This is Additional Product Description field that can be on the Quote flexibly adjusted to Sales person’s and Customer’s needs.</inlineHelpText>
+    <label>Additional Information</label>
+    <length>32768</length>
+    <trackHistory>false</trackHistory>
+    <type>Html</type>
+    <visibleLines>25</visibleLines>
+</CustomField>
