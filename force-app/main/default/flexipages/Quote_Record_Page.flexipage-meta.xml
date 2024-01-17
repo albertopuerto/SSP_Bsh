@@ -7,67 +7,23 @@
                     <name>actionNames</name>
                     <valueList>
                         <valueListItems>
-                            <value>FeedItem.TextPost</value>
-                        </valueListItems>
-                        <valueListItems>
-                            <value>FeedItem.ContentPost</value>
-                        </valueListItems>
-                        <valueListItems>
-                            <value>FeedItem.QuestionPost</value>
-                        </valueListItems>
-                        <valueListItems>
-                            <value>Global.NewTask</value>
-                        </valueListItems>
-                        <valueListItems>
                             <value>Edit</value>
                         </valueListItems>
                         <valueListItems>
-                            <value>Global.NewEvent</value>
-                        </valueListItems>
-                        <valueListItems>
-                            <value>Global.NewContact</value>
-                        </valueListItems>
-                        <valueListItems>
-                            <value>Global.LogACall</value>
-                        </valueListItems>
-                        <valueListItems>
-                            <value>Global.NewOpportunity</value>
-                        </valueListItems>
-                        <valueListItems>
-                            <value>Global.NewLead</value>
-                        </valueListItems>
-                        <valueListItems>
-                            <value>FeedItem.ContentNote</value>
-                        </valueListItems>
-                        <valueListItems>
-                            <value>FeedItem.PollPost</value>
-                        </valueListItems>
-                        <valueListItems>
-                            <value>FeedItem.RypplePost</value>
-                        </valueListItems>
-                        <valueListItems>
-                            <value>Delete</value>
-                        </valueListItems>
-                        <valueListItems>
-                            <value>Clone</value>
-                        </valueListItems>
-                        <valueListItems>
-                            <value>ChangeOwnerOne</value>
-                        </valueListItems>
-                        <valueListItems>
-                            <value>ChangeRecordType</value>
-                        </valueListItems>
-                        <valueListItems>
-                            <value>PrintableView</value>
-                        </valueListItems>
-                        <valueListItems>
-                            <value>Share</value>
-                        </valueListItems>
-                        <valueListItems>
-                            <value>RecordShareHierarchy</value>
-                        </valueListItems>
-                        <valueListItems>
-                            <value>CustomButton.SBQQ__Quote__c.SBQQ__CloneWithRelated</value>
+                            <value>CustomButton.SBQQ__Quote__c.SBQQ__EditLines</value>
+                            <visibilityRule>
+                                <booleanFilter>1 OR 2</booleanFilter>
+                                <criteria>
+                                    <leftValue>{!Record.SBQQ__Status__c}</leftValue>
+                                    <operator>EQUAL</operator>
+                                    <rightValue>Draft</rightValue>
+                                </criteria>
+                                <criteria>
+                                    <leftValue>{!Record.SBQQ__Status__c}</leftValue>
+                                    <operator>EQUAL</operator>
+                                    <rightValue>In Review</rightValue>
+                                </criteria>
+                            </visibilityRule>
                         </valueListItems>
                         <valueListItems>
                             <value>CustomButton.SBQQ__Quote__c.SBQQ__PreviewDocument</value>
@@ -91,25 +47,40 @@
                             </visibilityRule>
                         </valueListItems>
                         <valueListItems>
-                            <value>CustomButton.SBQQ__Quote__c.SBQQ__EditLines</value>
-                        </valueListItems>
-                        <valueListItems>
-                            <value>CustomButton.SBQQ__Quote__c.SBQQ__IncludeDocument</value>
-                        </valueListItems>
-                        <valueListItems>
                             <value>CustomButton.SBQQ__Quote__c.SBQQ__GenerateDocument</value>
                         </valueListItems>
                         <valueListItems>
-                            <value>CustomButton.SBQQ__Quote__c.SBQQ__RefreshPrices</value>
+                            <value>CustomButton.SBQQ__Quote__c.SBQQ__CreateOrderFromQuote</value>
                         </valueListItems>
                         <valueListItems>
-                            <value>CustomButton.SBQQ__Quote__c.SBQQ__ImportLines</value>
+                            <value>Clone</value>
                         </valueListItems>
                         <valueListItems>
-                            <value>CustomButton.SBQQ__Quote__c.SBQQ__ModifyQuoteTerms</value>
+                            <value>CustomButton.SBQQ__Quote__c.SBQQ__CloneWithRelated</value>
+                            <visibilityRule>
+                                <booleanFilter>1 OR 2 OR 3</booleanFilter>
+                                <criteria>
+                                    <leftValue>{!Record.SBQQ__Status__c}</leftValue>
+                                    <operator>EQUAL</operator>
+                                    <rightValue>Draft</rightValue>
+                                </criteria>
+                                <criteria>
+                                    <leftValue>{!Record.SBQQ__Status__c}</leftValue>
+                                    <operator>EQUAL</operator>
+                                    <rightValue>In Review</rightValue>
+                                </criteria>
+                                <criteria>
+                                    <leftValue>{!Record.SBQQ__Status__c}</leftValue>
+                                    <operator>EQUAL</operator>
+                                    <rightValue>Approval Pending</rightValue>
+                                </criteria>
+                            </visibilityRule>
                         </valueListItems>
                         <valueListItems>
-                            <value>CustomButton.SBQQ__Quote__c.SBQQ__CalculateQuote</value>
+                            <value>Delete</value>
+                        </valueListItems>
+                        <valueListItems>
+                            <value>ChangeOwnerOne</value>
                         </valueListItems>
                     </valueList>
                 </componentInstanceProperties>
@@ -131,7 +102,7 @@
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>numVisibleActions</name>
-                    <value>3</value>
+                    <value>4</value>
                 </componentInstanceProperties>
                 <componentName>force:highlightsPanel</componentName>
                 <identifier>force_highlightsPanel</identifier>
