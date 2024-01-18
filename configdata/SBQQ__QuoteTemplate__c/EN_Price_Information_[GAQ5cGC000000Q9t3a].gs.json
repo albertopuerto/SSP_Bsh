@@ -1,13 +1,13 @@
 {
   "Object": "SBQQ__QuoteTemplate__c",
   "Fields": {
-    "GearsetDisplayName": "EN Standard Quote with Discounts",
-    "GearsetExternalId__c": "KAQdPfB000000Q9t3a",
-    "Name": "EN Standard Quote with Discounts",
+    "GearsetDisplayName": "EN Price Information",
+    "GearsetExternalId__c": "GAQ5cGC000000Q9t3a",
+    "Name": "EN Price Information",
     "SBQQ__AllPackageProductsShown__c": "false",
     "SBQQ__BillToTitle__c": "Bill To",
     "SBQQ__BorderColor__c": "000000",
-    "SBQQ__BottomMargin__c": "0.5",
+    "SBQQ__BottomMargin__c": "1.0",
     "SBQQ__BundledProductsShown__c": "false",
     "SBQQ__CompanyCity__c": "Stuttgart",
     "SBQQ__CompanyCountry__c": "DE",
@@ -23,7 +23,7 @@
     "SBQQ__CustomerDiscountField__c": "",
     "SBQQ__CustomerDiscountLabel__c": "DISCOUNT",
     "SBQQ__CustomerDiscountShown__c": "false",
-    "SBQQ__Default__c": "true",
+    "SBQQ__Default__c": "false",
     "SBQQ__DeploymentStatus__c": "Deployed",
     "SBQQ__DiscountScheduleShown__c": "",
     "SBQQ__ExcludedPages__c": "",
@@ -37,11 +37,11 @@
     "SBQQ__GroupFontFamily__c": "Helvetica",
     "SBQQ__GroupFontSize__c": "9.0",
     "SBQQ__GroupFontStyle__c": "Normal",
-    "SBQQ__GroupGap__c": "3.0",
+    "SBQQ__GroupGap__c": "15.0",
     "SBQQ__GroupShadingColor__c": "FFFFFF",
     "SBQQ__GroupTextAlignment__c": "Left",
     "SBQQ__GroupTextColor__c": "000000",
-    "SBQQ__HeaderHeight__c": "140.0",
+    "SBQQ__HeaderHeight__c": "",
     "SBQQ__HideGroupSubtotals__c": "false",
     "SBQQ__IntroductionTitle__c": "",
     "SBQQ__LeftMargin__c": "0.5",
@@ -88,7 +88,7 @@
       "Name": "SBQQ__HeaderContent__r",
       "ReferencedObject": "SBQQ__TemplateContent__c",
       "ReferencedFields": {
-        "GearsetExternalId__c": "MAUvGB6000000Q9A4a"
+        "GearsetExternalId__c": "IAUbM36000000Q9A4a"
       }
     }
   ]

@@ -1,0 +1,51 @@
+{
+  "Object": "SBQQ__LineColumn__c",
+  "Fields": {
+    "GearsetDisplayName": "Additional Description - SBQQ__Description__c",
+    "GearsetExternalId__c": "IAUyRo6000000Q9P3a",
+    "Name": "Additional Description",
+    "SBQQ__Alignment__c": "Left",
+    "SBQQ__BottomMargin__c": "3.0",
+    "SBQQ__ColumnHeadingField__c": "",
+    "SBQQ__ConditionalPrintField__c": "",
+    "SBQQ__DisplayOrder__c": "90.0",
+    "SBQQ__DynamicNumberScale__c": "false",
+    "SBQQ__FieldName__c": "SBQQ__Description__c",
+    "SBQQ__FontFamily__c": "",
+    "SBQQ__FontSize__c": "",
+    "SBQQ__FontWeight__c": "Normal",
+    "SBQQ__HeadingTextColor__c": "",
+    "SBQQ__HideOnComponents__c": "false",
+    "SBQQ__LeftMargin__c": "3.0",
+    "SBQQ__RightMargin__c": "3.0",
+    "SBQQ__RollUp__c": "false",
+    "SBQQ__SeparateLine__c": "true",
+    "SBQQ__SubGroupSummaryLabel__c": "",
+    "SBQQ__SummaryFontWeight__c": "",
+    "SBQQ__SummaryFunction__c": "",
+    "SBQQ__SummaryLabel__c": "",
+    "SBQQ__SummaryLevel__c": "All",
+    "SBQQ__SummaryShadingColor__c": "",
+    "SBQQ__SummaryTextColor__c": "",
+    "SBQQ__TextColor__c": "",
+    "SBQQ__TopMargin__c": "3.0",
+    "SBQQ__WidthDiscardedWhenHidden__c": "false",
+    "SBQQ__Width__c": "100.0"
+  },
+  "References": [
+    {
+      "Name": "SBQQ__Section__r",
+      "ReferencedObject": "SBQQ__TemplateSection__c",
+      "ReferencedFields": {
+        "GearsetExternalId__c": ""
+      }
+    },
+    {
+      "Name": "SBQQ__Template__r",
+      "ReferencedObject": "SBQQ__QuoteTemplate__c",
+      "ReferencedFields": {
+        "GearsetExternalId__c": "KAQdPfB000000Q9t3a"
+      }
+    }
+  ]
+}
