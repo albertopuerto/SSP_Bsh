@@ -4,7 +4,7 @@
     <doesApiLoginRequireOrgDomain>false</doesApiLoginRequireOrgDomain>
     <doesWarnOnForceComRedirect>false</doesWarnOnForceComRedirect>
     <doesWarnOnRedirect>false</doesWarnOnRedirect>
-    <domainPartition>none</domainPartition>
+    <domainPartition>sandbox</domainPartition>
     <enableEdgeDuringRollout>true</enableEdgeDuringRollout>
     <enableNativeBrowserForAuthOnAndroid>false</enableNativeBrowserForAuthOnAndroid>
     <enableNativeBrowserForAuthOnIos>false</enableNativeBrowserForAuthOnIos>
