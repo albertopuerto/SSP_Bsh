@@ -6,6 +6,7 @@
     <customButtons>SBQQ__IncludeDocument</customButtons>
     <customButtons>SBQQ__GenerateDocument</customButtons>
     <customButtons>SBQQ__RefreshPrices</customButtons>
+    <customButtons>SBQQ__CloneWithRelatedClassic</customButtons>
     <customButtons>SBQQ__ImportLines</customButtons>
     <customButtons>SBQQ__ModifyQuoteTerms</customButtons>
     <customButtons>SBQQ__CalculateQuote</customButtons>
@@ -50,10 +51,6 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>SBQQ__PrimaryContact__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>ftxt_OwnerDetails__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
