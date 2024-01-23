@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>PO_No_mandatory_if_PO_validated_is_true</fullName>
+    <active>true</active>
+    <description>This rule checks that a PO No. is entered when the PO validated Flag is set.</description>
+    <errorConditionFormula>IF( AND(chk_POValidated__c,ISBLANK(txt_PONo__c)), TRUE, FALSE)</errorConditionFormula>
+    <errorDisplayField>txt_PONo__c</errorDisplayField>
+    <errorMessage>PO No. is mandatory if the PO was received and validated.</errorMessage>
+</ValidationRule>
