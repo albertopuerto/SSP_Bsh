@@ -135,4 +135,9 @@
     <layoutAssignments>
         <layout>SBQQ__QuoteLine__c-SBQQ__Quote Line Layout</layout>
     </layoutAssignments>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>ServiceContract.AdditionalDiscount</field>
+        <readable>true</readable>
+    </fieldPermissions>
 </Profile>
