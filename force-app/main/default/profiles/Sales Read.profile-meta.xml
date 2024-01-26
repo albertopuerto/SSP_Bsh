@@ -122,4 +122,22 @@
         <enabled>true</enabled>
         <name>ViewSetup</name>
     </userPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>OrderItem.dat_ExpectedDeliveryDate__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>SBQQ__QuoteLine__c.dat_ExpectedDeliveryDate__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <layoutAssignments>
+        <layout>SBQQ__QuoteLine__c-SBQQ__Quote Line Layout</layout>
+    </layoutAssignments>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>ServiceContract.AdditionalDiscount</field>
+        <readable>true</readable>
+    </fieldPermissions>
 </Profile>

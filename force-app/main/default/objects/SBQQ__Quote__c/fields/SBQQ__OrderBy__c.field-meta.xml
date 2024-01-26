@@ -25,6 +25,11 @@
                 <default>false</default>
                 <label>QuantityBasedFormulaField__c</label>
             </value>
+            <value>
+                <fullName>dat_ExpectedDeliveryDate__c</fullName>
+                <default>false</default>
+                <label>dat_ExpectedDeliveryDate__c</label>
+            </value>
         </valueSetDefinition>
     </valueSet>
 </CustomField>
