@@ -3,11 +3,6 @@
     <apiVersion>59.0</apiVersion>
     <description>Helps Sales to create Quotes with the needed Data.</description>
     <environments>Default</environments>
-    <formulas>
-        <name>TodayPlus3Month</name>
-        <dataType>Date</dataType>
-        <expression>ADDMONTHS(Today(),3)</expression>
-    </formulas>
     <interviewLabel>Create Quote {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Create New Quote</label>
     <processMetadataValues>
@@ -26,7 +21,7 @@
         <name>OriginBuilderType</name>
         <value>
             <stringValue>LightningFlowBuilder</stringValue>
-        </value> 
+        </value>
     </processMetadataValues>
     <processType>Flow</processType>
     <recordCreates>
@@ -126,17 +121,6 @@
                     <isRequired>false</isRequired>
                     <objectFieldReference>obj_Quote.SBQQ__ExpirationDate__c</objectFieldReference>
                 </fields>
-                <fields>
-                    <name>ExpiresOn</name>
-                    <dataType>Date</dataType>
-                    <defaultValue>
-                        <elementReference>TodayPlus3Month</elementReference>
-                    </defaultValue>
-                    <fieldText>Expires On</fieldText>
-                    <fieldType>InputField</fieldType>
-                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
-                    <isRequired>false</isRequired>
-                </fields>
                 <inputParameters>
                     <name>width</name>
                     <value>
@@ -190,7 +174,7 @@
             <targetReference>scrn_Create_New_Quote</targetReference>
         </connector>
     </start>
-    <status>Draft</status>
+    <status>Active</status>
     <variables>
         <name>obj_Quote</name>
         <dataType>SObject</dataType>
