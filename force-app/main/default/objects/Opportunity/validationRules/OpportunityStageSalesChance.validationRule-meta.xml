@@ -4,11 +4,9 @@
     <active>true</active>
     <description>A qualified Opportunity cannot return to the Sales Stage</description>
     <errorConditionFormula>AND(
-  ISCHANGED(StageName),
-  NOT(ISPICKVAL(PRIORVALUE(StageName),&quot;Sales Chance&quot;)),
-  ISPICKVAL(StageName, &quot;Sales Chance&quot;),
-  Not($Permission.QualifyOpp),
-  Not($Permission.BypassValidations)
+    ISCHANGED(StageName),
+    ISPICKVAL(StageName, &#39;Sales Chance&#39;),
+    NOT(ISNEW())
 )</errorConditionFormula>
     <errorDisplayField>StageName</errorDisplayField>
     <errorMessage>Once qualified, Sales Chances must be set to a different Stage.</errorMessage>
