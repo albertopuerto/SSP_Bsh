@@ -14,6 +14,11 @@
     <layoutAssignments>
         <layout>SBQQ__QuoteLine__c-SBQQ__Quote Line Layout</layout>
     </layoutAssignments>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Order.ftxt_PONo__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
     <userLicense>Salesforce</userLicense>
     <userPermissions>
         <enabled>true</enabled>
