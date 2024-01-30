@@ -67,9 +67,6 @@
                             <value>RecordShareHierarchy</value>
                         </valueListItems>
                         <valueListItems>
-                            <value>CustomButton.SBQQ__Quote__c.SBQQ__CloneWithRelated</value>
-                        </valueListItems>
-                        <valueListItems>
                             <value>CustomButton.SBQQ__Quote__c.SBQQ__PreviewDocument</value>
                             <visibilityRule>
                                 <booleanFilter>1 OR 2 OR 3</booleanFilter>
@@ -101,6 +98,27 @@
                         </valueListItems>
                         <valueListItems>
                             <value>CustomButton.SBQQ__Quote__c.SBQQ__RefreshPrices</value>
+                        </valueListItems>
+                        <valueListItems>
+                            <value>CustomButton.SBQQ__Quote__c.SBQQ__CloneWithRelated</value>
+                            <visibilityRule>
+                                <booleanFilter>1 OR 2 OR 3</booleanFilter>
+                                <criteria>
+                                    <leftValue>{!Record.SBQQ__Status__c}</leftValue>
+                                    <operator>EQUAL</operator>
+                                    <rightValue>Draft</rightValue>
+                                </criteria>
+                                <criteria>
+                                    <leftValue>{!Record.SBQQ__Status__c}</leftValue>
+                                    <operator>EQUAL</operator>
+                                    <rightValue>In Review</rightValue>
+                                </criteria>
+                                <criteria>
+                                    <leftValue>{!Record.SBQQ__Status__c}</leftValue>
+                                    <operator>EQUAL</operator>
+                                    <rightValue>Approval Pending</rightValue>
+                                </criteria>
+                            </visibilityRule>
                         </valueListItems>
                         <valueListItems>
                             <value>CustomButton.SBQQ__Quote__c.SBQQ__ImportLines</value>
