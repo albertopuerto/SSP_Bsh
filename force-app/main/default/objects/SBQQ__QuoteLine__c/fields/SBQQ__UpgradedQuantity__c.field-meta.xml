@@ -4,7 +4,7 @@
     <deprecated>false</deprecated>
     <description>Quantity being upgraded.</description>
     <externalId>false</externalId>
-    <inlineHelpText>Portion of this line&#39;s Prior Quantity being upgraded to another product.</inlineHelpText>
+    <inlineHelpText>Portion of this line&apos;s Prior Quantity being upgraded to another product.</inlineHelpText>
     <label>Upgraded Quantity</label>
     <precision>12</precision>
     <required>false</required>

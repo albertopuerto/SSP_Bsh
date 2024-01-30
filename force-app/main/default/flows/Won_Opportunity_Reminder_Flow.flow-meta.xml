@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <description>Creates a Chatter Post, that is related to the Opportunity and also @mentions the Owner.</description>
+        <name>Notify_Opportunity_Owner</name>
+        <label>Notify Opportunity Owner</label>
+        <locationX>50</locationX>
+        <locationY>539</locationY>
+        <actionName>chatterPost</actionName>
+        <actionType>chatterPost</actionType>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>text</name>
+            <value>
+                <elementReference>ChatterOwnerMessage</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>subjectNameOrId</name>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </inputParameters>
+        <nameSegment>chatterPost</nameSegment>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+        <versionSegment>1</versionSegment>
+    </actionCalls>
+    <actionCalls>
+        <description>Creates a Chatter Post, that is related to the Opportunity and also @mentions all Members of the Opportunity team.</description>
+        <name>Notify_Opportunity_Team</name>
+        <label>Notify Opportunity Team</label>
+        <locationX>402</locationX>
+        <locationY>839</locationY>
+        <actionName>chatterPost</actionName>
+        <actionType>chatterPost</actionType>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>text</name>
+            <value>
+                <elementReference>ChatterTeamMessage</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>subjectNameOrId</name>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </inputParameters>
+        <nameSegment>chatterPost</nameSegment>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+        <versionSegment>1</versionSegment>
+    </actionCalls>
+    <apiVersion>60.0</apiVersion>
+    <assignments>
+        <description>Assigns the UserId of the Opportunity Team Member to the Text Variable and also adds the correct syntax so that is correctly translated to an @mention in the Chatter Post.</description>
+        <name>Assign_UserId_to_Text_Variable</name>
+        <label>Assign UserId to Text Variable</label>
+        <locationX>490</locationX>
+        <locationY>647</locationY>
+        <assignmentItems>
+            <assignToReference>StringOfUserIds</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <stringValue>@[</stringValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>StringOfUserIds</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>LoopOpportunityTeamMember.UserId</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>StringOfUserIds</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <stringValue>]</stringValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>LoopOpportunityTeamMember</targetReference>
+        </connector>
+    </assignments>
+    <decisions>
+        <description>Checks if the Opportunity has Opportunity Team Members. To send the correct Chatter Message.</description>
+        <name>Has_Opportunity_Team_Members</name>
+        <label>Has Opportunity Team Members ?</label>
+        <locationX>226</locationX>
+        <locationY>431</locationY>
+        <defaultConnector>
+            <targetReference>LoopOpportunityTeamMember</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Has Team Member</defaultConnectorLabel>
+        <rules>
+            <name>No_Team_Member</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Get_Opportunity_Team_Member</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Notify_Opportunity_Owner</targetReference>
+            </connector>
+            <label>No Team Member</label>
+        </rules>
+    </decisions>
+    <environments>Default</environments>
+    <interviewLabel>Won Opportunity Reminder Flow {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Won Opportunity Reminder Flow</label>
+    <loops>
+        <description>Loops over the collection of Opportunity Member to assign their Id to the Chatter Post we want to create.</description>
+        <name>LoopOpportunityTeamMember</name>
+        <label>Loop Opportunity Team Member</label>
+        <locationX>402</locationX>
+        <locationY>539</locationY>
+        <collectionReference>Get_Opportunity_Team_Member</collectionReference>
+        <iterationOrder>Asc</iterationOrder>
+        <nextValueConnector>
+            <targetReference>Assign_UserId_to_Text_Variable</targetReference>
+        </nextValueConnector>
+        <noMoreValuesConnector>
+            <targetReference>Notify_Opportunity_Team</targetReference>
+        </noMoreValuesConnector>
+    </loops>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordLookups>
+        <name>Get_Opportunity_Team_Member</name>
+        <label>Get Opportunity Team Member</label>
+        <locationX>226</locationX>
+        <locationY>323</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Has_Opportunity_Team_Members</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>OpportunityId</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>false</getFirstRecordOnly>
+        <object>OpportunityTeamMember</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <start>
+        <locationX>100</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Get_Opportunity_Team_Member</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>StageName</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Closed Won</stringValue>
+            </value>
+        </filters>
+        <object>Opportunity</object>
+        <recordTriggerType>Update</recordTriggerType>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Active</status>
+    <textTemplates>
+        <description>Contains the Chatter Message we want to post if the Opportunity has no Opportunity Team.</description>
+        <name>ChatterOwnerMessage</name>
+        <isViewedAsPlainText>true</isViewedAsPlainText>
+        <text>This Opportunity {!$Record.Name} for {!$Record.Account.Name} is Won!
+
+@[{!$Record.Owner.Id}]</text>
+    </textTemplates>
+    <textTemplates>
+        <description>Contains the Chatter Message we want to post if the Opportunity has an Opportunity Team.</description>
+        <name>ChatterTeamMessage</name>
+        <isViewedAsPlainText>true</isViewedAsPlainText>
+        <text>This Opportunity {!$Record.Name} for {!$Record.Account.Name} is Won!
+
+If you have any question related to this Opportunity, ask @[{!$Record.OwnerId}].
+
+You receive this chatter post because you’re an Opportunity’s Team Member.
+
+{!StringOfUserIds}</text>
+    </textTemplates>
+    <variables>
+        <name>FindOppyTeamMember</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>ListofTeamMemberIds</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <description>Text Variable to store the Ids of the Opportunity Team Members in the correct format to be able to reference them in Chatter Message.</description>
+        <name>StringOfUserIds</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+</Flow>

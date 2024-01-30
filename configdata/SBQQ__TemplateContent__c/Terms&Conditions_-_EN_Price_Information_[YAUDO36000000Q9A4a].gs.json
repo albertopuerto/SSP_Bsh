@@ -1,0 +1,30 @@
+{
+  "Object": "SBQQ__TemplateContent__c",
+  "Fields": {
+    "GearsetDisplayName": "Terms&Conditions - EN Price Information",
+    "GearsetExternalId__c": "YAUDO36000000Q9A4a",
+    "Name": "Terms&Conditions - EN Price Information",
+    "SBQQ__CustomSource__c": "",
+    "SBQQ__FontFamily__c": "Open Sans",
+    "SBQQ__FontSize__c": "10.0",
+    "SBQQ__Markup__c": "",
+    "SBQQ__RawMarkup__c": [
+      "<p style=\"text-align: justify;\">This price information is a preliminary non-binding indication concerning business portfolio, technology and pricing without any ETAS obligation for delivery and/or development of products or other services.<br />",
+      "This document and the information provided herein do not form the basis of any agreement which can only be formed by the separate provision of a quote for the specific desired products.<br />",
+      "Basis for this price information are our current product information, technical data and related safety information available on the ETAS Website &#60;www.etas.com&#62; or accompanying the quotation.<br />",
+      "Further technical documentation for ETAS products as well as user manuals are available in electronic form on the internet at http://www.etas.com/manuals or via software product CD or accompanying the delivery. For additional information or assistance, please contact your local sales office or customer support representative.<br />",
+      "All General Terms and Conditions are available on the ETAS internet pages (Path: Company /Locations / Germany / Terms and Conditions // Link: www.etas.com/AGB-ETASGmbH) or will be provided upon request.<br />",
+      "ETAS products fulfill standard quality management requirements. If requirements of specific safety standards (e.g. IEC 61508, incl. industry-specific derivatives like ISO 26262, ISO 13849 or ISO 25119) need to be fulfilled, these requirements must explicitly be defined and agreed upon between the customer and ETAS.<br />",
+      "This price information is valid for the agreed use which is defined in the user manual of the products (www.etas.com/manuals) or in the product or service description and limited to business to business (B2B) transactions. Unless explicitly agreed upon in writing (e.g. Statement of Work), this price information is valid for the target market where ETAS places the ETAS product.<br />",
+      "The sales prices of this price information are stated in the applicable currency and do not include value added tax (VAT). For taxable deliveries or performances, the VAT at the appropriate VAT rate according to the applicable tax law will be charged to the customer.<br />",
+      "For additional information or assistance, please contact your local sales agent or customer support representative. Upon request, ETAS is pleased to provide with a binding quotation document.</p>",
+      "",
+      "<p style=\"text-align: justify;\"><br />",
+      "ETAS GmbH</p>"
+    ],
+    "SBQQ__TableStyle__c": "Standard",
+    "SBQQ__TextColor__c": "",
+    "SBQQ__Type__c": "HTML"
+  },
+  "References": []
+}

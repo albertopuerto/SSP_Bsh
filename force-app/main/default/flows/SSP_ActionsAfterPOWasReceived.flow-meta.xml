@@ -31,7 +31,7 @@
     <assignments>
         <name>Add_Id_to_Mention</name>
         <label>Add Id to Mention</label>
-        <locationX>270</locationX>
+        <locationX>270</locationX> 
         <locationY>647</locationY>
         <assignmentItems>
             <assignToReference>Mentions</assignToReference>
