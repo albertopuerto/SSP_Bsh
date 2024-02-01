@@ -68,7 +68,7 @@
             <assignToReference>Mentions</assignToReference>
             <operator>Add</operator>
             <value>
-                <stringValue>Hallo </stringValue>
+                <stringValue>Hello </stringValue>
             </value>
         </assignmentItems>
         <connector>
@@ -91,16 +91,6 @@
             <targetReference>Notify_Opportunity_Team</targetReference>
         </connector>
     </assignments>
-    <customErrors>
-        <name>Quote_missing_values</name>
-        <label>Quote missing values</label>
-        <locationX>314</locationX>
-        <locationY>1163</locationY>
-        <customErrorMessages>
-            <errorMessage>Quote is not set as primary quote for Opportunity or quote lines are missing.</errorMessage>
-            <isFieldError>false</isFieldError>
-        </customErrorMessages>
-    </customErrors>
     <decisions>
         <name>Check_quote_requirements</name>
         <label>Check quote requirements</label>
