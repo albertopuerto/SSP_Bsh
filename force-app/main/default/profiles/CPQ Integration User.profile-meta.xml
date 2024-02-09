@@ -183,7 +183,32 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Contact.chl_ServiceContact__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Contact.pkl_Contact_Source__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Contact.txt_AcademicTitle__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Contact.txt_Building__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Contact.txt_Floor__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Contact.txt_Room__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -239,6 +264,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Lead.Website</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Order.ftxt_PONo__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -3441,6 +3471,9 @@
     </layoutAssignments>
     <layoutAssignments>
         <layout>Global-Global Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>SBQQ__QuoteLine__c-SBQQ__Quote Line Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
         <layout>SalesforceContract-Salesforce Contract Layout</layout>
