@@ -237,6 +237,11 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>false</editable>
+        <field>Order.ftxt_PONo__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>SBQQ__Quote__c.SSP_POValidated__c</field>
         <readable>true</readable>
@@ -3436,6 +3441,9 @@
     </layoutAssignments>
     <layoutAssignments>
         <layout>Global-Global Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>SBQQ__QuoteLine__c-SBQQ__Quote Line Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
         <layout>SalesforceContract-Salesforce Contract Layout</layout>
