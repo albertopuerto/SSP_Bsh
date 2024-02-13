@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Amount</fullName>
+    <description>The quoted value updated based on the Net Total Price of Primary Quote.</description>
+    <inlineHelpText>The quoted value updated based on the Net Total Price of Primary Quote.</inlineHelpText>
     <trackFeedHistory>true</trackFeedHistory>
     <trackHistory>false</trackHistory>
     <trackTrending>false</trackTrending>
