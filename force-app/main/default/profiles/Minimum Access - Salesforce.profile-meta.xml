@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Profile xmlns="http://soap.sforce.com/2006/04/metadata">
     <applicationVisibilities>
         <application>Conga_Approvals_Lightning</application>
@@ -52,11 +52,6 @@
     </applicationVisibilities>
     <applicationVisibilities>
         <application>standard__LightningBolt</application>
-        <default>false</default>
-        <visible>true</visible>
-    </applicationVisibilities>
-    <applicationVisibilities>
-        <application>standard__LightningSales</application>
         <default>false</default>
         <visible>true</visible>
     </applicationVisibilities>
@@ -1379,11 +1374,6 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>ProblemRelatedItem.Comment</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>SBQQ__Quote__c.SSP_POValidated__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
