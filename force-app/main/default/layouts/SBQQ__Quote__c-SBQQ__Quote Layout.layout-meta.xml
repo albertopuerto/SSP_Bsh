@@ -56,6 +56,14 @@
                 <behavior>Readonly</behavior>
                 <field>ftxt_OpportunityName__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>lkp_ToolCoordinator__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>lkp_PersonResponsible__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
