@@ -308,16 +308,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Product2.Product_Image_ID__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Product2.Product_Image_Link__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
         <field>ProductConsumptionSchedule.GearsetExternalId__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -474,11 +464,6 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>SBQQ__ProductRule__c.GearsetExternalId__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>SBQQ__QuoteLine__c.Product_Image__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
