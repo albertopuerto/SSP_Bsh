@@ -585,6 +585,16 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Order.lkp_PersonResponsible__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Order.lkp_ToolCoordinator__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>OrderItem.dat_ExpectedDeliveryDate__c</field>
         <readable>true</readable>
     </fieldPermissions>
