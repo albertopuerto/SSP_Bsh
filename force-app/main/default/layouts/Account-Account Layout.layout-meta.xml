@@ -62,6 +62,10 @@
                 <behavior>Required</behavior>
                 <field>pkl_Language_c__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>txt_VATID_c__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
@@ -345,6 +349,9 @@
         <fields>Opportunity.OPP_STAGE_NAME</fields>
         <fields>Opportunity.OPP_CLOSE_DATE</fields>
         <relatedList>Competitor__c.mdr_Competitor__c</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <relatedList>RelatedEntityHistoryList</relatedList>
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
