@@ -288,6 +288,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Order.lkp_PersonResponsible__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Pricebook2.GearsetExternalId__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -489,6 +494,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>SBQQ__QuoteTerm__c.GearsetExternalId__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>SBQQ__Quote__c.lkp_PersonResponsible__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
