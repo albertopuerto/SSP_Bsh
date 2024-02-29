@@ -433,11 +433,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>SBQQ__Quote__c.lkp_PersonResponsible__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
         <field>SBQQ__SearchFilter__c.GearsetExternalId__c</field>
         <readable>true</readable>
     </fieldPermissions>
