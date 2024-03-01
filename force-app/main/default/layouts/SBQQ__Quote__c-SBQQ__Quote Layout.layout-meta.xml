@@ -2,9 +2,9 @@
 <Layout xmlns="http://soap.sforce.com/2006/04/metadata">
     <customButtons>SBQQ__CloneWithRelated</customButtons>
     <customButtons>SBQQ__EditLines</customButtons>
-    <customButtons>SBQQ__PreviewDocument</customButtons>
     <customButtons>SBQQ__IncludeDocument</customButtons>
     <customButtons>SBQQ__GenerateDocument</customButtons>
+    <customButtons>SBQQ__PreviewDocument</customButtons>
     <customButtons>SBQQ__RefreshPrices</customButtons>
     <customButtons>SBQQ__CloneWithRelatedClassic</customButtons>
     <customButtons>SBQQ__ImportLines</customButtons>
