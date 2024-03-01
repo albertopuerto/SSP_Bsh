@@ -1,14 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>SBQQ__PrimaryContact__c</fullName>
+    <fullName>lkp_ToolCoordinator__c</fullName>
     <deleteConstraint>SetNull</deleteConstraint>
-    <deprecated>false</deprecated>
-    <description>Primary contact for the quote. This person&#39;s name will appear on generated quote document.</description>
+    <description>Field that is needed for the Order interface. The contact of the customer that is responsible for the licences etc.</description>
     <externalId>false</externalId>
-    <inlineHelpText>Primary contact for the quote. This person&#39;s name will appear on generated quote document.</inlineHelpText>
-    <label>Primary Contact</label>
+    <label>Tool Coordinator</label>
     <referenceTo>Contact</referenceTo>
-    <relationshipLabel>Quotes</relationshipLabel>
+    <relationshipLabel>Quotes (Tool Coordinator)</relationshipLabel>
     <relationshipName>Quotes</relationshipName>
     <required>false</required>
     <trackFeedHistory>false</trackFeedHistory>
