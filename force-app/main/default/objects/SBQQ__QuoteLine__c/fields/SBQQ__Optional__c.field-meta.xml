@@ -3,9 +3,9 @@
     <fullName>SBQQ__Optional__c</fullName>
     <defaultValue>false</defaultValue>
     <deprecated>false</deprecated>
-    <description>Marks this line as optional. Optional line items don&apos;t contribute to quote totals and are not transferred to the Opportunity.</description>
+    <description>Marks this line as optional. Optional line items don&#39;t contribute to quote totals and are not transferred to the Opportunity.</description>
     <externalId>false</externalId>
-    <inlineHelpText>Marks this line as optional. Optional line items don&apos;t contribute to quote totals and are not transferred to the Opportunity.</inlineHelpText>
+    <inlineHelpText>Marks this line as optional. Optional line items don&#39;t contribute to quote totals and are not transferred to the Opportunity.</inlineHelpText>
     <label>Optional</label>
     <trackHistory>false</trackHistory>
     <trackTrending>false</trackTrending>
