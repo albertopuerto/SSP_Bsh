@@ -233,6 +233,11 @@
         <visible>false</visible>
     </applicationVisibilities>
     <fieldPermissions>
+        <editable>false</editable>
+        <field>Opportunity.fchk_ReminderDate__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>Order.lkp_PersonResponsible__c</field>
         <readable>true</readable>
@@ -270,6 +275,16 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Order.ftxt_PONo__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Product2.txa_ShortDescription__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Product2.txr_AdditionaInformation__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <layoutAssignments>
