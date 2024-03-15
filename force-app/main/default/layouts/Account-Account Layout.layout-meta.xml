@@ -75,6 +75,10 @@
                 <behavior>Required</behavior>
                 <field>txt_INCOTerms2__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>txt_VATID_c__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
