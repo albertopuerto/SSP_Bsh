@@ -5,7 +5,7 @@
     <deprecated>false</deprecated>
     <description>Asset being upgraded by this quote line. Only populated if this quote line represents an upgrade.</description>
     <externalId>false</externalId>
-    <inlineHelpText>Asset being upgraded by this quote line. When the quote is contracted this asset will have its Usage End Date populated to indicate it&apos;s retired.</inlineHelpText>
+    <inlineHelpText>Asset being upgraded by this quote line. When the quote is contracted this asset will have its Usage End Date populated to indicate it&#39;s retired.</inlineHelpText>
     <label>Upgraded Asset</label>
     <referenceTo>Asset</referenceTo>
     <relationshipLabel>Quote Lines (Upgrade)</relationshipLabel>
