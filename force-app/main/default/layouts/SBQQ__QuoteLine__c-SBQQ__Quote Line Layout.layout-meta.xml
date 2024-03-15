@@ -61,12 +61,12 @@
                 <field>dat_ExpectedDeliveryDate__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>Product_Image__c</field>
-            </layoutItems>
-            <layoutItems>
                 <behavior>Required</behavior>
                 <field>pkl_QuantityUnit__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>Product_Image__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
