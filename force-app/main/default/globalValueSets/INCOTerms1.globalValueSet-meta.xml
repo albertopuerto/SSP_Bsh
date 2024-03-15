@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GlobalValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customValue>
+        <fullName>CFR - Cost and Freight</fullName>
+        <default>false</default>
+        <label>CFR - Cost and Freight</label>
+    </customValue>
+    <customValue>
+        <fullName>CIF - Cost, Insurance, and Freight</fullName>
+        <default>false</default>
+        <label>CIF - Cost, Insurance, and Freight</label>
+    </customValue>
+    <customValue>
+        <fullName>CIP - Carriage and Insurance Paid To</fullName>
+        <default>false</default>
+        <label>CIP - Carriage and Insurance Paid To</label>
+    </customValue>
+    <customValue>
+        <fullName>CPT - Carriage Paid To</fullName>
+        <default>false</default>
+        <label>CPT - Carriage Paid To</label>
+    </customValue>
+    <customValue>
+        <fullName>DAF - Delivered At Frontier</fullName>
+        <default>false</default>
+        <label>DAF - Delivered At Frontier</label>
+    </customValue>
+    <customValue>
+        <fullName>DDP - Delivered Duty Paid</fullName>
+        <default>false</default>
+        <label>DDP - Delivered Duty Paid</label>
+    </customValue>
+    <customValue>
+        <fullName>DDU - Delivered Duty Unpaid</fullName>
+        <default>false</default>
+        <label>DDU - Delivered Duty Unpaid</label>
+    </customValue>
+    <customValue>
+        <fullName>DEQ - Delivered Ex Quay</fullName>
+        <default>false</default>
+        <label>DEQ - Delivered Ex Quay</label>
+    </customValue>
+    <customValue>
+        <fullName>DES - Delivered Ex Ship</fullName>
+        <default>false</default>
+        <label>DES - Delivered Ex Ship</label>
+    </customValue>
+    <customValue>
+        <fullName>EXW - Ex Works</fullName>
+        <default>false</default>
+        <label>EXW - Ex Works</label>
+    </customValue>
+    <customValue>
+        <fullName>FAS - Free Alongside Ship</fullName>
+        <default>false</default>
+        <label>FAS - Free Alongside Ship</label>
+    </customValue>
+    <customValue>
+        <fullName>FCA - Free Carriage and Freight</fullName>
+        <default>false</default>
+        <label>FCA - Free Carriage and Freight</label>
+    </customValue>
+    <customValue>
+        <fullName>FOB - Free On Board ship</fullName>
+        <default>false</default>
+        <label>FOB - Free On Board ship</label>
+    </customValue>
+    <description>Picklist to store possible INCO Terms values, used in S4/Hana. Needed on several objects for the interface.</description>
+    <masterLabel>INCO Terms 1</masterLabel>
+    <sorted>false</sorted>
+</GlobalValueSet>
