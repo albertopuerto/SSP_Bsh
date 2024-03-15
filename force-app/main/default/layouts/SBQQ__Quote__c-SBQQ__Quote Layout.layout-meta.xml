@@ -2,9 +2,9 @@
 <Layout xmlns="http://soap.sforce.com/2006/04/metadata">
     <customButtons>SBQQ__CloneWithRelated</customButtons>
     <customButtons>SBQQ__EditLines</customButtons>
-    <customButtons>SBQQ__PreviewDocument</customButtons>
     <customButtons>SBQQ__IncludeDocument</customButtons>
     <customButtons>SBQQ__GenerateDocument</customButtons>
+    <customButtons>SBQQ__PreviewDocument</customButtons>
     <customButtons>SBQQ__RefreshPrices</customButtons>
     <customButtons>SBQQ__CloneWithRelatedClassic</customButtons>
     <customButtons>SBQQ__ImportLines</customButtons>
@@ -365,9 +365,6 @@
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
-                <emptySpace>true</emptySpace>
-            </layoutItems>
-            <layoutItems>
                 <behavior>Edit</behavior>
                 <field>OwnerId</field>
             </layoutItems>
@@ -380,11 +377,11 @@
                 <field>LastModifiedById</field>
             </layoutItems>
             <layoutItems>
-                <emptySpace>true</emptySpace>
-            </layoutItems>
-            <layoutItems>
                 <behavior>Readonly</behavior>
                 <field>SBQQ__DaysQuoteOpen__c</field>
+            </layoutItems>
+            <layoutItems>
+                <emptySpace>true</emptySpace>
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
@@ -393,6 +390,9 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>SBQQ__EndDate__c</field>
+            </layoutItems>
+            <layoutItems>
+                <emptySpace>true</emptySpace>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsLeftToRight</style>

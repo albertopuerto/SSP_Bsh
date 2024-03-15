@@ -329,6 +329,9 @@
         <relatedList>Contract.SBQQ__Opportunity__c</relatedList>
     </relatedLists>
     <relatedLists>
+        <relatedList>RelatedCompetitorList</relatedList>
+    </relatedLists>
+    <relatedLists>
         <fields>CONTRACT.CONTRACT_NUMBER</fields>
         <fields>CONTRACT.NAME</fields>
         <fields>SALES.ACCOUNT.NAME</fields>
