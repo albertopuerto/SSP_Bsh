@@ -335,4 +335,8 @@
         <field>Account.txt_TradingParnerNo_c__c</field>
         <readable>true</readable>
     </fieldPermissions>
+    <tabVisibilities>
+        <tab>standard-Quote</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
 </Profile>
