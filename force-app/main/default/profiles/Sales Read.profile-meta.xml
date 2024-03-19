@@ -349,4 +349,9 @@
         <tab>standard-Quote</tab>
         <visibility>Hidden</visibility>
     </tabVisibilities>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>SBQQ__QuoteLine__c.ftxt_ShortDescription__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
 </Profile>
