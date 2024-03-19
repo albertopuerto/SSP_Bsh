@@ -1,0 +1,26 @@
+{
+  "Object": "PricebookEntry",
+  "Fields": {
+    "GearsetDisplayName": "Standard Price Book - CBE250.1-3",
+    "GearsetExternalId__c": "YAQVZf8200000Q9u10",
+    "IsActive": "true",
+    "UnitPrice": "171.0",
+    "UseStandardPrice": "false"
+  },
+  "References": [
+    {
+      "Name": "Pricebook2",
+      "ReferencedObject": "Pricebook2",
+      "ReferencedFields": {
+        "GearsetExternalId__c": "StandardPriceBook"
+      }
+    },
+    {
+      "Name": "Product2",
+      "ReferencedObject": "Product2",
+      "ReferencedFields": {
+        "GearsetExternalId__c": "MAQgHF2300000Q9t10"
+      }
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+<!-- 
+    Conga Approvals
+    ApprovalMatrixView
+     
+    @2011-2021 Conga Inc. All rights reserved.
+
+ -->
+<apex:page standardController="User"
+        extensions="Apttus_Approval.ApprovalMatrixViewController" 
+        action="{!doViewApprovalMatrix}"
+        lightningStylesheets="{!$User.UIThemeDisplayed == 'Theme4d' ||
+                                $User.UIThemeDisplayed == 'Theme4u'}">
+        
+    <apex:form >
+    
+        <apex:pageBlock title="{!$Label.Apttus_Approval__ViewApprovalMatrix}">
+
+            <apex:pageMessages />
+            
+            <apex:pageBlockButtons location="top">
+                <apex:outputPanel >
+                    <apex:commandButton action="{!doReturn}" value="{!$Label.Apttus_Approval__Return}" />
+                </apex:outputPanel>
+            </apex:pageBlockButtons>
+            
+        </apex:pageBlock>
+            
+    </apex:form>
+    
+</apex:page>

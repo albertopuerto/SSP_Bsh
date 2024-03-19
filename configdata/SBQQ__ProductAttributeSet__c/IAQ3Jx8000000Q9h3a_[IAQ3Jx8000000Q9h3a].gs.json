@@ -1,0 +1,24 @@
+{
+  "Object": "SBQQ__ProductAttributeSet__c",
+  "Fields": {
+    "GearsetDisplayName": "IAQ3Jx8000000Q9h3a",
+    "GearsetExternalId__c": "IAQ3Jx8000000Q9h3a",
+    "SBQQ__Sequence__c": "10.0"
+  },
+  "References": [
+    {
+      "Name": "SBQQ__AttributeSet__r",
+      "ReferencedObject": "SBQQ__AttributeSet__c",
+      "ReferencedFields": {
+        "GearsetExternalId__c": ""
+      }
+    },
+    {
+      "Name": "SBQQ__ProductOption__r",
+      "ReferencedObject": "SBQQ__ProductOption__c",
+      "ReferencedFields": {
+        "GearsetExternalId__c": "IAQ1Ak2000000Q9k3a"
+      }
+    }
+  ]
+}
