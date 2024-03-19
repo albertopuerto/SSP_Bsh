@@ -3,9 +3,9 @@
     <fullName>SBQQ__Uplift__c</fullName>
     <defaultValue>0.0</defaultValue>
     <deprecated>false</deprecated>
-    <description>Uplift is applied as a % against the previous year&apos;s price; the resulting price is entered into the Regular Price field on top of Special or Contracted Prices. Uplifts compound year after year. Uplift cannot be applied to the 1st Year of any Subscription.</description>
+    <description>Uplift is applied as a % against the previous year&#39;s price; the resulting price is entered into the Regular Price field on top of Special or Contracted Prices. Uplifts compound year after year. Uplift cannot be applied to the 1st Year of any Subscription.</description>
     <externalId>false</externalId>
-    <inlineHelpText>Uplift is applied as a % against the previous year&apos;s price; the resulting price is entered into the Regular Price field on top of Special or Contracted Prices. Uplifts compound year after year. Uplift cannot be applied to the 1st Year of any Subscription.</inlineHelpText>
+    <inlineHelpText>Uplift is applied as a % against the previous year&#39;s price; the resulting price is entered into the Regular Price field on top of Special or Contracted Prices. Uplifts compound year after year. Uplift cannot be applied to the 1st Year of any Subscription.</inlineHelpText>
     <label>Uplift</label>
     <precision>9</precision>
     <required>false</required>
