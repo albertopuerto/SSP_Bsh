@@ -2,7 +2,7 @@
 <GlobalValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
     <customValue>
         <fullName>CFR - Cost and Freight</fullName>
-        <default>false</default>
+        <default>true</default>
         <label>CFR - Cost and Freight</label>
     </customValue>
     <customValue>
