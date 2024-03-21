@@ -109,6 +109,21 @@
         <field>SBQQ__QuoteLine__c.ftxt_ShortDescription__c</field>
         <readable>true</readable>
     </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Product2.Product_Image_ID__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Product2.Product_Image_Link__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>SBQQ__QuoteLine__c.Product_Image__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
     <userLicense>Analytics Cloud Integration User</userLicense>
     <userPermissions>
         <enabled>true</enabled>
