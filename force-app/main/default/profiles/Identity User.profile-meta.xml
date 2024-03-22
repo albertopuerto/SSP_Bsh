@@ -54,6 +54,16 @@
         <field>SBQQ__Quote__c.txt_INCOTerms2__c</field>
         <readable>true</readable>
     </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>SBQQ__Quote__c.fdat_CreateDate__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>SBQQ__Quote__c.ftxt_Department__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
     <userLicense>Identity</userLicense>
     <userPermissions>
         <enabled>true</enabled>
