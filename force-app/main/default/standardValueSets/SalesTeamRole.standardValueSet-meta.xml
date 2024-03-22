@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StandardValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <sorted>false</sorted>
+    <standardValue>
+        <fullName>SCO</fullName>
+        <default>false</default>
+        <label>SCO</label>
+    </standardValue>
+    <standardValue>
+        <fullName>KAM</fullName>
+        <default>false</default>
+        <label>KAM</label>
+    </standardValue>
+    <standardValue>
+        <fullName>SoSe</fullName>
+        <default>false</default>
+        <label>SoSe</label>
+    </standardValue>
+    <standardValue>
+        <fullName>PM</fullName>
+        <default>false</default>
+        <label>PM</label>
+    </standardValue>
+    <standardValue>
+        <fullName>CCE</fullName>
+        <default>false</default>
+        <label>CCE</label>
+    </standardValue>
+</StandardValueSet>
