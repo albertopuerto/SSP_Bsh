@@ -2,7 +2,7 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>fchk_ReminderDate__c</fullName>
     <externalId>false</externalId>
-    <formula>AND(LastModifiedDate =  CreatedDate, CloseDate-30  =  TODAY())</formula>
+    <formula>AND(DATEVALUE(LastModifiedDate) =  DATEVALUE(CreatedDate) , CloseDate-29  =  TODAY())</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
     <label>Reminder Date</label>
     <trackHistory>false</trackHistory>
