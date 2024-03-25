@@ -1,0 +1,17 @@
+{
+  "Object": "SBQQ__TemplateContent__c",
+  "Fields": {
+    "GearsetDisplayName": "Footer -  EN Price Information",
+    "GearsetExternalId__c": "YAUTW56000000Q9A4a",
+    "Name": "Footer -  EN Price Information",
+    "SBQQ__CustomSource__c": "",
+    "SBQQ__FontFamily__c": "Open Sans",
+    "SBQQ__FontSize__c": "8.0",
+    "SBQQ__Markup__c": "",
+    "SBQQ__RawMarkup__c": "<p style=\"text-align: center;\">Non-Binding Price Information: {!quote.Name} Date:{!quote.fdat_CreateDate__c}</p>",
+    "SBQQ__TableStyle__c": "Standard",
+    "SBQQ__TextColor__c": "",
+    "SBQQ__Type__c": "HTML"
+  },
+  "References": []
+}

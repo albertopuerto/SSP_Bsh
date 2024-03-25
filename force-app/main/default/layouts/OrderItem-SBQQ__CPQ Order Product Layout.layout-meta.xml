@@ -38,6 +38,22 @@
                 <behavior>Edit</behavior>
                 <field>SBQQ__Status__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Required</behavior>
+                <field>pkl_INCOTerms1__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Required</behavior>
+                <field>pkl_PaymentTerms__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Required</behavior>
+                <field>txt_INCOTerms2__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Required</behavior>
+                <field>pkl_QuantityUnit__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
@@ -192,7 +208,7 @@
                 <field>SBQQ__QuoteLine__c</field>
             </layoutItems>
         </layoutColumns>
-        <layoutColumns/>
+        <layoutColumns />
         <style>TwoColumnsLeftToRight</style>
     </layoutSections>
     <layoutSections>
@@ -219,13 +235,17 @@
         <detailHeading>false</detailHeading>
         <editHeading>false</editHeading>
         <label>Additional Information</label>
-        <layoutColumns/>
-        <layoutColumns/>
+        <layoutColumns />
+        <layoutColumns />
         <style>TwoColumnsLeftToRight</style>
     </layoutSections>
     <multilineLayoutFields>OrderId</multilineLayoutFields>
     <multilineLayoutFields>UnitPrice</multilineLayoutFields>
     <multilineLayoutFields>Quantity</multilineLayoutFields>
+    <multilineLayoutFields>pkl_INCOTerms1__c</multilineLayoutFields>
+    <multilineLayoutFields>pkl_PaymentTerms__c</multilineLayoutFields>
+    <multilineLayoutFields>txt_INCOTerms2__c</multilineLayoutFields>
+    <multilineLayoutFields>pkl_QuantityUnit__c</multilineLayoutFields>
     <relatedLists>
         <fields>Product2</fields>
         <fields>SBQQ__OrderedQuantity__c</fields>
