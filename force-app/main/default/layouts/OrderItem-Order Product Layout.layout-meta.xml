@@ -40,6 +40,22 @@
                 <behavior>Readonly</behavior>
                 <field>TotalPrice</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Required</behavior>
+                <field>pkl_INCOTerms1__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Required</behavior>
+                <field>txt_INCOTerms2__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Required</behavior>
+                <field>pkl_PaymentTerms__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Required</behavior>
+                <field>pkl_QuantityUnit__c</field>
+            </layoutItems>
         </layoutColumns>
         <style>TwoColumnsTopToBottom</style>
     </layoutSections>
