@@ -274,7 +274,7 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Account.txt_VATID_c__c</field>
+        <field>Account.txt_VATID__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
