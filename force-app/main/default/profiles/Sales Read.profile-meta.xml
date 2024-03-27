@@ -193,11 +193,6 @@
         <visible>false</visible>
     </applicationVisibilities>
     <applicationVisibilities>
-        <application>standard__LightningService</application>
-        <default>false</default>
-        <visible>false</visible>
-    </applicationVisibilities>
-    <applicationVisibilities>
         <application>standard__Marketing</application>
         <default>false</default>
         <visible>false</visible>
@@ -233,6 +228,11 @@
         <visible>false</visible>
     </applicationVisibilities>
     <fieldPermissions>
+        <editable>true</editable>
+        <field>Account.txt_VATID__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>false</editable>
         <field>Opportunity.fchk_ReminderDate__c</field>
         <readable>true</readable>
@@ -260,11 +260,6 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>SBQQ__Quote__c.txl_AdditionalInformationinCoverLetter__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>Account.txt_VATID_c__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
