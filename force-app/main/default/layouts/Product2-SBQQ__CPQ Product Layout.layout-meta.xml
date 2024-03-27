@@ -47,6 +47,14 @@
                 <behavior>Edit</behavior>
                 <field>SBQQ__ConfiguredDescriptionPattern__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Product_Image_ID__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>Product_Image_Link__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
@@ -410,13 +418,6 @@
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
-        <fields>SBQQ__RenewalPrice__c</fields>
-        <fields>SBQQ__ProductId__c</fields>
-        <fields>SBQQ__Quantity__c</fields>
-        <fields>SBQQ__ProrateMultiplier__c</fields>
-        <fields>SBQQ__StartDate__c</fields>
-        <fields>SBQQ__RenewedDate__c</fields>
-        <fields>SBQQ__TerminatedDate__c</fields>
         <relatedList>SBQQ__Subscription__c.SBQQ__Product__c</relatedList>
     </relatedLists>
     <relatedLists>
