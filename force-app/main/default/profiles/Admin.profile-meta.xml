@@ -855,6 +855,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>SBQQ__Quote__c.SBQQ__Opportunity2__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>SBQQ__SearchFilter__c.GearsetExternalId__c</field>
         <readable>true</readable>
     </fieldPermissions>
