@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <Profile xmlns="http://soap.sforce.com/2006/04/metadata">
     <classAccesses>
         <apexClass>APTSMD_StartWizardController</apexClass>
@@ -776,6 +776,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>SBQQ__QuoteTerm__c.GearsetExternalId__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>SBQQ__Quote__c.SBQQ__Opportunity2__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
