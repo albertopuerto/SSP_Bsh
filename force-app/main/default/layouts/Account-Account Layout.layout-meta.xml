@@ -62,6 +62,10 @@
                 <behavior>Required</behavior>
                 <field>pkl_Language_c__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Required</behavior>
+                <field>CurrencyIsoCode</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
