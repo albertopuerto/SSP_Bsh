@@ -2,9 +2,9 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>SBQQ__SegmentIndex__c</fullName>
     <deprecated>false</deprecated>
-    <description>For multi-segmented Products, Index representing this Quote Line&apos;s position in the segment table.</description>
+    <description>For multi-segmented Products, Index representing this Quote Line&#39;s position in the segment table.</description>
     <externalId>false</externalId>
-    <inlineHelpText>For multi-segmented Products, Index representing this Quote Line&apos;s position in the segment table.</inlineHelpText>
+    <inlineHelpText>For multi-segmented Products, Index representing this Quote Line&#39;s position in the segment table.</inlineHelpText>
     <label>Segment Index</label>
     <precision>2</precision>
     <required>false</required>
