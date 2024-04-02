@@ -252,6 +252,11 @@
                 <default>false</default>
                 <label>View Pricing Guidance</label>
             </value>
+            <value>
+                <fullName>Add Bundles</fullName>
+                <default>false</default>
+                <label>Add Bundles</label>
+            </value>
         </valueSetDefinition>
     </valueSet>
 </CustomField>
