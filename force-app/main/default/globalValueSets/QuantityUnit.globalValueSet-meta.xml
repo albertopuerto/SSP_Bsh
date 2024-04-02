@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GlobalValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customValue>
+        <fullName>KG</fullName>
+        <default>false</default>
+        <label>KG</label>
+    </customValue>
+    <customValue>
+        <fullName>M</fullName>
+        <default>false</default>
+        <label>M</label>
+    </customValue>
+    <customValue>
+        <fullName>GB</fullName>
+        <default>false</default>
+        <label>GB</label>
+    </customValue>
+    <masterLabel>Quantity Unit</masterLabel>
+    <sorted>false</sorted>
+</GlobalValueSet>
