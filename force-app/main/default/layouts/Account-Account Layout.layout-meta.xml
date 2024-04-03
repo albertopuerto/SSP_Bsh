@@ -65,7 +65,7 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>txt_VATID_c__c</field>
+                <field>txt_VATID__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Required</behavior>
