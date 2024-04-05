@@ -2,9 +2,9 @@
 <Layout xmlns="http://soap.sforce.com/2006/04/metadata">
     <customButtons>SBQQ__CloneWithRelated</customButtons>
     <customButtons>SBQQ__EditLines</customButtons>
-    <customButtons>SBQQ__PreviewDocument</customButtons>
     <customButtons>SBQQ__IncludeDocument</customButtons>
     <customButtons>SBQQ__GenerateDocument</customButtons>
+    <customButtons>SBQQ__PreviewDocument</customButtons>
     <customButtons>SBQQ__RefreshPrices</customButtons>
     <customButtons>SBQQ__CloneWithRelatedClassic</customButtons>
     <customButtons>SBQQ__ImportLines</customButtons>
@@ -55,6 +55,30 @@
             <layoutItems>
                 <behavior>Readonly</behavior>
                 <field>ftxt_OpportunityName__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>lkp_ToolCoordinator__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>lkp_PersonResponsible__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>pkl_INCOTerms1__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>txt_INCOTerms2__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>pkl_PaymentTerms__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>CurrencyIsoCode</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
@@ -325,6 +349,10 @@
         <layoutColumns>
             <layoutItems>
                 <behavior>Edit</behavior>
+                <field>txl_AdditionalInformationinCoverLetter__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
                 <field>SBQQ__Introduction__c</field>
             </layoutItems>
             <layoutItems>
@@ -357,9 +385,6 @@
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
-                <emptySpace>true</emptySpace>
-            </layoutItems>
-            <layoutItems>
                 <behavior>Edit</behavior>
                 <field>OwnerId</field>
             </layoutItems>
@@ -372,11 +397,11 @@
                 <field>LastModifiedById</field>
             </layoutItems>
             <layoutItems>
-                <emptySpace>true</emptySpace>
-            </layoutItems>
-            <layoutItems>
                 <behavior>Readonly</behavior>
                 <field>SBQQ__DaysQuoteOpen__c</field>
+            </layoutItems>
+            <layoutItems>
+                <emptySpace>true</emptySpace>
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
@@ -385,6 +410,9 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>SBQQ__EndDate__c</field>
+            </layoutItems>
+            <layoutItems>
+                <emptySpace>true</emptySpace>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsLeftToRight</style>

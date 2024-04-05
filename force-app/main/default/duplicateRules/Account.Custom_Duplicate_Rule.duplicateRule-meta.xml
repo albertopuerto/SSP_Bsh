@@ -2,7 +2,7 @@
 <DuplicateRule xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <actionOnInsert>Allow</actionOnInsert>
     <actionOnUpdate>Allow</actionOnUpdate>
-    <alertText>You’re creating an Account that is potentially duplicated with Account already existing in the system.</alertText>
+    <alertText>You’re creating an Account that is potentially duplicated with Account already existing in the system. Make sure to check any potential duplicate records before saving.</alertText>
     <description>This rule goes with Custom Matching Rule to inform a User about potentially duplicated  Account.</description>
     <duplicateRuleFilter xsi:nil="true"/>
     <duplicateRuleMatchRules>
@@ -10,7 +10,7 @@
         <matchingRule>CustomDuplicateCheck</matchingRule>
         <objectMapping xsi:nil="true"/>
     </duplicateRuleMatchRules>
-    <isActive>true</isActive>
+    <isActive>false</isActive>
     <masterLabel>Custom Duplicate Rule</masterLabel>
     <operationsOnInsert>Alert</operationsOnInsert>
     <securityOption>BypassSharingRules</securityOption>

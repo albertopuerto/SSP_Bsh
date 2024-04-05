@@ -5,9 +5,9 @@
     <description>Total discount for this line item including volume discount, contracted discount, and additional discount.</description>
     <externalId>false</externalId>
     <formula>IF(SBQQ__ProratedListPrice__c == 0, 0,
-IF(ISPICKVAL(SBQQ__DiscountScheduleType__c, &apos;Slab&apos;) &amp;&amp; NOT(SBQQ__Existing__c),
+IF(ISPICKVAL(SBQQ__DiscountScheduleType__c, &#39;Slab&#39;) &amp;&amp; NOT(SBQQ__Existing__c),
 IF(SBQQ__Quantity__c == 0, 0, (SBQQ__ProratedListPrice__c * SBQQ__Quantity__c - SBQQ__CustomerPrice__c) / (SBQQ__Quantity__c * SBQQ__ProratedListPrice__c)),
-IF(ISPICKVAL(SBQQ__DiscountScheduleType__c, &apos;Slab&apos;) &amp;&amp; SBQQ__Existing__c,
+IF(ISPICKVAL(SBQQ__DiscountScheduleType__c, &#39;Slab&#39;) &amp;&amp; SBQQ__Existing__c,
 IF(SBQQ__Quantity__c == SBQQ__PriorQuantity__c, 0, (SBQQ__ProratedListPrice__c * (SBQQ__Quantity__c-SBQQ__PriorQuantity__c) - SBQQ__CustomerPrice__c) / ((SBQQ__Quantity__c-SBQQ__PriorQuantity__c) * SBQQ__ProratedListPrice__c)),
 (SBQQ__ProratedListPrice__c - SBQQ__CustomerPrice__c) / SBQQ__ProratedListPrice__c)))</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>

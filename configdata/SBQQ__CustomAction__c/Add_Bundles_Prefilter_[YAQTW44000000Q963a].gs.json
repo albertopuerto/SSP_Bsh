@@ -1,0 +1,37 @@
+{
+  "Object": "SBQQ__CustomAction__c",
+  "Fields": {
+    "GearsetDisplayName": "Add Bundles Prefilter",
+    "GearsetExternalId__c": "YAQTW44000000Q963a",
+    "Name": "Add Bundles Prefilter",
+    "SBQQ__Action__c": "Add Products",
+    "SBQQ__Active__c": "true",
+    "SBQQ__BrandButton__c": "true",
+    "SBQQ__Class__c": "addProductsBtn",
+    "SBQQ__ConditionsMet__c": "All",
+    "SBQQ__Default__c": "false",
+    "SBQQ__Description__c": "",
+    "SBQQ__DisplayOrder__c": "10.0",
+    "SBQQ__EventHandlerName__c": "onAddProducts",
+    "SBQQ__IconClass__c": "",
+    "SBQQ__Icon__c": "",
+    "SBQQ__Label__c": "Add Bundles",
+    "SBQQ__Location__c": "Quote/Group",
+    "SBQQ__PageHandlerName__c": "",
+    "SBQQ__Page__c": "Quote Line Editor",
+    "SBQQ__ReturnURL__c": "",
+    "SBQQ__TargetObject__c": "",
+    "SBQQ__Type__c": "Button",
+    "SBQQ__URLTarget__c": "",
+    "SBQQ__URL__c": ""
+  },
+  "References": [
+    {
+      "Name": "SBQQ__ParentCustomAction__r",
+      "ReferencedObject": "SBQQ__CustomAction__c",
+      "ReferencedFields": {
+        "GearsetExternalId__c": ""
+      }
+    }
+  ]
+}
