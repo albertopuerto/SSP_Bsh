@@ -3,8 +3,10 @@
     <description>This permission set group allows Sales Coordinator manage multiple action on given objects</description>
     <hasActivationRequired>false</hasActivationRequired>
     <label>SalesCoordinator</label>
-    <permissionSets>AccountContactMaster</permissionSets>
+    <permissionSets>AccountMaster</permissionSets>
+    <permissionSets>CPQEnhancedUser</permissionSets>
     <permissionSets>CPQRead</permissionSets>
+    <permissionSets>ContactMaster</permissionSets>
     <permissionSets>SalesBasic</permissionSets>
     <status>Updated</status>
 </PermissionSetGroup>

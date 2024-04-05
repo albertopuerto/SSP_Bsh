@@ -43,6 +43,11 @@
                 <default>false</default>
                 <label>Status</label>
             </value>
+            <value>
+                <fullName>SBQQ__ConfigurationType__c</fullName>
+                <default>false</default>
+                <label>SBQQ__ConfigurationType__c</label>
+            </value>
         </valueSetDefinition>
         <valueSettings>
             <controllingFieldValue>Product</controllingFieldValue>
@@ -64,6 +69,10 @@
             <controllingFieldValue>Product</controllingFieldValue>
             <controllingFieldValue>Asset</controllingFieldValue>
             <valueName>Product Description</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Product</controllingFieldValue>
+            <valueName>SBQQ__ConfigurationType__c</valueName>
         </valueSettings>
         <valueSettings>
             <controllingFieldValue>Asset</controllingFieldValue>
