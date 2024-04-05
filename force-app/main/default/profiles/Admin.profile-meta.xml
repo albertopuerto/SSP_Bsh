@@ -268,6 +268,11 @@
         <recordType>Opportunity.StandardSolutionOrder</recordType>
         <visible>true</visible>
     </recordTypeVisibilities>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Order.txt_INCOTerms2__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
     <userLicense>Salesforce</userLicense>
     <userPermissions>
         <enabled>true</enabled>
