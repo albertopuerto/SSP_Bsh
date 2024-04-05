@@ -127,4 +127,7 @@
         <field>Order.ftxt_PONo__c</field>
         <readable>true</readable>
     </fieldPermissions>
+    <layoutAssignments>
+        <layout>Order-Order Layout</layout>
+    </layoutAssignments>
 </Profile>
