@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>pkl_QuantityUnit__c</fullName>
+    <description>Defines which unit of measure the product describes. Needed for the interface to ERP.</description>
+    <externalId>false</externalId>
+    <label>Quantity Unit</label>
+    <required>true</required>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetName>QuantityUnit</valueSetName>
+    </valueSet>
+</CustomField>
