@@ -1,0 +1,27 @@
+{
+  "Object": "SBQQ__SearchFilter__c",
+  "Fields": {
+    "GearsetDisplayName": "Bundles",
+    "GearsetExternalId__c": "UAQDuZ5100000Q904a",
+    "Name": "Bundles",
+    "SBQQ__DisplayOrder__c": "1.0",
+    "SBQQ__FilterSourceField__c": "",
+    "SBQQ__FilterSourceObject__c": "",
+    "SBQQ__FilterValue__c": "ed",
+    "SBQQ__HiddenSourceField__c": "",
+    "SBQQ__HiddenSourceObject__c": "",
+    "SBQQ__Hidden__c": "true",
+    "SBQQ__Operator__c": "ends with",
+    "SBQQ__TargetField__c": "SBQQ__ConfigurationType__c",
+    "SBQQ__TargetObject__c": "Product"
+  },
+  "References": [
+    {
+      "Name": "SBQQ__Action__r",
+      "ReferencedObject": "SBQQ__CustomAction__c",
+      "ReferencedFields": {
+        "GearsetExternalId__c": "YAQTW44000000Q963a"
+      }
+    }
+  ]
+}
