@@ -57,6 +57,21 @@
                 <default>false</default>
                 <label>Explanation</label>
             </value>
+            <value>
+                <fullName>pkl_PaymentTerms__c</fullName>
+                <default>false</default>
+                <label>pkl_PaymentTerms__c</label>
+            </value>
+            <value>
+                <fullName>pkl_INCOTerms1__c</fullName>
+                <default>false</default>
+                <label>pkl_INCOTerms1__c</label>
+            </value>
+            <value>
+                <fullName>txt_INCOTerms2__c</fullName>
+                <default>false</default>
+                <label>txt_INCOTerms2__c</label>
+            </value>
         </valueSetDefinition>
         <valueSettings>
             <controllingFieldValue>Quote</controllingFieldValue>
@@ -87,6 +102,18 @@
             <controllingFieldValue>Quote Line</controllingFieldValue>
             <controllingFieldValue>Product Option</controllingFieldValue>
             <valueName>Markup (Amt)</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Quote Line</controllingFieldValue>
+            <valueName>pkl_PaymentTerms__c</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Quote Line</controllingFieldValue>
+            <valueName>pkl_INCOTerms1__c</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Quote Line</controllingFieldValue>
+            <valueName>txt_INCOTerms2__c</valueName>
         </valueSettings>
         <valueSettings>
             <controllingFieldValue>Quote Line Pricing Guidance</controllingFieldValue>
