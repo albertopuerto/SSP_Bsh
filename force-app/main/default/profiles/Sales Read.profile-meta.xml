@@ -354,4 +354,8 @@
         <recordType>Opportunity.StandardSolutionOrder</recordType>
         <visible>true</visible>
     </recordTypeVisibilities>
+    <tabVisibilities>
+        <tab>standard-Quote</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
 </Profile>
