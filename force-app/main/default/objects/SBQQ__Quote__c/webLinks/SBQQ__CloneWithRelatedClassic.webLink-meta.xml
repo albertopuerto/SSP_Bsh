@@ -9,5 +9,5 @@
     <masterLabel>Clone With Related</masterLabel>
     <openType>replace</openType>
     <protected>false</protected>
-    <url>{!URLFOR($Action.SBQQ__Quote__c.Clone, SBQQ__Quote__c.Id, [retURL=$Site.Prefix &amp; &#39;/&#39; &amp; SBQQ__Quote__c.Id,saveURL=$Site.Prefix &amp; &#39;/apex/SBQQ__CloneLineItems?id=&#39; &amp; SBQQ__Quote__c.Id])}</url>
+    <url>{!URLFOR($Action.SBQQ__Quote__c.Clone, SBQQ__Quote__c.Id, [retURL=$Site.Prefix &amp; &apos;/&apos; &amp; SBQQ__Quote__c.Id,saveURL=$Site.Prefix &amp; &apos;/apex/SBQQ__CloneLineItems?id=&apos; &amp; SBQQ__Quote__c.Id])}</url>
 </WebLink>

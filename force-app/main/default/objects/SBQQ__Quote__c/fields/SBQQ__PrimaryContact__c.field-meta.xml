@@ -3,14 +3,15 @@
     <fullName>SBQQ__PrimaryContact__c</fullName>
     <deleteConstraint>SetNull</deleteConstraint>
     <deprecated>false</deprecated>
-    <description>Primary contact for the quote. This person&#39;s name will appear on generated quote document.</description>
+    <description>Primary contact for the quote. This person&apos;s name will appear on generated quote document.</description>
     <externalId>false</externalId>
-    <inlineHelpText>Primary contact for the quote. This person&#39;s name will appear on generated quote document.</inlineHelpText>
+    <inlineHelpText>Primary contact for the quote. This person&apos;s name will appear on generated quote document.</inlineHelpText>
     <label>Primary Contact</label>
     <referenceTo>Contact</referenceTo>
     <relationshipLabel>Quotes</relationshipLabel>
     <relationshipName>Quotes</relationshipName>
     <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
     <trackHistory>false</trackHistory>
     <trackTrending>false</trackTrending>
     <type>Lookup</type>

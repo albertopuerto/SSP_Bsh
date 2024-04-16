@@ -4,8 +4,8 @@
     <active>true</active>
     <description>When Charge Type is One-Time or Usage, a Billing Type cannot be selected.</description>
     <errorConditionFormula>OR( 
-AND(ISPICKVAL(SBQQ__ChargeType__c, &#39;One-Time&#39;), NOT(ISPICKVAL(SBQQ__BillingType__c, &quot;&quot;))), 
-AND(ISPICKVAL(SBQQ__ChargeType__c, &#39;Usage&#39;), NOT(ISPICKVAL(SBQQ__BillingType__c, &quot;&quot;))))</errorConditionFormula>
+AND(ISPICKVAL(SBQQ__ChargeType__c, &apos;One-Time&apos;), NOT(ISPICKVAL(SBQQ__BillingType__c, &quot;&quot;))), 
+AND(ISPICKVAL(SBQQ__ChargeType__c, &apos;Usage&apos;), NOT(ISPICKVAL(SBQQ__BillingType__c, &quot;&quot;))))</errorConditionFormula>
     <errorDisplayField>SBQQ__BillingType__c</errorDisplayField>
     <errorMessage>When Charge Type is One-Time or Usage, a Billing Type value cannot be selected.</errorMessage>
 </ValidationRule>
