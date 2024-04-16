@@ -4,7 +4,7 @@
     <description>Defines the terms of sales and the passing of risks. Needed for the interface to ERP.Defines the terms of sales and the passing of risks. Needed for the interface to ERP.</description>
     <externalId>false</externalId>
     <label>INCO Terms 1</label>
-    <required>false</required>
+    <required>true</required>
     <trackHistory>false</trackHistory>
     <trackTrending>false</trackTrending>
     <type>Picklist</type>
