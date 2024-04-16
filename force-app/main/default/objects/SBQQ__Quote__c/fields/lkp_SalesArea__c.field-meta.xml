@@ -1,13 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>SBQQ__PrimaryContact__c</fullName>
+    <fullName>lkp_SalesArea__c</fullName>
     <deleteConstraint>SetNull</deleteConstraint>
-    <deprecated>false</deprecated>
-    <description>Primary contact for the quote. This person&#39;s name will appear on generated quote document.</description>
     <externalId>false</externalId>
-    <inlineHelpText>Primary contact for the quote. This person&#39;s name will appear on generated quote document.</inlineHelpText>
-    <label>Primary Contact</label>
-    <referenceTo>Contact</referenceTo>
+    <label>Sales Area</label>
+    <lookupFilter>
+        <active>true</active>
+        <filterItems>
+            <field>SalesAreaLink__c.mdr_Account__r.Id</field>
+            <operation>equals</operation>
+            <valueField>$Source.SBQQ__Account__c</valueField>
+        </filterItems>
+        <isOptional>false</isOptional>
+    </lookupFilter>
+    <referenceTo>SalesAreaLink__c</referenceTo>
     <relationshipLabel>Quotes</relationshipLabel>
     <relationshipName>Quotes</relationshipName>
     <required>false</required>
