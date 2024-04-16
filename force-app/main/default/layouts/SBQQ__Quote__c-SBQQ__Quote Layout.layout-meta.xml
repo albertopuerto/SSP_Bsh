@@ -341,6 +341,10 @@
         <layoutColumns>
             <layoutItems>
                 <behavior>Edit</behavior>
+                <field>txl_AdditionalInformationinCoverLetter__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
                 <field>SBQQ__Introduction__c</field>
             </layoutItems>
             <layoutItems>

@@ -254,6 +254,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>SBQQ__Quote__c.txl_AdditionalInformationinCoverLetter__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>OrderItem.dat_ExpectedDeliveryDate__c</field>
         <readable>true</readable>
     </fieldPermissions>
