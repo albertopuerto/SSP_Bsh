@@ -139,10 +139,6 @@
         <layoutColumns>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>SBQQ__PaymentTerms__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
                 <field>SBQQ__DeliveryMethod__c</field>
             </layoutItems>
             <layoutItems>
@@ -467,11 +463,9 @@
         <excludeButtons>New</excludeButtons>
         <fields>NAME</fields>
         <fields>SBQQ__Number__c</fields>
-        <fields>SBQQ__Group__c</fields>
         <fields>SBQQ__Product__c</fields>
         <fields>SBQQ__ListPrice__c</fields>
         <fields>SBQQ__Quantity__c</fields>
-        <fields>SBQQ__CustomerTotal__c</fields>
         <fields>SBQQ__NetTotal__c</fields>
         <relatedList>SBQQ__QuoteLine__c.SBQQ__Quote__c</relatedList>
         <sortField>SBQQ__Number__c</sortField>
