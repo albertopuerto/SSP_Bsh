@@ -124,6 +124,11 @@
     </userPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Competitor__c.Competitor_Name__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Order.ftxt_PONo__c</field>
         <readable>true</readable>
     </fieldPermissions>
