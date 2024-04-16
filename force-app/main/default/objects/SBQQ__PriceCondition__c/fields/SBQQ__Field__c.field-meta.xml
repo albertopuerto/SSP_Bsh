@@ -17,6 +17,21 @@
                 <default>false</default>
                 <label>Product Code</label>
             </value>
+            <value>
+                <fullName>pkl_PaymentTerms__c</fullName>
+                <default>false</default>
+                <label>pkl_PaymentTerms__c</label>
+            </value>
+            <value>
+                <fullName>pkl_INCOTerms1__c</fullName>
+                <default>false</default>
+                <label>pkl_INCOTerms1__c</label>
+            </value>
+            <value>
+                <fullName>txt_INCOTerms2__c</fullName>
+                <default>false</default>
+                <label>txt_INCOTerms2__c</label>
+            </value>
         </valueSetDefinition>
     </valueSet>
 </CustomField>
