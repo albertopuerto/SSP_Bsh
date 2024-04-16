@@ -124,6 +124,11 @@
     </userPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>ServiceContract.AdditionalDiscount</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Product2.txa_ShortDescription__c</field>
         <readable>true</readable>
     </fieldPermissions>
