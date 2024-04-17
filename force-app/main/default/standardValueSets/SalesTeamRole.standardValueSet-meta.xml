@@ -12,9 +12,9 @@
         <label>KAM</label>
     </standardValue>
     <standardValue>
-        <fullName>SoSE</fullName>
+        <fullName>SoSe</fullName>
         <default>false</default>
-        <label>SoSE</label>
+        <label>SoSe</label>
     </standardValue>
     <standardValue>
         <fullName>PM</fullName>

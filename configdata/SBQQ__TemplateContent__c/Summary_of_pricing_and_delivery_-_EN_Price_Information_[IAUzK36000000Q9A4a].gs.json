@@ -1,0 +1,17 @@
+{
+  "Object": "SBQQ__TemplateContent__c",
+  "Fields": {
+    "GearsetDisplayName": "Summary of pricing and delivery - EN Price Information",
+    "GearsetExternalId__c": "IAUzK36000000Q9A4a",
+    "Name": "Summary of pricing and delivery - EN Price Information",
+    "SBQQ__CustomSource__c": "",
+    "SBQQ__FontFamily__c": "Open Sans",
+    "SBQQ__FontSize__c": "10.0",
+    "SBQQ__Markup__c": "",
+    "SBQQ__RawMarkup__c": "<p data-pm-slice=\"1 1 [&quot;table&quot;,{&quot;isNumberColumnEnabled&quot;:false,&quot;layout&quot;:&quot;default&quot;,&quot;__autoSize&quot;:false,&quot;localId&quot;:&quot;a884fa1d-532c-409a-bab5-91c0b92f8776&quot;,&quot;width&quot;:760},&quot;tableRow&quot;,null,&quot;tableCell&quot;,{&quot;colspan&quot;:1,&quot;rowspan&quot;:1,&quot;colwidth&quot;:null,&quot;background&quot;:null}]\">Price: The prices are quoted net</p>",
+    "SBQQ__TableStyle__c": "Standard",
+    "SBQQ__TextColor__c": "",
+    "SBQQ__Type__c": "HTML"
+  },
+  "References": []
+}
