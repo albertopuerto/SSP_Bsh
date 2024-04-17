@@ -1,6 +1,7 @@
 {
   "Object": "SBQQ__QuoteTemplate__c",
   "Fields": {
+    "CurrencyIsoCode": "EUR",
     "GearsetDisplayName": "EN Standard Quote with Discounts",
     "GearsetExternalId__c": "KAQdPfB000000Q9t3a",
     "Name": "EN Standard Quote with Discounts",
@@ -24,10 +25,10 @@
     "SBQQ__CustomerDiscountLabel__c": "DISCOUNT",
     "SBQQ__CustomerDiscountShown__c": "false",
     "SBQQ__Default__c": "true",
-    "SBQQ__DeploymentStatus__c": "In Development",
+    "SBQQ__DeploymentStatus__c": "Deployed",
     "SBQQ__DiscountScheduleShown__c": "",
     "SBQQ__ExcludedPages__c": "",
-    "SBQQ__ExcludeHeaderFooter__c": "",
+    "SBQQ__ExcludeHeaderFooter__c": "First Page",
     "SBQQ__FontFamily__c": "Helvetica",
     "SBQQ__FontSize__c": "9.0",
     "SBQQ__FooterHeight__c": "15.0",
@@ -41,16 +42,16 @@
     "SBQQ__GroupShadingColor__c": "FFFFFF",
     "SBQQ__GroupTextAlignment__c": "Left",
     "SBQQ__GroupTextColor__c": "000000",
-    "SBQQ__HeaderHeight__c": "",
+    "SBQQ__HeaderHeight__c": "140.0",
     "SBQQ__HideGroupSubtotals__c": "false",
     "SBQQ__IntroductionTitle__c": "",
     "SBQQ__LeftMargin__c": "0.5",
     "SBQQ__LineNumbering__c": "Start at quote",
     "SBQQ__LineSortField__c": "",
-    "SBQQ__LogoDocumentId__c": "0159Q000002bAld",
+    "SBQQ__LogoDocumentId__c": "0159Q000004vgJZ",
     "SBQQ__NotesTitle__c": "",
     "SBQQ__PageHeight__c": "11.0",
-    "SBQQ__PageNumberAlignment__c": "",
+    "SBQQ__PageNumberAlignment__c": "Center",
     "SBQQ__PageNumberPosition__c": "Footer",
     "SBQQ__PageNumberText__c": "Page {0} of {1}",
     "SBQQ__PageOrientation__c": "Portrait",
@@ -88,7 +89,7 @@
       "Name": "SBQQ__HeaderContent__r",
       "ReferencedObject": "SBQQ__TemplateContent__c",
       "ReferencedFields": {
-        "GearsetExternalId__c": ""
+        "GearsetExternalId__c": "MAUvGB6000000Q9A4a"
       }
     }
   ]
