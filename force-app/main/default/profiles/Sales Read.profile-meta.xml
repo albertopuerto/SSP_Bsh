@@ -124,7 +124,7 @@
     </userPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Account.pkl_IsTradingPartnerNoRequired_c__c</field>
+        <field>Account.pkl_IsTradingPartnerNoRequired__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -134,7 +134,7 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Account.txt_TradingParnerNo_c__c</field>
+        <field>Account.txt_TradingParnerNo__c</field>
         <readable>true</readable>
     </fieldPermissions>
 </Profile>
