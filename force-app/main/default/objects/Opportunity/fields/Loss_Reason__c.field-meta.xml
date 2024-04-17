@@ -1,46 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>pkl_Language_c__c</fullName>
-    <description>To prepare a Quote in a proper language</description>
+    <fullName>Loss_Reason__c</fullName>
     <externalId>false</externalId>
-    <label>Language</label>
-    <required>true</required>
+    <label>Loss Reason</label>
+    <required>false</required>
     <trackFeedHistory>false</trackFeedHistory>
     <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
     <type>Picklist</type>
     <valueSet>
-        <restricted>true</restricted>
         <valueSetDefinition>
             <sorted>false</sorted>
             <value>
-                <fullName>Chinese</fullName>
+                <fullName>Lost to Competitor</fullName>
                 <default>false</default>
-                <label>Chinese</label>
+                <label>Lost to Competitor</label>
             </value>
             <value>
-                <fullName>English</fullName>
+                <fullName>No Budget / Lost Funding</fullName>
                 <default>false</default>
-                <label>English</label>
+                <label>No Budget / Lost Funding</label>
             </value>
             <value>
-                <fullName>French</fullName>
+                <fullName>No Decision / Non-Responsive</fullName>
                 <default>false</default>
-                <label>French</label>
+                <label>No Decision / Non-Responsive</label>
             </value>
             <value>
-                <fullName>German</fullName>
+                <fullName>Price</fullName>
                 <default>false</default>
-                <label>German</label>
+                <label>Price</label>
             </value>
             <value>
-                <fullName>Japanese</fullName>
+                <fullName>Other</fullName>
                 <default>false</default>
-                <label>Japanese</label>
-            </value>
-            <value>
-                <fullName>Korean</fullName>
-                <default>false</default>
-                <label>Korean</label>
+                <label>Other</label>
             </value>
         </valueSetDefinition>
     </valueSet>
