@@ -139,6 +139,11 @@
         <tab>SalesAreaLink__c</tab>
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Contact.chk_ServiceContact__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
     <userLicense>Salesforce</userLicense>
     <userPermissions>
         <enabled>true</enabled>
