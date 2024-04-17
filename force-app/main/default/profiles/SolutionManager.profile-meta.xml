@@ -56,11 +56,6 @@
         <visible>true</visible>
     </applicationVisibilities>
     <applicationVisibilities>
-        <application>standard__LightningSales</application>
-        <default>false</default>
-        <visible>true</visible>
-    </applicationVisibilities>
-    <applicationVisibilities>
         <application>standard__LightningSalesConsole</application>
         <default>false</default>
         <visible>true</visible>
@@ -178,7 +173,7 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Contact.chl_ServiceContact__c</field>
+        <field>Contact.chk_ServiceContact__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -259,11 +254,6 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Lead.Website</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>SBQQ__Quote__c.SSP_POValidated__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -924,11 +914,6 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Opportunity.LeadSource</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>Opportunity.Loss_Reason__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>

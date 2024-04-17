@@ -124,7 +124,7 @@
     </userPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Contact.chl_ServiceContact__c</field>
+        <field>Contact.chk_ServiceContact__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
