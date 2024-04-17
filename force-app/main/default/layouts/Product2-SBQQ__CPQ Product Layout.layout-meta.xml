@@ -47,6 +47,14 @@
                 <behavior>Edit</behavior>
                 <field>SBQQ__ConfiguredDescriptionPattern__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Product_Image_ID__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>Product_Image_Link__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
@@ -96,7 +104,11 @@
         <layoutColumns>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Description</field>
+                <field>txa_ShortDescription__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>txr_AdditionaInformation__c</field>
             </layoutItems>
         </layoutColumns>
         <style>OneColumn</style>
@@ -288,7 +300,7 @@
                 <field>SBQQ__RenewalProduct__c</field>
             </layoutItems>
         </layoutColumns>
-        <layoutColumns/>
+        <layoutColumns />
         <style>TwoColumnsTopToBottom</style>
     </layoutSections>
     <layoutSections>
@@ -315,9 +327,9 @@
         <detailHeading>false</detailHeading>
         <editHeading>false</editHeading>
         <label>Custom Links</label>
-        <layoutColumns/>
-        <layoutColumns/>
-        <layoutColumns/>
+        <layoutColumns />
+        <layoutColumns />
+        <layoutColumns />
         <style>CustomLinks</style>
     </layoutSections>
     <relatedLists>
@@ -406,13 +418,6 @@
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
-        <fields>SBQQ__RenewalPrice__c</fields>
-        <fields>SBQQ__ProductId__c</fields>
-        <fields>SBQQ__Quantity__c</fields>
-        <fields>SBQQ__ProrateMultiplier__c</fields>
-        <fields>SBQQ__StartDate__c</fields>
-        <fields>SBQQ__RenewedDate__c</fields>
-        <fields>SBQQ__TerminatedDate__c</fields>
         <relatedList>SBQQ__Subscription__c.SBQQ__Product__c</relatedList>
     </relatedLists>
     <relatedLists>
@@ -446,7 +451,7 @@
     <showRunAssignmentRulesCheckbox>false</showRunAssignmentRulesCheckbox>
     <showSubmitAndAttachButton>false</showSubmitAndAttachButton>
     <summaryLayout>
-        <masterLabel>00hS00000010lHF</masterLabel>
+        <masterLabel>00hTq0000000SQe</masterLabel>
         <sizeX>4</sizeX>
         <sizeY>0</sizeY>
         <summaryLayoutStyle>Default</summaryLayoutStyle>
