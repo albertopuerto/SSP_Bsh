@@ -3,7 +3,7 @@
     <fullName>SBQQ__RuleTargetsCalculator__c</fullName>
     <deprecated>false</deprecated>
     <externalId>false</externalId>
-    <formula>ISPICKVAL(SBQQ__Rule__r.SBQQ__TargetObject__c, &#39;Calculator&#39;) || ISPICKVAL(SBQQ__Rule__r.SBQQ__TargetObject__c, &#39;Quote Line&#39;)</formula>
+    <formula>ISPICKVAL(SBQQ__Rule__r.SBQQ__TargetObject__c, &apos;Calculator&apos;) || ISPICKVAL(SBQQ__Rule__r.SBQQ__TargetObject__c, &apos;Quote Line&apos;)</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
     <label>RuleTargetsCalculator</label>
     <trackTrending>false</trackTrending>
