@@ -183,4 +183,9 @@
         <object>SalesArea__c</object>
         <viewAllRecords>false</viewAllRecords>
     </objectPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Contact.chk_ServiceContact__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
 </Profile>
