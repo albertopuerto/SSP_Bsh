@@ -15,7 +15,7 @@
         <isOptional>false</isOptional>
     </lookupFilter>
     <referenceTo>Account</referenceTo>
-    <relationshipLabel>Opportunities</relationshipLabel>
+    <relationshipLabel>Competitors</relationshipLabel>
     <relationshipName>Competitors</relationshipName>
     <relationshipOrder>1</relationshipOrder>
     <reparentableMasterDetail>false</reparentableMasterDetail>

@@ -216,6 +216,11 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>false</editable>
+        <field>Competitor__c.Competitor_Name__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>Contact.AccountId</field>
         <readable>true</readable>
@@ -379,4 +384,8 @@
         <recordType>Account.Supplier</recordType>
         <visible>true</visible>
     </recordTypeVisibilities>
+    <customPermissions>
+        <enabled>true</enabled>
+        <name>AccountCreator</name>
+    </customPermissions>
 </PermissionSet>
