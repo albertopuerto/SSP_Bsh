@@ -64,6 +64,18 @@
                 <field>pkl_Language_c__c</field>
             </layoutItems>
             <layoutItems>
+                <behavior>Required</behavior>
+                <field>pkl_INCOTerms1__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Required</behavior>
+                <field>pkl_PaymentTerms__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Required</behavior>
+                <field>txt_INCOTerms2__c</field>
+            </layoutItems>
+            <layoutItems>
                 <behavior>Edit</behavior>
                 <field>txt_VATID__c</field>
             </layoutItems>
