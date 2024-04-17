@@ -187,11 +187,6 @@
     <platformActionList>
         <actionListContext>Record</actionListContext>
         <platformActionListItems>
-            <actionName>LogACall</actionName>
-            <actionType>QuickAction</actionType>
-            <sortOrder>3</sortOrder>
-        </platformActionListItems>
-        <platformActionListItems>
             <actionName>AccountHierarchy</actionName>
             <actionType>StandardButton</actionType>
             <sortOrder>0</sortOrder>
@@ -205,6 +200,11 @@
             <actionName>Delete</actionName>
             <actionType>StandardButton</actionType>
             <sortOrder>2</sortOrder>
+        </platformActionListItems>
+        <platformActionListItems>
+            <actionName>LogACall</actionName>
+            <actionType>QuickAction</actionType>
+            <sortOrder>3</sortOrder>
         </platformActionListItems>
         <platformActionListItems>
             <actionName>NewTask</actionName>
@@ -306,6 +306,10 @@
         <relatedList>RelatedCaseList</relatedList>
     </relatedLists>
     <relatedLists>
+        <fields>NAME</fields>
+        <relatedList>SBQQ__ContractedPrice__c.SBQQ__Account__c</relatedList>
+    </relatedLists>
+    <relatedLists>
         <relatedList>RelatedContentNoteList</relatedList>
     </relatedLists>
     <relatedLists>
@@ -345,6 +349,9 @@
         <fields>Opportunity.OPP_AMOUNT</fields>
         <fields>Opportunity.OPP_STAGE_NAME</fields>
         <fields>Opportunity.OPP_CLOSE_DATE</fields>
+        <fields>chk_DealWon__c</fields>
+        <fields>txl_Strengths__c</fields>
+        <fields>txl_Weaknesses__c</fields>
         <relatedList>Competitor__c.mdr_Competitor__c</relatedList>
     </relatedLists>
     <relatedLists>
