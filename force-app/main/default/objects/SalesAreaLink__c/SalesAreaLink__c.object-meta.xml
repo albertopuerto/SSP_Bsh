@@ -161,7 +161,13 @@
         <type>AutoNumber</type>
     </nameField>
     <pluralLabel>Sales Area Links</pluralLabel>
-    <searchLayouts />
+    <searchLayouts>
+        <searchResultsAdditionalFields>mdr_SalesArea__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>mdr_Account__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>ftxt_DistributionChannel__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>ftxt_Division__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>ftxt_SalesOrg__c</searchResultsAdditionalFields>
+    </searchLayouts>
     <sharingModel>ControlledByParent</sharingModel>
     <visibility>Public</visibility>
 </CustomObject>
