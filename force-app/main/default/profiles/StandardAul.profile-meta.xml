@@ -16,6 +16,11 @@
         <field>Account.txt_TradingParnerNo__c</field>
         <readable>true</readable>
     </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>SBQQ__QuoteLine__c.ftxt_ShortDescription__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
     <userLicense>Salesforce Platform</userLicense>
     <userPermissions>
         <enabled>true</enabled>
