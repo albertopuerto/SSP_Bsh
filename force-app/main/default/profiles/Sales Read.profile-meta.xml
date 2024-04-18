@@ -172,6 +172,11 @@
     </userPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Contact.chk_ServiceContact__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Product2.txa_ShortDescription__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -198,11 +203,6 @@
         <object>SalesArea__c</object>
         <viewAllRecords>false</viewAllRecords>
     </objectPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>Contact.chk_ServiceContact__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
         <field>Account.pkl_IsTradingPartnerNoRequired__c</field>

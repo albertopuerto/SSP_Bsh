@@ -8,12 +8,12 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Contact.chk_ServiceContact__c</field>
+        <field>Account.txt_TradingParnerNo__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Account.txt_TradingParnerNo__c</field>
+        <field>Contact.chk_ServiceContact__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
