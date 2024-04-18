@@ -21,19 +21,15 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>txt_AccountID_c__c</field>
+                <field>pkl_IsTradingPartnerNoRequired__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>pkl_IsTradingPartnerNoRequired_c__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>txt_TradingParnerNo_c__c</field>
+                <field>txt_TradingParnerNo__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Required</behavior>
-                <field>pkl_Language_c__c</field>
+                <field>pkl_Language__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Required</behavior>

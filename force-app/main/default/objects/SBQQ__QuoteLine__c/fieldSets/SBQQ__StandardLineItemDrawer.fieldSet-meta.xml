@@ -238,6 +238,11 @@
         <isRequired>false</isRequired>
     </displayedFields>
     <displayedFields>
+        <field>pkl_PaymentTerms__c</field>
+        <isFieldManaged>false</isFieldManaged>
+        <isRequired>false</isRequired>
+    </displayedFields>
+    <displayedFields>
         <field>SBQQ__Description__c</field>
         <isFieldManaged>false</isFieldManaged>
         <isRequired>false</isRequired>
