@@ -11,21 +11,20 @@
         <field>Contact.chk_ServiceContact__c</field>
         <readable>true</readable>
     </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>Product2.Product_Image_ID__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Product2.Product_Image_Link__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>SBQQ__QuoteLine__c.Product_Image__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
+    <layoutAssignments>
+        <layout>Opportunity-Frame Contract Opportunity Layout</layout>
+        <recordType>Opportunity.FrameContract</recordType>
+    </layoutAssignments>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>Opportunity.FrameContract</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>true</default>
+        <recordType>Opportunity.StandardSolutionOrder</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
     <fieldPermissions>
         <editable>false</editable>
         <field>SBQQ__QuoteLine__c.ftxt_ShortDescription__c</field>
@@ -39,6 +38,16 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Product2.txr_AdditionaInformation__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Account.pkl_IsTradingPartnerNoRequired__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Account.txt_TradingParnerNo__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -96,6 +105,10 @@
         <field>SBQQ__Quote__c.txl_AdditionalInformationinCoverLetter__c</field>
         <readable>true</readable>
     </fieldPermissions>
+    <tabVisibilities>
+        <tab>SalesAreaLink__c</tab>
+        <visibility>DefaultOn</visibility>
+    </tabVisibilities>
     <fieldPermissions>
         <editable>true</editable>
         <field>SBQQ__Quote__c.pkl_INCOTerms1__c</field>
@@ -117,6 +130,21 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>true</editable>
+        <field>Product2.Product_Image_ID__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Product2.Product_Image_Link__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>SBQQ__QuoteLine__c.Product_Image__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>false</editable>
         <field>SBQQ__Quote__c.fdat_CreateDate__c</field>
         <readable>true</readable>
@@ -126,24 +154,6 @@
         <field>SBQQ__Quote__c.ftxt_Department__c</field>
         <readable>true</readable>
     </fieldPermissions>
-    <layoutAssignments>
-        <layout>Opportunity-Frame Contract Opportunity Layout</layout>
-        <recordType>Opportunity.FrameContract</recordType>
-    </layoutAssignments>
-    <recordTypeVisibilities>
-        <default>false</default>
-        <recordType>Opportunity.FrameContract</recordType>
-        <visible>true</visible>
-    </recordTypeVisibilities>
-    <recordTypeVisibilities>
-        <default>true</default>
-        <recordType>Opportunity.StandardSolutionOrder</recordType>
-        <visible>true</visible>
-    </recordTypeVisibilities>
-    <tabVisibilities>
-        <tab>SalesAreaLink__c</tab>
-        <visibility>DefaultOn</visibility>
-    </tabVisibilities>
     <userLicense>Salesforce</userLicense>
     <userPermissions>
         <enabled>true</enabled>
