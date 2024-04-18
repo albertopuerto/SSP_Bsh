@@ -68,7 +68,7 @@
             <assignToReference>Mentions</assignToReference>
             <operator>Add</operator>
             <value>
-                <stringValue>Hallo </stringValue>
+                <stringValue>Hello </stringValue>
             </value>
         </assignmentItems>
         <connector>
