@@ -11,6 +11,16 @@
         <field>Contact.chk_ServiceContact__c</field>
         <readable>true</readable>
     </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Contact.num_ExternalID__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Contact.txt_Location_Details__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
     <layoutAssignments>
         <layout>Opportunity-Frame Contract Opportunity Layout</layout>
         <recordType>Opportunity.FrameContract</recordType>
