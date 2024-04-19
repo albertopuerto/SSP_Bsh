@@ -4,6 +4,6 @@
     <description>The quoted value updated based on the Net Total Price of Primary Quote.</description>
     <inlineHelpText>The quoted value updated based on the Net Total Price of Primary Quote.</inlineHelpText>
     <trackFeedHistory>true</trackFeedHistory>
-    <trackHistory>false</trackHistory>
+    <trackHistory>true</trackHistory>
     <trackTrending>false</trackTrending>
 </CustomField>
