@@ -228,6 +228,16 @@
         <isRequired>false</isRequired>
     </displayedFields>
     <displayedFields>
+        <field>pkl_INCOTerms1__c</field>
+        <isFieldManaged>false</isFieldManaged>
+        <isRequired>false</isRequired>
+    </displayedFields>
+    <displayedFields>
+        <field>txt_INCOTerms2__c</field>
+        <isFieldManaged>false</isFieldManaged>
+        <isRequired>false</isRequired>
+    </displayedFields>
+    <displayedFields>
         <field>pkl_QuantityUnit__c</field>
         <isFieldManaged>false</isFieldManaged>
         <isRequired>false</isRequired>
@@ -244,6 +254,11 @@
     </displayedFields>
     <displayedFields>
         <field>txt_INCOTerms2__c</field>
+        <isFieldManaged>false</isFieldManaged>
+        <isRequired>false</isRequired>
+    </displayedFields>
+    <displayedFields>
+        <field>pkl_QuantityUnit__c</field>
         <isFieldManaged>false</isFieldManaged>
         <isRequired>false</isRequired>
     </displayedFields>
