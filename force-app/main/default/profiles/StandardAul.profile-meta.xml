@@ -22,13 +22,28 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>false</editable>
+        <field>SBQQ__QuoteLine__c.Product_Image__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>Order.txt_INCOTerms2__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <field>SBQQ__QuoteLine__c.Product_Image__c</field>
+        <editable>true</editable>
+        <field>SBQQ__Quote__c.lkp_PersonResponsible__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>SBQQ__Quote__c.lkp_ToolCoordinator__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>SBQQ__Quote__c.txl_AdditionalInformationinCoverLetter__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -51,21 +66,10 @@
         <field>SBQQ__Quote__c.lkp_SalesArea__c</field>
         <readable>true</readable>
     </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>SBQQ__Quote__c.lkp_PersonResponsible__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>SBQQ__Quote__c.lkp_ToolCoordinator__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>SBQQ__Quote__c.txl_AdditionalInformationinCoverLetter__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
+    <tabVisibilities>
+        <tab>SalesAreaLink__c</tab>
+        <visibility>DefaultOn</visibility>
+    </tabVisibilities>
     <fieldPermissions>
         <editable>true</editable>
         <field>SBQQ__Quote__c.pkl_INCOTerms1__c</field>
@@ -84,6 +88,16 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>SBQQ__Quote__c.num_QuoteVersion__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Account.pkl_IsTradingPartnerNoRequired__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Account.txt_TradingParnerNo__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -106,20 +120,6 @@
         <recordType>Opportunity.StandardSolutionOrder</recordType>
         <visible>false</visible>
     </recordTypeVisibilities>
-    <tabVisibilities>
-        <tab>SalesAreaLink__c</tab>
-        <visibility>DefaultOn</visibility>
-    </tabVisibilities>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>Account.pkl_IsTradingPartnerNoRequired__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>Account.txt_TradingParnerNo__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
     <userLicense>Salesforce Platform</userLicense>
     <userPermissions>
         <enabled>true</enabled>
