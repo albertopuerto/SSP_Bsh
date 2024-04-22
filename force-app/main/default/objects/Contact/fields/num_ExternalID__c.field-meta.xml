@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>num_ExternalID__c</fullName>
+    <description>Automatically assigned by the ERP when saving</description>
     <externalId>true</externalId>
     <label>External ID</label>
     <precision>18</precision>
