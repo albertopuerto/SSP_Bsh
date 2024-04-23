@@ -21,7 +21,12 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Contact.txt_Location_Details__c</field>
+        <field>Contact.txt_AcademicTitle__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Contact.txt_LocationDetails__c</field>
         <readable>true</readable>
     </fieldPermissions>
 </Profile>
