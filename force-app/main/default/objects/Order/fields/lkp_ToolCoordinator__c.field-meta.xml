@@ -6,6 +6,15 @@
     <externalId>false</externalId>
     <inlineHelpText>The contact of the customer that is responsible for the licenses etc</inlineHelpText>
     <label>Tool Coordinator</label>
+    <lookupFilter>
+        <active>true</active>
+        <filterItems>
+            <field>$Source.AccountId</field>
+            <operation>equals</operation>
+            <valueField>Contact.AccountId</valueField>
+        </filterItems>
+        <isOptional>false</isOptional>
+    </lookupFilter>
     <referenceTo>Contact</referenceTo>
     <relationshipLabel>Orders</relationshipLabel>
     <relationshipName>Orders</relationshipName>
