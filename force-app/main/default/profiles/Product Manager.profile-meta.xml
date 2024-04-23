@@ -171,21 +171,6 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
-        <field>Account.pkl_IsTradingPartnerNoRequired_c__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>Account.txt_AccountID_c__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>Account.txt_TradingParnerNo_c__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
         <editable>false</editable>
         <field>Competitor__c.Competitor_Name__c</field>
         <readable>true</readable>
@@ -262,7 +247,7 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Contact.pkl_Contact_Source__c</field>
+        <field>Contact.pkl_ContactSource__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -272,7 +257,7 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Contact.txt_Location_Details__c</field>
+        <field>Contact.txt_LocationDetails__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
