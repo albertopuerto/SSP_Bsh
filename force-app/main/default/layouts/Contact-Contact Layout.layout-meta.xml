@@ -20,10 +20,6 @@
                 <field>AccountId</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Required</behavior>
-                <field>Language__c</field>
-            </layoutItems>
-            <layoutItems>
                 <behavior>Edit</behavior>
                 <field>Title</field>
             </layoutItems>
@@ -43,11 +39,15 @@
                 <behavior>Edit</behavior>
                 <field>MobilePhone</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Required</behavior>
+                <field>pkl_Language__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>pkl_Contact_Source__c</field>
+                <field>pkl_ContactSource__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
@@ -80,7 +80,7 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>txt_Location_Details__c</field>
+                <field>txt_LocationDetails__c</field>
             </layoutItems>
         </layoutColumns>
         <style>OneColumn</style>
@@ -93,7 +93,7 @@
         <layoutColumns>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>num_ExternalID__c</field>
+                <field>txt_ExternalID__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Required</behavior>
