@@ -4,97 +4,16 @@
         <itemInstances>
             <componentInstance>
                 <componentInstanceProperties>
-                    <name>actionNames</name>
-                    <valueList>
-                        <valueListItems>
-                            <value>Edit</value>
-                        </valueListItems>
-                        <valueListItems>
-                            <value>CustomButton.SBQQ__Quote__c.SBQQ__EditLines</value>
-                            <visibilityRule>
-                                <booleanFilter>1 OR 2</booleanFilter>
-                                <criteria>
-                                    <leftValue>{!Record.SBQQ__Status__c}</leftValue>
-                                    <operator>EQUAL</operator>
-                                    <rightValue>Draft</rightValue>
-                                </criteria>
-                                <criteria>
-                                    <leftValue>{!Record.SBQQ__Status__c}</leftValue>
-                                    <operator>EQUAL</operator>
-                                    <rightValue>In Review</rightValue>
-                                </criteria>
-                            </visibilityRule>
-                        </valueListItems>
-                        <valueListItems>
-                            <value>CustomButton.SBQQ__Quote__c.SBQQ__PreviewDocument</value>
-                            <visibilityRule>
-                                <booleanFilter>1 OR 2 OR 3</booleanFilter>
-                                <criteria>
-                                    <leftValue>{!Record.SBQQ__Status__c}</leftValue>
-                                    <operator>EQUAL</operator>
-                                    <rightValue>In Review</rightValue>
-                                </criteria>
-                                <criteria>
-                                    <leftValue>{!Record.SBQQ__Status__c}</leftValue>
-                                    <operator>EQUAL</operator>
-                                    <rightValue>Draft</rightValue>
-                                </criteria>
-                                <criteria>
-                                    <leftValue>{!Record.SBQQ__Status__c}</leftValue>
-                                    <operator>EQUAL</operator>
-                                    <rightValue>Approval Pending</rightValue>
-                                </criteria>
-                            </visibilityRule>
-                        </valueListItems>
-                        <valueListItems>
-                            <value>CustomButton.SBQQ__Quote__c.SBQQ__GenerateDocument</value>
-                        </valueListItems>
-                        <valueListItems>
-                            <value>CustomButton.SBQQ__Quote__c.SBQQ__CreateOrderFromQuote</value>
-                        </valueListItems>
-                        <valueListItems>
-                            <value>Clone</value>
-                        </valueListItems>
-                        <valueListItems>
-                            <value>CustomButton.SBQQ__Quote__c.SBQQ__CloneWithRelated</value>
-                            <visibilityRule>
-                                <booleanFilter>1 OR 2 OR 3</booleanFilter>
-                                <criteria>
-                                    <leftValue>{!Record.SBQQ__Status__c}</leftValue>
-                                    <operator>EQUAL</operator>
-                                    <rightValue>Draft</rightValue>
-                                </criteria>
-                                <criteria>
-                                    <leftValue>{!Record.SBQQ__Status__c}</leftValue>
-                                    <operator>EQUAL</operator>
-                                    <rightValue>In Review</rightValue>
-                                </criteria>
-                                <criteria>
-                                    <leftValue>{!Record.SBQQ__Status__c}</leftValue>
-                                    <operator>EQUAL</operator>
-                                    <rightValue>Approval Pending</rightValue>
-                                </criteria>
-                            </visibilityRule>
-                        </valueListItems>
-                        <valueListItems>
-                            <value>Delete</value>
-                        </valueListItems>
-                        <valueListItems>
-                            <value>ChangeOwnerOne</value>
-                        </valueListItems>
-                    </valueList>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
                     <name>collapsed</name>
                     <value>false</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>enableActionsConfiguration</name>
-                    <value>true</value>
+                    <value>false</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>enableActionsInNative</name>
-                    <value>true</value>
+                    <value>false</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>hideChatterActions</name>
@@ -102,12 +21,17 @@
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>numVisibleActions</name>
-                    <value>4</value>
+                    <value>3</value>
                 </componentInstanceProperties>
                 <componentName>force:highlightsPanel</componentName>
                 <identifier>force_highlightsPanel</identifier>
             </componentInstance>
         </itemInstances>
+        <mode>Replace</mode>
+        <name>header</name>
+        <type>Region</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
         <itemInstances>
             <componentInstance>
                 <componentInstanceProperties>
@@ -123,7 +47,7 @@
             </componentInstance>
         </itemInstances>
         <mode>Replace</mode>
-        <name>header</name>
+        <name>subheader</name>
         <type>Region</type>
     </flexiPageRegions>
     <flexiPageRegions>
@@ -164,6 +88,10 @@
         <itemInstances>
             <componentInstance>
                 <componentInstanceProperties>
+                    <name>active</name>
+                    <value>true</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
                     <name>body</name>
                     <value>relatedTabContent</value>
                 </componentInstanceProperties>
@@ -177,10 +105,6 @@
         </itemInstances>
         <itemInstances>
             <componentInstance>
-                <componentInstanceProperties>
-                    <name>active</name>
-                    <value>true</value>
-                </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>body</name>
                     <value>detailTabContent</value>
@@ -213,29 +137,8 @@
         <type>Region</type>
     </flexiPageRegions>
     <flexiPageRegions>
-        <itemInstances>
-            <componentInstance>
-                <componentInstanceProperties>
-                    <name>showLegacyActivityComposer</name>
-                    <value>false</value>
-                </componentInstanceProperties>
-                <componentName>runtime_sales_activities:activityPanel</componentName>
-                <identifier>runtime_sales_activities_activityPanel</identifier>
-            </componentInstance>
-        </itemInstances>
         <mode>Replace</mode>
         <name>activityTabContent</name>
-        <type>Facet</type>
-    </flexiPageRegions>
-    <flexiPageRegions>
-        <itemInstances>
-            <componentInstance>
-                <componentName>forceChatter:recordFeedContainer</componentName>
-                <identifier>forceChatter_recordFeedContainer</identifier>
-            </componentInstance>
-        </itemInstances>
-        <mode>Replace</mode>
-        <name>feedTabContent</name>
         <type>Facet</type>
     </flexiPageRegions>
     <flexiPageRegions>
@@ -257,25 +160,29 @@
                 <identifier>activityTab</identifier>
             </componentInstance>
         </itemInstances>
-        <itemInstances>
-            <componentInstance>
-                <componentInstanceProperties>
-                    <name>body</name>
-                    <value>feedTabContent</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>title</name>
-                    <value>Standard.Tab.collaborate</value>
-                </componentInstanceProperties>
-                <componentName>flexipage:tab</componentName>
-                <identifier>collaborateTab</identifier>
-            </componentInstance>
-        </itemInstances>
         <mode>Replace</mode>
         <name>sidebartabs</name>
         <type>Facet</type>
     </flexiPageRegions>
     <flexiPageRegions>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>parentFieldApiName</name>
+                    <value>Order.Id</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>relatedListApiName</name>
+                    <value>OrderItems</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>relatedListComponentOverride</name>
+                    <value>GRID</value>
+                </componentInstanceProperties>
+                <componentName>force:relatedListSingleContainer</componentName>
+                <identifier>force_relatedListSingleContainer</identifier>
+            </componentInstance>
+        </itemInstances>
         <itemInstances>
             <componentInstance>
                 <componentInstanceProperties>
@@ -290,11 +197,11 @@
         <name>sidebar</name>
         <type>Region</type>
     </flexiPageRegions>
-    <masterLabel>Quote Record Page</masterLabel>
-    <parentFlexiPage>flexipage__default_rec_L</parentFlexiPage>
-    <sobjectType>SBQQ__Quote__c</sobjectType>
+    <masterLabel>Order Record Page</masterLabel>
+    <parentFlexiPage>commerce__Order_rec_L_subheader</parentFlexiPage>
+    <sobjectType>Order</sobjectType>
     <template>
-        <name>flexipage:recordHomeTemplateDesktop</name>
+        <name>flexipage:recordHomeWithSubheaderTemplateDesktop</name>
     </template>
     <type>RecordPage</type>
-</FlexiPage> 
+</FlexiPage>
