@@ -15,5 +15,5 @@
         <operation>equals</operation>
         <value>TODAY</value>
     </filters>
-    <label>Today&apos;s Leads</label>
+    <label>Today&#39;s Leads</label>
 </ListView>
