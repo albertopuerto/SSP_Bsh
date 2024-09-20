@@ -77,7 +77,7 @@
     <description>This flow assigns every newly created Opportunity ownership to KAM user on associated Account.</description>
     <environments>Default</environments>
     <interviewLabel>Opportunity_CretOpportunity_AutomaticKAMOwnershipAssignment {!$Flow.CurrentDateTime}</interviewLabel>
-    <label>Opportunity_CreateOpportunity_AutomaticKAMOwnershipAssignment</label>
+    <label>Opportunity Create Opportunity Automatic KAM Ownership Assignment</label>
     <processMetadataValues>
         <name>BuilderType</name>
         <value>
