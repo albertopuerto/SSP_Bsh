@@ -378,4 +378,139 @@
             <default>false</default>
         </values>
     </picklistValues>
+    <picklistValues>
+        <picklist>pkl_Customer_Block__c</picklist>
+        <values>
+            <fullName>Blocked</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Pending</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Released</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>pkl_INCOTerms1__c</picklist>
+        <values>
+            <fullName>CFR - Cost and Freight</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>CIF - Cost%2C Insurance%2C and Freight</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>CIP - Carriage and Insurance Paid To</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>CPT - Carriage Paid To</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>DAF - Delivered At Frontier</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>DDP - Delivered Duty Paid</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>DDU - Delivered Duty Unpaid</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>DEQ - Delivered Ex Quay</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>DES - Delivered Ex Ship</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>EXW - Ex Works</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>FAS - Free Alongside Ship</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>FCA - Free Carriage and Freight</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>FOB - Free On Board ship</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>pkl_IsTradingPartnerNoRequired__c</picklist>
+        <values>
+            <fullName>No</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Yes</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>pkl_Language__c</picklist>
+        <values>
+            <fullName>Chinese</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>English</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>French</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>German</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Japanese</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Korean</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>pkl_PaymentTerms__c</picklist>
+        <values>
+            <fullName>Due on receipt</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Net 15</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Net 30</fullName>
+            <default>true</default>
+        </values>
+        <values>
+            <fullName>Net 45</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Net 60</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Net 90</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
 </RecordType>
