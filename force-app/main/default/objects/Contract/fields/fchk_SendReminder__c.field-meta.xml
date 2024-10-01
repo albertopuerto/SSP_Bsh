@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>fchk_SendReminder__c</fullName>
+    <externalId>false</externalId>
+    <formula>fdat_ReminderDate__c = TODAY()</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Send Reminder</label>
+    <trackHistory>false</trackHistory>
+    <type>Checkbox</type>
+</CustomField>
