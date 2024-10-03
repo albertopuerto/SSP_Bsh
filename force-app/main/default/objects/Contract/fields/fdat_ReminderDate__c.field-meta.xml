@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>fdat_ReminderDate__c</fullName>
-    <description>The field will store the date when a reminder for contract expiration should be sent</description>
+    <description>The field will store the date when a reminder for contract expiration is sent</description>
     <externalId>false</externalId>
     <formula>EndDate - $Setup.cs_ExpirationReminderAlert__c.num_ExpirationReminderAlert__c</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>

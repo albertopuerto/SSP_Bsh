@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
     <customSettingsType>Hierarchy</customSettingsType>
-    <description>The custom setting contains the required period for sending a reminder about contract expiration.</description>
+    <description>Used in calculating the date on which a reminder for contract renewal is sent.</description>
     <enableFeeds>false</enableFeeds>
     <label>Expiration Reminder Alert</label>
     <visibility>Public</visibility>

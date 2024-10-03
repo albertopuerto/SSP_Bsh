@@ -2,7 +2,7 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>num_ExpirationReminderAlert__c</fullName>
     <defaultValue>30</defaultValue>
-    <description>The field will be used for storing the number of days for sending a reminder for contract expiration.</description>
+    <description>Used in calculating the date on which a reminder for contract renewal is sent.</description>
     <externalId>false</externalId>
     <label>Expiration Reminder Alert</label>
     <precision>18</precision>
