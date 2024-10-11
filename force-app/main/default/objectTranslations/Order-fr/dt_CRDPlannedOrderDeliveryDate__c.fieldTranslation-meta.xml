@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- Date the Order is planned by Customer --></help>
+        <label><!-- CRD Planned Delivery Date --></label>
+        <name>dt_CRDPlannedOrderDeliveryDate__c</name>
+    </CustomFieldTranslation>

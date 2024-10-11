@@ -167,6 +167,11 @@
         <name>ViewSetup</name>
     </userPermissions>
     <fieldPermissions>
+        <editable>false</editable>
+        <field>Account.ftxt_GTS__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>Account.pkl_IsTradingPartnerNoRequired__c</field>
         <readable>true</readable>
@@ -199,6 +204,16 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Lead.SSP_AdditionalInformation__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Order.Personal_Text_on_Order__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>OrderItem.Personal_Text_on_Order__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <userPermissions>
