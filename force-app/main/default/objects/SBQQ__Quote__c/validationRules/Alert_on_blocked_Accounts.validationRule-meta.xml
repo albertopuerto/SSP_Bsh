@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Alert_on_blocked_Accounts</fullName>
+    <active>true</active>
+    <errorConditionFormula>ISPICKVAL( SBQQ__Account__r.pkl_Customer_Block__c , &#39;BLOCKED&#39;)</errorConditionFormula>
+    <errorMessage>Due to blocked account you cannot create the quote</errorMessage>
+</ValidationRule>
