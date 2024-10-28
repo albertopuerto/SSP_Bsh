@@ -13,16 +13,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Account.txt_TradingParnerNo__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>Contact.chk_ServiceContact__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
         <field>Contact.pkl_ContactSource__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -54,6 +44,16 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Product2.txr_AdditionaInformation__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Account.txt_TradingParnerNo__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Contact.chk_ServiceContact__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <userLicense>Salesforce</userLicense>
