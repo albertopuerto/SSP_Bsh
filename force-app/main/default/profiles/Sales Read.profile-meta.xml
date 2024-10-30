@@ -253,4 +253,10 @@
         <object>SalesArea__c</object>
         <viewAllRecords>false</viewAllRecords>
     </objectPermissions>
+    <layoutAssignments>
+        <layout>Global-Outlook publisher layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Outlook-EmailApplicationPublisherLayout</layout>
+    </layoutAssignments>
 </Profile>
