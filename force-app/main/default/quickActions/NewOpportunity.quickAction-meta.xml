@@ -34,5 +34,6 @@
     </quickActionLayout>
     <standardLabel>New</standardLabel>
     <targetObject>Opportunity</targetObject>
+    <targetRecordType>Opportunity.StandardSolutionOrder</targetRecordType>
     <type>Create</type>
 </QuickAction>
