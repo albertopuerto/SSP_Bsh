@@ -6,6 +6,7 @@
         <enabled>false</enabled>
     </classAccesses>-->
     <custom>true</custom>
+    <userLicense>Salesforce</userLicense>
     <fieldPermissions>
         <editable>false</editable>
         <field>Account.ftxt_GTS__c</field>
@@ -424,6 +425,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Opportunity.fcur_WeightedValue__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Opportunity.ftxtOpportunityTitle__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -1347,7 +1353,6 @@
         <tab>standard-Order</tab>
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
-    <userLicense>Salesforce</userLicense>
     <userPermissions>
         <enabled>true</enabled>
         <name>ActivitiesAccess</name>

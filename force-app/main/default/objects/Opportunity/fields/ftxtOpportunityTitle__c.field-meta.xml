@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>ftxtOpportunityTitle__c</fullName>
+    <description>Format &lt;SF&gt;_&lt;Account Name&gt;_&lt;TypeOfOffering&gt;_&lt;TypeOFOpp&gt;_&lt;YearOfSourcing&gt;_&lt;FreeText&gt;</description>
+    <externalId>false</externalId>
+    <formula>TEXT(pklLeadingSolutionField__c) &amp; &quot;_&quot; &amp;
+Account.Name &amp; &quot;_&quot; &amp;
+
+IF(INCLUDES(pklTypeOfOffering__c, &quot;SW&quot;), &quot;SW_&quot;, null) &amp;
+IF(INCLUDES(pklTypeOfOffering__c, &quot;HW&quot;), &quot;HW_&quot;, null) &amp;
+IF(INCLUDES(pklTypeOfOffering__c, &quot;ENG&quot;), &quot;ENG_&quot;, null) &amp;
+IF(INCLUDES(pklTypeOfOffering__c, &quot;SRV&quot;), &quot;SRV_&quot;, null) &amp;
+
+TEXT(pklTypeOfOpportunity__c) &amp; &quot;_&quot; &amp;
+TEXT(YEAR(CloseDate)) &amp; &quot;_&quot; &amp;
+Name</formula>
+    <label>Opportunity Title</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>
