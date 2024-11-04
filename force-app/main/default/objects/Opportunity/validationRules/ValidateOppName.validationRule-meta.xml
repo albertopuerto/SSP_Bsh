@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>ValidateOppName</fullName>
+    <active>true</active>
+    <description>Validates the Name of an Opportunity to only contain roman characters ,numbers and limited special characters</description>
+    <errorConditionFormula>NOT(REGEX(Name, &quot;[a-zA-Z0-9 /\\-\\.]*$&quot;))</errorConditionFormula>
+    <errorDisplayField>Name</errorDisplayField>
+    <errorMessage>Please Enter Name only in English.</errorMessage>
+</ValidationRule>
