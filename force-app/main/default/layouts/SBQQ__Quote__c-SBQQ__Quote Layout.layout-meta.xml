@@ -66,10 +66,6 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>CurrencyIsoCode</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
                 <field>pkl_INCOTerms1__c</field>
             </layoutItems>
             <layoutItems>
@@ -79,6 +75,10 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>pkl_PaymentTerms__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>CurrencyIsoCode</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
