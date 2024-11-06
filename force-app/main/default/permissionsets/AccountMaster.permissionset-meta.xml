@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <PermissionSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Provides all edit access to Accounts</description>
+    <hasActivationRequired>false</hasActivationRequired>
+    <label>AccountMaster</label>
     <applicationVisibilities>
         <application>ETAS_SALES_Cockpit</application>
         <visible>true</visible>
@@ -8,7 +11,6 @@
         <enabled>true</enabled>
         <name>AccountCreator</name>
     </customPermissions>
-    <description>Provides all edit access to Accounts</description>
     <fieldPermissions>
         <editable>true</editable>
         <field>Account.AccountNumber</field>
@@ -176,6 +178,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Account.pkl_CivilianCustomer__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Account.txt_AccountIDC4C__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -239,8 +246,61 @@
         <field>Competitor__c.txl_Weaknesses__c</field>
         <readable>true</readable>
     </fieldPermissions>
-    <hasActivationRequired>false</hasActivationRequired>
-    <label>AccountMaster</label>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>ExportControlSheet__c.chk_IsCivilianCustomer__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>ExportControlSheet__c.pkl_AboutUsCheck__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>ExportControlSheet__c.pkl_BelongToAnOemOfMilitaryItems__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>ExportControlSheet__c.pkl_BusinessAreas__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>ExportControlSheet__c.pkl_CustomerInvolvedInAnyMilitaryBusines__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>ExportControlSheet__c.pkl_InstallBoschProductsIntoMilitaryItem__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>ExportControlSheet__c.pkl_Items__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>ExportControlSheet__c.pkl_MilitaryConnections__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>ExportControlSheet__c.pkl_OemOfMilitaryItems__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>ExportControlSheet__c.pkl_ProjectsAndCollaborations__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>ExportControlSheet__c.pkl_Services__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
     <objectPermissions>
         <allowCreate>true</allowCreate>
         <allowDelete>true</allowDelete>
@@ -257,6 +317,15 @@
         <allowRead>true</allowRead>
         <modifyAllRecords>false</modifyAllRecords>
         <object>Competitor__c</object>
+        <viewAllRecords>false</viewAllRecords>
+    </objectPermissions>
+    <objectPermissions>
+        <allowCreate>true</allowCreate>
+        <allowDelete>false</allowDelete>
+        <allowEdit>true</allowEdit>
+        <allowRead>true</allowRead>
+        <modifyAllRecords>false</modifyAllRecords>
+        <object>ExportControlSheet__c</object>
         <viewAllRecords>false</viewAllRecords>
     </objectPermissions>
     <objectPermissions>
