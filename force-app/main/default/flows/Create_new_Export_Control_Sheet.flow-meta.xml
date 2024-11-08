@@ -1,0 +1,514 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <apiVersion>62.0</apiVersion>
+    <decisions>
+        <name>Check_Civilian</name>
+        <label>Check Civilian</label>
+        <locationX>446</locationX>
+        <locationY>782</locationY>
+        <defaultConnector>
+            <targetReference>Update_Account_No</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Is_Civilian_Customer_Yes</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>chk_IsCivilianCustomer</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Update_Account_Yes</targetReference>
+            </connector>
+            <label>Check Civilian Yes</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Decision_1</name>
+        <label>Decision 1</label>
+        <locationX>248</locationX>
+        <locationY>242</locationY>
+        <defaultConnector>
+            <targetReference>scrn_GeneralKnowledge</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Outcome_1_of_Decision_1</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>GetExportcontrolsheetRecords.Id</leftValueReference>
+                <operator>IsBlank</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Error_Screen</targetReference>
+            </connector>
+            <label>Outcome 1 of Decision 1</label>
+        </rules>
+    </decisions>
+    <dynamicChoiceSets>
+        <name>chc_AboutUsCheck</name>
+        <dataType>Picklist</dataType>
+        <displayField xsi:nil="true" />
+        <object xsi:nil="true" />
+        <picklistField>pkl_AboutUsCheck__c</picklistField>
+        <picklistObject>ExportControlSheet__c</picklistObject>
+    </dynamicChoiceSets>
+    <dynamicChoiceSets>
+        <name>chc_belongToAnOemOfMilitaryItems</name>
+        <dataType>Picklist</dataType>
+        <displayField xsi:nil="true" />
+        <object xsi:nil="true" />
+        <picklistField>pkl_BelongToAnOemOfMilitaryItems__c</picklistField>
+        <picklistObject>ExportControlSheet__c</picklistObject>
+    </dynamicChoiceSets>
+    <dynamicChoiceSets>
+        <name>chc_BusinessAreas</name>
+        <dataType>Picklist</dataType>
+        <displayField xsi:nil="true" />
+        <object xsi:nil="true" />
+        <picklistField>pkl_BusinessAreas__c</picklistField>
+        <picklistObject>ExportControlSheet__c</picklistObject>
+    </dynamicChoiceSets>
+    <dynamicChoiceSets>
+        <name>chc_CustomerInvolvedInAnyMilitaryBusiness</name>
+        <dataType>Picklist</dataType>
+        <displayField xsi:nil="true" />
+        <object xsi:nil="true" />
+        <picklistField>pkl_CustomerInvolvedInAnyMilitaryBusines__c</picklistField>
+        <picklistObject>ExportControlSheet__c</picklistObject>
+    </dynamicChoiceSets>
+    <dynamicChoiceSets>
+        <name>chc_InstallBoschProductsIntoMilitaryItems</name>
+        <dataType>Picklist</dataType>
+        <displayField xsi:nil="true" />
+        <object xsi:nil="true" />
+        <picklistField>pkl_InstallBoschProductsIntoMilitaryItem__c</picklistField>
+        <picklistObject>ExportControlSheet__c</picklistObject>
+    </dynamicChoiceSets>
+    <dynamicChoiceSets>
+        <name>chc_Items</name>
+        <dataType>Picklist</dataType>
+        <displayField xsi:nil="true" />
+        <object xsi:nil="true" />
+        <picklistField>pkl_Items__c</picklistField>
+        <picklistObject>ExportControlSheet__c</picklistObject>
+    </dynamicChoiceSets>
+    <dynamicChoiceSets>
+        <name>chc_MiltaryConnections</name>
+        <dataType>Picklist</dataType>
+        <displayField xsi:nil="true" />
+        <object xsi:nil="true" />
+        <picklistField>pkl_MilitaryConnections__c</picklistField>
+        <picklistObject>ExportControlSheet__c</picklistObject>
+    </dynamicChoiceSets>
+    <dynamicChoiceSets>
+        <name>chc_OemOfMilitaryItems</name>
+        <dataType>Picklist</dataType>
+        <displayField xsi:nil="true" />
+        <object xsi:nil="true" />
+        <picklistField>pkl_OemOfMilitaryItems__c</picklistField>
+        <picklistObject>ExportControlSheet__c</picklistObject>
+    </dynamicChoiceSets>
+    <dynamicChoiceSets>
+        <name>chc_ProjectsAndCollaborations</name>
+        <dataType>Picklist</dataType>
+        <displayField xsi:nil="true" />
+        <object xsi:nil="true" />
+        <picklistField>pkl_ProjectsAndCollaborations__c</picklistField>
+        <picklistObject>ExportControlSheet__c</picklistObject>
+    </dynamicChoiceSets>
+    <dynamicChoiceSets>
+        <name>chc_Services</name>
+        <dataType>Picklist</dataType>
+        <displayField xsi:nil="true" />
+        <object xsi:nil="true" />
+        <picklistField>pkl_Services__c</picklistField>
+        <picklistObject>ExportControlSheet__c</picklistObject>
+    </dynamicChoiceSets>
+    <environments>Default</environments>
+    <formulas>
+        <description>Calculates the values of the answered questions to put a default value to the last question.</description>
+        <name>fchk_IsCivilianCustomer</name>
+        <dataType>Boolean</dataType>
+        <expression>IF( AND( {!pkl_OemOfMilitaryItems} == &quot;No&quot;, {!pkl_belongToAnOemOfMilitaryItems} == &quot;No&quot;, {!pkl_InstallBoschProductsIntoMilitaryItem} == &quot;No&quot;,{!pkl_CustomerInvolvedInAnyMilitaryBusines} == &quot;No&quot;,{!pkl_AboutUsCheck} == &quot;No&quot;,{!pkl_BusinessAreas} == &quot;No&quot;,{!pkl_Items} == &quot;No&quot;,{!pkl_Services} == &quot;No&quot;,{!pkl_ProjectsAndCollaborations} == &quot;No&quot;,	{!pkl_MilitaryConnections} == &quot;No&quot; ), TRUE, FALSE)</expression>
+    </formulas>
+    <interviewLabel>Create new Export Control Sheet {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Create new Export Control Sheet</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>Flow</processType>
+    <recordCreates>
+        <name>Create_Civilian_Usage_Check</name>
+        <label>Create Civilian Usage Check</label>
+        <locationX>446</locationX>
+        <locationY>674</locationY>
+        <connector>
+            <targetReference>Check_Civilian</targetReference>
+        </connector>
+        <inputAssignments>
+            <field>Account__c</field>
+            <value>
+                <elementReference>recordId</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>chk_IsCivilianCustomer__c</field>
+            <value>
+                <elementReference>fchk_IsCivilianCustomer</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>pkl_AboutUsCheck__c</field>
+            <value>
+                <elementReference>pkl_AboutUsCheck</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>pkl_BelongToAnOemOfMilitaryItems__c</field>
+            <value>
+                <elementReference>pkl_belongToAnOemOfMilitaryItems</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>pkl_BusinessAreas__c</field>
+            <value>
+                <elementReference>pkl_BusinessAreas</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>pkl_CustomerInvolvedInAnyMilitaryBusines__c</field>
+            <value>
+                <elementReference>pkl_CustomerInvolvedInAnyMilitaryBusines</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>pkl_InstallBoschProductsIntoMilitaryItem__c</field>
+            <value>
+                <elementReference>pkl_InstallBoschProductsIntoMilitaryItem</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>pkl_Items__c</field>
+            <value>
+                <elementReference>pkl_Items</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>pkl_MilitaryConnections__c</field>
+            <value>
+                <elementReference>pkl_MilitaryConnections</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>pkl_OemOfMilitaryItems__c</field>
+            <value>
+                <elementReference>pkl_OemOfMilitaryItems</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>pkl_ProjectsAndCollaborations__c</field>
+            <value>
+                <elementReference>pkl_ProjectsAndCollaborations</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>pkl_Services__c</field>
+            <value>
+                <elementReference>pkl_Services</elementReference>
+            </value>
+        </inputAssignments>
+        <object>ExportControlSheet__c</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordCreates>
+    <recordLookups>
+        <name>GetExportcontrolsheetRecords</name>
+        <label>GetExportcontrolsheetRecords</label>
+        <locationX>248</locationX>
+        <locationY>134</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Decision_1</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Account__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>recordId</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>ExportControlSheet__c</object>
+        <queriedFields>Id</queriedFields>
+        <sortField>Id</sortField>
+        <sortOrder>Asc</sortOrder>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordUpdates>
+        <name>Update_Account_No</name>
+        <label>Update Account No</label>
+        <locationX>578</locationX>
+        <locationY>890</locationY>
+        <connector>
+            <targetReference>Successfulmessage</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>recordId</elementReference>
+            </value>
+        </filters>
+        <inputAssignments>
+            <field>pkl_CivilianCustomer__c</field>
+            <value>
+                <stringValue>No</stringValue>
+            </value>
+        </inputAssignments>
+        <object>Account</object>
+    </recordUpdates>
+    <recordUpdates>
+        <name>Update_Account_Yes</name>
+        <label>Update Account Yes</label>
+        <locationX>314</locationX>
+        <locationY>890</locationY>
+        <connector>
+            <targetReference>Successfulmessage</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>recordId</elementReference>
+            </value>
+        </filters>
+        <inputAssignments>
+            <field>pkl_CivilianCustomer__c</field>
+            <value>
+                <stringValue>Yes</stringValue>
+            </value>
+        </inputAssignments>
+        <object>Account</object>
+    </recordUpdates>
+    <runInMode>DefaultMode</runInMode>
+    <screens>
+        <name>Error_Screen</name>
+        <label>Error Screen</label>
+        <locationX>50</locationX>
+        <locationY>350</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>true</allowPause>
+        <fields>
+            <name>ShowMessage</name>
+            <fieldText>&lt;p&gt;&lt;strong style=&quot;color: rgb(225, 53, 23);&quot;&gt;Export Control Sheet record has been already created for this account. Only one Civilian Usage Check can be linked to an Account. It is not possible to have more than one Check per Account.&lt;/strong&gt;&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
+    <screens>
+        <description>Screen that contains the three initial questions about the customer for ESC classification.</description>
+        <name>scrn_GeneralKnowledge</name>
+        <label>General Knowledge Screen</label>
+        <locationX>446</locationX>
+        <locationY>350</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>false</allowPause>
+        <connector>
+            <targetReference>scrnCustomer_Website</targetReference>
+        </connector>
+        <fields>
+            <name>pkl_OemOfMilitaryItems</name>
+            <choiceReferences>chc_OemOfMilitaryItems</choiceReferences>
+            <dataType>String</dataType>
+            <fieldText>Is the customer itself an OEM of military items?</fieldText>
+            <fieldType>RadioButtons</fieldType>
+            <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+            <isRequired>true</isRequired>
+        </fields>
+        <fields>
+            <name>pkl_belongToAnOemOfMilitaryItems</name>
+            <choiceReferences>chc_belongToAnOemOfMilitaryItems</choiceReferences>
+            <dataType>String</dataType>
+            <fieldText>Does the customer belong to an OEM of military items?</fieldText>
+            <fieldType>RadioButtons</fieldType>
+            <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+            <isRequired>true</isRequired>
+        </fields>
+        <fields>
+            <name>pkl_InstallBoschProductsIntoMilitaryItem</name>
+            <choiceReferences>chc_InstallBoschProductsIntoMilitaryItems</choiceReferences>
+            <dataType>String</dataType>
+            <fieldText>Does the customer install Bosch products into military items or are Bosch products intended for military use?</fieldText>
+            <fieldType>RadioButtons</fieldType>
+            <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+            <isRequired>true</isRequired>
+        </fields>
+        <fields>
+            <name>pkl_CustomerInvolvedInAnyMilitaryBusines</name>
+            <choiceReferences>chc_CustomerInvolvedInAnyMilitaryBusiness</choiceReferences>
+            <dataType>String</dataType>
+            <fieldText>Is the customer involved in any military business activities?</fieldText>
+            <fieldType>RadioButtons</fieldType>
+            <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+            <isRequired>true</isRequired>
+        </fields>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
+    <screens>
+        <name>scrn_Google_Search</name>
+        <label>Google Search Screen</label>
+        <locationX>446</locationX>
+        <locationY>566</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>false</allowPause>
+        <connector>
+            <targetReference>Create_Civilian_Usage_Check</targetReference>
+        </connector>
+        <fields>
+            <name>Google_Search</name>
+            <fieldText>&lt;p&gt;&lt;strong&gt;Are there any indications of military connections or references to the military area?&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;To answer, please enter the following keywords in Google Search or other equivalent Internet search&lt;/p&gt;&lt;p&gt;&lt;strong style=&quot;color: rgb(11, 224, 62);&quot;&gt;engines:&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;- &quot;Customer name&quot; + &quot;military&quot;&lt;/p&gt;&lt;p&gt;- &quot;Customer name&quot; + &quot;defence&quot;&lt;/p&gt;&lt;p&gt;- &quot;Customer name&quot; + &quot;nuclear”&lt;/p&gt;&lt;p&gt;- &quot;Customer name&quot; + &quot;mass destruction&quot;&lt;/p&gt;&lt;p&gt;- &quot;Customer name&quot; + &quot;missiles&quot;&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <fields>
+            <name>pkl_MilitaryConnections</name>
+            <choiceReferences>chc_MiltaryConnections</choiceReferences>
+            <dataType>String</dataType>
+            <fieldType>RadioButtons</fieldType>
+            <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+            <isRequired>true</isRequired>
+        </fields>
+        <fields>
+            <name>chk_IsCivilianCustomer</name>
+            <dataType>Boolean</dataType>
+            <defaultValue>
+                <elementReference>fchk_IsCivilianCustomer</elementReference>
+            </defaultValue>
+            <fieldText>Civilian Customer</fieldText>
+            <fieldType>InputField</fieldType>
+            <inputsOnNextNavToAssocScrn>ResetValues</inputsOnNextNavToAssocScrn>
+            <isRequired>true</isRequired>
+        </fields>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
+    <screens>
+        <description>Screen that contains Customer items, service etc</description>
+        <name>scrnCustomer_Website</name>
+        <label>Customer Website Screen</label>
+        <locationX>446</locationX>
+        <locationY>458</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>false</allowPause>
+        <connector>
+            <targetReference>scrn_Google_Search</targetReference>
+        </connector>
+        <fields>
+            <name>pkl_AboutUsCheck</name>
+            <choiceReferences>chc_AboutUsCheck</choiceReferences>
+            <dataType>String</dataType>
+            <fieldText>“About us” check: Is there any information in the &quot;About Us&quot; section of the customer&#39;s website indicating that the customer is active in the military sector or other reference points indicating proximity to the military sector?  If there is insufficient information in the section &quot;About us&quot; please tick &quot;No&quot; and go next.</fieldText>
+            <fieldType>RadioButtons</fieldType>
+            <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+            <isRequired>true</isRequired>
+        </fields>
+        <fields>
+            <name>pkl_BusinessAreas</name>
+            <choiceReferences>chc_BusinessAreas</choiceReferences>
+            <dataType>String</dataType>
+            <fieldText>Business areas: Does the customer serve military businesses or businesses with military proximity?</fieldText>
+            <fieldType>RadioButtons</fieldType>
+            <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+            <isRequired>true</isRequired>
+        </fields>
+        <fields>
+            <name>pkl_Items</name>
+            <choiceReferences>chc_Items</choiceReferences>
+            <dataType>String</dataType>
+            <fieldText>Items (incl. goods, software, technology): Does the customer sell or broker products with military proximity or even military goods?</fieldText>
+            <fieldType>RadioButtons</fieldType>
+            <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+            <isRequired>true</isRequired>
+        </fields>
+        <fields>
+            <name>pkl_Services</name>
+            <choiceReferences>chc_Services</choiceReferences>
+            <dataType>String</dataType>
+            <fieldText>Services: Does the customer provide or broker services for military applications?</fieldText>
+            <fieldType>RadioButtons</fieldType>
+            <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+            <isRequired>true</isRequired>
+        </fields>
+        <fields>
+            <name>pkl_ProjectsAndCollaborations</name>
+            <choiceReferences>chc_ProjectsAndCollaborations</choiceReferences>
+            <dataType>String</dataType>
+            <fieldText>Projects and collaborations: Does the customer participate in military-related projects?</fieldText>
+            <fieldType>RadioButtons</fieldType>
+            <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+            <isRequired>true</isRequired>
+        </fields>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
+    <screens>
+        <name>Successfulmessage</name>
+        <label>Successfulmessage</label>
+        <locationX>446</locationX>
+        <locationY>1082</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>false</allowPause>
+        <fields>
+            <name>Success_Mesage</name>
+            <fieldText>&lt;p style=&quot;text-align: center;&quot;&gt;&lt;strong style=&quot;color: rgb(67, 192, 128);&quot;&gt;Export Control Sheet has been created Successfully&lt;/strong&gt;&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
+    <start>
+        <locationX>122</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>GetExportcontrolsheetRecords</targetReference>
+        </connector>
+    </start>
+    <status>Active</status>
+    <variables>
+        <name>recordId</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+</Flow>
