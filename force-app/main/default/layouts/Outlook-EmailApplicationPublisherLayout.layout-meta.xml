@@ -10,6 +10,9 @@
         <quickActionListItems>
             <quickActionName>NewEvent</quickActionName>
         </quickActionListItems>
+        <quickActionListItems>
+            <quickActionName>NewContact</quickActionName>
+        </quickActionListItems>
     </quickActionList>
     <showEmailCheckbox>false</showEmailCheckbox>
     <showRunAssignmentRulesCheckbox>false</showRunAssignmentRulesCheckbox>
