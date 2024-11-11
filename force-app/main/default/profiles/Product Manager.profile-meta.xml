@@ -6,6 +6,12 @@
         <enabled>false</enabled>
     </classAccesses>-->
     <custom>true</custom>
+    <userLicense>Salesforce</userLicense>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Account.ftxt_GTS__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
         <field>Account.pkl_IsTradingPartnerNoRequired__c</field>
@@ -273,6 +279,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Lead.SSP_AdditionalInformation__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Contract.fchk_SendReminder__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -424,6 +435,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Opportunity.fcur_WeightedValue__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Opportunity.ftxtOpportunityTitle__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -676,6 +692,12 @@
         <field>SBQQ__QuoteLine__c.Product_Image__c</field>
         <readable>true</readable>
     </fieldPermissions>
+    <!--
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>SBQQ__QuoteLine__c.ftxt_ApprovalStatus__c</field>
+        <readable>true</readable>
+    </fieldPermissions>-->
     <fieldPermissions>
         <editable>true</editable>
         <field>SBQQ__QuoteLine__c.pkl_INCOTerms1__c</field>
@@ -1232,6 +1254,14 @@
         <layout>Contract-Contract Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
+        <layout>ExportControlSheet__c-Export Control Sheet Layout</layout>
+    </layoutAssignments>
+    <!--
+    <layoutAssignments>
+        <layout>FurtherPriceInformation__c-Further Price Information Layout</layout>
+    </layoutAssignments>
+    -->
+    <layoutAssignments>
         <layout>Opportunity-Frame Contract Opportunity Layout</layout>
         <recordType>Opportunity.FrameContract</recordType>
     </layoutAssignments>
@@ -1347,7 +1377,6 @@
         <tab>standard-Order</tab>
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
-    <userLicense>Salesforce</userLicense>
     <userPermissions>
         <enabled>true</enabled>
         <name>ActivitiesAccess</name>

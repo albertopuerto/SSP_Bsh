@@ -5,6 +5,16 @@
     <description>Field that is needed for the Order interface. The contact of the customer that is responsible for the licences etc.</description>
     <externalId>false</externalId>
     <label>Tool Coordinator</label>
+    <lookupFilter>
+        <active>true</active>
+        <errorMessage>No contacts found related to the Account.</errorMessage>
+        <filterItems>
+            <field>$Source.SBQQ__Account__c</field>
+            <operation>equals</operation>
+            <valueField>Contact.AccountId</valueField>
+        </filterItems>
+        <isOptional>false</isOptional>
+    </lookupFilter>
     <referenceTo>Contact</referenceTo>
     <relationshipLabel>Quotes (Tool Coordinator)</relationshipLabel>
     <relationshipName>Quotes</relationshipName>
