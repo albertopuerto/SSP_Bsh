@@ -2,11 +2,12 @@
 <PermissionSetGroup xmlns="http://soap.sforce.com/2006/04/metadata">
     <description>This permission set group allows Sales Coordinator manage multiple action on given objects</description>
     <hasActivationRequired>false</hasActivationRequired>
-    <label>SalesCoordinator</label>
+    <label>Sales Coordinator</label>
     <permissionSets>AccountMaster</permissionSets>
     <permissionSets>CPQEnhancedUser</permissionSets>
     <permissionSets>CPQRead</permissionSets>
     <permissionSets>ContactMaster</permissionSets>
     <permissionSets>SalesBasic</permissionSets>
+    <permissionSets>Sales_Coordinator1</permissionSets>
     <status>Updated</status>
 </PermissionSetGroup>
