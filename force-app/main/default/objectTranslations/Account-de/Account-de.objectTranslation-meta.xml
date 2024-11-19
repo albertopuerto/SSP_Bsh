@@ -14,10 +14,7 @@
     
     <layouts>
         <layout>Account Layout</layout>
-        <sections>
-            <label><!-- Account Summary --></label>
-            <section>Account Summary</section>
-        </sections>
+        
     </layouts>
     <quickActions>
         <label><!-- Child Account --></label>
