@@ -14,7 +14,12 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Order.dt_CRDPlannedOrderDeliveryDate__c</field>
+        <field>Account.pkl_DeliveryControlHead__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Account.pkl_MaxNoofPartialDeliveries__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
