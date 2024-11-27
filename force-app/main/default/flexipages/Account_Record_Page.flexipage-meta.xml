@@ -196,16 +196,6 @@
                 <identifier>Recordtxt_VATID_cField</identifier>
             </fieldInstance>
         </itemInstances>
-        <itemInstances>
-            <fieldInstance>
-                <fieldInstanceProperties>
-                    <name>uiBehavior</name>
-                    <value>none</value>
-                </fieldInstanceProperties>
-                <fieldItem>Record.txt_ExternalID__c</fieldItem>
-                <identifier>Recordtxt_ExternalID_cField</identifier>
-            </fieldInstance>
-        </itemInstances>
         <name>Facet-3aeb2e98-c1c8-4ccf-ac41-d0ce43bd7bdc</name>
         <type>Facet</type>
     </flexiPageRegions>
@@ -282,26 +272,6 @@
         <type>Facet</type>
     </flexiPageRegions>
     <flexiPageRegions>
-        <itemInstances>
-            <fieldInstance>
-                <fieldInstanceProperties>
-                    <name>uiBehavior</name>
-                    <value>none</value>
-                </fieldInstanceProperties>
-                <fieldItem>Record.Industry</fieldItem>
-                <identifier>RecordIndustryField</identifier>
-            </fieldInstance>
-        </itemInstances>
-        <itemInstances>
-            <fieldInstance>
-                <fieldInstanceProperties>
-                    <name>uiBehavior</name>
-                    <value>none</value>
-                </fieldInstanceProperties>
-                <fieldItem>Record.NumberOfEmployees</fieldItem>
-                <identifier>RecordNumberOfEmployeesField</identifier>
-            </fieldInstance>
-        </itemInstances>
         <name>Facet-ef4f2a2c-d1f7-47ec-8295-f97f0471ff7a</name>
         <type>Facet</type>
     </flexiPageRegions>
