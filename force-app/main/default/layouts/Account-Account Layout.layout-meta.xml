@@ -48,6 +48,14 @@
                 <behavior>Readonly</behavior>
                 <field>pkl_CivilianCustomer__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>pkl_DeliveryControlHead__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>pkl_MaxNoofPartialDeliveries__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
