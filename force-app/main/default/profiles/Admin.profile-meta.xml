@@ -14,7 +14,7 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Order.dt_CRDPlannedOrderDeliveryDate__c</field>
+        <field>Account.txt_AthenaUUID__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
