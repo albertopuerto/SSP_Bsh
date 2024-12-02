@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GlobalValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customValue>
+        <fullName>Form Header</fullName>
+        <default>false</default>
+        <label>Form Header</label>
+    </customValue>
+    <customValue>
+        <fullName>Header Note 1</fullName>
+        <default>false</default>
+        <label>Header Note 1</label>
+    </customValue>
+    <customValue>
+        <fullName>Header Note 2</fullName>
+        <default>false</default>
+        <label>Header Note 2</label>
+    </customValue>
+    <customValue>
+        <fullName>CpD Peppol Receiver ID</fullName>
+        <default>false</default>
+        <label>CpD Peppol Receiver ID</label>
+    </customValue>
+    <customValue>
+        <fullName>NL Chamber of Comm. No. (KVK)</fullName>
+        <default>false</default>
+        <label>NL Chamber of Comm. No. (KVK)</label>
+    </customValue>
+    <customValue>
+        <fullName>NL Org. Ident. No. (OIN)</fullName>
+        <default>false</default>
+        <label>NL Org. Ident. No. (OIN)</label>
+    </customValue>
+    <customValue>
+        <fullName>France: Code Service</fullName>
+        <default>false</default>
+        <label>France: Code Service</label>
+    </customValue>
+    <customValue>
+        <fullName>VAT Exempt Reason</fullName>
+        <default>false</default>
+        <label>VAT Exempt Reason</label>
+    </customValue>
+    <customValue>
+        <fullName>Business Space/Charging Device</fullName>
+        <default>false</default>
+        <label>Business Space/Charging Device</label>
+    </customValue>
+    <customValue>
+        <fullName>External Fiscalization Number</fullName>
+        <default>false</default>
+        <label>External Fiscalization Number</label>
+    </customValue>
+    <customValue>
+        <fullName>Paragon Invoice Number</fullName>
+        <default>false</default>
+        <label>Paragon Invoice Number</label>
+    </customValue>
+    <customValue>
+        <fullName>Protection Code</fullName>
+        <default>false</default>
+        <label>Protection Code</label>
+    </customValue>
+    <customValue>
+        <fullName>JIR</fullName>
+        <default>false</default>
+        <label>JIR</label>
+    </customValue>
+    <description>Used  for SAP integration interface - IF001</description>
+    <masterLabel>Text Object Type</masterLabel>
+    <sorted>false</sorted>
+</GlobalValueSet>

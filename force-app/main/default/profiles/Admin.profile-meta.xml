@@ -875,6 +875,9 @@
         <layout>Global-Outlook publisher layout</layout>
     </layoutAssignments>
     <layoutAssignments>
+        <layout>OrderItem-Order Product Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
         <layout>Outlook-EmailApplicationPublisherLayout</layout>
     </layoutAssignments>
 </Profile>
