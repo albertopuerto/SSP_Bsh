@@ -14,6 +14,16 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Account.pkl_DeliveryControlHead__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Account.pkl_MaxNoofPartialDeliveries__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Account.txt_AthenaUUID__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -150,6 +160,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Contract.fdat_ReminderDate__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>SBQQ__Quote__c.lkp_ToolCoordinator__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <userPermissions>
