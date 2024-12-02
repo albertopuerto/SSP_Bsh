@@ -4,16 +4,35 @@
         <itemInstances>
             <componentInstance>
                 <componentInstanceProperties>
+                    <name>actionNames</name>
+                    <valueList>
+                        <valueListItems>
+                            <value>Account.Civilian_Military_Usage_Check</value>
+                            <visibilityRule>
+                                <criteria>
+                                    <leftValue>{!Record.pkl_CivilianCustomer__c}</leftValue>
+                                    <operator>EQUAL</operator>
+                                    <rightValue>Pending</rightValue>
+                                </criteria>
+                            </visibilityRule>
+                        </valueListItems>
+                    </valueList>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
                     <name>collapsed</name>
                     <value>false</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>enableActionsConfiguration</name>
-                    <value>false</value>
+                    <value>true</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>enableActionsInNative</name>
+                    <value>true</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>hideChatterActions</name>
-                    <value>false</value>
+                    <value>true</value>
                 </componentInstanceProperties>
                 <componentName>force:highlightsPanel</componentName>
                 <identifier>force_highlightsPanel</identifier>
@@ -84,6 +103,12 @@
                 <identifier>Recordtxt_SearchTerm2_cField</identifier>
             </fieldInstance>
         </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldItem>Record.txt_AthenaUUID__c</fieldItem>
+                <identifier>Recordtxt_AthenaUUID__cField</identifier>
+            </fieldInstance>
+        </itemInstances>
         <name>Facet-3bbfbb4b-102f-42f0-84f4-80b389f788f5</name>
         <type>Facet</type>
     </flexiPageRegions>
@@ -144,7 +169,7 @@
                     <name>uiBehavior</name>
                     <value>none</value>
                 </fieldInstanceProperties>
-                <fieldItem>Record.pkl_Customer_Block__c</fieldItem>
+                <fieldItem>Record.pkl_CustomerBlock__c</fieldItem>
                 <identifier>Recordpkl_Customer_Block_cField2</identifier>
             </fieldInstance>
         </itemInstances>
@@ -724,7 +749,7 @@
                 <visibilityRule>
                     <booleanFilter>1 AND (2 OR 3 OR 4)</booleanFilter>
                     <criteria>
-                        <leftValue>{!Record.pkl_Customer_Block__c}</leftValue>
+                        <leftValue>{!Record.pkl_CustomerBlock__c}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>Blocked</rightValue>
                     </criteria>
@@ -761,7 +786,7 @@
                 <visibilityRule>
                     <booleanFilter>1 AND ( 2 OR 3 OR 4)</booleanFilter>
                     <criteria>
-                        <leftValue>{!Record.pkl_Customer_Block__c}</leftValue>
+                        <leftValue>{!Record.pkl_CustomerBlock__c}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>Pending</rightValue>
                     </criteria>
