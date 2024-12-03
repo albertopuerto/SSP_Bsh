@@ -39,6 +39,16 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Contract.fchk_SendReminder__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Contract.fdat_ReminderDate__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Lead.SSP_AdditionalInformation__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -62,6 +72,11 @@
         <field>Product2.txr_AdditionaInformation__c</field>
         <readable>true</readable>
     </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>SBQQ__Quote__c.lkp_ToolCoordinator__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
     <userPermissions>
         <enabled>true</enabled>
         <name>ApiEnabled</name>
@@ -74,4 +89,7 @@
         <enabled>true</enabled>
         <name>ChatterInternalUser</name>
     </userPermissions>
+    <layoutAssignments>
+        <layout>ExportControlSheet__c-Export Control Sheet Layout</layout>
+    </layoutAssignments>
 </Profile>

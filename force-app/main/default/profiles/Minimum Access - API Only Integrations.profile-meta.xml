@@ -44,4 +44,22 @@
         <field>Opportunity.ftxtOpportunityTitle__c</field>
         <readable>true</readable>
     </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>SBQQ__Quote__c.lkp_ToolCoordinator__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <layoutAssignments>
+        <layout>ExportControlSheet__c-Export Control Sheet Layout</layout>
+    </layoutAssignments>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Contract.fchk_SendReminder__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Contract.fdat_ReminderDate__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
 </Profile>
