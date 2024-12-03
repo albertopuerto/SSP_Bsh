@@ -1,0 +1,343 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>62.0</apiVersion>
+    <assignments>
+        <description>Change the role of Account Team Member to Acquisition Manager if he/she is an Opportunity Owner</description>
+        <name>asgn_NewTeamRole</name>
+        <label>Assign New Team Role</label>
+        <locationX>138</locationX>
+        <locationY>863</locationY>
+        <assignmentItems>
+            <assignToReference>obj_OpportunityTeamMember.TeamMemberRole</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>Acquisition Manager</stringValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>asgn_OpportunityTeam</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <description>Create the Opportunity Team Members collection</description>
+        <name>asgn_OpportunityTeam</name>
+        <label>Assign Opportunity Team</label>
+        <locationX>270</locationX>
+        <locationY>1055</locationY>
+        <assignmentItems>
+            <assignToReference>objs_OpportunityTeamMembers</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>obj_OpportunityTeamMember</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>lp_obj_AccountTeamMembers</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <description>Create an Opportunity Team Member record</description>
+        <name>asgn_OpportunityTeamMember</name>
+        <label>Assign Opportunity Team Member</label>
+        <locationX>270</locationX>
+        <locationY>647</locationY>
+        <assignmentItems>
+            <assignToReference>obj_OpportunityTeamMember.OpportunityId</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>obj_OpportunityTeamMember.UserId</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>lp_obj_AccountTeamMembers.UserId</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>obj_OpportunityTeamMember.OpportunityAccessLevel</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>Edit</stringValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>decn_IsOppOwnerAccountTeamMember</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <description>Keep the Team Role on the Opportunity Team Member record</description>
+        <name>asgn_TeamRole</name>
+        <label>Assign Team Role</label>
+        <locationX>402</locationX>
+        <locationY>863</locationY>
+        <assignmentItems>
+            <assignToReference>obj_OpportunityTeamMember.TeamMemberRole</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>lp_obj_AccountTeamMembers.TeamMemberRole</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>asgn_OpportunityTeam</targetReference>
+        </connector>
+    </assignments>
+    <collectionProcessors>
+        <description>Filter the Opportunity Team to check if the Opportunity Owner is a member of the Opportunity Team</description>
+        <name>filter_OppTeam</name>
+        <elementSubtype>FilterCollectionProcessor</elementSubtype>
+        <label>Filter Opportunity Team</label>
+        <locationX>50</locationX>
+        <locationY>1355</locationY>
+        <assignNextValueToReference>currentItem_filter_OppTeam</assignNextValueToReference>
+        <collectionProcessorType>FilterCollectionProcessor</collectionProcessorType>
+        <collectionReference>get_obj_AccountTeamMembers</collectionReference>
+        <conditionLogic>and</conditionLogic>
+        <conditions>
+            <leftValueReference>currentItem_filter_OppTeam.UserId</leftValueReference>
+            <operator>EqualTo</operator>
+            <rightValue>
+                <elementReference>$Record.OwnerId</elementReference>
+            </rightValue>
+        </conditions>
+        <connector>
+            <targetReference>decn_IsOppoOwnerOppTeamMember</targetReference>
+        </connector>
+    </collectionProcessors>
+    <customErrors>
+        <name>msg_ErrorMessage</name>
+        <label>Error Message</label>
+        <locationX>710</locationX>
+        <locationY>1355</locationY>
+        <customErrorMessages>
+            <errorMessage>The Opportunity Team hasn&#39;t been created. Please review the Account Team on the Opportunity Account and fix the issue. The Opportunity Team should be the same as the Account Team.</errorMessage>
+            <isFieldError>false</isFieldError>
+        </customErrorMessages>
+    </customErrors>
+    <customErrors>
+        <name>msg_ErrorMessageOppOwner</name>
+        <label>Error Message Opp Owner</label>
+        <locationX>446</locationX>
+        <locationY>1679</locationY>
+        <customErrorMessages>
+            <errorMessage>The Opportunity Owner hasn&#39;t been added to the Opportunity Team.</errorMessage>
+            <isFieldError>false</isFieldError>
+        </customErrorMessages>
+    </customErrors>
+    <decisions>
+        <description>Check if Account Team exists</description>
+        <name>decn_AreTeamMembersAvailable</name>
+        <label>Account Team Members Available?</label>
+        <locationX>512</locationX>
+        <locationY>431</locationY>
+        <defaultConnectorLabel>No</defaultConnectorLabel>
+        <rules>
+            <name>decn_AreTeamMembersAvailable_Yes</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>get_obj_AccountTeamMembers</leftValueReference>
+                <operator>IsEmpty</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>lp_obj_AccountTeamMembers</targetReference>
+            </connector>
+            <label>Yes</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>decn_IsOppoOwnerOppTeamMember</name>
+        <label>Is Opportunity Owner Opportunity Team Member?</label>
+        <locationX>50</locationX>
+        <locationY>1463</locationY>
+        <defaultConnector>
+            <targetReference>cre_obj_OppOwnerOppTeamMember</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>No</defaultConnectorLabel>
+        <rules>
+            <name>Yes_OppOwner</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>filter_OppTeam</leftValueReference>
+                <operator>IsEmpty</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <label>Yes</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <description>Checks if the Opportunity owner is a member of the Account Team</description>
+        <name>decn_IsOppOwnerAccountTeamMember</name>
+        <label>Is Opportunity Owner Account Team Member?</label>
+        <locationX>270</locationX>
+        <locationY>755</locationY>
+        <defaultConnector>
+            <targetReference>asgn_TeamRole</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>No</defaultConnectorLabel>
+        <rules>
+            <name>decn_IsOppOwnerAccountTeamMember_Yes</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.OwnerId</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <elementReference>lp_obj_AccountTeamMembers.UserId</elementReference>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>asgn_NewTeamRole</targetReference>
+            </connector>
+            <label>Yes</label>
+        </rules>
+    </decisions>
+    <description>The flow copies the Account Team members and add them to the Opportunity Team with Read/Write access to the record.</description>
+    <environments>Default</environments>
+    <interviewLabel>Opportunity Create Opportunity Team {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Opportunity Create Opportunity Team</label>
+    <loops>
+        <name>lp_obj_AccountTeamMembers</name>
+        <label>Loop through Account Team Members</label>
+        <locationX>50</locationX>
+        <locationY>539</locationY>
+        <collectionReference>get_obj_AccountTeamMembers</collectionReference>
+        <iterationOrder>Asc</iterationOrder>
+        <nextValueConnector>
+            <targetReference>asgn_OpportunityTeamMember</targetReference>
+        </nextValueConnector>
+        <noMoreValuesConnector>
+            <targetReference>cre_obj_OpportunityTeamMember</targetReference>
+        </noMoreValuesConnector>
+    </loops>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordCreates>
+        <description>Create all Opportunity Team members</description>
+        <name>cre_obj_OpportunityTeamMember</name>
+        <label>Create Opportunity Team Members</label>
+        <locationX>50</locationX>
+        <locationY>1247</locationY>
+        <connector>
+            <targetReference>filter_OppTeam</targetReference>
+        </connector>
+        <faultConnector>
+            <targetReference>msg_ErrorMessage</targetReference>
+        </faultConnector>
+        <inputReference>objs_OpportunityTeamMembers</inputReference>
+    </recordCreates>
+    <recordCreates>
+        <description>Add the opportunity owner to the Opportunity Team</description>
+        <name>cre_obj_OppOwnerOppTeamMember</name>
+        <label>Add Opportunity Owner to Opportunity Team</label>
+        <locationX>182</locationX>
+        <locationY>1571</locationY>
+        <faultConnector>
+            <targetReference>msg_ErrorMessageOppOwner</targetReference>
+        </faultConnector>
+        <inputAssignments>
+            <field>OpportunityAccessLevel</field>
+            <value>
+                <stringValue>Edit</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>OpportunityId</field>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>TeamMemberRole</field>
+            <value>
+                <stringValue>Acquisition Manager</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>UserId</field>
+            <value>
+                <elementReference>$Record.OwnerId</elementReference>
+            </value>
+        </inputAssignments>
+        <object>OpportunityTeamMember</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordCreates>
+    <recordLookups>
+        <description>Get Account Team Members of the Opportunity Account</description>
+        <name>get_obj_AccountTeamMembers</name>
+        <label>Get Account Team Members</label>
+        <locationX>512</locationX>
+        <locationY>323</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>decn_AreTeamMembersAvailable</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>AccountId</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.Account.Id</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>false</getFirstRecordOnly>
+        <object>AccountTeamMember</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <start>
+        <locationX>386</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>get_obj_AccountTeamMembers</targetReference>
+        </connector>
+        <object>Opportunity</object>
+        <recordTriggerType>Create</recordTriggerType>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Active</status>
+    <variables>
+        <name>currentItem_filter_OppTeam</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>AccountTeamMember</objectType>
+    </variables>
+    <variables>
+        <name>obj_OpportunityTeamMember</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>OpportunityTeamMember</objectType>
+    </variables>
+    <variables>
+        <name>objs_OpportunityTeamMembers</name>
+        <dataType>SObject</dataType>
+        <isCollection>true</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>OpportunityTeamMember</objectType>
+    </variables>
+</Flow>

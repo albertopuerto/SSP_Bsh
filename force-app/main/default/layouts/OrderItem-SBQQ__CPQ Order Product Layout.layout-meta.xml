@@ -54,6 +54,18 @@
                 <behavior>Required</behavior>
                 <field>pkl_QuantityUnit__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>dt_CRDPlannedOrderDeliveryDate__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>dt_SAPPlannedOrderDeliveryDate__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Personal_Text_on_Order__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
@@ -63,10 +75,6 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>EndDate</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>dat_ExpectedDeliveryDate__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
