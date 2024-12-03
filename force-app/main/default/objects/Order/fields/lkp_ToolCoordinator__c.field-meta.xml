@@ -4,7 +4,7 @@
     <deleteConstraint>SetNull</deleteConstraint>
     <description>Field that is needed for the Order interface. The contact of the customer that is responsible for the licenses etc.</description>
     <externalId>false</externalId>
-    <inlineHelpText>The contact of the customer that is responsible for the licenses etc</inlineHelpText>
+    <inlineHelpText>Input contact details of person on customer side, managing license distribution to users on customer side</inlineHelpText>
     <label>Tool Coordinator</label>
     <lookupFilter>
         <active>true</active>

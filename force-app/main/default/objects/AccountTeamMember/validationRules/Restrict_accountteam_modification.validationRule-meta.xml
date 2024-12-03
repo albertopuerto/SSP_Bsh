@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Restrict_accountteam_modification</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND( NOT($Profile.Name = &#39;System Administrator&#39;), NOT($User.Id = Account.OwnerId))</errorConditionFormula>
+    <errorMessage>Only Admins and Account owner can modify the Account Team</errorMessage>
+</ValidationRule>
