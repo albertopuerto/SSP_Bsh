@@ -14,6 +14,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Account.pkl_CustomerBlock__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Account.pkl_DeliveryControlHead__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -29,22 +34,22 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Order.dt_SAPPlannedOrderDeliveryDate__c</field>
+        <field>Order.dat_CRDPlannedOrderDeliveryDate__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>OrderItem.dt_CRDPlannedOrderDeliveryDate__c</field>
+        <field>Order.dat_SAPPlannedOrderDeliveryDate__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>OrderItem.dt_SAPPlannedOrderDeliveryDate__c</field>
+        <field>OrderItem.dat_CRDPlannedOrderItemDeliveryDate__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Account.pkl_Customer_Block__c</field>
+        <field>OrderItem.dat_SAPPlannedOrderItemDeliveryDate__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -110,11 +115,6 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Opportunity.ftxtOpportunityTitle__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>Order.dt_CRDPlannedOrderDeliveryDate__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -888,6 +888,9 @@
     </layoutAssignments>
     <layoutAssignments>
         <layout>Global-Outlook publisher layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>OrderItem-Order Product Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
         <layout>Outlook-EmailApplicationPublisherLayout</layout>
