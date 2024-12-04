@@ -395,7 +395,7 @@
         </connector>
         <fields>
             <name>Google_Search</name>
-            <fieldText>&lt;p&gt;&lt;strong&gt;Are there any indications of military connections or references to the military area?&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;To answer, please enter the following keywords in Google Search or other equivalent Internet search&lt;/p&gt;&lt;p&gt;&lt;strong style=&quot;color: rgb(11, 224, 62);&quot;&gt;engines:&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;- &quot;Customer name&quot; + &quot;military&quot;&lt;/p&gt;&lt;p&gt;- &quot;Customer name&quot; + &quot;defence&quot;&lt;/p&gt;&lt;p&gt;- &quot;Customer name&quot; + &quot;nuclear”&lt;/p&gt;&lt;p&gt;- &quot;Customer name&quot; + &quot;mass destruction&quot;&lt;/p&gt;&lt;p&gt;- &quot;Customer name&quot; + &quot;missiles&quot;&lt;/p&gt;</fieldText>
+            <fieldText>&lt;p&gt;&lt;strong&gt;Are there any indications of military connections or references to the &lt;/strong&gt;&lt;strong style=&quot;color: rgb(0, 0, 0);&quot;&gt;military area?&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;To answer, please enter the following keywords in Google Search or other equivalent Internet search&lt;/p&gt;&lt;p&gt;&lt;strong style=&quot;color: rgb(0, 0, 0);&quot;&gt;engines:&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;- &quot;Customer name&quot; + &quot;military&quot;&lt;/p&gt;&lt;p&gt;- &quot;Customer name&quot; + &quot;defence&quot;&lt;/p&gt;&lt;p&gt;- &quot;Customer name&quot; + &quot;nuclear”&lt;/p&gt;&lt;p&gt;- &quot;Customer name&quot; + &quot;mass destruction&quot;&lt;/p&gt;&lt;p&gt;- &quot;Customer name&quot; + &quot;missiles&quot;&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
         </fields>
         <fields>
