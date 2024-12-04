@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Layout xmlns="http://soap.sforce.com/2006/04/metadata">
-    <excludeButtons>OpenSlackRecordChannel</excludeButtons>
     <layoutSections>
         <customLabel>false</customLabel>
         <detailHeading>false</detailHeading>
@@ -33,11 +32,11 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>dt_CRDPlannedOrderDeliveryDate__c</field>
+                <field>dat_CRDPlannedOrderItemDeliveryDate__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>dt_SAPPlannedOrderDeliveryDate__c</field>
+                <field>dat_SAPPlannedOrderItemDeliveryDate__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
@@ -127,6 +126,12 @@
     <multilineLayoutFields>txt_INCOTerms2__c</multilineLayoutFields>
     <multilineLayoutFields>pkl_PaymentTerms__c</multilineLayoutFields>
     <multilineLayoutFields>pkl_QuantityUnit__c</multilineLayoutFields>
+    <relatedLists>
+        <fields>pkl_Language__c</fields>
+        <fields>pkl_TextObjectType__c</fields>
+        <fields>txt_PlainLongText__c</fields>
+        <relatedList>LineItemText__c.lkp_OrderItem__c</relatedList>
+    </relatedLists>
     <showEmailCheckbox>false</showEmailCheckbox>
     <showRunAssignmentRulesCheckbox>false</showRunAssignmentRulesCheckbox>
     <showSubmitAndAttachButton>false</showSubmitAndAttachButton>
