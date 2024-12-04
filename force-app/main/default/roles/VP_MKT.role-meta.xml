@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Role xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseAccessLevel>Edit</caseAccessLevel>
+    <contactAccessLevel>Edit</contactAccessLevel>
+    <description>VP MKT and Business Strategy, Portfolio Mgm</description>
+    <mayForecastManagerShare>false</mayForecastManagerShare>
+    <name>VP MKT and Business Strategy, Portfolio Mgm</name>
+    <opportunityAccessLevel>Edit</opportunityAccessLevel>
+    <parentRole>Exec_VP_Sales_and_Marketing</parentRole>
+</Role>
