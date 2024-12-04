@@ -100,4 +100,19 @@
     <layoutAssignments>
         <layout>OrderItem-Order Product Layout</layout>
     </layoutAssignments>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>Apttus__APTS_Agreement__c.Co_marketing_agreement</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>Apttus__APTS_Agreement__c.NDA_MBS</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>Apttus__APTS_Agreement__c.Partner_Distribution_Agreement</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
 </Profile>
