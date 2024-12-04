@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Apttus__DocumentReviewLevel__c</fullName>
+    <deprecated>false</deprecated>
+    <description>This field will store the value of Review Level of the Imported Document</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Review Level of the Imported Document</inlineHelpText>
+    <label>Document Review Level</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>0 - Skip Review</fullName>
+                <default>false</default>
+                <label>0 - Skip Review</label>
+            </value>
+            <value>
+                <fullName>1 - One level - Review and Complete</fullName>
+                <default>false</default>
+                <label>1 - One level - Review and Complete</label>
+            </value>
+            <value>
+                <fullName>2 - Two levels - Review and Approve</fullName>
+                <default>false</default>
+                <label>2 - Two levels - Review and Approve</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>
