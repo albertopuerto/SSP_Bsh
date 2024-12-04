@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <RecordType xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>FrameContract</fullName>
+    <fullName>EPA</fullName>
     <active>true</active>
-    <compactLayoutAssignment>Apttus_Default</compactLayoutAssignment>
-    <description>Sales/Services Agreement</description>
-    <label>Frame Contract</label>
+    <description>Environmental Protection Agency Agreement</description>
+    <label>EPA</label>
     <picklistValues>
         <picklist>APTS_Data_Security__c</picklist>
         <values>
@@ -293,7 +292,7 @@
         <picklist>APTS_Type_of_Paper__c</picklist>
         <values>
             <fullName>Own Paper</fullName>
-            <default>true</default>
+            <default>false</default>
         </values>
         <values>
             <fullName>Third Party Paper</fullName>
@@ -397,25 +396,6 @@
         </values>
         <values>
             <fullName>Rejected</fullName>
-            <default>false</default>
-        </values>
-    </picklistValues>
-    <picklistValues>
-        <picklist>Apttus__Agreement_Category__c</picklist>
-        <values>
-            <fullName>Corporate</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>Other</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>Procurement</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>Sales</fullName>
             <default>false</default>
         </values>
     </picklistValues>
