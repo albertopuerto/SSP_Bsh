@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>pkl_TextObjectType__c</fullName>
+    <description>Type of the written text</description>
+    <externalId>false</externalId>
+    <label>Text Object Type</label>
+    <required>true</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetName>Text_Object_Type</valueSetName>
+    </valueSet>
+</CustomField>
