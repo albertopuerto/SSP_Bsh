@@ -1,14 +1,74 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <GlobalValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
     <customValue>
+        <fullName>Afrikaans</fullName>
+        <default>false</default>
+        <label>Afrikaans</label>
+    </customValue>
+    <customValue>
+        <fullName>Arabic</fullName>
+        <default>false</default>
+        <label>Arabic</label>
+    </customValue>
+    <customValue>
+        <fullName>Bulgarian</fullName>
+        <default>false</default>
+        <label>Bulgarian</label>
+    </customValue>
+    <customValue>
+        <fullName>Catalan</fullName>
+        <default>false</default>
+        <label>Catalan</label>
+    </customValue>
+    <customValue>
         <fullName>Chinese</fullName>
         <default>false</default>
         <label>Chinese</label>
     </customValue>
     <customValue>
+        <fullName>Chinese trad.</fullName>
+        <default>false</default>
+        <label>Chinese trad.</label>
+    </customValue>
+    <customValue>
+        <fullName>Croatian</fullName>
+        <default>false</default>
+        <label>Croatian</label>
+    </customValue>
+    <customValue>
+        <fullName>Customer reserve</fullName>
+        <default>false</default>
+        <label>Customer reserve</label>
+    </customValue>
+    <customValue>
+        <fullName>Czech</fullName>
+        <default>false</default>
+        <label>Czech</label>
+    </customValue>
+    <customValue>
+        <fullName>Danish</fullName>
+        <default>false</default>
+        <label>Danish</label>
+    </customValue>
+    <customValue>
+        <fullName>Dutch</fullName>
+        <default>false</default>
+        <label>Dutch</label>
+    </customValue>
+    <customValue>
         <fullName>English</fullName>
         <default>false</default>
         <label>English</label>
+    </customValue>
+    <customValue>
+        <fullName>Estonian</fullName>
+        <default>false</default>
+        <label>Estonian</label>
+    </customValue>
+    <customValue>
+        <fullName>Finnish</fullName>
+        <default>false</default>
+        <label>Finnish</label>
     </customValue>
     <customValue>
         <fullName>French</fullName>
@@ -21,14 +81,149 @@
         <label>German</label>
     </customValue>
     <customValue>
+        <fullName>Greek</fullName>
+        <default>false</default>
+        <label>Greek</label>
+    </customValue>
+    <customValue>
+        <fullName>Hebrew</fullName>
+        <default>false</default>
+        <label>Hebrew</label>
+    </customValue>
+    <customValue>
+        <fullName>Hindi</fullName>
+        <default>false</default>
+        <label>Hindi</label>
+    </customValue>
+    <customValue>
+        <fullName>Hungarian</fullName>
+        <default>false</default>
+        <label>Hungarian</label>
+    </customValue>
+    <customValue>
+        <fullName>Icelandic</fullName>
+        <default>false</default>
+        <label>Icelandic</label>
+    </customValue>
+    <customValue>
+        <fullName>Indonesian</fullName>
+        <default>false</default>
+        <label>Indonesian</label>
+    </customValue>
+    <customValue>
+        <fullName>Italian</fullName>
+        <default>false</default>
+        <label>Italian</label>
+    </customValue>
+    <customValue>
         <fullName>Japanese</fullName>
         <default>false</default>
         <label>Japanese</label>
     </customValue>
     <customValue>
+        <fullName>Kazakh</fullName>
+        <default>false</default>
+        <label>Kazakh</label>
+    </customValue>
+    <customValue>
         <fullName>Korean</fullName>
         <default>false</default>
         <label>Korean</label>
+    </customValue>
+    <customValue>
+        <fullName>Latvian</fullName>
+        <default>false</default>
+        <label>Latvian</label>
+    </customValue>
+    <customValue>
+        <fullName>Lithuanian</fullName>
+        <default>false</default>
+        <label>Lithuanian</label>
+    </customValue>
+    <customValue>
+        <fullName>Malay</fullName>
+        <default>false</default>
+        <label>Malay</label>
+    </customValue>
+    <customValue>
+        <fullName>Norwegian</fullName>
+        <default>false</default>
+        <label>Norwegian</label>
+    </customValue>
+    <customValue>
+        <fullName>Persian</fullName>
+        <default>false</default>
+        <label>Persian</label>
+    </customValue>
+    <customValue>
+        <fullName>Polish</fullName>
+        <default>false</default>
+        <label>Polish</label>
+    </customValue>
+    <customValue>
+        <fullName>Portuguese</fullName>
+        <default>false</default>
+        <label>Portuguese</label>
+    </customValue>
+    <customValue>
+        <fullName>Romanian</fullName>
+        <default>false</default>
+        <label>Romanian</label>
+    </customValue>
+    <customValue>
+        <fullName>Russian</fullName>
+        <default>false</default>
+        <label>Russian</label>
+    </customValue>
+    <customValue>
+        <fullName>Serbian</fullName>
+        <default>false</default>
+        <label>Serbian</label>
+    </customValue>
+    <customValue>
+        <fullName>Serbian (Latin)</fullName>
+        <default>false</default>
+        <label>Serbian (Latin)</label>
+    </customValue>
+    <customValue>
+        <fullName>Slovak</fullName>
+        <default>false</default>
+        <label>Slovak</label>
+    </customValue>
+    <customValue>
+        <fullName>Slovenian</fullName>
+        <default>false</default>
+        <label>Slovenian</label>
+    </customValue>
+    <customValue>
+        <fullName>Spanish</fullName>
+        <default>false</default>
+        <label>Spanish</label>
+    </customValue>
+    <customValue>
+        <fullName>Swedish</fullName>
+        <default>false</default>
+        <label>Swedish</label>
+    </customValue>
+    <customValue>
+        <fullName>Thai</fullName>
+        <default>false</default>
+        <label>Thai</label>
+    </customValue>
+    <customValue>
+        <fullName>Turkish</fullName>
+        <default>false</default>
+        <label>Turkish</label>
+    </customValue>
+    <customValue>
+        <fullName>Ukrainian</fullName>
+        <default>false</default>
+        <label>Ukrainian</label>
+    </customValue>
+    <customValue>
+        <fullName>Vietnamese</fullName>
+        <default>false</default>
+        <label>Vietnamese</label>
     </customValue>
     <masterLabel>Language</masterLabel>
     <sorted>false</sorted>
