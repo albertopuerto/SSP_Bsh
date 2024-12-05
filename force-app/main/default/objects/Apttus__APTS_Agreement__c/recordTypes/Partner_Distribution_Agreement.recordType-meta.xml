@@ -2,8 +2,38 @@
 <RecordType xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Partner_Distribution_Agreement</fullName>
     <active>true</active>
-    <description>The Cooperation Agreement (Partnership Contract) describes the conditions and the scope for cooperation between ETAS and an external partner / distributor.</description>
+    <description>The Distributor shall promote the sale of the Contract Products at his own expense and with the same effort as dedicated to the sale of his own or third-party products respectively, and he shall carry out sufficient, appropriate and regular marketing acti</description>
     <label>Partner Distribution Agreement</label>
+    <picklistValues>
+        <picklist>APTS_DPO_mentioned_by_name__c</picklist>
+        <values>
+            <fullName>No</fullName>
+            <default>true</default>
+        </values>
+        <values>
+            <fullName>Yes</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>APTS_DSO_Status__c</picklist>
+        <values>
+            <fullName>Closed</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>In Process</fullName>
+            <default>true</default>
+        </values>
+        <values>
+            <fullName>Inactive</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>N%2FA</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
     <picklistValues>
         <picklist>APTS_Data_Security__c</picklist>
         <values>
@@ -49,6 +79,112 @@
         </values>
         <values>
             <fullName>Yes</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>APTS_ISO27001_certified__c</picklist>
+        <values>
+            <fullName>No</fullName>
+            <default>true</default>
+        </values>
+        <values>
+            <fullName>Yes</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>APTS_ISP_Contact__c</picklist>
+        <values>
+            <fullName>Beate Winter</fullName>
+            <default>true</default>
+        </values>
+        <values>
+            <fullName>Bettina Fischer</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>CS%2FDSO</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Christian Rödel</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>DSPiE</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>David Kramer</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Gauri Sahasrabudhe</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Ingo Elias</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Laura Liebermann</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Manuela Rausch</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Marc Schmidt</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Mario Raic</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Markus Mix</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Markus Mix DSPiE</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Michaela Rausch</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Neto Valdemiro</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Other</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Petra Pflüger-Hartmann</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Regine Simon</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Sebastian Balint</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Stefan Westmeier</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Stephan Hobohm</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>alle DSP</fullName>
             <default>false</default>
         </values>
     </picklistValues>
@@ -129,6 +265,21 @@
         </values>
     </picklistValues>
     <picklistValues>
+        <picklist>APTS_Role_of_the_BPA_Party__c</picklist>
+        <values>
+            <fullName>Controller</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Joint controller</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Processor to%3A</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
         <picklist>APTS_Solution_Fields__c</picklist>
         <values>
             <fullName>ETAS-DAP</fullName>
@@ -156,6 +307,17 @@
         </values>
         <values>
             <fullName>ETAS-VOS</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>APTS_Special_customer_requests__c</picklist>
+        <values>
+            <fullName>No</fullName>
+            <default>true</default>
+        </values>
+        <values>
+            <fullName>Yes</fullName>
             <default>false</default>
         </values>
     </picklistValues>

@@ -24,7 +24,122 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Apttus__APTS_Agreement__c.APTS_Comment__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Apttus__APTS_Agreement__c.APTS_Controller__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Apttus__APTS_Agreement__c.APTS_DPO_mentioned_by_name__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Apttus__APTS_Agreement__c.APTS_DSO_Status__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Apttus__APTS_Agreement__c.APTS_Department_DSO_Agreements__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Apttus__APTS_Agreement__c.APTS_Home_Office_Remote_Work__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Apttus__APTS_Agreement__c.APTS_ISO27001_certified__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Apttus__APTS_Agreement__c.APTS_ISO_certificate_expiry_date__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Apttus__APTS_Agreement__c.APTS_ISP_Contact__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Apttus__APTS_Agreement__c.APTS_ISP_Office_contact_1__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Apttus__APTS_Agreement__c.APTS_ISP_Office_contact_2_c__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Apttus__APTS_Agreement__c.APTS_ISP_Office_contact_3__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Apttus__APTS_Agreement__c.APTS_Managing_Party_BPA__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Apttus__APTS_Agreement__c.APTS_Processor__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Apttus__APTS_Agreement__c.APTS_RODA_ID__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Apttus__APTS_Agreement__c.APTS_Role_of_the_BPA_Party__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Apttus__APTS_Agreement__c.APTS_Special_customer_requests__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Apttus__APTS_Agreement__c.APTS_TIA_Comments__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Apttus__APTS_Agreement__c.APTS_TOM_Checklist_Link__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Apttus__APTS_Agreement__c.APTS_TOM_last_review_date__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Apttus__APTS_Agreement__c.APTS_TOM_next_review_date__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Apttus__APTS_Agreement__c.APTS_TOM_review_comment__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Apttus__APTS_Agreement__c.APTS_Transfer_Impact_Assessment__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Apttus__APTS_Agreement__c.Bosch_Privacy_Agreement_Name__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -215,7 +330,37 @@
     </layoutAssignments>
     <recordTypeVisibilities>
         <default>false</default>
+        <recordType>Apttus__APTS_Agreement__c.AVV_BDSG</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>Apttus__APTS_Agreement__c.AVV_GDPR</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>Apttus__APTS_Agreement__c.BPA</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
         <recordType>Apttus__APTS_Agreement__c.Co_marketing_agreement</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>Apttus__APTS_Agreement__c.EU_SCC</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>Apttus__APTS_Agreement__c.GPA</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>Apttus__APTS_Agreement__c.Joint_Controllers</recordType>
         <visible>false</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
@@ -225,7 +370,17 @@
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <default>false</default>
+        <recordType>Apttus__APTS_Agreement__c.Other_DSO</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
         <recordType>Apttus__APTS_Agreement__c.Partner_Distribution_Agreement</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>Apttus__APTS_Agreement__c.X2nd_Processor_EPA_GPA</recordType>
         <visible>false</visible>
     </recordTypeVisibilities>
 </Profile>

@@ -2,7 +2,7 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>APTS_Limitation_of_Liability_Description__c</fullName>
     <externalId>false</externalId>
-    <inlineHelpText>Please describe Limitation of Liability details.</inlineHelpText>
+    <inlineHelpText>Please describe Limitation of Liability details and Liability Regulation</inlineHelpText>
     <label>Limitation of Liability Description</label>
     <length>255</length>
     <required>false</required>

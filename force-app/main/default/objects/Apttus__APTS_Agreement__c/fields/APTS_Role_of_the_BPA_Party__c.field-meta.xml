@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>APTS_Role_of_the_BPA_Party__c</fullName>
+    <externalId>false</externalId>
+    <label>Role of the BPA Party</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>MultiselectPicklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Controller</fullName>
+                <default>false</default>
+                <label>Controller</label>
+            </value>
+            <value>
+                <fullName>Joint controller</fullName>
+                <default>false</default>
+                <label>Joint controller</label>
+            </value>
+            <value>
+                <fullName>Processor to:</fullName>
+                <default>false</default>
+                <label>Processor to:</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+    <visibleLines>4</visibleLines>
+</CustomField>
