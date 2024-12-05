@@ -56,11 +56,11 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>dt_CRDPlannedOrderDeliveryDate__c</field>
+                <field>dat_CRDPlannedOrderItemDeliveryDate__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>dt_SAPPlannedOrderDeliveryDate__c</field>
+                <field>dat_SAPPlannedOrderItemDeliveryDate__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
