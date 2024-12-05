@@ -1,0 +1,787 @@
+<apex:page showHeader="true" sidebar="false" controller="CRMC_PP.AGComponentController" title="Conga Grid Setup" docType="html-4.01-strict">
+
+    <head>
+        <apex:slds />
+
+        <apex:stylesheet value="{! URLFOR($Resource.GridResources, '/styles/core.min.css')}" />
+        <apex:stylesheet value="{! URLFOR($Resource.GridResources, '/styles/admin.min.css')}" />
+
+        <apex:includeScript value="{! URLFOR($Resource.kendoui, '/js/jquery.min.js')}" />
+        <apex:includeScript value="../../soap/ajax/60.0/connection.js" />
+        <apex:includeScript value="{! URLFOR($Resource.kendoui, '/js/kendo.web.min.js')}" />
+        <!-- <apex:includeScript value="{!$Resource.kendodebug}" />  -->
+        <!-- Allows slds dynamic svgs to work in Edge LEX and IE 11 -->
+        <apex:includeScript value="{!URLFOR($Resource.CRMC_PP__GridResources, '/Libs/svg4everybody.min.js')}"/>
+        <!-- Localization Utility -->
+        <c:Localization IsUserLicensed="{!IsUserLicensed}" IsUserPermissionAssigned="{!IsUserPermissionAssigned}"/>
+
+        <apex:includeScript value="{! $Resource.Admin }" />
+        <apex:includeScript value="{! $Resource.Conga_Grid_Instrumentation }" />
+
+        <apex:includeLightning />
+        <script>
+            try {
+                svg4everybody();
+            } catch (error) {
+                // Swallow error, not user impacting
+            }
+            window.$Lightning = $Lightning;
+            var queryArgs = location.search.slice(1).split('&');
+            var queryObj = {};
+            for (var i=0; i<queryArgs.length; i++) {
+              var keyVal = queryArgs[i].split('=');
+              if (keyVal.length === 2) {
+                var key = unescape(keyVal[0].toLowerCase());
+                var value =  unescape(keyVal[1]);
+                if(key !== '__proto__' && key !== 'constructor' && key !== 'prototype'){ //CPQ-83537
+                    queryObj[key] = value;
+                }
+              }
+            }
+
+            var updateFontsize;
+
+            $(document).ready(function() {
+                if("{!IsUserLicensed}" === "true" && "{!IsUserPermissionAssigned}" === "true"){
+                    crmc.require(["admin", "GridAdmin", "ObjectList", "ReportConverter", "sfdc", "Font"], function(admin, AdminService, ObjectList, reportConverter, sfdc, font) {
+                        sforce.connection.sessionId = "{!JSENCODE($Api.Session_ID)}";
+                        admin.init("{!$Api.Session_ID}");
+
+                        // Create global variable so can be used in javascript: url handlers
+                        window.AdminService = AdminService;
+                        // Font
+                        var orgId = sforce.connection.getUserInfo().organizationId;
+
+                        var globalDefault = font.getGlobalDefaults(orgId);
+
+                        var theRadioButtonSet = document.getElementsByName('{!$Component.theForm.fontRadio}');
+
+                        updateFontsize = function(){
+                            font.updateFontSize(theRadioButtonSet, globalDefault, orgId);
+                        }
+
+                        font.setFontSize(theRadioButtonSet, globalDefault);
+
+                        var list = new ObjectList({
+                            elementId: "#ObjectList",
+                            includeGlobal: true,
+                            includeAllObjectsCheckbox: true,
+                            delegate: {
+                            onSelectedChanged: function(text, value) {
+                                $('#setupSplash').css('display', 'none');
+                                // Selected table changed, update display
+                                AdminService.showLoader(function(){
+                                AdminService.getCustomObject(value.name, value.label);
+                                var tabName = $(".crmc_tabstrip").data('kendoTabStrip').select().attr('id');
+                                if (['defaultViews', 'views'].indexOf(tabName) > -1){
+                                    window.initGrids();
+                                }
+                                if (tabName =="integration" || tabName == undefined){
+                                    AdminService.initPageList();
+                                }
+                                 if(tabName == "global") {
+                                    AdminService.initLiveGridPushTopicDeletionList();
+                                }
+                                AdminService.resizeDivs();
+                                });
+                            },
+                            },
+                        });
+
+                        $(".crmc_tabstrip").kendoTabStrip({
+                            activate: function(e){
+                            if (e.contentElement && e.contentElement.style.height == '0px'){
+                                e.contentElement.style.height = 'inherit';
+                            }
+                            },
+                            show: function(e){
+                            AdminService.showLoader(function() {
+                                var tabType = e.item.getAttribute('crmc_tabtype');
+                                var tabStrip = $("#tabstrip").kendoTabStrip().data("kendoTabStrip");
+                                var tabName = tabStrip.select().prop('id');
+
+                                AdminService.initTab(tabName);
+                                if (['defaultViews', 'views'].indexOf(tabName) > -1){
+                                window.initGrids();
+                                }
+                                if (tabName =="integration" || tabName == undefined){
+                                AdminService.initPageList();
+                                }
+                                AdminService.hideLoader();
+                                AdminService.resizeDivs();
+                            });
+                            },
+                            animation: {
+                            open: {
+                                effects: "fadeIn"
+                            }
+                            }
+                        });
+
+                        $("#btnCustomPage").kendoButton().on('click', AdminService.createCustomPage);
+                        $("#btnCustomMultiTab").kendoButton().on('click', AdminService.createMultiTabCustomPage);
+                        $("#btnMultiTabRelatedList").kendoButton().on('click', AdminService.createMultiTabRelatedList);
+                        $("#btnMultiTabAuto").kendoButton().on('click', AdminService.createMultiTabAuto);
+                        $("#btnRelatedList").kendoButton().on('click', AdminService.createRelatedList);
+                        $(".linkButton").kendoButton();
+
+                        // Wire up button event handlers
+                        $("#btnCreate").on('click', AdminService.createButton);
+                        $("#btnSearchResults").on('click', AdminService.addToSearchResult);
+                        $("#btnListView").on('click', AdminService.addToListViewButtons);
+                        $("#btnMultiTabPage").on('click', AdminService.createMultiTabCustomPage);
+
+                        $("#btnCreateApp").on('click', function(){AdminService.createCustomAppGrid();});
+                        $("#btnRequestAction").on('click', function(){
+                        AdminService.requestActionSetup();
+                        });
+
+                        $("#btnVirtualToggle").on('click', function(){
+                            AdminService.handleGridVirtualization();
+                        });
+                        
+                        $("#btnMultiTabVFToggle").on('click', function(){
+                            AdminService.handleMultiTabVFCreation();
+                        });
+
+                        $("#btnRequestActionLogic").on('click', function(){
+                        AdminService.ResolveRequestActions();
+                        });
+                        // $("#btnQuickGrid").kendoButton().on('click', function(){
+                        //   AdminService.createQuickGrid();
+                        // });
+                        $("#btnConvertListView").on('click', function(){AdminService.createListViewGrid();});
+                        //$("#btnCreateMyRecentViews").kendoButton().on('click', AdminService.createMyRecentView);
+
+                        $("#btnConvertReport").on('click', function(){reportConverter.createReportGrid();});
+                        $("#btnExport").on('click', AdminService.exportAG);
+                        $("#btnImport").on('click', function() {
+                        $("#fileImport").val("");
+                        $("#fileImport").trigger("click");
+                        });
+                        $('#fileImport').off('change');
+                        $('#fileImport').on('change', function(evt) {
+                        AdminService.showLoader(function() {
+                            if (typeof JSZip != 'undefined') {
+                            AdminService.importAG(evt);
+                            AdminService.hideLoader();
+                            }
+                            else {
+                            var head = document.getElementsByTagName('HEAD').item(0);
+                            var script = document.createElement("script");
+                            script.type = "text/javascript";
+                            head.appendChild(script);
+                            script.src = String.format('/resource/{0}GridResources/Libs/jszip.min.js', sfdc.getNamespace(true));
+                            script.onerror = function() {
+                                // Is the CDN unavailable or blocked?
+                                alert("{!$Label.CRMC_PP__ag_ImportFailed}", "{!$Label.CRMC_PP__ag_ImportFailedBody}");
+                            };
+                            script.onload = function() {
+                                AdminService.importAG(evt);
+                            }
+                            }
+                        });
+                        });
+
+                        $("#cbTip").prop("indeterminate", true);
+                        window.onresize = function(event) {
+                        AdminService.resizeDivs();
+                        };
+                        AdminService.resizeDivs();
+                    });
+                }
+            });
+        </script>
+    </head>
+    <apex:PageMessages />
+    <div id='mainOutput'>
+        <div id="loadingMask" style="width: 100%; height: 100%; top: 0px; left: 0px; display:none; position:absolute; z-index: 100;"><span class="k-loading-text">{!$Label.ag_Loading}</span>
+            <div role="status" class="slds-spinner slds-spinner_medium slds-spinner_brand">
+                <span class="slds-assistive-text">Loading</span>
+                <div class="slds-spinner__dot-a"></div>
+                <div class="slds-spinner__dot-b"></div>
+              </div>
+        </div>
+        <div id="ObjectList" style="float:left; width:20%;"></div>
+        <div id="rightPane" style="float:left; margin-left:4px; width:79%;position:relative;">
+            <!-- Notification Banner -->
+            <c:NotifyBanner ParentPage="ag-admin" />
+
+            <div id="setupSplash" style="float:left;height:100%;width:100%;position:absolute;z-index:5;">
+                <iframe style="height:100%;border:none;" src="https://support.conga.com/content/grid/conga-grid/conga-grid-product-links/conga-grid-setup" width="100%" height="100%" />
+            </div>
+
+            <div id="tabstrip" class="crmc_tabstrip" style="height:100%;overflow-y:scroll;display:none;">
+                <ul>
+                    <li id="global">
+                        {!$Label.ag_GlobalSetup}
+                    </li>
+                    <li class="k-state-active" id="integration">
+                        {!$Label.ag_TabsAmdRelatedLists}
+                    </li>
+                    <li id="buttons">
+                        {!$Label.ag_Buttons}
+                    </li>
+                    <li id="action" crmc_tabtype="feature">
+                        {!$Label.ag_Actions}
+                    </li>
+                    <li id="explorer">
+                        {!$Label.ag_ObjectVisibility}
+                    </li>
+                    <li id="field" crmc_tabtype="feature">
+                        {!$Label.ag_Fields}
+                    </li>
+                    <li id="views">
+                        {!$Label.ag_Views}
+                    </li>
+                    <li id="defaultViews">
+                        {!$Label.ag_DefaultViews}
+                    </li>
+                     <li id="lightningComponent">
+                        {!$Label.ag_LightningComponentConfiguration}
+                    </li>
+                </ul>
+                <div id="globalTab">
+                    <div>
+                        <table>
+                            <tr>
+                                <th style="vertical-align: top">{!$Label.ag_MultiTabPage}</th>
+                                <td>
+                                    <button class="slds-button slds-button_neutral" id="btnMultiTabPage">{!$Label.ag_NewMultiTabPagebutton}</button><br /> <br />
+                                    <div class="slds-scoped-notification slds-media slds-media_center" role="status">
+                                        <div class="slds-media__figure">
+                                            <span class="slds-icon_container slds-icon-utility-warning">
+                                                <svg class="slds-icon slds-icon_small slds-icon-text-default" aria-hidden="true">
+                                                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{! JSENCODE(URLFOR($Asset.SLDS, 'assets/icons/utility-sprite/svg/symbols.svg#warning'))}" />
+                                                </svg>
+                                            </span>
+                                        </div>
+                                        <div class="slds-media__body">
+                                            <p>{!$Label.ag_MultiTabPageButton}</p>
+                                        </div>
+                                    </div>
+                                    <br />
+                                </td>
+                            </tr>
+                            <tr>
+                                <th style="vertical-align: top;">{!$Label.ag_ImportExport}</th>
+                                <td>
+                                    <input type="file" id="fileImport" style="display:none;" />
+                                    <button class="slds-button slds-button_neutral" id="btnExport">{!$Label.ag_Export}</button><button class="slds-button slds-button_neutral" id="btnImport">{!$Label.ag_Import}</button><br/><br/>
+                                    <div class="slds-scoped-notification slds-media slds-media_center" role="status">
+                                        <div class="slds-media__body">
+                                            <p>{!$Label.ag_CreateZipFileDesc}</p>
+                                        </div>
+                                    </div>
+                                    <br />
+                                </td>
+                            </tr>
+                            <tr>
+                                <th style="vertical-align: top;">Default Font Size:</th>
+                                <td>
+                                    <apex:form id="theForm">
+                                        <apex:selectRadio id="fontRadio" onchange="updateFontsize()" style="width:inherit;">
+                                            <apex:selectOption itemValue="Small" itemLabel="Small" />
+                                            <apex:selectOption itemValue="Medium" itemLabel="Medium" />
+                                            <apex:selectOption itemValue="Large" itemLabel="Large" />
+                                        </apex:selectRadio>
+                                    </apex:form>
+                                    <br />
+                                </td>
+                            </tr>
+                        </table>
+                        <table>
+                            <tr>
+                                <th style="vertical-align: top;" colspan="2">
+                                    <h2>{!$Label.ag_BelowAreBetaFeaturesDesc}</h2>
+                                    <br />
+                                </th>
+                            </tr>
+                            <tr>
+                                <th style="vertical-align: top;">{!$Label.ag_ReportConverter}</th>
+                                <td>
+                                    <button class="slds-button slds-button_neutral" id="btnConvertReport">{!$Label.ag_ConvertReportText}</button><br/><br />
+                                    <div class="slds-scoped-notification slds-media slds-media_center" role="status">
+                                        <div class="slds-media__body">
+                                            <p>{!$Label.ag_ConvertReportDesc}</p>
+                                        </div>
+                                    </div>
+                                    <br />
+                                </td>
+                            </tr>
+                            <tr>
+                                <th style="vertical-align: top">{!$Label.ag_ConvertSFApp}</th>
+                                <td>
+                                    <button class="slds-button slds-button_neutral" id="btnCreateApp">{!$Label.ag_NewActionGridAppPage}</button><br /><br />
+                                    <div class="slds-scoped-notification slds-media slds-media_center" role="status">
+                                        <div class="slds-media__figure">
+                                            <span class="slds-icon_container slds-icon-utility-warning">
+                                                <svg class="slds-icon slds-icon_small slds-icon-text-default" aria-hidden="true">
+                                                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{! JSENCODE(URLFOR($Asset.SLDS, 'assets/icons/utility-sprite/svg/symbols.svg#warning'))}" />
+                                                </svg>
+                                            </span>
+                                        </div>
+                                        <div class="slds-media__body">
+                                            <p>{!$Label.ag_NewActionGridAppPageDesc}</p>
+                                        </div>
+                                    </div>
+                                    <br />
+                                </td>
+                            </tr>
+                            <tr>
+                                <th style="vertical-align: top">{!$Label.ag_RequestActionMonitor}</th>
+                                <td>
+                                    <button class="slds-button slds-button_neutral" id="btnRequestAction">{!$Label.ag_EnableDisable}</button><br /><br />
+                                    <div class="slds-scoped-notification slds-media slds-media_center" role="status">
+                                        <div class="slds-media__figure">
+                                            <span class="slds-icon_container slds-icon-utility-warning">
+                                                <svg class="slds-icon slds-icon_small slds-icon-text-default" aria-hidden="true">
+                                                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{! JSENCODE(URLFOR($Asset.SLDS, 'assets/icons/utility-sprite/svg/symbols.svg#warning'))}" />
+                                                </svg>
+                                            </span>
+                                        </div>
+                                        <div class="slds-media__body">
+                                            <p>{!$Label.ag_EnableDisableDesc}</p>
+                                        </div>
+                                    </div>
+                                    <br />
+                                    <button class="slds-button slds-button_neutral" id="btnRequestActionLogic">{!$Label.ag_ExecuteMonitor}</button><br /><br />
+                                    <div class="slds-scoped-notification slds-media slds-media_center" role="status">
+                                        <div class="slds-media__figure">
+                                            <span class="slds-icon_container slds-icon-utility-warning">
+                                                <svg class="slds-icon slds-icon_small slds-icon-text-default" aria-hidden="true">
+                                                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{! JSENCODE(URLFOR($Asset.SLDS, 'assets/icons/utility-sprite/svg/symbols.svg#warning'))}" />
+                                                </svg>
+                                            </span>
+                                        </div>
+                                        <div class="slds-media__body">
+                                            <p>{!$Label.ag_ExecuteMonitorDesc}</p>
+                                        </div>
+                                    </div>
+                                    <br />
+                                </td>
+                            </tr>
+                            <tr>
+                                <th style="vertical-align: top">{!$Label.ag_Virtualization}</th>
+                                <td>
+                                    <button class="slds-button slds-button_neutral" id="btnVirtualToggle">{!$Label.ag_EnableDisable}</button><br /><br />
+                                    <div class="slds-scoped-notification slds-media slds-media_center" role="status">
+                                        <div class="slds-media__figure">
+                                            <span class="slds-icon_container slds-icon-utility-warning">
+                                                <svg class="slds-icon slds-icon_small slds-icon-text-default" aria-hidden="true">
+                                                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{! JSENCODE(URLFOR($Asset.SLDS, 'assets/icons/utility-sprite/svg/symbols.svg#warning'))}" />
+                                                </svg>
+                                            </span>
+                                        </div>
+                                        <div class="slds-media__body">
+                                            <p>{!$Label.ag_VirtualizationDesc}</p>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th style="vertical-align: top">{!$Label.ag_MultitabVF}</th>
+                                <td>
+                                    <button class="slds-button slds-button_neutral" id="btnMultiTabVFToggle">{!$Label.ag_EnableDisable}</button><br /><br />
+                                    <div class="slds-scoped-notification slds-media slds-media_center" role="status">
+                                        <div class="slds-media__figure">
+                                            <span class="slds-icon_container slds-icon-utility-warning">
+                                                <svg class="slds-icon slds-icon_small slds-icon-text-default" aria-hidden="true">
+                                                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{! JSENCODE(URLFOR($Asset.SLDS, 'assets/icons/utility-sprite/svg/symbols.svg#warning'))}" />
+                                                </svg>
+                                            </span>
+                                        </div>
+                                        <div class="slds-media__body">
+                                            <p>{!$Label.ag_MultitabVFDesc}</p>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                             <tr id="rowPushTopicDeletion">
+                                <th style="vertical-align: top">{!$Label.ag_LiveGridEnabledViews}</th>
+                                <td>
+                                    <button class="slds-button slds-button_neutral" id="btnDeletePushTopic">{!$Label.ag_Delete}</button>
+                                    <div id="liveGridEnabledViewDeleteTooltip"><span class="k-icon k-i-info has-tooltip-live-grid-delete"></span></div>
+                                    <div id="liveGridEnabledViewsRefresh"><a href="#" class="k-link" title="Refresh" aria-label="Refresh"><span class="k-icon k-i-reload k-i-refresh"></span></a></div><br />
+                                    <div id="liveGridPushTopicDeletionList" />
+                                    <br />
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div id="integrationTab">
+                    <div id="objectSetup">
+                        <div style="margin:10px">
+                            {!$Label.ag_IntegrationTabDesc}
+                        </div>
+                        <div style="margin:10px;">
+                            <a class="linkButton slds-button slds-button_neutral" href="/setup/ui/customtabs.jsp?setupid=CustomTabs" target="_blank">{!$Label.ag_VisualForceTabs}</a>
+                            <a class="linkButton slds-button slds-button_neutral" href="javascript:AdminService.navigateLayouts();">{!$Label.ag_PageLayout}</a>
+                            <a class="linkButton slds-button slds-button_neutral" href="https://support.conga.com/content/grid/conga-grid/building-conga-grid-solutions/create-a-multi-tabular-conga-grid-interface/multi-tabular-conga-grid">{!$Label.ag_CongaSupport}</a>
+                        </div>
+                        <br />
+                        <div style="margin:5px;">
+                            <div style="margin:5px; font-weight:bold;">{!$Label.ag_TabCreation}</div>
+                            <div class="tabs-and-related-lists__button-container">
+                                <a class="tabButton slds-button slds-button_neutral" href="#" id="btnCustomMultiTab">{!$Label.ag_MultiTabularActionGrid}</a>
+                                <div class="slds-scoped-notification slds-media slds-media_center" role="status">
+                                    <div class="slds-media__body">
+                                        <p>{!$Label.ag_MultiTabularActionGridDesc}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tabs-and-related-lists__button-container">
+                                <a class="tabButton slds-button slds-button_neutral" href="#" id="btnCustomPage">{!$Label.ag_SingleActionGrid}</a>
+                                <div class="slds-scoped-notification slds-media slds-media_center" role="status">
+                                    <div class="slds-media__body">
+                                        <p>{!$Label.ag_SingleActionGridDesc}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tabs-and-related-lists__button-container">
+                                <a class="tabButton slds-button slds-button_neutral" href="#" id="btnConvertListView">{!$Label.ag_ConvertListView}</a>
+                                <div class="slds-scoped-notification slds-media slds-media_center" role="status">
+                                    <div class="slds-media__body">
+                                        <p>{!$Label.ag_ConvertListViewdesc}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <br />
+                            <br />
+                            <div style="margin:5px;">
+                                <span style="font-weight:bold;">{!$Label.ag_PageLayout}</span> {!$Label.ag_PageLayoutDesc}
+                            </div>
+                            <div class="tabs-and-related-lists__button-container">
+                                <a class="tabButton slds-button slds-button_neutral" href="#" id="btnMultiTabAuto">{!$Label.ag_MultiTabular}</a>
+                                <div class="slds-scoped-notification slds-media slds-media_center" role="status">
+                                    <div class="slds-media__body">
+                                        <p>{!$Label.ag_MultiTabularDesc}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tabs-and-related-lists__button-container">
+                                <a class="tabButton slds-button slds-button_neutral" href="#" id="btnMultiTabRelatedList">{!$Label.ag_MultiTabularManual}</a>
+                                <div class="slds-scoped-notification slds-media slds-media_center" role="status">
+                                    <div class="slds-media__body">
+                                        <p>{!$Label.ag_MultiTabularManualDesc}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tabs-and-related-lists__button-container">
+                                <a class="tabButton slds-button slds-button_neutral" href="#" id="btnRelatedList">{!$Label.ag_SingleActionGrid}</a>
+                                <div class="slds-scoped-notification slds-media slds-media_center" role="status">
+                                    <div class="slds-media__body">
+                                        <p>{!$Label.ag_SingleActionRelatedListGridDesc}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <br />
+                        <div style="margin:10px;">{!$Label.ag_VisualForcePagesCreatedByWizardDesc}</div>
+                        <div style="margin:10px;" id="vfPagesList" />
+                        <br />
+                    </div>
+                </div>
+                <div id="buttonTab">
+                    <div>
+                        <div style="margin:10px">{!$Label.ag_CreateButtonForListView}</div>
+                        <table>
+                            <tr>
+                                <th>{!$Label.ag_ActionGridButton}</th>
+                                <td>
+                                    <span id='hasButton' style="display:none">
+                                        <span class="slds-icon_container slds-icon-utility-check">
+                                            <svg class="slds-icon slds-icon_small slds-icon-text-success" aria-hidden="true">
+                                                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{! JSENCODE(URLFOR($Asset.SLDS, 'assets/icons/utility-sprite/svg/symbols.svg#check'))}" />
+                                            </svg>
+                                        </span>
+                                    </span>
+                                    <span id='noButton' style="display:none"><button id="btnCreate" class="slds-button slds-button_neutral">{!$Label.ag_CreateButton}</button></span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>{!$Label.ag_List_View}</th>
+                                <td>
+                                    <span name='errIcon' style="display:none">
+                                        <span class="slds-icon_container slds-icon-utility-error">
+                                            <svg class="slds-icon slds-icon_small slds-icon-text-error" aria-hidden="true">
+                                                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{! JSENCODE(URLFOR($Asset.SLDS, 'assets/icons/utility-sprite/svg/symbols.svg#error'))}" />
+                                            </svg>
+                                        </span>
+                                    </span>
+                                    <span name='noErr' id='hasListView' style="display:none">
+                                        <span class="slds-icon_container slds-icon-utility-check">
+                                            <svg class="slds-icon slds-icon_small slds-icon-text-success" aria-hidden="true">
+                                                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{! JSENCODE(URLFOR($Asset.SLDS, 'assets/icons/utility-sprite/svg/symbols.svg#check'))}" />
+                                            </svg>
+                                        </span>
+                                    </span>
+                                    <span name='noErr' id='noListView' style="display:none"><a href="javascript:AdminService.navigateSearchLayout(true);">{!$Label.ag_AddActionGridButtonListViewSearchLayout}</a></span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>{!$Label.ag_SearchResults}</th>
+                                <td>
+                                    <span name='errIcon' style="display:none">
+                                        <span class="slds-icon_container slds-icon-utility-error">
+                                            <svg class="slds-icon slds-icon_small slds-icon-text-error" aria-hidden="true">
+                                                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{! JSENCODE(URLFOR($Asset.SLDS, 'assets/icons/utility-sprite/svg/symbols.svg#error'))}" />
+                                            </svg>
+                                        </span>
+                                    </span>
+                                    <span name='noErr' id='hasSearchResults' style="display:none">
+                                        <span class="slds-icon_container slds-icon-utility-check">
+                                            <svg class="slds-icon slds-icon_small slds-icon-text-success" aria-hidden="true">
+                                                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{! JSENCODE(URLFOR($Asset.SLDS, 'assets/icons/utility-sprite/svg/symbols.svg#check'))}" />
+                                            </svg>
+                                        </span>
+                                    </span>
+                                    <span name='noErr' id='noSearchResults' style="display:none"><a href="javascript:AdminService.navigateSearchLayout();">{!$Label.ag_AddTheActionGridButtonSearchResultsSearchLayout}</a></span>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div id="actionsTab">
+                    <div>
+                        <table>
+                            <tr>
+                                <td id="actionOwner" style="width:25%; vertical-align:top; display:none">
+                                    <span id="actionProfiles" style="display:none;"></span>
+                                    <span id="actionUsers" style="display:none;"></span>
+                                </td>
+                                <td style="vertical-align:top">
+                                    <div id="actionFeatures" style="max-width:900px; min-width:325px"></div>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div id="explorerTab">
+                    <div>
+                        <table>
+                            <tr>
+                                <td id="explorerOwner" style="width:25%; vertical-align:top; display:none;">
+                                    <span id="explorerProfiles" style="display:none;"></span>
+                                    <span id="explorerUsers" style="display:none;"></span>
+                                </td>
+                                <td style="vertical-align:top;">
+                                    <div id="explorerFeatures" style="max-width:900px; min-width:325px"></div>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div id="fieldsTab">
+                    <div>
+                        <div class="toolbar" style="padding:0.5em; width:100%">
+                            <button role="inline" id="btnfieldSave" class="slds-button slds-button_brand">{!$Label.ag_Save}</button>
+                            <div role="inline" style="margin-left:10px; margin-right: 10px;">{!$Label.ag_ApplyTo}<br />
+                                <span class="slds-radio">
+                                    <input type="radio" class="fieldRadio" name="fieldRadio" id="fieldRadio_global" value="global" checked="true" />
+                                    <label class="slds-radio__label" for="fieldRadio_global">
+                                        <span class="slds-radio_faux"></span>
+                                        <span class="slds-form-element__label">{!$Label.ag_AllUsers}</span>
+                                    </label>
+                                </span>
+                                <span class="slds-radio">
+                                    <input type="radio" class="fieldRadio" name="fieldRadio" id="fieldRadio_profile" value="profile" />
+                                    <label class="slds-radio__label" for="fieldRadio_profile">
+                                        <span class="slds-radio_faux"></span>
+                                        <span class="slds-form-element__label">{!$Label.ag_Profile}</span>
+                                    </label>
+                                </span>
+                                <span class="slds-radio">
+                                    <input type="radio" class="fieldRadio" name="fieldRadio" id="fieldRadio_user" value="user" />
+                                    <label class="slds-radio__label" for="fieldRadio_user">
+                                        <span class="slds-radio_faux"></span>
+                                        <span class="slds-form-element__label">{!$Label.ag_User}</span>
+                                    </label>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="field-behavior__container">
+                            <span class="slds-checkbox">
+                                <input type="checkbox" id="cbTip" disabled="true" value="1" />
+                                <label class="slds-checkbox__label" for="cbTip">
+                                    <span class="slds-checkbox_faux"></span>
+                                    <span class="slds-form-element__label">{!$Label.ag_NoteIndicatesBehaviorFieldLevelSecurityDesc}</span>
+                                </label>
+                            </span>
+                        </div>
+                        <table>
+                            <tr>
+                                <td id="fieldOwner" style="width:25%; vertical-align:top; display:none">
+                                    <span id="fieldProfiles" style="display:none;"></span>
+                                    <span id="fieldUsers" style="display:none;"></span>
+                                </td>
+                                <td style="vertical-align:top; width:75%">
+                                    <div id="fieldFeatures"></div>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div id="viewsTab">
+                    <div id="viewsGrid" style="height:500px;"></div>
+                </div>
+                <div id="defaultViewsTab">
+                    <div id="tabstrip" class="crmc_tabstrip tabstrip_scoped">
+                        <ul>
+                            <li class="k-state-active">{!$Label.ag_Explorer}</li>
+                            <li>{!$Label.ag_RelatedList}</li>
+                        </ul>
+                        <div id="explorerDefaultViews">
+                            <div id="explorerDefaultViewsGrid" style="height:500px;"></div>
+                        </div>
+                        <div id="relatedListDefaultViews">
+                            <div id="relatedListDefaultViewsGrid" style="height:500;"></div>
+                        </div>
+                    </div>
+                </div>
+                <div id="lightningComponentTab">
+                    <div id="LightningComponentDiv" style="min-width:325px" />
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Include AJAX tookit as normal html script tag at end, if used as apex includeScript it loads too early for communities support -->
+    <!-- <script type="text/javascript" src="../../soap/ajax/60.0/connection.js"/> -->
+    <script type="text/javascript">
+        (function() {
+
+        // Setup AJAX toolkit session id
+        sforce.connection.sessionId = "{!JSENCODE($Api.Session_ID)}";
+        sforce.connection.client ="CRMCulture/ActionGrid/";
+        // Extend default remote action timeout from default of 30s
+        //Visualforce.remoting.timeout = 120000; // Set timeout at page level
+        crmc.require(['GridConstants'], function(constants) {
+            constants.SLDS_URL = '/apexpages/slds/latest';
+        });
+
+        // Attempt to precache userInfo and customSettings (if fails should just slow things down later)
+        crmc.require(["sfdc", "CustomSettings"], function(sfdc, customSettings) {
+            // Set the theme information for this session
+            sfdc.uiThemeDisplayed = '{! JSENCODE($User.UIThemeDisplayed) }';
+
+          window.getDefaultViews = function() {
+            if (!window.defaultViews){
+              window.defaultViews = {};
+            }
+            if (!window.defaultViews[AdminService.objectName]) {
+              var prefix = sfdc.getNamespace(true);
+              var defaults = defaultViews = sfdc.query(
+                              "select {0}Context__c, Name, Id from {0}GridView__c where {0}ObjectName__c = '{1}' and {0}IsDefault__c = true and isDeleted = false",
+                              prefix,
+                              AdminService.objectName);
+              var output = {};
+              Object.each(defaults, function(view){
+                output[view[prefix+'Context__c']] = view.Id;
+              });
+              window.defaultViews[AdminService.objectName] = output;
+            }
+            return window.defaultViews[AdminService.objectName];
+          }
+        });
+
+        var init = function() {
+            crmc.require(['sfdc', 'GridBase', 'GridConstants'], function(sfdc, Grid, data) {
+                window.initGrids = function() {
+                    sfdc.sessionId = "{!JSENCODE($Api.Session_ID)}";
+                    var pageURL = window.location.href;
+                    if (window != window.top) pageURL = document.referrer;
+                    // Initialize grid on page load
+                    var prefix = sfdc.getNamespace(true);
+                    var defaults = getDefaultViews();
+                    var newGrids = [
+                    {objectName: AdminService.objectName,
+                     offset:100,
+                     id: 'explorerDefaultViewsGrid',
+                     viewId: defaults.Explorer
+                     },
+                    {objectName: AdminService.objectName,
+                     offset:100,
+                     id: 'relatedListDefaultViewsGrid',
+                     viewId: defaults['Page Layout']
+                    },
+                    {objectName: prefix + 'GridView__c',
+                     offset: 117,
+                     id: 'viewsGrid',
+                     filter: {"logic":"and","filters":[{"logic":"and","filters":[{"field":prefix+"ObjectName__c","operator":"eq","value":AdminService.objectName}]}]}
+                    }
+                    ];
+                    Object.each(newGrids, function(newGrid){
+                      var settings = {
+                          pageInfo: {
+                              objectName: newGrid.objectName,
+                              selectedRecordsPassed: false,
+                              columns: [],
+                              takeCount: 100, // Default page size, ensures grid loads data first time.
+                          },
+                          id: newGrid.id,
+                          pageURL: pageURL,
+                          enableNewButton: true,
+                          enableNewInline: true,
+                          enableEdit: true,
+                          enableFieldChooser: true,
+                          enableToolbar: true,
+                          enableActions: true,
+                          enableStickyViews: false,
+                          enableViews: true,
+                          enableFormatting: true,
+                          enableReadingPane: false,
+                          isFullscreen: true,
+                          Partner_Server_URL_290: "{!$Api.Partner_Server_URL_470}"
+                      };
+                      if (newGrid.viewId) {
+                        settings.viewId = newGrid.viewId;
+                      }
+                      if (newGrid.filter) {
+                        settings.baseFilter = newGrid.filter;
+                      }
+                      var grid = Grid.create(settings);
+                      grid.resize = function () {
+                          if (this.settings.isFullscreen) {
+                            var parentElement = $("#" + this.settings.id);
+                            if (!this.settings.isChildGrid) {
+
+                              var parentOffset = parentElement.offset();
+                              parentOffset = parentOffset || {top:0}; // If parent element not visible...
+                              // Determine if header is displayed and not embedded on page layout
+                              var showHeader = $("#AppBodyHeader").length > 0 && !this.settings.fkValue;
+                              // Size to fit either related list viewport or VF page space
+                              var height = showHeader ? $(window).height() - data.SFDC_HEADER_PX : $(window).height() - parentOffset.top - 10;
+                              // Resize splitter height
+                              height -= newGrid.offset;//90;
+                              parentElement.css({ height: Math.floor(height) + "px"  });
+                            }
+                            else {
+                              parentElement.css({ height: "100%" });
+                            }
+                            this.getElement("grid").css({ height: '100%' });
+                            this.getElement("paneSplit").css({ height: '100%' });
+                            // Resize field chooser scrollable view height, subtract header and footer
+                            var headerHeight = 35 * 2;
+                            $(this.getElementId("fieldTreeView") + ">div.k-grid-content").css({"max-height":(height - headerHeight)});
+                          }
+                        }
+                  });
+                };
+            });
+        };
+
+        init();
+        })();
+        pendo.initialize({
+            visitor: {
+                id: '{! JSENCODE($Organization.Id) }' + '-' +'{! JSENCODE($User.Id) }'
+            },
+
+            account: {
+                id: '{! JSENCODE($Organization.Id) }',
+                name: '{! JSENCODE($Organization.Name) }'
+            }
+        });
+    </script>
+</apex:page>
