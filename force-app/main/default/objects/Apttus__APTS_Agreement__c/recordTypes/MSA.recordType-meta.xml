@@ -6,6 +6,36 @@
     <description>Sales/Services Agreement</description>
     <label>MSA</label>
     <picklistValues>
+        <picklist>APTS_DPO_mentioned_by_name__c</picklist>
+        <values>
+            <fullName>No</fullName>
+            <default>true</default>
+        </values>
+        <values>
+            <fullName>Yes</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>APTS_DSO_Status__c</picklist>
+        <values>
+            <fullName>Closed</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>In Process</fullName>
+            <default>true</default>
+        </values>
+        <values>
+            <fullName>Inactive</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>N%2FA</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
         <picklist>APTS_Data_Security__c</picklist>
         <values>
             <fullName>Non-Standard</fullName>
@@ -39,6 +69,17 @@
         <values>
             <fullName>No</fullName>
             <default>false</default>
+        </values>
+        <values>
+            <fullName>Yes</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>APTS_ISO27001_certified__c</picklist>
+        <values>
+            <fullName>No</fullName>
+            <default>true</default>
         </values>
         <values>
             <fullName>Yes</fullName>
@@ -201,6 +242,21 @@
         </values>
     </picklistValues>
     <picklistValues>
+        <picklist>APTS_Role_of_the_BPA_Party__c</picklist>
+        <values>
+            <fullName>Controller</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Joint controller</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Processor to%3A</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
         <picklist>APTS_Solution_Fields__c</picklist>
         <values>
             <fullName>ETAS-DAP</fullName>
@@ -228,6 +284,17 @@
         </values>
         <values>
             <fullName>ETAS-VOS</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>APTS_Special_customer_requests__c</picklist>
+        <values>
+            <fullName>No</fullName>
+            <default>true</default>
+        </values>
+        <values>
+            <fullName>Yes</fullName>
             <default>false</default>
         </values>
     </picklistValues>
