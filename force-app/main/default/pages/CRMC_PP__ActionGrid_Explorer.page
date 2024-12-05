@@ -1,0 +1,142 @@
+<apex:page sidebar="false" controller="CRMC_PP.DrillUpController" title="Conga Grid Explorer" docType="html-4.01-strict">
+    <apex:slds />
+    <apex:stylesheet value="{! URLFOR($Resource.GridResources, '/styles/core.min.css')}" />
+    <apex:stylesheet value="{! URLFOR($Resource.GridResources, '/styles/explorer.min.css')}" />
+
+    <!-- Allows slds dynamic svgs to work in Edge LEX and IE 11 -->
+    <apex:includeScript value="{!URLFOR($Resource.CRMC_PP__GridResources, '/Libs/svg4everybody.min.js')}"/>
+
+    <script>
+        try {
+            svg4everybody();
+        } catch (error) {
+            // Swallow error, not user impacting
+        }
+
+        $(document).ready(function () {
+            if($('.messageText').length < 1){
+                crmc.require(['sfdc', 'ObjectList', 'GridBase', 'GridConstants'], function (sfdc, ObjectList, gridFactory, data) {
+                    sforce.connection.sessionId = "{!JSENCODE($Api.Session_ID)}";
+
+                    var drillUpSettings = {
+                        remoteActions: {
+                            getDrillUpItemsForObject: '{!$RemoteAction.DrillUpController.getDrillUpItemsForObject}',
+                            getDrillDownItemsForObject: '{!$RemoteAction.DrillUpController.getDrillDownItemsForObject}',
+                        }
+                    };
+                    data.SLDS_URL = '/apexpages/slds/latest';
+
+                    var pageURL = window.location.href;
+                    var gridid = "grid";
+
+                    var list = new ObjectList({
+                        elementId: "#ObjectList",
+                        permissionName: "explorer",
+                        includeAllObjectsCheckbox: true,
+                        delegate: {
+                            onSelectedChanged: function (text, metadata) {
+                                $('#explorerSplash').css('display', 'none');
+                                if (gridFactory.instances[gridid]) {
+                                    // Navigating away from this object should save the sticky view
+                                    gridFactory.instances[gridid].saveStickyView();
+                                    gridFactory.instances[gridid].destroy();
+                                }
+                                // Create a new grid for the selected object
+                                var newGrid = gridFactory.create({
+                                    pageInfo: {
+                                        objectName: metadata.name,
+                                    },
+                                    isFullscreen: true,
+                                    pageURL: pageURL,
+                                    id: gridid,
+                                    Partner_Server_URL_290: "{!$Api.Partner_Server_URL_470}"
+                                });
+                                // Set selected object in URL hash parameter
+                                window.location.hash = encodeURIComponent(metadata.name);
+                            }
+                        }
+                    });
+
+                    var showHelp = function () {
+                        $('#explorerDocumentation').attr('src', "https://support.conga.com/content/grid/conga-grid/conga-grid-product-links/conga-grid-explorer");
+                        $('#explorerSplash').css('display', 'block');
+                    }
+
+                    // If object name in hash parameter, set default selected object
+                    var selectedObject;
+                    // Also allow selected object to be passed as url parameter
+                    var urlParams = sfdc.parseAsObject();
+                    if (window.location.hash || (urlParams && urlParams['object'])) {
+                        var objectName = window.location.hash || urlParams['object'];
+                        objectName = decodeURIComponent(objectName);
+                        selectedObject = Object.first(list.kendoListView.content.children(), function (e) {
+                            var dataItem = list.kendoListView.dataItem(e);
+                            return dataItem && dataItem.name === objectName.replace("#", "");
+                        });
+                        if (selectedObject) {
+                            list.kendoListView.select(selectedObject);
+                        }
+                        else {
+                            showHelp();
+                        }
+
+
+                    }
+                    else {
+                        showHelp();
+                    }
+
+                    // Resize to fill available space
+                    var mainPane = $("#mainPane");
+                    var objList = $("#ObjectList > .k-block");
+
+                    var resizeElements = function () {
+                        var parentOffset = mainPane.offset();
+                        parentOffset = parentOffset || { top: 0 }; // If parent element not visible...
+                        // Determine if header is displayed and not embedded on page layout
+                        var showHeader = $("#AppBodyHeader").length > 0;
+                        // Size to fit either related list viewport or VF page space
+                        var h = showHeader ? $(window).height() - data.SFDC_HEADER_PX : $(window).height() - parentOffset.top - 10;
+                        mainPane.height(h);
+
+                        var objectListHeadingHeight = 0;
+                        objectListHeadingHeight += $('.ag-search__parent').outerHeight(true);
+                        if ($('.ag-show-all-checkbox__parent').is(':visible')) {
+                            objectListHeadingHeight += $('.ag-show-all-checkbox__parent').outerHeight(true);
+                        }
+                        // Remove room of padding on the ObjectList itself
+                        objectListHeadingHeight += parseInt($('#ObjectList').css('padding-top'));
+
+                        objList.css('max-height', (h - objectListHeadingHeight) + 'px');
+                        objList.height(h + 'px');
+                    };
+
+                    $(window).on('resize', resizeElements);
+
+                    resizeElements();
+
+                    $("#mainPane").kendoSplitter({
+                        orientation: "horizontal",
+                        panes: [
+                            { collapsible: true, size: "225px" },
+                            { collapsible: false }
+                        ]
+                    });
+                });
+            }
+        });
+    </script>
+
+    <div class="slds-scope" id="mainPane" style="width:100%; border:0;">
+        <div class="k-content">
+            <div id="ObjectList"></div>
+        </div>
+        <div id="rightPane">
+            <div id="explorerSplash" style="float:left;width:calc(100% - 5px);height:100%;display:none;">
+                <iframe id="explorerDocumentation" style="height:100%; margin-left:5px;" width="100%" height="100%" />
+            </div>
+            <c:Grid IncludeOnly="true" id="grid" />
+        </div>
+    </div>
+
+</apex:page>
