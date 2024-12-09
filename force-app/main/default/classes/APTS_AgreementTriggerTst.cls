@@ -10,15 +10,15 @@
 private class APTS_AgreementTriggerTst {
 
 @isTest static void autoActivateAgreementTest() {
-    Account acc = new Account();
-    acc.Name = 'testAccountforTestClass';
-    acc.Role__c='ETDE Domestic Customer';
-    acc.Type='Internal';
-    acc.pkl_INCOTerms1__c = 'CIF - Cost, Insurance, and Freight';
-    acc.txt_INCOTerms2__c = 'Wolfsburg';
-    acc.pkl_Language__c = 'German';
+    Account testAcc = new Account();
+    testAcc.Name = 'testAccountforTestClass';
+    testAcc.Role__c='ETDE Domestic Customer';
+    testAcc.Type='Internal';
+    testAcc.pkl_INCOTerms1__c = 'CIF - Cost, Insurance, and Freight';
+    testAcc.txt_INCOTerms2__c = 'Wolfsburg';
+    testAcc.pkl_Language__c = 'German';
     testAcc.pkl_PaymentTerms__c = 'Net 15';
-    insert acc;
+    insert testAcc;
     
     Opportunity opp = new Opportunity();
     opp.Name ='testOpptyforTestClass';
@@ -27,7 +27,7 @@ private class APTS_AgreementTriggerTst {
     opp.pklTypeOfOffering__c = 'SW';
     opp.pklTypeOfOpportunity__c = 'LTA';
     opp.pklLeadingSolutionField__c = 'DAP';
-    opp.AccountId = acc.Id;
+    opp.AccountId = testAcc.Id;
     
     insert opp;
     
@@ -37,10 +37,10 @@ private class APTS_AgreementTriggerTst {
     
     Apttus__APTS_Agreement__c agg = new Apttus__APTS_Agreement__c();
     agg.name = 'testAgreementforTestclass';
-    agg.APTS_Internal_Legal_Entity__c = acc.Id;
+    agg.APTS_Internal_Legal_Entity__c = testAcc.Id;
     agg.APTS_Type_of_Signature__c ='Esignature';
     agg.Apttus__Contract_Start_Date__c = system.today();
-    agg.Apttus__Account__c = acc.Id;
+    agg.Apttus__Account__c = testAcc.Id;
     agg.Apttus__Status__c = 'Ready for Signatures';
     insert agg;
     

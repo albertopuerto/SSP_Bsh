@@ -10,15 +10,15 @@ private class APTS_ImportFullySignedDocCtrlTest{
     static testMethod void myUnitTest() {
         
         //Create a new Account
-        Account testacc = new Account();
-        testacc.Name = 'Test Account';
+        Account testAcc = new Account();
+        testAcc.Name = 'Test Account';
         testAcc.Role__c='ETDE Domestic Customer';
     	testAcc.Type='Internal';
 		testAcc.pkl_INCOTerms1__c = 'CIF - Cost, Insurance, and Freight';
         testAcc.txt_INCOTerms2__c = 'Wolfsburg';
         testAcc.pkl_Language__c = 'German';
         testAcc.pkl_PaymentTerms__c = 'Net 15';
-        insert testacc;
+        insert testAcc;
         
         APTS_integration_Allowed__c obj = new APTS_integration_Allowed__c(Name = 'Integration_Allowed', APTS_Allow_Callout__c = true);
         insert obj;

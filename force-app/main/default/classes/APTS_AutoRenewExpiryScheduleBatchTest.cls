@@ -10,21 +10,21 @@
 private class APTS_AutoRenewExpiryScheduleBatchTest{
 
 @isTest static void CreateAgreementTest() {
-    Account acc = new Account();
-    acc.Name = 'testAccountforTestClass';
-    acc.Role__c='ETDE Domestic Customer';
-    acc.Type='Internal';
-	acc.pkl_INCOTerms1__c = 'CIF - Cost, Insurance, and Freight';
-    acc.txt_INCOTerms2__c = 'Wolfsburg';
-    acc.pkl_Language__c = 'German';
+    Account testAcc = new Account();
+    testAcc.Name = 'testAccountforTestClass';
+    testAcc.Role__c='ETDE Domestic Customer';
+    testAcc.Type='Internal';
+	testAcc.pkl_INCOTerms1__c = 'CIF - Cost, Insurance, and Freight';
+    testAcc.txt_INCOTerms2__c = 'Wolfsburg';
+    testAcc.pkl_Language__c = 'German';
     testAcc.pkl_PaymentTerms__c = 'Net 15';
-    insert acc;
+    insert testAcc;
     
     Opportunity opp = new Opportunity();
     opp.Name ='testOpptyforTestClass';
     opp.CloseDate = system.today()+4;
     opp.StageName = 'Prospecting';
-    opp.AccountId = acc.Id;
+    opp.AccountId = testAcc.Id;
     opp.pklTypeOfOpportunity__c = 'LTA';
     opp.pklLeadingSolutionField__c = 'DAP';
     opp.pklTypeOfOffering__c = 'SW';
@@ -36,11 +36,11 @@ private class APTS_AutoRenewExpiryScheduleBatchTest{
     List<Apttus__APTS_Agreement__c> listAggInsert = new List<Apttus__APTS_Agreement__c>();
     Apttus__APTS_Agreement__c agg1 = new Apttus__APTS_Agreement__c();
     agg1.name = 'testAgreementforTestclass';
-    agg1.APTS_Internal_Legal_Entity__c = acc.Id;
+    agg1.APTS_Internal_Legal_Entity__c = testAcc.Id;
     agg1.APTS_Type_of_Signature__c ='Esignature';
     agg1.Apttus__Contract_Start_Date__c = system.today() - 2;
     agg1.Apttus__Contract_End_Date__c = system.today();
-    agg1.Apttus__Account__c = acc.Id;
+    agg1.Apttus__Account__c = testAcc.Id;
     agg1.Apttus__Auto_Renewal__c = true;
     agg1.Apttus__Auto_Renew_Term_Months__c = 12;
     agg1.Apttus__Status__c = 'Ready for Signatures';
@@ -48,11 +48,11 @@ private class APTS_AutoRenewExpiryScheduleBatchTest{
     
     Apttus__APTS_Agreement__c agg2 = new Apttus__APTS_Agreement__c();
     agg2.name = 'testAgreementforTestclass';
-    agg2.APTS_Internal_Legal_Entity__c = acc.Id;
+    agg2.APTS_Internal_Legal_Entity__c = testAcc.Id;
     agg2.APTS_Type_of_Signature__c ='Esignature';
     agg2.Apttus__Contract_Start_Date__c = system.today() - 2;
     agg2.Apttus__Contract_End_Date__c = system.today();
-    agg2.Apttus__Account__c = acc.Id;
+    agg2.Apttus__Account__c = testAcc.Id;
     agg2.Apttus__Auto_Renewal__c = false;
     listAggInsert.add(agg2);
     insert listAggInsert;
