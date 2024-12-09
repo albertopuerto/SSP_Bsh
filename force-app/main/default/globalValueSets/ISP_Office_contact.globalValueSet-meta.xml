@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GlobalValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customValue>
+        <fullName>alle DSP</fullName>
+        <default>false</default>
+        <label>alle DSP</label>
+    </customValue>
+    <customValue>
+        <fullName>Beate Winter</fullName>
+        <default>true</default>
+        <label>Beate Winter</label>
+    </customValue>
+    <customValue>
+        <fullName>Bettina Fischer</fullName>
+        <default>false</default>
+        <label>Bettina Fischer</label>
+    </customValue>
+    <customValue>
+        <fullName>Christian Rödel</fullName>
+        <default>false</default>
+        <label>Christian Rödel</label>
+    </customValue>
+    <customValue>
+        <fullName>CS/DSO</fullName>
+        <default>false</default>
+        <label>CS/DSO</label>
+    </customValue>
+    <customValue>
+        <fullName>David Kramer</fullName>
+        <default>false</default>
+        <label>David Kramer</label>
+    </customValue>
+    <customValue>
+        <fullName>DSPiE</fullName>
+        <default>false</default>
+        <label>DSPiE</label>
+    </customValue>
+    <customValue>
+        <fullName>Gauri Sahasrabudhe</fullName>
+        <default>false</default>
+        <label>Gauri Sahasrabudhe</label>
+    </customValue>
+    <customValue>
+        <fullName>Ingo Elias</fullName>
+        <default>false</default>
+        <label>Ingo Elias</label>
+    </customValue>
+    <customValue>
+        <fullName>Laura Liebermann</fullName>
+        <default>false</default>
+        <label>Laura Liebermann</label>
+    </customValue>
+    <customValue>
+        <fullName>Manuela Rausch</fullName>
+        <default>false</default>
+        <label>Manuela Rausch</label>
+    </customValue>
+    <customValue>
+        <fullName>Marc Schmidt</fullName>
+        <default>false</default>
+        <label>Marc Schmidt</label>
+    </customValue>
+    <customValue>
+        <fullName>Mario Raic</fullName>
+        <default>false</default>
+        <label>Mario Raic</label>
+    </customValue>
+    <customValue>
+        <fullName>Markus Mix</fullName>
+        <default>false</default>
+        <label>Markus Mix</label>
+    </customValue>
+    <customValue>
+        <fullName>Markus Mix DSPiE</fullName>
+        <default>false</default>
+        <label>Markus Mix DSPiE</label>
+    </customValue>
+    <customValue>
+        <fullName>Michaela Rausch</fullName>
+        <default>false</default>
+        <label>Michaela Rausch</label>
+    </customValue>
+    <customValue>
+        <fullName>Neto Valdemiro</fullName>
+        <default>false</default>
+        <label>Neto Valdemiro</label>
+    </customValue>
+    <customValue>
+        <fullName>Other</fullName>
+        <default>false</default>
+        <label>Other</label>
+    </customValue>
+    <customValue>
+        <fullName>Petra Pflüger-Hartmann</fullName>
+        <default>false</default>
+        <label>Petra Pflüger-Hartmann</label>
+    </customValue>
+    <customValue>
+        <fullName>Regine Simon</fullName>
+        <default>false</default>
+        <label>Regine Simon</label>
+    </customValue>
+    <customValue>
+        <fullName>Sebastian Balint</fullName>
+        <default>false</default>
+        <label>Sebastian Balint</label>
+    </customValue>
+    <customValue>
+        <fullName>Stefan Westmeier</fullName>
+        <default>false</default>
+        <label>Stefan Westmeier</label>
+    </customValue>
+    <customValue>
+        <fullName>Stephan Hobohm</fullName>
+        <default>false</default>
+        <label>Stephan Hobohm</label>
+    </customValue>
+    <description>The name of the person who processed a Data Privacy Agreement</description>
+    <masterLabel>ISP Office contact</masterLabel>
+    <sorted>false</sorted>
+</GlobalValueSet>

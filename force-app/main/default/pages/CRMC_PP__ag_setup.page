@@ -1,0 +1,975 @@
+<apex:page showHeader="true" sidebar="false" controller="CRMC_PP.AGComponentController" title="Conga Grid Setup" docType="html-4.01-strict">
+    <head>
+        <apex:slds />
+        <apex:stylesheet value="{!URLFOR($Resource.CRMC_PP__GridResources, '/styles/kendo-slds.css')}"/>
+        <apex:stylesheet value="{!URLFOR($Resource.CRMC_PP__GridResources, '/styles/core.min.css')}" />
+        <apex:stylesheet value="{!URLFOR($Resource.CRMC_PP__GridResources, '/styles/quickstart.min.css')}"/>
+
+        <apex:includeScript value="{! URLFOR($Resource.kendoui, '/js/jquery.min.js')}" />
+        <apex:includeScript value="../../soap/ajax/60.0/connection.js"/>
+        <!-- <apex:includeScript value="{!$Resource.kendodebug}" />  -->
+        <apex:includeScript value="{! URLFOR($Resource.kendoui, '/js/kendo.web.min.js')}" />
+
+        <!-- Allows slds dynamic svgs to work in Edge LEX and IE 11 -->
+        <apex:includeScript value="{!URLFOR($Resource.CRMC_PP__GridResources, '/Libs/svg4everybody.min.js')}"/>
+
+        <!-- Localization Utility -->
+        <c:Localization />
+
+        <apex:includeScript value="{!$Resource.CRMC_PP__Admin}"/>
+        <apex:includeScript value="{! $Resource.Conga_Grid_Instrumentation }" />
+
+        <script type="text/javascript">
+            try {
+                svg4everybody();
+            } catch (error) {
+                // Swallow error, not user impacting
+            }
+
+            sforce.connection.sessionId = "{!JSENCODE($Api.Session_ID)}";
+            sforce.connection.client ="CRMCulture/ActionGrid/";
+
+            var urls = {
+                salesTemplate: "{!$Resource.Sales_Console_Template}",
+                casesTemplate: "{!$Resource.Case_Console_Template}",
+                accountsTemplate: "{!$Resource.Account_Console_Template}",
+                adminTemplate: "{!$Resource.Admin_Console_Grid}",
+                cpqTemplate: "{!$Resource.CPQ_Console_Template}",
+                congaContractsTemplate: "{! $Resource.Conga_Contracts_Console_Template }"
+            };
+
+            crmc.require(['GridConstants'], function(constants) {
+                constants.SLDS_URL = '/apexpages/slds/latest';
+            });
+
+            crmc.require(["QuickStart"], function(quickStart){
+                var sessionId = "{!$Api.Session_ID}";
+
+                $(function(){
+                    quickStart.init(sessionId, urls);
+                });
+            });
+
+            pendo.initialize({
+                visitor: {
+                    id: '{! JSENCODE($Organization.Id) }' + '-' +'{! JSENCODE($User.Id) }'
+                },
+                account: {
+                    id: '{! JSENCODE($Organization.Id) }',
+                    name: '{! JSENCODE($Organization.Name) }'
+                }
+            });
+        </script>
+    </head>
+
+<!-- Notification Banner -->
+<c:NotifyBanner ParentPage="ag-setup" />
+
+<div class="ActionGrid Wizard slds-scope" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <div class="container header slds-page-header slds-m-around--large" role="banner">
+        <div class="slds-grid">
+            <div class="slds-col slds-has-flexi-truncate">
+                <div class="slds-media slds-no-space slds-grow">
+                    <div class="slds-media__figure">
+                        <span class="icon k-i-checkin"></span>
+                        <span class="slds-icon_container hidden">
+                            <svg aria-hidden="true" class="slds-icon">
+                                <use xlink:href="{!URLFOR($Asset.SLDS, 'assets/icons/utility-sprite/svg/symbols.svg#checkin')}"></use>
+                            </svg>
+                        </span>
+                    </div>
+                    <div class="slds-media__body">
+                        <p class="subtext slds-text-title--caps slds-line-height--reset"> {!$Label.ag_Quickstart}</p>
+                        <h1 class="AG-h1 slds-m-right--small slds-align-middle slds-truncate">{!$Label.ag_GettingStarted}</h1>
+                    </div>
+                </div>
+            </div>
+            <div class="slds-col slds-no-flex slds-grid slds-align-top">
+                <div class="actions">
+                    <ol>
+                        <li class="item hidden">
+                            <a href="javascript:void(0)" class="retractButton" id="retreat"> {!$Label.ag_StartOver}</a>
+                        </li>
+                        <li class="item active-submit hidden">
+                            <button class="CTA"></button>
+                            <span class="status"> {!$Label.ag_Installing}</span>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container main">
+        <div class="slds-wizard slds-m-around--large" role="navigation">
+            <ol class="slds-wizard__list">
+                <li class="slds-wizard__item slds-is-active">
+                    <a href="javascript:void(0);" class="slds-wizard__link">
+                        <span class="slds-wizard__marker"></span>
+                        <span class="slds-wizard__label slds-text-title--caps slds-truncate" title="Navigation">{!$Label.ag_GetStarted}</span>
+                    </a>
+                </li>
+                <li class="slds-wizard__item">
+                    <a href="javascript:void(0);" class="slds-wizard__link">
+                        <span class="slds-wizard__marker"></span>
+                        <span class="slds-wizard__label slds-text-title--caps slds-truncate" title="Navigation">{!$Label.ag_selectTemplate}</span>
+                    </a>
+                </li>
+                <li class="slds-wizard__item">
+                    <a href="javascript:void(0);" class="slds-wizard__link">
+                        <span class="slds-wizard__marker"></span>
+                        <span class="slds-wizard__label slds-text-title--caps slds-truncate" title="Navigation">{!$Label.ag_install}</span>
+                    </a>
+                </li>
+                <li class="slds-wizard__item">
+                    <a href="javascript:void(0);" class="slds-wizard__link">
+                        <span class="slds-wizard__marker"></span>
+                        <span class="slds-wizard__label slds-text-title--caps slds-truncate" title="Navigation">{!$Label.ag_complete}</span>
+                    </a>
+                </li>
+            </ol>
+            <span class="slds-wizard__progress">
+                <span class="slds-wizard__progress-bar" style="width:0%"></span>
+            </span>
+        </div>
+        <div class="workflow">
+            <div class="process" id="start">
+                <div class="step" data-head-icon="checkin" data-head-subtitle="{!$Label.ag_Quickstart}" data-head-h1="{!$Label.ag_GettingStarted}">
+                    <div class="header">
+                        <p class="title">{!$Label.ag_howDoYouWantToSetupActionGrid}</p>
+                    </div>
+                    <ol class="selection-grid">
+                        <li class="tile">
+                            <a href="javascript:void(0);" class="link trigger" process="prebuilt" step="1" data-init-process="prebuilt">
+                                <span class="continuity-symbol">
+                                    <span class="icon k-i-builder" style="color: #53B6D6"></span>
+                                </span>
+                                <span class="title">{!$Label.ag_installPreBuiltActionGrid}</span>
+                                <span class="description">{!$Label.ag_installActionGridUsingPreconfiguredTemplateOptimizedForRole}</span>
+                                <button class="call-to-action capitalize">{!$Label.ag_create}</button>
+                            </a>
+                        </li>
+                        <li class="tile">
+                            <a href="javascript:void(0);" class="link trigger" process="custom" step="1">
+                                <span class="continuity-symbol">
+                                    <span class="icon k-i-magicwand" style="color: #7698F1"></span>
+                                </span>
+                                <span class="title">{!$Label.ag_createCustomActionGrid}</span>
+                                <span class="description">{!$Label.ag_createCustomActionGridUsingExistingSalesforceData}</span>
+                                <button class="call-to-action capitalize">{!$Label.ag_create}</button>
+                            </a>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+            <div class="process" id="prebuilt">
+                <div class="step step-1" data-head-icon="builder" data-head-subtitle="{!$Label.ag_installPreBuiltActionGrid}" data-head-h1="{!$Label.ag_SelectARole}">
+                    <div class="header">
+                        <p class="title">{!$Label.ag_usePreBuiltTemplatesToBuildGridsThatAreOptimizedForSpecificRoles}</p>
+                    </div>
+                    <ol class="selection-grid">
+                        <li class="tile">
+                            <a href="javascript:void(0);" class="link trigger" process="sales" step="1">
+                                <span class="slds-icon_container">
+                                    <svg aria-hidden="true" class="slds-icon" style="fill:#53CDB8">
+                                        <use xlink:href="{!URLFOR($Asset.SLDS, 'assets/icons/custom-sprite/svg/symbols.svg#custom11')}"></use>
+                                    </svg>
+                                </span>
+                                <span class="title">{!$Label.ag_sales}</span>
+                                <span class="description">{!$Label.ag_keepTrackOfLeadsAndRelatedOpportunitiesAccountsTasks}</span>
+                                <button class="call-to-action">{!$Label.ag_select}</button>
+                            </a>
+                        </li>
+                        <li class="tile">
+                            <a href="javascript:void(0);" class="link trigger" process="accounts">
+                                <span class="slds-icon_container">
+                                    <svg aria-hidden="true" class="slds-icon" style="fill:#EF8179">
+                                        <use xlink:href="{!URLFOR($Asset.SLDS, 'assets/icons/standard-sprite/svg/symbols.svg#account')}"></use>
+                                    </svg>
+                                </span>
+                                <span class="title">{!$Label.ag_salesExecutive}</span>
+                                <span class="description">{!$Label.ag_manageDetailsOfYourOppPipelineAndTeamForecast}</span>
+                                <button class="call-to-action">{!$Label.ag_select}</button>
+                            </a>
+                        </li>
+                        <li class="tile">
+                            <a href="javascript:void(0);" class="link trigger" process="cases">
+                                <span class="slds-icon_container">
+                                    <svg aria-hidden="true" class="slds-icon" style="fill:#5CB1D8">
+                                        <use xlink:href="{!URLFOR($Asset.SLDS, 'assets/icons/standard-sprite/svg/symbols.svg#case')}"></use>
+                                    </svg>
+                                </span>
+                                <span class="title">{!$Label.ag_caseManagement}</span>
+                                <span class="description">{!$Label.ag_viewCasesAndRelatedAccountsTasksAndChatter}</span>
+                                <button class="call-to-action">{!$Label.ag_select}</button>
+                            </a>
+                        </li>
+                        <li class="tile">
+                            <a href="javascript:void(0);" class="link trigger" process="admin">
+                                <span class="slds-icon_container">
+                                    <svg aria-hidden="true" class="slds-icon" style="fill:#FB9A78">
+                                        <use xlink:href="{!URLFOR($Asset.SLDS, 'assets/icons/standard-sprite/svg/symbols.svg#apps_admin')}"></use>
+                                    </svg>
+                                </span>
+                                <span class="title">{!$Label.ag_salesforceAdmin}</span>
+                                <span class="description">{!$Label.ag_manageUsersVisualforceActionGridViews}</span>
+                                <button class="call-to-action">{!$Label.ag_select}</button>
+                            </a>
+                        </li>
+                        <!-- <li class="tile js-tile-conga-contracts"> -->
+                        <li class="tile js-tile-conga-contracts" style="display:none;">
+                            <a href="javascript:void(0);" class="link trigger" process="congaContracts">
+                                <span class="slds-icon_container">
+                                    <svg aria-hidden="true" class="slds-icon" style="fill:#70bf71">
+                                        <use xlink:href="{!URLFOR($Asset.SLDS, 'assets/icons/standard-sprite/svg/symbols.svg#contract')}"></use>
+                                    </svg>
+                                </span>
+                                <span class="title">{!$Label.ag_CongaContracts}</span>
+                                <span class="description">{!$Label.ag_CongaContractsTileDescription}</span>
+                                <button class="call-to-action">{!$Label.ag_select}</button>
+                            </a>
+                        </li>
+                        <!-- <li class="tile js-tile-cpq"> -->
+                        <li class="tile js-tile-cpq" style="display:none;">
+                            <a href="javascript:void(0);" class="link trigger" process="cpq">
+                                <span class="slds-icon_container">
+                                    <svg aria-hidden="true" class="slds-icon" style="fill:#2dad25">
+                                        <use xlink:href="{!URLFOR($Asset.SLDS, 'assets/icons/standard-sprite/svg/symbols.svg#account')}"></use>
+                                    </svg>
+                                </span>
+                                <span class="title">{!$Label.ag_CPQ}</span>
+                                <span class="description">{!$Label.ag_ViewProductsPriceAndProductRulesToshowTheDetailsOfYourCPQData}</span>
+                                <button class="call-to-action">{!$Label.ag_select}</button>
+                            </a>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+            <div class="process" id="sales">
+                <div class="step step-1 review" data-head-cs-icon="{!URLFOR($Asset.SLDS, 'assets/icons/custom-sprite/svg/symbols.svg#custom11')}" data-head-h1="{!$Label.ag_sales}" data-show-install="salesTemplate">
+                    <div class="header">
+                        <p class="title">{!$Label.ag_manageTheLifecycle}</p>
+                    </div>
+                    <div class="flex grow">
+                        <div class="preview">
+                            <img title="{!$Label.ag_installPreBuiltSalesActionGrid}" src="{!URLFOR($Resource.GridResources, '/styles/images/SalesTemplate.png')}" />
+                        </div>
+                        <div class="flex column content">
+                            <div class="flex grow stretch">
+                                <div>
+                                    <h3>{!$Label.ag_WhatsIncluded}</h3>
+                                    <div class="content" style="font-size: medium;">
+                                        <p>{!$Label.ag_salesWhatsIncluded1}</p>
+                                        <p style="padding-top: 5px">{!$Label.ag_salesWhatsIncluded2}</p>
+                                        <ol class="list">
+                                            <li>{!$Label.ag_salesWhatsIncluded3}</li>
+                                            <li>{!$Label.ag_salesWhatsIncluded4}</li>
+                                            <li>{!$Label.ag_salesWhatsIncluded5}</li>
+                                            <li>{!$Label.ag_salesWhatsIncluded6}</li>
+                                        </ol>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="step step-2 final" data-head-h1="{!$Label.ag_complete}">
+                    <div class="header">
+                        <p class="title">{!$Label.ag_WhatWouldYouLikeToDoNext}</p>
+                    </div>
+                        <ol class="selection-grid">
+                            <li class="tile">
+                                <a href="javascript:void(0);" class="link trigger-goto salesTemplate">
+                                        <span class="continuity-symbol navigation">
+                                            <span class="icon k-i-right"></span>
+                                        </span>
+                                    <span class="title">{!$Label.ag_goToNewActionGrid}</span>
+                                    <span class="description">{!$Label.ag_checkOutYourNewActionGrid}</span>
+                                    <button class="call-to-action">{!$Label.ag_go}</button>
+                                </a>
+                            </li>
+                            <li class="tile">
+                                <a href="javascript:void(0);" class="link trigger">
+                                        <span class="continuity-symbol">
+                                            <span class="icon k-i-keys"></span>
+                                        </span>
+                                    <span class="title">{!$Label.ag_addUsersToPermissionSet}</span>
+                                    <span class="description">{!$Label.ag_giveYourUsersAccessToYourNewActionGrid}</span>
+                                    <button class="call-to-action">{!$Label.ag_go}</button>
+                                </a>
+                            </li>
+                        </ol>
+                </div>
+            </div>
+            <div class="process" id="accounts">
+                <div class="step step-1 review" data-head-cs-icon="{!URLFOR($Asset.SLDS, 'assets/icons/standard-sprite/svg/symbols.svg#account')}" data-head-h1="{!$Label.ag_salesExecutive}" data-show-install="accountsTemplate">
+                    <div class="header">
+                        <p class="title">{!$Label.ag_HelpYourSalesTeamBecomeTopPerformers}.</p>
+                    </div>
+                    <div class="flex grow">
+                        <div class="preview">
+                            <img title="{!$Label.ag_installPreBuiltSalesActionGrid}" src="{!URLFOR($Resource.GridResources, '/styles/images/AccountTemplate.png')}" />
+                        </div>
+                        <div class="flex column content">
+                            <div class="flex grow stretch">
+                                <div>
+                                    <h3>{!$Label.ag_WhatsIncluded}</h3>
+                                    <div class="content" style="font-size: medium;">
+                                        <p>{!$Label.ag_SalesExecutiveDesc}</p>
+                                        <ol class="list ">
+                                            <li>{!$Label.ag_SalesExecutiveDesc1}</li>
+                                            <li>{!$Label.ag_SalesExecutiveDesc2}</li>
+                                            <li>{!$Label.ag_SalesExecutiveDesc3}</li>
+                                            <li>{!$Label.ag_SalesExecutiveDesc4}</li>
+                                        </ol>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="step step-2 final" data-head-h1="{!$Label.ag_complete}">
+                    <div class="header">
+                        <p class="title">{!$Label.ag_WhatWouldYouLikeToDoNext}</p>
+                    </div>
+                    <ol class="selection-grid">
+                        <li class="tile">
+                            <a href="javascript:void(0);" class="link trigger-goto accountsTemplate">
+                                    <span class="continuity-symbol navigation">
+                                        <span class="icon k-i-right"></span>
+                                    </span>
+                                <span class="title">{!$Label.ag_goToNewActionGrid}</span>
+                                <span class="description">{!$Label.ag_checkOutYourNewActionGrid}</span>
+                                <button class="call-to-action">{!$Label.ag_go}</button>
+                            </a>
+                        </li>
+                        <li class="tile">
+                            <a href="javascript:void(0);" class="link trigger">
+                                    <span class="continuity-symbol">
+                                        <span class="icon k-i-keys"></span>
+                                    </span>
+                                <span class="title">{!$Label.ag_addUsersToPermissionSet}</span>
+                                <span class="description">{!$Label.ag_giveYourUsersAccessToYourNewActionGrid}</span>
+                                <button class="call-to-action">{!$Label.ag_go}</button>
+                            </a>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+            <div class="process" id="congaContracts">
+                <div class="step step-1 review" data-head-cs-icon="{!URLFOR($Asset.SLDS, 'assets/icons/standard-sprite/svg/symbols.svg#contract')}" data-head-h1="{!$Label.ag_CongaContracts}" data-show-install="congaContractsTemplate">
+                    <div class="header">
+                        <p class="title">{!$Label.ag_ContractsDetailsHeader}</p>
+                    </div>
+                    <div class="flex grow">
+                        <div class="preview">
+                            <img title="{!$Label.ag_ContractsDetailsHeader}" src="{!URLFOR($Resource.GridResources, '/styles/images/CongaContractsTemplate.png')}" />
+                        </div>
+                        <div class="flex column content">
+                            <div class="flex grow stretch">
+                                <div>
+                                    <h3>{!$Label.ag_WhatsIncluded}</h3>
+                                    <div class="content" style="font-size: medium;">
+                                        <p>{!$Label.ag_ManageYourContractLifecycle}</p>
+
+                                        <ol class="list ">
+                                            <li>{!$Label.ag_ContractsWhatsIncluded1}</li>
+                                            <li>{!$Label.ag_ContractsWhatsIncluded2}</li>
+                                            <li>{!$Label.ag_ContractsWhatsIncluded3}</li>
+                                        </ol>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="step step-2 final" data-head-h1="{!$Label.ag_complete}">
+                    <div class="header">
+                        <p class="title">{!$Label.ag_WhatWouldYouLikeToDoNext}</p>
+                    </div>
+                    <ol class="selection-grid">
+                        <li class="tile">
+                            <a href="javascript:void(0);" class="link trigger-goto congaContractsTemplate">
+                                    <span class="continuity-symbol navigation">
+                                        <span class="icon k-i-right"></span>
+                                    </span>
+                                <span class="title">{!$Label.ag_goToNewActionGrid}</span>
+                                <span class="description">{!$Label.ag_checkOutYourNewActionGrid}</span>
+                                <button class="call-to-action">{!$Label.ag_go}</button>
+                            </a>
+                        </li>
+                        <li class="tile">
+                            <a href="javascript:void(0);" class="link trigger">
+                                    <span class="continuity-symbol">
+                                        <span class="icon k-i-keys"></span>
+                                    </span>
+                                <span class="title">{!$Label.ag_addUsersToPermissionSet}</span>
+                                <span class="description">{!$Label.ag_giveYourUsersAccessToYourNewActionGrid}</span>
+                                <button class="call-to-action">{!$Label.ag_go}</button>
+                            </a>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+            <div class="process" id="cpq">
+                <div class="step step-1 review" data-head-cs-icon="{!URLFOR($Asset.SLDS, 'assets/icons/standard-sprite/svg/symbols.svg#account')}" data-head-h1="CPQ" data-show-install="cpqTemplate">
+                    <div class="header">
+                        <p class="title">{!$Label.ag_StreamlineOurCPQProcess}</p>
+                    </div>
+                    <div class="flex grow">
+                        <div class="preview">
+                            <img title="{!$Label.ag_installPreBuiltCPQActionGrid}" src="{!URLFOR($Resource.GridResources, '/styles/images/AccountTemplate.png')}" />
+                        </div>
+                        <div class="flex column content">
+                            <div class="flex grow stretch">
+                                <div>
+                                    <h3>{!$Label.ag_WhatsIncluded}</h3>
+                                    <div class="content" style="font-size: medium;">
+                                        <p>{!$Label.ag_StreamlineCPQDesc}</p>
+                                        <p>{!$Label.ag_StreamlineCPQDesc1}</p>
+                                        <ol class="list ">
+                                            <li>{!$Label.ag_StreamlineCPQDesc2}</li>
+                                            <li>{!$Label.ag_StreamlineCPQDesc3}</li>
+                                            <li>{!$Label.ag_StreamlineCPQDesc4}</li>
+                                        </ol>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="step step-2 final" data-head-h1="{!$Label.ag_complete}">
+                    <div class="header">
+                        <p class="title">{!$Label.ag_WhatWouldYouLikeToDoNext}</p>
+                    </div>
+                    <ol class="selection-grid">
+                        <li class="tile">
+                            <a href="javascript:void(0);" class="link trigger-goto cpqTemplate">
+                                    <span class="continuity-symbol navigation">
+                                        <span class="icon k-i-right"></span>
+                                    </span>
+                                <span class="title">{!$Label.ag_goToNewActionGrid}</span>
+                                <span class="description">{!$Label.ag_checkOutYourNewActionGrid}</span>
+                                <button class="call-to-action">{!$Label.ag_go}</button>
+                            </a>
+                        </li>
+                        <li class="tile">
+                            <a href="javascript:void(0);" class="link trigger">
+                                    <span class="continuity-symbol">
+                                        <span class="icon k-i-keys"></span>
+                                    </span>
+                                <span class="title">{!$Label.ag_addUsersToPermissionSet}</span>
+                                <span class="description">{!$Label.ag_giveYourUsersAccessToYourNewActionGrid}</span>
+                                <button class="call-to-action">{!$Label.ag_go}</button>
+                            </a>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+            <div class="process" id="cases">
+                <div class="step step-1 review" data-head-cs-icon="{!URLFOR($Asset.SLDS, 'assets/icons/standard-sprite/svg/symbols.svg#case')}" data-head-h1="{!$Label.ag_caseManagement}" data-show-install="casesTemplate">
+                    <div class="header">
+                        <p class="title">{!$Label.ag_CaseManagementDesc}</p>
+                    </div>
+                    <div class="flex grow">
+                        <div class="preview">
+                            <img title="{!$Label.ag_installPreBuiltCaseManagementActionGrid}" src="{!URLFOR($Resource.GridResources, '/styles/images/CaseTemplate.png')}" />
+                        </div>
+                        <div class="flex column content">
+                            <div class="flex grow stretch">
+                                <div>
+                                    <h3>{!$Label.ag_WhatsIncluded}</h3>
+                                    <div class="content" style="font-size: medium;">
+                                        <p>{!$Label.ag_CaseManagementDesc1}</p>
+                                        <ol class="list ">
+                                            <li>{!$Label.ag_CaseManagementDesc2}</li>
+                                            <li>{!$Label.ag_CaseManagementDesc3}</li>
+                                            <li>{!$Label.ag_CaseManagementDesc4}</li>
+                                            <li>{!$Label.ag_CaseManagementDesc5}</li>
+                                        </ol>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="step step-2 final" data-head-h1="{!$Label.ag_complete}">
+                    <div class="header">
+                        <p class="title">{!$Label.ag_WhatWouldYouLikeToDoNext}</p>
+                    </div>
+                    <ol class="selection-grid">
+                        <li class="tile">
+                            <a href="javascript:void(0);" class="link trigger-goto casesTemplate">
+                                    <span class="continuity-symbol navigation">
+                                        <span class="icon k-i-right"></span>
+                                    </span>
+                                <span class="title">{!$Label.ag_goToNewActionGrid}</span>
+                                <span class="description">{!$Label.ag_checkOutYourNewActionGrid}</span>
+                                <button class="call-to-action">{!$Label.ag_go}</button>
+                            </a>
+                        </li>
+                        <li class="tile">
+                            <a href="javascript:void(0);" class="link trigger">
+                                    <span class="continuity-symbol">
+                                        <span class="icon k-i-keys"></span>
+                                    </span>
+                                <span class="title">{!$Label.ag_addUsersToPermissionSet}</span>
+                                <span class="description">{!$Label.ag_giveYourUsersAccessToYourNewActionGrid}</span>
+                                <button class="call-to-action">{!$Label.ag_go}</button>
+                            </a>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+            <div class="process" id="admin">
+                <div class="step step-1 review" data-head-cs-icon="{!URLFOR($Asset.SLDS, 'assets/icons/standard-sprite/svg/symbols.svg#apps_admin')}" data-head-h1="{!$Label.ag_SalesforceAdmin}" data-show-install="adminTemplate">
+                    <div class="header">
+                        <p class="title">{!$Label.ag_SalesforceAdminDesc}</p>
+                    </div>
+                    <div class="flex grow">
+                        <div class="preview">
+                            <img title="{!$Label.ag_installPreBuiltSalesforceAdminActionGrid}" src="{!URLFOR($Resource.GridResources, '/styles/images/AdminTemplate.png')}" />
+                        </div>
+                        <div class="flex column content">
+                            <div class="flex grow stretch">
+                                <div>
+                                    <h3>{!$Label.ag_WhatsIncluded}</h3>
+                                    <div class="content" style="font-size: medium;">
+                                        <p>{!$Label.ag_SalesforceAdminDesc1}</p>
+                                        <p style="padding-top: 5px">{!$Label.ag_SalesforceAdminDesc2}</p>
+                                        <ol class="list ">
+                                            <li>{!$Label.ag_SalesforceAdminDesc3}</li>
+                                            <li>{!$Label.ag_SalesforceAdminDesc4}</li>
+                                            <li>{!$Label.ag_SalesforceAdminDesc5}</li>
+                                            <li>{!$Label.ag_SalesforceAdminDesc6}</li>
+                                        </ol>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="step step-2 final" data-head-h1="{!$Label.ag_complete}">
+                    <div class="header">
+                        <p class="title">{!$Label.ag_WhatWouldYouLikeToDoNext}</p>
+                    </div>
+                    <ol class="selection-grid">
+                        <li class="tile">
+                            <a href="javascript:void(0);" class="link trigger-goto adminTemplate">
+                                    <span class="continuity-symbol navigation">
+                                        <span class="icon k-i-right"></span>
+                                    </span>
+                                <span class="title">{!$Label.ag_goToNewActionGrid}</span>
+                                <span class="description">{!$Label.ag_checkOutYourNewActionGrid}</span>
+                                <button class="call-to-action">{!$Label.ag_go}</button>
+                            </a>
+                        </li>
+                        <li class="tile">
+                            <a href="javascript:void(0);" class="link trigger">
+                                    <span class="continuity-symbol">
+                                        <span class="icon k-i-keys"></span>
+                                    </span>
+                                <span class="title">{!$Label.ag_addUsersToPermissionSet}</span>
+                                <span class="description">{!$Label.ag_giveYourUsersAccessToYourNewActionGrid}</span>
+                                <button class="call-to-action">{!$Label.ag_go}</button>
+                            </a>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+            <div class="process" id="custom">
+                <div class="step step-1" data-head-icon="magicwand" data-head-subtitle="{!$Label.ag_createCustomActionGrid}" data-head-h1="{!$Label.ag_SelectAMethod}">
+                    <div class="header">
+                        <p class="title">{!$Label.ag_SetupActionGridFromExistingSalesforceOrganization}</p>
+                    </div>
+                    <ol class="selection-grid">
+                        <li class="tile">
+                            <a href="javascript:void(0);" class="link trigger" process="app" data-init-process="app">
+                                <span class="slds-icon_container">
+                                    <svg aria-hidden="true" class="slds-icon" style="fill:#53CDB8">
+                                        <use xlink:href="{!URLFOR($Asset.SLDS, 'assets/icons/standard-sprite/svg/symbols.svg#apps')}"></use>
+                                    </svg>
+                                </span>
+                                <span class="title">{!$Label.ag_CreateFromSalesforceApp}</span>
+                                <span class="description">{!$Label.ag_CreateFromSalesforceAppDesc}</span>
+                                <button class="call-to-action">{!$Label.ag_create}</button>
+                            </a>
+                        </li>
+                        <li class="tile">
+                            <a href="javascript:void(0);" class="link trigger" process="salesforce-list-views" data-init-process="app">
+                                <span class="slds-icon_container">
+                                    <svg aria-hidden="true" class="slds-icon" style="fill:#EF8179">
+                                        <use xlink:href="{!URLFOR($Asset.SLDS, 'assets/icons/utility-sprite/svg/symbols.svg#list')}"></use>
+                                    </svg>
+                                </span>
+                                <span class="title">{!$Label.ag_CreateActionGridView}</span>
+                                <span class="description">{!$Label.ag_CreateActionGridViewDesc}</span>
+                                <button class="call-to-action">{!$Label.ag_create}</button>
+                            </a>
+                        </li>
+                        <li class="tile">
+                            <a href="javascript:void(0);" class="link trigger" process="list-views" data-init-process="list-views">
+                                <span class="slds-icon_container">
+                                    <svg aria-hidden="true" class="slds-icon" style="fill:#EF8179">
+                                        <use xlink:href="{!URLFOR($Asset.SLDS, 'assets/icons/utility-sprite/svg/symbols.svg#list')}"></use>
+                                    </svg>
+                                </span>
+                                <span class="title">{!$Label.ag_CreateActionGridListView}</span>
+                                <span class="description">{!$Label.ag_CreateActionGridListViewDesc}</span>
+                                <button class="call-to-action">{!$Label.ag_create}</button>
+                            </a>
+                        </li>
+                        <li class="tile">
+                            <a href="javascript:void(0);" class="link trigger" process="list-views" data-init-process="related-lists">
+                                <span class="slds-icon_container">
+                                    <svg aria-hidden="true" class="slds-icon" style="fill:#EF8179">
+                                        <use xlink:href="{!URLFOR($Asset.SLDS, 'assets/icons/utility-sprite/svg/symbols.svg#list')}"></use>
+                                    </svg>
+                                </span>
+                                <span class="title">{!$Label.ag_CreateActionGridRelatedList}</span>
+                                <span class="description">{!$Label.ag_CreateActionGridRelatedListDesc}</span>
+                                <button class="call-to-action">{!$Label.ag_create}</button>
+                            </a>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+            <div class="process" id="app">
+                <div class="step step-1" data-head-cs-icon="{!URLFOR($Asset.SLDS, 'assets/icons/standard-sprite/svg/symbols.svg#apps')}" data-head-h1="{!$Label.ag_SelectAnApplication}" data-show-install="app">
+                    <div class="header">
+                        <p class="title">{!$Label.ag_CreateFromSalesforceApplication}</p>
+                    </div>
+                    <div class="object-datatable" id="app-list">
+                        <div class="datatable-search">
+                            <label class="datatable-label search-label">{!$Label.ag_ApplicationSearch}</label>
+                            <label class="placeholder search-label">{!$Label.ag_SearchSalesforceApplications}</label>
+                            <input type="text" class="datatable-input" name="datatable-input" />
+                        </div>
+                        <ul class="table">
+                        </ul>
+                    </div>
+                </div>
+                <div class="step step-2 final" data-head-h1="{!$Label.ag_complete}">
+                    <div class="header">
+                        <p class="title">{!$Label.ag_WhatWouldYouLikeToDoNext}</p>
+                    </div>
+                    <ol class="selection-grid">
+                        <li class="tile">
+                            <a href="javascript:void(0);" class="link trigger-goto" id="trigger-goto-app">
+                                    <span class="continuity-symbol navigation">
+                                        <span class="icon k-i-right"></span>
+                                    </span>
+                                <span class="title">{!$Label.ag_goToNewActionGrid}</span>
+                                <span class="description">{!$Label.ag_checkOutYourNewActionGrid}</span>
+                                <button class="call-to-action">{!$Label.ag_go}</button>
+                            </a>
+                        </li>
+                        <li class="tile">
+                            <a href="javascript:void(0);" class="link trigger">
+                                    <span class="continuity-symbol">
+                                        <span class="icon k-i-keys"></span>
+                                    </span>
+                                <span class="title">{!$Label.ag_addUsersToPermissionSet}</span>
+                                <span class="description">{!$Label.ag_giveYourUsersAccessToYourNewActionGrid}</span>
+                                <button class="call-to-action">{!$Label.ag_go}</button>
+                            </a>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+            <div class="process" id="salesforce-list-views">
+                <div class="step step-1" data-head-cs-icon="{!URLFOR($Asset.SLDS, 'assets/icons/utility-sprite/svg/symbols.svg#list')}" data-head-h1="{!$Label.ag_SelectAnObject}" data-show-install="salesforcelistview">
+                    <div class="header">
+                        <p class="title">{!$Label.ag_CreateFromSalesforceListView}</p>
+                    </div>
+                    <div class="object-datatable" id="object-list">
+                        <div class="datatable-search">
+                            <label class="datatable-label search-label">{!$Label.ag_ListviewSearch}</label>
+                            <label class="placeholder search-label">{!$Label.ag_SearchSalesforceObjects}</label>
+                            <input type="text" class="datatable-input" name="datatable-input" />
+                        </div>
+                        <ul class="table">
+                        </ul>
+                    </div>
+                </div>
+                <div class="step step-2 final" data-head-h1="{!$Label.ag_complete}">
+                    <div class="header">
+                        <p class="title">{!$Label.ag_WhatWouldYouLikeToDoNext}</p>
+                    </div>
+                    <ol class="selection-grid">
+                        <li class="tile">
+                            <a href="javascript:void(0);" class="link trigger-goto" id="trigger-goto-salesforcelistview">
+                                    <span class="continuity-symbol navigation">
+                                        <span class="icon k-i-right"></span>
+                                    </span>
+                                <span class="title">{!$Label.ag_goToNewActionGrid}</span>
+                                <span class="description">{!$Label.ag_checkOutYourNewActionGrid}</span>
+                                <button class="call-to-action">{!$Label.ag_go}</button>
+                            </a>
+                        </li>
+                        <li class="tile">
+                            <a href="javascript:void(0);" class="link">
+                                    <span class="continuity-symbol">
+                                        <span class="icon k-i-keys"></span>
+                                    </span>
+                                <span class="title">{!$Label.ag_addUsersToPermissionSet}</span>
+                                <span class="description">{!$Label.ag_giveYourUsersAccessToYourNewActionGrid}</span>
+                                <button class="call-to-action">{!$Label.ag_go}</button>
+                            </a>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+
+            <div class="process" id="list-views">
+                <div class="step step-1 slds-form slds-form--stacked" data-head-cs-icon="{!URLFOR($Asset.SLDS, 'assets/icons/utility-sprite/svg/symbols.svg#list')}" data-show-install="listview">
+                    <div class="header">
+                        <p class="title" id="list-view-title"></p>
+                    </div>
+                    <div class="container-content">
+                        <div id="errors-listview" class="slds-text-color--error"></div>
+                        <div class="slds-grid" id="listViewConfig">
+                            <div class="slds-col">
+                                <div class="slds-form-element js-related-list-property">
+                                        <label class="slds-form-element__label" for="standardController">{!$Label.ag_ChooseParentObject}</label>
+                                        <div class="slds-select_container">
+                                            <select class="slds-select" id="standardController"></select>
+                                        </div>
+                                    </div>
+
+                                <div class="slds-form-element">
+                                    <label class="slds-form-element__label" for="pageName">{!$Label.ag_PageName}</label>
+                                    <div class="slds-form-element__control">
+                                        <input type="text" id="pageName" name="pageName" class="slds-input" />
+                                    </div>
+                                </div>
+
+                                <div class="slds-form-element">
+                                    <label class="slds-form-element__label" for="pageLabel">{!$Label.ag_PageLabel}</label>
+                                    <div class="slds-form-element__control">
+                                        <input type="text" id="pageLabel" name="pageLabel" class="slds-input" />
+                                    </div>
+                                </div>
+
+                                <div class="slds-form-element">
+                                    <label class="slds-form-element__label" for="description">{!$Label.ag_Description}</label>
+                                    <div class="slds-form-element__control">
+                                        <textarea id="description" name="description" class="slds-textarea" />
+                                    </div>
+                                </div>
+
+                                <div class="slds-form-element js-list-view-property">
+                                  <div class="slds-form-element__control">
+                                    <span class="slds-checkbox">
+                                        <input type="checkbox" id="sideBar" name="sideBar" checked="" />
+                                        <label for="sideBar" class="slds-checkbox__label">
+                                            <span class="slds-checkbox_faux"></span>
+                                            <span class="slds-form-element__label">{!$Label.ag_ShowTheSideBar}</span>
+                                        </label>
+                                    </span>
+                                  </div>
+                                </div>
+
+                                <div class="slds-form-element js-list-view-property">
+                                  <div class="slds-form-element__control">
+                                    <span class="slds-checkbox">
+                                        <input type="checkbox" id="showHeader" name="showHeader" checked="true" />
+                                        <label for="showHeader" class="slds-checkbox__label">
+                                            <span class="slds-checkbox_faux"></span>
+                                            <span class="slds-form-element__label">{!$Label.ag_ShowTheHeader}</span>
+                                        </label>
+                                    </span>
+                                  </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="slds-grid tab-container">
+                            <div class="slds-col">
+                                <div class="slds-form-element">
+                                    <label class="slds-form-element__label">{!$Label.ag_Tabs}</label>
+                                    <div class="slds-form-element__control">
+                                        <select id="available" title="{!$Label.ag_Objects}"></select>
+                                        <select id="selected" name="selected" title="{!$Label.ag_Selected}"></select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="slds-col">
+                                <div id="tabConfig" style="display:none;">
+                                    <div class="slds-form-element">
+                                        <label class="slds-form-element__label" for="tab_pageLabel">{!$Label.ag_TabLabel}</label>
+                                        <div class="slds-form-element__control">
+                                            <input type="text" id="tab_pageLabel" name="tab_pageLabel" class="slds-input" />
+                                        </div>
+                                    </div>
+                                    <div class="slds-form-element">
+                                        <label class="slds-form-element__label" for="tab_viewID">{!$Label.ag_DefaultView}</label>
+                                        <div class="slds-select_container">
+                                            <select class="slds-select" id="tab_viewID"></select>
+                                        </div>
+                                    </div>
+                                    <div class="slds-form-element">
+                                      <div class="slds-form-element__control">
+                                        <span class="slds-checkbox">
+                                            <input type="checkbox" id="tab_enableNewButton" name="tab_enableNewButton" checked="" />
+                                            <label for="tab_enableNewButton" class="slds-checkbox__label">
+                                                <span class="slds-checkbox_faux"></span>
+                                                <span class="slds-form-element__label">{!$Label.ag_EnableNewButton}</span>
+                                            </label>
+                                        </span>
+                                      </div>
+                                    </div>
+
+                                    <div class="slds-form-element">
+                                      <div class="slds-form-element__control">
+                                        <span class="slds-checkbox">
+                                            <input type="checkbox" id="tab_enableNewInline" name="tab_enableNewInline" checked="" />
+                                            <label for="tab_enableNewInline" class="slds-checkbox__label">
+                                                <span class="slds-checkbox_faux"></span>
+                                                <span class="slds-form-element__label">{!$Label.ag_EnableNewInline}</span>
+                                            </label>
+                                        </span>
+                                      </div>
+                                    </div>
+
+                                    <div class="slds-form-element">
+                                      <div class="slds-form-element__control">
+                                        <span class="slds-checkbox">
+                                            <input type="checkbox" id="tab_enableEdit" name="tab_enableEdit" checked="" />
+                                            <label for="tab_enableEdit" class="slds-checkbox__label">
+                                                <span class="slds-checkbox_faux"></span>
+                                                <span class="slds-form-element__label">{!$Label.ag_EnableEditButton}</span>
+                                            </label>
+                                        </span>
+                                      </div>
+                                    </div>
+
+                                    <div class="slds-form-element">
+                                      <div class="slds-form-element__control">
+                                        <span class="slds-checkbox">
+                                            <input type="checkbox" id="tab_enableActions" name="tab_enableActions" checked="" />
+                                            <label for="tab_enableActions" class="slds-checkbox__label">
+                                                <span class="slds-checkbox_faux"></span>
+                                                <span class="slds-form-element__label">{!$Label.ag_EnableActions}</span>
+                                            </label>
+                                        </span>
+                                      </div>
+                                    </div>
+
+                                    <div class="slds-form-element">
+                                      <div class="slds-form-element__control">
+                                        <span class="slds-checkbox">
+                                            <input type="checkbox" id="tab_enableFieldChooser" name="tab_enableFieldChooser" checked="" />
+                                            <label for="tab_enableFieldChooser" class="slds-checkbox__label">
+                                                <span class="slds-checkbox_faux"></span>
+                                                <span class="slds-form-element__label">{!$Label.ag_EnableFieldChooser}</span>
+                                            </label>
+                                        </span>
+                                      </div>
+                                    </div>
+
+                                    <div class="slds-form-element">
+                                      <div class="slds-form-element__control">
+                                        <span class="slds-checkbox">
+                                            <input type="checkbox" id="tab_enableStickyViews" name="tab_enableStickyViews" checked="" />
+                                            <label for="tab_enableStickyViews" class="slds-checkbox__label">
+                                                <span class="slds-checkbox_faux"></span>
+                                                <span class="slds-form-element__label">{!$Label.ag_EnableStickyViews}</span>
+                                            </label>
+                                        </span>
+                                      </div>
+                                    </div>
+
+                                    <div class="slds-form-element">
+                                      <div class="slds-form-element__control">
+                                        <span class="slds-checkbox">
+                                            <input type="checkbox" id="tab_enableToolbar" name="tab_enableToolbar" checked="" />
+                                            <label for="tab_enableToolbar" class="slds-checkbox__label">
+                                                <span class="slds-checkbox_faux"></span>
+                                                <span class="slds-form-element__label">{!$Label.ag_EnableToolbar}</span>
+                                            </label>
+                                        </span>
+                                      </div>
+                                    </div>
+
+                                    <div class="slds-form-element">
+                                      <div class="slds-form-element__control">
+                                        <span class="slds-checkbox">
+                                            <input type="checkbox" id="tab_enableViews" name="tab_enableViews" checked="" />
+                                            <label for="tab_enableViews" class="slds-checkbox__label">
+                                                <span class="slds-checkbox_faux"></span>
+                                                <span class="slds-form-element__label">{!$Label.ag_EnableViews}</span>
+                                            </label>
+                                        </span>
+                                      </div>
+                                    </div>
+
+                                    <div class="slds-form-element">
+                                      <div class="slds-form-element__control">
+                                        <span class="slds-checkbox">
+                                            <input type="checkbox" id="tab_enableFormatting" name="tab_enableFormatting" checked="" />
+                                            <label for="tab_enableFormatting" class="slds-checkbox__label">
+                                                <span class="slds-checkbox_faux"></span>
+                                                <span class="slds-form-element__label">{!$Label.ag_EnableFormatting}</span>
+                                            </label>
+                                        </span>
+                                      </div>
+                                    </div>
+
+                                    <div class="slds-form-element">
+                                      <div class="slds-form-element__control">
+                                        <span class="slds-checkbox">
+                                            <input type="checkbox" id="tab_enableReadingPane" name="tab_enableReadingPane" checked="" />
+                                            <label for="tab_enableReadingPane" class="slds-checkbox__label">
+                                                <span class="slds-checkbox_faux"></span>
+                                                <span class="slds-form-element__label">{!$Label.ag_EnableReadingPane}</span>
+                                            </label>
+                                        </span>
+                                      </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="step step-2 final" data-head-h1="{!$Label.ag_complete}">
+                    <div class="header">
+                        <p class="title">{!$Label.ag_WhatWouldYouLikeToDoNext}</p>
+                    </div>
+                    <ol class="selection-grid">
+                        <li class="tile">
+                            <a href="javascript:void(0);" class="link trigger-goto" id="trigger-goto-listview">
+                                    <span class="continuity-symbol navigation">
+                                        <span class="icon k-i-right"></span>
+                                    </span>
+                                <span class="title">{!$Label.ag_goToNewActionGrid}</span>
+                                <span class="description">{!$Label.ag_checkOutYourNewActionGrid}</span>
+                                <button class="call-to-action">{!$Label.ag_go}</button>
+                            </a>
+                        </li>
+                        <li class="tile">
+                            <a href="javascript:void(0);" class="link">
+                                    <span class="continuity-symbol">
+                                        <span class="icon k-i-keys"></span>
+                                    </span>
+                                <span class="title">{!$Label.ag_addUsersToPermissionSet}</span>
+                                <span class="description">{!$Label.ag_giveYourUsersAccessToYourNewActionGrid}</span>
+                                <button class="call-to-action">{!$Label.ag_go}</button>
+                            </a>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+        <div class="supid" style="display:none">
+            <div id="loadingMask">
+                <span class="k-icon k-loading-image"></span>
+            </div>
+            <div id="ObjectList"> </div>
+        </div>
+    </div>
+</div>
+</apex:page>

@@ -4,6 +4,7 @@
     <deprecated>false</deprecated>
     <description>FOR INTERNAL USE ONLY. DO NOT USE IN SCREENS, REPORTS, ETC.</description>
     <externalId>false</externalId>
+    <inlineHelpText>ID (Legacy)</inlineHelpText>
     <label>Agreement Number_Num (INTERNAL)</label>
     <length>8</length>
     <required>false</required>

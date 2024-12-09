@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Role xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseAccessLevel>Edit</caseAccessLevel>
+    <contactAccessLevel>Edit</contactAccessLevel>
+    <description>Exec VP Sales and Mkt</description>
+    <mayForecastManagerShare>false</mayForecastManagerShare>
+    <name>Exec VP Sales and Marketing</name>
+    <opportunityAccessLevel>Edit</opportunityAccessLevel>
+    <parentRole>ETAS_President</parentRole>
+</Role>
