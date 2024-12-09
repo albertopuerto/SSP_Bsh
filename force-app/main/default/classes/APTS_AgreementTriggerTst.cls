@@ -17,6 +17,7 @@ private class APTS_AgreementTriggerTst {
     acc.pkl_INCOTerms1__c = 'CIF - Cost, Insurance, and Freight';
     acc.txt_INCOTerms2__c = 'Wolfsburg';
     acc.pkl_Language__c = 'German';
+    testAcc.pkl_PaymentTerms__c = 'Net 15';
     insert acc;
     
     Opportunity opp = new Opportunity();
