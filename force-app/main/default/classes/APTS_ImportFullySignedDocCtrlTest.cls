@@ -17,6 +17,7 @@ private class APTS_ImportFullySignedDocCtrlTest{
 		testAcc.pkl_INCOTerms1__c = 'CIF - Cost, Insurance, and Freight';
         testAcc.txt_INCOTerms2__c = 'Wolfsburg';
         testAcc.pkl_Language__c = 'German';
+        testAcc.pkl_PaymentTerms__c = 'Net 15';
         insert testacc;
         
         APTS_integration_Allowed__c obj = new APTS_integration_Allowed__c(Name = 'Integration_Allowed', APTS_Allow_Callout__c = true);
