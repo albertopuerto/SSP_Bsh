@@ -1,14 +1,13 @@
 # Salesforce DX Project: Next Steps
 
-Now that you’ve created a Salesforce DX project, what’s next? Here are some documentation resources to get you started.
+This is the Salesforce BBM-SSP project in Github. More information can be found here:
+
+Docupedia: https://inside-docupedia.bosch.com/confluence2/x/Le7HD 
 
 ## How Do You Plan to Deploy Your Changes?
 
-Do you want to deploy a set of changes, or create a self-contained application? Choose a [development model](https://developer.salesforce.com/tools/vscode/en/user-guide/development-models).
+Development will take place on Developer Orgs, Deployment will happen in Gearset: https://app.gearset.com/deployment-pipelines?pipelineId=c1ec3a76-fb94-4e60-aba6-cbed9ef9a9e7 
 
-## Configure Your Salesforce DX Project
-
-The `sfdx-project.json` file contains useful configuration information for your project. See [Salesforce DX Project Configuration](https://developer.salesforce.com/docs/atlas.en-us.sfdx_dev.meta/sfdx_dev/sfdx_dev_ws_config.htm) in the _Salesforce DX Developer Guide_ for details about this file.
 
 ## Read All About It
 
