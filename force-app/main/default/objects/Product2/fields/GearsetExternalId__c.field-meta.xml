@@ -2,6 +2,7 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>GearsetExternalId__c</fullName>
     <caseSensitive>false</caseSensitive>
+    <description>The field is required by Gearset for comparison and deployment of CPQ configuration.</description>
     <externalId>true</externalId>
     <label>Gearset External ID</label>
     <length>18</length>

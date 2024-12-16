@@ -445,6 +445,10 @@
         <editable>false</editable>
         <field>PriceElement__c.pkl_ConditionType__c</field>
         <readable>true</readable>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Product2.pkl_SolutionField__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
