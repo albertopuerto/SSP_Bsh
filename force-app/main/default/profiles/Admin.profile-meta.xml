@@ -344,6 +344,21 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>PriceElement__c.num_ConditionRateValue__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>PriceElement__c.pkl_ConditionCurrency__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>PriceElement__c.pkl_ConditionType__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Product2.pkl_SolutionField__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -1079,6 +1094,9 @@
     </layoutAssignments>
     <layoutAssignments>
         <layout>Outlook-EmailApplicationPublisherLayout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>PriceElement__c-Price Element Layout</layout>
     </layoutAssignments>
     <recordTypeVisibilities>
         <default>false</default>
