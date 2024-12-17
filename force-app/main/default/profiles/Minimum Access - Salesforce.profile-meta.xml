@@ -178,6 +178,21 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>true</editable>
+        <field>PriceElement__c.num_ConditionRateValue__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>PriceElement__c.pkl_ConditionCurrency__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>PriceElement__c.pkl_ConditionType__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>false</editable>
         <field>SBQQ__QuoteLine__c.ftxt_ShortDescription__c</field>
         <readable>true</readable>
@@ -225,6 +240,9 @@
     </userPermissions>
     <layoutAssignments>
         <layout>ExportControlSheet__c-Export Control Sheet Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>PriceElement__c-Price Element Layout</layout>
     </layoutAssignments>
     <recordTypeVisibilities>
         <default>false</default>
