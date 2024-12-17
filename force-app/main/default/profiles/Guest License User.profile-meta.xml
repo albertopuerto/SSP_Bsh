@@ -8,6 +8,9 @@
     <layoutAssignments>
         <layout>OrderItem-Order Product Layout</layout>
     </layoutAssignments>
+    <layoutAssignments>
+        <layout>PriceElement__c-Price Element Layout</layout>
+    </layoutAssignments>
     <recordTypeVisibilities>
         <default>false</default>
         <recordType>Apttus__APTS_Agreement__c.AVV_BDSG</recordType>

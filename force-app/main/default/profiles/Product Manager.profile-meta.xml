@@ -774,6 +774,21 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>PriceElement__c.num_ConditionRateValue__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>PriceElement__c.pkl_ConditionCurrency__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>PriceElement__c.pkl_ConditionType__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Product2.Product_Image_ID__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -822,12 +837,6 @@
         <field>SBQQ__QuoteLine__c.Product_Image__c</field>
         <readable>true</readable>
     </fieldPermissions>
-    <!--
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>SBQQ__QuoteLine__c.ftxt_ApprovalStatus__c</field>
-        <readable>true</readable>
-    </fieldPermissions>-->
     <fieldPermissions>
         <editable>true</editable>
         <field>SBQQ__QuoteLine__c.pkl_INCOTerms1__c</field>
@@ -1386,11 +1395,6 @@
     <layoutAssignments>
         <layout>ExportControlSheet__c-Export Control Sheet Layout</layout>
     </layoutAssignments>
-    <!--
-    <layoutAssignments>
-        <layout>FurtherPriceInformation__c-Further Price Information Layout</layout>
-    </layoutAssignments>
-    -->
     <layoutAssignments>
         <layout>Opportunity-Frame Contract Opportunity Layout</layout>
         <recordType>Opportunity.FrameContract</recordType>
@@ -1407,6 +1411,9 @@
     </layoutAssignments>
     <layoutAssignments>
         <layout>OrderItem-Order Product Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>PriceElement__c-Price Element Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
         <layout>Product2-SBQQ__CPQ Product Layout</layout>
