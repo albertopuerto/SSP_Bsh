@@ -28,6 +28,36 @@
                 <default>false</default>
                 <label>Other</label>
             </value>
+            <value>
+                <fullName>Dutch Law</fullName>
+                <default>false</default>
+                <label>Dutch Law</label>
+            </value>
+            <value>
+                <fullName>French Law</fullName>
+                <default>false</default>
+                <label>French Law</label>
+            </value>
+            <value>
+                <fullName>Korean Law</fullName>
+                <default>false</default>
+                <label>Korean Law</label>
+            </value>
+            <value>
+                <fullName>UK Law</fullName>
+                <default>false</default>
+                <label>UK Law</label>
+            </value>
+            <value>
+                <fullName>Canada Law</fullName>
+                <default>false</default>
+                <label>Canada Law</label>
+            </value>
+            <value>
+                <fullName>USA Law</fullName>
+                <default>false</default>
+                <label>USA Law</label>
+            </value>
         </valueSetDefinition>
     </valueSet>
 </CustomField>
