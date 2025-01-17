@@ -48,7 +48,6 @@
     "SBQQ__LeftMargin__c": "0.5",
     "SBQQ__LineNumbering__c": "Start at quote",
     "SBQQ__LineSortField__c": "",
-    "SBQQ__LogoDocumentId__c": "0159Q000004vgJZ",
     "SBQQ__NotesTitle__c": "",
     "SBQQ__PageHeight__c": "11.0",
     "SBQQ__PageNumberAlignment__c": "Center",
@@ -74,8 +73,7 @@
     "SBQQ__TopMargin__c": "0.5",
     "SBQQ__TotalField__c": "",
     "SBQQ__TotalLabel__c": "",
-    "SBQQ__TotalsHidden__c": "false",
-    "SBQQ__WatermarkId__c": ""
+    "SBQQ__TotalsHidden__c": "false"
   },
   "References": [
     {
@@ -90,6 +88,20 @@
       "ReferencedObject": "SBQQ__TemplateContent__c",
       "ReferencedFields": {
         "GearsetExternalId__c": "MAUvGB6000000Q9A4a"
+      }
+    },
+    {
+      "Name": "SBQQ__LogoDocumentId__c",
+      "ReferencedObject": "Document",
+      "ReferencedFields": {
+        "DeveloperName": "ETAS_Logo_Blue"
+      }
+    },
+    {
+      "Name": "SBQQ__WatermarkId__c",
+      "ReferencedObject": "Document",
+      "ReferencedFields": {
+        "DeveloperName": ""
       }
     }
   ]
