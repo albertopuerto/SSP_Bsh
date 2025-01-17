@@ -2,7 +2,7 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>lkp_PersonResponsible__c</fullName>
     <deleteConstraint>SetNull</deleteConstraint>
-    <description>Field that is needed for the Order interface.</description>
+    <description>Field value is inherited from the Quote. Needed for Order interface and ensure quicker Order processing and data integrity</description>
     <externalId>false</externalId>
     <label>Person Responsible</label>
     <referenceTo>Account</referenceTo>
