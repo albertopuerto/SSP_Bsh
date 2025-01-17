@@ -497,6 +497,14 @@
         <relatedList>SBQQ__QuoteDocument__c.SBQQ__Quote__c</relatedList>
     </relatedLists>
     <relatedLists>
+        <fields>NAME</fields>
+        <fields>SBQQ__Status__c</fields>
+        <fields>SBQQ__PrintOrder__c</fields>
+        <fields>SBQQ__Type__c</fields>
+        <fields>SBQQ__Body__c</fields>
+        <relatedList>SBQQ__QuoteTerm__c.SBQQ__Quote__c</relatedList>
+    </relatedLists>
+    <relatedLists>
         <fields>TASK.SUBJECT</fields>
         <fields>TASK.WHO_NAME</fields>
         <fields>ACTIVITY.TASK</fields>
