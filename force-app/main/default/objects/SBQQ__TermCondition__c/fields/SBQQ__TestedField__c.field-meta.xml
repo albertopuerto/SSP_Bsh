@@ -32,6 +32,16 @@
                 <default>false</default>
                 <label>Net Amount</label>
             </value>
+            <value>
+                <fullName>chk_Override_Standard_T_C__c</fullName>
+                <default>false</default>
+                <label>Override Standard T&amp;C</label>
+            </value>
+            <value>
+                <fullName>ftxt_Account_Role__c</fullName>
+                <default>false</default>
+                <label>Account Role</label>
+            </value>
         </valueSetDefinition>
     </valueSet>
 </CustomField>

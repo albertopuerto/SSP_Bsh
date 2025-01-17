@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GlobalValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customValue>
+        <fullName>Customer Discount</fullName>
+        <default>false</default>
+        <label>Customer Discount</label>
+    </customValue>
+    <customValue>
+        <fullName>List Price</fullName>
+        <default>false</default>
+        <label>List Price</label>
+    </customValue>
+    <customValue>
+        <fullName>Manual Discount</fullName>
+        <default>false</default>
+        <label>Manual Discount</label>
+    </customValue>
+    <customValue>
+        <fullName>Mark up</fullName>
+        <default>false</default>
+        <label>Mark up</label>
+    </customValue>
+    <masterLabel>Condition Type</masterLabel>
+    <sorted>false</sorted>
+</GlobalValueSet>
