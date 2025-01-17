@@ -1,5 +1,6 @@
 {
   "Packages": [
+    "AdvancedApprovals",
     "Cpq"
   ],
   "Version": 1

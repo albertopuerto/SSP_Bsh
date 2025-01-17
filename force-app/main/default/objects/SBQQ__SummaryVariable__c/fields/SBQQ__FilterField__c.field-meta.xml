@@ -22,6 +22,11 @@
                 <default>false</default>
                 <label>Product Family</label>
             </value>
+            <value>
+                <fullName>SBQQ__Type__c</fullName>
+                <default>false</default>
+                <label>Type</label>
+            </value>
         </valueSetDefinition>
     </valueSet>
 </CustomField>
