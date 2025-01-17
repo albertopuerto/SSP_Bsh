@@ -349,11 +349,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Product2.pkl_SolutionField__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
         <field>PriceElement__c.num_ConditionRateValue__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -365,6 +360,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>PriceElement__c.pkl_ConditionType__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Product2.pkl_SolutionField__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
