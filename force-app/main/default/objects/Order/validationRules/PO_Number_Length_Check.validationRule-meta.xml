@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>PO_Number_Length_Check</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND( NOT(ISBLANK(PoNumber)) , LEN( PoNumber) &gt; 35 )</errorConditionFormula>
+    <errorDisplayField>PoNumber</errorDisplayField>
+    <errorMessage>PO Number cannot exceed 35 characters in length</errorMessage>
+</ValidationRule>

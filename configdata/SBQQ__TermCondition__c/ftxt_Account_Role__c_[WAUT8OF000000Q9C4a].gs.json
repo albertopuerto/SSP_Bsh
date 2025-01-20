@@ -1,0 +1,28 @@
+{
+  "Object": "SBQQ__TermCondition__c",
+  "Fields": {
+    "CurrencyIsoCode": "EUR",
+    "GearsetDisplayName": "ftxt_Account_Role__c",
+    "GearsetExternalId__c": "WAUT8OF000000Q9C4a",
+    "SBQQ__Index__c": "",
+    "SBQQ__Operator__c": "starts with",
+    "SBQQ__TestedField__c": "ftxt_Account_Role__c",
+    "SBQQ__Value__c": "ETUS"
+  },
+  "References": [
+    {
+      "Name": "SBQQ__QuoteTerm__r",
+      "ReferencedObject": "SBQQ__QuoteTerm__c",
+      "ReferencedFields": {
+        "GearsetExternalId__c": "IAQ5Cox000000Q9u3a"
+      }
+    },
+    {
+      "Name": "SBQQ__TestedVariable__r",
+      "ReferencedObject": "SBQQ__SummaryVariable__c",
+      "ReferencedFields": {
+        "GearsetExternalId__c": ""
+      }
+    }
+  ]
+}
