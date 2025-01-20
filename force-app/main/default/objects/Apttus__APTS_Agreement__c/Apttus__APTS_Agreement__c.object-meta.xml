@@ -197,6 +197,6 @@
         <searchResultsAdditionalFields>Apttus__Status__c</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>Apttus__Contract_End_Date__c</searchResultsAdditionalFields>
     </searchLayouts>
-    <sharingModel>ReadWrite</sharingModel>
+    <sharingModel>Private</sharingModel>
     <visibility>Public</visibility>
 </CustomObject>
