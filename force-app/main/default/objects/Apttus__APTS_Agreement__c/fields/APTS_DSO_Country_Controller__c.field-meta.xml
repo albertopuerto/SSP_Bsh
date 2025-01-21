@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>APTS_DSO_Country_Controller__c</fullName>
+    <description>Data Controller Country</description>
+    <externalId>false</externalId>
+    <label>Data Controller Country</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>MultiselectPicklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetName>APTS_Country_Agreements</valueSetName>
+    </valueSet>
+    <visibleLines>3</visibleLines>
+</CustomField>
