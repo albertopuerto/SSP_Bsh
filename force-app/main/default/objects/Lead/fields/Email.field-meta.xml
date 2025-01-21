@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Email</fullName>
-    <trackFeedHistory>false</trackFeedHistory>
+    <description>Email address of lead. Must be a valid email address in the form: jsmith@acme.com. Up to 80 characters are allowed in this field.</description>
+    <trackFeedHistory>true</trackFeedHistory>
+    <trackHistory>true</trackHistory>
 </CustomField>
