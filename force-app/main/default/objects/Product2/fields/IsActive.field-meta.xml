@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>IsActive</fullName>
+    <description>Indicates whether the product record is active (true) or not (false).
+
+Inactive product records are hidden in many areas in the user interface. You can change the Active value on a product as often as necessary.</description>
     <trackHistory>false</trackHistory>
 </CustomField>

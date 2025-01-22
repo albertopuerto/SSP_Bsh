@@ -49,6 +49,21 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Apttus__APTS_Agreement__c.APTS_Country_Controller__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Apttus__APTS_Agreement__c.APTS_Country_Processor__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Apttus__APTS_Agreement__c.APTS_Country_Subprocessor__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Apttus__APTS_Agreement__c.APTS_DPO_mentioned_by_name__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -214,6 +229,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Contract.chk_IsReviewed__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Order.dat_CRDPlannedOrderDeliveryDate__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -340,6 +360,21 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Contract.fdat_ReminderDate__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>PriceElement__c.num_ConditionRateValue__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>PriceElement__c.pkl_ConditionCurrency__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>PriceElement__c.pkl_ConditionType__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -1339,6 +1374,9 @@
     </layoutAssignments>
     <layoutAssignments>
         <layout>Outlook-EmailApplicationPublisherLayout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>PriceElement__c-Price Element Layout</layout>
     </layoutAssignments>
     <recordTypeVisibilities>
         <default>false</default>
