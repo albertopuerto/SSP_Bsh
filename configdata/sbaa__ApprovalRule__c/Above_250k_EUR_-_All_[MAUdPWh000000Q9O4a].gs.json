@@ -1,0 +1,69 @@
+{
+  "Object": "sbaa__ApprovalRule__c",
+  "Fields": {
+    "CurrencyIsoCode": "EUR",
+    "GearsetDisplayName": "Above 250k EUR - All",
+    "GearsetExternalId__c": "MAUdPWh000000Q9O4a",
+    "Name": "Above 250k EUR",
+    "sbaa__Active__c": "true",
+    "sbaa__AdvancedCondition__c": "",
+    "sbaa__ApprovalRecipients__c": "",
+    "sbaa__ApprovalStep__c": "",
+    "sbaa__ApproverField__c": "",
+    "sbaa__ConditionsMet__c": "All",
+    "sbaa__EffectiveDateField__c": "",
+    "sbaa__EffectiveEndDate__c": "",
+    "sbaa__EffectiveStartDate__c": "",
+    "sbaa__ExcludedStatuses__c": "Approved",
+    "sbaa__OverrideField__c": "",
+    "sbaa__Parallel__c": "false",
+    "sbaa__RejectionRecipients__c": "",
+    "sbaa__RequireExplicitApproval__c": "false",
+    "sbaa__SmartApprovalIgnoresConditionsMet__c": "false",
+    "sbaa__TargetObject__c": "SBQQ__Quote__c"
+  },
+  "References": [
+    {
+      "Name": "sbaa__ApprovalChain__r",
+      "ReferencedObject": "sbaa__ApprovalChain__c",
+      "ReferencedFields": {
+        "GearsetExternalId__c": "0AURLlI000000Q9M4a"
+      }
+    },
+    {
+      "Name": "sbaa__ApprovalTemplate__r",
+      "ReferencedObject": "sbaa__EmailTemplate__c",
+      "ReferencedFields": {
+        "GearsetExternalId__c": ""
+      }
+    },
+    {
+      "Name": "sbaa__Approver__r",
+      "ReferencedObject": "sbaa__Approver__c",
+      "ReferencedFields": {
+        "GearsetExternalId__c": "KAUnOhO000000Q9T4a"
+      }
+    },
+    {
+      "Name": "sbaa__RecallTemplate__r",
+      "ReferencedObject": "sbaa__EmailTemplate__c",
+      "ReferencedFields": {
+        "GearsetExternalId__c": ""
+      }
+    },
+    {
+      "Name": "sbaa__RejectionTemplate__r",
+      "ReferencedObject": "sbaa__EmailTemplate__c",
+      "ReferencedFields": {
+        "GearsetExternalId__c": ""
+      }
+    },
+    {
+      "Name": "sbaa__RequestTemplate__r",
+      "ReferencedObject": "sbaa__EmailTemplate__c",
+      "ReferencedFields": {
+        "GearsetExternalId__c": ""
+      }
+    }
+  ]
+}
