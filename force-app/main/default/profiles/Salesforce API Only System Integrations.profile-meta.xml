@@ -34,6 +34,21 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Apttus__APTS_Agreement__c.APTS_Country_Controller__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Apttus__APTS_Agreement__c.APTS_Country_Processor__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Apttus__APTS_Agreement__c.APTS_Country_Subprocessor__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Apttus__APTS_Agreement__c.APTS_DPO_mentioned_by_name__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -215,6 +230,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Product2.txr_AdditionaInformation__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>SBQQ__Quote__c.ApprovalStatus__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>

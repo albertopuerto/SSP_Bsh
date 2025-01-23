@@ -213,6 +213,21 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Apttus__APTS_Agreement__c.APTS_Country_Controller__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Apttus__APTS_Agreement__c.APTS_Country_Processor__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Apttus__APTS_Agreement__c.APTS_Country_Subprocessor__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Apttus__APTS_Agreement__c.APTS_DPO_mentioned_by_name__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -347,6 +362,11 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>true</editable>
+        <field>Contract.chk_IsReviewed__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>false</editable>
         <field>ExportControlSheet__c.chk_IsCivilianCustomer__c</field>
         <readable>true</readable>
@@ -433,11 +453,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Product2.pkl_SolutionField__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>PriceElement__c.num_ConditionRateValue__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -449,6 +464,21 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>PriceElement__c.pkl_ConditionType__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Product2.pkl_SolutionField__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>SBQQ__QuoteLine__c.pkl_SolutionField__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>SBQQ__Quote__c.ApprovalStatus__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>

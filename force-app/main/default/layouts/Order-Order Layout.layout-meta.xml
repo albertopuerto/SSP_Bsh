@@ -18,6 +18,10 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
+                <field>PoNumber</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
                 <field>Type</field>
             </layoutItems>
             <layoutItems>
@@ -131,12 +135,6 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>lkp_ToolCoordinator__c</field>
-            </layoutItems>
-        </layoutColumns>
-        <layoutColumns>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>lkp_PersonResponsible__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsLeftToRight</style>
@@ -278,6 +276,11 @@
             <actionName>Share</actionName>
             <actionType>StandardButton</actionType>
             <sortOrder>17</sortOrder>
+        </platformActionListItems>
+        <platformActionListItems>
+            <actionName>SBQQ__EditOrderProducts</actionName>
+            <actionType>CustomButton</actionType>
+            <sortOrder>18</sortOrder>
         </platformActionListItems>
     </platformActionList>
     <quickActionList>

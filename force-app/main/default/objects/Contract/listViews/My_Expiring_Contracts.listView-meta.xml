@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>My_Expiring_Contracts</fullName>
+    <booleanFilter>1 AND 2</booleanFilter>
+    <columns>CONTRACT.CONTRACT_NUMBER</columns>
+    <columns>SALES.ACCOUNT.NAME</columns>
+    <columns>CONTRACT.STATUS</columns>
+    <columns>CONTRACT.END_DATE</columns>
+    <columns>chk_IsReviewed__c</columns>
+    <filterScope>Mine</filterScope>
+    <filters>
+        <field>CONTRACT.END_DATE</field>
+        <operation>equals</operation>
+        <value>NEXT_N_DAYS:30</value>
+    </filters>
+    <filters>
+        <field>chk_IsReviewed__c</field>
+        <operation>equals</operation>
+        <value>0</value>
+    </filters>
+    <label>My Expiring Contracts</label>
+</ListView>

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>dat_CRDPlannedOrderDeliveryDate__c</fullName>
+    <description>The date the order is planned by Customer...</description>
     <externalId>false</externalId>
     <inlineHelpText>The date the order is planned by Customer...</inlineHelpText>
     <label>CRD Planned Delivery Date</label>

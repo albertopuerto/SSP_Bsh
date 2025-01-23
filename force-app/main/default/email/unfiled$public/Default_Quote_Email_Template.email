@@ -1,0 +1,18 @@
+Dear {!Contact.Salutation} {!Contact.LastName},
+
+Please find attached our offer.
+
+If you have any questions, please do not hesitate to contact us.
+
+{!User.FirstName} {!User.LastName}
+{!User.Department}
+T: {!User.Phone}
+{!User.Email}
+{!User.Address}
+www.etas.com
+
+ETAS – Empowering Tomorrow’s Automotive Software
+
+Managing Directors: Dr. Thomas Irawan, Nicolet Eglseder, Mariella Minutolo
+Chairman of the Supervisory Board: Dr. Walter Schirm
+Registered Office: Stuttgart, Registration Court: Amtsgericht Stuttgart, HRB: 19033
