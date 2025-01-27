@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Name</fullName>
+    <description>Name of the opportunity, for example, Acme.com - Office Equipment Order. Up to 120 characters are allowed in this field.</description>
+    <inlineHelpText>Please enter a meaningful name for this Opportunity. The entered value will be part of the Opportunity Title (Reporting)</inlineHelpText>
     <trackFeedHistory>false</trackFeedHistory>
     <trackHistory>true</trackHistory>
     <trackTrending>false</trackTrending>
