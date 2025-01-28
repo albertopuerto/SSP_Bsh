@@ -1571,8 +1571,4 @@
         <apexClass>QuoteExtControllerTests</apexClass>
         <enabled>true</enabled>
     </classAccesses>
-    <pageAccesses>
-        <apexPage>SubmitQuote</apexPage>
-        <enabled>true</enabled>
-    </pageAccesses>
 </Profile>
