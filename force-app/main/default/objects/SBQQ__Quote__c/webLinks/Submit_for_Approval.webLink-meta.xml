@@ -4,9 +4,9 @@
     <availability>online</availability>
     <displayType>button</displayType>
     <height>600</height>
-    <linkType>page</linkType>
+    <linkType>url</linkType>
     <masterLabel>Submit for Approval</masterLabel>
     <openType>sidebar</openType>
-    <page>SBQQ__SubmitQuote</page>
+    <url>/apex/SBQQ__SubmitQuote?Id={!SBQQ__Quote__c.Id}</url>
     <protected>false</protected>
 </WebLink>
