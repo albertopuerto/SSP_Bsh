@@ -7,6 +7,6 @@
     <linkType>page</linkType>
     <masterLabel>Submit for Approval</masterLabel>
     <openType>sidebar</openType>
-    <!--<page>SubmitQuote</page>-->
+    <page>SBQQ__SubmitQuote</page>
     <protected>false</protected>
 </WebLink>
