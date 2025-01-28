@@ -847,12 +847,6 @@
         <field>SBQQ__QuoteLine__c.Product_Image__c</field>
         <readable>true</readable>
     </fieldPermissions>
-    <!--
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>SBQQ__QuoteLine__c.ftxt_ApprovalStatus__c</field>
-        <readable>true</readable>
-    </fieldPermissions>-->
     <fieldPermissions>
         <editable>true</editable>
         <field>SBQQ__QuoteLine__c.pkl_INCOTerms1__c</field>
@@ -1378,6 +1372,11 @@
         <field>SalesAreaLink__c.ftxt_SalesOrg__c</field>
         <readable>true</readable>
     </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>sbaa__Approval__c.Quote__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
     <layoutAssignments>
         <layout>Account-Account Layout</layout>
     </layoutAssignments>
@@ -1411,11 +1410,6 @@
     <layoutAssignments>
         <layout>ExportControlSheet__c-Export Control Sheet Layout</layout>
     </layoutAssignments>
-    <!--
-    <layoutAssignments>
-        <layout>FurtherPriceInformation__c-Further Price Information Layout</layout>
-    </layoutAssignments>
-    -->
     <layoutAssignments>
         <layout>Opportunity-Frame Contract Opportunity Layout</layout>
         <recordType>Opportunity.FrameContract</recordType>
