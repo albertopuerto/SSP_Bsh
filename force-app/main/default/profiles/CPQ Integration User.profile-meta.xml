@@ -284,6 +284,9 @@
     <layoutAssignments>
         <layout>SBQQ__Quote__c-SBQQ__Quote Layout</layout>
     </layoutAssignments>
+    <layoutAssignments>
+        <layout>sbaa__Approval__c-sbaa__Approval Layout</layout>
+    </layoutAssignments>
     <recordTypeVisibilities>
         <default>false</default>
         <recordType>Apttus__APTS_Agreement__c.AVV_BDSG</recordType>

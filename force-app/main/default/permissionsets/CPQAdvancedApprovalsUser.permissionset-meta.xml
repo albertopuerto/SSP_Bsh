@@ -188,4 +188,12 @@
         <field>sbaa__Approval__c.sbaa__Unanimous__c</field>
         <readable>true</readable>
     </fieldPermissions>
+    <classAccesses>
+        <apexClass>sbaa__ApprovalExtController</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>sbaa__ApprovalExtControllerTests</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
 </PermissionSet>
