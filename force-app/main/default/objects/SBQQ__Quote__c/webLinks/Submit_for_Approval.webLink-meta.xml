@@ -3,6 +3,7 @@
     <fullName>Submit_for_Approval</fullName>
     <availability>online</availability>
     <displayType>button</displayType>
+    <encodingKey>UTF-8</encodingKey>
     <height>600</height>
     <linkType>url</linkType>
     <masterLabel>Submit for Approval</masterLabel>
