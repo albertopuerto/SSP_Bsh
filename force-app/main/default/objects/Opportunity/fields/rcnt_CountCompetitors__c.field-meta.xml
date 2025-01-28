@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>rcnt_CountCompetitors__c</fullName>
-    <description>Counts the number of competitors to ensure one is added when Lost Reason Competitor is selected.</description>
+    <description>Sum up the number of competitors, as lost reason increases</description>
     <externalId>false</externalId>
     <label>Count Competitors</label>
     <summaryForeignKey>Competitor__c.mdr_Opportunity__c</summaryForeignKey>

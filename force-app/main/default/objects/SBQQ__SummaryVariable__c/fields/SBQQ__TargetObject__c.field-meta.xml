@@ -32,6 +32,11 @@
                 <default>false</default>
                 <label>Subscription</label>
             </value>
+            <value>
+                <fullName>SBQQ__QuoteTerm__c</fullName>
+                <default>false</default>
+                <label>Quote Terms</label>
+            </value>
         </valueSetDefinition>
     </valueSet>
 </CustomField>

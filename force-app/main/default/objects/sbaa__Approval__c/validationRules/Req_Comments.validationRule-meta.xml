@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Req_Comments</fullName>
+    <active>false</active>
+    <errorConditionFormula>AND(
+OR(ISPICKVAL(sbaa__Status__c, &#39;Approved&#39;),ISPICKVAL(sbaa__Status__c, &#39;Requested&#39;)),
+ISBLANK(sbaa__CommentsLong__c)
+)</errorConditionFormula>
+    <errorMessage>Please provide a comment</errorMessage>
+</ValidationRule>

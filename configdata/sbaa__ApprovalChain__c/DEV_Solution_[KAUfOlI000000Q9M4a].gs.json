@@ -1,0 +1,11 @@
+{
+  "Object": "sbaa__ApprovalChain__c",
+  "Fields": {
+    "CurrencyIsoCode": "EUR",
+    "GearsetDisplayName": "DEV Solution",
+    "GearsetExternalId__c": "KAUfOlI000000Q9M4a",
+    "Name": "DEV Solution",
+    "sbaa__TargetObject__c": "SBQQ__Quote__c"
+  },
+  "References": []
+}

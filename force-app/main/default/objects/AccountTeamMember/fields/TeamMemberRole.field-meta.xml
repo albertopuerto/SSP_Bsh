@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>TeamMemberRole</fullName>
+    <description>The role that a team member plays for the account, such as account manager.
+
+Consist of Account team members in different roles. Only Account owner can delete Members.</description>
     <type>Picklist</type>
 </CustomField>
