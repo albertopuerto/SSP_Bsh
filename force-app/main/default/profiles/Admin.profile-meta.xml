@@ -1572,10 +1572,6 @@
         <enabled>true</enabled>
     </classAccesses>
     <pageAccesses>
-        <apexPage>RecallQuote</apexPage>
-        <enabled>true</enabled>
-    </pageAccesses>
-    <pageAccesses>
         <apexPage>SubmitQuote</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
