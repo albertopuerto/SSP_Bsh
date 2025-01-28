@@ -142,26 +142,27 @@
     </actionOverrides>
     <allowInChatterGroups>false</allowInChatterGroups>
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
-    <customHelpPage>sbaa__ApproverHelp</customHelpPage>
+    <customHelpPage>sbaa__ApprovalHelp</customHelpPage>
     <deploymentStatus>Deployed</deploymentStatus>
     <deprecated>false</deprecated>
-    <description>Approvers are associated with the Approval Rule, driving what occurs on the Approval itself.</description>
+    <description>Approval by individual for specific record.</description>
     <enableActivities>false</enableActivities>
     <enableBulkApi>true</enableBulkApi>
     <enableFeeds>false</enableFeeds>
     <enableHistory>false</enableHistory>
-    <enableLicensing>false</enableLicensing>
-    <enableReports>false</enableReports>
+    <enableLicensing>true</enableLicensing>
+    <enableReports>true</enableReports>
     <enableSearch>true</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>ReadWrite</externalSharingModel>
-    <label>Approver</label>
+    <label>Approval</label>
     <nameField>
-        <label>Approver Name</label>
-        <type>Text</type>
+        <displayFormat>A-{00000}</displayFormat>
+        <label>Approval #</label>
+        <type>AutoNumber</type>
     </nameField>
-    <pluralLabel>Approvers</pluralLabel>
+    <pluralLabel>Approvals</pluralLabel>
     <searchLayouts />
     <sharingModel>ReadWrite</sharingModel>
     <visibility>Public</visibility>
