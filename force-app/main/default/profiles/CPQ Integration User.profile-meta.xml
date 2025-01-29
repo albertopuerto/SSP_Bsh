@@ -229,7 +229,27 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>SBQQ__Quote__c.ApprovalStatus__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>SBQQ__Quote__c.SubmittedUser__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>SBQQ__Quote__c.Submitteddate__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>SBQQ__Quote__c.lkp_ToolCoordinator__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>sbaa__Approval__c.Quote__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <userPermissions>
@@ -260,6 +280,12 @@
     </layoutAssignments>
     <layoutAssignments>
         <layout>PriceElement__c-Price Element Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>SBQQ__Quote__c-SBQQ__Quote Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>sbaa__Approval__c-sbaa__Approval Layout</layout>
     </layoutAssignments>
     <recordTypeVisibilities>
         <default>false</default>
