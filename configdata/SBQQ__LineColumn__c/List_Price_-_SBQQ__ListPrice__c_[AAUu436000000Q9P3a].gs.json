@@ -1,6 +1,7 @@
 {
   "Object": "SBQQ__LineColumn__c",
   "Fields": {
+    "CurrencyIsoCode": "EUR",
     "GearsetDisplayName": "List Price - SBQQ__ListPrice__c",
     "GearsetExternalId__c": "AAUu436000000Q9P3a",
     "Name": "List Price",

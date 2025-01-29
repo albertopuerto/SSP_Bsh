@@ -17,6 +17,11 @@
                 <default>false</default>
                 <label>SBQQ__LookupData__c</label>
             </value>
+            <value>
+                <fullName>FurtherPriceInformation__c</fullName>
+                <default>false</default>
+                <label>FurtherPriceInformation__c</label>
+            </value>
         </valueSetDefinition>
     </valueSet>
 </CustomField>
