@@ -3,11 +3,10 @@
     <fullName>Submit_for_Approval</fullName>
     <availability>online</availability>
     <displayType>button</displayType>
-    <encodingKey>UTF-8</encodingKey>
     <height>600</height>
-    <linkType>url</linkType>
+    <linkType>page</linkType>
     <masterLabel>Submit for Approval</masterLabel>
     <openType>sidebar</openType>
-    <url>/apex/SBQQ__SubmitQuote?Id={!SBQQ__Quote__c.Id}</url>
+    <page>SubmitQuote</page>
     <protected>false</protected>
 </WebLink>

@@ -234,6 +234,21 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>FurtherPriceInformation__c.Bottom_Line_Price__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>FurtherPriceInformation__c.Product__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>FurtherPriceInformation__c.Target_Price__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Order.PoNumber</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -1582,4 +1597,8 @@
         <apexClass>QuoteExtControllerTests</apexClass>
         <enabled>true</enabled>
     </classAccesses>
+    <pageAccesses>
+        <apexPage>SubmitQuote</apexPage>
+        <enabled>true</enabled>
+    </pageAccesses>
 </Profile>
