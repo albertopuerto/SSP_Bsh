@@ -10,7 +10,7 @@
         <developerName>ApprovalMail</developerName>
         <isActive>true</isActive>
         <localPart>approval_services</localPart>
-        <runAsUser>uwe.adams@bosch-etas.org.dev</runAsUser>
+        <runAsUser>system.user@bosch-etas.com</runAsUser>
     </emailServicesAddresses>
     <errorRoutingAddress>uwe.adams@de.bosch.com</errorRoutingAddress>
     <functionInactiveAction>Bounce</functionInactiveAction>
