@@ -189,6 +189,10 @@
         <readable>true</readable>
     </fieldPermissions>
     <classAccesses>
+        <apexClass>sbaa__ApprovalEmailHandler</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>sbaa__ApprovalExtController</apexClass>
         <enabled>true</enabled>
     </classAccesses>
