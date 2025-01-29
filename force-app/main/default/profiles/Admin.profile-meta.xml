@@ -1612,6 +1612,14 @@
         <apexClass>QuoteExtControllerTests</apexClass>
         <enabled>true</enabled>
     </classAccesses>
+    <classAccesses>
+        <apexClass>QuoteLineEmailController</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>QuoteLineEmailController_Test</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
     <pageAccesses>
         <apexPage>SubmitQuote</apexPage>
         <enabled>true</enabled>
