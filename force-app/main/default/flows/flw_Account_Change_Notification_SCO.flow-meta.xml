@@ -246,13 +246,7 @@
     <formulas>
         <name>ftxt_LinkToAccount</name>
         <dataType>String</dataType>
-        <expression>HYPERLINK(LEFT({!$Api.Partner_Server_URL_340},FIND(&quot;/services&quot;, {!$Api.Partner_Server_URL_340})) &amp; {!$Record.Id}, &quot;Link to Account&quot;)</expression>
-    </formulas>
-    <formulas>
-        <description>stores the url of the account</description>
-        <name>ftxt_UrlAccount</name>
-        <dataType>String</dataType>
-        <expression>LEFT({!$Api.Partner_Server_URL_340},FIND(&quot;/services&quot;, {!$Api.Partner_Server_URL_340})) &amp; {!$Record.Id}</expression>
+        <expression>HYPERLINK(LEFT({!$Api.Partner_Server_URL_340},FIND(&quot;/services&quot;, {!$Api.Partner_Server_URL_340})) &amp; {!$Record.Id}, &quot;here&quot;)</expression>
     </formulas>
     <interviewLabel>Account Change Notification SCO {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Account Change Notification SCO</label>
@@ -320,7 +314,7 @@
         <text>Dear {!GET_ATM_SCO.User.FirstName} {!GET_ATM_SCO.User.LastName},
 We need to inform you that one of your Customer&apos;s information has been changed.
 
-The related Account {!$Record.Name} can be found &lt;a href=&quot;{!ftxt_UrlAccount}&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot;&gt;here&lt;/a&gt;
+The related Account {!$Record.Name} can be found {!ftxt_LinkToAccount}
 
 Note: This Mail has been generated automatically from Salesforce. Please do not reply to it.</text>
     </textTemplates>
