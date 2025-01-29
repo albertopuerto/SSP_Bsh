@@ -1,6 +1,7 @@
 {
   "Object": "Product2",
   "Fields": {
+    "CurrencyIsoCode": "EUR",
     "Description": "ES800-Speichermodul (Typ 1) - 500 GB",
     "DisplayUrl": "",
     "ExternalId": "",
@@ -9,7 +10,9 @@
     "GearsetExternalId__c": "MAQ6IE2300000Q9t10",
     "IsActive": "false",
     "Name": "AC800MM1-500",
+    "pkl_SolutionField__c": "",
     "ProductCode": "F-00K-110-255",
+    "Product_Image_ID__c": "",
     "QuantityUnitOfMeasure": "",
     "SBQQ__AssetAmendmentBehavior__c": "Default",
     "SBQQ__AssetConversion__c": "One per quote line",
@@ -71,7 +74,9 @@
     "SBQQ__TaxCode__c": "",
     "SBQQ__TermDiscountLevel__c": "",
     "SBQQ__UpgradeRatio__c": "",
-    "StockKeepingUnit": ""
+    "StockKeepingUnit": "",
+    "txa_ShortDescription__c": "ES800-Speichermodul (Typ 1) - 500 GB",
+    "txr_AdditionaInformation__c": ""
   },
   "References": [
     {

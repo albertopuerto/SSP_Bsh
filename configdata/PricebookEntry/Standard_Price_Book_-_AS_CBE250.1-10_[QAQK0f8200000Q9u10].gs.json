@@ -1,7 +1,8 @@
 {
   "Object": "PricebookEntry",
   "Fields": {
-    "GearsetDisplayName": "Standard Price Book - AS_CBE250.1-10",
+    "CurrencyIsoCode": "EUR",
+    "GearsetDisplayName": "Standard Price Book - AS_CBE250.1-10 - EUR",
     "GearsetExternalId__c": "QAQK0f8200000Q9u10",
     "IsActive": "true",
     "UnitPrice": "249.0",

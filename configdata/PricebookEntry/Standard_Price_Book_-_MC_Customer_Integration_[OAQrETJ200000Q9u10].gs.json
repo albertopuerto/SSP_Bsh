@@ -1,9 +1,10 @@
 {
   "Object": "PricebookEntry",
   "Fields": {
-    "GearsetDisplayName": "Standard Price Book - MC Customer Integration",
+    "CurrencyIsoCode": "EUR",
+    "GearsetDisplayName": "Standard Price Book - MC Customer Integration - EUR",
     "GearsetExternalId__c": "OAQrETJ200000Q9u10",
-    "IsActive": "true",
+    "IsActive": "false",
     "UnitPrice": "1.0",
     "UseStandardPrice": "false"
   },

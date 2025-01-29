@@ -1,7 +1,8 @@
 {
   "Object": "PricebookEntry",
   "Fields": {
-    "GearsetDisplayName": "Standard Price Book - ES820.1_DVD",
+    "CurrencyIsoCode": "EUR",
+    "GearsetDisplayName": "Standard Price Book - ES820.1_DVD - EUR",
     "GearsetExternalId__c": "IAQvIc8200000Q9u10",
     "IsActive": "true",
     "UnitPrice": "1.0",
