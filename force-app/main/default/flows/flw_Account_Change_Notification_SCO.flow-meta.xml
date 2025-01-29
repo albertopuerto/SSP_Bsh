@@ -37,6 +37,7 @@
     </actionCalls>
     <apiVersion>62.0</apiVersion>
     <decisions>
+        <description>Verifies the criteria necessary to warn or not to warn of the change in the account</description>
         <name>Check_for_relevant_Changes</name>
         <label>Check for relevant Changes</label>
         <locationX>380</locationX>
@@ -44,7 +45,7 @@
         <defaultConnectorLabel>Not Relevant</defaultConnectorLabel>
         <rules>
             <name>Changed</name>
-            <conditionLogic>or</conditionLogic>
+            <conditionLogic>(1 OR 2 OR 3 OR 4 OR 5 OR 6 OR 7 OR 8 OR 9 OR 10 OR 11 OR 12 OR 13 OR 14 OR 15 OR 16) AND 17 AND 18</conditionLogic>
             <conditions>
                 <leftValueReference>$Record.Name</leftValueReference>
                 <operator>IsChanged</operator>
@@ -157,6 +158,20 @@
                     <booleanValue>true</booleanValue>
                 </rightValue>
             </conditions>
+            <conditions>
+                <leftValueReference>$Record.txt_AthenaUUID__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.txt_AthenaUUID__c</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <stringValue></stringValue>
+                </rightValue>
+            </conditions>
             <connector>
                 <targetReference>GET_ATM_SCO</targetReference>
             </connector>
@@ -199,6 +214,7 @@
             <label>Send Email</label>
         </rules>
     </decisions>
+    <description>Sales Coordinator will be notified via email when some relevant fields are updated in the account once the AthenaId external Id was populated.</description>
     <environments>Default</environments>
     <formulas>
         <name>bool_billingAddressChanged</name>
@@ -284,7 +300,7 @@
         <name>emailBody</name>
         <isViewedAsPlainText>true</isViewedAsPlainText>
         <text>Dear {!GET_ATM_SCO.User.FirstName} {!GET_ATM_SCO.User.LastName},
-We need to inform you that one of your Customer&#39;s information has been changed.
+We need to inform you that one of your Customer&apos;s information has been changed.
 The related Account {!$Record.Name} can be found here: {!ftxt_LinkToAccount}
 
 Note: This Mail has been generated automatically from Salesforce. Please do not reply to it.</text>
