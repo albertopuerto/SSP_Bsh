@@ -6,6 +6,7 @@
     <inlineHelpText>The date the order is planned by Customer...</inlineHelpText>
     <label>CRD Planned Delivery Date</label>
     <required>false</required>
+    <trackFeedHistory>true</trackFeedHistory>
     <trackHistory>false</trackHistory>
     <type>Date</type>
 </CustomField>

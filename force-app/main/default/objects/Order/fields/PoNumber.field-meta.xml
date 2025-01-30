@@ -2,5 +2,6 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>PoNumber</fullName>
     <description>Number of the purchase order.</description>
+    <trackFeedHistory>true</trackFeedHistory>
     <trackHistory>true</trackHistory>
 </CustomField>
