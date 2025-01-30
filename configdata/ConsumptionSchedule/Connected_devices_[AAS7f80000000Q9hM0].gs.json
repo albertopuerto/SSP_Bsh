@@ -1,0 +1,19 @@
+{
+  "Object": "ConsumptionSchedule",
+  "Fields": {
+    "BillingTerm": "3",
+    "BillingTermUnit": "Year",
+    "CurrencyIsoCode": "EUR",
+    "Description": "",
+    "GearsetDisplayName": "Connected devices",
+    "GearsetExternalId__c": "AAS7f80000000Q9hM0",
+    "IsActive": "true",
+    "MatchingAttribute": "",
+    "Name": "Connected devices",
+    "RatingMethod": "Tier",
+    "SBQQ__Category__c": "Rates",
+    "Type": "Range",
+    "UnitOfMeasure": ""
+  },
+  "References": []
+}

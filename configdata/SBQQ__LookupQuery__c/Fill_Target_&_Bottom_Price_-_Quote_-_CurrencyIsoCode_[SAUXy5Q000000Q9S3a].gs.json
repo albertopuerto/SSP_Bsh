@@ -1,0 +1,37 @@
+{
+  "Object": "SBQQ__LookupQuery__c",
+  "Fields": {
+    "CurrencyIsoCode": "EUR",
+    "GearsetDisplayName": "Fill Target & Bottom Price - Quote - CurrencyIsoCode",
+    "GearsetExternalId__c": "SAUXy5Q000000Q9S3a",
+    "SBQQ__LookupField__c": "CurrencyIsoCode",
+    "SBQQ__MatchType__c": "Field Value",
+    "SBQQ__Operator__c": "equals",
+    "SBQQ__TestedField__c": "CurrencyIsoCode",
+    "SBQQ__TestedObject__c": "Quote",
+    "SBQQ__TestedValue__c": ""
+  },
+  "References": [
+    {
+      "Name": "SBQQ__PriceRule2__r",
+      "ReferencedObject": "SBQQ__PriceRule__c",
+      "ReferencedFields": {
+        "GearsetExternalId__c": "AAUjq54000000Q9Y3a"
+      }
+    },
+    {
+      "Name": "SBQQ__ProductRule__r",
+      "ReferencedObject": "SBQQ__ProductRule__c",
+      "ReferencedFields": {
+        "GearsetExternalId__c": ""
+      }
+    },
+    {
+      "Name": "SBQQ__TestedConfigurationAttribute__r",
+      "ReferencedObject": "SBQQ__ConfigurationAttribute__c",
+      "ReferencedFields": {
+        "GearsetExternalId__c": ""
+      }
+    }
+  ]
+}

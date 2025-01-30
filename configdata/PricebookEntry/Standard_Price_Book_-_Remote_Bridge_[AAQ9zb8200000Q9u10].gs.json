@@ -1,7 +1,8 @@
 {
   "Object": "PricebookEntry",
   "Fields": {
-    "GearsetDisplayName": "Standard Price Book - Remote Bridge",
+    "CurrencyIsoCode": "EUR",
+    "GearsetDisplayName": "Standard Price Book - Remote Bridge - EUR",
     "GearsetExternalId__c": "AAQ9zb8200000Q9u10",
     "IsActive": "true",
     "UnitPrice": "1.0",

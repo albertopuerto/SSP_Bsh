@@ -1,0 +1,38 @@
+{
+  "Object": "sbaa__ApprovalCondition__c",
+  "Fields": {
+    "CurrencyIsoCode": "EUR",
+    "GearsetDisplayName": "SBQQ__NetAmount__c",
+    "GearsetExternalId__c": "AAUlrvj000000Q9N4a",
+    "sbaa__EnableSmartApproval__c": "false",
+    "sbaa__FilterField__c": "",
+    "sbaa__FilterType__c": "Value",
+    "sbaa__FilterValue__c": "100000",
+    "sbaa__Index__c": "1.0",
+    "sbaa__Operator__c": "greater than",
+    "sbaa__TestedField__c": "SBQQ__NetAmount__c"
+  },
+  "References": [
+    {
+      "Name": "sbaa__ApprovalRule__r",
+      "ReferencedObject": "sbaa__ApprovalRule__c",
+      "ReferencedFields": {
+        "GearsetExternalId__c": "2AUVXUh000000Q9O4a"
+      }
+    },
+    {
+      "Name": "sbaa__FilterVariable__r",
+      "ReferencedObject": "sbaa__ApprovalVariable__c",
+      "ReferencedFields": {
+        "GearsetExternalId__c": ""
+      }
+    },
+    {
+      "Name": "sbaa__TestedVariable__r",
+      "ReferencedObject": "sbaa__ApprovalVariable__c",
+      "ReferencedFields": {
+        "GearsetExternalId__c": ""
+      }
+    }
+  ]
+}

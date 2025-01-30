@@ -1,0 +1,30 @@
+<apex:component controller="QuoteLineEmailController" access="global">
+<apex:attribute name="quoteId" type="Id" description="Id of the Quote" assignTo="{!quoteIdParam}"/>
+    <apex:outputPanel rendered="{!quoteLineItems.size > 0}">
+        <table border="1" bordercolor="#000000">
+            <tr style = "background-color:lightskyblue;">
+                <th>Product Name</th>
+                <th>Quantity</th>
+                <th>Solution</th>
+                <th>List Price</th>
+                <th>Total Discount</th>
+                <th>Net Total</th>
+                <th>Short Description</th>
+            </tr>
+            <apex:repeat value="{!quoteLineItems}" var="quoteLine">
+                <tr>
+                    <td>{!quoteLine.SBQQ__Product__r.Name}</td>
+                    <td>{!quoteLine.SBQQ__Quantity__c}</td>
+                    <td>{!quoteLine.pkl_SolutionField__c}</td>
+                    <td>{!quoteLine.SBQQ__ListPrice__c} {!quoteLine.CurrencyIsoCode}</td>
+                    <td>{!quoteLine.SBQQ__TotalDiscountAmount__c} {!quoteLine.CurrencyIsoCode}</td>
+                    <td>{!quoteLine.SBQQ__NetTotal__c} {!quoteLine.CurrencyIsoCode}</td>
+                    <td>{!quoteLine.ftxt_ShortDescription__c}</td>
+                </tr>
+            </apex:repeat>
+        </table>
+    </apex:outputPanel>
+    <apex:outputPanel rendered="{!quoteLineItems.size == 0}">
+        No quote line items found.
+    </apex:outputPanel>
+</apex:component>

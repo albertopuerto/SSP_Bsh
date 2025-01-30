@@ -1,0 +1,27 @@
+{
+  "Object": "PricebookEntry",
+  "Fields": {
+    "CurrencyIsoCode": "EUR",
+    "GearsetDisplayName": "Faiza price book - AS_CBA826.1-0m2 - EUR",
+    "GearsetExternalId__c": "JAQbGm0A00000Q9u10",
+    "IsActive": "true",
+    "UnitPrice": "480.0",
+    "UseStandardPrice": "false"
+  },
+  "References": [
+    {
+      "Name": "Pricebook2",
+      "ReferencedObject": "Pricebook2",
+      "ReferencedFields": {
+        "GearsetExternalId__c": "SAQPw2E000000Z9s10"
+      }
+    },
+    {
+      "Name": "Product2",
+      "ReferencedObject": "Product2",
+      "ReferencedFields": {
+        "GearsetExternalId__c": "MAQsRE2300000Q9t10"
+      }
+    }
+  ]
+}

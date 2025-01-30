@@ -1,7 +1,8 @@
 {
   "Object": "PricebookEntry",
   "Fields": {
-    "GearsetDisplayName": "Standard Price Book - ES_RTPRO-PC_Upgrade_ES820",
+    "CurrencyIsoCode": "EUR",
+    "GearsetDisplayName": "Standard Price Book - ES_RTPRO-PC_Upgrade_ES820 - EUR",
     "GearsetExternalId__c": "IAQaQe8200000Q9u10",
     "IsActive": "true",
     "UnitPrice": "1.0",

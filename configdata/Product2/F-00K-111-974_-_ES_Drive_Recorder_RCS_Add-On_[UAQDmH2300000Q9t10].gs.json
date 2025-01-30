@@ -1,6 +1,7 @@
 {
   "Object": "Product2",
   "Fields": {
+    "CurrencyIsoCode": "EUR",
     "Description": "Add-On Installation of Remote Control feature for existing ES820.1 HW",
     "DisplayUrl": "",
     "ExternalId": "",
@@ -9,7 +10,9 @@
     "GearsetExternalId__c": "UAQDmH2300000Q9t10",
     "IsActive": "false",
     "Name": "ES_Drive_Recorder_RCS_Add-On",
+    "pkl_SolutionField__c": "",
     "ProductCode": "F-00K-111-974",
+    "Product_Image_ID__c": "",
     "QuantityUnitOfMeasure": "",
     "SBQQ__AssetAmendmentBehavior__c": "Default",
     "SBQQ__AssetConversion__c": "One per quote line",
@@ -71,7 +74,9 @@
     "SBQQ__TaxCode__c": "",
     "SBQQ__TermDiscountLevel__c": "",
     "SBQQ__UpgradeRatio__c": "",
-    "StockKeepingUnit": ""
+    "StockKeepingUnit": "",
+    "txa_ShortDescription__c": "Add-On Installation of Remote Control feature for existing ES820.1 HW",
+    "txr_AdditionaInformation__c": ""
   },
   "References": [
     {

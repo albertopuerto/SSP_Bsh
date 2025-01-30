@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Rating</fullName>
-    <trackFeedHistory>false</trackFeedHistory>
+    <description>Indicates value or prospect of the lead, for example, Hot, Warm, Cold. Entry is selected from a picklist of available values, which are set by an administrator. Each picklist value can have up to 40 characters.</description>
+    <trackFeedHistory>true</trackFeedHistory>
+    <trackHistory>true</trackHistory>
     <type>Picklist</type>
 </CustomField>

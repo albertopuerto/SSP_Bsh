@@ -10,7 +10,7 @@
     "SBQQ__ConditionsMet__c": "All",
     "SBQQ__ConfiguratorEvaluationEvent__c": "",
     "SBQQ__EvaluationEvent__c": "On Initialization",
-    "SBQQ__EvaluationOrder__c": "20.0",
+    "SBQQ__EvaluationOrder__c": "15.0",
     "SBQQ__LookupObject__c": "",
     "SBQQ__TargetObject__c": "Calculator"
   },

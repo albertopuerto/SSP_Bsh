@@ -1,6 +1,7 @@
 {
   "Object": "Product2",
   "Fields": {
+    "CurrencyIsoCode": "EUR",
     "Description": "Digital I/O-Verbindungskabel mit Anschlussbox, Micro-D – 12x Banana (25fc–12fc), 0m5 (1,6 ft)",
     "DisplayUrl": "",
     "ExternalId": "",
@@ -9,7 +10,9 @@
     "GearsetExternalId__c": "MAQhHH2300000Q9t10",
     "IsActive": "false",
     "Name": "AS_CBV822.2-0m5",
+    "pkl_SolutionField__c": "",
     "ProductCode": "F-00K-111-702",
+    "Product_Image_ID__c": "",
     "QuantityUnitOfMeasure": "",
     "SBQQ__AssetAmendmentBehavior__c": "Default",
     "SBQQ__AssetConversion__c": "One per quote line",
@@ -71,7 +74,9 @@
     "SBQQ__TaxCode__c": "",
     "SBQQ__TermDiscountLevel__c": "",
     "SBQQ__UpgradeRatio__c": "",
-    "StockKeepingUnit": ""
+    "StockKeepingUnit": "",
+    "txa_ShortDescription__c": "Digital I/O-Verbindungskabel mit Anschlussbox, Micro-D – 12x Banana (25fc–12fc), 0m5 (1,6 ft)",
+    "txr_AdditionaInformation__c": ""
   },
   "References": [
     {

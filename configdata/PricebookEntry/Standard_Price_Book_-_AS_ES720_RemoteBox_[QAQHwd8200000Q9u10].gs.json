@@ -1,7 +1,8 @@
 {
   "Object": "PricebookEntry",
   "Fields": {
-    "GearsetDisplayName": "Standard Price Book - AS_ES720_RemoteBox",
+    "CurrencyIsoCode": "EUR",
+    "GearsetDisplayName": "Standard Price Book - AS_ES720_RemoteBox - EUR",
     "GearsetExternalId__c": "QAQHwd8200000Q9u10",
     "IsActive": "true",
     "UnitPrice": "750.0",
