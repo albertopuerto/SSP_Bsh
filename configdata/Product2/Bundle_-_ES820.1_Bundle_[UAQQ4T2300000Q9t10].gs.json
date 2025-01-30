@@ -1,6 +1,7 @@
 {
   "Object": "Product2",
   "Fields": {
+    "CurrencyIsoCode": "EUR",
     "Description": "",
     "DisplayUrl": "",
     "ExternalId": "",
@@ -9,7 +10,9 @@
     "GearsetExternalId__c": "UAQQ4T2300000Q9t10",
     "IsActive": "true",
     "Name": "ES820.1 Bundle",
+    "pkl_SolutionField__c": "",
     "ProductCode": "Bundle",
+    "Product_Image_ID__c": "",
     "QuantityUnitOfMeasure": "",
     "SBQQ__AssetAmendmentBehavior__c": "Default",
     "SBQQ__AssetConversion__c": "One per quote line",
@@ -71,7 +74,9 @@
     "SBQQ__TaxCode__c": "",
     "SBQQ__TermDiscountLevel__c": "",
     "SBQQ__UpgradeRatio__c": "",
-    "StockKeepingUnit": ""
+    "StockKeepingUnit": "",
+    "txa_ShortDescription__c": "This is short product description - it will be visible on the Quote",
+    "txr_AdditionaInformation__c": "<p>There is a space for all additional product information, detailed description, technical metrics and so on.</p>"
   },
   "References": [
     {

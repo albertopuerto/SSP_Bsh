@@ -1,7 +1,8 @@
 {
   "Object": "PricebookEntry",
   "Fields": {
-    "GearsetDisplayName": "Standard Price Book - ISW_ES820_EIP_LIC-MP",
+    "CurrencyIsoCode": "EUR",
+    "GearsetDisplayName": "Standard Price Book - ISW_ES820_EIP_LIC-MP - EUR",
     "GearsetExternalId__c": "YAQIWf8200000Q9u10",
     "IsActive": "true",
     "UnitPrice": "1447.0",

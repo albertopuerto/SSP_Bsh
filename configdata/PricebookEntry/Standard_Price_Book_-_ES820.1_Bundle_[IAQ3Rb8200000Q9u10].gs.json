@@ -1,10 +1,11 @@
 {
   "Object": "PricebookEntry",
   "Fields": {
-    "GearsetDisplayName": "Standard Price Book - ES820.1 Bundle",
+    "CurrencyIsoCode": "EUR",
+    "GearsetDisplayName": "Standard Price Book - ES820.1 Bundle - EUR",
     "GearsetExternalId__c": "IAQ3Rb8200000Q9u10",
     "IsActive": "true",
-    "UnitPrice": "1.0",
+    "UnitPrice": "0.0",
     "UseStandardPrice": "false"
   },
   "References": [

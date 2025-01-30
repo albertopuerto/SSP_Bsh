@@ -1,0 +1,24 @@
+{
+  "Object": "ProductConsumptionSchedule",
+  "Fields": {
+    "CurrencyIsoCode": "EUR",
+    "GearsetDisplayName": "OTA Services DEMO - Connected devices",
+    "GearsetExternalId__c": "QASPc50000000Q9qM0"
+  },
+  "References": [
+    {
+      "Name": "ConsumptionSchedule",
+      "ReferencedObject": "ConsumptionSchedule",
+      "ReferencedFields": {
+        "GearsetExternalId__c": "AAS7f80000000Q9hM0"
+      }
+    },
+    {
+      "Name": "Product",
+      "ReferencedObject": "Product2",
+      "ReferencedFields": {
+        "GearsetExternalId__c": "UAQBhBi600000Q9t10"
+      }
+    }
+  ]
+}

@@ -1,7 +1,8 @@
 {
   "Object": "PricebookEntry",
   "Fields": {
-    "GearsetDisplayName": "Standard Price Book - Devise HW",
+    "CurrencyIsoCode": "EUR",
+    "GearsetDisplayName": "Standard Price Book - Devise HW - EUR",
     "GearsetExternalId__c": "OAQ5ITJ200000Q9u10",
     "IsActive": "true",
     "UnitPrice": "1.0",

@@ -1,0 +1,19 @@
+{
+  "Object": "FurtherPriceInformation__c",
+  "Fields": {
+    "Bottom_Line_Price__c": "2000.0",
+    "CurrencyIsoCode": "EUR",
+    "GearsetDisplayName": "EAUlhU6000000Q9L4a",
+    "GearsetExternalId__c": "EAUlhU6000000Q9L4a",
+    "Target_Price__c": "2500.0"
+  },
+  "References": [
+    {
+      "Name": "Product__r",
+      "ReferencedObject": "Product2",
+      "ReferencedFields": {
+        "GearsetExternalId__c": "UAQXsDi600000Q9t10"
+      }
+    }
+  ]
+}

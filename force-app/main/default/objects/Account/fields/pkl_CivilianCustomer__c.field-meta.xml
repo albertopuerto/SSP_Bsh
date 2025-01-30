@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>pkl_CivilianCustomer__c</fullName>
+    <description>Indicate if the Customer is a Civilian or an Military.</description>
     <externalId>false</externalId>
     <label>Civilian Customer</label>
     <required>false</required>
