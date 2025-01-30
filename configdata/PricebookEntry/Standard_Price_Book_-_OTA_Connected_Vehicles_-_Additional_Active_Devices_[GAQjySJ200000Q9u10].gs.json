@@ -1,9 +1,10 @@
 {
   "Object": "PricebookEntry",
   "Fields": {
-    "GearsetDisplayName": "Standard Price Book - OTA Connected Vehicles - Additional Active Devices",
+    "CurrencyIsoCode": "EUR",
+    "GearsetDisplayName": "Standard Price Book - OTA Connected Vehicles - Additional Active Devices - EUR",
     "GearsetExternalId__c": "GAQjySJ200000Q9u10",
-    "IsActive": "true",
+    "IsActive": "false",
     "UnitPrice": "1.0",
     "UseStandardPrice": "false"
   },

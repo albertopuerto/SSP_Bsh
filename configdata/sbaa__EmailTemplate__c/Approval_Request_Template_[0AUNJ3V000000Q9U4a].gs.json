@@ -1,0 +1,18 @@
+{
+  "Object": "sbaa__EmailTemplate__c",
+  "Fields": {
+    "CurrencyIsoCode": "EUR",
+    "GearsetDisplayName": "Approval Request Template",
+    "GearsetExternalId__c": "0AUNJ3V000000Q9U4a",
+    "Name": "Approval Request Template"
+  },
+  "References": [
+    {
+      "Name": "sbaa__TemplateId__c",
+      "ReferencedObject": "EmailTemplate",
+      "ReferencedFields": {
+        "DeveloperName": "eml_ApprovalRequestTemplate"
+      }
+    }
+  ]
+}
