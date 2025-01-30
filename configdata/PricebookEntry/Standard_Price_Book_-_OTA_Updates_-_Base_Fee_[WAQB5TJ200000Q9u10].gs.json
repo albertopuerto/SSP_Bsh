@@ -1,9 +1,10 @@
 {
   "Object": "PricebookEntry",
   "Fields": {
-    "GearsetDisplayName": "Standard Price Book - OTA Updates - Base Fee",
+    "CurrencyIsoCode": "EUR",
+    "GearsetDisplayName": "Standard Price Book - OTA Updates - Base Fee - EUR",
     "GearsetExternalId__c": "WAQB5TJ200000Q9u10",
-    "IsActive": "true",
+    "IsActive": "false",
     "UnitPrice": "1.0",
     "UseStandardPrice": "false"
   },

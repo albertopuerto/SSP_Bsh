@@ -1,6 +1,7 @@
 {
   "Object": "SBQQ__TemplateContent__c",
   "Fields": {
+    "CurrencyIsoCode": "EUR",
     "GearsetDisplayName": "Line Item",
     "GearsetExternalId__c": "EAUpzC5000000Q9A4a",
     "Name": "Line Item",

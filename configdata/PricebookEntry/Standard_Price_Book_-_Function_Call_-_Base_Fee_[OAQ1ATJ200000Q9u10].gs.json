@@ -1,7 +1,8 @@
 {
   "Object": "PricebookEntry",
   "Fields": {
-    "GearsetDisplayName": "Standard Price Book - Function Call - Base Fee",
+    "CurrencyIsoCode": "EUR",
+    "GearsetDisplayName": "Standard Price Book - Function Call - Base Fee - EUR",
     "GearsetExternalId__c": "OAQ1ATJ200000Q9u10",
     "IsActive": "true",
     "UnitPrice": "1.0",
