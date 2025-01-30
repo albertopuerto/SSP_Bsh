@@ -17,6 +17,11 @@
                 <default>false</default>
                 <label>Quantity</label>
             </value>
+            <value>
+                <fullName>Id</fullName>
+                <default>false</default>
+                <label>Id</label>
+            </value>
         </valueSetDefinition>
     </valueSet>
 </CustomField>
