@@ -7,6 +7,7 @@
     <label>Personal Text on Order</label>
     <length>200</length>
     <required>false</required>
+    <trackFeedHistory>true</trackFeedHistory>
     <trackHistory>false</trackHistory>
     <type>Text</type>
     <unique>false</unique>
