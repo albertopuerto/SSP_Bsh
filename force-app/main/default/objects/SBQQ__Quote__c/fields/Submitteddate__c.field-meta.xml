@@ -3,7 +3,7 @@
     <fullName>Submitteddate__c</fullName>
     <description>Date of submission of the quote for approval</description>
     <externalId>false</externalId>
-    <label>Submitted date</label>
+    <label>Submitted Date</label>
     <required>false</required>
     <trackFeedHistory>false</trackFeedHistory>
     <trackHistory>false</trackHistory>
