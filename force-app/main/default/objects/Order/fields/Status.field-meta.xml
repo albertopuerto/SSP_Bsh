@@ -4,6 +4,7 @@
     <description>Indication of the stage that the order has reached in the order business process.
 
 You can add values to this picklist within two system-defined order status categories: Draft and Activated. You can use these status categories to track orders within your business process using reports and views. Some user permissions apply specifically to draft statuses. Others apply specifically to activated statuses.</description>
+    <trackFeedHistory>true</trackFeedHistory>
     <trackHistory>true</trackHistory>
     <type>Picklist</type>
 </CustomField>
