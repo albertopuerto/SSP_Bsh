@@ -1,7 +1,8 @@
 {
   "Object": "PricebookEntry",
   "Fields": {
-    "GearsetDisplayName": "Standard Price Book - BEG IoT Gateway",
+    "CurrencyIsoCode": "EUR",
+    "GearsetDisplayName": "Standard Price Book - BEG IoT Gateway - EUR",
     "GearsetExternalId__c": "IAQpTd8200000Q9u10",
     "IsActive": "true",
     "UnitPrice": "1.0",

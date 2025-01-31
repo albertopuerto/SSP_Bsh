@@ -1,7 +1,8 @@
 {
   "Object": "PricebookEntry",
   "Fields": {
-    "GearsetDisplayName": "Standard Price Book - AS_CBA826.1-0m2",
+    "CurrencyIsoCode": "EUR",
+    "GearsetDisplayName": "Standard Price Book - AS_CBA826.1-0m2 - EUR",
     "GearsetExternalId__c": "IAQfUf8200000Q9u10",
     "IsActive": "true",
     "UnitPrice": "480.0",

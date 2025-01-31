@@ -3,7 +3,12 @@
     <fullName>Product_Image_Link__c</fullName>
     <description>This will show the image on the Product</description>
     <externalId>false</externalId>
-    <formula>IMAGE(&quot;/servlet/servlet.FileDownload?file=&quot;+Product_Image_ID__c,&quot;&quot;, 98,115)</formula>
+    <formula>IF(ISBLANK(Product_Image_ID__c), 
+   /* If Product_Image_ID__c is blank, return a blank value */
+   &quot;&quot;,
+   /* If Product_Image_ID__c is not blank, display the image */
+   IMAGE(&quot;/servlet/servlet.FileDownload?file=&quot;+Product_Image_ID__c,&quot;&quot;, 98,115)
+)</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
     <label>Product Image Link</label>
     <required>false</required>

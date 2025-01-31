@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>ftxt_OwnerDetails__c</fullName>
-    <description>This will display owner information in quote template</description>
+    <description>Contains Owner.User personal informations</description>
     <externalId>false</externalId>
     <formula>Owner:User.FirstName  &amp; &quot; &quot; &amp; Owner:User.FirstName  &amp; BR() &amp; 
 Owner:User.MobilePhone&amp; BR() &amp;

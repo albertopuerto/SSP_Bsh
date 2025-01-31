@@ -1,9 +1,10 @@
 {
   "Object": "PricebookEntry",
   "Fields": {
-    "GearsetDisplayName": "Standard Price Book - OTA Connected Vehicles - Base Fee",
+    "CurrencyIsoCode": "EUR",
+    "GearsetDisplayName": "Standard Price Book - OTA Connected Vehicles - Base Fee - EUR",
     "GearsetExternalId__c": "WAQZ3TJ200000Q9u10",
-    "IsActive": "true",
+    "IsActive": "false",
     "UnitPrice": "1.0",
     "UseStandardPrice": "false"
   },
