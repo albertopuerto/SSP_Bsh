@@ -2,6 +2,7 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>OpportunityId</fullName>
     <description>Opportunity that’s associated with the order.</description>
+    <trackFeedHistory>false</trackFeedHistory>
     <trackHistory>false</trackHistory>
     <type>Lookup</type>
 </CustomField>

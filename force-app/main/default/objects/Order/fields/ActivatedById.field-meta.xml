@@ -2,6 +2,7 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>ActivatedById</fullName>
     <description>Name of the user who activated the order. (Read-only.)</description>
+    <trackFeedHistory>true</trackFeedHistory>
     <trackHistory>false</trackHistory>
     <type>Lookup</type>
 </CustomField>
