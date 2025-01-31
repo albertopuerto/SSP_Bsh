@@ -6,6 +6,7 @@
     <inlineHelpText>Provided by SAP, once the order is transferred</inlineHelpText>
     <label>SAP Planned Delivery Date</label>
     <required>false</required>
+    <trackFeedHistory>true</trackFeedHistory>
     <trackHistory>false</trackHistory>
     <type>Date</type>
 </CustomField>
