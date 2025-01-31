@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomPermission xmlns="http://soap.sforce.com/2006/04/metadata">
-    <description>this custom permission prevents the email send action on Account change within a flow.</description>
+    <description>Prevents the email send action on Account change within a flow. Used when the user who launched the flow is an admin, to avoid bulk actions, the process will be stopped. This Custom Permission is included in Avoid_Mail_Notifications pset</description>
     <isLicensed>false</isLicensed>
     <label>Prevent Account Email Notification</label>
 </CustomPermission>
