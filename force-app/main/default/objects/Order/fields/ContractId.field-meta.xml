@@ -2,6 +2,7 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>ContractId</fullName>
     <description>Unique number automatically assigned to the contract. Numbering for contracts starts at 100. (Read-only for reduction orders.)</description>
+    <trackFeedHistory>false</trackFeedHistory>
     <trackHistory>false</trackHistory>
     <type>Lookup</type>
 </CustomField>
