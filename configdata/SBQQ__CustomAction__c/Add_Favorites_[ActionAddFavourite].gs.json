@@ -6,7 +6,7 @@
     "GearsetExternalId__c": "ActionAddFavourite",
     "Name": "Add Favorites",
     "SBQQ__Action__c": "Add Favorites",
-    "SBQQ__Active__c": "true",
+    "SBQQ__Active__c": "false",
     "SBQQ__BrandButton__c": "false",
     "SBQQ__Class__c": "addFavoritesBtn",
     "SBQQ__ConditionsMet__c": "All",
