@@ -1,6 +1,7 @@
 {
   "Object": "Product2",
   "Fields": {
+    "CurrencyIsoCode": "EUR",
     "Description": "ES820 zu AS_CBA720.1 Adapterkabel, Micro-D – DSUB (25fc-26mc), 0m2",
     "DisplayUrl": "",
     "ExternalId": "",
@@ -9,7 +10,9 @@
     "GearsetExternalId__c": "MAQsRE2300000Q9t10",
     "IsActive": "false",
     "Name": "AS_CBA826.1-0m2",
+    "pkl_SolutionField__c": "",
     "ProductCode": "F-00K-110-802",
+    "Product_Image_ID__c": "",
     "QuantityUnitOfMeasure": "",
     "SBQQ__AssetAmendmentBehavior__c": "Default",
     "SBQQ__AssetConversion__c": "One per quote line",
@@ -71,7 +74,9 @@
     "SBQQ__TaxCode__c": "",
     "SBQQ__TermDiscountLevel__c": "",
     "SBQQ__UpgradeRatio__c": "",
-    "StockKeepingUnit": ""
+    "StockKeepingUnit": "",
+    "txa_ShortDescription__c": "ES820 zu AS_CBA720.1 Adapterkabel, Micro-D – DSUB (25fc-26mc), 0m2",
+    "txr_AdditionaInformation__c": ""
   },
   "References": [
     {
