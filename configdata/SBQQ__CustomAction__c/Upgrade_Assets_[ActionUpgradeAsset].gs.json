@@ -6,7 +6,7 @@
     "GearsetExternalId__c": "ActionUpgradeAsset",
     "Name": "Upgrade Assets",
     "SBQQ__Action__c": "Upgrade Assets",
-    "SBQQ__Active__c": "true",
+    "SBQQ__Active__c": "false",
     "SBQQ__BrandButton__c": "false",
     "SBQQ__Class__c": "upgradeAssetsBtn",
     "SBQQ__ConditionsMet__c": "All",
