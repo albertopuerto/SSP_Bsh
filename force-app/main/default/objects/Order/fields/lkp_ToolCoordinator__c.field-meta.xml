@@ -19,6 +19,7 @@
     <relationshipLabel>Orders</relationshipLabel>
     <relationshipName>Orders</relationshipName>
     <required>false</required>
+    <trackFeedHistory>true</trackFeedHistory>
     <trackHistory>false</trackHistory>
     <type>Lookup</type>
 </CustomField>

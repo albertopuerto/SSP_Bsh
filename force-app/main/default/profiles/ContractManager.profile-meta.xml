@@ -193,6 +193,11 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>true</editable>
+        <field>FurtherPriceInformation__c.GearsetExternalId__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>false</editable>
         <field>Lead.SSP_AdditionalInformation__c</field>
         <readable>true</readable>
@@ -239,7 +244,22 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>SBQQ__Quote__c.SubmittedUser__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>SBQQ__Quote__c.Submitteddate__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>SBQQ__Quote__c.lkp_ToolCoordinator__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>sbaa__Approval__c.Quote__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <userPermissions>
@@ -435,20 +455,26 @@
     <layoutAssignments>
         <layout>PriceElement__c-Price Element Layout</layout>
     </layoutAssignments>
+    <layoutAssignments>
+        <layout>SBQQ__Quote__c-SBQQ__Quote Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>sbaa__Approval__c-sbaa__Approval Layout</layout>
+    </layoutAssignments>
     <recordTypeVisibilities>
         <default>false</default>
         <recordType>Apttus__APTS_Agreement__c.AVV_BDSG</recordType>
-        <visible>true</visible>
+        <visible>false</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <default>false</default>
         <recordType>Apttus__APTS_Agreement__c.AVV_GDPR</recordType>
-        <visible>true</visible>
+        <visible>false</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <default>false</default>
         <recordType>Apttus__APTS_Agreement__c.BPA</recordType>
-        <visible>true</visible>
+        <visible>false</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <default>false</default>
@@ -458,17 +484,17 @@
     <recordTypeVisibilities>
         <default>false</default>
         <recordType>Apttus__APTS_Agreement__c.EU_SCC</recordType>
-        <visible>true</visible>
+        <visible>false</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <default>false</default>
         <recordType>Apttus__APTS_Agreement__c.GPA</recordType>
-        <visible>true</visible>
+        <visible>false</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <default>false</default>
         <recordType>Apttus__APTS_Agreement__c.Joint_Controllers</recordType>
-        <visible>true</visible>
+        <visible>false</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <default>false</default>
@@ -478,7 +504,7 @@
     <recordTypeVisibilities>
         <default>false</default>
         <recordType>Apttus__APTS_Agreement__c.Other_DSO</recordType>
-        <visible>true</visible>
+        <visible>false</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <default>false</default>
@@ -488,6 +514,6 @@
     <recordTypeVisibilities>
         <default>false</default>
         <recordType>Apttus__APTS_Agreement__c.X2nd_Processor_EPA_GPA</recordType>
-        <visible>true</visible>
+        <visible>false</visible>
     </recordTypeVisibilities>
 </Profile>

@@ -1,6 +1,7 @@
 {
   "Object": "Product2",
   "Fields": {
+    "CurrencyIsoCode": "EUR",
     "Description": "ES820.1 Drive-Rekordermodul",
     "DisplayUrl": "",
     "ExternalId": "",
@@ -9,7 +10,9 @@
     "GearsetExternalId__c": "EAQt9H2300000Q9t10",
     "IsActive": "false",
     "Name": "ES820.1",
+    "pkl_SolutionField__c": "",
     "ProductCode": "F-00K-110-251",
+    "Product_Image_ID__c": "",
     "QuantityUnitOfMeasure": "",
     "SBQQ__AssetAmendmentBehavior__c": "Default",
     "SBQQ__AssetConversion__c": "One per quote line",
@@ -71,7 +74,9 @@
     "SBQQ__TaxCode__c": "",
     "SBQQ__TermDiscountLevel__c": "",
     "SBQQ__UpgradeRatio__c": "",
-    "StockKeepingUnit": ""
+    "StockKeepingUnit": "",
+    "txa_ShortDescription__c": "ES820.1 Drive-Rekordermodul",
+    "txr_AdditionaInformation__c": "<p>Beschreibung Das ES820-Modul ist ein INCA-kompatibler Drive-Rekorder auf Basis\u00A0eines eingebauten PC. Das Modul hat zwei Gigabit-Ethernet-Anschlüsse (HOST, GE).\u00A0 Über eine DSUB-Buchse lassen sich externe Trigger-Leitungen an das Modul\u00A0 anschließen. Das Speichervolumen kann durch einen Wechselspeicher erweitert\u00A0</p><p>werden. An vier USB-Ports können zum Beispiel kompakte Schnittstellenmodule wie\u00A0die ES582-Module angeschlossen werden. Betriebstemperaturbereich: -40 °C bis +70\u00A0°C. Lieferumfang 1 ES820-Modul; 1 Softwarelizenz; 1 Abdeckung für den\u00A0Wechselspeichereinschub. Bitte beachten ES801-Spannungsversorgung und\u00A0 CBE250-Ethernet-PC-Verbindungskabel sind nicht im Lieferumfang enthalten. Wird\u00A0ab der INCA-Version 7.2 unterstützt. Das ES820-Modul wird mit einer\u00A0Fremdsoftware ausgeliefert, für die gesonderte Lizenzbestimmungen gelten:\u00A0www.etas.com/DLC „Mit der Annahme dieses Angebots stimmt der Kunde den\u00A0Nutzungsbedingungen von Microsoft Windows 10IoT zu, die unter\u00A0https://www.microsoft.com/licensing/terms zu finden sind.„\u00A0</p>"
   },
   "References": [
     {
