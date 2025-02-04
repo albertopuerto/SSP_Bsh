@@ -144,4 +144,9 @@
         <recordType>Apttus__APTS_Agreement__c.X2nd_Processor_EPA_GPA</recordType>
         <visible>false</visible>
     </recordTypeVisibilities>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>FurtherPriceInformation__c.GearsetExternalId__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
 </Profile>

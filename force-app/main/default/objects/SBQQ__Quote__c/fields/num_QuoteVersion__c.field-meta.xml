@@ -2,7 +2,7 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>num_QuoteVersion__c</fullName>
     <defaultValue>0</defaultValue>
-    <description>Contains the number of the quote.</description>
+    <description>This allows Users to see quote version that is been worked on.</description>
     <externalId>false</externalId>
     <label>Version</label>
     <precision>18</precision>

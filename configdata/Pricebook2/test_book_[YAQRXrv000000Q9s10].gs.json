@@ -1,6 +1,7 @@
 {
   "Object": "Pricebook2",
   "Fields": {
+    "CurrencyIsoCode": "EUR",
     "Description": "",
     "GearsetDisplayName": "test book",
     "GearsetExternalId__c": "YAQRXrv000000Q9s10",

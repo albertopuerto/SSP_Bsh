@@ -3,11 +3,10 @@
     <fullName>Recall_Approval</fullName>
     <availability>online</availability>
     <displayType>button</displayType>
-    <encodingKey>UTF-8</encodingKey>
     <height>600</height>
-    <linkType>url</linkType>
+    <linkType>page</linkType>
     <masterLabel>Recall Approval</masterLabel>
     <openType>sidebar</openType>
-    <url>/apex/SBQQ__RecallQuote?Id={!SBQQ__Quote__c.Id}</url>
+    <page>RecallQuote</page>
     <protected>false</protected>
 </WebLink>

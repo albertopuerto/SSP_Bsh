@@ -1,6 +1,7 @@
 {
   "Object": "SBQQ__ProductFeature__c",
   "Fields": {
+    "CurrencyIsoCode": "EUR",
     "GearsetDisplayName": "ES820.1 Bundle - Hardware Extensions",
     "GearsetExternalId__c": "AAQvgn3000000Q9j3a",
     "Name": "Hardware Extensions",

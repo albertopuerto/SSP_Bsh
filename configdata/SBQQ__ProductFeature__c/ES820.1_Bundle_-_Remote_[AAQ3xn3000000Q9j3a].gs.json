@@ -1,6 +1,7 @@
 {
   "Object": "SBQQ__ProductFeature__c",
   "Fields": {
+    "CurrencyIsoCode": "EUR",
     "GearsetDisplayName": "ES820.1 Bundle - Remote",
     "GearsetExternalId__c": "AAQ3xn3000000Q9j3a",
     "Name": "Remote",
