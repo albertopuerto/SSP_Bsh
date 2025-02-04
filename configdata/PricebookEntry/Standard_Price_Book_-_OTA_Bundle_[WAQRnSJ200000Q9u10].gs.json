@@ -1,9 +1,10 @@
 {
   "Object": "PricebookEntry",
   "Fields": {
-    "GearsetDisplayName": "Standard Price Book - OTA Bundle",
+    "CurrencyIsoCode": "EUR",
+    "GearsetDisplayName": "Standard Price Book - OTA Bundle - EUR",
     "GearsetExternalId__c": "WAQRnSJ200000Q9u10",
-    "IsActive": "true",
+    "IsActive": "false",
     "UnitPrice": "1.0",
     "UseStandardPrice": "false"
   },

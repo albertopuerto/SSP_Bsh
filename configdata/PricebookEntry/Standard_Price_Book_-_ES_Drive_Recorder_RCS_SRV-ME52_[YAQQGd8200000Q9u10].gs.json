@@ -1,7 +1,8 @@
 {
   "Object": "PricebookEntry",
   "Fields": {
-    "GearsetDisplayName": "Standard Price Book - ES_Drive_Recorder_RCS_SRV-ME52",
+    "CurrencyIsoCode": "EUR",
+    "GearsetDisplayName": "Standard Price Book - ES_Drive_Recorder_RCS_SRV-ME52 - EUR",
     "GearsetExternalId__c": "YAQQGd8200000Q9u10",
     "IsActive": "true",
     "UnitPrice": "1.0",

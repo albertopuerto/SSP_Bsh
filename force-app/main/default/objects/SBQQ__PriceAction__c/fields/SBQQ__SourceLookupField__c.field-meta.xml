@@ -17,6 +17,16 @@
                 <default>false</default>
                 <label>SBQQ__Value__c</label>
             </value>
+            <value>
+                <fullName>Target_Price__c</fullName>
+                <default>false</default>
+                <label>Target_Price__c</label>
+            </value>
+            <value>
+                <fullName>Bottom_Line_Price__c</fullName>
+                <default>false</default>
+                <label>Bottom_Line_Price__c</label>
+            </value>
         </valueSetDefinition>
     </valueSet>
 </CustomField>

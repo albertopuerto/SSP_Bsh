@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Type</fullName>
+    <description>Type of opportunity, such as Existing Business or New Business. Entry is selected from a picklist of available values, which are set by an admin. Each picklist value can have up to 40 characters.</description>
     <trackFeedHistory>false</trackFeedHistory>
     <trackHistory>true</trackHistory>
     <trackTrending>false</trackTrending>

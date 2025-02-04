@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Amount</fullName>
-    <description>The quoted value updated based on the Net Total Price of Primary Quote.</description>
+    <description>The quoted value updated based on the Estimated total sale amount. If multiple currencies are enabled, the amount is shown in your personal currency by default. Change the Opportunity Currency picklist to track the amount in another currency.
+
+For opportunities with products, the amount is the sum of the related products. You can’t directly edit the amount unless the opportunity has no products. To change the amount for an opportunity that contains products, edit the sales price or quantity of the related products.
+
+If you change the price book for an opportunity that has products, all products are deleted from the Products related list, but the value in the opportunity’s Amount field remains.</description>
     <inlineHelpText>The quoted value updated based on the Net Total Price of Primary Quote.</inlineHelpText>
     <trackFeedHistory>true</trackFeedHistory>
     <trackHistory>true</trackHistory>

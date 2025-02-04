@@ -1,6 +1,7 @@
 {
   "Object": "Pricebook2",
   "Fields": {
+    "CurrencyIsoCode": "EUR",
     "Description": "",
     "GearsetDisplayName": "Standard Price Book",
     "GearsetExternalId__c": "StandardPriceBook",

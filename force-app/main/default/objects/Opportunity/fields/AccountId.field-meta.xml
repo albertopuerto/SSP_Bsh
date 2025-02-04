@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>AccountId</fullName>
+    <description>Name of the account that the opportunity is linked to. You can enter the account name or select the account using the lookup icon. If you change the account for an opportunity that has partners, all partners are deleted from the Partners related list.</description>
     <trackFeedHistory>false</trackFeedHistory>
     <trackHistory>true</trackHistory>
     <trackTrending>false</trackTrending>

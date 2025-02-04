@@ -1,0 +1,28 @@
+{
+  "Object": "SBQQ__TermCondition__c",
+  "Fields": {
+    "CurrencyIsoCode": "EUR",
+    "GearsetDisplayName": "Quote has F-00K-110 Product",
+    "GearsetExternalId__c": "0AULM9F000000Q9C4a",
+    "SBQQ__Index__c": "",
+    "SBQQ__Operator__c": "greater than",
+    "SBQQ__TestedField__c": "",
+    "SBQQ__Value__c": "0"
+  },
+  "References": [
+    {
+      "Name": "SBQQ__QuoteTerm__r",
+      "ReferencedObject": "SBQQ__QuoteTerm__c",
+      "ReferencedFields": {
+        "GearsetExternalId__c": "QAQV3ew000000Q9u3a"
+      }
+    },
+    {
+      "Name": "SBQQ__TestedVariable__r",
+      "ReferencedObject": "SBQQ__SummaryVariable__c",
+      "ReferencedFields": {
+        "GearsetExternalId__c": "GAQrwNU000000Q984a"
+      }
+    }
+  ]
+}
