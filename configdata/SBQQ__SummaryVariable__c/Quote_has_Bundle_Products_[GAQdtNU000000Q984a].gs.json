@@ -1,0 +1,28 @@
+{
+  "Object": "SBQQ__SummaryVariable__c",
+  "Fields": {
+    "CurrencyIsoCode": "EUR",
+    "GearsetDisplayName": "Quote has Bundle Products",
+    "GearsetExternalId__c": "GAQdtNU000000Q984a",
+    "Name": "Quote has Bundle Products",
+    "SBQQ__AggregateField__c": "Quantity",
+    "SBQQ__AggregateFunction__c": "Count",
+    "SBQQ__CompositeOperator__c": "",
+    "SBQQ__ConstraintField__c": "",
+    "SBQQ__FilterField__c": "Product Code",
+    "SBQQ__FilterValue__c": "Bundle",
+    "SBQQ__Operator__c": "starts with",
+    "SBQQ__Scope__c": "Quote",
+    "SBQQ__TargetObject__c": "Quote Line",
+    "SBQQ__ValueElement__c": ""
+  },
+  "References": [
+    {
+      "Name": "SBQQ__CombineWith__r",
+      "ReferencedObject": "SBQQ__SummaryVariable__c",
+      "ReferencedFields": {
+        "GearsetExternalId__c": ""
+      }
+    }
+  ]
+}

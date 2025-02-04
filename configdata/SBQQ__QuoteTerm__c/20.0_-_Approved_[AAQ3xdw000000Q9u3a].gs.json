@@ -1,0 +1,41 @@
+{
+  "Object": "SBQQ__QuoteTerm__c",
+  "Fields": {
+    "CurrencyIsoCode": "EUR",
+    "GearsetDisplayName": "20.0 - Approved",
+    "GearsetExternalId__c": "AAQ3xdw000000Q9u3a",
+    "SBQQ__Active__c": "false",
+    "SBQQ__AdvancedCondition__c": "",
+    "SBQQ__Body__c": [
+      "<p><strong style=\"font-size: 16px;\">T&amp;C for </strong><strong style=\"font-size: 16px; color: rgb(225, 12, 15);\">Bundle Products</strong><strong style=\"font-size: 16px;\">.</strong></p><p><br></p><p style=\"text-align: justify;\">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla rutrum, nisl cursus sagittis gravida, tellus ligula accumsan odio, eget vulputate ante libero sed arcu. Cras molestie dignissim tincidunt. Suspendisse dignissim lectus a est porttitor, eu feugiat orci ultricies. Cras neque tortor, elementum sit amet faucibus eu, congue vel massa. Integer vel dolor justo. Quisque in eleifend nibh, in tempus lorem. Aenean maximus sollicitudin arcu, ac interdum arcu mattis vitae. Praesent placerat magna eu consectetur rhoncus. Morbi quam dui, vehicula a libero a, commodo vehicula urna. Nullam vitae dapibus dui. Proin rhoncus metus dapibus congue semper. Fusce faucibus ullamcorper lobortis. Vestibulum finibus placerat neque sed rhoncus.</p><p style=\"text-align: justify;\">Nulla eget ipsum a ex sodales porttitor consectetur vitae tortor. Suspendisse vitae tincidunt felis. Etiam eu mauris ut justo lacinia congue sit amet at tortor. Aliquam ac consectetur nisi. Curabitur pellentesque nibh quis blandit efficitur. Sed lobortis, augue a posuere ultricies, massa nulla venenatis arcu, sit amet volutpat mauris dolor tempor tellus. Nam dictum urna ac nunc aliquet, vel pretium arcu suscipit. Pellentesque consequat aliquet facilisis. Vivamus id urna vitae enim hendrerit semper at sed metus. Aliquam non odio mauris. Suspendisse efficitur, est sit amet euismod vehicula, nulla nulla imperdiet metus, sed sollicitudin ex est id urna. Integer gravida mattis malesuada. Pellentesque accumsan mattis quam, non egestas felis malesuada non. Fusce iaculis felis efficitur dolor dignissim fringilla.</p><p style=\"text-align: justify;\"><br></p><p style=\"text-align: justify;\">Suspendisse dapibus ex quis arcu vulputate pellentesque. Etiam hendrerit dolor quis risus varius pellentesque vel posuere magna. Aenean sagittis nisi eu ex posuere, et venenatis nulla accumsan. Aliquam lacus dui, tempus sit amet sollicitudin in, auctor non ipsum. Vestibulum interdum rutrum tellus vel condimentum. Vestibulum dictum est arcu, et mattis neque mattis nec. Sed tristique eros consequat dictum posuere.</p><p style=\"text-align: justify;\"><br></p><p style=\"text-align: justify;\">In at tellus quis est porttitor dictum. Duis nec augue sed felis sodales maximus. Nunc quis diam dui. Sed ullamcorper ipsum nec imperdiet congue. Phasellus viverra nibh quis viverra finibus. Etiam ac purus metus. Integer id blandit augue. Ut auctor finibus dui ut mattis. Aenean sit amet est vitae neque maximus fringilla. Fusce interdum mauris ac lacus tempus suscipit. Nam consectetur ipsum libero, eget lobortis leo aliquam eget. Ut convallis purus sit amet rutrum ornare. Nam scelerisque varius odio, a aliquam nulla luctus eget.</p><p style=\"text-align: justify;\"><br></p><p style=\"text-align: justify;\">Nam id lorem pellentesque, laoreet orci non, commodo leo. Ut aliquet velit metus. Nunc sagittis tellus quis ante mollis condimentum. Vivamus arcu turpis, scelerisque euismod ex ut, condimentum sollicitudin nibh. Nullam in urna odio. Sed aliquam tellus a tempor varius. Etiam efficitur scelerisque arcu, ac sagittis odio pretium sit amet.</p><p style=\"text-align: justify;\"><br></p><p style=\"text-align: justify;\">Duis sodales a nisi sed consectetur. Vestibulum eu leo dignissim, varius urna non, volutpat augue. Proin maximus ultrices nunc quis accumsan. Vivamus varius dui nec sapien luctus porta. Nunc suscipit ligula a dui tempus dignissim. Vestibulum posuere, turpis quis blandit venenatis, orci dolor gravida enim, eu faucibus enim velit in est. In at ex venenatis, venenatis felis a, euismod arcu. Quisque egestas, turpis eu ultricies viverra, velit tellus malesuada sem, vitae euismod erat nisi quis mauris. Nunc id nisl non ipsum maximus feugiat sit amet in ex. Maecenas neque nibh, accumsan et urna id, sollicitudin tincidunt risus. Fusce enim mauris, vulputate lobortis venenatis a, dictum id diam. Quisque convallis tellus tempus enim consequat, at efficitur augue rutrum. Quisque et luctus risus, vel volutpat justo. Donec purus neque, semper id purus in, tincidunt accumsan ligula.</p><p style=\"text-align: justify;\"><br></p><p style=\"text-align: justify;\">Vestibulum blandit eros nec sollicitudin fermentum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam felis dui, maximus non porta sit amet, euismod vitae ligula. Proin aliquam laoreet urna, vel lacinia nisl rhoncus at. Curabitur odio sapien, fermentum vel blandit nec, consequat quis purus. Donec in facilisis ante. Aenean facilisis, tortor in feugiat ullamcorper, orci nunc molestie lorem, sit amet suscipit nulla nulla at mi. Sed ac massa et nisi vestibulum venenatis. Nunc sed mattis purus. Mauris felis justo, bibendum sed turpis et, sagittis dapibus diam. Nullam imperdiet, turpis et suscipit egestas, elit tortor convallis dui, convallis euismod dui nisi ac dolor. In vitae ultrices mi. Donec a semper velit.</p>",
+      "<p><br><br><br><br><br><br></p>"
+    ],
+    "SBQQ__ConditionsMet__c": "All",
+    "SBQQ__Locked__c": "false",
+    "SBQQ__PrintOrder__c": "20.0",
+    "SBQQ__Status__c": "Approved"
+  },
+  "References": [
+    {
+      "Name": "SBQQ__ParentTerm__r",
+      "ReferencedObject": "SBQQ__QuoteTerm__c",
+      "ReferencedFields": {
+        "GearsetExternalId__c": ""
+      }
+    },
+    {
+      "Name": "SBQQ__StandardTerm__r",
+      "ReferencedObject": "SBQQ__QuoteTerm__c",
+      "ReferencedFields": {
+        "GearsetExternalId__c": ""
+      }
+    },
+    {
+      "Name": "SBQQ__TemplateContent__r",
+      "ReferencedObject": "SBQQ__TemplateContent__c",
+      "ReferencedFields": {
+        "GearsetExternalId__c": ""
+      }
+    }
+  ]
+}

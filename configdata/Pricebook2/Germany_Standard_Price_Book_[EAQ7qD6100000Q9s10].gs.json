@@ -1,0 +1,12 @@
+{
+  "Object": "Pricebook2",
+  "Fields": {
+    "CurrencyIsoCode": "EUR",
+    "Description": "Contains Product prices in German Market",
+    "GearsetDisplayName": "Germany Standard Price Book",
+    "GearsetExternalId__c": "EAQ7qD6100000Q9s10",
+    "IsActive": "true",
+    "Name": "Germany Standard Price Book"
+  },
+  "References": []
+}

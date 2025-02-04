@@ -1,0 +1,19 @@
+{
+  "Object": "FurtherPriceInformation__c",
+  "Fields": {
+    "Bottom_Line_Price__c": "0.1",
+    "CurrencyIsoCode": "EUR",
+    "GearsetDisplayName": "UAUF5W6000000Q9L4a",
+    "GearsetExternalId__c": "UAUF5W6000000Q9L4a",
+    "Target_Price__c": "0.2"
+  },
+  "References": [
+    {
+      "Name": "Product__r",
+      "ReferencedObject": "Product2",
+      "ReferencedFields": {
+        "GearsetExternalId__c": "AAQxba2300000Q9t10"
+      }
+    }
+  ]
+}

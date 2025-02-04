@@ -1,7 +1,8 @@
 {
   "Object": "PricebookEntry",
   "Fields": {
-    "GearsetDisplayName": "Standard Price Book - ISW_ES820_ODX-LINK_SRV-ME52",
+    "CurrencyIsoCode": "EUR",
+    "GearsetDisplayName": "Standard Price Book - ISW_ES820_ODX-LINK_SRV-ME52 - EUR",
     "GearsetExternalId__c": "YAQWZf8200000Q9u10",
     "IsActive": "true",
     "UnitPrice": "268.0",

@@ -1,0 +1,11 @@
+<messaging:emailTemplate subject="Rejected Quote" recipientType="User" relatedToType="sbaa__Approval__c">
+<messaging:htmlEmailBody >
+<p style="color:white"><apex:outputText value="{!relatedTo.ID}"/></p>
+<div class="email-content">
+            <p>Dear <strong>[Reciepent Name]</strong>,</p>
+            <p>We need to inform you that the quote <strong><a href="{!LEFT($Api.Enterprise_Server_URL_620,FIND("/services", $Api.Enterprise_Server_URL_620))}/lightning/r/SBQQ__Quote__c/{!relatedTo.Quote__r.Id}/view">{!relatedTo.Quote__r.Name}</a></strong>  has been rejected!.</p>
+        </div>
+        <p><strong>Note:</strong> This Mail has been generated automatically from Salesforce. It is sent to the user who needs to approve/reject a quote that has been sent for approval. Please do not reply to it.
+        </p>
+</messaging:htmlEmailBody>
+</messaging:emailTemplate>

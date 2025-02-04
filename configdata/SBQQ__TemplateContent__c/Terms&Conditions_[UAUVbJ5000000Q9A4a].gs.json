@@ -1,6 +1,7 @@
 {
   "Object": "SBQQ__TemplateContent__c",
   "Fields": {
+    "CurrencyIsoCode": "EUR",
     "GearsetDisplayName": "Terms&Conditions",
     "GearsetExternalId__c": "UAUVbJ5000000Q9A4a",
     "Name": "Terms&Conditions",
@@ -33,9 +34,13 @@
       "",
       "<p style=\"text-align: justify;\">In the event of any conflict between the provisions of this quotation, the statement of work and/or the provisions of the aforementioned General Terms and Conditions, the provisions of this quotation shall prevail over the provisions of the statement of work and the provisions of the statement of work and/or this quotation shall prevail over the aforementioned General Terms and Conditions.</p>",
       "",
+      "<p style=\"text-align: justify;\">&#160;</p>",
+      "",
       "<p style=\"text-align: justify;\">If a limitation of liability has been agreed, the customer shall refer to it in its purchase order.</p>",
       "",
       "<p style=\"text-align: justify;\">This quotation is legally valid without signature.</p>",
+      "",
+      "<p style=\"text-align: justify;\">&#160;</p>",
       "",
       "<p style=\"text-align: justify;\">ETAS GmbH</p>"
     ],

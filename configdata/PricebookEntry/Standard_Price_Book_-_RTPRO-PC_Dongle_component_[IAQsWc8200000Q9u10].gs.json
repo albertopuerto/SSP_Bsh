@@ -1,7 +1,8 @@
 {
   "Object": "PricebookEntry",
   "Fields": {
-    "GearsetDisplayName": "Standard Price Book - RTPRO-PC_Dongle_component",
+    "CurrencyIsoCode": "EUR",
+    "GearsetDisplayName": "Standard Price Book - RTPRO-PC_Dongle_component - EUR",
     "GearsetExternalId__c": "IAQsWc8200000Q9u10",
     "IsActive": "true",
     "UnitPrice": "1.0",
