@@ -1,7 +1,8 @@
 {
   "Object": "PricebookEntry",
   "Fields": {
-    "GearsetDisplayName": "Standard Price Book - ES_RTPRO-PC_ES820_LIC-MP",
+    "CurrencyIsoCode": "EUR",
+    "GearsetDisplayName": "Standard Price Book - ES_RTPRO-PC_ES820_LIC-MP - EUR",
     "GearsetExternalId__c": "AAQ7bf8200000Q9u10",
     "IsActive": "true",
     "UnitPrice": "1.0",

@@ -1,0 +1,19 @@
+{
+  "Object": "FurtherPriceInformation__c",
+  "Fields": {
+    "Bottom_Line_Price__c": "0.8",
+    "CurrencyIsoCode": "EUR",
+    "GearsetDisplayName": "EAUx7Z6000000Q9L4a",
+    "GearsetExternalId__c": "EAUx7Z6000000Q9L4a",
+    "Target_Price__c": "0.9"
+  },
+  "References": [
+    {
+      "Name": "Product__r",
+      "ReferencedObject": "Product2",
+      "ReferencedFields": {
+        "GearsetExternalId__c": "KAQ9IzS300000Q9t10"
+      }
+    }
+  ]
+}

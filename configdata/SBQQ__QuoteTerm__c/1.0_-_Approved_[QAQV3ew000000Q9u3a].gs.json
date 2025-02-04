@@ -1,0 +1,38 @@
+{
+  "Object": "SBQQ__QuoteTerm__c",
+  "Fields": {
+    "CurrencyIsoCode": "EUR",
+    "GearsetDisplayName": "1.0 - Approved",
+    "GearsetExternalId__c": "QAQV3ew000000Q9u3a",
+    "SBQQ__Active__c": "false",
+    "SBQQ__AdvancedCondition__c": "",
+    "SBQQ__Body__c": "<p>This is a Sample Demo text. Here you&#39;ll see T&amp;C for <strong style=\"color: rgb(255, 0, 0); font-size: 14px; background-color: rgb(255, 255, 255);\">F-00K-110</strong><strong style=\"color: rgb(255, 0, 0);\"> Products</strong>.</p>",
+    "SBQQ__ConditionsMet__c": "All",
+    "SBQQ__Locked__c": "false",
+    "SBQQ__PrintOrder__c": "1.0",
+    "SBQQ__Status__c": "Approved"
+  },
+  "References": [
+    {
+      "Name": "SBQQ__ParentTerm__r",
+      "ReferencedObject": "SBQQ__QuoteTerm__c",
+      "ReferencedFields": {
+        "GearsetExternalId__c": ""
+      }
+    },
+    {
+      "Name": "SBQQ__StandardTerm__r",
+      "ReferencedObject": "SBQQ__QuoteTerm__c",
+      "ReferencedFields": {
+        "GearsetExternalId__c": ""
+      }
+    },
+    {
+      "Name": "SBQQ__TemplateContent__r",
+      "ReferencedObject": "SBQQ__TemplateContent__c",
+      "ReferencedFields": {
+        "GearsetExternalId__c": ""
+      }
+    }
+  ]
+}

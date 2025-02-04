@@ -2373,6 +2373,11 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>true</editable>
+        <field>SBQQ__QuoteLine__c.pkl_SolutionField__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>false</editable>
         <field>SBQQ__Quote__c.SBQQ__Account__c</field>
         <readable>true</readable>

@@ -1,6 +1,7 @@
 {
   "Object": "SBQQ__ProductAttributeSet__c",
   "Fields": {
+    "CurrencyIsoCode": "EUR",
     "GearsetDisplayName": "IAQ3Jx8000000Q9h3a",
     "GearsetExternalId__c": "IAQ3Jx8000000Q9h3a",
     "SBQQ__Sequence__c": "10.0"

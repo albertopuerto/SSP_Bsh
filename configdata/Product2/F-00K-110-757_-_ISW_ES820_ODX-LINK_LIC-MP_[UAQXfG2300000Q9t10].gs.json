@@ -1,6 +1,7 @@
 {
   "Object": "Product2",
   "Fields": {
+    "CurrencyIsoCode": "EUR",
     "Description": "Machine-named license for ES820 ODX-LINK add-on for INCA",
     "DisplayUrl": "",
     "ExternalId": "",
@@ -9,7 +10,9 @@
     "GearsetExternalId__c": "UAQXfG2300000Q9t10",
     "IsActive": "false",
     "Name": "ISW_ES820_ODX-LINK_LIC-MP",
+    "pkl_SolutionField__c": "",
     "ProductCode": "F-00K-110-757",
+    "Product_Image_ID__c": "",
     "QuantityUnitOfMeasure": "",
     "SBQQ__AssetAmendmentBehavior__c": "Default",
     "SBQQ__AssetConversion__c": "One per quote line",
@@ -64,14 +67,16 @@
     "SBQQ__SubscriptionBase__c": "List",
     "SBQQ__SubscriptionCategory__c": "",
     "SBQQ__SubscriptionPercent__c": "",
-    "SBQQ__SubscriptionPricing__c": "",
-    "SBQQ__SubscriptionTerm__c": "",
+    "SBQQ__SubscriptionPricing__c": "Fixed Price",
+    "SBQQ__SubscriptionTerm__c": "6.0",
     "SBQQ__SubscriptionType__c": "Renewable",
     "SBQQ__Taxable__c": "false",
     "SBQQ__TaxCode__c": "",
     "SBQQ__TermDiscountLevel__c": "",
     "SBQQ__UpgradeRatio__c": "",
-    "StockKeepingUnit": ""
+    "StockKeepingUnit": "",
+    "txa_ShortDescription__c": "Machine-named license for ES820 ODX-LINK add-on for INCA",
+    "txr_AdditionaInformation__c": ""
   },
   "References": [
     {

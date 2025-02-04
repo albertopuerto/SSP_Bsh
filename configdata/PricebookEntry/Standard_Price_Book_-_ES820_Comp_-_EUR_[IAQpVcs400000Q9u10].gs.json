@@ -1,0 +1,27 @@
+{
+  "Object": "PricebookEntry",
+  "Fields": {
+    "CurrencyIsoCode": "EUR",
+    "GearsetDisplayName": "Standard Price Book - ES820 Comp - EUR",
+    "GearsetExternalId__c": "IAQpVcs400000Q9u10",
+    "IsActive": "true",
+    "UnitPrice": "5000.0",
+    "UseStandardPrice": "false"
+  },
+  "References": [
+    {
+      "Name": "Pricebook2",
+      "ReferencedObject": "Pricebook2",
+      "ReferencedFields": {
+        "GearsetExternalId__c": "StandardPriceBook"
+      }
+    },
+    {
+      "Name": "Product2",
+      "ReferencedObject": "Product2",
+      "ReferencedFields": {
+        "GearsetExternalId__c": "UAQXsDi600000Q9t10"
+      }
+    }
+  ]
+}

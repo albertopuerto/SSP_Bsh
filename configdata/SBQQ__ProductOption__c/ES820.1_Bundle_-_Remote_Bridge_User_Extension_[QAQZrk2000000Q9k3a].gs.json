@@ -1,7 +1,8 @@
 {
   "Object": "SBQQ__ProductOption__c",
   "Fields": {
-    "GearsetDisplayName": "ES820.1 Bundle - Remote Bridge User Extension",
+    "CurrencyIsoCode": "EUR",
+    "GearsetDisplayName": "ES820.1 Bundle",
     "GearsetExternalId__c": "QAQZrk2000000Q9k3a",
     "SBQQ__AppliedImmediatelyContext__c": "",
     "SBQQ__AppliedImmediately__c": "false",
@@ -55,7 +56,7 @@
       "Name": "SBQQ__OptionalSKU__r",
       "ReferencedObject": "Product2",
       "ReferencedFields": {
-        "GearsetExternalId__c": "2AQGWZ2300000Q9t10"
+        "GearsetExternalId__c": ""
       }
     },
     {

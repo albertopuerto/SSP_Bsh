@@ -17,6 +17,16 @@
                 <default>false</default>
                 <label>SBQQ__Category__c</label>
             </value>
+            <value>
+                <fullName>Product__c</fullName>
+                <default>false</default>
+                <label>Product__c</label>
+            </value>
+            <value>
+                <fullName>CurrencyIsoCode</fullName>
+                <default>false</default>
+                <label>CurrencyIsoCode</label>
+            </value>
         </valueSetDefinition>
     </valueSet>
 </CustomField>
