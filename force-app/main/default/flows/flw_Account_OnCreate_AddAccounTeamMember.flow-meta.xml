@@ -31,7 +31,7 @@
             <assignToReference>obj_AccountTeamMember.TeamMemberRole</assignToReference>
             <operator>Assign</operator>
             <value>
-                <stringValue>SCO</stringValue>
+                <stringValue>Sales Coordinator</stringValue>
             </value>
         </assignmentItems>
         <connector>
