@@ -11,7 +11,7 @@
       "Name": "sbaa__TemplateId__c",
       "ReferencedObject": "EmailTemplate",
       "ReferencedFields": {
-        "DeveloperName": ""
+        "DeveloperName": "eml_RecallTemplate"
       }
     }
   ]
