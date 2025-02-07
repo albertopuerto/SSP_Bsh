@@ -543,11 +543,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>SBQQ__Quote__c.chk_Exclude_Custom_T_C__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>SBQQ__Quote__c.chk_Override_Product_T_C__c</field>
         <readable>true</readable>
     </fieldPermissions>
