@@ -44,6 +44,12 @@
                 <elementReference>$Record.Id</elementReference>
             </value>
         </inputParameters>
+        <inputParameters>
+            <name>senderAddress</name>
+            <value>
+                <stringValue>uwe.adams@de.bosch.com</stringValue>
+            </value>
+        </inputParameters>
         <nameSegment>emailSimple</nameSegment>
         <versionSegment>1</versionSegment>
     </actionCalls>
