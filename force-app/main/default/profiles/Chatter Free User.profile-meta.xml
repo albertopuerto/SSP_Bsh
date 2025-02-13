@@ -149,4 +149,8 @@
         <field>FurtherPriceInformation__c.GearsetExternalId__c</field>
         <readable>true</readable>
     </fieldPermissions>
+    <tabVisibilities>
+        <tab>sbaa__Approval__c</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
 </Profile>

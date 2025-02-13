@@ -3,7 +3,7 @@
   "Fields": {
     "CurrencyIsoCode": "EUR",
     "GearsetDisplayName": "Save",
-    "GearsetExternalId__c": "QAQJzc1000000Q963a",
+    "GearsetExternalId__c": "IAQhN19100000Q963a",
     "Name": "Save",
     "SBQQ__Action__c": "Save",
     "SBQQ__Active__c": "true",
@@ -12,7 +12,7 @@
     "SBQQ__ConditionsMet__c": "All",
     "SBQQ__Default__c": "false",
     "SBQQ__Description__c": "",
-    "SBQQ__DisplayOrder__c": "900.0",
+    "SBQQ__DisplayOrder__c": "916.0",
     "SBQQ__EventHandlerName__c": "onSave",
     "SBQQ__IconClass__c": "",
     "SBQQ__Icon__c": "",
