@@ -307,8 +307,10 @@
         </quickActionListItems>
     </quickActionList>
     <relatedLists>
+        <customButtons>New</customButtons>
         <excludeButtons>MassChangeOwner</excludeButtons>
         <excludeButtons>New</excludeButtons>
+        <fields>chk_IsActive__c</fields>
         <fields>NAME</fields>
         <fields>pkl_OemOfMilitaryItems__c</fields>
         <fields>pkl_BelongToAnOemOfMilitaryItems__c</fields>
@@ -319,6 +321,8 @@
         <fields>pkl_ProjectsAndCollaborations__c</fields>
         <fields>CREATED_DATE</fields>
         <relatedList>ExportControlSheet__c.Account__c</relatedList>
+        <sortField>chk_IsActive__c</sortField>
+        <sortOrder>Desc</sortOrder>
     </relatedLists>
     <relatedLists>
         <fields>MEMBER_NAME</fields>
