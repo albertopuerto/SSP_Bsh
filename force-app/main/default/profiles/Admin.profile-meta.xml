@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Profile xmlns="http://soap.sforce.com/2006/04/metadata">
     <custom>false</custom>
     <userLicense>Salesforce</userLicense>
@@ -445,16 +445,6 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>SBQQ__Quote__c.Submitteddate__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>SBQQ__Quote__c.fttxt_SalesManager_for_demo__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>SBQQ__Quote__c.lkp_RelevantSolutionDemo__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
