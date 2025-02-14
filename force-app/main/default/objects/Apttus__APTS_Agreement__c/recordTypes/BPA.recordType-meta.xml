@@ -519,14 +519,10 @@
         </values>
         <values>
             <fullName>In Process</fullName>
-            <default>true</default>
-        </values>
-        <values>
-            <fullName>Inactive</fullName>
             <default>false</default>
         </values>
         <values>
-            <fullName>N%2FA</fullName>
+            <fullName>Inactive</fullName>
             <default>false</default>
         </values>
     </picklistValues>
