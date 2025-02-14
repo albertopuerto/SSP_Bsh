@@ -114,6 +114,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Apttus__APTS_Agreement__c.APTS_Limitation_of_Liability_Description__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Apttus__APTS_Agreement__c.APTS_Managing_Party_BPA__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -1535,6 +1540,9 @@
     </userPermissions>
     <layoutAssignments>
         <layout>ExportControlSheet__c-Export Control Sheet Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>FurtherPriceInformation__c-Further Price Information Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
         <layout>Global-Outlook publisher layout</layout>

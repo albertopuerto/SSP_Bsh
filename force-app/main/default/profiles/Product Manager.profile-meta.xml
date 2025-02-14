@@ -1,10 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Profile xmlns="http://soap.sforce.com/2006/04/metadata">
-    <!--
-    <classAccesses>
-        <apexClass>quickQuoteController</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>-->
     <custom>true</custom>
     <userLicense>Salesforce</userLicense>
     <fieldPermissions>
@@ -1424,6 +1419,9 @@
     </layoutAssignments>
     <layoutAssignments>
         <layout>ExportControlSheet__c-Export Control Sheet Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>FurtherPriceInformation__c-Further Price Information Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
         <layout>Opportunity-Frame Contract Opportunity Layout</layout>
