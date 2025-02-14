@@ -14,7 +14,7 @@
             <sorted>false</sorted>
             <value>
                 <fullName>In Process</fullName>
-                <default>true</default>
+                <default>false</default>
                 <label>In Process</label>
             </value>
             <value>
@@ -26,11 +26,6 @@
                 <fullName>Inactive</fullName>
                 <default>false</default>
                 <label>Inactive</label>
-            </value>
-            <value>
-                <fullName>N/A</fullName>
-                <default>false</default>
-                <label>N/A</label>
             </value>
         </valueSetDefinition>
     </valueSet>

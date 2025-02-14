@@ -9,8 +9,7 @@ public class QuoteLineEmailController_Test {
             Role__c='ETDE Domestic Customer',
             pkl_Language__c='English', 
             pkl_INCOTerms1__c='CPT - Carriage Paid To', 
-            txt_INCOTerms2__c = 'Inco Terms',
-            pkl_PaymentTerms__c = 'Net 15'
+            txt_INCOTerms2__c = 'Inco Terms'
         );
         insert testAccount;
 
@@ -41,11 +40,7 @@ public class QuoteLineEmailController_Test {
                 SBQQ__Product__c = prod.Id,
                 SBQQ__Quantity__c = 10,
                 pkl_SolutionField__c = 'DEV',
-                SBQQ__ListPrice__c = 100.0,
-                pkl_QuantityUnit__c = 'KG',
-                pkl_INCOTerms1__c='CPT - Carriage Paid To', 
-                txt_INCOTerms2__c = 'Inco Terms',
-                pkl_PaymentTerms__c = 'Net 15'
+                SBQQ__ListPrice__c = 100.0
             ));
         }
         insert quoteLines;
