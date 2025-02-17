@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>OpportunityAccessLevel</fullName>
+    <description>The level of access that a team member has to the opportunities associated with the account.</description>
 </CustomField>

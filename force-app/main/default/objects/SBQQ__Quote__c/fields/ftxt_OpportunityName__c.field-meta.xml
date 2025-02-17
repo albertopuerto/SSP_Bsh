@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>ftxt_OpportunityName__c</fullName>
+    <description>Contains name of Opportunity in search box</description>
     <externalId>false</externalId>
     <formula>SBQQ__Opportunity2__r.Name</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>

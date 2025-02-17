@@ -1,6 +1,7 @@
 {
   "Object": "Product2",
   "Fields": {
+    "CurrencyIsoCode": "EUR",
     "Description": [
       "Digital I/O-Verbindungskabel-Set mit Taster und Adapter für ES820, Micro-D – Taster (25fc – 1ui), ",
       "6m2 (20.3 ft)"
@@ -12,7 +13,9 @@
     "GearsetExternalId__c": "QAQZda2300000Q9t10",
     "IsActive": "false",
     "Name": "AS_CBAV820.1-6_SET",
+    "pkl_SolutionField__c": "",
     "ProductCode": "F-00K-112-587",
+    "Product_Image_ID__c": "",
     "QuantityUnitOfMeasure": "",
     "SBQQ__AssetAmendmentBehavior__c": "Default",
     "SBQQ__AssetConversion__c": "One per quote line",
@@ -74,7 +77,9 @@
     "SBQQ__TaxCode__c": "",
     "SBQQ__TermDiscountLevel__c": "",
     "SBQQ__UpgradeRatio__c": "",
-    "StockKeepingUnit": ""
+    "StockKeepingUnit": "",
+    "txa_ShortDescription__c": "Digital I/O-Verbindungskabel-Set mit Taster und Adapter für ES820, Micro-D – Taster (25fc – 1ui), 6m2 (20.3 ft)",
+    "txr_AdditionaInformation__c": ""
   },
   "References": [
     {

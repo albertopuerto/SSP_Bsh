@@ -4,7 +4,7 @@
     <standardValue>
         <fullName>Sales Coordinator</fullName>
         <default>false</default>
-        <label>SalesCoordinator</label>
+        <label>Sales Coordinator</label>
     </standardValue>
     <standardValue>
         <fullName>Sales Manager</fullName>

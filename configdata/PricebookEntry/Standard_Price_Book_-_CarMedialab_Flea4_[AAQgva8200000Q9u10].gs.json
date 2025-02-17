@@ -1,7 +1,8 @@
 {
   "Object": "PricebookEntry",
   "Fields": {
-    "GearsetDisplayName": "Standard Price Book - CarMedialab Flea4",
+    "CurrencyIsoCode": "EUR",
+    "GearsetDisplayName": "Standard Price Book - CarMedialab Flea4 - EUR",
     "GearsetExternalId__c": "AAQgva8200000Q9u10",
     "IsActive": "true",
     "UnitPrice": "1.0",

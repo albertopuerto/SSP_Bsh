@@ -7,7 +7,7 @@
     <inlineHelpText>Company&#39;s entity responsible for the Contract</inlineHelpText>
     <label>ETAS Legal Entity</label>
     <lookupFilter>
-        <active>true</active>
+        <active>false</active>
         <filterItems>
             <field>Account.Type</field>
             <operation>equals</operation>

@@ -12,7 +12,7 @@
                         <valueListItems>
                             <value>CustomButton.SBQQ__Quote__c.SBQQ__EditLines</value>
                             <visibilityRule>
-                                <booleanFilter>1 OR 2</booleanFilter>
+                                <booleanFilter>1 OR 2 OR 3</booleanFilter>
                                 <criteria>
                                     <leftValue>{!Record.SBQQ__Status__c}</leftValue>
                                     <operator>EQUAL</operator>
@@ -22,6 +22,11 @@
                                     <leftValue>{!Record.SBQQ__Status__c}</leftValue>
                                     <operator>EQUAL</operator>
                                     <rightValue>In Review</rightValue>
+                                </criteria>
+                                <criteria>
+                                    <leftValue>{!Record.SBQQ__Status__c}</leftValue>
+                                    <operator>EQUAL</operator>
+                                    <rightValue>Approved</rightValue>
                                 </criteria>
                             </visibilityRule>
                         </valueListItems>
@@ -81,6 +86,22 @@
                         </valueListItems>
                         <valueListItems>
                             <value>ChangeOwnerOne</value>
+                        </valueListItems>
+                        <valueListItems>
+                            <value>CustomButton.SBQQ__Quote__c.Submit_for_Approval</value>
+                            <visibilityRule>
+                                <criteria>
+                                    <leftValue>{!Record.ApprovalStatus__c}</leftValue>
+                                    <operator>NE</operator>
+                                    <rightValue>Pending</rightValue>
+                                </criteria>
+                            </visibilityRule>
+                        </valueListItems>
+                        <valueListItems>
+                            <value>CustomButton.SBQQ__Quote__c.Recall_Approval</value>
+                        </valueListItems>
+                        <valueListItems>
+                            <value>CustomButton.SBQQ__Quote__c.Preview_Approval</value>
                         </valueListItems>
                     </valueList>
                 </componentInstanceProperties>
@@ -297,4 +318,4 @@
         <name>flexipage:recordHomeTemplateDesktop</name>
     </template>
     <type>RecordPage</type>
-</FlexiPage> 
+</FlexiPage>
