@@ -332,11 +332,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Apttus__APTS_Agreement__c.APTS_DSO_Status__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
         <field>Apttus__APTS_Agreement__c.APTS_Data_Security__c</field>
         <readable>true</readable>
     </fieldPermissions>
