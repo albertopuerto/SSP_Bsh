@@ -2,8 +2,8 @@
 <ApexClass xmlns="http://soap.sforce.com/2006/04/metadata">
     <apiVersion>46.0</apiVersion>
     <packageVersions>
-        <majorNumber>10</majorNumber>
-        <minorNumber>465</minorNumber>
+        <majorNumber>15</majorNumber>
+        <minorNumber>770</minorNumber>
         <namespace>Apttus</namespace>
     </packageVersions>
     <status>Active</status>

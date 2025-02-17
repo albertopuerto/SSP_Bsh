@@ -3,7 +3,7 @@
     <fullName>txt_INCOTerms2__c</fullName>
     <description>Defines at which location the INCO Terms will start.</description>
     <externalId>false</externalId>
-    <label>INCO Terms 2</label>
+    <label>INCOTERM Location</label>
     <required>true</required>
     <trackFeedHistory>false</trackFeedHistory>
     <trackHistory>false</trackHistory>
