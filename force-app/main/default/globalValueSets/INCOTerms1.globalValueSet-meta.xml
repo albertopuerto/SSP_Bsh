@@ -16,9 +16,9 @@
         <label>DAP – Delivered at Place</label>
     </customValue>
     <customValue>
-        <fullName>FCA - Free Carriage and Freight</fullName>
+        <fullName>FCA - Free Carrier</fullName>
         <default>false</default>
-        <label>FCA - Free Carriage and Freight</label>
+        <label>FCA - Free Carrier</label>
     </customValue>
     <description>Picklist to store possible INCO Terms values, used in S4/Hana. Needed on several objects for the interface.</description>
     <masterLabel>INCO Terms 1</masterLabel>
