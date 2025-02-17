@@ -8,14 +8,14 @@
     <enableEmailTrackingIPBlocklist>false</enableEmailTrackingIPBlocklist>
     <enableEmailWorkflowApproval>false</enableEmailWorkflowApproval>
     <enableEnhancedEmailEnabled>true</enableEnhancedEmailEnabled>
-    <enableHandleBouncedEmails>true</enableHandleBouncedEmails>
+    <enableHandleBouncedEmails>false</enableHandleBouncedEmails>
     <enableHtmlEmail>false</enableHtmlEmail>
     <enableInternationalEmailAddresses>false</enableInternationalEmailAddresses>
     <enableListEmailLogActivities>true</enableListEmailLogActivities>
     <enableResendBouncedEmails>false</enableResendBouncedEmails>
     <enableRestrictTlsToDomains>false</enableRestrictTlsToDomains>
     <enableUseOrgFootersForExtTrans>false</enableUseOrgFootersForExtTrans>
-    <enableVerifyEmailDomainByDkim>false</enableVerifyEmailDomainByDkim>
+    <enableVerifyEmailDomainByDkim>true</enableVerifyEmailDomainByDkim>
     <sendEmailsEvenWhenAutomationUpdatesSameRecord>true</sendEmailsEvenWhenAutomationUpdatesSameRecord>
     <sendMassEmailNotification>true</sendMassEmailNotification>
     <sendTextOnlySystemEmails>false</sendTextOnlySystemEmails>
