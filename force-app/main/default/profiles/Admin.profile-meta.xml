@@ -69,11 +69,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Apttus__APTS_Agreement__c.APTS_DSO_Status__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
         <field>Apttus__APTS_Agreement__c.APTS_Department_DSO_Agreements__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -445,16 +440,6 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>SBQQ__Quote__c.Submitteddate__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>SBQQ__Quote__c.fttxt_SalesManager_for_demo__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>SBQQ__Quote__c.lkp_RelevantSolutionDemo__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>

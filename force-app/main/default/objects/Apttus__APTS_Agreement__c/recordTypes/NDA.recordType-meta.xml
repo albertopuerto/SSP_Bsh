@@ -513,25 +513,6 @@
         </values>
     </picklistValues>
     <picklistValues>
-        <picklist>APTS_DSO_Status__c</picklist>
-        <values>
-            <fullName>Closed</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>In Process</fullName>
-            <default>true</default>
-        </values>
-        <values>
-            <fullName>Inactive</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>N%2FA</fullName>
-            <default>false</default>
-        </values>
-    </picklistValues>
-    <picklistValues>
         <picklist>APTS_Data_Processor_Country__c</picklist>
         <values>
             <fullName>Australia</fullName>
