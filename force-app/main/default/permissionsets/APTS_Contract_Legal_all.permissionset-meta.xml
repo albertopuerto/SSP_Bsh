@@ -9508,6 +9508,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Apttus__APTS_Agreement__c.APTS_RODA_ID__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Apttus__APTS_Agreement__c.APTS_Record_Type_Name__c</field>
         <readable>true</readable>
     </fieldPermissions>
