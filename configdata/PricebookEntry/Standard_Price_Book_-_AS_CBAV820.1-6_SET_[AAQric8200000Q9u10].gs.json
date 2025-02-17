@@ -1,7 +1,8 @@
 {
   "Object": "PricebookEntry",
   "Fields": {
-    "GearsetDisplayName": "Standard Price Book - AS_CBAV820.1-6_SET",
+    "CurrencyIsoCode": "EUR",
+    "GearsetDisplayName": "Standard Price Book - AS_CBAV820.1-6_SET - EUR",
     "GearsetExternalId__c": "AAQric8200000Q9u10",
     "IsActive": "true",
     "UnitPrice": "833.0",

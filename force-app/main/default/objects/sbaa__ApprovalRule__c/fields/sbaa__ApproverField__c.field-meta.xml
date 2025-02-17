@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>sbaa__ApproverField__c</fullName>
+    <deprecated>false</deprecated>
+    <description>Used with Dynamic Approvals, the field containing the Approver value used for this Rule</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Used with Dynamic Approvals, the field containing the Approver value used for this Rule</inlineHelpText>
+    <label>Approver Field</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Created By</fullName>
+                <default>false</default>
+                <label>Created By</label>
+            </value>
+            <value>
+                <fullName>fttxt_SalesManager_for_demo__c</fullName>
+                <default>false</default>
+                <label>fttxt_SalesManager_for_demo__c</label>
+            </value>
+            <value>
+                <fullName>lkp_RelevantSolutionDemo__c</fullName>
+                <default>false</default>
+                <label>lkp_RelevantSolutionDemo__c</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

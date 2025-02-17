@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>ftxt_PONo__c</fullName>
-    <description>Contains the number of the PO we received from the customer.</description>
+    <description>IF(
+NOT(ISBLANK(SBQQ__Quote__r.txt_PONo__c)),
+SBQQ__Quote__r.txt_PONo__c,
+NULL
+)</description>
     <externalId>false</externalId>
     <formula>IF(
     NOT(ISBLANK(SBQQ__Quote__r.txt_PONo__c)),

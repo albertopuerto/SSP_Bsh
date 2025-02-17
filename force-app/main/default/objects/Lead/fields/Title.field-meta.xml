@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Title</fullName>
-    <trackFeedHistory>false</trackFeedHistory>
+    <description>Position of lead within his or her company. Up to 128 characters are allowed in this field. When converting a lead to a person account, the conversion fails if the lead Title field contains more than 80 characters.</description>
+    <trackFeedHistory>true</trackFeedHistory>
+    <trackHistory>true</trackHistory>
 </CustomField>

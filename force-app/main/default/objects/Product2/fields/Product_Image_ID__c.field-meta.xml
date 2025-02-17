@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Product_Image_ID__c</fullName>
+    <description>Product Image Org ID number. All Org have different image ID number.</description>
     <externalId>false</externalId>
     <label>Product Image ID</label>
     <length>255</length>

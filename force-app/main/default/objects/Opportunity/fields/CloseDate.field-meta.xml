@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>CloseDate</fullName>
+    <description>Date when you plan to close the opportunity. You can enter a date or choose a date from the calendar that displays when you put your cursor in the field.
+
+Opportunities with a Close Date in a given period tally in the forecast for that period, unless you assign them to the Omitted category or you forecast by schedule or product date.
+
+When you set an open opportunity&#39;s stage to a type of Closed/Won, if the original date was in the future, the Close Date is set to the current date in Coordinated Universal Time (UTC). At certain times of day, UTC differs by one day from your time zone. If the close date is in the past when the opportunity is closed, the date doesn’t change</description>
     <trackFeedHistory>true</trackFeedHistory>
     <trackHistory>true</trackHistory>
     <trackTrending>false</trackTrending>

@@ -1,0 +1,23 @@
+{
+  "Object": "ConsumptionRate",
+  "Fields": {
+    "CurrencyIsoCode": "EUR",
+    "Description": "",
+    "GearsetDisplayName": "Connected devices - 500000 - 2000000 - 1.41",
+    "GearsetExternalId__c": "AASn080000000Q9oM0",
+    "LowerBound": "500000",
+    "Price": "1.41",
+    "PricingMethod": "FlatFee",
+    "ProcessingOrder": "40",
+    "UpperBound": "2000000"
+  },
+  "References": [
+    {
+      "Name": "ConsumptionSchedule",
+      "ReferencedObject": "ConsumptionSchedule",
+      "ReferencedFields": {
+        "GearsetExternalId__c": "AAS7f80000000Q9hM0"
+      }
+    }
+  ]
+}

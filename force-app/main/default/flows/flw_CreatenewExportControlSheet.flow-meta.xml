@@ -4,7 +4,7 @@
     <decisions>
         <name>Check_Civilian</name>
         <label>Check Civilian</label>
-        <locationX>446</locationX>
+        <locationX>182</locationX>
         <locationY>782</locationY>
         <defaultConnector>
             <targetReference>Update_Account_No</targetReference>
@@ -24,31 +24,6 @@
                 <targetReference>Update_Account_Yes</targetReference>
             </connector>
             <label>Check Civilian Yes</label>
-        </rules>
-    </decisions>
-    <decisions>
-        <name>Decision_1</name>
-        <label>Decision 1</label>
-        <locationX>248</locationX>
-        <locationY>242</locationY>
-        <defaultConnector>
-            <targetReference>scrn_GeneralKnowledge</targetReference>
-        </defaultConnector>
-        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
-        <rules>
-            <name>Outcome_1_of_Decision_1</name>
-            <conditionLogic>and</conditionLogic>
-            <conditions>
-                <leftValueReference>GetExportcontrolsheetRecords.Id</leftValueReference>
-                <operator>IsBlank</operator>
-                <rightValue>
-                    <booleanValue>false</booleanValue>
-                </rightValue>
-            </conditions>
-            <connector>
-                <targetReference>Error_Screen</targetReference>
-            </connector>
-            <label>Outcome 1 of Decision 1</label>
         </rules>
     </decisions>
     <dynamicChoiceSets>
@@ -162,7 +137,7 @@
     <recordCreates>
         <name>Create_Civilian_Usage_Check</name>
         <label>Create Civilian Usage Check</label>
-        <locationX>446</locationX>
+        <locationX>182</locationX>
         <locationY>674</locationY>
         <connector>
             <targetReference>Check_Civilian</targetReference>
@@ -171,6 +146,12 @@
             <field>Account__c</field>
             <value>
                 <elementReference>recordId</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>chk_IsActive__c</field>
+            <value>
+                <booleanValue>true</booleanValue>
             </value>
         </inputAssignments>
         <inputAssignments>
@@ -245,11 +226,11 @@
     <recordLookups>
         <name>GetExportcontrolsheetRecords</name>
         <label>GetExportcontrolsheetRecords</label>
-        <locationX>248</locationX>
+        <locationX>182</locationX>
         <locationY>134</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
-            <targetReference>Decision_1</targetReference>
+            <targetReference>scrn_GeneralKnowledge</targetReference>
         </connector>
         <filterLogic>and</filterLogic>
         <filters>
@@ -259,9 +240,10 @@
                 <elementReference>recordId</elementReference>
             </value>
         </filters>
-        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <getFirstRecordOnly>false</getFirstRecordOnly>
         <object>ExportControlSheet__c</object>
         <queriedFields>Id</queriedFields>
+        <queriedFields>chk_IsActive__c</queriedFields>
         <sortField>Id</sortField>
         <sortOrder>Asc</sortOrder>
         <storeOutputAutomatically>true</storeOutputAutomatically>
@@ -269,7 +251,7 @@
     <recordUpdates>
         <name>Update_Account_No</name>
         <label>Update Account No</label>
-        <locationX>578</locationX>
+        <locationX>314</locationX>
         <locationY>890</locationY>
         <connector>
             <targetReference>Successfulmessage</targetReference>
@@ -293,7 +275,7 @@
     <recordUpdates>
         <name>Update_Account_Yes</name>
         <label>Update Account Yes</label>
-        <locationX>314</locationX>
+        <locationX>50</locationX>
         <locationY>890</locationY>
         <connector>
             <targetReference>Successfulmessage</targetReference>
@@ -314,29 +296,37 @@
         </inputAssignments>
         <object>Account</object>
     </recordUpdates>
+    <recordUpdates>
+        <name>update_old_Export_sheet_records</name>
+        <label>update old Export sheet records</label>
+        <locationX>182</locationX>
+        <locationY>566</locationY>
+        <connector>
+            <targetReference>Create_Civilian_Usage_Check</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>chk_IsActive__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
+        <inputAssignments>
+            <field>chk_IsActive__c</field>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </inputAssignments>
+        <object>ExportControlSheet__c</object>
+    </recordUpdates>
     <runInMode>DefaultMode</runInMode>
-    <screens>
-        <name>Error_Screen</name>
-        <label>Error Screen</label>
-        <locationX>50</locationX>
-        <locationY>350</locationY>
-        <allowBack>true</allowBack>
-        <allowFinish>true</allowFinish>
-        <allowPause>true</allowPause>
-        <fields>
-            <name>ShowMessage</name>
-            <fieldText>&lt;p&gt;&lt;strong style=&quot;color: rgb(225, 53, 23);&quot;&gt;Export Control Sheet record has been already created for this account. Only one Civilian Usage Check can be linked to an Account. It is not possible to have more than one Check per Account.&lt;/strong&gt;&lt;/p&gt;</fieldText>
-            <fieldType>DisplayText</fieldType>
-        </fields>
-        <showFooter>true</showFooter>
-        <showHeader>true</showHeader>
-    </screens>
     <screens>
         <description>Screen that contains the three initial questions about the customer for ESC classification.</description>
         <name>scrn_GeneralKnowledge</name>
         <label>General Knowledge Screen</label>
-        <locationX>446</locationX>
-        <locationY>350</locationY>
+        <locationX>182</locationX>
+        <locationY>242</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>false</allowPause>
@@ -385,13 +375,13 @@
     <screens>
         <name>scrn_Google_Search</name>
         <label>Google Search Screen</label>
-        <locationX>446</locationX>
-        <locationY>566</locationY>
+        <locationX>182</locationX>
+        <locationY>458</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>false</allowPause>
         <connector>
-            <targetReference>Create_Civilian_Usage_Check</targetReference>
+            <targetReference>update_old_Export_sheet_records</targetReference>
         </connector>
         <fields>
             <name>Google_Search</name>
@@ -424,8 +414,8 @@
         <description>Screen that contains Customer items, service etc</description>
         <name>scrnCustomer_Website</name>
         <label>Customer Website Screen</label>
-        <locationX>446</locationX>
-        <locationY>458</locationY>
+        <locationX>182</locationX>
+        <locationY>350</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>false</allowPause>
@@ -483,7 +473,7 @@
     <screens>
         <name>Successfulmessage</name>
         <label>Successfulmessage</label>
-        <locationX>446</locationX>
+        <locationX>182</locationX>
         <locationY>1082</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
@@ -497,7 +487,7 @@
         <showHeader>true</showHeader>
     </screens>
     <start>
-        <locationX>122</locationX>
+        <locationX>56</locationX>
         <locationY>0</locationY>
         <connector>
             <targetReference>GetExportcontrolsheetRecords</targetReference>

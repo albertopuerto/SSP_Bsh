@@ -1,7 +1,8 @@
 {
   "Object": "PricebookEntry",
   "Fields": {
-    "GearsetDisplayName": "Standard Price Book - ES_RTPRO-PC_S820_SRV-ME52",
+    "CurrencyIsoCode": "EUR",
+    "GearsetDisplayName": "Standard Price Book - ES_RTPRO-PC_S820_SRV-ME52 - EUR",
     "GearsetExternalId__c": "AAQcrb8200000Q9u10",
     "IsActive": "true",
     "UnitPrice": "2308.0",

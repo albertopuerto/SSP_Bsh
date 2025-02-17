@@ -1,7 +1,8 @@
 {
   "Object": "PricebookEntry",
   "Fields": {
-    "GearsetDisplayName": "Standard Price Book - RTPRO-PC_OSS_Content_DVD",
+    "CurrencyIsoCode": "EUR",
+    "GearsetDisplayName": "Standard Price Book - RTPRO-PC_OSS_Content_DVD - EUR",
     "GearsetExternalId__c": "YAQWLc8200000Q9u10",
     "IsActive": "true",
     "UnitPrice": "1.0",
