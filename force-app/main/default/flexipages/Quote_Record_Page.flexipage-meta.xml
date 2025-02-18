@@ -286,16 +286,6 @@
                     <name>uiBehavior</name>
                     <value>none</value>
                 </fieldInstanceProperties>
-                <fieldItem>Record.SubmittedDate__c</fieldItem>
-                <identifier>RecordSubmittedDate_cField</identifier>
-            </fieldInstance>
-        </itemInstances>
-        <itemInstances>
-            <fieldInstance>
-                <fieldInstanceProperties>
-                    <name>uiBehavior</name>
-                    <value>none</value>
-                </fieldInstanceProperties>
                 <fieldItem>Record.SubmittedUser__c</fieldItem>
                 <identifier>RecordSubmittedUser_cField</identifier>
             </fieldInstance>
