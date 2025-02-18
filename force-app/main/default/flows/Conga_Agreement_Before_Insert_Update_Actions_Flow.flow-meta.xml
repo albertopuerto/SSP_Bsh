@@ -30,24 +30,17 @@
             </value>
         </assignmentItems>
         <assignmentItems>
-            <assignToReference>$Record.Apttus__Request_Date__c</assignToReference>
+            <assignToReference>$Record.Apttus__Account__c</assignToReference>
             <operator>Assign</operator>
             <value>
-                <elementReference>$Flow.CurrentDate</elementReference>
+                <elementReference>Account_or_Processor</elementReference>
             </value>
         </assignmentItems>
         <assignmentItems>
             <assignToReference>$Record.Apttus__Contract_Start_Date__c</assignToReference>
             <operator>Assign</operator>
             <value>
-                <elementReference>$Flow.CurrentDate</elementReference>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>$Record.Apttus__Account__c</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>Account_or_Processor</elementReference>
+                <elementReference>Default_Start_Date_To_Today</elementReference>
             </value>
         </assignmentItems>
     </assignments>
@@ -290,6 +283,11 @@
         <expression>{!$Record.RecordType.Name}+&#39;--&#39;+IF(ISBLANK({!$Record.Apttus__Account__c}),{!$Record.APTS_Processor__r.Name},{!$Record.Apttus__Account__r.Name})+&#39;--&#39;+TEXT(Month( {!$Record.Apttus__Contract_Start_Date__c} )) + &#39;-&#39;
 + TEXT(Day({!$Record.Apttus__Contract_Start_Date__c} )) + &#39;-&#39;
 + TEXT(Year ({!$Record.Apttus__Contract_Start_Date__c} ))</expression>
+    </formulas>
+    <formulas>
+        <name>Default_Start_Date_To_Today</name>
+        <dataType>Date</dataType>
+        <expression>IF(ISBLANK({!$Record.Apttus__Contract_Start_Date__c}),TODAY(),($Record.Apttus__Contract_Start_Date__c))</expression>
     </formulas>
     <formulas>
         <name>Perpetual</name>
