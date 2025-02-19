@@ -154,6 +154,10 @@
                 <behavior>Required</behavior>
                 <field>txt_INCOTerms2__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>ftxt_ShippingCondition__c</field>
+            </layoutItems>
         </layoutColumns>
         <style>TwoColumnsLeftToRight</style>
     </layoutSections>
