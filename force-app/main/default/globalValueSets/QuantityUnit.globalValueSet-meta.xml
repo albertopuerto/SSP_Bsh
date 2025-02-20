@@ -1,19 +1,57 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <GlobalValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
     <customValue>
-        <fullName>KG</fullName>
-        <default>true</default>
-        <label>KG</label>
+        <fullName>Each</fullName>
+        <default>false</default>
+        <label>Each</label>
     </customValue>
     <customValue>
-        <fullName>M</fullName>
+        <fullName>Hour</fullName>
         <default>false</default>
-        <label>M</label>
+        <label>Hour</label>
+    </customValue>
+    <customValue>
+        <fullName>Month</fullName>
+        <default>false</default>
+        <label>Month</label>
+    </customValue>
+    <customValue>
+        <fullName>Performance Unit</fullName>
+        <default>false</default>
+        <label>Performance Unit</label>
+    </customValue>
+    <customValue>
+        <fullName>Terabyte</fullName>
+        <default>false</default>
+        <label>Terabyte</label>
+    </customValue>
+    <customValue>
+        <fullName>Gigabyte</fullName>
+        <default>false</default>
+        <label>Gigabyte</label>
+    </customValue>
+    <customValue>
+        <fullName>Piece</fullName>
+        <default>false</default>
+        <label>Piece</label>
     </customValue>
     <customValue>
         <fullName>GB</fullName>
         <default>false</default>
+        <isActive>false</isActive>
         <label>GB</label>
+    </customValue>
+    <customValue>
+        <fullName>M</fullName>
+        <default>false</default>
+        <isActive>false</isActive>
+        <label>M</label>
+    </customValue>
+    <customValue>
+        <fullName>KG</fullName>
+        <default>false</default>
+        <isActive>false</isActive>
+        <label>KG</label>
     </customValue>
     <masterLabel>Quantity Unit</masterLabel>
     <sorted>false</sorted>
