@@ -181,6 +181,11 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>false</editable>
+        <field>Account.ftxt_ShippingCondition__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>Account.pkl_IsTradingPartnerNoRequired__c</field>
         <readable>true</readable>
