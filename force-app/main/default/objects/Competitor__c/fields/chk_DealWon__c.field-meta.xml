@@ -2,7 +2,7 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>chk_DealWon__c</fullName>
     <defaultValue>false</defaultValue>
-    <description>A checkbox that indicates if this competitor has won the related Opportunity.</description>
+    <description>The field indicate if an Opportunity is Lost to a Competitor</description>
     <externalId>false</externalId>
     <inlineHelpText>Check this box if the Opportunity was lost because of this competitor.</inlineHelpText>
     <label>Deal Won</label>
