@@ -1224,24 +1224,8 @@
     <picklistValues>
         <picklist>Apttus__Agreement_Category__c</picklist>
         <values>
-            <fullName>Corporate</fullName>
-            <default>false</default>
-        </values>
-        <values>
             <fullName>Marketing</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>Other</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>Procurement</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>Sales</fullName>
-            <default>false</default>
+            <default>true</default>
         </values>
     </picklistValues>
     <picklistValues>
