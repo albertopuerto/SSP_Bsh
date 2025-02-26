@@ -1,10 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <RecordType xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>NDA</fullName>
+    <fullName>Other_Marketing_Agreement</fullName>
     <active>true</active>
-    <compactLayoutAssignment>Apttus_Default</compactLayoutAssignment>
-    <description>Confidentiality Agreement</description>
-    <label>NDA</label>
+    <label>Other Marketing Agreement</label>
     <picklistValues>
         <picklist>APTS_Country_Controller__c</picklist>
         <values>
@@ -1225,11 +1223,7 @@
     <picklistValues>
         <picklist>Apttus__Agreement_Category__c</picklist>
         <values>
-            <fullName>Other</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>Sales</fullName>
+            <fullName>Marketing</fullName>
             <default>true</default>
         </values>
     </picklistValues>
