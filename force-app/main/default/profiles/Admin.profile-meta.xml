@@ -64,6 +64,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Apttus__APTS_Agreement__c.APTS_Controller_old__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Apttus__APTS_Agreement__c.APTS_Country_Controller__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -185,6 +190,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Apttus__APTS_Agreement__c.Bosch_Privacy_Agreement_Name__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Apttus__APTS_Agreement__c.Processor_old__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
