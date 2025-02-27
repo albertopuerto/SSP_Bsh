@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>APTS_Company_Signed_Title_second__c</fullName>
+    <description>Title of person signing second on behalf of Company</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Title of person signing second on behalf of Company</inlineHelpText>
+    <label>Company Signed Title (second)</label>
+    <length>80</length>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

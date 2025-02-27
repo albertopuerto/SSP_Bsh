@@ -55,6 +55,14 @@
                 <behavior>Edit</behavior>
                 <field>APTS_Limitation_of_Liability__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>APTS_Type_of_Paper__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>APTS_Internal_Legal_Entity__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
@@ -346,7 +354,7 @@
                 <customLink>Apttus__ViewAgreementHierarchyforAccount</customLink>
             </layoutItems>
         </layoutColumns>
-        <layoutColumns/>
+        <layoutColumns />
         <style>CustomLinks</style>
     </layoutSections>
     <layoutSections>
