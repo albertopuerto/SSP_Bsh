@@ -79,6 +79,10 @@
         <name>ViewHelpLink</name>
     </userPermissions>
     <layoutAssignments>
+        <layout>Apttus__APTS_Agreement__c-APTS_Marketing</layout>
+        <recordType>Apttus__APTS_Agreement__c.Co_marketing_agreement</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
         <layout>ExportControlSheet__c-Export Control Sheet Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
