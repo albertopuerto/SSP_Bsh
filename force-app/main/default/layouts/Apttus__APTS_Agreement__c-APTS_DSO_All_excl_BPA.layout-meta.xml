@@ -2,6 +2,7 @@
 <Layout xmlns="http://soap.sforce.com/2006/04/metadata">
     <customButtons>Apttus__AgreementHierarchy</customButtons>
     <excludeButtons>ChangeOwnerOne</excludeButtons>
+    <excludeButtons>OpenSlackRecordChannel</excludeButtons>
     <excludeButtons>PrintableView</excludeButtons>
     <excludeButtons>Share</excludeButtons>
     <excludeButtons>Submit</excludeButtons>
@@ -73,7 +74,7 @@
                 <field>Apttus__Status_Category__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Readonly</behavior>
+                <behavior>Edit</behavior>
                 <field>Apttus__Status__c</field>
             </layoutItems>
         </layoutColumns>
@@ -90,8 +91,16 @@
                 <field>APTS_Controller__c</field>
             </layoutItems>
             <layoutItems>
+                <behavior>Edit</behavior>
+                <field>APTS_Controller_old__c</field>
+            </layoutItems>
+            <layoutItems>
                 <behavior>Required</behavior>
                 <field>APTS_Processor__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Processor_old__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Required</behavior>
