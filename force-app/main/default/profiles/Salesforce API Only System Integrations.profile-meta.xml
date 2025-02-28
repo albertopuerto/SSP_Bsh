@@ -24,7 +24,22 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Apttus__APTS_Agreement__c.APTS_Agreement_Number_Old__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Apttus__APTS_Agreement__c.APTS_Comment__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Apttus__APTS_Agreement__c.APTS_Company_Signed_By_second__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Apttus__APTS_Agreement__c.APTS_Company_Signed_Title_second__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -270,6 +285,10 @@
         <name>ChatterInternalUser</name>
     </userPermissions>
     <layoutAssignments>
+        <layout>Apttus__APTS_Agreement__c-APTS_Marketing</layout>
+        <recordType>Apttus__APTS_Agreement__c.Co_marketing_agreement</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
         <layout>ExportControlSheet__c-Export Control Sheet Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
@@ -330,6 +349,11 @@
     <recordTypeVisibilities>
         <default>false</default>
         <recordType>Apttus__APTS_Agreement__c.Other_DSO</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>Apttus__APTS_Agreement__c.Other_Marketing_Agreement</recordType>
         <visible>false</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
