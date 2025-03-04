@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>MyOpenApprovals</fullName>
+    <booleanFilter>(1 AND 2) OR (1 AND 3 AND 4)</booleanFilter>
+    <columns>NAME</columns>
+    <columns>Quote__c</columns>
+    <columns>flink_Opportunity__c</columns>
+    <columns>sbaa__Status__c</columns>
+    <columns>OWNER.ALIAS</columns>
+    <columns>CREATED_DATE</columns>
+    <columns>sbaa__Actions__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>sbaa__Status__c</field>
+        <operation>equals</operation>
+        <value>Assigned,Requested</value>
+    </filters>
+    <filters>
+        <field>sbaa__AssignedToMe__c</field>
+        <operation>equals</operation>
+        <value>1</value>
+    </filters>
+    <filters>
+        <field>sbaa__AssignedToMe__c</field>
+        <operation>equals</operation>
+        <value>0</value>
+    </filters>
+    <filters>
+        <field>chk_IsGroupMember__c</field>
+        <operation>equals</operation>
+        <value>1</value>
+    </filters>
+    <label>My Open Approvals</label>
+</ListView>
