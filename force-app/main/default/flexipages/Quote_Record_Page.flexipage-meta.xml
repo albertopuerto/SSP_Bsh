@@ -725,8 +725,8 @@
                     <name>uiBehavior</name>
                     <value>none</value>
                 </fieldInstanceProperties>
-                <fieldItem>Record.SBQQ__BillingName__c</fieldItem>
-                <identifier>RecordSBQQ_BillingName_cField</identifier>
+                <fieldItem>Record.lkp_BillToAccount__c</fieldItem>
+                <identifier>Recordlkp_BillToAccount_cField</identifier>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
@@ -735,8 +735,8 @@
                     <name>uiBehavior</name>
                     <value>none</value>
                 </fieldInstanceProperties>
-                <fieldItem>Record.SBQQ__BillingStreet__c</fieldItem>
-                <identifier>RecordSBQQ_BillingStreet_cField</identifier>
+                <fieldItem>Record.Bill_To_Street__c</fieldItem>
+                <identifier>RecordBill_To_Street_cField</identifier>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
@@ -745,8 +745,8 @@
                     <name>uiBehavior</name>
                     <value>none</value>
                 </fieldInstanceProperties>
-                <fieldItem>Record.SBQQ__BillingCity__c</fieldItem>
-                <identifier>RecordSBQQ_BillingCity_cField</identifier>
+                <fieldItem>Record.Bill_To_City__c</fieldItem>
+                <identifier>RecordBill_To_City_cField</identifier>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
@@ -755,8 +755,8 @@
                     <name>uiBehavior</name>
                     <value>none</value>
                 </fieldInstanceProperties>
-                <fieldItem>Record.SBQQ__BillingState__c</fieldItem>
-                <identifier>RecordSBQQ_BillingState_cField</identifier>
+                <fieldItem>Record.Bill_To_State__c</fieldItem>
+                <identifier>RecordBill_To_State_cField</identifier>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
@@ -765,8 +765,8 @@
                     <name>uiBehavior</name>
                     <value>none</value>
                 </fieldInstanceProperties>
-                <fieldItem>Record.SBQQ__BillingPostalCode__c</fieldItem>
-                <identifier>RecordSBQQ_BillingPostalCode_cField</identifier>
+                <fieldItem>Record.Bill_To_Postal_Code__c</fieldItem>
+                <identifier>RecordBill_To_Postal_Code_cField</identifier>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
@@ -775,8 +775,8 @@
                     <name>uiBehavior</name>
                     <value>none</value>
                 </fieldInstanceProperties>
-                <fieldItem>Record.SBQQ__BillingCountry__c</fieldItem>
-                <identifier>RecordSBQQ_BillingCountry_cField</identifier>
+                <fieldItem>Record.Bill_To_Country__c</fieldItem>
+                <identifier>RecordBill_To_Country_cField</identifier>
             </fieldInstance>
         </itemInstances>
         <name>Facet-364481c8-cd36-49d9-b029-dd73069343bf</name>
@@ -789,8 +789,8 @@
                     <name>uiBehavior</name>
                     <value>none</value>
                 </fieldInstanceProperties>
-                <fieldItem>Record.SBQQ__ShippingName__c</fieldItem>
-                <identifier>RecordSBQQ_ShippingName_cField</identifier>
+                <fieldItem>Record.lkp_ShipToAccount__c</fieldItem>
+                <identifier>Recordlkp_ShipToAccount_cField</identifier>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
@@ -799,8 +799,8 @@
                     <name>uiBehavior</name>
                     <value>none</value>
                 </fieldInstanceProperties>
-                <fieldItem>Record.SBQQ__ShippingStreet__c</fieldItem>
-                <identifier>RecordSBQQ_ShippingStreet_cField</identifier>
+                <fieldItem>Record.Ship_To_Street__c</fieldItem>
+                <identifier>RecordShip_To_Street_cField</identifier>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
@@ -809,8 +809,8 @@
                     <name>uiBehavior</name>
                     <value>none</value>
                 </fieldInstanceProperties>
-                <fieldItem>Record.SBQQ__ShippingCity__c</fieldItem>
-                <identifier>RecordSBQQ_ShippingCity_cField</identifier>
+                <fieldItem>Record.Ship_To_City__c</fieldItem>
+                <identifier>RecordShip_To_City_cField</identifier>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
@@ -819,8 +819,8 @@
                     <name>uiBehavior</name>
                     <value>none</value>
                 </fieldInstanceProperties>
-                <fieldItem>Record.SBQQ__ShippingState__c</fieldItem>
-                <identifier>RecordSBQQ_ShippingState_cField</identifier>
+                <fieldItem>Record.Ship_To_State__c</fieldItem>
+                <identifier>RecordShip_To_State_cField</identifier>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
@@ -829,8 +829,8 @@
                     <name>uiBehavior</name>
                     <value>none</value>
                 </fieldInstanceProperties>
-                <fieldItem>Record.SBQQ__ShippingPostalCode__c</fieldItem>
-                <identifier>RecordSBQQ_ShippingPostalCode_cField</identifier>
+                <fieldItem>Record.Ship_To_Postal_Code__c</fieldItem>
+                <identifier>RecordShip_To_Postal_Code_cField</identifier>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
@@ -839,8 +839,8 @@
                     <name>uiBehavior</name>
                     <value>none</value>
                 </fieldInstanceProperties>
-                <fieldItem>Record.SBQQ__ShippingCountry__c</fieldItem>
-                <identifier>RecordSBQQ_ShippingCountry_cField</identifier>
+                <fieldItem>Record.Ship_To_Country__c</fieldItem>
+                <identifier>RecordShip_To_Country_cField</identifier>
             </fieldInstance>
         </itemInstances>
         <name>Facet-bb4da907-269b-469c-89a4-d81675a24bee</name>
