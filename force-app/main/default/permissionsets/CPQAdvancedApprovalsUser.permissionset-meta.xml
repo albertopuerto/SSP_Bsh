@@ -393,6 +393,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>sbaa__Approval__c.flink_Opportunity__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>sbaa__Approval__c.sbaa__Actions__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -850,4 +855,8 @@
         <object>sbaa__TrackedValue__c</object>
         <viewAllRecords>false</viewAllRecords>
     </objectPermissions>
+    <tabSettings>
+        <tab>sbaa__Approval__c</tab>
+        <visibility>Available</visibility>
+    </tabSettings>
 </PermissionSet>
