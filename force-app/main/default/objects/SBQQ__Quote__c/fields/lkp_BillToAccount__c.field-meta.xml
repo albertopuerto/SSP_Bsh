@@ -2,6 +2,7 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>lkp_BillToAccount__c</fullName>
     <deleteConstraint>SetNull</deleteConstraint>
+    <description>This field is to select Bill-to Account</description>
     <externalId>false</externalId>
     <label>Bill-to Account</label>
     <referenceTo>Account</referenceTo>
