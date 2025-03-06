@@ -390,6 +390,11 @@
             <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
             <isRequired>true</isRequired>
         </fields>
+        <fields>
+            <name>Help_Text</name>
+            <fieldText>&lt;p&gt;&lt;strong style=&quot;font-size: 13px;&quot;&gt;Note:&lt;/strong&gt;&lt;span style=&quot;font-size: 13px;&quot;&gt; The Export Control Sheet will be saved automatically once you click “Finish”. It will automatically classify the Customer as “Civilian” in case all questions were answered with “no”. In case one or more questions were answered with “yes”, the Account will be classified as “Military”. It will not be possible to change any of the answers provided at a later point in time. In case the Customer Classification needs to be updated, please create a new Export Control Sheet in the related List of the Account.&lt;/span&gt;&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
         <nextOrFinishButtonLabel>Finish</nextOrFinishButtonLabel>
         <showFooter>true</showFooter>
         <showHeader>true</showHeader>
