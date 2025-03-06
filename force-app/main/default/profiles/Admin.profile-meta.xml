@@ -303,6 +303,11 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>false</editable>
+        <field>Order.txt_SAPExternalSolutionQuotationId__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>OrderItem.dat_CRDPlannedOrderItemDeliveryDate__c</field>
         <readable>true</readable>
@@ -425,6 +430,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>OrderItem.ftxt_ProductCode__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>OrderItem.txt_SAPExternalLineItemId__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
