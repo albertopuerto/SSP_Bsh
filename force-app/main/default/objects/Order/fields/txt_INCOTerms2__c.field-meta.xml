@@ -3,7 +3,7 @@
     <fullName>txt_INCOTerms2__c</fullName>
     <description>Mandatory field for ERP interface which defines location the INCO Terms will start.</description>
     <externalId>false</externalId>
-    <label>INCO Terms 2</label>
+    <label>INCOTERM Location</label>
     <length>255</length>
     <required>false</required>
     <trackFeedHistory>true</trackFeedHistory>

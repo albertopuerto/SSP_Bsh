@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>lkp_ShipToAccount__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <description>This field is to select Ship-to Account</description>
+    <externalId>false</externalId>
+    <label>Ship-to Account</label>
+    <referenceTo>Account</referenceTo>
+    <relationshipLabel>Quotes (Ship-to Account)</relationshipLabel>
+    <relationshipName>Quotes2</relationshipName>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

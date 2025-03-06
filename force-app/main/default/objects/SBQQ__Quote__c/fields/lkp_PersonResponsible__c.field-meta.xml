@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>lkp_RelevantSolutionDemo__c</fullName>
+    <fullName>lkp_PersonResponsible__c</fullName>
     <deleteConstraint>SetNull</deleteConstraint>
-    <description>The field has been created for demo</description>
+    <description>Field that is needed for the Order interface.</description>
     <externalId>false</externalId>
-    <label>Relevant Solution Demo</label>
-    <referenceTo>User</referenceTo>
-    <relationshipName>Quotes1</relationshipName>
+    <label>Person Responsible</label>
+    <referenceTo>Account</referenceTo>
+    <relationshipLabel>Quotes (Person Responsible)</relationshipLabel>
+    <relationshipName>Quotes</relationshipName>
     <required>false</required>
     <trackFeedHistory>false</trackFeedHistory>
     <trackHistory>false</trackHistory>
