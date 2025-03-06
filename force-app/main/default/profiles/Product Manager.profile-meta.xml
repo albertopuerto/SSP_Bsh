@@ -862,6 +862,12 @@
         <field>SBQQ__QuoteLine__c.Product_Image__c</field>
         <readable>true</readable>
     </fieldPermissions>
+    <!--
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>SBQQ__QuoteLine__c.ftxt_ApprovalStatus__c</field>
+        <readable>true</readable>
+    </fieldPermissions>-->
     <fieldPermissions>
         <editable>true</editable>
         <field>SBQQ__QuoteLine__c.pkl_INCOTerms1__c</field>
@@ -1451,6 +1457,11 @@
     <layoutAssignments>
         <layout>ExportControlSheet__c-Export Control Sheet Layout</layout>
     </layoutAssignments>
+    <!--
+    <layoutAssignments>
+        <layout>FurtherPriceInformation__c-Further Price Information Layout</layout>
+    </layoutAssignments>
+    -->
     <layoutAssignments>
         <layout>FurtherPriceInformation__c-Further Price Information Layout</layout>
     </layoutAssignments>
