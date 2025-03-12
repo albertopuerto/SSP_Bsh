@@ -565,14 +565,11 @@
         <excludeButtons>New</excludeButtons>
         <fields>NAME</fields>
         <fields>Apttus__Title__c</fields>
-        <fields>Apttus__TemplateId__c</fields>
-        <fields>Apttus__CheckoutById__c</fields>
-        <fields>Apttus__CheckoutDate__c</fields>
+        <fields>Apttus__ReviewStatus__c</fields>
+        <fields>Apttus__View__c</fields>
         <fields>Apttus__LatestVersion__c</fields>
-        <fields>Apttus__LatestVersionId__c</fields>
+        <fields>Apttus__TemplateId__c</fields>
         <fields>Apttus__NumberOfVersions__c</fields>
-        <fields>Apttus__ReferenceId__c</fields>
-        <fields>Apttus__IsTransient__c</fields>
         <relatedList>Apttus__DocumentVersion__c.Apttus__AgreementId__c</relatedList>
     </relatedLists>
     <showEmailCheckbox>false</showEmailCheckbox>

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Layout xmlns="http://soap.sforce.com/2006/04/metadata">
-    <excludeButtons>OpenSlackRecordChannel</excludeButtons>
     <excludeButtons>Submit</excludeButtons>
     <feedLayout>
         <autocollapsePublisher>true</autocollapsePublisher>
@@ -207,7 +206,7 @@
         <detailHeading>true</detailHeading>
         <editHeading>false</editHeading>
         <label>Purpose and Links</label>
-        <layoutColumns/>
+        <layoutColumns />
         <layoutColumns>
             <layoutItems>
                 <customLink>Apttus__ViewAgreementHierarchy</customLink>
@@ -216,38 +215,24 @@
                 <customLink>Apttus__ViewAgreementHierarchyforAccount</customLink>
             </layoutItems>
         </layoutColumns>
-        <layoutColumns/>
+        <layoutColumns />
         <style>CustomLinks</style>
     </layoutSections>
     <relatedLists>
         <relatedList>RelatedNoteList</relatedList>
     </relatedLists>
     <relatedLists>
-        <excludeButtons>New</excludeButtons>
         <fields>NAME</fields>
-        <fields>Apttus__LockedById__c</fields>
-        <fields>Apttus__LockedDate__c</fields>
-        <relatedList>Apttus__AgreementLock__c.Apttus__AgreementId__c</relatedList>
-    </relatedLists>
-    <relatedLists>
-        <excludeButtons>New</excludeButtons>
-        <fields>Apttus__DocumentLink__c</fields>
         <fields>Apttus__Title__c</fields>
-        <fields>LAST_UPDATE</fields>
-        <fields>CREATEDBY_USER</fields>
-        <relatedList>Apttus__TempObject__c.Apttus__AgreementId__c</relatedList>
-        <sortField>LAST_UPDATE</sortField>
-        <sortOrder>Desc</sortOrder>
+        <fields>Apttus__ReviewStatus__c</fields>
+        <fields>Apttus__View__c</fields>
+        <fields>Apttus__LatestVersion__c</fields>
+        <fields>Apttus__TemplateId__c</fields>
+        <fields>Apttus__NumberOfVersions__c</fields>
+        <relatedList>Apttus__DocumentVersion__c.Apttus__AgreementId__c</relatedList>
     </relatedLists>
     <relatedLists>
-        <fields>NAME</fields>
-        <fields>Apttus__ProductId__c</fields>
-        <fields>Apttus__Description__c</fields>
-        <fields>Apttus__Quantity__c</fields>
-        <fields>Apttus__ListPrice__c</fields>
-        <fields>Apttus__ExtendedPrice__c</fields>
-        <fields>Apttus__NetPrice__c</fields>
-        <relatedList>Apttus__AgreementLineItem__c.Apttus__AgreementId__c</relatedList>
+        <relatedList>RelatedFileList</relatedList>
     </relatedLists>
     <relatedLists>
         <customButtons>Apttus__SubmitForClauseApproval</customButtons>
@@ -264,27 +249,37 @@
         <relatedList>Apttus__Agreement_Clause__c.Apttus__Agreement__c</relatedList>
     </relatedLists>
     <relatedLists>
-        <fields>NAME</fields>
-        <fields>Apttus__Path__c</fields>
-        <fields>Apttus__URL__c</fields>
-        <fields>Apttus__URL_Link__c</fields>
-        <fields>Apttus__Type__c</fields>
-        <fields>Apttus__Version__c</fields>
-        <relatedList>Apttus__Agreement_Document__c.Apttus__Agreement__c</relatedList>
-        <sortField>NAME</sortField>
-        <sortOrder>Asc</sortOrder>
+        <relatedList>RelatedEntityHistoryList</relatedList>
     </relatedLists>
     <relatedLists>
-        <customButtons>Apttus__AddTermException</customButtons>
-        <customButtons>Apttus__EditTermException</customButtons>
-        <customButtons>Apttus__DeleteTermException</customButtons>
-        <excludeButtons>New</excludeButtons>
         <fields>NAME</fields>
-        <fields>Apttus__Approval_Status__c</fields>
-        <fields>Apttus__Exception_Name__c</fields>
-        <fields>Apttus__Exception__c</fields>
-        <fields>Apttus__Comments__c</fields>
-        <relatedList>Apttus__Agreement_Term_Exception__c.Apttus__Agreement__c</relatedList>
+        <fields>Apttus_Approval__Sequence__c</fields>
+        <fields>Apttus_Approval__Action__c</fields>
+        <fields>Apttus_Approval__Status_Link__c</fields>
+        <fields>Apttus_Approval__Date__c</fields>
+        <fields>Apttus_Approval__Assigned_To_Name__c</fields>
+        <fields>Apttus_Approval__Request_Comments__c</fields>
+        <fields>Apttus_Approval__Actual_Approver__c</fields>
+        <fields>Apttus_Approval__Approver_Comments__c</fields>
+        <relatedList>Apttus_Approval__Approval_Request__c.Apttus_Approval__Related_Agreement__c</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <fields>CreatedDate</fields>
+        <fields>StepStatus</fields>
+        <fields>OriginalActor</fields>
+        <fields>Actor</fields>
+        <fields>Comments</fields>
+        <relatedList>RelatedProcessHistoryList</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <fields>NAME</fields>
+        <fields>Apttus__ProductId__c</fields>
+        <fields>Apttus__Description__c</fields>
+        <fields>Apttus__Quantity__c</fields>
+        <fields>Apttus__ListPrice__c</fields>
+        <fields>Apttus__ExtendedPrice__c</fields>
+        <fields>Apttus__NetPrice__c</fields>
+        <relatedList>Apttus__AgreementLineItem__c.Apttus__AgreementId__c</relatedList>
     </relatedLists>
     <relatedLists>
         <customButtons>Apttus__New_Child_Agreement</customButtons>
@@ -298,33 +293,6 @@
         <relatedList>Apttus__APTS_Agreement__c.Apttus__Parent_Agreement__c</relatedList>
     </relatedLists>
     <relatedLists>
-        <fields>TASK.SUBJECT</fields>
-        <fields>TASK.WHO_NAME</fields>
-        <fields>ACTIVITY.TASK</fields>
-        <fields>TASK.DUE_DATE</fields>
-        <fields>TASK.STATUS</fields>
-        <fields>TASK.PRIORITY</fields>
-        <fields>CORE.USERS.FULL_NAME</fields>
-        <relatedList>RelatedActivityList</relatedList>
-    </relatedLists>
-    <relatedLists>
-        <fields>CreatedDate</fields>
-        <fields>StepStatus</fields>
-        <fields>OriginalActor</fields>
-        <fields>Actor</fields>
-        <fields>Comments</fields>
-        <relatedList>RelatedProcessHistoryList</relatedList>
-    </relatedLists>
-    <relatedLists>
-        <fields>TASK.SUBJECT</fields>
-        <fields>TASK.WHO_NAME</fields>
-        <fields>ACTIVITY.TASK</fields>
-        <fields>TASK.DUE_DATE</fields>
-        <fields>CORE.USERS.FULL_NAME</fields>
-        <fields>TASK.LAST_UPDATE</fields>
-        <relatedList>RelatedHistoryList</relatedList>
-    </relatedLists>
-    <relatedLists>
         <fields>NAME</fields>
         <fields>Apttus__Relationship_From_Type__c</fields>
         <fields>Apttus__APTS_Contract_To__c</fields>
@@ -335,44 +303,6 @@
         <fields>Apttus__Relationship_To_Type__c</fields>
         <fields>Apttus__APTS_Contract_From__c</fields>
         <relatedList>Apttus__APTS_Related_Agreement__c.Apttus__APTS_Contract_To__c</relatedList>
-    </relatedLists>
-    <relatedLists>
-        <excludeButtons>New</excludeButtons>
-        <fields>NAME</fields>
-        <fields>Apttus__EventName__c</fields>
-        <fields>Apttus__Status__c</fields>
-        <fields>Apttus__Request__c</fields>
-        <fields>Apttus__Response__c</fields>
-        <relatedList>Apttus__ContentEvent__c.Apttus__AgreementId__c</relatedList>
-    </relatedLists>
-    <relatedLists>
-        <excludeButtons>New</excludeButtons>
-        <fields>NAME</fields>
-        <fields>Apttus__CallType__c</fields>
-        <fields>Apttus__Action__c</fields>
-        <fields>Apttus__Status__c</fields>
-        <fields>OWNER.ALIAS</fields>
-        <fields>Apttus__Result__c</fields>
-        <fields>Apttus__Exception__c</fields>
-        <fields>Apttus__StartTime__c</fields>
-        <fields>Apttus__EndTime__c</fields>
-        <relatedList>Apttus__AsyncMergeCall__c.Apttus__Agreement__c</relatedList>
-        <sortField>NAME</sortField>
-        <sortOrder>Desc</sortOrder>
-    </relatedLists>
-    <relatedLists>
-        <excludeButtons>New</excludeButtons>
-        <fields>NAME</fields>
-        <fields>Apttus__Title__c</fields>
-        <fields>Apttus__TemplateId__c</fields>
-        <fields>Apttus__CheckoutById__c</fields>
-        <fields>Apttus__CheckoutDate__c</fields>
-        <fields>Apttus__LatestVersion__c</fields>
-        <fields>Apttus__LatestVersionId__c</fields>
-        <fields>Apttus__NumberOfVersions__c</fields>
-        <fields>Apttus__ReferenceId__c</fields>
-        <fields>Apttus__IsTransient__c</fields>
-        <relatedList>Apttus__DocumentVersion__c.Apttus__AgreementId__c</relatedList>
     </relatedLists>
     <showEmailCheckbox>false</showEmailCheckbox>
     <showHighlightsPanel>false</showHighlightsPanel>
