@@ -14,7 +14,7 @@
             <name>Is_Civilian_Customer_Yes</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
-                <leftValueReference>chk_IsCivilianCustomer</leftValueReference>
+                <leftValueReference>fchk_IsCivilianCustomer</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
                     <booleanValue>true</booleanValue>
@@ -253,9 +253,6 @@
         <label>Update Account No</label>
         <locationX>314</locationX>
         <locationY>890</locationY>
-        <connector>
-            <targetReference>Successfulmessage</targetReference>
-        </connector>
         <filterLogic>and</filterLogic>
         <filters>
             <field>Id</field>
@@ -277,9 +274,6 @@
         <label>Update Account Yes</label>
         <locationX>50</locationX>
         <locationY>890</locationY>
-        <connector>
-            <targetReference>Successfulmessage</targetReference>
-        </connector>
         <filterLogic>and</filterLogic>
         <filters>
             <field>Id</field>
@@ -397,16 +391,11 @@
             <isRequired>true</isRequired>
         </fields>
         <fields>
-            <name>chk_IsCivilianCustomer</name>
-            <dataType>Boolean</dataType>
-            <defaultValue>
-                <elementReference>fchk_IsCivilianCustomer</elementReference>
-            </defaultValue>
-            <fieldText>Civilian Customer</fieldText>
-            <fieldType>InputField</fieldType>
-            <inputsOnNextNavToAssocScrn>ResetValues</inputsOnNextNavToAssocScrn>
-            <isRequired>true</isRequired>
+            <name>Help_Text</name>
+            <fieldText>&lt;p&gt;&lt;strong style=&quot;font-size: 13px;&quot;&gt;Note:&lt;/strong&gt;&lt;span style=&quot;font-size: 13px;&quot;&gt; The Export Control Sheet will be saved automatically once you click “Finish”. It will automatically classify the Customer as “Civilian” in case all questions were answered with “no”. In case one or more questions were answered with “yes”, the Account will be classified as “Military”. It will not be possible to change any of the answers provided at a later point in time. In case the Customer Classification needs to be updated, please create a new Export Control Sheet in the related List of the Account.&lt;/span&gt;&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
         </fields>
+        <nextOrFinishButtonLabel>Finish</nextOrFinishButtonLabel>
         <showFooter>true</showFooter>
         <showHeader>true</showHeader>
     </screens>
@@ -466,22 +455,6 @@
             <fieldType>RadioButtons</fieldType>
             <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
             <isRequired>true</isRequired>
-        </fields>
-        <showFooter>true</showFooter>
-        <showHeader>true</showHeader>
-    </screens>
-    <screens>
-        <name>Successfulmessage</name>
-        <label>Successfulmessage</label>
-        <locationX>182</locationX>
-        <locationY>1082</locationY>
-        <allowBack>true</allowBack>
-        <allowFinish>true</allowFinish>
-        <allowPause>false</allowPause>
-        <fields>
-            <name>Success_Mesage</name>
-            <fieldText>&lt;p style=&quot;text-align: center;&quot;&gt;&lt;strong style=&quot;color: rgb(67, 192, 128);&quot;&gt;Export Control Sheet has been created Successfully&lt;/strong&gt;&lt;/p&gt;</fieldText>
-            <fieldType>DisplayText</fieldType>
         </fields>
         <showFooter>true</showFooter>
         <showHeader>true</showHeader>

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>63.0</apiVersion>
+    <description>BeforeUpdate Quote - update Status aligned with ApprovalStatus field</description>
+    <environments>Default</environments>
+    <formulas>
+        <description>Set the Status aligned with the Status of the Advance Approval Status</description>
+        <name>for_setStatus_basedOn_ApprovalStatus</name>
+        <dataType>String</dataType>
+        <expression>CASE(TEXT({!$Record.ApprovalStatus__c}),
+ &quot;Pending&quot;, &quot;Approval Pending&quot;, 
+&quot;Recalled&quot;, &quot;In Review&quot;, 
+&quot;Approved&quot;, &quot;Approved&quot;,
+&quot;Rejected&quot;, &quot;Rejected&quot;,
+TEXT({!$Record.SBQQ__Status__c})
+)</expression>
+    </formulas>
+    <interviewLabel>Quote_BeforeUpdate {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Quote_BeforeUpdate</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordUpdates>
+        <description>Automations in the before update</description>
+        <name>Before_Update_Quote_Fields</name>
+        <label>Before Update Quote Fields</label>
+        <locationX>176</locationX>
+        <locationY>287</locationY>
+        <inputAssignments>
+            <field>SBQQ__Status__c</field>
+            <value>
+                <elementReference>for_setStatus_basedOn_ApprovalStatus</elementReference>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <start>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Before_Update_Quote_Fields</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>ApprovalStatus__c</field>
+            <operator>IsChanged</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
+        <object>SBQQ__Quote__c</object>
+        <recordTriggerType>Update</recordTriggerType>
+        <triggerType>RecordBeforeSave</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>

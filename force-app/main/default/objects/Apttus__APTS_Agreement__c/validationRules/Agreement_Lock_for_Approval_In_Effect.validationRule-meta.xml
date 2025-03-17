@@ -2,9 +2,15 @@
 <ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Agreement_Lock_for_Approval_In_Effect</fullName>
     <active>true</active>
-    <description>Lock Agreement record from being edited while agreement is in Pending Approvals or In Effect status</description>
+    <description>Lock Agreement record from being edited while agreement is in Pending Approvals, Activated, In Signature, Expired or Terminated</description>
     <errorConditionFormula>IF(AND(
-OR(TEXT(Apttus_Approval__Approval_Status__c) = &#39;Pending Approval&#39;,TEXT( Apttus__Status__c ) = &#39;Activated&#39;),
+NOT(ISPICKVAL(PRIORVALUE(Apttus__Status_Category__c),&#39;In Filing&#39;)),
+OR(
+  TEXT(Apttus_Approval__Approval_Status__c) = &#39;Pending Approval&#39;,
+  TEXT( Apttus__Status__c ) = &#39;Activated&#39;,
+  TEXT( Apttus__Status_Category__c ) = &#39;In Signatures&#39;,
+  TEXT( Apttus__Status_Category__c ) = &#39;Expired&#39;,
+  TEXT( Apttus__Status_Category__c ) = &#39;Terminated&#39;),
 OR(
 ISCHANGED(RecordTypeId),
 ISCHANGED(Name),
@@ -47,5 +53,5 @@ ISCHANGED( APTS_IP_Indemnification__c),
 ISCHANGED( Apttus__Termination_Notice_Days__c)
 )),  
 TRUE, FALSE)</errorConditionFormula>
-    <errorMessage>Agreement information cannot be changed while in Approvals and after Activation</errorMessage>
+    <errorMessage>Agreement information cannot be changed while in Approvals/In Signatures or after Activation, Expiration, Termination.</errorMessage>
 </ValidationRule>

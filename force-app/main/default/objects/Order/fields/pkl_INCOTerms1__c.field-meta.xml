@@ -3,7 +3,7 @@
     <fullName>pkl_INCOTerms1__c</fullName>
     <description>Mandatory field for ERP interface, essential to define sales terms and passing of risk</description>
     <externalId>false</externalId>
-    <label>INCO Terms 1</label>
+    <label>INCOTERM</label>
     <required>true</required>
     <trackFeedHistory>true</trackFeedHistory>
     <trackHistory>false</trackHistory>
