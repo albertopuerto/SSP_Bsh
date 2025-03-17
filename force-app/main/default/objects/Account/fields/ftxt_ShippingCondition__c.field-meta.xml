@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>ftxt_ShippingCondition__c</fullName>
+    <description>Automatically determines the shipping condition based on the selected INCO Terms 1 value</description>
+    <externalId>false</externalId>
+    <formula>CASE(TEXT(pkl_INCOTerms1__c),
+     &quot;DAP – Delivered at Place&quot;, &quot;Standard Shipping&quot;,
+     &quot;CPT - Carriage Paid To&quot;, &quot;Standard Shipping&quot;,
+     &quot;DDP - Delivered Duty Paid&quot;, &quot;Standard Shipping&quot;,
+     &quot;FCA - Free Carrier&quot;, &quot;Pickup&quot;,
+     &quot;&quot;)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Shipping Condition</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

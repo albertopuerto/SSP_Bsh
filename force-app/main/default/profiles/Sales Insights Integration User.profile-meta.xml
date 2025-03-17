@@ -234,6 +234,11 @@
         <name>Apttus__XA_DisableAutoCheckout</name>
     </customPermissions>
     <fieldPermissions>
+        <editable>false</editable>
+        <field>Account.ftxt_ShippingCondition__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>AccountContactRelation.Relationship_Strength__c</field>
         <readable>true</readable>
@@ -1591,11 +1596,6 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>SBQQ__Quote__c.ftxt_SalesOrg__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>SBQQ__Quote__c.lkp_PersonResponsible__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>

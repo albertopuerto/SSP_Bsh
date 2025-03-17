@@ -7,6 +7,7 @@
     <excludeButtons>Clone</excludeButtons>
     <excludeButtons>Delete</excludeButtons>
     <excludeButtons>Edit</excludeButtons>
+    <excludeButtons>OpenSlackRecordChannel</excludeButtons>
     <excludeButtons>Share</excludeButtons>
     <excludeButtons>Submit</excludeButtons>
     <layoutSections>
@@ -24,14 +25,6 @@
                 <field>sbaa__Status__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Required</behavior>
-                <field>sbaa__ApprovalStep__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Required</behavior>
-                <field>sbaa__RecordField__c</field>
-            </layoutItems>
-            <layoutItems>
                 <behavior>Readonly</behavior>
                 <field>sbaa__Approver__c</field>
             </layoutItems>
@@ -43,6 +36,14 @@
                 <behavior>Edit</behavior>
                 <field>Quote__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>flink_Opportunity__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>sbaa__AssignedToMe__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
@@ -50,7 +51,7 @@
                 <field>OwnerId</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Required</behavior>
+                <behavior>Edit</behavior>
                 <field>sbaa__Rule__c</field>
             </layoutItems>
             <layoutItems>
@@ -58,8 +59,12 @@
                 <field>sbaa__ApprovalChain__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Edit</behavior>
-                <field>sbaa__Opportunity__c</field>
+                <behavior>Required</behavior>
+                <field>sbaa__ApprovalStep__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Required</behavior>
+                <field>sbaa__RecordField__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
@@ -96,9 +101,9 @@
         <detailHeading>false</detailHeading>
         <editHeading>true</editHeading>
         <label>Custom Links</label>
-        <layoutColumns/>
-        <layoutColumns/>
-        <layoutColumns/>
+        <layoutColumns />
+        <layoutColumns />
+        <layoutColumns />
         <style>CustomLinks</style>
     </layoutSections>
     <platformActionList>
@@ -139,7 +144,7 @@
     <showRunAssignmentRulesCheckbox>false</showRunAssignmentRulesCheckbox>
     <showSubmitAndAttachButton>false</showSubmitAndAttachButton>
     <summaryLayout>
-        <masterLabel>00hE000000JwCzU</masterLabel>
+        <masterLabel>00hFg000004E16z</masterLabel>
         <sizeX>4</sizeX>
         <sizeY>0</sizeY>
         <summaryLayoutStyle>Default</summaryLayoutStyle>

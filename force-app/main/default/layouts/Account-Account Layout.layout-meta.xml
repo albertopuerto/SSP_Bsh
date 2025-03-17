@@ -154,6 +154,10 @@
                 <behavior>Required</behavior>
                 <field>txt_INCOTerms2__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>ftxt_ShippingCondition__c</field>
+            </layoutItems>
         </layoutColumns>
         <style>TwoColumnsLeftToRight</style>
     </layoutSections>
@@ -328,6 +332,16 @@
         <fields>MEMBER_NAME</fields>
         <fields>TEAM_MEMBER_ROLE</fields>
         <relatedList>RelatedAccountSalesTeam</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <excludeButtons>MassChangeOwner</excludeButtons>
+        <excludeButtons>New</excludeButtons>
+        <fields>SBQQ__Status__c</fields>
+        <fields>ApprovalStatus__c</fields>
+        <fields>SBQQ__SalesRep__c</fields>
+        <fields>SBQQ__Opportunity2__c</fields>
+        <fields>SBQQ__ExpirationDate__c</fields>
+        <relatedList>SBQQ__Quote__c.SBQQ__Account__c</relatedList>
     </relatedLists>
     <relatedLists>
         <fields>CONTACT.FULL_NAME</fields>

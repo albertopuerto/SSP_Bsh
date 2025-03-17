@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>txl_Strengths__c</fullName>
-    <description>Known strength of the competitor can be gathered in this field.</description>
+    <description>Captures strength of a Competitor on a related Opportunity</description>
     <externalId>false</externalId>
     <inlineHelpText>Known strength of the competitor can be gathered in this field.</inlineHelpText>
     <label>Strengths</label>
