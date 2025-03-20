@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PathAssistant xmlns="http://soap.sforce.com/2006/04/metadata">
+    <active>true</active>
+    <entityName>Opportunity</entityName>
+    <fieldName>StageName</fieldName>
+    <masterLabel>SSP Opportunity- Standard Solution Order</masterLabel>
+    <pathAssistantSteps>
+        <fieldNames>AccountId</fieldNames>
+        <fieldNames>CloseDate</fieldNames>
+        <fieldNames>Amount</fieldNames>
+        <fieldNames>SBQQ__PrimaryQuote__c</fieldNames>
+        <info>&lt;p&gt;Business is secure. Sales Order from Customer not yet received. Sales Order not yet entered in SAP&lt;/p&gt;</info>
+        <picklistValueName>Accepted</picklistValueName>
+    </pathAssistantSteps>
+    <pathAssistantSteps>
+        <fieldNames>AccountId</fieldNames>
+        <fieldNames>CloseDate</fieldNames>
+        <fieldNames>Probability</fieldNames>
+        <fieldNames>Amount</fieldNames>
+        <fieldNames>SBQQ__PrimaryQuote__c</fieldNames>
+        <info>&lt;p&gt;Opportunity is in qualification and/or analysis, Price Information and/or Quote in preparation. No quotation is sent to the customer yet&lt;/p&gt;</info>
+        <picklistValueName>Acquisition (Sell)</picklistValueName>
+    </pathAssistantSteps>
+    <pathAssistantSteps>
+        <fieldNames>AccountId</fieldNames>
+        <fieldNames>CloseDate</fieldNames>
+        <fieldNames>Amount</fieldNames>
+        <fieldNames>SBQQ__PrimaryQuote__c</fieldNames>
+        <info>&lt;p&gt;Use in case of mistaken Opportunity Creation&lt;/p&gt;</info>
+        <picklistValueName>Invalid Data</picklistValueName>
+    </pathAssistantSteps>
+    <pathAssistantSteps>
+        <fieldNames>AccountId</fieldNames>
+        <fieldNames>CloseDate</fieldNames>
+        <fieldNames>Amount</fieldNames>
+        <fieldNames>Loss_Reason__c</fieldNames>
+        <fieldNames>txa_LossReasonDescription__c</fieldNames>
+        <info>&lt;p&gt;Project is lost. Reason must be provided&lt;/p&gt;</info>
+        <picklistValueName>Lost</picklistValueName>
+    </pathAssistantSteps>
+    <pathAssistantSteps>
+        <fieldNames>AccountId</fieldNames>
+        <fieldNames>CloseDate</fieldNames>
+        <fieldNames>Amount</fieldNames>
+        <fieldNames>SBQQ__PrimaryQuote__c</fieldNames>
+        <info>&lt;p&gt;Project is cancelled by customer e.g. due to missing budget&lt;/p&gt;</info>
+        <picklistValueName>Project Cancelled</picklistValueName>
+    </pathAssistantSteps>
+    <pathAssistantSteps>
+        <fieldNames>AccountId</fieldNames>
+        <fieldNames>CloseDate</fieldNames>
+        <fieldNames>Probability</fieldNames>
+        <fieldNames>Amount</fieldNames>
+        <fieldNames>SBQQ__PrimaryQuote__c</fieldNames>
+        <info>&lt;p&gt;Price Information and/or Quote is approved within ETAS, sent to Customer and in negotiation. No business award from customer yet&lt;/p&gt;</info>
+        <picklistValueName>Quotation (Quoted)</picklistValueName>
+    </pathAssistantSteps>
+    <pathAssistantSteps>
+        <fieldNames>AccountId</fieldNames>
+        <fieldNames>CloseDate</fieldNames>
+        <fieldNames>Probability</fieldNames>
+        <fieldNames>Amount</fieldNames>
+        <fieldNames>Budget_Confirmed__c</fieldNames>
+        <info>&lt;p&gt;Sales chance in early stage. Details missing to quantify and schedule. Use this Stage in Pre-Selling Phase to indicate Potential Business&lt;/p&gt;</info>
+        <picklistValueName>Sales Chance (New)</picklistValueName>
+    </pathAssistantSteps>
+    <pathAssistantSteps>
+        <fieldNames>AccountId</fieldNames>
+        <fieldNames>CloseDate</fieldNames>
+        <fieldNames>Amount</fieldNames>
+        <fieldNames>SBQQ__PrimaryQuote__c</fieldNames>
+        <info>&lt;p&gt;Reception of order completed&lt;/p&gt;</info>
+        <picklistValueName>Won (Awarded)</picklistValueName>
+    </pathAssistantSteps>
+    <recordTypeName>StandardSolutionOrder</recordTypeName>
+</PathAssistant>
