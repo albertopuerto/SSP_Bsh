@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <help><!-- Choose Asset Based to make renewals based off of an account&apos;s assets, or choose Contract Based to make renewals based off of contracts created from a quote. --></help>
+        <label><!-- Renewal Model --></label>
+        <name>SBQQ__RenewalModel__c</name>
+        <picklistValues>
+            <masterLabel>Asset Based</masterLabel>
+            <translation><!-- Asset Based --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Contract Based</masterLabel>
+            <translation><!-- Contract Based --></translation>
+        </picklistValues>
+    </CustomFieldTranslation>

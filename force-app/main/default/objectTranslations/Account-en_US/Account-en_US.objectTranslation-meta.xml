@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <fieldSets>
+        <label><!-- CRMC Action Grid Defaults --></label>
+        <name>CRMC_PP__CRMC_Action_Grid_Defaults</name>
+    </fieldSets>
+    <layouts>
+        <layout>Account Layout</layout>
+        <sections>
+            <label><!-- Detailed Information --></label>
+            <section>Detailed Information</section>
+        </sections>
+        <sections>
+            <label><!-- Id Information --></label>
+            <section>Id Information</section>
+        </sections>
+        <sections>
+            <label><!-- Sales Data --></label>
+            <section>Sales Data</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>CPQ Account Layout</layout>
+        <sections>
+            <label><!-- Additional Information --></label>
+            <section>Additional Information</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Renewal/Co-Term Information --></label>
+            <section>Renewal/Co-Term Information</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Competitor Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Fields --></label>
+            <section>Fields</section>
+        </sections>
+    </layouts>
+    <quickActions>
+        <label><!-- Child Account --></label>
+        <name>Child_Account</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Civilian Military Usage Check --></label>
+        <name>Civilian_Military_Usage_Check</name>
+    </quickActions>
+    <recordTypes>
+        <label><!-- Competitor --></label>
+        <name>Competitor</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Customer --></label>
+        <name>Customer</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Intercompany --></label>
+        <name>Intercompany</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Partner --></label>
+        <name>Partner</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Reseller --></label>
+        <name>Reseller</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Supplier --></label>
+        <name>Supplier</name>
+    </recordTypes>
+    <validationRules>
+        <errorMessage><!-- Trading Partner ID/PG No is required. --></errorMessage>
+        <name>SSP_IsTradingPartnerNoRequired_c</name>
+    </validationRules>
+    <webLinks>
+        <label><!-- APTS_Create_Agreement --></label>
+        <name>APTS_Create_Agreement</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- ViewAgreementHierarchyforAccount --></label>
+        <name>Apttus__ViewAgreementHierarchyforAccount</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- ViewAgreementHierarchyforAccount2 --></label>
+        <name>Apttus__ViewAgreementHierarchyforAccount2</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- GoogleMaps --></label>
+        <name>GoogleMaps</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- GoogleNews --></label>
+        <name>GoogleNews</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- GoogleSearch --></label>
+        <name>GoogleSearch</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Amend_Assets --></label>
+        <name>SBQQ__Amend_Assets</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Renew_Assets --></label>
+        <name>SBQQ__Renew_Assets</name>
+    </webLinks>
+</CustomObjectTranslation>
