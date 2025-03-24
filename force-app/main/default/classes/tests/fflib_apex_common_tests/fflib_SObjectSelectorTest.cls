@@ -830,11 +830,11 @@ private with sharing class fflib_SObjectSelectorTest
 		fflib_QueryFactory tQF = tSel.addQueryFactorySubselect(listEmailQF);
 
 		String expected
-				= 'SELECT name, id, annualrevenue, accountnumber, '
-				+   '(SELECT id, contractnumber, '
-				+     '(SELECT name, id, amount, closedate, '
-				+       '(SELECT id, name, '
-				+         '(SELECT id, subject FROM Tasks ORDER BY Subject ASC NULLS FIRST )  '
+				= 'SELECT name, id, annualrevenue, accountnumber, currencyisocode,  '
+				+   '(SELECT id, contractnumber, currencyisocode,'
+				+     '(SELECT name, id, amount, closedate, currencyisocode, '
+				+       '(SELECT id, name, currencyisocode, '
+				+         '(SELECT id, subject, currencyisocode FROM Tasks ORDER BY Subject ASC NULLS FIRST )  '
 				+       'FROM ListEmails ORDER BY Name ASC NULLS FIRST )  '
 				+     'FROM Opportunities ORDER BY Name ASC NULLS FIRST )  '
 				+   'FROM Contracts ORDER BY ContractNumber ASC NULLS FIRST )  '
