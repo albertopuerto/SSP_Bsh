@@ -465,16 +465,6 @@
         <type>Facet</type>
     </flexiPageRegions>
     <flexiPageRegions>
-        <itemInstances>
-            <fieldInstance>
-                <fieldInstanceProperties>
-                    <name>uiBehavior</name>
-                    <value>none</value>
-                </fieldInstanceProperties>
-                <fieldItem>Record.ShippingAddress</fieldItem>
-                <identifier>RecordShippingAddressField</identifier>
-            </fieldInstance>
-        </itemInstances>
         <name>Facet-ea701c6a-ab76-42e7-b8cc-e83a8d106bda</name>
         <type>Facet</type>
     </flexiPageRegions>
