@@ -175,10 +175,6 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>APTS_Limitation_of_Liability__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
                 <field>APTS_Limitation_of_Liability_Description__c</field>
             </layoutItems>
             <layoutItems>
