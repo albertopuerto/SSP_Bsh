@@ -137,7 +137,7 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>APTS_ISP_Office_contact_2_c__c</field>
+                <field>APTS_ISP_Office_contact_2__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>

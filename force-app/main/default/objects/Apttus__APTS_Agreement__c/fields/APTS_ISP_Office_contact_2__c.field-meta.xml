@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>APTS_ISP_Office_contact_2_c__c</fullName>
+    <fullName>APTS_ISP_Office_contact_2__c</fullName>
     <deleteConstraint>Restrict</deleteConstraint>
     <description>The contact person from DSO who processes the Agreement</description>
     <externalId>false</externalId>
