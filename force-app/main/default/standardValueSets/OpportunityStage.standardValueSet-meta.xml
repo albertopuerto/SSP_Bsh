@@ -2,71 +2,82 @@
 <StandardValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
     <sorted>false</sorted>
     <standardValue>
-        <fullName>Sales Chance</fullName>
+        <fullName>Sales Chance (New)</fullName>
         <default>false</default>
-        <label>Sales Chance</label>
+        <description>Sales chance in early stage. Details missing to quantify and schedule. Use this Stage in Pre-Selling Phase to indicate Potential Business</description>
+        <label>Sales Chance (New)</label>
         <closed>false</closed>
-        <forecastCategory>BestCase</forecastCategory>
+        <forecastCategory>Pipeline</forecastCategory>
         <probability>1</probability>
         <won>false</won>
     </standardValue>
     <standardValue>
-        <fullName>Qualification</fullName>
+        <fullName>Acquisition (Sell)</fullName>
         <default>false</default>
-        <description>You&#39;ve contacted the prospect and they&#39;re interested.</description>
-        <label>Qualification</label>
+        <description>Opportunity is in qualification and/or analysis, Price Information and/or Quote in preparation. No quotation is sent to the customer yet</description>
+        <label>Acquisition (Sell)</label>
         <closed>false</closed>
         <forecastCategory>Pipeline</forecastCategory>
         <probability>10</probability>
         <won>false</won>
     </standardValue>
     <standardValue>
-        <fullName>Needs Analysis</fullName>
+        <fullName>Quotation (Quoted)</fullName>
         <default>false</default>
-        <description>You&#39;re defining the prospect&#39;s needs.</description>
-        <label>Needs Analysis</label>
+        <description>Price Information and/or Quote is approved within ETAS, sent to Customer and in negotiation. No business award from customer yet</description>
+        <label>Quotation (Quoted)</label>
         <closed>false</closed>
         <forecastCategory>Pipeline</forecastCategory>
-        <probability>35</probability>
+        <probability>50</probability>
         <won>false</won>
     </standardValue>
     <standardValue>
-        <fullName>Proposal</fullName>
+        <fullName>Accepted</fullName>
         <default>false</default>
-        <description>You&#39;re developing a sales proposal for the prospect.</description>
-        <label>Proposal</label>
+        <description>Business is secure. Sales Order from Customer not yet received. Sales Order not yet entered in SAP</description>
+        <label>Accepted</label>
         <closed>false</closed>
-        <forecastCategory>BestCase</forecastCategory>
-        <probability>75</probability>
-        <won>false</won>
-    </standardValue>
-    <standardValue>
-        <fullName>Negotiation</fullName>
-        <default>false</default>
-        <description>You&#39;re working with the prospect on the proposal you delivered.</description>
-        <label>Negotiation</label>
-        <closed>false</closed>
-        <forecastCategory>Forecast</forecastCategory>
-        <probability>90</probability>
-        <won>false</won>
-    </standardValue>
-    <standardValue>
-        <fullName>Closed Won</fullName>
-        <default>false</default>
-        <description>Sold!</description>
-        <label>Closed Won</label>
-        <closed>true</closed>
-        <forecastCategory>Closed</forecastCategory>
+        <forecastCategory>Pipeline</forecastCategory>
         <probability>100</probability>
-        <won>true</won>
+        <won>false</won>
     </standardValue>
     <standardValue>
-        <fullName>Closed Lost</fullName>
+        <fullName>Won (Awarded)</fullName>
         <default>false</default>
-        <description>No sale.</description>
-        <label>Closed Lost</label>
-        <closed>true</closed>
-        <forecastCategory>Omitted</forecastCategory>
+        <description>Reception of order completed</description>
+        <label>Won (Awarded)</label>
+        <closed>false</closed>
+        <forecastCategory>Pipeline</forecastCategory>
+        <probability>100</probability>
+        <won>false</won>
+    </standardValue>
+    <standardValue>
+        <fullName>Lost</fullName>
+        <default>false</default>
+        <description>Project is lost. Reason must be provided</description>
+        <label>Lost</label>
+        <closed>false</closed>
+        <forecastCategory>Pipeline</forecastCategory>
+        <probability>0</probability>
+        <won>false</won>
+    </standardValue>
+    <standardValue>
+        <fullName>Project Cancelled</fullName>
+        <default>false</default>
+        <description>Project is cancelled by customer e.g. due to missing budget</description>
+        <label>Project Cancelled</label>
+        <closed>false</closed>
+        <forecastCategory>Pipeline</forecastCategory>
+        <probability>0</probability>
+        <won>false</won>
+    </standardValue>
+    <standardValue>
+        <fullName>Invalid Data</fullName>
+        <default>false</default>
+        <description>Use in case of mistaken Opportunity Creation</description>
+        <label>Invalid Data</label>
+        <closed>false</closed>
+        <forecastCategory>Pipeline</forecastCategory>
         <probability>0</probability>
         <won>false</won>
     </standardValue>
