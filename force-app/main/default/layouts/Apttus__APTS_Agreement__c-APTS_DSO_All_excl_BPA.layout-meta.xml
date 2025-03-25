@@ -100,7 +100,7 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Processor_old__c</field>
+                <field>APTS_Processor_old__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Required</behavior>
