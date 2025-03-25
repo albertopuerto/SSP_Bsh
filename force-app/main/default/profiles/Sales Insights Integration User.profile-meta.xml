@@ -3580,4 +3580,8 @@
         <tab>standard-report</tab>
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
+    <userPermissions>
+        <enabled>true</enabled>
+        <name>ViewPublicDashboards</name>
+    </userPermissions>
 </Profile>
