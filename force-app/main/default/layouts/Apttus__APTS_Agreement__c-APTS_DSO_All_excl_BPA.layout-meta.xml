@@ -87,7 +87,7 @@
         <label>Agreement Details</label>
         <layoutColumns>
             <layoutItems>
-                <behavior>Required</behavior>
+                <behavior>Edit</behavior>
                 <field>APTS_Controller__c</field>
             </layoutItems>
             <layoutItems>
@@ -95,7 +95,7 @@
                 <field>APTS_Controller_old__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Required</behavior>
+                <behavior>Edit</behavior>
                 <field>APTS_Processor__c</field>
             </layoutItems>
             <layoutItems>
