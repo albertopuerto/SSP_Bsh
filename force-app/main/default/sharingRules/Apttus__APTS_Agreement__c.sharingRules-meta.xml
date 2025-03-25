@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SharingRules xmlns="http://soap.sforce.com/2006/04/metadata">
+    <sharingCriteriaRules>
+        <fullName>DSO_View</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>DSO View</label>
+        <sharedTo>
+            <group>DSO_User_Group</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>RecordTypeId</field>
+            <operation>equals</operation>
+            <value>2nd-Processor EPA/GPA,AVV BDSG,BPA,AVV GDPR,EPA,EU-SCC,GPA,Other_DSO,Joint Controllers</value>
+        </criteriaItems>
+        <includeRecordsOwnedByAll>true</includeRecordsOwnedByAll>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Marketing_view</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Marketing view</label>
+        <sharedTo>
+            <group>Marketing_Business_Strategy</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>RecordTypeId</field>
+            <operation>equals</operation>
+            <value>Other Marketing Agreement,Partner Distribution Agreement,Co-marketing Agreement,NDA_MBS</value>
+        </criteriaItems>
+        <includeRecordsOwnedByAll>true</includeRecordsOwnedByAll>
+    </sharingCriteriaRules>
+</SharingRules>
