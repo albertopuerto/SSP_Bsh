@@ -454,6 +454,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>SBQQ__QuoteLine__c.fcur_AccountBasedDiscountAmount__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>SBQQ__Quote__c.Bill_To_City__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -510,6 +515,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>SBQQ__Quote__c.chk_Override_Standard_T_C__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>SBQQ__Quote__c.chk_ShowAccountBasedDiscount__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>

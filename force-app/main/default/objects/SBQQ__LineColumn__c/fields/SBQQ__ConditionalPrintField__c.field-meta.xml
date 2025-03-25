@@ -17,6 +17,11 @@
                 <default>false</default>
                 <label>Group Line Items</label>
             </value>
+            <value>
+                <fullName>chk_ShowAccountBasedDiscount__c</fullName>
+                <default>false</default>
+                <label>chk_ShowAccountBasedDiscount__c</label>
+            </value>
         </valueSetDefinition>
     </valueSet>
 </CustomField>

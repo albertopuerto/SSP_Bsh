@@ -13,6 +13,7 @@
     <customButtons>SBQQ__CalculateQuote</customButtons>
     <customButtons>Submit_for_Approval</customButtons>
     <customButtons>Preview_Approval</customButtons>
+    <excludeButtons>OpenSlackRecordChannel</excludeButtons>
     <layoutSections>
         <customLabel>true</customLabel>
         <detailHeading>false</detailHeading>
@@ -309,13 +310,13 @@
         <layoutColumns>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>chk_POValidated__c</field>
+                <field>SSP_POValidated__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>txt_PONo__c</field>
+                <field>SSP_PONo__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsLeftToRight</style>
@@ -356,6 +357,10 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>SBQQ__LineItemsGrouped__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>chk_ShowAccountBasedDiscount__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
