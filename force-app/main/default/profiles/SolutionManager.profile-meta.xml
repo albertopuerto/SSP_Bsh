@@ -104,7 +104,7 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Apttus__APTS_Agreement__c.APTS_ISP_Office_contact_2_c__c</field>
+        <field>Apttus__APTS_Agreement__c.APTS_ISP_Office_contact_2__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -115,6 +115,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Apttus__APTS_Agreement__c.APTS_Managing_Party_BPA__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Apttus__APTS_Agreement__c.APTS_PLAS_Nr__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -461,6 +466,38 @@
     <layoutAssignments>
         <layout>Apttus__APTS_Agreement__c-APTS_Marketing</layout>
         <recordType>Apttus__APTS_Agreement__c.Co_marketing_agreement</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Apttus__APTS_Agreement__c-APTS_Controlling_layout</layout>
+        <recordType>Apttus__APTS_Agreement__c.IC_Development_and_Application</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Apttus__APTS_Agreement__c-APTS_Controlling_layout</layout>
+        <recordType>Apttus__APTS_Agreement__c.IC_Reseller_Framework_Agreement</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Apttus__APTS_Agreement__c-APTS_Controlling_layout</layout>
+        <recordType>Apttus__APTS_Agreement__c.IC_SaaS</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Apttus__APTS_Agreement__c-APTS_Controlling_layout</layout>
+        <recordType>Apttus__APTS_Agreement__c.IC_Services</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Apttus__APTS_Agreement__c-APTS_Controlling_layout</layout>
+        <recordType>Apttus__APTS_Agreement__c.IC_Software_License_Agreement</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Apttus__APTS_Agreement__c-APTS_Controlling_layout</layout>
+        <recordType>Apttus__APTS_Agreement__c.IC_Technology_Transfer</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Apttus__APTS_Agreement__c-APTS_Controlling_layout</layout>
+        <recordType>Apttus__APTS_Agreement__c.Intercompany_NDA</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Apttus__APTS_Agreement__c-APTS_Controlling_layout</layout>
+        <recordType>Apttus__APTS_Agreement__c.Other_Intercompany</recordType>
     </layoutAssignments>
     <layoutAssignments>
         <layout>ExportControlSheet__c-Export Control Sheet Layout</layout>
