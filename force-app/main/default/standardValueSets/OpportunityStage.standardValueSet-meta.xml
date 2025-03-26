@@ -46,17 +46,17 @@
         <default>false</default>
         <description>Reception of order completed</description>
         <label>Won (Awarded)</label>
-        <closed>false</closed>
+        <closed>true</closed>
         <forecastCategory>Pipeline</forecastCategory>
         <probability>100</probability>
-        <won>false</won>
+        <won>true</won>
     </standardValue>
     <standardValue>
         <fullName>Lost</fullName>
         <default>false</default>
         <description>Project is lost. Reason must be provided</description>
         <label>Lost</label>
-        <closed>false</closed>
+        <closed>true</closed>
         <forecastCategory>Pipeline</forecastCategory>
         <probability>0</probability>
         <won>false</won>
@@ -66,7 +66,7 @@
         <default>false</default>
         <description>Project is cancelled by customer e.g. due to missing budget</description>
         <label>Project Cancelled</label>
-        <closed>false</closed>
+        <closed>true</closed>
         <forecastCategory>Pipeline</forecastCategory>
         <probability>0</probability>
         <won>false</won>
@@ -76,7 +76,7 @@
         <default>false</default>
         <description>Use in case of mistaken Opportunity Creation</description>
         <label>Invalid Data</label>
-        <closed>false</closed>
+        <closed>true</closed>
         <forecastCategory>Pipeline</forecastCategory>
         <probability>0</probability>
         <won>false</won>
