@@ -1323,11 +1323,11 @@
         </values>
         <values>
             <fullName>In Effect</fullName>
-            <default>false</default>
+            <default>true</default>
         </values>
         <values>
             <fullName>In Filing</fullName>
-            <default>true</default>
+            <default>false</default>
         </values>
         <values>
             <fullName>Terminated</fullName>
@@ -1386,7 +1386,7 @@
         </values>
         <values>
             <fullName>In Reconciliation</fullName>
-            <default>false</default>
+            <default>true</default>
         </values>
         <values>
             <fullName>In Renewal</fullName>
@@ -1426,7 +1426,7 @@
         </values>
         <values>
             <fullName>Request</fullName>
-            <default>true</default>
+            <default>false</default>
         </values>
         <values>
             <fullName>Request Approval</fullName>

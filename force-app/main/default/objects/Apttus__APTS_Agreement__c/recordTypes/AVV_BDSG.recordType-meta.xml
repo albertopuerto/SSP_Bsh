@@ -1426,7 +1426,7 @@
         </values>
         <values>
             <fullName>Request</fullName>
-            <default>true</default>
+            <default>false</default>
         </values>
         <values>
             <fullName>Request Approval</fullName>
