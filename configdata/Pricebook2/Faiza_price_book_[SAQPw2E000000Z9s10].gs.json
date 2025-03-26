@@ -1,0 +1,12 @@
+{
+  "Object": "Pricebook2",
+  "Fields": {
+    "CurrencyIsoCode": "EUR",
+    "Description": "Test",
+    "GearsetDisplayName": "Faiza price book",
+    "GearsetExternalId__c": "SAQPw2E000000Z9s10",
+    "IsActive": "false",
+    "Name": "Faiza price book"
+  },
+  "References": []
+}

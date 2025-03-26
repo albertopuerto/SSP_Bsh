@@ -1,0 +1,19 @@
+{
+  "Object": "SBQQ__Cost__c",
+  "Fields": {
+    "CurrencyIsoCode": "EUR",
+    "GearsetDisplayName": "CBV821.1-0m8",
+    "GearsetExternalId__c": "BAQp5rsB00000Q943a",
+    "SBQQ__Active__c": "true",
+    "SBQQ__UnitCost__c": "100.0"
+  },
+  "References": [
+    {
+      "Name": "SBQQ__Product__r",
+      "ReferencedObject": "Product2",
+      "ReferencedFields": {
+        "GearsetExternalId__c": "MAQdKF2300000Q9t10"
+      }
+    }
+  ]
+}

@@ -3,7 +3,7 @@
     <fullName>pkl_INCOTerms1__c</fullName>
     <description>Defines the terms of sales and the passing of risks. Needed for the interface to ERP.</description>
     <externalId>false</externalId>
-    <label>INCO Terms 1</label>
+    <label>INCOTERM</label>
     <required>true</required>
     <trackHistory>false</trackHistory>
     <type>Picklist</type>

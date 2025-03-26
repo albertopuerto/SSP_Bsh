@@ -2,7 +2,7 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>lkp_ToolCoordinator__c</fullName>
     <deleteConstraint>SetNull</deleteConstraint>
-    <description>Field that is needed for the Order interface. The contact of the customer that is responsible for the licenses etc.</description>
+    <description>Field value is inherited from the Quote (Person responsible for License, etc.,) to ensure quicker Order processing and data integrity</description>
     <externalId>false</externalId>
     <inlineHelpText>Input contact details of person on customer side, managing license distribution to users on customer side</inlineHelpText>
     <label>Tool Coordinator</label>
@@ -19,6 +19,7 @@
     <relationshipLabel>Orders</relationshipLabel>
     <relationshipName>Orders</relationshipName>
     <required>false</required>
+    <trackFeedHistory>true</trackFeedHistory>
     <trackHistory>false</trackHistory>
     <type>Lookup</type>
 </CustomField>

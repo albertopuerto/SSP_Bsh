@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>dat_SAPPlannedOrderDeliveryDate__c</fullName>
+    <description>Provided by SAP, once the order is transferred...</description>
     <externalId>false</externalId>
     <inlineHelpText>Provided by SAP, once the order is transferred</inlineHelpText>
     <label>SAP Planned Delivery Date</label>
     <required>false</required>
+    <trackFeedHistory>true</trackFeedHistory>
     <trackHistory>false</trackHistory>
     <type>Date</type>
 </CustomField>

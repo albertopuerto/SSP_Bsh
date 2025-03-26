@@ -2,10 +2,26 @@
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
     <apiVersion>54.0</apiVersion>
     <assignments>
+        <name>Else_Update</name>
+        <label>Set the start date</label>
+        <locationX>921</locationX>
+        <locationY>290</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.Apttus__Perpetual__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Perpetual</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Update_Agreement_fields_when_cancelled</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
         <name>Update_Agreement_Name_Requested_Date</name>
         <label>Update Agreement Name &amp; Requested Date</label>
-        <locationX>685</locationX>
-        <locationY>360</locationY>
+        <locationX>686</locationX>
+        <locationY>359</locationY>
         <assignmentItems>
             <assignToReference>$Record.Name</assignToReference>
             <operator>Assign</operator>
@@ -14,10 +30,17 @@
             </value>
         </assignmentItems>
         <assignmentItems>
-            <assignToReference>$Record.Apttus__Request_Date__c</assignToReference>
+            <assignToReference>$Record.Apttus__Account__c</assignToReference>
             <operator>Assign</operator>
             <value>
-                <elementReference>$Flow.CurrentDate</elementReference>
+                <elementReference>Account_or_Processor</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>$Record.Apttus__Contract_Start_Date__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Default_Start_Date_To_Today</elementReference>
             </value>
         </assignmentItems>
     </assignments>
@@ -204,7 +227,7 @@
         </rules>
         <rules>
             <name>Check_if_Agreement_is_Created_or_Account_is_Changed</name>
-            <conditionLogic>(3 OR (1 AND 2))</conditionLogic>
+            <conditionLogic>(3 OR 4 OR 5 OR (1 AND 2))</conditionLogic>
             <conditions>
                 <leftValueReference>$Record__Prior.Apttus__Account__c</leftValueReference>
                 <operator>NotEqualTo</operator>
@@ -226,18 +249,50 @@
                     <booleanValue>true</booleanValue>
                 </rightValue>
             </conditions>
+            <conditions>
+                <leftValueReference>$Record.APTS_Processor__c</leftValueReference>
+                <operator>IsChanged</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Apttus__Contract_Start_Date__c</leftValueReference>
+                <operator>IsChanged</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
             <connector>
                 <targetReference>Update_Agreement_Name_Requested_Date</targetReference>
             </connector>
-            <label>Check if Agreement is Created or Account is Changed</label>
+            <label>Check if Agreement is Created or Account or Start Date is Changed</label>
         </rules>
     </decisions>
+    <description>Add Start Date</description>
+    <environments>Default</environments>
+    <formulas>
+        <description>Defaults the Account to the Processor</description>
+        <name>Account_or_Processor</name>
+        <dataType>String</dataType>
+        <expression>IF(ISNULL({!$Record.Apttus__Account__c}),{!$Record.APTS_Processor__c},{!$Record.Apttus__Account__c})</expression>
+    </formulas>
     <formulas>
         <name>Agreement_Name</name>
         <dataType>String</dataType>
-        <expression>{!$Record.RecordType.Name}+&apos;--&apos;+{!$Record.Apttus__Account__r.Name}+&apos;--&apos;+TEXT(Month( {!$Record.Apttus__Contract_Start_Date__c} )) + &apos;-&apos;
-+ TEXT(Day({!$Record.Apttus__Contract_Start_Date__c} )) + &apos;-&apos;
+        <expression>{!$Record.RecordType.Name}+&#39;--&#39;+IF(ISBLANK({!$Record.Apttus__Account__c}),{!$Record.APTS_Processor__r.Name},{!$Record.Apttus__Account__r.Name})+&#39;--&#39;+TEXT(Month( {!$Record.Apttus__Contract_Start_Date__c} )) + &#39;-&#39;
++ TEXT(Day({!$Record.Apttus__Contract_Start_Date__c} )) + &#39;-&#39;
 + TEXT(Year ({!$Record.Apttus__Contract_Start_Date__c} ))</expression>
+    </formulas>
+    <formulas>
+        <name>Default_Start_Date_To_Today</name>
+        <dataType>Date</dataType>
+        <expression>IF(ISBLANK({!$Record.Apttus__Contract_Start_Date__c}),TODAY(),($Record.Apttus__Contract_Start_Date__c))</expression>
+    </formulas>
+    <formulas>
+        <name>Perpetual</name>
+        <dataType>Boolean</dataType>
+        <expression>ISNULL({!$Record.Apttus__Contract_End_Date__c})</expression>
     </formulas>
     <interviewLabel>Conga Agreement Before Insert/Update Actions Flow {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Conga Agreement Before Insert/Update Actions Flow</label>
@@ -264,7 +319,7 @@
         <locationX>211</locationX>
         <locationY>23</locationY>
         <connector>
-            <targetReference>Update_Agreement_fields_when_cancelled</targetReference>
+            <targetReference>Else_Update</targetReference>
         </connector>
         <object>Apttus__APTS_Agreement__c</object>
         <recordTriggerType>CreateAndUpdate</recordTriggerType>

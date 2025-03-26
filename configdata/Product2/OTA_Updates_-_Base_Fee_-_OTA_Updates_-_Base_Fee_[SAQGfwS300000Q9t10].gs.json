@@ -1,15 +1,18 @@
 {
   "Object": "Product2",
   "Fields": {
+    "CurrencyIsoCode": "EUR",
     "Description": "",
     "DisplayUrl": "",
     "ExternalId": "",
     "Family": "",
     "GearsetDisplayName": "OTA Updates - Base Fee - OTA Updates - Base Fee",
     "GearsetExternalId__c": "SAQGfwS300000Q9t10",
-    "IsActive": "true",
+    "IsActive": "false",
     "Name": "OTA Updates - Base Fee",
+    "pkl_SolutionField__c": "",
     "ProductCode": "OTA Updates - Base Fee",
+    "Product_Image_ID__c": "",
     "QuantityUnitOfMeasure": "",
     "SBQQ__AssetAmendmentBehavior__c": "Default",
     "SBQQ__AssetConversion__c": "One per quote line",
@@ -64,16 +67,16 @@
     "SBQQ__SubscriptionBase__c": "List",
     "SBQQ__SubscriptionCategory__c": "",
     "SBQQ__SubscriptionPercent__c": "",
-    "SBQQ__SubscriptionPricing__c": "",
-    "SBQQ__SubscriptionTerm__c": "",
+    "SBQQ__SubscriptionPricing__c": "Fixed Price",
+    "SBQQ__SubscriptionTerm__c": "12.0",
     "SBQQ__SubscriptionType__c": "Renewable",
     "SBQQ__Taxable__c": "false",
     "SBQQ__TaxCode__c": "",
     "SBQQ__TermDiscountLevel__c": "",
     "SBQQ__UpgradeRatio__c": "",
     "StockKeepingUnit": "",
-    "txa_ShortDescription__c": "",
-    "txr_AdditionaInformation__c": ""
+    "txa_ShortDescription__c": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    "txr_AdditionaInformation__c": "<p><span style=\"font-size: 14px; font-family: sans-serif; color: rgb(32, 33, 34);\">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. </span><strong style=\"font-size: 14px; font-family: sans-serif; color: rgb(32, 33, 34);\">Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</strong></p><p><strong style=\"font-size: 14px; font-family: sans-serif; color: rgb(32, 33, 34);\">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</strong><span style=\"font-size: 14px; font-family: sans-serif; color: rgb(32, 33, 34);\"> Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</span></p>"
   },
   "References": [
     {

@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>ProductCode</fullName>
+    <description>Product code for this record. This read-only field references the value in the ProductCode field of the associated Product2 record.</description>
 </CustomField>

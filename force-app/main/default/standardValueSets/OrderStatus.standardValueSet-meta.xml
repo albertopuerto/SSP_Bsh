@@ -14,4 +14,16 @@
         <label>Activated</label>
         <groupingString>Activated</groupingString>
     </standardValue>
+    <standardValue>
+        <fullName>SentToSAP</fullName>
+        <default>false</default>
+        <label>Sent to SAP</label>
+        <groupingString>Activated</groupingString>
+    </standardValue>
+    <standardValue>
+        <fullName>OrderReceivedBySAP</fullName>
+        <default>false</default>
+        <label>Order Received by SAP</label>
+        <groupingString>Activated</groupingString>
+    </standardValue>
 </StandardValueSet>

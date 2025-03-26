@@ -1,7 +1,8 @@
 {
   "Object": "PricebookEntry",
   "Fields": {
-    "GearsetDisplayName": "Standard Price Book - AS_RTPRO-PC_on_ES820.1",
+    "CurrencyIsoCode": "EUR",
+    "GearsetDisplayName": "Standard Price Book - AS_RTPRO-PC_on_ES820.1 - EUR",
     "GearsetExternalId__c": "QAQFfe8200000Q9u10",
     "IsActive": "true",
     "UnitPrice": "24131.0",

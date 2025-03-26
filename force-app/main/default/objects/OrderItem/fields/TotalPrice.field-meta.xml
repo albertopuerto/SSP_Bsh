@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>TotalPrice</fullName>
+    <description>The total price of the order product, including tax, but not adjustments.
+
+Total Price = Product Subtotal + Product Subtotal Tax</description>
 </CustomField>

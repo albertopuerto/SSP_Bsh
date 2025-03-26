@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Type</fullName>
+    <description>Type of order. Entry is selected from a picklist of available values, which a Salesforce admin sets. Each picklist value can have up to 40 characters.</description>
+    <trackFeedHistory>false</trackFeedHistory>
     <trackHistory>true</trackHistory>
     <type>Picklist</type>
 </CustomField>

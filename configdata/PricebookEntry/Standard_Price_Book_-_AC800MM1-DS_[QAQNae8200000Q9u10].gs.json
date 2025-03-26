@@ -1,7 +1,8 @@
 {
   "Object": "PricebookEntry",
   "Fields": {
-    "GearsetDisplayName": "Standard Price Book - AC800MM1-DS",
+    "CurrencyIsoCode": "EUR",
+    "GearsetDisplayName": "Standard Price Book - AC800MM1-DS - EUR",
     "GearsetExternalId__c": "QAQNae8200000Q9u10",
     "IsActive": "true",
     "UnitPrice": "1035.0",

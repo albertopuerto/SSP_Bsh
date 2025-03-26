@@ -1,6 +1,7 @@
 {
   "Object": "SBQQ__ProductAction__c",
   "Fields": {
+    "CurrencyIsoCode": "EUR",
     "GearsetDisplayName": "ES_Drive_Recorder_RCS_SRV-ME52 - Driver Recorder together on the Quote 2",
     "GearsetExternalId__c": "GAQvmSC000000Q9g3a",
     "SBQQ__FilterField__c": "",

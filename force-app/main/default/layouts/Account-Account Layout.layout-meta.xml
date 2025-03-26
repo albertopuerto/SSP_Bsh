@@ -154,6 +154,10 @@
                 <behavior>Required</behavior>
                 <field>txt_INCOTerms2__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>ftxt_ShippingCondition__c</field>
+            </layoutItems>
         </layoutColumns>
         <style>TwoColumnsLeftToRight</style>
     </layoutSections>
@@ -307,8 +311,10 @@
         </quickActionListItems>
     </quickActionList>
     <relatedLists>
+        <customButtons>New</customButtons>
         <excludeButtons>MassChangeOwner</excludeButtons>
         <excludeButtons>New</excludeButtons>
+        <fields>chk_IsActive__c</fields>
         <fields>NAME</fields>
         <fields>pkl_OemOfMilitaryItems__c</fields>
         <fields>pkl_BelongToAnOemOfMilitaryItems__c</fields>
@@ -319,11 +325,24 @@
         <fields>pkl_ProjectsAndCollaborations__c</fields>
         <fields>CREATED_DATE</fields>
         <relatedList>ExportControlSheet__c.Account__c</relatedList>
+        <sortField>chk_IsActive__c</sortField>
+        <sortOrder>Desc</sortOrder>
     </relatedLists>
     <relatedLists>
         <fields>MEMBER_NAME</fields>
         <fields>TEAM_MEMBER_ROLE</fields>
         <relatedList>RelatedAccountSalesTeam</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <excludeButtons>MassChangeOwner</excludeButtons>
+        <excludeButtons>New</excludeButtons>
+        <fields>NAME</fields>
+        <fields>SBQQ__Status__c</fields>
+        <fields>ApprovalStatus__c</fields>
+        <fields>SBQQ__SalesRep__c</fields>
+        <fields>SBQQ__Opportunity2__c</fields>
+        <fields>SBQQ__ExpirationDate__c</fields>
+        <relatedList>SBQQ__Quote__c.SBQQ__Account__c</relatedList>
     </relatedLists>
     <relatedLists>
         <fields>CONTACT.FULL_NAME</fields>
@@ -341,17 +360,6 @@
         <fields>OPPORTUNITY.AMOUNT</fields>
         <fields>OPPORTUNITY.CLOSE_DATE</fields>
         <relatedList>RelatedOpportunityList</relatedList>
-    </relatedLists>
-    <relatedLists>
-        <excludeButtons>New</excludeButtons>
-        <fields>ORDERS.ORDER_NUMBER</fields>
-        <fields>ftxt_PONo__c</fields>
-        <fields>ORDERS.EFFECTIVE_DATE</fields>
-        <fields>ORDERS.END_DATE</fields>
-        <fields>ORDERS.TOTAL_AMOUNT</fields>
-        <fields>ORDERS.STATUS</fields>
-        <fields>SBQQ__Contracted__c</fields>
-        <relatedList>Order.lkp_PersonResponsible__c</relatedList>
     </relatedLists>
     <relatedLists>
         <excludeButtons>New</excludeButtons>
