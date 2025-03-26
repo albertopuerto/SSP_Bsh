@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PermissionSetGroup xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Groups all features System Administrator should have</description>
+    <hasActivationRequired>false</hasActivationRequired>
+    <label>System Administrator</label>
+    <permissionSets>Avoid_Mail_Notifications</permissionSets>
+    <status>Updated</status>
+</PermissionSetGroup>

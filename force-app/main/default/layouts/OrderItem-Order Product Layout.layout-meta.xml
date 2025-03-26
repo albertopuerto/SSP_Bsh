@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Layout xmlns="http://soap.sforce.com/2006/04/metadata">
+    <excludeButtons>OpenSlackRecordChannel</excludeButtons>
     <layoutSections>
         <customLabel>false</customLabel>
         <detailHeading>false</detailHeading>
@@ -37,6 +38,10 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>dat_SAPPlannedOrderItemDeliveryDate__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>txt_SAPExternalLineItemId__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
@@ -131,6 +136,12 @@
         <fields>pkl_TextObjectType__c</fields>
         <fields>txt_PlainLongText__c</fields>
         <relatedList>LineItemText__c.lkp_OrderItem__c</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <fields>pkl_ConditionCurrency__c</fields>
+        <fields>pkl_ConditionType__c</fields>
+        <fields>num_ConditionRateValue__c</fields>
+        <relatedList>PriceElement__c.lkp_OrderItem__c</relatedList>
     </relatedLists>
     <showEmailCheckbox>false</showEmailCheckbox>
     <showRunAssignmentRulesCheckbox>false</showRunAssignmentRulesCheckbox>

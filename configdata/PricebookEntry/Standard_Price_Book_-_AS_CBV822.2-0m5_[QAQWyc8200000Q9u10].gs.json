@@ -1,7 +1,8 @@
 {
   "Object": "PricebookEntry",
   "Fields": {
-    "GearsetDisplayName": "Standard Price Book - AS_CBV822.2-0m5",
+    "CurrencyIsoCode": "EUR",
+    "GearsetDisplayName": "Standard Price Book - AS_CBV822.2-0m5 - EUR",
     "GearsetExternalId__c": "QAQWyc8200000Q9u10",
     "IsActive": "true",
     "UnitPrice": "482.0",

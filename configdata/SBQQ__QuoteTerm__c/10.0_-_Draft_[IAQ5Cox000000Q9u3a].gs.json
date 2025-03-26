@@ -1,0 +1,77 @@
+{
+  "Object": "SBQQ__QuoteTerm__c",
+  "Fields": {
+    "CurrencyIsoCode": "EUR",
+    "GearsetDisplayName": "10.0 - Draft",
+    "GearsetExternalId__c": "IAQ5Cox000000Q9u3a",
+    "SBQQ__Active__c": "true",
+    "SBQQ__AdvancedCondition__c": "",
+    "SBQQ__Body__c": [
+      "<p>Please be informed that the above mentioned delivery time is subject to ETAS being supplied in time by its own suppliers. Therefore the indicated delivery times are non binding.</p>",
+      "<p>\u00A0</p>",
+      "<p>Quotations are based on current product information, technical data and related safety information available on the ETAS Website  or accompanying the quotation.</p>",
+      "<p>\u00A0</p>",
+      "<p>Further technical documentation for ETAS products as well as user manuals are available in electronic form on the internet at http://www.etas.com/manuals or via a software product CD or accompanying the delivery. For additional information or assistance, please contact your local sales office or customer support representative.</p>",
+      "<p>\u00A0</p>",
+      "<p>The quoted ETAS products fulfill standard quality management requirements. If requirements of specific safety standards (e.g. IEC 61508, incl. industry-specific derivatives like ISO 26262, ISO 13849 or ISO 25119) need to be fulfilled, these requirements must explicitly be defined and agreed upon between the customer and ETAS.</p>",
+      "<p>\u00A0</p>",
+      "<p>For information regarding ETAS` recycling program and ETAS` obligation to take back electrical and electronic equipment (resulting from EU-WEEE legislation) please contact ETAS at: www.etas.com/en/contact.php.</p>",
+      "<p>\u00A0</p>",
+      "<p>This quotation is valid for the agreed use which is defined in the Statement of Work or in the user manual of the products (www.etas.com/manuals) or in the product or service description and limited to business to business (B2B) transactions. Unless explicitly agreed upon in writing (e.g. Statement of Work), this quotation is valid for the target market where ETAS places the ETAS product.</p>",
+      "<p>\u00A0</p>",
+      "<p>The customer will indemnify ETAS for any claim asserted by a third party in connection with the use of the products beyond the released application (esp. regarding the agreed use and target markets). In addition, the customer is obliged to observe the deployment of the product in the field and will inform ETAS immediately about any security relevant incidents.</p>",
+      "<p>\u00A0</p>",
+      "<p>The sales prices of this quotation are stated in the applicable currency and do not include value added tax (VAT). For taxable deliveries or performances, the VAT at the appropriate VAT rate according to the applicable tax law will be charged to the customer.</p>",
+      "<p>\u00A0</p>",
+      "<p>Dates specified in the quotation assume that all information required for the execution of the contract is made available to ETAS and the customer&#39;s obligations have been performed in a timely manner.</p>",
+      "<p>\u00A0</p>",
+      "<p>ETAS reserves the right to complete any order by means of partial shipments, unless the customer order explicitly states &quot;complete shipment only&quot;.</p>",
+      "<p>\u00A0</p>",
+      "<p>ETAS reserves the right to revoke this quotation or to withdraw from the contract, as applicable, if the submission of this quotation or the fulfillment of the contract was no longer permissible due to legal and/or regulatory changes after the submission of the quotation or signature of the contract, as applicable.</p>",
+      "<p>\u00A0</p>",
+      "<p>In addition, for the delivery of Hardware and Software Products and the associated software maintenance the “General Terms and Conditions for the Supply of Hardware and Software Products” of ETAS apply in the version valid at the quotation date. As far as engineering, support and/or software maintenance services are contained, the “General Terms and Conditions for the Provision of Engineering Services, Support Services and Software Maintenance” of ETAS apply in the version valid at the quotation date and the Statement of Work associated with the quotation. For training services the “General Conditions for the Provision of Training Services” of ETAS apply in the version valid at the quotation date. For software as a service the “Terms and Conditions for Software as a Service” as well as the respective product-specific &quot;Specific Terms and Conditions for Software as a Service&quot; of ETAS apply in the version valid at the quotation date. For consulting and cyber security services the “Terms and Conditions for Consulting and Cyber Security Services” of ETAS apply in the version valid at the quotation date . In addition to these Terms and Conditions, the “Additional Quotation and Sales Conditions for Products regarding Open Source Software” of ETAS shall apply.</p>",
+      "<p>\u00A0</p>",
+      "<p>All General Terms and Conditions are available on the ETAS internet pages (Path: Company / Contact / USA / Terms and Conditions // Link: www.etas.com/GTC-ETASInc) or are provided with the quotation or upon request.</p>",
+      "<p>\u00A0</p>",
+      "<p>In the event of any conflict between the provisions of this quotation, the statement of work and/or the provisions of the aforementioned General Terms and Conditions, the provisions of this quotation shall prevail over the provisions of the statement of work and the provisions of the statement of work and/or this quotation shall prevail over the aforementioned General Terms and Conditions.</p>",
+      "<p>\u00A0</p>",
+      "<p>\u00A0</p>",
+      "<p>If a limitation of liability has been agreed, the customer shall refer to it in its purchase order.</p>",
+      "<p>\u00A0</p>",
+      "<p>\u00A0</p>",
+      "<p>This quotation is legally valid without signature.</p>",
+      "<p>\u00A0</p>",
+      "<p>\u00A0</p>",
+      "<p>\u00A0</p>",
+      "<p>\u00A0</p>",
+      "<p>ETAS Inc. USA </p>"
+    ],
+    "SBQQ__ConditionsMet__c": "All",
+    "SBQQ__Locked__c": "false",
+    "SBQQ__PrintOrder__c": "10.0",
+    "SBQQ__Status__c": "Draft"
+  },
+  "References": [
+    {
+      "Name": "SBQQ__ParentTerm__r",
+      "ReferencedObject": "SBQQ__QuoteTerm__c",
+      "ReferencedFields": {
+        "GearsetExternalId__c": ""
+      }
+    },
+    {
+      "Name": "SBQQ__StandardTerm__r",
+      "ReferencedObject": "SBQQ__QuoteTerm__c",
+      "ReferencedFields": {
+        "GearsetExternalId__c": ""
+      }
+    },
+    {
+      "Name": "SBQQ__TemplateContent__r",
+      "ReferencedObject": "SBQQ__TemplateContent__c",
+      "ReferencedFields": {
+        "GearsetExternalId__c": ""
+      }
+    }
+  ]
+}

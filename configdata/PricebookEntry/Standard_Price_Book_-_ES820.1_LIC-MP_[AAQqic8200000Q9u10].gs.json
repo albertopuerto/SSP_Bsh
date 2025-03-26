@@ -1,7 +1,8 @@
 {
   "Object": "PricebookEntry",
   "Fields": {
-    "GearsetDisplayName": "Standard Price Book - ES820.1_LIC-MP",
+    "CurrencyIsoCode": "EUR",
+    "GearsetDisplayName": "Standard Price Book - ES820.1_LIC-MP - EUR",
     "GearsetExternalId__c": "AAQqic8200000Q9u10",
     "IsActive": "true",
     "UnitPrice": "1.0",

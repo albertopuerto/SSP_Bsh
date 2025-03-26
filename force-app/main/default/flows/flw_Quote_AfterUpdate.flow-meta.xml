@@ -25,7 +25,6 @@
         </inputParameters>
         <nameSegment>chatterPost</nameSegment>
         <storeOutputAutomatically>true</storeOutputAutomatically>
-        <versionSegment>1</versionSegment>
     </actionCalls>
     <apiVersion>60.0</apiVersion>
     <assignments>
@@ -202,7 +201,7 @@
         <name>get_ParentOpportunity</name>
         <label>Get Parent Opportunity</label>
         <locationX>50</locationX>
-        <locationY>1271</locationY>
+        <locationY>1379</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Invoke_Update_Opportunity_Subflow</targetReference>
@@ -226,7 +225,7 @@
         <locationX>50</locationX>
         <locationY>1163</locationY>
         <connector>
-            <targetReference>get_ParentOpportunity</targetReference>
+            <targetReference>Create_Price_Elements</targetReference>
         </connector>
         <inputAssignments>
             <field>SBQQ__Ordered__c</field>
@@ -263,11 +262,28 @@
     </start>
     <status>Active</status>
     <subflows>
+        <name>Create_Price_Elements</name>
+        <label>Create Price Elements</label>
+        <locationX>50</locationX>
+        <locationY>1271</locationY>
+        <connector>
+            <targetReference>get_ParentOpportunity</targetReference>
+        </connector>
+        <flowName>flw_Order_GeneratePricingElements</flowName>
+        <inputAssignments>
+            <name>quoteId</name>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </inputAssignments>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </subflows>
+    <subflows>
         <description>Launches Subflow that performs updates on the related parent Opportunity.</description>
         <name>Invoke_Update_Opportunity_Subflow</name>
         <label>Invoke Update Opportunity Subflow</label>
         <locationX>50</locationX>
-        <locationY>1379</locationY>
+        <locationY>1487</locationY>
         <flowName>flw_Quote_AfterUpdate_UpdateOppy</flowName>
         <inputAssignments>
             <name>obj_ParentOpportunity</name>

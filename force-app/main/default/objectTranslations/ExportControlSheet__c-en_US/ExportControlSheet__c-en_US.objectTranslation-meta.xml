@@ -8,18 +8,6 @@
         <plural>true</plural>
         <value>Export Control Sheets</value>
     </caseValues>
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     <layouts>
         <layout>Export Control Sheet Layout</layout>
         <sections>
@@ -27,5 +15,22 @@
             <section>Custom Links</section>
         </sections>
     </layouts>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <startsWith>Consonant</startsWith>
+    <webLinks>
+        <label><!-- New --></label>
+        <name>New</name>
+    </webLinks>
 </CustomObjectTranslation>

@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>pkl_INCOTerms1__c</fullName>
+    <description>Defines the terms of sales and the passing of risks. Needed for the interface to ERP.</description>
     <externalId>false</externalId>
     <inlineHelpText>Defines the terms of sales and the passing of risks. Needed for the interface to ERP.Defines the terms of sales and the passing of risks. Needed for the interface to ERP.</inlineHelpText>
-    <label>INCO Terms 1</label>
+    <label>INCOTERM</label>
     <required>false</required>
     <trackFeedHistory>false</trackFeedHistory>
     <trackHistory>false</trackHistory>

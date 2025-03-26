@@ -29,7 +29,7 @@
       "\t\t</tr>",
       "\t\t<tr style=\"width:100%;\">",
       "\t\t\t<td left=\"\" style=\"width:100%;\">",
-      "\t\t\t<p style=\"width:100%; text-align: left; float:left\">Price Information:{!quote.Name}, {!quote.ftxt_OpportunityName__c}, Date:{!quote.fdat_CreateDate__c}</p>",
+      "\t\t\t<p style=\"width:100%; text-align: left; float:left\">Price Information:{!quote.Name}, {!quote.ftxt_OpportunityName__c}, Date:&#160; {!quote.fdat_CreateDate__c}</p>",
       "\t\t\t</td>",
       "\t\t</tr>",
       "\t</tbody>",

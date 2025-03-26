@@ -7,7 +7,7 @@
     "Name": "Between 100k and 250k EUR",
     "sbaa__Active__c": "true",
     "sbaa__AdvancedCondition__c": "",
-    "sbaa__ApprovalRecipients__c": "",
+    "sbaa__ApprovalRecipients__c": "Initial Submitter",
     "sbaa__ApprovalStep__c": "1.0",
     "sbaa__ApproverField__c": "",
     "sbaa__ConditionsMet__c": "All",
@@ -17,7 +17,7 @@
     "sbaa__ExcludedStatuses__c": "Approved",
     "sbaa__OverrideField__c": "",
     "sbaa__Parallel__c": "false",
-    "sbaa__RejectionRecipients__c": "",
+    "sbaa__RejectionRecipients__c": "Initial Submitter",
     "sbaa__RequireExplicitApproval__c": "false",
     "sbaa__SmartApprovalIgnoresConditionsMet__c": "false",
     "sbaa__TargetObject__c": "SBQQ__Quote__c"
@@ -34,7 +34,7 @@
       "Name": "sbaa__ApprovalTemplate__r",
       "ReferencedObject": "sbaa__EmailTemplate__c",
       "ReferencedFields": {
-        "GearsetExternalId__c": ""
+        "GearsetExternalId__c": "KAUbM3V000000Q9U4a"
       }
     },
     {
@@ -48,21 +48,21 @@
       "Name": "sbaa__RecallTemplate__r",
       "ReferencedObject": "sbaa__EmailTemplate__c",
       "ReferencedFields": {
-        "GearsetExternalId__c": ""
+        "GearsetExternalId__c": "KAUpP3V000000Q9U4a"
       }
     },
     {
       "Name": "sbaa__RejectionTemplate__r",
       "ReferencedObject": "sbaa__EmailTemplate__c",
       "ReferencedFields": {
-        "GearsetExternalId__c": ""
+        "GearsetExternalId__c": "0AUDO3V000000Q9U4a"
       }
     },
     {
       "Name": "sbaa__RequestTemplate__r",
       "ReferencedObject": "sbaa__EmailTemplate__c",
       "ReferencedFields": {
-        "GearsetExternalId__c": ""
+        "GearsetExternalId__c": "0AUNJ3V000000Q9U4a"
       }
     }
   ]

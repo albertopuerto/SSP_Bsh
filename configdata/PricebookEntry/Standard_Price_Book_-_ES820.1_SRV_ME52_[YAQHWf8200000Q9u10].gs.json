@@ -1,7 +1,8 @@
 {
   "Object": "PricebookEntry",
   "Fields": {
-    "GearsetDisplayName": "Standard Price Book - ES820.1_SRV_ME52",
+    "CurrencyIsoCode": "EUR",
+    "GearsetDisplayName": "Standard Price Book - ES820.1_SRV_ME52 - EUR",
     "GearsetExternalId__c": "YAQHWf8200000Q9u10",
     "IsActive": "true",
     "UnitPrice": "1260.0",

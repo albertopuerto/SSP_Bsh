@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Website</fullName>
-    <trackFeedHistory>false</trackFeedHistory>
+    <description>URL of company’s website, for example, www.acme.com. Up to 255 characters are allowed in this field; only the first 50 are displayed.</description>
+    <trackFeedHistory>true</trackFeedHistory>
+    <trackHistory>true</trackHistory>
 </CustomField>

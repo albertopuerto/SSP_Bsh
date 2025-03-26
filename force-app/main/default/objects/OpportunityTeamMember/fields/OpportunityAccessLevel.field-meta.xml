@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>OpportunityAccessLevel</fullName>
+    <description>A team member’s level of access to an opportunity. The access level can be Read/Write or Read Only, but it can’t be less than the default opportunity sharing access.</description>
 </CustomField>

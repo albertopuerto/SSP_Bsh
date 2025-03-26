@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>txt_TradingParnerNo__c</fullName>
+    <description>Use only for Bosch Account</description>
     <externalId>false</externalId>
     <inlineHelpText>Use only for Bosch Account</inlineHelpText>
     <label>Trading Partner ID/PG No</label>

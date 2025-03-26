@@ -72,6 +72,16 @@
                 <default>false</default>
                 <label>txt_INCOTerms2__c</label>
             </value>
+            <value>
+                <fullName>Target_Price__c</fullName>
+                <default>false</default>
+                <label>Target_Price__c</label>
+            </value>
+            <value>
+                <fullName>Bottom_Line_Price__c</fullName>
+                <default>false</default>
+                <label>Bottom_Line_Price__c</label>
+            </value>
         </valueSetDefinition>
         <valueSettings>
             <controllingFieldValue>Quote</controllingFieldValue>
@@ -114,6 +124,14 @@
         <valueSettings>
             <controllingFieldValue>Quote Line</controllingFieldValue>
             <valueName>txt_INCOTerms2__c</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Quote Line</controllingFieldValue>
+            <valueName>Target_Price__c</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Quote Line</controllingFieldValue>
+            <valueName>Bottom_Line_Price__c</valueName>
         </valueSettings>
         <valueSettings>
             <controllingFieldValue>Quote Line Pricing Guidance</controllingFieldValue>

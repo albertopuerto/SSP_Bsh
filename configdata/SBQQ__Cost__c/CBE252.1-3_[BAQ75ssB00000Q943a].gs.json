@@ -1,0 +1,19 @@
+{
+  "Object": "SBQQ__Cost__c",
+  "Fields": {
+    "CurrencyIsoCode": "EUR",
+    "GearsetDisplayName": "CBE252.1-3",
+    "GearsetExternalId__c": "BAQ75ssB00000Q943a",
+    "SBQQ__Active__c": "true",
+    "SBQQ__UnitCost__c": "50.0"
+  },
+  "References": [
+    {
+      "Name": "SBQQ__Product__r",
+      "ReferencedObject": "Product2",
+      "ReferencedFields": {
+        "GearsetExternalId__c": "MAQvSH2300000Q9t10"
+      }
+    }
+  ]
+}

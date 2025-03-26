@@ -77,6 +77,16 @@
             <fieldInstance>
                 <fieldInstanceProperties>
                     <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.Type</fieldItem>
+                <identifier>RecordTypeField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
                     <value>required</value>
                 </fieldInstanceProperties>
                 <fieldItem>Record.Role__c</fieldItem>
@@ -135,6 +145,10 @@
         </itemInstances>
         <itemInstances>
             <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
                 <fieldItem>Record.txt_AthenaUUID__c</fieldItem>
                 <identifier>Recordtxt_AthenaUUID__cField</identifier>
             </fieldInstance>
@@ -399,6 +413,16 @@
                 <identifier>Recordtxt_INCOTerms2_cField</identifier>
             </fieldInstance>
         </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.ftxt_ShippingCondition__c</fieldItem>
+                <identifier>Recordftxt_ShippingCondition_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
         <name>Facet-3113b67e-e0dd-4dc0-8ba8-1e0113277227</name>
         <type>Facet</type>
     </flexiPageRegions>
@@ -441,16 +465,6 @@
         <type>Facet</type>
     </flexiPageRegions>
     <flexiPageRegions>
-        <itemInstances>
-            <fieldInstance>
-                <fieldInstanceProperties>
-                    <name>uiBehavior</name>
-                    <value>none</value>
-                </fieldInstanceProperties>
-                <fieldItem>Record.ShippingAddress</fieldItem>
-                <identifier>RecordShippingAddressField</identifier>
-            </fieldInstance>
-        </itemInstances>
         <name>Facet-ea701c6a-ab76-42e7-b8cc-e83a8d106bda</name>
         <type>Facet</type>
     </flexiPageRegions>

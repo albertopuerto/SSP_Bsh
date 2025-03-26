@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Personal_Text_on_Order__c</fullName>
+    <description>Text on Header Level</description>
     <externalId>false</externalId>
     <inlineHelpText>Text on Header Level</inlineHelpText>
     <label>Personal Text on Order</label>
     <length>200</length>
     <required>false</required>
+    <trackFeedHistory>true</trackFeedHistory>
     <trackHistory>false</trackHistory>
     <type>Text</type>
     <unique>false</unique>
