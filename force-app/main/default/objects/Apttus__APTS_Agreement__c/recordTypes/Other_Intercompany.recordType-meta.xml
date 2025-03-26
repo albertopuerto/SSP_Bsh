@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <RecordType xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>X2nd_Processor_EPA_GPA</fullName>
+    <fullName>Other_Intercompany</fullName>
     <active>true</active>
-    <description>2nd Processor only and managed by another Bosch OE</description>
-    <label>2nd-Processor EPA/GPA</label>
+    <label>Other Intercompany</label>
     <picklistValues>
         <picklist>APTS_Country_Controller__c</picklist>
         <values>
@@ -1114,7 +1113,7 @@
         <picklist>APTS_Type_of_Paper__c</picklist>
         <values>
             <fullName>Own Paper</fullName>
-            <default>false</default>
+            <default>true</default>
         </values>
         <values>
             <fullName>Third Party Paper</fullName>
@@ -1224,7 +1223,7 @@
     <picklistValues>
         <picklist>Apttus__Agreement_Category__c</picklist>
         <values>
-            <fullName>Privacy</fullName>
+            <fullName>Intercompany</fullName>
             <default>true</default>
         </values>
     </picklistValues>
@@ -1386,7 +1385,7 @@
         </values>
         <values>
             <fullName>In Reconciliation</fullName>
-            <default>false</default>
+            <default>true</default>
         </values>
         <values>
             <fullName>In Renewal</fullName>
@@ -1468,6 +1467,66 @@
         <picklist>Apttus__Subtype__c</picklist>
         <values>
             <fullName>Default</fullName>
+            <default>true</default>
+        </values>
+        <values>
+            <fullName>Development and Application Service Agreement</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Framework Software Development Agreement with Indvidual orders</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Joint Software Development and Application Service Agreement</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>NDA</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Reseller Framework Agreement for digital products</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Reseller Framework Agreement for hardware business</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Service Agreement for intercompany use cases MSA %28Master Service Agreement%29</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Software License Agreement for Distrubtion</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Software License Agreement for Internal use</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Software License Distribution Agreement</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Software License Framework Agreement for Distribution of Simulation Assets</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Software License Framework Agreement for Internal use of Simulation Assets</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Software as a Service Internal-Use Agreement</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Software as a Service Sub-Provider Agreement</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Technology Transfer Agreement</fullName>
             <default>false</default>
         </values>
     </picklistValues>

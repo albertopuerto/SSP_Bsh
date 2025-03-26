@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <RecordType xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>X2nd_Processor_EPA_GPA</fullName>
+    <fullName>IC_Technology_Transfer</fullName>
     <active>true</active>
-    <description>2nd Processor only and managed by another Bosch OE</description>
-    <label>2nd-Processor EPA/GPA</label>
+    <description>Intercompany Technology Transfer</description>
+    <label>IC Technology Transfer</label>
     <picklistValues>
         <picklist>APTS_Country_Controller__c</picklist>
         <values>
@@ -1114,7 +1114,7 @@
         <picklist>APTS_Type_of_Paper__c</picklist>
         <values>
             <fullName>Own Paper</fullName>
-            <default>false</default>
+            <default>true</default>
         </values>
         <values>
             <fullName>Third Party Paper</fullName>
@@ -1224,7 +1224,7 @@
     <picklistValues>
         <picklist>Apttus__Agreement_Category__c</picklist>
         <values>
-            <fullName>Privacy</fullName>
+            <fullName>Intercompany</fullName>
             <default>true</default>
         </values>
     </picklistValues>
@@ -1386,7 +1386,7 @@
         </values>
         <values>
             <fullName>In Reconciliation</fullName>
-            <default>false</default>
+            <default>true</default>
         </values>
         <values>
             <fullName>In Renewal</fullName>
@@ -1467,8 +1467,8 @@
     <picklistValues>
         <picklist>Apttus__Subtype__c</picklist>
         <values>
-            <fullName>Default</fullName>
-            <default>false</default>
+            <fullName>Technology Transfer Agreement</fullName>
+            <default>true</default>
         </values>
     </picklistValues>
 </RecordType>

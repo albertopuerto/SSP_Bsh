@@ -1,6 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <SharingRules xmlns="http://soap.sforce.com/2006/04/metadata">
     <sharingCriteriaRules>
+        <fullName>Controlling_view</fullName>
+        <accessLevel>Edit</accessLevel>
+        <description>ETAS CTG can access only the following record types: IC Software License Agreement; IC Deveopment and Application; IC Technology Transfer; IC Reseller Framework Agreement ; Intercompany NDA ; IC SaaS; IC Services; Other Intercompany</description>
+        <label>Controlling_view</label>
+        <sharedTo>
+            <group>Finance_Controlling_Users</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>RecordTypeId</field>
+            <operation>equals</operation>
+            <value>IC Technology Transfer,IC SaaS,IC Software License Agreement,Other Intercompany,IC Reseller Framework Agreement,IC Services,IC Development and Application,Intercompany NDA</value>
+        </criteriaItems>
+        <includeRecordsOwnedByAll>true</includeRecordsOwnedByAll>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
         <fullName>DSO_View</fullName>
         <accessLevel>Edit</accessLevel>
         <label>DSO View</label>

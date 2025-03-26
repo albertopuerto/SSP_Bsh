@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <RecordType xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>X2nd_Processor_EPA_GPA</fullName>
+    <fullName>IC_Software_License_Agreement</fullName>
     <active>true</active>
-    <description>2nd Processor only and managed by another Bosch OE</description>
-    <label>2nd-Processor EPA/GPA</label>
+    <description>Intercompany Software License Agreement</description>
+    <label>IC Software License Agreement</label>
     <picklistValues>
         <picklist>APTS_Country_Controller__c</picklist>
         <values>
@@ -1114,7 +1114,7 @@
         <picklist>APTS_Type_of_Paper__c</picklist>
         <values>
             <fullName>Own Paper</fullName>
-            <default>false</default>
+            <default>true</default>
         </values>
         <values>
             <fullName>Third Party Paper</fullName>
@@ -1224,7 +1224,7 @@
     <picklistValues>
         <picklist>Apttus__Agreement_Category__c</picklist>
         <values>
-            <fullName>Privacy</fullName>
+            <fullName>Intercompany</fullName>
             <default>true</default>
         </values>
     </picklistValues>
@@ -1386,7 +1386,7 @@
         </values>
         <values>
             <fullName>In Reconciliation</fullName>
-            <default>false</default>
+            <default>true</default>
         </values>
         <values>
             <fullName>In Renewal</fullName>
@@ -1467,7 +1467,23 @@
     <picklistValues>
         <picklist>Apttus__Subtype__c</picklist>
         <values>
-            <fullName>Default</fullName>
+            <fullName>Software License Agreement for Distrubtion</fullName>
+            <default>true</default>
+        </values>
+        <values>
+            <fullName>Software License Agreement for Internal use</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Software License Distribution Agreement</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Software License Framework Agreement for Distribution of Simulation Assets</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Software License Framework Agreement for Internal use of Simulation Assets</fullName>
             <default>false</default>
         </values>
     </picklistValues>

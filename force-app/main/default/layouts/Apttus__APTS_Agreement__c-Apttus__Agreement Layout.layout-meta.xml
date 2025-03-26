@@ -63,6 +63,10 @@
                 <behavior>Edit</behavior>
                 <field>APTS_Internal_Legal_Entity__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>APTS_PLAS_Nr__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>

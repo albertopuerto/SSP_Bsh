@@ -43,6 +43,11 @@
                 <default>false</default>
                 <label>Privacy</label>
             </value>
+            <value>
+                <fullName>Intercompany</fullName>
+                <default>false</default>
+                <label>Intercompany</label>
+            </value>
         </valueSetDefinition>
     </valueSet>
 </CustomField>
