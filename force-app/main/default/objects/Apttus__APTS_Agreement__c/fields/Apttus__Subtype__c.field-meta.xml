@@ -18,6 +18,81 @@
                 <default>false</default>
                 <label>Default</label>
             </value>
+            <value>
+                <fullName>Software License Agreement for Distrubtion</fullName>
+                <default>false</default>
+                <label>Software License Agreement for Distrubtion</label>
+            </value>
+            <value>
+                <fullName>Software License Agreement for Internal use</fullName>
+                <default>false</default>
+                <label>Software License Agreement for Internal use</label>
+            </value>
+            <value>
+                <fullName>Software License Distribution Agreement</fullName>
+                <default>false</default>
+                <label>Software License Distribution Agreement</label>
+            </value>
+            <value>
+                <fullName>Software License Framework Agreement for Distribution of Simulation Assets</fullName>
+                <default>false</default>
+                <label>Software License Framework Agreement for Distribution of Simulation Assets</label>
+            </value>
+            <value>
+                <fullName>Software License Framework Agreement for Internal use of Simulation Assets</fullName>
+                <default>false</default>
+                <label>Software License Framework Agreement for Internal use of Simulation Assets</label>
+            </value>
+            <value>
+                <fullName>Development and Application Service Agreement</fullName>
+                <default>false</default>
+                <label>Development and Application Service Agreement</label>
+            </value>
+            <value>
+                <fullName>Framework Software Development Agreement with Indvidual orders</fullName>
+                <default>false</default>
+                <label>Framework Software Development Agreement with Indvidual orders</label>
+            </value>
+            <value>
+                <fullName>Joint Software Development and Application Service Agreement</fullName>
+                <default>false</default>
+                <label>Joint Software Development and Application Service Agreement</label>
+            </value>
+            <value>
+                <fullName>Technology Transfer Agreement</fullName>
+                <default>false</default>
+                <label>Technology Transfer Agreement</label>
+            </value>
+            <value>
+                <fullName>Reseller Framework Agreement for digital products</fullName>
+                <default>false</default>
+                <label>Reseller Framework Agreement for digital products</label>
+            </value>
+            <value>
+                <fullName>Reseller Framework Agreement for hardware business</fullName>
+                <default>false</default>
+                <label>Reseller Framework Agreement for hardware business</label>
+            </value>
+            <value>
+                <fullName>NDA</fullName>
+                <default>false</default>
+                <label>NDA</label>
+            </value>
+            <value>
+                <fullName>Software as a Service Sub-Provider Agreement</fullName>
+                <default>false</default>
+                <label>Software as a Service Sub-Provider Agreement</label>
+            </value>
+            <value>
+                <fullName>Software as a Service Internal-Use Agreement</fullName>
+                <default>false</default>
+                <label>Software as a Service Internal-Use Agreement</label>
+            </value>
+            <value>
+                <fullName>Service Agreement for intercompany use cases MSA (Master Service Agreement)</fullName>
+                <default>false</default>
+                <label>Service Agreement for intercompany use cases MSA (Master Service Agreement)</label>
+            </value>
         </valueSetDefinition>
     </valueSet>
 </CustomField>
