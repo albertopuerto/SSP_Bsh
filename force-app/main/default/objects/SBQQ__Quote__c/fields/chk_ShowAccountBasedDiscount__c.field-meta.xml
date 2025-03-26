@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>chk_ShowAccountBasedDiscount__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>Allows users to show the account based discount on the quote document</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Select to show the account based discount on the quote document</inlineHelpText>
+    <label>Show Account Based Discount</label>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>
