@@ -1,0 +1,36 @@
+<messaging:emailTemplate subject="Quote for Approval" recipientType="User" relatedToType="sbaa__Approval__c">
+<messaging:htmlEmailBody >
+<p style="color:white"><apex:outputText value="{!relatedTo.ID}"/></p>
+<div class="email-content">
+            <p>Dear <strong>{!relatedTo.sbaa__AssignedTo__r.Name}</strong>,</p>
+            <p>We need to inform you that the quote <strong><a href="{!LEFT($Api.Enterprise_Server_URL_620,FIND("/services", $Api.Enterprise_Server_URL_620))}/lightning/r/SBQQ__Quote__c/{!relatedTo.Quote__r.Id}/view">{!relatedTo.Quote__r.Name}</a></strong> needs your approval!</p>
+        </div>
+ <table border="1" bordercolor="#000000">  
+        <tr style = "background-color:lightskyblue;">
+            <th>Account</th>
+            <th>Opportunity</th>
+            <th>Primary Contact</th>
+            <th>Type</th>
+            <th>INCO Terms</th>
+            <th>Payment Terms</th>
+            <th>Net Amount</th>
+            <th>Discount</th>
+        </tr>
+            <tr style= "background-color:white;">
+                <td>{!relatedTo.Quote__r.SBQQ__Account__r.Name}</td>
+                <td>{!relatedTo.Quote__r.SBQQ__Opportunity2__r.Name}</td>
+                <td>{!relatedTo.Quote__r.SBQQ__PrimaryContact__r.Name}</td>
+                <td>{!relatedTo.Quote__r.SBQQ__Type__c}</td>
+                <td>{!relatedTo.Quote__r.pkl_INCOTerms1__c}</td>
+                <td>{!relatedTo.Quote__r.pkl_PaymentTerms__c}</td>
+                <td>{!relatedTo.Quote__r.SBQQ__NetAmount__c} {!relatedTo.Quote__r.CurrencyIsoCode}</td>
+                <td>{!relatedTo.Quote__r.SBQQ__AdditionalDiscountAmount__c} {!relatedTo.Quote__r.CurrencyIsoCode}</td>
+             </tr>
+     </table>
+   <br />     
+    <c:QuoteLineEmail quoteId="{!relatedTo.Quote__r.Id}"/>
+    <p>
+    To approve or reject this request, you may reply to this message with one of the words: <strong>“Approve”, “Approved”, “Yes”</strong>, or <strong>“Reject”, “Rejected”, “No”</strong> on the first line of the email. You may comment on your response on the second line.
+    </p>
+</messaging:htmlEmailBody>
+</messaging:emailTemplate>
