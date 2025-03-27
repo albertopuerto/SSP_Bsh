@@ -1314,14 +1314,6 @@
     <picklistValues>
         <picklist>Apttus__Status_Category__c</picklist>
         <values>
-            <fullName>Amended</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>Cancelled</fullName>
-            <default>false</default>
-        </values>
-        <values>
             <fullName>Expired</fullName>
             <default>false</default>
         </values>
@@ -1330,23 +1322,11 @@
             <default>false</default>
         </values>
         <values>
-            <fullName>In Authoring</fullName>
-            <default>false</default>
-        </values>
-        <values>
             <fullName>In Effect</fullName>
             <default>false</default>
         </values>
         <values>
             <fullName>In Filing</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>In Signatures</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>Request</fullName>
             <default>true</default>
         </values>
         <values>
@@ -1406,7 +1386,7 @@
         </values>
         <values>
             <fullName>In Reconciliation</fullName>
-            <default>false</default>
+            <default>true</default>
         </values>
         <values>
             <fullName>In Renewal</fullName>
@@ -1446,7 +1426,7 @@
         </values>
         <values>
             <fullName>Request</fullName>
-            <default>true</default>
+            <default>false</default>
         </values>
         <values>
             <fullName>Request Approval</fullName>

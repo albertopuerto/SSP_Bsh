@@ -331,6 +331,7 @@
     <relatedLists>
         <excludeButtons>MassChangeOwner</excludeButtons>
         <excludeButtons>New</excludeButtons>
+        <fields>NAME</fields>
         <fields>SBQQ__Status__c</fields>
         <fields>ApprovalStatus__c</fields>
         <fields>SBQQ__SalesRep__c</fields>

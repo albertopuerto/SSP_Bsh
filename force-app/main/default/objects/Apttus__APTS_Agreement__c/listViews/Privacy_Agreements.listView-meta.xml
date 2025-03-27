@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Privacy_Agreements</fullName>
+    <columns>Apttus__FF_Agreement_Number__c</columns>
+    <columns>NAME</columns>
+    <columns>APTS_ISP_Office_contact_1__c</columns>
+    <columns>APTS_Controller__c</columns>
+    <columns>APTS_Controller_old__c</columns>
+    <columns>APTS_Processor__c</columns>
+    <columns>APTS_Processor_old__c</columns>
+    <columns>Apttus__Contract_Start_Date__c</columns>
+    <columns>Apttus__Status__c</columns>
+    <columns>Apttus__Status_Category__c</columns>
+    <filterScope>Everything</filterScope>
+    <label>Privacy Agreements</label>
+    <sharedTo>
+        <group>DSO_User_Group</group>
+    </sharedTo>
+</ListView>
