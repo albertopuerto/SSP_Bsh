@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>APTS_PLAS_Nr__c</fullName>
+    <description>PLAS-Number is provided of C/IPP for the purpose of ETAS CTG</description>
+    <externalId>true</externalId>
+    <inlineHelpText>PLAS-Number is provided of C/IPP</inlineHelpText>
+    <label>PLAS-Nr</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>
