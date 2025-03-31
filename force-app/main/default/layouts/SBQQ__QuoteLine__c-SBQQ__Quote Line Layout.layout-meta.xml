@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Layout xmlns="http://soap.sforce.com/2006/04/metadata">
     <customButtons>SBQQ__CalculateQuoteFromQuoteLine</customButtons>
+    <excludeButtons>OpenSlackRecordChannel</excludeButtons>
     <excludeButtons>Submit</excludeButtons>
     <layoutSections>
         <customLabel>true</customLabel>
@@ -269,6 +270,10 @@
             <layoutItems>
                 <behavior>Readonly</behavior>
                 <field>SBQQ__OptionDiscount__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>fcur_AccountBasedDiscountAmount__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>

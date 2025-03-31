@@ -1,0 +1,52 @@
+{
+  "Object": "SBQQ__LineColumn__c",
+  "Fields": {
+    "CurrencyIsoCode": "EUR",
+    "GearsetDisplayName": "Code - SBQQ__ProductCode__c",
+    "GearsetExternalId__c": "AAMiixc200000gFP3a",
+    "Name": "Code",
+    "SBQQ__Alignment__c": "Left",
+    "SBQQ__BottomMargin__c": "3.0",
+    "SBQQ__ColumnHeadingField__c": "",
+    "SBQQ__ConditionalPrintField__c": "",
+    "SBQQ__DisplayOrder__c": "20.0",
+    "SBQQ__DynamicNumberScale__c": "false",
+    "SBQQ__FieldName__c": "SBQQ__ProductCode__c",
+    "SBQQ__FontFamily__c": "",
+    "SBQQ__FontSize__c": "",
+    "SBQQ__FontWeight__c": "Normal",
+    "SBQQ__HeadingTextColor__c": "",
+    "SBQQ__HideOnComponents__c": "false",
+    "SBQQ__LeftMargin__c": "3.0",
+    "SBQQ__RightMargin__c": "3.0",
+    "SBQQ__RollUp__c": "false",
+    "SBQQ__SeparateLine__c": "false",
+    "SBQQ__SubGroupSummaryLabel__c": "",
+    "SBQQ__SummaryFontWeight__c": "",
+    "SBQQ__SummaryFunction__c": "",
+    "SBQQ__SummaryLabel__c": "",
+    "SBQQ__SummaryLevel__c": "All",
+    "SBQQ__SummaryShadingColor__c": "",
+    "SBQQ__SummaryTextColor__c": "",
+    "SBQQ__TextColor__c": "",
+    "SBQQ__TopMargin__c": "3.0",
+    "SBQQ__WidthDiscardedWhenHidden__c": "false",
+    "SBQQ__Width__c": "15.0"
+  },
+  "References": [
+    {
+      "Name": "SBQQ__Section__r",
+      "ReferencedObject": "SBQQ__TemplateSection__c",
+      "ReferencedFields": {
+        "GearsetExternalId__c": "QAMQffi000000gFB4a"
+      }
+    },
+    {
+      "Name": "SBQQ__Template__r",
+      "ReferencedObject": "SBQQ__QuoteTemplate__c",
+      "ReferencedFields": {
+        "GearsetExternalId__c": "SAIJ5aL000000gFt3a"
+      }
+    }
+  ]
+}
