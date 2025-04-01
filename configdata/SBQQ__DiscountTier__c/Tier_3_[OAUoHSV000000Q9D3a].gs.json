@@ -1,0 +1,24 @@
+{
+  "Object": "SBQQ__DiscountTier__c",
+  "Fields": {
+    "CurrencyIsoCode": "USD",
+    "GearsetDisplayName": "Tier 3",
+    "GearsetExternalId__c": "OAUoHSV000000Q9D3a",
+    "Name": "Tier 3",
+    "SBQQ__DiscountAmount__c": "1500.0",
+    "SBQQ__Discount__c": "",
+    "SBQQ__LowerBound__c": "100.0",
+    "SBQQ__Number__c": "3.0",
+    "SBQQ__Price__c": "",
+    "SBQQ__UpperBound__c": "150.0"
+  },
+  "References": [
+    {
+      "Name": "SBQQ__Schedule__r",
+      "ReferencedObject": "SBQQ__DiscountSchedule__c",
+      "ReferencedFields": {
+        "GearsetExternalId__c": "UAULkWi800000Q9C3a"
+      }
+    }
+  ]
+}
