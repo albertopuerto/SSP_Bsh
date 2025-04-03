@@ -7,10 +7,10 @@
     "Name": "Tier 1",
     "SBQQ__DiscountAmount__c": "0.0",
     "SBQQ__Discount__c": "",
-    "SBQQ__LowerBound__c": "50.0",
+    "SBQQ__LowerBound__c": "51.0",
     "SBQQ__Number__c": "1.0",
     "SBQQ__Price__c": "",
-    "SBQQ__UpperBound__c": "100.0"
+    "SBQQ__UpperBound__c": "101.0"
   },
   "References": [
     {
