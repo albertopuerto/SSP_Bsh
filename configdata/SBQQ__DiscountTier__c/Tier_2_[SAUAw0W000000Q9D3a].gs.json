@@ -1,11 +1,11 @@
 {
   "Object": "SBQQ__DiscountTier__c",
   "Fields": {
-    "CurrencyIsoCode": "USD",
+    "CurrencyIsoCode": "EUR",
     "GearsetDisplayName": "Tier 2",
-    "GearsetExternalId__c": "OAUoHSV000000Q9D3a",
+    "GearsetExternalId__c": "SAUAw0W000000Q9D3a",
     "Name": "Tier 2",
-    "SBQQ__DiscountAmount__c": "0.0",
+    "SBQQ__DiscountAmount__c": "1500.0",
     "SBQQ__Discount__c": "",
     "SBQQ__LowerBound__c": "101.0",
     "SBQQ__Number__c": "2.0",
