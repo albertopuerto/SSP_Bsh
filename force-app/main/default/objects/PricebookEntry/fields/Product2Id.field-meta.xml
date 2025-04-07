@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Product2Id</fullName>
-    <description>ID of the Product2 record with which this record is associated. This field must be specified when creating Product2 records. It can’t be changed in an update.This is a relationship field.</description>
     <type>Lookup</type>
 </CustomField>
