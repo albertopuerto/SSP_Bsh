@@ -71,6 +71,10 @@
                 <behavior>Readonly</behavior>
                 <field>ftxtOpportunityTitle__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>Opportunity_Id_number__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>

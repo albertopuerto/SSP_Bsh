@@ -183,7 +183,7 @@
         <inputAssignments>
             <field>StageName</field>
             <value>
-                <stringValue>Closed Won</stringValue>
+                <stringValue>Won (Awarded)</stringValue>
             </value>
         </inputAssignments>
         <object>Opportunity</object>
