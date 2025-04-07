@@ -5,7 +5,7 @@
     <description>A qualified Opportunity cannot return to the Sales Stage</description>
     <errorConditionFormula>AND(
     ISCHANGED(StageName),
-    ISPICKVAL(StageName, &#39;Sales Chance&#39;),
+    ISPICKVAL(StageName, &#39;Sales Chance (New)&#39;),
     NOT(ISNEW())
 )</errorConditionFormula>
     <errorDisplayField>StageName</errorDisplayField>
