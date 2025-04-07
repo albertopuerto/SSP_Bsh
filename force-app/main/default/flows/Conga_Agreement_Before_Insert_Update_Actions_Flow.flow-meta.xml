@@ -280,9 +280,12 @@
     <formulas>
         <name>Agreement_Name</name>
         <dataType>String</dataType>
-        <expression>{!$Record.RecordType.Name}+&#39;--&#39;+IF(ISBLANK({!$Record.Apttus__Account__c}),{!$Record.APTS_Processor__r.Name},{!$Record.Apttus__Account__r.Name})+&#39;--&#39;+TEXT(Month( {!$Record.Apttus__Contract_Start_Date__c} )) + &#39;-&#39;
+        <expression>IF(
+  ISPICKVAL({!$Record.Apttus__Agreement_Category__c}, &quot;Privacy&quot;), {!$Record.Name}, 
+  {!$Record.RecordType.Name}+&#39;--&#39;+IF(ISBLANK({!$Record.Apttus__Account__c}),{!$Record.APTS_Processor__r.Name},{!$Record.Apttus__Account__r.Name})+&#39;--&#39;+TEXT(Month( {!$Record.Apttus__Contract_Start_Date__c} )) + &#39;-&#39;
 + TEXT(Day({!$Record.Apttus__Contract_Start_Date__c} )) + &#39;-&#39;
-+ TEXT(Year ({!$Record.Apttus__Contract_Start_Date__c} ))</expression>
++ TEXT(Year ({!$Record.Apttus__Contract_Start_Date__c} ))
+)</expression>
     </formulas>
     <formulas>
         <name>Default_Start_Date_To_Today</name>
