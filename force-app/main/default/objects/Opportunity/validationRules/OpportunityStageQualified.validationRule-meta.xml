@@ -6,10 +6,10 @@
     <errorConditionFormula>AND(
      OR(
        AND(ISCHANGED(StageName),
-           NOT(ISPICKVAL(PRIORVALUE(StageName),&quot;Qualification&quot;)),
-           ISPICKVAL(StageName, &quot;Qualification&quot;)
+           NOT(ISPICKVAL(PRIORVALUE(StageName),&quot;Acquisition (Sell)&quot;)),
+           ISPICKVAL(StageName, &quot;Acquisition (Sell)&quot;)
        ),
-       AND(ISNEW(),ISPICKVAL(StageName, &quot;Qualification&quot;)
+       AND(ISNEW(),ISPICKVAL(StageName, &quot;Acquisition (Sell)&quot;)
      )
    ),
    Not($Permission.QualifyOpp),
