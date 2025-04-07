@@ -4,31 +4,35 @@
     <description>Sales Process used for existing  record types: Standard Solution Order and Frame Contract</description>
     <isActive>true</isActive>
     <values>
-        <fullName>Closed Lost</fullName>
+        <fullName>Lost</fullName>
         <default>false</default>
     </values>
     <values>
-        <fullName>Closed Won</fullName>
+        <fullName>Won (Awarded)</fullName>
         <default>false</default>
     </values>
     <values>
-        <fullName>Needs Analysis</fullName>
+        <fullName>Acquisition (Sell)</fullName>
         <default>false</default>
     </values>
     <values>
-        <fullName>Negotiation</fullName>
+        <fullName>Project Cancelled</fullName>
         <default>false</default>
     </values>
     <values>
-        <fullName>Proposal</fullName>
+        <fullName>Invalid Data</fullName>
         <default>false</default>
     </values>
     <values>
-        <fullName>Qualification</fullName>
+        <fullName>Quotation (Quoted)</fullName>
         <default>false</default>
     </values>
     <values>
-        <fullName>Sales Chance</fullName>
+        <fullName>Accepted</fullName>
+        <default>false</default>
+    </values>
+    <values>
+        <fullName>Sales Chance (New)</fullName>
         <default>false</default>
     </values>
 </BusinessProcess>
