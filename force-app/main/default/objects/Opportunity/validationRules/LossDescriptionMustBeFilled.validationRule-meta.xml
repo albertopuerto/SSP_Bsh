@@ -4,7 +4,7 @@
     <active>true</active>
     <description>Loss description must be filled when the opportunity is closed lost and the Loss Reason is &#39;Other&#39;</description>
     <errorConditionFormula>AND(
-ISPICKVAL( StageName , &quot;Closed Lost&quot;),
+ISPICKVAL( StageName , &quot;Lost&quot;),
 ISPICKVAL(pkl_LossReason__c, &#39;Other&#39;),
 ISBLANK( txa_LossReasonDescription__c ),
 NOT($Permission.BypassValidations)
