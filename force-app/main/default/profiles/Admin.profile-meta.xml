@@ -1792,6 +1792,10 @@
         <visible>false</visible>
     </recordTypeVisibilities>
     <classAccesses>
+        <apexClass>EtasCoreUtils</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>QuoteExtController</apexClass>
         <enabled>true</enabled>
     </classAccesses>
