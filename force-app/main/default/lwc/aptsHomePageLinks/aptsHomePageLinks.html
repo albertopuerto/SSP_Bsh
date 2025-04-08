@@ -1,0 +1,38 @@
+<template>
+    <div style="background-color:white;border-radius: 5px;padding: 10px !important;height: 181px;" class="mainDiv">
+        <div style="width:100%;text-align:center">
+            <div class="slds-grid slds-wrap" style="padding-top: 16px;padding-bottom: 15px;">
+                <div class={sldsColClass}>
+                    <a data-id="NDA Wizard" class="HideLine" onclick={gotoMyAgreements}>
+                        <lightning-icon icon-name="standard:record" class="iconstyle" size="large" alternative-text="NDA Wizard"></lightning-icon>
+                        <br/>
+                        <span class="osOutputLabel">My<br/>Agreements</span>
+                    </a>
+                </div>
+                <div class={sldsColClass}>
+                    <a data-id="NDA Wizard" class="HideLine" onclick={myQueueAgreements}>
+                        <lightning-icon icon-name="standard:record_lookup" class="iconstyle" size="large" alternative-text="New Agreement"></lightning-icon>
+                        <br/>
+                        <span class="osOutputLabel">My<br/>Queue</span>
+                    </a>
+                </div>
+                <template if:true={displayAgreementButton}>
+                    <div class={sldsColClass}>
+                        <a data-id="NDA Wizard" class="HideLine" onclick={newAgreement}>
+                            <lightning-icon icon-name="standard:record_create" class="iconstyle" size="large" alternative-text="New Agreement"></lightning-icon>
+                            <br/>
+                            <span class="osOutputLabel">New<br/>Agreement</span>
+                        </a>
+                    </div>
+                </template>
+                <div class={sldsColClass}>
+                    <a data-id="NDA Wizard" class="HideLine" onclick={createWizard}>
+                        <lightning-icon icon-name="standard:contract" class="iconstyle" size="large" alternative-text="NDA Wizard"></lightning-icon>
+                        <br/>
+                        <span class="osOutputLabel">Store<br/>Executed Agreement</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
