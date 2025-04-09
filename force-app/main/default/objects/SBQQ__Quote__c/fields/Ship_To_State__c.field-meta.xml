@@ -3,7 +3,7 @@
     <fullName>Ship_To_State__c</fullName>
     <description>Contains Ship To State information related to its respective Ship-to Account</description>
     <externalId>false</externalId>
-    <formula>lkp_ShipToAccount__r.ShippingState</formula>
+    <formula>lkp_ShipToAccount__r.BillingState</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
     <label>Ship To State</label>
     <required>false</required>
