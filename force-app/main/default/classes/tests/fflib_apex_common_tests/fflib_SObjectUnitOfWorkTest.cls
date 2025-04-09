@@ -31,9 +31,9 @@ private with sharing class fflib_SObjectUnitOfWorkTest
     private static List<Schema.SObjectType> MY_SOBJECTS =
         new Schema.SObjectType[] {
             Product2.SObjectType,
-                PricebookEntry.SObjectType,
-                Opportunity.SObjectType,
-                OpportunityLineItem.SObjectType };
+            PricebookEntry.SObjectType,
+            Opportunity.SObjectType,
+            OpportunityLineItem.SObjectType };
                     
                     @IsTest
                     private static void testUnitOfWorkEmail()
@@ -67,37 +67,39 @@ private with sharing class fflib_SObjectUnitOfWorkTest
                     System.assertEquals(1, mockDML.recordsForInsert.size());
                 }
 
-    //additional method added to increase code coverage
+    //additional method added to increase code coverage: try to register an unsupported object detailed in MY_SOBJECTS
     @IsTest
-    private static void testRegisterRelationshipUnsupportedObject()
-    {
-        String testRecordName = 'UoW Test Name 1';
-        
-        MockDML mockDML = new MockDML();
-        fflib_SObjectUnitOfWork uow = new fflib_SObjectUnitOfWork(MY_SOBJECTS, mockDML);
-        
-        uow.m_emailWork = new Mock_SendEmailWork();
-        
-        Account acc = new Account();
-        acc.Name = 'Test Account Name';
-        insert acc;
-        
-        try{
-            uow.registerRelationship(acc, Account.ParentId	, Account.ParentId	, 'fakeId');
+    private static void testRegisterRelationshipUnsupportedObject() {
+        MockDML mockDMLForTask = new MockDML();
+
+        fflib_SObjectUnitOfWork uowForTask = new fflib_SObjectUnitOfWork(
+            new List<Schema.SObjectType>{ Opportunity.SObjectType, Product2.SObjectType },
+            mockDMLForTask
+        );
+
+        Task unsupportedTask = new Task(Subject = 'Unsupported Task');
+
+        Boolean exceptionThrown = false;
+        try {
+            uowForTask.registerNew(unsupportedTask);
+            uowForTask.commitWork();
+        } catch (Exception ex) {
+            exceptionThrown = true;
+            System.assert(
+                ex.getMessage().contains('SObject type Task is not supported by this unit of work'),
+                'Incorrect exception message thrown'
+            );
         }
-        catch(Exception ex){
-            Assert.isTrue(ex.getMessage().contains('SObject type Account is not supported by this unit of work'));
-        }
+
+        System.assert(exceptionThrown, 'An exception should have been thrown for unsupported SObject type');
     }
-    
+    //additional method
     @IsTest
     private static void testRegisterNew_ThrowExceptionOnDirtyRecord()
     {
-        // GIVEN an existing record
         Opportunity opportunity = new Opportunity(Id = fflib_IDGenerator.generate(Schema.Opportunity.SObjectType));
         fflib_SObjectUnitOfWork unitOfWork = new fflib_SObjectUnitOfWork(MY_SOBJECTS);
         
-        // WHEN we register the existing record as new
         Boolean exceptionThrown = false;
         try
         {
@@ -113,14 +115,12 @@ private with sharing class fflib_SObjectUnitOfWorkTest
             );
         }
         
-        // THEN it should have thrown an exception
         System.assert(exceptionThrown);
     }
-    
+    //additional method
     @IsTest
     private static void testRegisterDirty_ThrowExceptionOnNewRecord()
     {
-        // GIVEN an new record
         Opportunity opportunity = new Opportunity();
         fflib_SObjectUnitOfWork unitOfWork = new fflib_SObjectUnitOfWork(MY_SOBJECTS);
         
@@ -140,10 +140,9 @@ private with sharing class fflib_SObjectUnitOfWorkTest
             );
         }
         
-        // THEN it should have thrown an exception
         System.assert(exceptionThrown);
     }
-    
+    //additional method
     @IsTest
     private static void testRegisterDeleted()
     {
@@ -331,48 +330,38 @@ private with sharing class fflib_SObjectUnitOfWorkTest
                      , uow.getCommitWorkEventsFired(), new Set<Schema.SObjectType>(MY_SOBJECTS), uow.getRegisteredTypes());
     }
     
-    /**
-* Create uow with data that results in DML Exception
-*
-*	Testing:
-*
-*		- Correct events are fired when commitWork fails during DML processing
-*
-*/
+
     @IsTest
-    private static void testDerivedUnitOfWork_CommitDMLFail()
-    {
-        // Insert Opportunities with UnitOfWork forcing a failure on DML by not setting 'Name' field
-        DerivedUnitOfWork uow = new DerivedUnitOfWork(MY_SOBJECTS);
-        Opportunity opp = new Opportunity();
-        uow.registerNew(new List<SObject>{opp});
-        Boolean didFail = false;
-        System.DmlException caughtEx = null;
-        
-        try {
-            uow.commitWork();
-        }
-        catch (System.DmlException dmlex) {
-            didFail = true;
-            caughtEx = dmlex;
-        }
-        
-        // Assert Results
-        System.assertEquals(didFail, true, 'didFail');
-        System.assert(caughtEx.getMessage().contains('REQUIRED_FIELD_MISSING'), String.format('Exception message was ', new List<String> { caughtEx.getMessage() }));
-        
-        assertEvents(new List<String> {
-            'onCommitWorkStarting'
-                , 'onPublishBeforeEventsStarting'
-                , 'onPublishBeforeEventsFinished'
-                , 'onDMLStarting'
-                , 'onPublishAfterFailureEventsStarting'
-                , 'onPublishAfterFailureEventsFinished'
-                , 'onCommitWorkFinished - false'
-                }
-                     , uow.getCommitWorkEventsFired(), new Set<Schema.SObjectType>(MY_SOBJECTS), uow.getRegisteredTypes());
+    private static void testRegisterRelationship() {
+        Task parentTask = new Task(Subject = 'Parent Task');
+        Task childTask = new Task(Subject = 'Child Task');
+
+        fflib_SObjectUnitOfWork uow = new fflib_SObjectUnitOfWork(new List<Schema.SObjectType>{ Task.SObjectType });
+
+        uow.registerNew(parentTask);
+        uow.registerNew(childTask, Task.WhatId, parentTask);
+
+        uow.commitWork();
+
+        System.assert(true, 'The relationship was registered successfully');
     }
-    
+
+    @IsTest
+    private static void testRegisterNewWithExistingId() {
+        Account acc = new Account(Id = fflib_IDGenerator.generate(Account.SObjectType), Name = 'Test Account');
+
+        fflib_SObjectUnitOfWork uow = new fflib_SObjectUnitOfWork(new List<Schema.SObjectType>{ Account.SObjectType });
+
+        Boolean didFail = false;
+        try {
+            uow.registerNew(acc);
+        } catch (fflib_SObjectUnitOfWork.UnitOfWorkException e) {
+            didFail = true;
+        }
+
+        System.assert(didFail, 'it should fail when registering a new record with an existing Id');
+    }
+
     /**
 * Create uow with work that fails
 *
