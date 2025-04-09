@@ -299,7 +299,7 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Opportunity.Opportunity_Id_number__c</field>
+        <field>Opportunity.idx_OpportunityIdnumber__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
