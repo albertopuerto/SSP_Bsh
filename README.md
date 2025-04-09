@@ -15,3 +15,11 @@ Development will take place on Developer Orgs, Deployment will happen in Gearset
 - [Salesforce CLI Setup Guide](https://developer.salesforce.com/docs/atlas.en-us.sfdx_setup.meta/sfdx_setup/sfdx_setup_intro.htm)
 - [Salesforce DX Developer Guide](https://developer.salesforce.com/docs/atlas.en-us.sfdx_dev.meta/sfdx_dev/sfdx_dev_intro.htm)
 - [Salesforce CLI Command Reference](https://developer.salesforce.com/docs/atlas.en-us.sfdx_cli_reference.meta/sfdx_cli_reference/cli_reference.htm)
+
+
+# Packages and dependencies
+## Managed Packages Used in This Project
+"Nebula Logger - Unlocked Package" - Package ID : 0335Y000000BMNuQAO
+
+## Datafactory
+All classes are included in classes/Framework/TestFactory folder
