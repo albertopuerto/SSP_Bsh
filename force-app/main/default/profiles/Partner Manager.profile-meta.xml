@@ -3592,4 +3592,8 @@
         <enabled>true</enabled>
         <name>ViewTrustMeasures</name>
     </userPermissions>
+    <classAccesses>
+        <apexClass>EtasCoreUtils</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
 </Profile>
