@@ -773,4 +773,8 @@
         <recordType>Apttus__APTS_Agreement__c.X2nd_Processor_EPA_GPA</recordType>
         <visible>false</visible>
     </recordTypeVisibilities>
+    <classAccesses>
+        <apexClass>EtasCoreUtils</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
 </Profile>
