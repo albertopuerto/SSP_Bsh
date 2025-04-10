@@ -172,4 +172,19 @@ private with sharing class TestFactoryTests {
         System.assertNotEquals(null, mapRecordTypeIds.get('Opportunity').get('FrameContract'), 'FrameContract RecordType ID for Opportunity should not be null');
 
     }
+    /**
+    * @description  Test that a Product Manager user is created and behaves correctly creating one account
+    */
+    @IsTest
+    static void insertAccountAsProductManagerUser() {
+        Profile productManagerProfile = [SELECT Id FROM Profile WHERE Name = 'Product Manager' LIMIT 1];
+        User productManagerUser = (User)TestFactory.createSObject(new User(), 'TestFactoryDefaults.ProductManagerUserDefaults', true);
+
+        System.runAs(productManagerUser) {
+            Test.startTest();
+            Account acc = (Account)TestFactory.createSObject(new Account(), true);
+            System.assertEquals('Customer Account', acc.Name, 'Default field value is not set correctly for Product Manager user');
+            Test.stopTest();
+        }
+    }
 }
