@@ -3,6 +3,10 @@
     <custom>true</custom>
     <userLicense>Salesforce</userLicense>
     <classAccesses>
+        <apexClass>EtasCoreUtils</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>sbaa__ApprovalEmailHandler</apexClass>
         <enabled>true</enabled>
     </classAccesses>
