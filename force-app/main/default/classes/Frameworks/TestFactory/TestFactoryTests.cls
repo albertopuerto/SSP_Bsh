@@ -177,7 +177,6 @@ private with sharing class TestFactoryTests {
     */
     @IsTest
     static void insertAccountAsProductManagerUser() {
-        Profile productManagerProfile = [SELECT Id FROM Profile WHERE Name = 'Product Manager' LIMIT 1];
         User productManagerUser = (User)TestFactory.createSObject(new User(), 'TestFactoryDefaults.ProductManagerUserDefaults', true);
 
         System.runAs(productManagerUser) {
