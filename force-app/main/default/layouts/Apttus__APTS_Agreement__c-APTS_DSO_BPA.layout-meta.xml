@@ -62,7 +62,7 @@
                 <field>Apttus__Agreement_Category__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Edit</behavior>
+                <behavior>Required</behavior>
                 <field>APTS_Managing_Party_BPA__c</field>
             </layoutItems>
             <layoutItems>
@@ -80,7 +80,7 @@
                 <field>Apttus__Status_Category__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Readonly</behavior>
+                <behavior>Edit</behavior>
                 <field>Apttus__Status__c</field>
             </layoutItems>
             <layoutItems>
@@ -137,7 +137,7 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>APTS_ISP_Office_contact_2_c__c</field>
+                <field>APTS_ISP_Office_contact_2__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
@@ -171,10 +171,6 @@
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>APTS_Limitation_of_Liability__c</field>
-            </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>APTS_Limitation_of_Liability_Description__c</field>

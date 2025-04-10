@@ -1005,6 +1005,16 @@
                 <identifier>RecordSBQQ_LineItemsGrouped_cField</identifier>
             </fieldInstance>
         </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.chk_ShowAccountBasedDiscount__c</fieldItem>
+                <identifier>Recordchk_ShowAccountBasedDiscount_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
         <name>Facet-59570106-9c66-4178-b11c-cc62721c04f4</name>
         <type>Facet</type>
     </flexiPageRegions>

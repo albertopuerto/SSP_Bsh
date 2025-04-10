@@ -3,15 +3,8 @@
     <flexiPageRegions>
         <itemInstances>
             <componentInstance>
-                <componentName>APTS_HomePageLinks</componentName>
-                <identifier>c_APTS_HomePageLinks</identifier>
-                <visibilityRule>
-                    <criteria>
-                        <leftValue>{!$User.Profile.Name}</leftValue>
-                        <operator>NE</operator>
-                        <rightValue>Standard Platform User</rightValue>
-                    </criteria>
-                </visibilityRule>
+                <componentName>aptsHomePageLinks</componentName>
+                <identifier>c_aptsHomePageLinks</identifier>
             </componentInstance>
         </itemInstances>
         <itemInstances>
