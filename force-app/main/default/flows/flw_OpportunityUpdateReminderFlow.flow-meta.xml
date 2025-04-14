@@ -4,7 +4,7 @@
         <name>Send_Opportunity_Update_Reminder</name>
         <label>Send Opportunity Update Reminder</label>
         <locationX>138</locationX>
-        <locationY>792</locationY>
+        <locationY>900</locationY>
         <actionName>customNotificationAction</actionName>
         <actionType>customNotificationAction</actionType>
         <connector>
@@ -48,7 +48,7 @@
         <name>Recipients</name>
         <label>Recipients</label>
         <locationX>138</locationX>
-        <locationY>684</locationY>
+        <locationY>792</locationY>
         <assignmentItems>
             <assignToReference>Owners</assignToReference>
             <operator>Add</operator>
@@ -76,10 +76,42 @@
                     <booleanValue>false</booleanValue>
                 </rightValue>
             </conditions>
+            <conditions>
+                <leftValueReference>Iteration_on_Opportunities_Found.Owner.IsActive</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
             <connector>
                 <targetReference>Iteration_on_Opportunities_Found</targetReference>
             </connector>
             <label>Opportunities Found</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Owner_is_Active</name>
+        <label>Owner is Active</label>
+        <locationX>270</locationX>
+        <locationY>684</locationY>
+        <defaultConnector>
+            <targetReference>Iteration_on_Opportunities_Found</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Not Active</defaultConnectorLabel>
+        <rules>
+            <name>Active</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Iteration_on_Opportunities_Found.Owner.IsActive</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Recipients</targetReference>
+            </connector>
+            <label>Active</label>
         </rules>
     </decisions>
     <environments>Default</environments>
@@ -98,7 +130,7 @@
         <collectionReference>GetOpportunityRecords</collectionReference>
         <iterationOrder>Asc</iterationOrder>
         <nextValueConnector>
-            <targetReference>Recipients</targetReference>
+            <targetReference>Owner_is_Active</targetReference>
         </nextValueConnector>
     </loops>
     <processMetadataValues>
