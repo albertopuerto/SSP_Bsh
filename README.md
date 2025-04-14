@@ -22,4 +22,11 @@ Development will take place on Developer Orgs, Deployment will happen in Gearset
 "Nebula Logger - Unlocked Package" - Package ID : 0335Y000000BMNuQAO
 
 ## Datafactory
-All classes are included in classes/Framework/TestFactory folder
+All classes are included in classes/Frameworks/TestFactory folder
+
+## fflib framework
+### Installed in classes/Frameworks/fflib-framework
+apex-fflib-common
+apex-fflib-mocks
+### Dependency with Datafactory
+Some test fixed with Datafactory classes in order to keep easier the maintability of those tests
