@@ -1,12 +1,14 @@
-import { LightningElement, track } from 'lwc';
+import { LightningElement, track, api } from 'lwc';
 import { NavigationMixin } from 'lightning/navigation';
 import getListViewDetail from '@salesforce/apex/APTS_ListViewIdGeneric.getListViewDetail';
 import hasCustomPermission from '@salesforce/apex/EtasCoreUtils.hasCustomPermission';
+import { getLogger } from 'c/logger';
 
 export default class AptsHomePageLinks extends NavigationMixin(LightningElement) {
     @track myAgreementsList;
     @track clausesList;
     @track displayAgreementButton = false;
+    @api logger = getLogger();
 
     get sldsColClass(){
         return this.displayAgreementButton ? 'slds-col slds-size_1-of-4' : 'slds-col slds-size_1-of-3';
@@ -18,6 +20,8 @@ export default class AptsHomePageLinks extends NavigationMixin(LightningElement)
             this.displayAgreementButton = result;
             console.log('agreement button', this.displayAgreementButton);
             if(!this.displayAgreementButton){
+                this.logger.error('hasCustomPermission').setField({ Message__c: 'FLW-PER-00001 - user does not have permission CreateNewAgreement' }).addTag('FLW-PER');
+                this.logger.saveLog();
                 console.log('user does not have permission CreateNewAgreement');
             }
         })
