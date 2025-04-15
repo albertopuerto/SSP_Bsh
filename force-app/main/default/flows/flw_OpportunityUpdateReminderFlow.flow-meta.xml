@@ -51,6 +51,10 @@
         <locationY>792</locationY>
         <assignmentItems>
             <assignToReference>Owners</assignToReference>
+            <operator>Assign</operator>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>Owners</assignToReference>
             <operator>Add</operator>
             <value>
                 <elementReference>Iteration_on_Opportunities_Found.OwnerId</elementReference>
@@ -74,13 +78,6 @@
                 <operator>IsNull</operator>
                 <rightValue>
                     <booleanValue>false</booleanValue>
-                </rightValue>
-            </conditions>
-            <conditions>
-                <leftValueReference>Iteration_on_Opportunities_Found.Owner.IsActive</leftValueReference>
-                <operator>EqualTo</operator>
-                <rightValue>
-                    <booleanValue>true</booleanValue>
                 </rightValue>
             </conditions>
             <connector>
