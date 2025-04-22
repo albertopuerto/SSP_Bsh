@@ -1314,6 +1314,10 @@
     <picklistValues>
         <picklist>Apttus__Status_Category__c</picklist>
         <values>
+            <fullName>Cancelled</fullName>
+            <default>false</default>
+        </values>
+        <values>
             <fullName>Expired</fullName>
             <default>false</default>
         </values>
@@ -1362,6 +1366,10 @@
         </values>
         <values>
             <fullName>Being Terminated</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Cancelled</fullName>
             <default>false</default>
         </values>
         <values>
