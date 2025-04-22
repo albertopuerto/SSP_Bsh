@@ -2,7 +2,7 @@
 <RecordType xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>IC_Development_and_Application</fullName>
     <active>true</active>
-    <description>Intercompany Development and Application</description>
+    <description>Intercompany Development and Application Agreement</description>
     <label>IC Development and Application</label>
     <picklistValues>
         <picklist>APTS_Country_Controller__c</picklist>

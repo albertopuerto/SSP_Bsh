@@ -1471,7 +1471,7 @@
     <picklistValues>
         <picklist>Apttus__Subtype__c</picklist>
         <values>
-            <fullName>Default</fullName>
+            <fullName>Other</fullName>
             <default>false</default>
         </values>
     </picklistValues>
