@@ -2,7 +2,7 @@
 <RecordType xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>IC_Technology_Transfer</fullName>
     <active>true</active>
-    <description>Intercompany Technology Transfer</description>
+    <description>Intercompany Technology Transfer Agreement</description>
     <label>IC Technology Transfer</label>
     <picklistValues>
         <picklist>APTS_Country_Controller__c</picklist>
