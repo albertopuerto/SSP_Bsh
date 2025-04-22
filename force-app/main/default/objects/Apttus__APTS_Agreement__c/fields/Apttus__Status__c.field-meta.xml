@@ -162,6 +162,11 @@ Cancelled Request, In Amendment, Being Amended, Superseded, Activated, Expired, 
                 <default>false</default>
                 <label>In Clause Approval</label>
             </value>
+            <value>
+                <fullName>Cancelled</fullName>
+                <default>false</default>
+                <label>Cancelled</label>
+            </value>
         </valueSetDefinition>
         <valueSettings>
             <controllingFieldValue>Request</controllingFieldValue>
@@ -273,6 +278,10 @@ Cancelled Request, In Amendment, Being Amended, Superseded, Activated, Expired, 
         <valueSettings>
             <controllingFieldValue>Terminated</controllingFieldValue>
             <valueName>Terminated</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Cancelled</controllingFieldValue>
+            <valueName>Cancelled</valueName>
         </valueSettings>
         <valueSettings>
             <controllingFieldValue>Import</controllingFieldValue>
