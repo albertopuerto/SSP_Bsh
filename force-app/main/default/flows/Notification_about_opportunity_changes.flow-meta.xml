@@ -211,7 +211,7 @@
             <assignToReference>TeamMemberNotif</assignToReference>
             <operator>Add</operator>
             <value>
-                <elementReference>$Record.Owner.AccountId</elementReference>
+                <elementReference>$Record.Account.OwnerId</elementReference>
             </value>
         </assignmentItems>
         <connector>
