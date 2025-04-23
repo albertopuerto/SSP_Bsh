@@ -589,13 +589,13 @@
     <status>Active</status>
     <textTemplates>
         <name>AlertNotifyBody</name>
-        <isViewedAsPlainText>false</isViewedAsPlainText>
-        <text>&lt;p&gt;: &quot;The Opportunity linked to your Account has been updated.&quot;&lt;/p&gt;</text>
+        <isViewedAsPlainText>true</isViewedAsPlainText>
+        <text>&quot;The Opportunity linked to your Account has been updated.&quot;</text>
     </textTemplates>
     <textTemplates>
         <name>AlertNotifyTitle</name>
-        <isViewedAsPlainText>false</isViewedAsPlainText>
-        <text>&lt;p&gt;&quot;Opportunity Updated&quot;&lt;/p&gt;</text>
+        <isViewedAsPlainText>true</isViewedAsPlainText>
+        <text>&quot;Opportunity Updated&quot;</text>
     </textTemplates>
     <textTemplates>
         <name>OppTeamMemberAlert</name>
