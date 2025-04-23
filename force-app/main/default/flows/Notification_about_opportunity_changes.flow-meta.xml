@@ -20,7 +20,7 @@
         <inputParameters>
             <name>recipientIds</name>
             <value>
-                <elementReference>Recepients</elementReference>
+                <elementReference>TeamMemberNotif</elementReference>
             </value>
         </inputParameters>
         <inputParameters>
