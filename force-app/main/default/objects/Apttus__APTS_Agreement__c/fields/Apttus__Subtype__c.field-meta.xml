@@ -14,9 +14,9 @@
         <valueSetDefinition>
             <sorted>false</sorted>
             <value>
-                <fullName>Default</fullName>
+                <fullName>Other</fullName>
                 <default>false</default>
-                <label>Default</label>
+                <label>Other</label>
             </value>
             <value>
                 <fullName>Software License Agreement for Distrubtion</fullName>

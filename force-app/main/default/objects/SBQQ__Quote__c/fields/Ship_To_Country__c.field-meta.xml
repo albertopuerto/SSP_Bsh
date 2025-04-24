@@ -3,7 +3,7 @@
     <fullName>Ship_To_Country__c</fullName>
     <description>Contains Ship To Country information related to its respective Ship-to Account</description>
     <externalId>false</externalId>
-    <formula>lkp_ShipToAccount__r.ShippingCountry</formula>
+    <formula>lkp_ShipToAccount__r.BillingCountry</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
     <label>Ship To Country</label>
     <required>false</required>
