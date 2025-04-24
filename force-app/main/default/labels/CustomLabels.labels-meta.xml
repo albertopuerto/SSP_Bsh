@@ -176,4 +176,18 @@
         <shortDescription>Google Maps URL</shortDescription>
         <value>http://maps.google.com</value>
     </labels>
+    <labels>
+        <fullName>MyAgreements</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>MyAgreements</shortDescription>
+        <value>My Agreements</value>
+    </labels>
+    <labels>
+        <fullName>MyQueue</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>MyQueue</shortDescription>
+        <value>My Queue</value>
+    </labels>
 </CustomLabels>
