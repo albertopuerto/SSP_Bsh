@@ -6,7 +6,7 @@
     "GearsetExternalId__c": "ActionAddGroup",
     "Name": "Add Group",
     "SBQQ__Action__c": "Add Group",
-    "SBQQ__Active__c": "false",
+    "SBQQ__Active__c": "true",
     "SBQQ__BrandButton__c": "false",
     "SBQQ__Class__c": "addGroupBtn",
     "SBQQ__ConditionsMet__c": "All",
