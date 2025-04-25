@@ -229,7 +229,7 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Opportunity.Opportunity_Id_number__c</field>
+        <field>Opportunity.idx_OpportunityIdnumber__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -551,6 +551,9 @@
     </layoutAssignments>
     <layoutAssignments>
         <layout>PriceElement__c-Price Element Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>SBQQ__QuoteLineGroup__c-SBQQ__Quote Line Group Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
         <layout>SBQQ__Quote__c-SBQQ__Quote Layout</layout>

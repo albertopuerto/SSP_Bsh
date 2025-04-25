@@ -951,7 +951,7 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Opportunity.Opportunity_Id_number__c</field>
+        <field>Opportunity.idx_OpportunityIdnumber__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -2129,6 +2129,9 @@
     </layoutAssignments>
     <layoutAssignments>
         <layout>Order-Order Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>SBQQ__QuoteLineGroup__c-SBQQ__Quote Line Group Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
         <layout>sbaa__Approval__c-sbaa__Approval Layout</layout>
