@@ -12283,7 +12283,7 @@
         <visible>true</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
-        <recordType>Apttus__APTS_Agreement__c.IC_Reseller_Framework_Agreement</recordType>
+        <recordType>Apttus__APTS_Agreement__c.IC_Reseller_Framework</recordType>
         <visible>true</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
@@ -12295,7 +12295,7 @@
         <visible>true</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
-        <recordType>Apttus__APTS_Agreement__c.IC_Software_License_Agreement</recordType>
+        <recordType>Apttus__APTS_Agreement__c.IC_Software_License</recordType>
         <visible>true</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
@@ -12303,11 +12303,11 @@
         <visible>true</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
-        <recordType>Apttus__APTS_Agreement__c.Intercompany_NDA</recordType>
+        <recordType>Apttus__APTS_Agreement__c.IC_NDA</recordType>
         <visible>true</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
-        <recordType>Apttus__APTS_Agreement__c.Other_Intercompany</recordType>
+        <recordType>Apttus__APTS_Agreement__c.Other_IC</recordType>
         <visible>true</visible>
     </recordTypeVisibilities>
     <tabSettings>

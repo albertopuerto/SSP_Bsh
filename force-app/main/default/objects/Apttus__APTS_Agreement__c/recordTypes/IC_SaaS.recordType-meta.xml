@@ -2,7 +2,7 @@
 <RecordType xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>IC_SaaS</fullName>
     <active>true</active>
-    <description>Intercompany Software-As-a-Service</description>
+    <description>Intercompany Software-as-a- Service Agreement</description>
     <label>IC SaaS</label>
     <picklistValues>
         <picklist>APTS_Country_Controller__c</picklist>

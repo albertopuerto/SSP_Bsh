@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <RecordType xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>Joint_Controllers</fullName>
+    <fullName>IC_Reseller_Framework</fullName>
     <active>true</active>
-    <description>Contractual Agreement of two parties jointly responsible</description>
-    <label>Joint Controllers</label>
+    <description>Intercompany Reseller Framework</description>
+    <label>IC Reseller Framework</label>
     <picklistValues>
         <picklist>APTS_Country_Controller__c</picklist>
         <values>
@@ -1114,7 +1114,7 @@
         <picklist>APTS_Type_of_Paper__c</picklist>
         <values>
             <fullName>Own Paper</fullName>
-            <default>false</default>
+            <default>true</default>
         </values>
         <values>
             <fullName>Third Party Paper</fullName>
@@ -1224,7 +1224,7 @@
     <picklistValues>
         <picklist>Apttus__Agreement_Category__c</picklist>
         <values>
-            <fullName>Privacy</fullName>
+            <fullName>Intercompany</fullName>
             <default>true</default>
         </values>
     </picklistValues>
@@ -1314,10 +1314,6 @@
     <picklistValues>
         <picklist>Apttus__Status_Category__c</picklist>
         <values>
-            <fullName>Cancelled</fullName>
-            <default>false</default>
-        </values>
-        <values>
             <fullName>Expired</fullName>
             <default>false</default>
         </values>
@@ -1366,10 +1362,6 @@
         </values>
         <values>
             <fullName>Being Terminated</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>Cancelled</fullName>
             <default>false</default>
         </values>
         <values>
@@ -1475,7 +1467,11 @@
     <picklistValues>
         <picklist>Apttus__Subtype__c</picklist>
         <values>
-            <fullName>Other</fullName>
+            <fullName>Reseller Framework Agreement for digital products</fullName>
+            <default>true</default>
+        </values>
+        <values>
+            <fullName>Reseller Framework Agreement for hardware business</fullName>
             <default>false</default>
         </values>
     </picklistValues>

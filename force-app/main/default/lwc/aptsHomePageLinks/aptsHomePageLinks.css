@@ -1,0 +1,25 @@
+.main-div {
+    background-color: white;
+    border-radius: 5px;
+    padding: 10px;
+    height: 181px;
+}
+
+.icon-style {
+    --sds-c-icon-color-foreground-default: #0070D2;
+}
+
+.hide-line {
+    text-decoration: none;
+    cursor: pointer;
+    display: block;
+    text-align: center;
+}
+
+.os-output-label {
+    font-size: 14px;
+    color: #514F4D;
+    text-align: center;
+    display: block;
+    margin-top: 5px;
+}
