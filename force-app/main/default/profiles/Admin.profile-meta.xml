@@ -1741,6 +1741,9 @@
         <layout>PriceElement__c-Price Element Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
+        <layout>SBQQ__QuoteLineGroup__c-SBQQ__Quote Line Group Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
         <layout>SBQQ__Quote__c-SBQQ__Quote Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
