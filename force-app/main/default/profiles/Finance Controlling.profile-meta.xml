@@ -3,6 +3,10 @@
     <custom>true</custom>
     <userLicense>Salesforce</userLicense>
     <classAccesses>
+        <apexClass>EtasCoreUtils</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>sbaa__ApprovalEmailHandler</apexClass>
         <enabled>true</enabled>
     </classAccesses>
@@ -2124,7 +2128,7 @@
     </layoutAssignments>
     <layoutAssignments>
         <layout>Apttus__APTS_Agreement__c-APTS_Controlling_layout</layout>
-        <recordType>Apttus__APTS_Agreement__c.IC_Reseller_Framework_Agreement</recordType>
+        <recordType>Apttus__APTS_Agreement__c.IC_Reseller_Framework</recordType>
     </layoutAssignments>
     <layoutAssignments>
         <layout>Apttus__APTS_Agreement__c-APTS_Controlling_layout</layout>
@@ -2136,7 +2140,7 @@
     </layoutAssignments>
     <layoutAssignments>
         <layout>Apttus__APTS_Agreement__c-APTS_Controlling_layout</layout>
-        <recordType>Apttus__APTS_Agreement__c.IC_Software_License_Agreement</recordType>
+        <recordType>Apttus__APTS_Agreement__c.IC_Software_License</recordType>
     </layoutAssignments>
     <layoutAssignments>
         <layout>Apttus__APTS_Agreement__c-APTS_Controlling_layout</layout>
@@ -2144,11 +2148,11 @@
     </layoutAssignments>
     <layoutAssignments>
         <layout>Apttus__APTS_Agreement__c-APTS_Controlling_layout</layout>
-        <recordType>Apttus__APTS_Agreement__c.Intercompany_NDA</recordType>
+        <recordType>Apttus__APTS_Agreement__c.IC_NDA</recordType>
     </layoutAssignments>
     <layoutAssignments>
         <layout>Apttus__APTS_Agreement__c-APTS_Controlling_layout</layout>
-        <recordType>Apttus__APTS_Agreement__c.Other_Intercompany</recordType>
+        <recordType>Apttus__APTS_Agreement__c.Other_IC</recordType>
     </layoutAssignments>
     <layoutAssignments>
         <layout>Apttus__APTS_Agreement__c-APTS_DSO_All_excl_BPA</layout>
@@ -2948,7 +2952,7 @@
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <default>false</default>
-        <recordType>Apttus__APTS_Agreement__c.IC_Reseller_Framework_Agreement</recordType>
+        <recordType>Apttus__APTS_Agreement__c.IC_Reseller_Framework</recordType>
         <visible>true</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
@@ -2963,7 +2967,7 @@
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <default>false</default>
-        <recordType>Apttus__APTS_Agreement__c.IC_Software_License_Agreement</recordType>
+        <recordType>Apttus__APTS_Agreement__c.IC_Software_License</recordType>
         <visible>true</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
@@ -2973,7 +2977,7 @@
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <default>false</default>
-        <recordType>Apttus__APTS_Agreement__c.Intercompany_NDA</recordType>
+        <recordType>Apttus__APTS_Agreement__c.IC_NDA</recordType>
         <visible>true</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
@@ -3003,7 +3007,7 @@
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <default>false</default>
-        <recordType>Apttus__APTS_Agreement__c.Other_Intercompany</recordType>
+        <recordType>Apttus__APTS_Agreement__c.Other_IC</recordType>
         <visible>true</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>

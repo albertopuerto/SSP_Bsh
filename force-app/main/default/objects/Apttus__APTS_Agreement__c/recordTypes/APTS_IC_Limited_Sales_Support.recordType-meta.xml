@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <RecordType xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>IC_Software_License_Agreement</fullName>
+    <fullName>APTS_IC_Limited_Sales_Support</fullName>
     <active>true</active>
-    <description>Intercompany Software License Agreement</description>
-    <label>IC Software License Agreement</label>
+    <description>Intercompany Limited Sales Support Agreement</description>
+    <label>IC Limited Sales Support</label>
     <picklistValues>
         <picklist>APTS_Country_Controller__c</picklist>
         <values>
@@ -1467,24 +1467,8 @@
     <picklistValues>
         <picklist>Apttus__Subtype__c</picklist>
         <values>
-            <fullName>Software License Agreement for Distrubtion</fullName>
+            <fullName>Other</fullName>
             <default>true</default>
-        </values>
-        <values>
-            <fullName>Software License Agreement for Internal use</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>Software License Distribution Agreement</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>Software License Framework Agreement for Distribution of Simulation Assets</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>Software License Framework Agreement for Internal use of Simulation Assets</fullName>
-            <default>false</default>
         </values>
     </picklistValues>
 </RecordType>
