@@ -3,8 +3,8 @@
     <actionCalls>
         <name>Account_Team</name>
         <label>Account Team</label>
-        <locationX>264</locationX>
-        <locationY>2135</locationY>
+        <locationX>270</locationX>
+        <locationY>2819</locationY>
         <actionName>customNotificationAction</actionName>
         <actionType>customNotificationAction</actionType>
         <connector>
@@ -46,8 +46,8 @@
     <actionCalls>
         <name>Notify_Account_Owner</name>
         <label>Notify Account Owner</label>
-        <locationX>176</locationX>
-        <locationY>1187</locationY>
+        <locationX>50</locationX>
+        <locationY>1487</locationY>
         <actionName>customNotificationAction</actionName>
         <actionType>customNotificationAction</actionType>
         <connector>
@@ -89,8 +89,8 @@
     <actionCalls>
         <name>Opp_Team_Notification</name>
         <label>Opp Team Notification</label>
-        <locationX>264</locationX>
-        <locationY>1619</locationY>
+        <locationX>270</locationX>
+        <locationY>2111</locationY>
         <actionName>customNotificationAction</actionName>
         <actionType>customNotificationAction</actionType>
         <connector>
@@ -132,8 +132,8 @@
     <actionCalls>
         <name>Opportunity_Notification</name>
         <label>Opportunity Notification</label>
-        <locationX>176</locationX>
-        <locationY>971</locationY>
+        <locationX>50</locationX>
+        <locationY>1079</locationY>
         <actionName>customNotificationAction</actionName>
         <actionType>customNotificationAction</actionType>
         <connector>
@@ -176,7 +176,7 @@
     <assignments>
         <name>Add_Last_Modified_User_to_Notified_List</name>
         <label>Add Last Modified User to Notified List</label>
-        <locationX>176</locationX>
+        <locationX>182</locationX>
         <locationY>539</locationY>
         <assignmentItems>
             <assignToReference>notifiedUserIds</assignToReference>
@@ -192,8 +192,8 @@
     <assignments>
         <name>Assignment_2</name>
         <label>Assignment 2</label>
-        <locationX>176</locationX>
-        <locationY>1079</locationY>
+        <locationX>182</locationX>
+        <locationY>1271</locationY>
         <assignmentItems>
             <assignToReference>TeamMemberNotif</assignToReference>
             <operator>Add</operator>
@@ -202,14 +202,14 @@
             </value>
         </assignmentItems>
         <connector>
-            <targetReference>Notify_Account_Owner</targetReference>
+            <targetReference>accownisblank</targetReference>
         </connector>
     </assignments>
     <assignments>
         <name>assignment_3</name>
         <label>assignment_3</label>
-        <locationX>264</locationX>
-        <locationY>1511</locationY>
+        <locationX>402</locationX>
+        <locationY>1895</locationY>
         <assignmentItems>
             <assignToReference>OppTeamRecip</assignToReference>
             <operator>Add</operator>
@@ -218,14 +218,14 @@
             </value>
         </assignmentItems>
         <connector>
-            <targetReference>Opp_Team_Notification</targetReference>
+            <targetReference>isoppteamblank</targetReference>
         </connector>
     </assignments>
     <assignments>
         <name>assignment_4</name>
         <label>assignment 4</label>
-        <locationX>264</locationX>
-        <locationY>2027</locationY>
+        <locationX>402</locationX>
+        <locationY>2603</locationY>
         <assignmentItems>
             <assignToReference>AccTeamMember</assignToReference>
             <operator>Add</operator>
@@ -234,13 +234,13 @@
             </value>
         </assignmentItems>
         <connector>
-            <targetReference>Account_Team</targetReference>
+            <targetReference>isaccteamblank</targetReference>
         </connector>
     </assignments>
     <assignments>
         <name>Opportunity_Owner</name>
         <label>Opportunity Owner</label>
-        <locationX>176</locationX>
+        <locationX>182</locationX>
         <locationY>863</locationY>
         <assignmentItems>
             <assignToReference>Recepients</assignToReference>
@@ -250,9 +250,109 @@
             </value>
         </assignmentItems>
         <connector>
-            <targetReference>Opportunity_Notification</targetReference>
+            <targetReference>Ownerisnotblank</targetReference>
         </connector>
     </assignments>
+    <decisions>
+        <name>accownisblank</name>
+        <label>accownisblank</label>
+        <locationX>182</locationX>
+        <locationY>1379</locationY>
+        <defaultConnector>
+            <targetReference>OpportunityTeamMember_records</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>yes1</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>IsAccountOwnerRecipientValid</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Notify_Account_Owner</targetReference>
+            </connector>
+            <label>yes</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>isaccteamblank</name>
+        <label>isaccteamblank</label>
+        <locationX>402</locationX>
+        <locationY>2711</locationY>
+        <defaultConnector>
+            <targetReference>Loop_2</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>yes3</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>isaccteamvalid</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Account_Team</targetReference>
+            </connector>
+            <label>yes</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>isoppteamblank</name>
+        <label>isoppteamblank</label>
+        <locationX>402</locationX>
+        <locationY>2003</locationY>
+        <defaultConnector>
+            <targetReference>OppTeamLoop</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>yes2</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>isoppteamvalid</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Opp_Team_Notification</targetReference>
+            </connector>
+            <label>yes</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Ownerisnotblank</name>
+        <label>Ownerisnotblank</label>
+        <locationX>182</locationX>
+        <locationY>971</locationY>
+        <defaultConnector>
+            <targetReference>Assignment_2</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>yes</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>IsRecipientsNotEmpty</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Opportunity_Notification</targetReference>
+            </connector>
+            <label>yes</label>
+        </rules>
+    </decisions>
     <environments>Default</environments>
     <formulas>
         <name>AccountOwnerRecipientFormula</name>
@@ -299,6 +399,26 @@
         <expression>NOT(CONTAINS({!notifiedUserIds}, {!currentAccountTeamMember.UserId}))</expression>
     </formulas>
     <formulas>
+        <name>IsAccountOwnerRecipientValid</name>
+        <dataType>Boolean</dataType>
+        <expression>NOT(ISNULL({!TeamMemberNotif})) &amp;&amp; {!TeamMemberNotif} &lt;&gt; &quot;[]&quot;</expression>
+    </formulas>
+    <formulas>
+        <name>isaccteamvalid</name>
+        <dataType>Boolean</dataType>
+        <expression>NOT(ISNULL({!AccTeamMember})) &amp;&amp; {!AccTeamMember} &lt;&gt; &quot;[]&quot;</expression>
+    </formulas>
+    <formulas>
+        <name>isoppteamvalid</name>
+        <dataType>Boolean</dataType>
+        <expression>NOT(ISNULL({!OppTeamRecip})) &amp;&amp; {!OppTeamRecip} &lt;&gt; &quot;[]&quot;</expression>
+    </formulas>
+    <formulas>
+        <name>IsRecipientsNotEmpty</name>
+        <dataType>Boolean</dataType>
+        <expression>NOT(ISNULL({!Recepients})) &amp;&amp; {!Recepients} &lt;&gt; &quot;[]&quot;</expression>
+    </formulas>
+    <formulas>
         <name>OpportunityRecipientFormula</name>
         <dataType>String</dataType>
         <expression>IF(
@@ -327,8 +447,8 @@
     <loops>
         <name>Loop_2</name>
         <label>Loop Through Account Team Mem</label>
-        <locationX>176</locationX>
-        <locationY>1919</locationY>
+        <locationX>182</locationX>
+        <locationY>2495</locationY>
         <collectionReference>Acc_Team</collectionReference>
         <iterationOrder>Asc</iterationOrder>
         <nextValueConnector>
@@ -338,8 +458,8 @@
     <loops>
         <name>OppTeamLoop</name>
         <label>Loop through Opp Team Member</label>
-        <locationX>176</locationX>
-        <locationY>1403</locationY>
+        <locationX>182</locationX>
+        <locationY>1787</locationY>
         <collectionReference>OpportunityTeamMember_records</collectionReference>
         <iterationOrder>Asc</iterationOrder>
         <nextValueConnector>
@@ -371,8 +491,8 @@
     <recordLookups>
         <name>Acc_Team</name>
         <label>Acc Team</label>
-        <locationX>176</locationX>
-        <locationY>1811</locationY>
+        <locationX>182</locationX>
+        <locationY>2387</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Loop_2</targetReference>
@@ -401,7 +521,7 @@
     <recordLookups>
         <name>Get_Account_Owner</name>
         <label>Get Account Owner</label>
-        <locationX>176</locationX>
+        <locationX>182</locationX>
         <locationY>755</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
@@ -423,7 +543,7 @@
     <recordLookups>
         <name>Get_Last_Modified_User</name>
         <label>Get Last Modified User</label>
-        <locationX>176</locationX>
+        <locationX>182</locationX>
         <locationY>431</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
@@ -445,7 +565,7 @@
     <recordLookups>
         <name>Get_Notification_Type</name>
         <label>Get Notification Type</label>
-        <locationX>176</locationX>
+        <locationX>182</locationX>
         <locationY>323</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
@@ -466,7 +586,7 @@
     <recordLookups>
         <name>Get_Opportunity_Owner</name>
         <label>Get Opportunity Owner</label>
-        <locationX>176</locationX>
+        <locationX>182</locationX>
         <locationY>647</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
@@ -488,8 +608,8 @@
     <recordLookups>
         <name>OpportunityTeamMember_records</name>
         <label>OpportunityTeamMember records</label>
-        <locationX>176</locationX>
-        <locationY>1295</locationY>
+        <locationX>182</locationX>
+        <locationY>1679</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>OppTeamLoop</targetReference>
@@ -516,7 +636,7 @@
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordLookups>
     <start>
-        <locationX>50</locationX>
+        <locationX>56</locationX>
         <locationY>0</locationY>
         <connector>
             <targetReference>Get_Notification_Type</targetReference>
@@ -619,6 +739,13 @@
         <name>Recepients</name>
         <dataType>String</dataType>
         <isCollection>true</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>shouldSendNotification</name>
+        <dataType>Boolean</dataType>
+        <isCollection>false</isCollection>
         <isInput>false</isInput>
         <isOutput>false</isOutput>
     </variables>
