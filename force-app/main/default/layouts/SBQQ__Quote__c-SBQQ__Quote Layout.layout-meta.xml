@@ -635,6 +635,7 @@
     </quickActionList>
     <relatedLists>
         <fields>NAME</fields>
+        <fields>SBQQ__Group__c</fields>
         <fields>SBQQ__Number__c</fields>
         <fields>SBQQ__Product__c</fields>
         <fields>SBQQ__ListPrice__c</fields>
@@ -648,11 +649,11 @@
         <excludeButtons>New</excludeButtons>
         <fields>NAME</fields>
         <fields>SBQQ__Number__c</fields>
+        <fields>SBQQ__CustomerTotal__c</fields>
+        <fields>SBQQ__NetTotal__c</fields>
         <fields>SBQQ__Description__c</fields>
         <fields>SBQQ__SubscriptionTerm__c</fields>
         <fields>SBQQ__ListTotal__c</fields>
-        <fields>SBQQ__CustomerTotal__c</fields>
-        <fields>SBQQ__NetTotal__c</fields>
         <relatedList>SBQQ__QuoteLineGroup__c.SBQQ__Quote__c</relatedList>
         <sortField>SBQQ__Number__c</sortField>
         <sortOrder>Asc</sortOrder>

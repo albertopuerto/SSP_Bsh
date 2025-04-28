@@ -1744,7 +1744,7 @@
     </layoutAssignments>
     <layoutAssignments>
         <layout>Apttus__APTS_Agreement__c-APTS_Controlling_layout</layout>
-        <recordType>Apttus__APTS_Agreement__c.IC_Reseller_Framework_Agreement</recordType>
+        <recordType>Apttus__APTS_Agreement__c.IC_Reseller_Framework</recordType>
     </layoutAssignments>
     <layoutAssignments>
         <layout>Apttus__APTS_Agreement__c-APTS_Controlling_layout</layout>
@@ -1756,7 +1756,7 @@
     </layoutAssignments>
     <layoutAssignments>
         <layout>Apttus__APTS_Agreement__c-APTS_Controlling_layout</layout>
-        <recordType>Apttus__APTS_Agreement__c.IC_Software_License_Agreement</recordType>
+        <recordType>Apttus__APTS_Agreement__c.IC_Software_License</recordType>
     </layoutAssignments>
     <layoutAssignments>
         <layout>Apttus__APTS_Agreement__c-APTS_Controlling_layout</layout>
@@ -1764,11 +1764,11 @@
     </layoutAssignments>
     <layoutAssignments>
         <layout>Apttus__APTS_Agreement__c-APTS_Controlling_layout</layout>
-        <recordType>Apttus__APTS_Agreement__c.Intercompany_NDA</recordType>
+        <recordType>Apttus__APTS_Agreement__c.IC_NDA</recordType>
     </layoutAssignments>
     <layoutAssignments>
         <layout>Apttus__APTS_Agreement__c-APTS_Controlling_layout</layout>
-        <recordType>Apttus__APTS_Agreement__c.Other_Intercompany</recordType>
+        <recordType>Apttus__APTS_Agreement__c.Other_IC</recordType>
     </layoutAssignments>
     <layoutAssignments>
         <layout>Apttus__AgreementActionCondition__c-Apttus__Agreement Action Condition Layout</layout>
