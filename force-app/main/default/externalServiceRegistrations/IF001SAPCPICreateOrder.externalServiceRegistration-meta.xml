@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ExternalServiceRegistration xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>SAP Order Service</description>
+    <label>IF001SAPCPICreateOrder</label>
+    <namedCredentialReference>IF001SAPCPI</namedCredentialReference>
+    <operations>
+        <active>true</active>
+        <name>createsolutionquotation</name>
+    </operations>
+    <registrationProviderType>Custom</registrationProviderType>
+    <schema>{
+  &quot;openapi&quot;: &quot;3.0.3&quot;,
+  &quot;info&quot;: { &quot;title&quot;: &quot;SSP&quot;, &quot;version&quot;: &quot;1.0.0&quot;, &quot;contact&quot;: {} },
+  &quot;servers&quot;: [
+    { &quot;url&quot;: &quot;https://6cf9b36a-a38b-4b3e-9523-2138754b4c4e.mock.pstmn.io&quot; }
+  ],
+  &quot;paths&quot;: {
+    &quot;/http/rb.bbm.ssp.order.customevent.sf&quot;: {
+      &quot;post&quot;: {
+        &quot;operationId&quot;: &quot;createSolutionQuotation&quot;,
+        &quot;summary&quot;: &quot;Creates solutuon Quotation in SAP S/4 HANA&quot;,
+        &quot;description&quot;: &quot;Creates solutuon Quotation in SAP S/4 HANA&quot;,
+        &quot;requestBody&quot;: {
+          &quot;content&quot;: {
+            &quot;application/json&quot;: {
+              &quot;schema&quot;: {
+                &quot;type&quot;: &quot;object&quot;,
+                &quot;properties&quot;: {
+                  &quot;orderChange&quot;: {
+                    &quot;type&quot;: &quot;object&quot;,
+                    &quot;properties&quot;: {
+                      &quot;SF_Order_Id__c&quot;: { &quot;type&quot;: &quot;string&quot; },
+                      &quot;CorrelationId&quot;: { &quot;type&quot;: &quot;string&quot; }
+                    },
+                    &quot;required&quot;: [&quot;SF_Order_Id__c&quot;, &quot;CorrelationId&quot;]
+                  }
+                }
+              }
+            }
+          }
+        },
+        &quot;responses&quot;: {
+          &quot;200&quot;: {
+            &quot;description&quot;: &quot;Success message&quot;,
+            &quot;content&quot;: {
+              &quot;application/json&quot;: {
+                &quot;schema&quot;: {
+                  &quot;type&quot;: &quot;object&quot;,
+                  &quot;properties&quot;: {
+                    &quot;orderChangeResponse&quot;: {
+                      &quot;type&quot;: &quot;object&quot;,
+                      &quot;properties&quot;: {
+                        &quot;Status Code&quot;: { &quot;type&quot;: &quot;string&quot; },
+                        &quot;Status Text&quot;: { &quot;type&quot;: &quot;string&quot; },
+                        &quot;CorrelationId&quot;: { &quot;type&quot;: &quot;string&quot; }
+                      },
+                      &quot;required&quot;: [
+                        &quot;Status Code&quot;,
+                        &quot;Status Text&quot;,
+                        &quot;CorrelationId&quot;
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          &quot;500&quot;: {
+            &quot;description&quot;: &quot;Error message&quot;,
+            &quot;content&quot;: {
+              &quot;application/json&quot;: {
+                &quot;schema&quot;: {
+                  &quot;type&quot;: &quot;object&quot;,
+                  &quot;properties&quot;: {
+                    &quot;orderChangeResponse&quot;: {
+                      &quot;type&quot;: &quot;object&quot;,
+                      &quot;properties&quot;: {
+                        &quot;Status Code&quot;: { &quot;type&quot;: &quot;string&quot; },
+                        &quot;Status Text&quot;: { &quot;type&quot;: &quot;string&quot; },
+                        &quot;CorrelationId&quot;: { &quot;type&quot;: &quot;string&quot; }
+                      },
+                      &quot;required&quot;: [
+                        &quot;Status Code&quot;,
+                        &quot;Status Text&quot;,
+                        &quot;CorrelationId&quot;
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          &quot;404&quot;: {
+            &quot;description&quot;: &quot;Not found&quot;,
+            &quot;content&quot;: {
+              &quot;text/html&quot;: {
+                &quot;schema&quot;: {
+                  &quot;type&quot;: &quot;string&quot;
+                  
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+</schema>
+    <schemaType>OpenApi3</schemaType>
+    <schemaUploadFileExtension>json</schemaUploadFileExtension>
+    <schemaUploadFileName>mock_simplified2</schemaUploadFileName>
+    <serviceBinding>{&quot;host&quot;:&quot;6cf9b36a-a38b-4b3e-9523-2138754b4c4e.mock.pstmn.io&quot;,&quot;basePath&quot;:&quot;&quot;,&quot;allowedSchemes&quot;:[&quot;HTTPS&quot;],&quot;requestMediaTypes&quot;:[],&quot;responseMediaTypes&quot;:[],&quot;compatibleMediaTypes&quot;:{&quot;text/html&quot;:&quot;text/plain&quot;}}</serviceBinding>
+    <status>Complete</status>
+    <systemVersion>6</systemVersion>
+</ExternalServiceRegistration>
