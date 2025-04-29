@@ -11603,7 +11603,15 @@
         <visible>true</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
+        <recordType>Apttus__APTS_Agreement__c.Other_Marketing_Agreement</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
         <recordType>Apttus__APTS_Agreement__c.Partner_Distribution_Agreement</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <recordType>Apttus__APTS_Agreement__c.R_D_Partnership_Agreement</recordType>
         <visible>true</visible>
     </recordTypeVisibilities>
     <tabSettings>
