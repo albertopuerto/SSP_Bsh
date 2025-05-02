@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <PermissionSet xmlns="http://soap.sforce.com/2006/04/metadata">
     <description>Custom user permissions across all Salesforce CPQ objects with Read, Create, Edit and Delete records permissions.</description>
     <hasActivationRequired>false</hasActivationRequired>
@@ -5968,6 +5968,16 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>SBQQ__QuoteLine__c.fcur_AccountBasedDiscountAmount__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>SBQQ__QuoteLine__c.fpct_AmountToPercent__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>SBQQ__QuoteLine__c.fpct_QuoteLineGroupDiscount__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
