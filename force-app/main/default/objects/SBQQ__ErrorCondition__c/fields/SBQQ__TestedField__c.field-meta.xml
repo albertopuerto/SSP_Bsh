@@ -28,10 +28,103 @@
                 <default>false</default>
                 <label>SBQQ__ProductCode__c</label>
             </value>
+            <value>
+                <fullName>SBQQ__Discount__c</fullName>
+                <default>false</default>
+                <label>SBQQ__Discount__c</label>
+            </value>
+            <value>
+                <fullName>SBQQ__AdditionalDiscountAmount__c</fullName>
+                <default>false</default>
+                <label>SBQQ__AdditionalDiscountAmount__c</label>
+            </value>
+            <value>
+                <fullName>SBQQ__MarkupAmount__c</fullName>
+                <default>false</default>
+                <label>SBQQ__MarkupAmount__c</label>
+            </value>
+            <value>
+                <fullName>SBQQ__ContractedPrice__c</fullName>
+                <default>false</default>
+                <label>SBQQ__ContractedPrice__c</label>
+            </value>
+            <value>
+                <fullName>SBQQ__SpecialPriceType__c</fullName>
+                <default>false</default>
+                <label>SBQQ__SpecialPriceType__c</label>
+            </value>
+            <value>
+                <fullName>fpct_AmountToPercent__c</fullName>
+                <default>false</default>
+                <label>fpct_AmountToPercent__c</label>
+            </value>
+            <value>
+                <fullName>SBQQ__CustomerDiscount__c</fullName>
+                <default>false</default>
+                <label>SBQQ__CustomerDiscount__c</label>
+            </value>
+            <value>
+                <fullName>cur_MarkupAmount__c</fullName>
+                <default>false</default>
+                <label>cur_MarkupAmount__c</label>
+            </value>
+            <value>
+                <fullName>prc_MarkupRate__c</fullName>
+                <default>false</default>
+                <label>prc_MarkupRate__c</label>
+            </value>
+            <value>
+                <fullName>SBQQ__AdditionalDiscountRate__c</fullName>
+                <default>false</default>
+                <label>SBQQ__AdditionalDiscountRate__c</label>
+            </value>
+            <value>
+                <fullName>Name</fullName>
+                <default>false</default>
+                <label>Name</label>
+            </value>
+            <value>
+                <fullName>SBQQ__Group__c</fullName>
+                <default>false</default>
+                <label>SBQQ__Group__c</label>
+            </value>
+            <value>
+                <fullName>fpct_QuoteLineGroupDiscount__c</fullName>
+                <default>false</default>
+                <label>fpct_QuoteLineGroupDiscount__c</label>
+            </value>
         </valueSetDefinition>
         <valueSettings>
             <controllingFieldValue>Quote</controllingFieldValue>
             <valueName>Group Line Items</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Quote</controllingFieldValue>
+            <valueName>SBQQ__CustomerDiscount__c</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Quote Line</controllingFieldValue>
+            <valueName>SBQQ__Discount__c</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Quote Line</controllingFieldValue>
+            <valueName>SBQQ__AdditionalDiscountAmount__c</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Quote Line</controllingFieldValue>
+            <valueName>SBQQ__SpecialPriceType__c</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Quote Line</controllingFieldValue>
+            <valueName>fpct_AmountToPercent__c</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Quote Line</controllingFieldValue>
+            <valueName>fpct_QuoteLineGroupDiscount__c</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Quote Line Group</controllingFieldValue>
+            <valueName>Name</valueName>
         </valueSettings>
         <valueSettings>
             <controllingFieldValue>Product Option</controllingFieldValue>
