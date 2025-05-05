@@ -32,11 +32,6 @@
         <isRequired>false</isRequired>
     </availableFields>
     <availableFields>
-        <field>SBQQ__CustomerPrice__c</field>
-        <isFieldManaged>false</isFieldManaged>
-        <isRequired>false</isRequired>
-    </availableFields>
-    <availableFields>
         <field>SBQQ__CustomerTotal__c</field>
         <isFieldManaged>false</isFieldManaged>
         <isRequired>false</isRequired>
@@ -177,11 +172,6 @@
         <isRequired>false</isRequired>
     </availableFields>
     <availableFields>
-        <field>SBQQ__UnitCost__c</field>
-        <isFieldManaged>false</isFieldManaged>
-        <isRequired>false</isRequired>
-    </availableFields>
-    <availableFields>
         <field>SBQQ__Uplift__c</field>
         <isFieldManaged>false</isFieldManaged>
         <isRequired>false</isRequired>
@@ -209,6 +199,16 @@
     </displayedFields>
     <displayedFields>
         <field>SBQQ__RegularPrice__c</field>
+        <isFieldManaged>false</isFieldManaged>
+        <isRequired>false</isRequired>
+    </displayedFields>
+    <displayedFields>
+        <field>SBQQ__UnitCost__c</field>
+        <isFieldManaged>false</isFieldManaged>
+        <isRequired>false</isRequired>
+    </displayedFields>
+    <displayedFields>
+        <field>SBQQ__CustomerPrice__c</field>
         <isFieldManaged>false</isFieldManaged>
         <isRequired>false</isRequired>
     </displayedFields>

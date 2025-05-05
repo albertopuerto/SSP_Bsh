@@ -42,6 +42,16 @@
                         <valueListItems>
                             <value>CustomButton.Order.SBQQ__EditOrderProducts</value>
                         </valueListItems>
+                        <valueListItems>
+                            <value>Order.SendToSAP</value>
+                            <visibilityRule>
+                                <criteria>
+                                    <leftValue>{!Record.Status}</leftValue>
+                                    <operator>EQUAL</operator>
+                                    <rightValue>Activated</rightValue>
+                                </criteria>
+                            </visibilityRule>
+                        </valueListItems>
                     </valueList>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
