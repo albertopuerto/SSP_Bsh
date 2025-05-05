@@ -793,6 +793,10 @@
             <default>false</default>
         </values>
         <values>
+            <fullName>Chinese Law</fullName>
+            <default>false</default>
+        </values>
+        <values>
             <fullName>Dutch Law</fullName>
             <default>false</default>
         </values>
@@ -802,6 +806,18 @@
         </values>
         <values>
             <fullName>German Law</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Indian Law</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Italian Law</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Japanese Law</fullName>
             <default>false</default>
         </values>
         <values>
@@ -956,12 +972,20 @@
     <picklistValues>
         <picklist>APTS_Language__c</picklist>
         <values>
+            <fullName>Chinese</fullName>
+            <default>false</default>
+        </values>
+        <values>
             <fullName>English</fullName>
             <default>false</default>
         </values>
         <values>
             <fullName>German</fullName>
             <default>true</default>
+        </values>
+        <values>
+            <fullName>Japanese</fullName>
+            <default>false</default>
         </values>
     </picklistValues>
     <picklistValues>
@@ -1466,7 +1490,35 @@
     <picklistValues>
         <picklist>Apttus__Subtype__c</picklist>
         <values>
-            <fullName>Default</fullName>
+            <fullName>Addendum</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Amendment</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Annex</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Checklist</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Circulation Sheet</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Health Check</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Memorandum of Understanding %28MoU%29</fullName>
+            <default>true</default>
+        </values>
+        <values>
+            <fullName>Summary</fullName>
             <default>false</default>
         </values>
     </picklistValues>

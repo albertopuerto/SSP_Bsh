@@ -795,6 +795,10 @@
             <default>false</default>
         </values>
         <values>
+            <fullName>Chinese Law</fullName>
+            <default>false</default>
+        </values>
+        <values>
             <fullName>Dutch Law</fullName>
             <default>false</default>
         </values>
@@ -804,6 +808,18 @@
         </values>
         <values>
             <fullName>German Law</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Indian Law</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Italian Law</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Japanese Law</fullName>
             <default>false</default>
         </values>
         <values>
@@ -958,12 +974,20 @@
     <picklistValues>
         <picklist>APTS_Language__c</picklist>
         <values>
+            <fullName>Chinese</fullName>
+            <default>false</default>
+        </values>
+        <values>
             <fullName>English</fullName>
             <default>false</default>
         </values>
         <values>
             <fullName>German</fullName>
             <default>true</default>
+        </values>
+        <values>
+            <fullName>Japanese</fullName>
+            <default>false</default>
         </values>
     </picklistValues>
     <picklistValues>
@@ -1500,8 +1524,8 @@
     <picklistValues>
         <picklist>Apttus__Subtype__c</picklist>
         <values>
-            <fullName>Default</fullName>
-            <default>false</default>
+            <fullName>Other</fullName>
+            <default>true</default>
         </values>
     </picklistValues>
 </RecordType>

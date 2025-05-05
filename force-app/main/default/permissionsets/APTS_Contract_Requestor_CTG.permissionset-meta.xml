@@ -12279,6 +12279,14 @@
         <visible>true</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
+        <recordType>Apttus__APTS_Agreement__c.APTS_IC_Agency_Sales_Support</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <recordType>Apttus__APTS_Agreement__c.APTS_IC_Limited_Sales_Support</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
         <recordType>Apttus__APTS_Agreement__c.IC_Development_and_Application</recordType>
         <visible>true</visible>
     </recordTypeVisibilities>

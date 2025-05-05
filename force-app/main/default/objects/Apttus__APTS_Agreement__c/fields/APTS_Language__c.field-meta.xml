@@ -24,6 +24,16 @@
                 <default>false</default>
                 <label>English</label>
             </value>
+            <value>
+                <fullName>Japanese</fullName>
+                <default>false</default>
+                <label>Japanese</label>
+            </value>
+            <value>
+                <fullName>Chinese</fullName>
+                <default>false</default>
+                <label>Chinese</label>
+            </value>
         </valueSetDefinition>
     </valueSet>
 </CustomField>
