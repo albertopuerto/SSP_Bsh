@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
     <fieldSets>
         <label></label>
@@ -17,21 +17,6 @@
         <sections>
             <label></label>
             <section>Sales Data</section>
-        </sections>
-    </layouts>
-    <layouts>
-        <layout>SBQQ__CPQ Account Layout</layout>
-        <sections>
-            <label></label>
-            <section>Additional Information</section>
-        </sections>
-        <sections>
-            <label></label>
-            <section>Custom Links</section>
-        </sections>
-        <sections>
-            <label></label>
-            <section>Renewal/Co-Term Information</section>
         </sections>
     </layouts>
     <layouts>

@@ -3,12 +3,23 @@ import { NavigationMixin } from 'lightning/navigation';
 import getListViewDetail from '@salesforce/apex/APTS_ListViewIdGeneric.getListViewDetail';
 import hasCustomPermission from '@salesforce/apex/EtasCoreUtils.hasCustomPermission';
 import { getLogger } from 'c/logger';
+import MyAgreements from '@salesforce/label/c.MyAgreements';
+import MyQueue from '@salesforce/label/c.MyQueue';
+import NewAgreement from '@salesforce/label/Apttus.NewAgreement';
+import StoreExecutedAgreement from '@salesforce/label/Apttus.StoreExecutedAgreement';
 
 export default class AptsHomePageLinks extends NavigationMixin(LightningElement) {
     @track myAgreementsList;
     @track clausesList;
     @track displayAgreementButton = false;
     @api logger = getLogger();
+
+    label = {
+        MyAgreements: MyAgreements,
+        MyQueue: MyQueue,
+        NewAgreement,
+        StoreExecutedAgreement
+    };
 
     get sldsColClass(){
         return this.displayAgreementButton ? 'slds-col slds-size_1-of-4' : 'slds-col slds-size_1-of-3';
@@ -22,11 +33,11 @@ export default class AptsHomePageLinks extends NavigationMixin(LightningElement)
             if(!this.displayAgreementButton){
                 this.logger.error('hasCustomPermission').setField({ Message__c: 'FLW-PER-00001 - user does not have permission CreateNewAgreement' }).addTag('FLW-PER');
                 this.logger.saveLog();
-                console.log('user does not have permission CreateNewAgreement');
             }
         })
         .catch(error => {
-            console.error('error checking custom permission', error);
+            this.logger.error('system Error').setField({ Message__c: 'FLW-SYS-00001 - error checking custom permission' }).addTag('FLW-SYS');
+            this.logger.saveLog();
         })
     }
 
@@ -45,7 +56,8 @@ export default class AptsHomePageLinks extends NavigationMixin(LightningElement)
                 this[compId] = result;
             })
             .catch(error => {
-                console.error('Error fetching list view: ', error);
+                this.logger.error('system Error').setField({ Message__c: 'FLW-SYS-00002 - Error fetching list view' }).addTag('FLW-SYS');
+                this.logger.saveLog();
             });
     }
 
@@ -80,8 +92,9 @@ export default class AptsHomePageLinks extends NavigationMixin(LightningElement)
                     }
                 });
             })
-            .catch(error => {
-                console.error('Error navigating to My Agreements: ', error);
+            .catch(error => {       
+                this.logger.error('system Error').setField({ Message__c: 'FLW-SYS-00003 - Error navigating to My Agreements' }).addTag('FLW-SYS');
+                this.logger.saveLog();
             });
     }
 
@@ -108,7 +121,8 @@ export default class AptsHomePageLinks extends NavigationMixin(LightningElement)
                 });
             })
             .catch(error => {
-                console.error('Error navigating to My Queue: ', error);
+                this.logger.error('system Error').setField({ Message__c: 'FLW-SYS-00004 - Error navigating to My Queue' }).addTag('FLW-SYS');
+                this.logger.saveLog();
             });
     }
 }

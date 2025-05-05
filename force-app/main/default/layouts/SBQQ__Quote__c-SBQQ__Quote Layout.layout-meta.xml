@@ -13,7 +13,6 @@
     <customButtons>SBQQ__CalculateQuote</customButtons>
     <customButtons>Submit_for_Approval</customButtons>
     <customButtons>Preview_Approval</customButtons>
-    <excludeButtons>OpenSlackRecordChannel</excludeButtons>
     <layoutSections>
         <customLabel>true</customLabel>
         <detailHeading>false</detailHeading>
@@ -310,13 +309,13 @@
         <layoutColumns>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>SSP_POValidated__c</field>
+                <field>txt_PONo__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>SSP_PONo__c</field>
+                <field>chk_POValidated__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsLeftToRight</style>
@@ -636,6 +635,7 @@
     </quickActionList>
     <relatedLists>
         <fields>NAME</fields>
+        <fields>SBQQ__Group__c</fields>
         <fields>SBQQ__Number__c</fields>
         <fields>SBQQ__Product__c</fields>
         <fields>SBQQ__ListPrice__c</fields>
@@ -649,11 +649,11 @@
         <excludeButtons>New</excludeButtons>
         <fields>NAME</fields>
         <fields>SBQQ__Number__c</fields>
+        <fields>SBQQ__CustomerTotal__c</fields>
+        <fields>SBQQ__NetTotal__c</fields>
         <fields>SBQQ__Description__c</fields>
         <fields>SBQQ__SubscriptionTerm__c</fields>
         <fields>SBQQ__ListTotal__c</fields>
-        <fields>SBQQ__CustomerTotal__c</fields>
-        <fields>SBQQ__NetTotal__c</fields>
         <relatedList>SBQQ__QuoteLineGroup__c.SBQQ__Quote__c</relatedList>
         <sortField>SBQQ__Number__c</sortField>
         <sortOrder>Asc</sortOrder>
