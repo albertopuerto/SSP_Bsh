@@ -6,14 +6,14 @@
                     <a data-id="NDA Wizard" class="HideLine" onclick={gotoMyAgreements}>
                         <lightning-icon icon-name="standard:record" class="iconstyle" size="large" alternative-text="NDA Wizard"></lightning-icon>
                         <br/>
-                        <span class="osOutputLabel">My<br/>Agreements</span>
+                        <span class="osOutputLabel">{label.MyAgreements}</span>
                     </a>
                 </div>
                 <div class={sldsColClass}>
                     <a data-id="NDA Wizard" class="HideLine" onclick={myQueueAgreements}>
                         <lightning-icon icon-name="standard:record_lookup" class="iconstyle" size="large" alternative-text="New Agreement"></lightning-icon>
                         <br/>
-                        <span class="osOutputLabel">My<br/>Queue</span>
+                        <span class="osOutputLabel">{label.MyQueue}</span>
                     </a>
                 </div>
                 <template if:true={displayAgreementButton}>
@@ -21,7 +21,7 @@
                         <a data-id="NDA Wizard" class="HideLine" onclick={newAgreement}>
                             <lightning-icon icon-name="standard:record_create" class="iconstyle" size="large" alternative-text="New Agreement"></lightning-icon>
                             <br/>
-                            <span class="osOutputLabel">New<br/>Agreement</span>
+                            <span class="osOutputLabel">{label.NewAgreement}</span>
                         </a>
                     </div>
                 </template>
@@ -29,7 +29,7 @@
                     <a data-id="NDA Wizard" class="HideLine" onclick={createWizard}>
                         <lightning-icon icon-name="standard:contract" class="iconstyle" size="large" alternative-text="NDA Wizard"></lightning-icon>
                         <br/>
-                        <span class="osOutputLabel">Store<br/>Executed Agreement</span>
+                        <span class="osOutputLabel">{label.StoreExecutedAgreement}</span>
                     </a>
                 </div>
             </div>

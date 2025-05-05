@@ -93,6 +93,46 @@
                 <default>false</default>
                 <label>Service Agreement for intercompany use cases MSA (Master Service Agreement)</label>
             </value>
+            <value>
+                <fullName>Memorandum of Understanding (MoU)</fullName>
+                <default>false</default>
+                <label>Memorandum of Understanding (MoU)</label>
+            </value>
+            <value>
+                <fullName>Checklist</fullName>
+                <default>false</default>
+                <label>Checklist</label>
+            </value>
+            <value>
+                <fullName>Summary</fullName>
+                <default>false</default>
+                <label>Summary</label>
+            </value>
+            <value>
+                <fullName>Circulation Sheet</fullName>
+                <default>false</default>
+                <label>Circulation Sheet</label>
+            </value>
+            <value>
+                <fullName>Amendment</fullName>
+                <default>false</default>
+                <label>Amendment</label>
+            </value>
+            <value>
+                <fullName>Addendum</fullName>
+                <default>false</default>
+                <label>Addendum</label>
+            </value>
+            <value>
+                <fullName>Annex</fullName>
+                <default>false</default>
+                <label>Annex</label>
+            </value>
+            <value>
+                <fullName>Health Check</fullName>
+                <default>false</default>
+                <label>Health Check</label>
+            </value>
         </valueSetDefinition>
     </valueSet>
 </CustomField>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <PermissionSet xmlns="http://soap.sforce.com/2006/04/metadata">
     <description>Custom user permissions across all Salesforce CPQ objects with Read, Create, Edit and Delete records permissions.</description>
     <hasActivationRequired>false</hasActivationRequired>
@@ -6833,11 +6833,6 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>SBQQ__Quote__c.SBQQ__WatermarkShown__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>SBQQ__Quote__c.SSP_POValidated__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>

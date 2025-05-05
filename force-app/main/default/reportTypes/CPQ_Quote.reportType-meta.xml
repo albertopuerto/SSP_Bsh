@@ -442,16 +442,6 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>SSP_PONo__c</field>
-            <table>SBQQ__Quote__c</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>SSP_POValidated__c</field>
-            <table>SBQQ__Quote__c</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
             <field>chk_POValidated__c</field>
             <table>SBQQ__Quote__c</table>
         </columns>
@@ -563,11 +553,6 @@
         <columns>
             <checkedByDefault>false</checkedByDefault>
             <field>chk_Override_Standard_T_C__c</field>
-            <table>SBQQ__Quote__c</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>lkp_PersonResponsible__c</field>
             <table>SBQQ__Quote__c</table>
         </columns>
         <columns>

@@ -247,16 +247,6 @@
                     <name>uiBehavior</name>
                     <value>none</value>
                 </fieldInstanceProperties>
-                <fieldItem>Record.lkp_PersonResponsible__c</fieldItem>
-                <identifier>Recordlkp_PersonResponsible_cField</identifier>
-            </fieldInstance>
-        </itemInstances>
-        <itemInstances>
-            <fieldInstance>
-                <fieldInstanceProperties>
-                    <name>uiBehavior</name>
-                    <value>none</value>
-                </fieldInstanceProperties>
                 <fieldItem>Record.pkl_INCOTerms1__c</fieldItem>
                 <identifier>Recordpkl_INCOTerms1_cField</identifier>
             </fieldInstance>
