@@ -58,6 +58,26 @@
                 <default>false</default>
                 <label>USA Law</label>
             </value>
+            <value>
+                <fullName>Japanese Law</fullName>
+                <default>false</default>
+                <label>Japanese Law</label>
+            </value>
+            <value>
+                <fullName>Chinese Law</fullName>
+                <default>false</default>
+                <label>Chinese Law</label>
+            </value>
+            <value>
+                <fullName>Italian Law</fullName>
+                <default>false</default>
+                <label>Italian Law</label>
+            </value>
+            <value>
+                <fullName>Indian Law</fullName>
+                <default>false</default>
+                <label>Indian Law</label>
+            </value>
         </valueSetDefinition>
     </valueSet>
 </CustomField>
