@@ -82,6 +82,11 @@
                 <default>false</default>
                 <label>Bottom_Line_Price__c</label>
             </value>
+            <value>
+                <fullName>SBQQ__ListPrice__c</fullName>
+                <default>false</default>
+                <label>SBQQ__ListPrice__c</label>
+            </value>
         </valueSetDefinition>
         <valueSettings>
             <controllingFieldValue>Quote</controllingFieldValue>
@@ -132,6 +137,10 @@
         <valueSettings>
             <controllingFieldValue>Quote Line</controllingFieldValue>
             <valueName>Bottom_Line_Price__c</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Quote Line</controllingFieldValue>
+            <valueName>SBQQ__ListPrice__c</valueName>
         </valueSettings>
         <valueSettings>
             <controllingFieldValue>Quote Line Pricing Guidance</controllingFieldValue>
