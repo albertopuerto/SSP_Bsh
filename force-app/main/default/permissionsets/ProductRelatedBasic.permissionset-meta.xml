@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <PermissionSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <hasActivationRequired>false</hasActivationRequired>
+    <label>ProductRelatedBasic</label>
     <applicationVisibilities>
         <application>ETAS_SALES_Cockpit</application>
         <visible>true</visible>
@@ -1106,6 +1108,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>SBQQ__Quote__c.lkp_AncestorQuote__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>SBQQ__Quote__c.num_QuoteVersion__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -1509,8 +1516,6 @@
         <field>SBQQ__UpgradeSource__c.SBQQ__UpgradeProduct__c</field>
         <readable>true</readable>
     </fieldPermissions>
-    <hasActivationRequired>false</hasActivationRequired>
-    <label>ProductRelatedBasic</label>
     <objectPermissions>
         <allowCreate>true</allowCreate>
         <allowDelete>true</allowDelete>
