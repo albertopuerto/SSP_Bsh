@@ -746,4 +746,13 @@
         <tab>sbaa__Approval__c</tab>
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
+    <objectPermissions>
+        <allowCreate>true</allowCreate>
+        <allowDelete>true</allowDelete>
+        <allowEdit>true</allowEdit>
+        <allowRead>true</allowRead>
+        <modifyAllRecords>false</modifyAllRecords>
+        <object>Account</object>
+        <viewAllRecords>false</viewAllRecords>
+    </objectPermissions>
 </Profile>

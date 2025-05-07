@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Check_order_start_date</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND(
+ ISPICKVAL( Status , &quot;Activated&quot;), EffectiveDate  &lt;  TODAY()  
+)</errorConditionFormula>
+    <errorMessage>Order Status cannot be updated. Order start date must be today or a future date</errorMessage>
+</ValidationRule>
