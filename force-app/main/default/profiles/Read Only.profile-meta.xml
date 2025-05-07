@@ -254,6 +254,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <readable>false</readable>
+        <field>SBQQ__QuoteLine__c.cur_MarkupAmount__c</field>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>SBQQ__QuoteLine__c.ftxt_ShortDescription__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -266,6 +271,11 @@
         <editable>true</editable>
         <field>Product2.txr_AdditionaInformation__c</field>
         <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <readable>false</readable>
+        <field>SBQQ__QuoteLine__c.prc_MarkupRate__c</field>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -413,8 +423,47 @@
         <name>ViewSetup</name>
     </userPermissions>
     <layoutAssignments>
+        <layout>Apttus__APTS_Agreement__c-Apttus__Agreement Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Apttus__APTS_Agreement__c-APTS_Controlling_layout</layout>
+        <recordType>Apttus__APTS_Agreement__c.APTS_IC_Agency_Sales_Support</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Apttus__APTS_Agreement__c-APTS_Controlling_layout</layout>
+        <recordType>Apttus__APTS_Agreement__c.APTS_IC_Limited_Sales_Support</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Apttus__APTS_Agreement__c-APTS_DSO_All_excl_BPA</layout>
+        <recordType>Apttus__APTS_Agreement__c.AVV_BDSG</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Apttus__APTS_Agreement__c-APTS_DSO_All_excl_BPA</layout>
+        <recordType>Apttus__APTS_Agreement__c.AVV_GDPR</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Apttus__APTS_Agreement__c-APTS_DSO_BPA</layout>
+        <recordType>Apttus__APTS_Agreement__c.BPA</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
         <layout>Apttus__APTS_Agreement__c-APTS_Marketing</layout>
         <recordType>Apttus__APTS_Agreement__c.Co_marketing_agreement</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Apttus__APTS_Agreement__c-APTS_DSO_All_excl_BPA</layout>
+        <recordType>Apttus__APTS_Agreement__c.EPA</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Apttus__APTS_Agreement__c-APTS_DSO_All_excl_BPA</layout>
+        <recordType>Apttus__APTS_Agreement__c.EU_SCC</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Apttus__APTS_Agreement__c-APTS_FrameContract_Layout</layout>
+        <recordType>Apttus__APTS_Agreement__c.FrameContract</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Apttus__APTS_Agreement__c-APTS_DSO_All_excl_BPA</layout>
+        <recordType>Apttus__APTS_Agreement__c.GPA</recordType>
     </layoutAssignments>
     <layoutAssignments>
         <layout>Apttus__APTS_Agreement__c-APTS_Controlling_layout</layout>
@@ -445,8 +494,24 @@
         <recordType>Apttus__APTS_Agreement__c.IC_NDA</recordType>
     </layoutAssignments>
     <layoutAssignments>
+        <layout>Apttus__APTS_Agreement__c-APTS_DSO_All_excl_BPA</layout>
+        <recordType>Apttus__APTS_Agreement__c.Joint_Controllers</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Apttus__APTS_Agreement__c-Apttus__Agreement Layout</layout>
+        <recordType>Apttus__APTS_Agreement__c.MSA</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Apttus__APTS_Agreement__c-APTS_NDA_Layout</layout>
+        <recordType>Apttus__APTS_Agreement__c.NDA</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
         <layout>Apttus__APTS_Agreement__c-APTS_Marketing</layout>
         <recordType>Apttus__APTS_Agreement__c.NDA_MBS</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Apttus__APTS_Agreement__c-APTS_DSO_All_excl_BPA</layout>
+        <recordType>Apttus__APTS_Agreement__c.Other_DSO</recordType>
     </layoutAssignments>
     <layoutAssignments>
         <layout>Apttus__APTS_Agreement__c-APTS_Controlling_layout</layout>
@@ -455,6 +520,18 @@
     <layoutAssignments>
         <layout>Apttus__APTS_Agreement__c-APTS_Marketing</layout>
         <recordType>Apttus__APTS_Agreement__c.Other_Marketing_Agreement</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Apttus__APTS_Agreement__c-APTS_Marketing</layout>
+        <recordType>Apttus__APTS_Agreement__c.Partner_Distribution_Agreement</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Apttus__APTS_Agreement__c-APTS_Marketing</layout>
+        <recordType>Apttus__APTS_Agreement__c.R_D_Partnership_Agreement</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Apttus__APTS_Agreement__c-APTS_DSO_All_excl_BPA</layout>
+        <recordType>Apttus__APTS_Agreement__c.X2nd_Processor_EPA_GPA</recordType>
     </layoutAssignments>
     <layoutAssignments>
         <layout>ExportControlSheet__c-Export Control Sheet Layout</layout>
@@ -479,6 +556,16 @@
     </layoutAssignments>
     <recordTypeVisibilities>
         <default>false</default>
+        <recordType>Apttus__APTS_Agreement__c.APTS_IC_Agency_Sales_Support</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>Apttus__APTS_Agreement__c.APTS_IC_Limited_Sales_Support</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
         <recordType>Apttus__APTS_Agreement__c.AVV_BDSG</recordType>
         <visible>false</visible>
     </recordTypeVisibilities>
@@ -499,7 +586,17 @@
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <default>false</default>
+        <recordType>Apttus__APTS_Agreement__c.EPA</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
         <recordType>Apttus__APTS_Agreement__c.EU_SCC</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>Apttus__APTS_Agreement__c.FrameContract</recordType>
         <visible>false</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
@@ -509,7 +606,47 @@
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <default>false</default>
+        <recordType>Apttus__APTS_Agreement__c.IC_Development_and_Application</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>Apttus__APTS_Agreement__c.IC_Reseller_Framework</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>Apttus__APTS_Agreement__c.IC_SaaS</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>Apttus__APTS_Agreement__c.IC_Services</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>Apttus__APTS_Agreement__c.IC_Software_License</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>Apttus__APTS_Agreement__c.IC_Technology_Transfer</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
         <recordType>Apttus__APTS_Agreement__c.Joint_Controllers</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>Apttus__APTS_Agreement__c.MSA</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>Apttus__APTS_Agreement__c.NDA</recordType>
         <visible>false</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
@@ -524,12 +661,22 @@
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <default>false</default>
+        <recordType>Apttus__APTS_Agreement__c.Other_IC</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
         <recordType>Apttus__APTS_Agreement__c.Other_Marketing_Agreement</recordType>
         <visible>false</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <default>false</default>
         <recordType>Apttus__APTS_Agreement__c.Partner_Distribution_Agreement</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>Apttus__APTS_Agreement__c.R_D_Partnership_Agreement</recordType>
         <visible>false</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
@@ -541,4 +688,13 @@
         <tab>sbaa__Approval__c</tab>
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
+    <objectPermissions>
+        <allowCreate>false</allowCreate>
+        <allowDelete>false</allowDelete>
+        <allowEdit>false</allowEdit>
+        <allowRead>true</allowRead>
+        <modifyAllRecords>false</modifyAllRecords>
+        <object>Account</object>
+        <viewAllRecords>false</viewAllRecords>
+    </objectPermissions>
 </Profile>

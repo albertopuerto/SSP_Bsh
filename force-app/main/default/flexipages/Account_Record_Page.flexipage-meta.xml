@@ -99,6 +99,16 @@
                     <name>uiBehavior</name>
                     <value>none</value>
                 </fieldInstanceProperties>
+                <fieldItem>Record.pkm_BoschPartnerRole__c</fieldItem>
+                <identifier>RecordBosch_Partner_Role_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
                 <fieldItem>Record.txt_SearchTerm1__c</fieldItem>
                 <identifier>Recordtxt_SearchTerm1_cField</identifier>
             </fieldInstance>
