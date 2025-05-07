@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>fpct_QuoteLineGroupDiscount__c</fullName>
+    <description>Additional discount (%) inherited from the parent quote line group.</description>
+    <externalId>false</externalId>
+    <formula>SBQQ__Group__r.SBQQ__AdditionalDiscountRate__c</formula>
+    <label>Quote Line Group Discount</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Percent</type>
+</CustomField>

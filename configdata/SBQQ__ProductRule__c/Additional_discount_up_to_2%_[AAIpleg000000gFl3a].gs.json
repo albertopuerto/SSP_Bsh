@@ -1,0 +1,23 @@
+{
+  "Object": "SBQQ__ProductRule__c",
+  "Fields": {
+    "CurrencyIsoCode": "EUR",
+    "GearsetDisplayName": "Additional discount up to 2%",
+    "GearsetExternalId__c": "AAIpleg000000gFl3a",
+    "Name": "Additional discount up to 2%",
+    "SBQQ__Active__c": "true",
+    "SBQQ__AdvancedCondition__c": "5 AND (1 OR 2 OR 3 OR 4 OR 6 OR 7 OR 8 OR 9)",
+    "SBQQ__ConditionsMet__c": "Custom",
+    "SBQQ__ErrorMessage__c": "Additional discount up to 2% is allowed on the quote line.",
+    "SBQQ__EvaluationEvent__c": "Save",
+    "SBQQ__EvaluationOrder__c": "",
+    "SBQQ__LookupMessageField__c": "",
+    "SBQQ__LookupObject__c": "",
+    "SBQQ__LookupProductField__c": "",
+    "SBQQ__LookupRequiredField__c": "",
+    "SBQQ__LookupTypeField__c": "",
+    "SBQQ__Scope__c": "Quote",
+    "SBQQ__Type__c": "Validation"
+  },
+  "References": []
+}
