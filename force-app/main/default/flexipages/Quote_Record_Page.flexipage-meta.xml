@@ -207,6 +207,16 @@
                     <name>uiBehavior</name>
                     <value>none</value>
                 </fieldInstanceProperties>
+                <fieldItem>Record.lkp_AncestorQuote__c</fieldItem>
+                <identifier>Recordlkp_AncestorQuote_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
                 <fieldItem>Record.SBQQ__SalesRep__c</fieldItem>
                 <identifier>RecordSBQQ_SalesRep_cField</identifier>
             </fieldInstance>
