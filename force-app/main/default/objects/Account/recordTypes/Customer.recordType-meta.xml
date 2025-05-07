@@ -397,4 +397,19 @@
             <default>false</default>
         </values>
     </picklistValues>
+    <picklistValues>
+        <picklist>pkm_BoschPartnerRole__c</picklist>
+        <values>
+            <fullName>Bill-to</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Ship-to</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Sold-to</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
 </RecordType>
