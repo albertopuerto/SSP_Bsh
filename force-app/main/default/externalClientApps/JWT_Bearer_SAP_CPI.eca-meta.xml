@@ -3,6 +3,5 @@
     <contactEmail>Uwe.Adams@de.bosch.com</contactEmail>
     <distributionState>Local</distributionState>
     <isProtected>false</isProtected>
-    <label>JWT Bearer SAP CPI</label>
-    <orgScopedExternalApp>00DbY00000DAKVp:JWT_Bearer_SAP_CPI</orgScopedExternalApp>
+    <label>JWT Bearer SAP CPI</label>    
 </ExternalClientApplication>
