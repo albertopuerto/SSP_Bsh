@@ -34,7 +34,7 @@ public class LogCalloutInformation {
                 .setRecordId(logCalloutInfo.recordIdString);
                 
                 if(logCalloutInfo.exceptionMessage != null && logCalloutInfo.exceptionType != null && logCalloutInfo.exceptionStacktrace != null){
-                    Logger.error('Exception error details '+ logCalloutInfo.exceptionType + logCalloutInfo.exceptionMessage + logCalloutInfo.exceptionStacktrace )
+                    Logger.error('Exception error details - '+ logCalloutInfo.exceptionType + logCalloutInfo.exceptionMessage + logCalloutInfo.exceptionStacktrace )
                     .addTags(logCalloutInfo.logTags.split(','))
                     .setRecordId(logCalloutInfo.recordIdString);
                 }
@@ -46,7 +46,7 @@ public class LogCalloutInformation {
                 }
                 
             }catch(Exception ex){
-                Logger.error('Error while creating the log'+ ex.getMessage())
+                Logger.error('Error while creating the log - '+ ex.getMessage())
                 .setRecordId(logCalloutInfo.recordIdString);
             }finally{
                 Logger.saveLog();
