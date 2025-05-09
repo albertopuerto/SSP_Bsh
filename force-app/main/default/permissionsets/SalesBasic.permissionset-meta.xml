@@ -2905,10 +2905,10 @@
     </userPermissions>
     <userPermissions>
         <enabled>true</enabled>
-        <name>EditTask</name>
+        <name>ActivateOrder</name>
     </userPermissions>
     <userPermissions>
         <enabled>true</enabled>
-        <name>EmailSingle</name>
+        <name>EditActivatedOrders</name>
     </userPermissions>
 </PermissionSet>
