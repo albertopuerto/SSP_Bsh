@@ -11,8 +11,7 @@ private class GroupLineItems_controllerTest {
             pkl_INCOTerms1__c='DAP – Delivered at Place',  
             txt_INCOTerms2__c = 'Inco Terms',
             pkl_PaymentTerms__c = 'Net 15',
-            pkm_BoschPartnerRole__c = 'Sold-to',
-            CurrencyIsoCode = 'EUR-Euro'
+            pkm_BoschPartnerRole__c = 'Sold-to'
 
         );
         insert testAccount;
