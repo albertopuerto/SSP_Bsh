@@ -42,6 +42,26 @@
                 <default>false</default>
                 <label>Bottom_Line_Price__c</label>
             </value>
+            <value>
+                <fullName>SBQQ__ContractedPrice__c</fullName>
+                <default>false</default>
+                <label>SBQQ__ContractedPrice__c</label>
+            </value>
+            <value>
+                <fullName>cur_MarkupAmount__c</fullName>
+                <default>false</default>
+                <label>cur_MarkupAmount__c</label>
+            </value>
+            <value>
+                <fullName>prc_MarkupRate__c</fullName>
+                <default>false</default>
+                <label>prc_MarkupRate__c</label>
+            </value>
+            <value>
+                <fullName>SBQQ__Type__c</fullName>
+                <default>false</default>
+                <label>SBQQ__Type__c</label>
+            </value>
         </valueSetDefinition>
     </valueSet>
 </CustomField>

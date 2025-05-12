@@ -22,6 +22,11 @@
                 <default>false</default>
                 <label>FurtherPriceInformation__c</label>
             </value>
+            <value>
+                <fullName>SBQQ__DiscountCategory__c</fullName>
+                <default>false</default>
+                <label>SBQQ__DiscountCategory__c</label>
+            </value>
         </valueSetDefinition>
     </valueSet>
 </CustomField>
