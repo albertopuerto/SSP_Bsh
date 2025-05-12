@@ -449,6 +449,16 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>OrderItem.ftxt_GroupId__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>OrderItem.ftxt_GroupName__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>OrderItem.ftxt_ProductCode__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -1963,6 +1973,10 @@
     </recordTypeVisibilities>
     <classAccesses>
         <apexClass>EtasCoreUtils</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>GroupLineItems_controller</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>

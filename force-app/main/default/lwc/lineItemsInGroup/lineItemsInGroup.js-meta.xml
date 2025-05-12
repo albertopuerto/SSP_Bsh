@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+	<masterLabel>Order Products in Group</masterLabel>
+	<apiVersion>62.0</apiVersion>
+	<isExposed>true</isExposed>
+	<targets>
+		<target>lightning__AppPage</target>
+		<target>lightning__HomePage</target>
+		<target>lightning__RecordPage</target>
+	</targets>
+	<targetConfigs>
+        <targetConfig targets="lightning__RecordPage">
+            <property name="recordId" type="String" label="Record Id" description="Mandatory. Id that identify the group to show." default="" />
+            <property name="ComponentTitle" type="String" label="Title" description="" default="Order Products" />
+        </targetConfig>
+    </targetConfigs>
+</LightningComponentBundle>

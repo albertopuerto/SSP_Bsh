@@ -1,0 +1,25 @@
+<template>
+    <article class="slds-card slds-card_boundary slds-card_related-list-fix headerBottomBorder forceRelatedListCardDesktop">
+        <div class="slds-grid slds-page-header forceRelatedListCardHeader">
+            <header class="slds-media slds-media--center slds-has-flexi-truncate">
+                <div class="slds-media__figure">
+                    <lightning-icon icon-name="standard:orders" alternative-text="Orders" size="small"></lightning-icon>
+                </div>
+                <div class="slds-media__body">
+                    <h2 class="slds-card__header-title">
+                        <span class="slds-text-heading_small slds-truncate" title={ComponentTitle}>
+                            {ComponentTitle}
+                        </span>
+                    </h2>
+                </div>
+            </header>
+        </div>
+                <lightning-datatable
+                    key-field="Name"
+                    data={orderGroups}
+                    columns={columns}
+                    hide-checkbox-column="true"
+                >
+                </lightning-datatable>
+    </article>
+</template>

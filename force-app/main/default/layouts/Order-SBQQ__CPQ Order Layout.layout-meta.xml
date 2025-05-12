@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Layout xmlns="http://soap.sforce.com/2006/04/metadata">
     <customButtons>SBQQ__EditOrderProducts</customButtons>
+    <excludeButtons>CreateContractFromOrder</excludeButtons>
     <excludeButtons>Deactivate</excludeButtons>
-    <excludeButtons>OpenSlackRecordChannel</excludeButtons>
     <excludeButtons>Submit</excludeButtons>
     <layoutSections>
         <customLabel>true</customLabel>
@@ -202,14 +202,11 @@
         <excludeButtons>EditAllProduct</excludeButtons>
         <fields>Product2</fields>
         <fields>ProductCode</fields>
-        <fields>SBQQ__QuotedListPrice__c</fields>
+        <fields>ftxt_GroupName__c</fields>
+        <fields>Quantity</fields>
         <fields>UnitPrice</fields>
         <fields>TotalPrice</fields>
-        <fields>SBQQ__OrderedQuantity__c</fields>
-        <fields>SBQQ__QuotedQuantity__c</fields>
-        <fields>SBQQ__QuoteLine__c</fields>
-        <fields>SBQQ__RevisedOrderProduct__c</fields>
-        <fields>SBQQ__ContractAction__c</fields>
+        <fields>Description</fields>
         <relatedList>RelatedOrderItemList</relatedList>
     </relatedLists>
     <relatedLists>
