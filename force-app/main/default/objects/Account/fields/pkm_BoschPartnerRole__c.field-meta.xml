@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>pkm_BoschPartnerRole__c</fullName>
-    <description>It provides information of the Bosch Partner Role</description>
     <externalId>false</externalId>
     <label>Bosch Partner Role</label>
     <required>true</required>
@@ -13,19 +12,19 @@
         <valueSetDefinition>
             <sorted>false</sorted>
             <value>
-                <fullName>Sold-to</fullName>
+                <fullName>BBCUEX</fullName>
                 <default>false</default>
-                <label>Sold-to</label>
+                <label>BBCUEX</label>
             </value>
             <value>
-                <fullName>Bill-to</fullName>
+                <fullName>BBCUSH</fullName>
                 <default>false</default>
-                <label>Bill-to</label>
+                <label>BBCUSH</label>
             </value>
             <value>
-                <fullName>Ship-to</fullName>
+                <fullName>BBCUBP</fullName>
                 <default>false</default>
-                <label>Ship-to</label>
+                <label>BBCUBP</label>
             </value>
         </valueSetDefinition>
     </valueSet>
