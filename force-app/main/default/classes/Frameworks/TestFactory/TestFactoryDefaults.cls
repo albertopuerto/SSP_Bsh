@@ -31,7 +31,7 @@ public with sharing class TestFactoryDefaults{
 					Account.pkl_PaymentTerms__c => 'Due on receipt',
 					Account.txt_INCOTerms2__c => 'Inco terms 2 text area',
 					Account.pkl_Language__c => 'English',
-					Account.pkm_BoschPartnerRole__c => 'Bill-to'
+					Account.pkm_BoschPartnerRole__c => 'BBCUSH'
 			};
 		}
 	}
@@ -53,7 +53,7 @@ public with sharing class TestFactoryDefaults{
 					Account.pkl_PaymentTerms__c => 'Due on receipt',
 					Account.txt_INCOTerms2__c => 'Inco terms 2 text area',
 					Account.pkl_Language__c => 'English',
-					Account.pkm_BoschPartnerRole__c => 'Ship-to'
+					Account.pkm_BoschPartnerRole__c => 'BBCUEX'
 			};
 		}
 	}
