@@ -100,6 +100,9 @@
                         <valueListItems>
                             <value>CustomButton.SBQQ__Quote__c.Preview_Approval</value>
                         </valueListItems>
+                        <valueListItems>
+                            <value>CustomButton.SBQQ__Quote__c.SBQQ__RefreshPrices</value>
+                        </valueListItems>
                     </valueList>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
