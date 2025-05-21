@@ -3,7 +3,7 @@
     <fullName>pkm_BoschPartnerRole__c</fullName>
     <externalId>false</externalId>
     <label>Bosch Partner Role</label>
-    <required>true</required>
+    <required>false</required>
     <trackFeedHistory>false</trackFeedHistory>
     <trackHistory>false</trackHistory>
     <type>MultiselectPicklist</type>
