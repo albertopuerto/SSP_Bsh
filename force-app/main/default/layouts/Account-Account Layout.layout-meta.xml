@@ -33,10 +33,6 @@
                 <field>Role__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Required</behavior>
-                <field>pkm_BoschPartnerRole__c</field>
-            </layoutItems>
-            <layoutItems>
                 <behavior>Edit</behavior>
                 <field>txt_SearchTerm1__c</field>
             </layoutItems>
@@ -63,6 +59,10 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>pkl_MaxNoofPartialDeliveries__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>pkm_BoschPartnerRole__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
