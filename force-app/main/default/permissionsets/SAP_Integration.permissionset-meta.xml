@@ -4,6 +4,11 @@
     <label>SAP Integration</label>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Account.pkm_BoschPartnerRole__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Order.dat_SAPPlannedOrderDeliveryDate__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -27,6 +32,15 @@
         <field>OrderItem.txt_SAPExternalLineItemId__c</field>
         <readable>true</readable>
     </fieldPermissions>
+    <objectPermissions>
+        <allowCreate>true</allowCreate>
+        <allowDelete>false</allowDelete>
+        <allowEdit>false</allowEdit>
+        <allowRead>true</allowRead>
+        <modifyAllRecords>false</modifyAllRecords>
+        <object>Account</object>
+        <viewAllRecords>false</viewAllRecords>
+    </objectPermissions>
     <objectPermissions>
         <allowCreate>true</allowCreate>
         <allowDelete>false</allowDelete>

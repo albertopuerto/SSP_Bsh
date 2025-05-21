@@ -341,6 +341,11 @@
     </recordTypeVisibilities>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Account.pkm_BoschPartnerRole__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>FurtherPriceInformation__c.GearsetExternalId__c</field>
         <readable>true</readable>
     </fieldPermissions>

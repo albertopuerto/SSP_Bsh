@@ -55,9 +55,6 @@
                             <value>CustomButton.SBQQ__Quote__c.SBQQ__GenerateDocument</value>
                         </valueListItems>
                         <valueListItems>
-                            <value>CustomButton.SBQQ__Quote__c.SBQQ__CreateOrderFromQuote</value>
-                        </valueListItems>
-                        <valueListItems>
                             <value>Clone</value>
                         </valueListItems>
                         <valueListItems>
@@ -363,16 +360,6 @@
                 </fieldInstanceProperties>
                 <fieldItem>Record.SBQQ__ExpirationDate__c</fieldItem>
                 <identifier>RecordSBQQ_ExpirationDate_cField</identifier>
-            </fieldInstance>
-        </itemInstances>
-        <itemInstances>
-            <fieldInstance>
-                <fieldInstanceProperties>
-                    <name>uiBehavior</name>
-                    <value>none</value>
-                </fieldInstanceProperties>
-                <fieldItem>Record.SBQQ__Ordered__c</fieldItem>
-                <identifier>RecordSBQQ_Ordered_cField</identifier>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
