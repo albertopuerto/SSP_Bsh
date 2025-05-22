@@ -50,7 +50,7 @@
                 <leftValueReference>Quote_Validator.isQuoteReadOnly</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
-                    <booleanValue>true</booleanValue>
+                    <booleanValue>false</booleanValue>
                 </rightValue>
             </conditions>
             <connector>
@@ -61,7 +61,7 @@
     </decisions>
     <environments>Default</environments>
     <interviewLabel>Quote Edit Restriction during Approvals {!$Flow.CurrentDateTime}</interviewLabel>
-    <label>Quote Edit Restriction during Approvals</label>
+    <label>Quote Edit Restriction During Approvals</label>
     <processMetadataValues>
         <name>BuilderType</name>
         <value>

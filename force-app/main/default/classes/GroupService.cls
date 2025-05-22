@@ -1,5 +1,5 @@
 /**
-* @author       Ravi
+* @author       TLQ1KOR
 * @date         05/19/2025
 * @description  BSSP-6689:Lock Record until approval
 */
@@ -53,7 +53,7 @@ public with sharing class GroupService {
             if (Test.isRunningTest() && approvals_for_testing != null) {
                 approvals = approvals_for_testing;
             } else {
-                approvals = [SELECT Id, sbaa__ApproverField__c FROM sbaa__Approval__c 
+                approvals = [SELECT Id, sbaa__ApproverField__c, sbaa__Approver__c FROM sbaa__Approval__c 
                              WHERE Quote__c = :quoteId AND sbaa__Status__c IN ('Requested', 'Assigned')];
             }
             
@@ -67,7 +67,7 @@ public with sharing class GroupService {
             Set<Id> sIdApprovals = new Set<Id>();
             for (sbaa__Approval__c approval : approvals) {
                 if (approval.Id != null){
-                    sIdApprovals.add(approval.Id);
+                    sIdApprovals.add(approval.sbaa__Approver__c);
                 }
                 
             }
