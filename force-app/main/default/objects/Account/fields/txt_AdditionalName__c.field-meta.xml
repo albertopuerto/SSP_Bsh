@@ -3,10 +3,12 @@
     <fullName>txt_AdditionalName__c</fullName>
     <description>Additional Name for reference with C4C</description>
     <externalId>false</externalId>
-    <label>Additional Name</label>
+    <inlineHelpText>Used if Name 1 (Account Name) is longer then 35 characters</inlineHelpText>
+    <label>Name 2</label>
     <length>255</length>
     <required>false</required>
     <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
     <type>Text</type>
     <unique>false</unique>
 </CustomField>
