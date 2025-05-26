@@ -87,6 +87,35 @@
         <connector>
             <targetReference>Quote_Validator</targetReference>
         </connector>
+        <filterLogic>(1 AND 2) OR (3 AND 4)</filterLogic>
+        <filters>
+            <field>SBQQ__Status__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Approval Pending</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>SBQQ__Status__c</field>
+            <operator>IsChanged</operator>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </filters>
+        <filters>
+            <field>SBQQ__Status__c</field>
+            <operator>IsChanged</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
+        <filters>
+            <field>SBQQ__Status__c</field>
+            <operator>NotEqualTo</operator>
+            <value>
+                <stringValue>Approval Pending</stringValue>
+            </value>
+        </filters>
         <object>SBQQ__Quote__c</object>
         <recordTriggerType>Update</recordTriggerType>
         <triggerType>RecordAfterSave</triggerType>
