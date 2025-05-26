@@ -39,7 +39,27 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Account.txt_AdditionalName2__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Account.txt_AdditionalName__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Account.txt_AthenaUUID__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Account.txt_LegalEntity__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Account.txt_Name4__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -635,6 +655,16 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>SBQQ__Quote__c.txt_PONo__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>SalesAreaLink__c.pkl_INCOTerm__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>SalesAreaLink__c.txt_IncotermLocation__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
