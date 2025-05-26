@@ -3,10 +3,11 @@
     <fullName>txt_AthenaUUID__c</fullName>
     <caseSensitive>false</caseSensitive>
     <description>Defines the Athena unique identifier for Account;
-
 Unique field</description>
     <externalId>false</externalId>
-    <label>Athena UUID</label>
+    <inlineHelpText>Defines the Athena unique identifier for Account;
+Unique field</inlineHelpText>
+    <label>Bosch Partner Number</label>
     <length>10</length>
     <required>false</required>
     <trackFeedHistory>false</trackFeedHistory>
