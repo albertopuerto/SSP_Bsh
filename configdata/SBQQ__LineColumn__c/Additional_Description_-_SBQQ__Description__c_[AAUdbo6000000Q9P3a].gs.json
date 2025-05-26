@@ -5,11 +5,11 @@
     "GearsetDisplayName": "Additional Description - SBQQ__Description__c",
     "GearsetExternalId__c": "AAUdbo6000000Q9P3a",
     "Name": "Additional Description",
-    "SBQQ__Alignment__c": "Left",
+    "SBQQ__Alignment__c": "Right",
     "SBQQ__BottomMargin__c": "3.0",
     "SBQQ__ColumnHeadingField__c": "",
     "SBQQ__ConditionalPrintField__c": "",
-    "SBQQ__DisplayOrder__c": "90.0",
+    "SBQQ__DisplayOrder__c": "70.0",
     "SBQQ__DynamicNumberScale__c": "false",
     "SBQQ__FieldName__c": "SBQQ__Description__c",
     "SBQQ__FontFamily__c": "",
@@ -31,14 +31,14 @@
     "SBQQ__TextColor__c": "",
     "SBQQ__TopMargin__c": "3.0",
     "SBQQ__WidthDiscardedWhenHidden__c": "false",
-    "SBQQ__Width__c": "100.0"
+    "SBQQ__Width__c": "25.0"
   },
   "References": [
     {
       "Name": "SBQQ__Section__r",
       "ReferencedObject": "SBQQ__TemplateSection__c",
       "ReferencedFields": {
-        "GearsetExternalId__c": ""
+        "GearsetExternalId__c": "AAU3ln1000000Q9B4a"
       }
     },
     {
