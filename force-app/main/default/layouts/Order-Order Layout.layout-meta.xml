@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Layout xmlns="http://soap.sforce.com/2006/04/metadata">
-    <excludeButtons>OpenSlackRecordChannel</excludeButtons>
+    <excludeButtons>CreateContractFromOrder</excludeButtons>
     <excludeButtons>Submit</excludeButtons>
     <layoutSections>
         <customLabel>false</customLabel>
@@ -312,6 +312,7 @@
     <relatedLists>
         <fields>Product2</fields>
         <fields>ProductCode</fields>
+        <fields>ftxt_GroupName__c</fields>
         <fields>Quantity</fields>
         <fields>UnitPrice</fields>
         <fields>TotalPrice</fields>
