@@ -240,6 +240,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Account.pkm_BoschPartnerRole__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>AccountContactRelation.Relationship_Strength__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -662,6 +667,16 @@
         <editable>true</editable>
         <field>SBQQ__ProductRule__c.GearsetExternalId__c</field>
         <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <readable>false</readable>
+        <field>SBQQ__QuoteLine__c.cur_MarkupAmount__c</field>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <readable>false</readable>
+        <field>SBQQ__QuoteLine__c.prc_MarkupRate__c</field>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>

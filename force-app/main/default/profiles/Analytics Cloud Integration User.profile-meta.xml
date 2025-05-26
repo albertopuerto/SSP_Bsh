@@ -19,6 +19,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Account.pkm_BoschPartnerRole__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Account.txt_AthenaUUID__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -244,6 +249,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <readable>false</readable>
+        <field>SBQQ__QuoteLine__c.cur_MarkupAmount__c</field>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>SBQQ__QuoteLine__c.ftxt_ShortDescription__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -256,6 +266,11 @@
         <editable>true</editable>
         <field>Product2.txr_AdditionaInformation__c</field>
         <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <readable>false</readable>
+        <field>SBQQ__QuoteLine__c.prc_MarkupRate__c</field>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>

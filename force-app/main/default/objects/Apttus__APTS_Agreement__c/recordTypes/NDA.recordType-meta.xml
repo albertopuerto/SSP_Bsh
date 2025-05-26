@@ -982,11 +982,23 @@
             <default>false</default>
         </values>
         <values>
+            <fullName>French</fullName>
+            <default>false</default>
+        </values>
+        <values>
             <fullName>German</fullName>
             <default>true</default>
         </values>
         <values>
+            <fullName>Italian</fullName>
+            <default>false</default>
+        </values>
+        <values>
             <fullName>Japanese</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Korean</fullName>
             <default>false</default>
         </values>
     </picklistValues>

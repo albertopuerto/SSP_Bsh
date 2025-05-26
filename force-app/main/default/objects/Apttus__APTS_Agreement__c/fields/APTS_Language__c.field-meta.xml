@@ -34,6 +34,21 @@
                 <default>false</default>
                 <label>Chinese</label>
             </value>
+            <value>
+                <fullName>French</fullName>
+                <default>false</default>
+                <label>French</label>
+            </value>
+            <value>
+                <fullName>Italian</fullName>
+                <default>false</default>
+                <label>Italian</label>
+            </value>
+            <value>
+                <fullName>Korean</fullName>
+                <default>false</default>
+                <label>Korean</label>
+            </value>
         </valueSetDefinition>
     </valueSet>
 </CustomField>

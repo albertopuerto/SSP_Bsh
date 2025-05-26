@@ -1,0 +1,44 @@
+{
+  "Object": "SBQQ__ErrorCondition__c",
+  "Fields": {
+    "CurrencyIsoCode": "EUR",
+    "GearsetDisplayName": "No Markup if additional discounts are applied - Quote Line - prc_MarkupRate__c",
+    "GearsetExternalId__c": "0AMVHqQ000000gFE3a",
+    "SBQQ__FilterType__c": "Value",
+    "SBQQ__FilterValue__c": "",
+    "SBQQ__Index__c": "6.0",
+    "SBQQ__Operator__c": "not equals",
+    "SBQQ__TestedField__c": "prc_MarkupRate__c",
+    "SBQQ__TestedObject__c": "Quote Line"
+  },
+  "References": [
+    {
+      "Name": "SBQQ__FilterVariable__r",
+      "ReferencedObject": "SBQQ__SummaryVariable__c",
+      "ReferencedFields": {
+        "GearsetExternalId__c": ""
+      }
+    },
+    {
+      "Name": "SBQQ__Rule__r",
+      "ReferencedObject": "SBQQ__ProductRule__c",
+      "ReferencedFields": {
+        "GearsetExternalId__c": "AAI7xeg000000gFl3a"
+      }
+    },
+    {
+      "Name": "SBQQ__TestedAttribute__r",
+      "ReferencedObject": "SBQQ__ProductAttribute__c",
+      "ReferencedFields": {
+        "GearsetExternalId__c": ""
+      }
+    },
+    {
+      "Name": "SBQQ__TestedVariable__r",
+      "ReferencedObject": "SBQQ__SummaryVariable__c",
+      "ReferencedFields": {
+        "GearsetExternalId__c": ""
+      }
+    }
+  ]
+}
