@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>ftxt_SalesRepPhone__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF(ISBLANK(SBQQ__SalesRep__r.Phone),&quot;&quot;,&#39;,&#39; + SBQQ__SalesRep__r.Phone)</formula>
+    <label>SalesRep Phone</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>
