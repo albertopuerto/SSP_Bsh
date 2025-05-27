@@ -6,6 +6,7 @@
     <permissionSets>CPQEnhancedUser</permissionSets>
     <permissionSets>ContactMaster</permissionSets>
     <permissionSets>QualifyOpportunities</permissionSets>
+    <permissionSets>SAPOutboundIntegration</permissionSets>
     <permissionSets>SalesBasic</permissionSets>
     <status>Updated</status>
 </PermissionSetGroup>

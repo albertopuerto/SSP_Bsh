@@ -26,6 +26,10 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
+                <field>txt_Name4__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
                 <field>Type</field>
             </layoutItems>
             <layoutItems>
@@ -59,6 +63,14 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>pkl_MaxNoofPartialDeliveries__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>txt_LegalEntity__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>pkm_BoschPartnerRole__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>

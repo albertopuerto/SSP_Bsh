@@ -55,9 +55,6 @@
                             <value>CustomButton.SBQQ__Quote__c.SBQQ__GenerateDocument</value>
                         </valueListItems>
                         <valueListItems>
-                            <value>CustomButton.SBQQ__Quote__c.SBQQ__CreateOrderFromQuote</value>
-                        </valueListItems>
-                        <valueListItems>
                             <value>Clone</value>
                         </valueListItems>
                         <valueListItems>
@@ -84,6 +81,9 @@
                         </valueListItems>
                         <valueListItems>
                             <value>CustomButton.SBQQ__Quote__c.Preview_Approval</value>
+                        </valueListItems>
+                        <valueListItems>
+                            <value>CustomButton.SBQQ__Quote__c.SBQQ__RefreshPrices</value>
                         </valueListItems>
                     </valueList>
                 </componentInstanceProperties>
@@ -232,7 +232,7 @@
                 <fieldItem>Record.lkp_ToolCoordinator__c</fieldItem>
                 <identifier>Recordlkp_ToolCoordinator_cField</identifier>
             </fieldInstance>
-        </itemInstances>        
+        </itemInstances>
         <itemInstances>
             <fieldInstance>
                 <fieldInstanceProperties>
@@ -345,16 +345,6 @@
                 </fieldInstanceProperties>
                 <fieldItem>Record.SBQQ__ExpirationDate__c</fieldItem>
                 <identifier>RecordSBQQ_ExpirationDate_cField</identifier>
-            </fieldInstance>
-        </itemInstances>
-        <itemInstances>
-            <fieldInstance>
-                <fieldInstanceProperties>
-                    <name>uiBehavior</name>
-                    <value>none</value>
-                </fieldInstanceProperties>
-                <fieldItem>Record.SBQQ__Ordered__c</fieldItem>
-                <identifier>RecordSBQQ_Ordered_cField</identifier>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
