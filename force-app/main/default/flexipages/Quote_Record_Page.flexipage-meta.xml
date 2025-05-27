@@ -232,17 +232,7 @@
                 <fieldItem>Record.lkp_ToolCoordinator__c</fieldItem>
                 <identifier>Recordlkp_ToolCoordinator_cField</identifier>
             </fieldInstance>
-        </itemInstances>
-        <itemInstances>
-            <fieldInstance>
-                <fieldInstanceProperties>
-                    <name>uiBehavior</name>
-                    <value>none</value>
-                </fieldInstanceProperties>
-                <fieldItem>Record.lkp_PersonResponsible__c</fieldItem>
-                <identifier>Recordlkp_PersonResponsible_cField</identifier>
-            </fieldInstance>
-        </itemInstances>
+        </itemInstances>        
         <itemInstances>
             <fieldInstance>
                 <fieldInstanceProperties>
