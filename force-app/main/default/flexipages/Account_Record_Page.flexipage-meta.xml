@@ -79,6 +79,16 @@
                     <name>uiBehavior</name>
                     <value>none</value>
                 </fieldInstanceProperties>
+                <fieldItem>Record.txt_Name4__c</fieldItem>
+                <identifier>RecordName_4__cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
                 <fieldItem>Record.Type</fieldItem>
                 <identifier>RecordTypeField</identifier>
             </fieldInstance>
@@ -151,16 +161,6 @@
                 </fieldInstanceProperties>
                 <fieldItem>Record.txt_AthenaUUID__c</fieldItem>
                 <identifier>Recordtxt_AthenaUUID__cField</identifier>
-            </fieldInstance>
-        </itemInstances>
-        <itemInstances>
-            <fieldInstance>
-                <fieldInstanceProperties>
-                    <name>uiBehavior</name>
-                    <value>none</value>
-                </fieldInstanceProperties>
-                <fieldItem>Record.txt_Name4__c</fieldItem>
-                <identifier>RecordName_4__cField</identifier>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
