@@ -4,6 +4,7 @@
     <label>Acquisition Manager</label>
     <permissionSets>CPQEnhancedUser</permissionSets>
     <permissionSets>QualifyOpportunities</permissionSets>
+    <permissionSets>SAPOutboundIntegration</permissionSets>
     <permissionSets>SalesBasic</permissionSets>
     <status>Updated</status>
 </PermissionSetGroup>

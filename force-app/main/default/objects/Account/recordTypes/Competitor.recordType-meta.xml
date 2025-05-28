@@ -400,15 +400,15 @@
     <picklistValues>
         <picklist>pkm_BoschPartnerRole__c</picklist>
         <values>
-            <fullName>Bill-to</fullName>
+            <fullName>BBCUBP</fullName>
             <default>false</default>
         </values>
         <values>
-            <fullName>Ship-to</fullName>
+            <fullName>BBCUEX</fullName>
             <default>false</default>
         </values>
         <values>
-            <fullName>Sold-to</fullName>
+            <fullName>BBCUSH</fullName>
             <default>false</default>
         </values>
     </picklistValues>

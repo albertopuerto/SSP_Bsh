@@ -44,11 +44,6 @@
                 <label>SBQQ__MarkupAmount__c</label>
             </value>
             <value>
-                <fullName>SBQQ__ContractedPrice__c</fullName>
-                <default>false</default>
-                <label>SBQQ__ContractedPrice__c</label>
-            </value>
-            <value>
                 <fullName>SBQQ__SpecialPriceType__c</fullName>
                 <default>false</default>
                 <label>SBQQ__SpecialPriceType__c</label>
@@ -79,16 +74,6 @@
                 <label>SBQQ__AdditionalDiscountRate__c</label>
             </value>
             <value>
-                <fullName>Name</fullName>
-                <default>false</default>
-                <label>Name</label>
-            </value>
-            <value>
-                <fullName>SBQQ__Group__c</fullName>
-                <default>false</default>
-                <label>SBQQ__Group__c</label>
-            </value>
-            <value>
                 <fullName>fpct_QuoteLineGroupDiscount__c</fullName>
                 <default>false</default>
                 <label>fpct_QuoteLineGroupDiscount__c</label>
@@ -112,6 +97,10 @@
         </valueSettings>
         <valueSettings>
             <controllingFieldValue>Quote Line</controllingFieldValue>
+            <valueName>SBQQ__MarkupAmount__c</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Quote Line</controllingFieldValue>
             <valueName>SBQQ__SpecialPriceType__c</valueName>
         </valueSettings>
         <valueSettings>
@@ -120,11 +109,19 @@
         </valueSettings>
         <valueSettings>
             <controllingFieldValue>Quote Line</controllingFieldValue>
+            <valueName>cur_MarkupAmount__c</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Quote Line</controllingFieldValue>
+            <valueName>prc_MarkupRate__c</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Quote Line</controllingFieldValue>
             <valueName>fpct_QuoteLineGroupDiscount__c</valueName>
         </valueSettings>
         <valueSettings>
             <controllingFieldValue>Quote Line Group</controllingFieldValue>
-            <valueName>Name</valueName>
+            <valueName>SBQQ__AdditionalDiscountRate__c</valueName>
         </valueSettings>
         <valueSettings>
             <controllingFieldValue>Product Option</controllingFieldValue>
