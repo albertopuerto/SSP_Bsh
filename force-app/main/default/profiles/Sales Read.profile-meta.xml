@@ -989,4 +989,8 @@
         <apexClass>EtasCoreUtils</apexClass>
         <enabled>true</enabled>
     </classAccesses>
+    <classAccesses>
+        <apexClass>GroupLineItems_controller</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
 </Profile>
