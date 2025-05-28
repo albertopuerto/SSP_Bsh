@@ -1349,6 +1349,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>SBQQ__Quote__c.ftxt_SalesRepPhone__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>SBQQ__Quote__c.ftxt_SalutationofPrimaryContact__c</field>
         <readable>true</readable>
     </fieldPermissions>

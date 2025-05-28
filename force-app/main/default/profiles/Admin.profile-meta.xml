@@ -474,6 +474,16 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>OrderItem.ftxt_GroupId__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>OrderItem.ftxt_GroupName__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>OrderItem.ftxt_ProductCode__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -620,6 +630,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>SBQQ__Quote__c.Submitteddate__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>SBQQ__Quote__c.ftxt_SalesRepPhone__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -2008,6 +2023,10 @@
     </recordTypeVisibilities>
     <classAccesses>
         <apexClass>EtasCoreUtils</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>GroupLineItems_controller</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
