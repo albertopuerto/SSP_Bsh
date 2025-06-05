@@ -299,6 +299,91 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>SalesAreaLink__c.chk_CompleteDelivery__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>SalesAreaLink__c.chk_Deletionflagforcustomer__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>SalesAreaLink__c.chk_Rebate__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>SalesAreaLink__c.ftxt_SalesAreaName__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>SalesAreaLink__c.ftxt_SalesArea__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>SalesAreaLink__c.pkl_BillingBlockforCustomer__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>SalesAreaLink__c.pkl_CustomerDeliveryBlock__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>SalesAreaLink__c.pkl_CustomerGroup1__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>SalesAreaLink__c.pkl_CustomerGroup__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>SalesAreaLink__c.pkl_CustomerOrderBlock__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>SalesAreaLink__c.pkl_CustomerPriceGroup__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>SalesAreaLink__c.pkl_InvoicingDates__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>SalesAreaLink__c.pkl_MaxPartDeliveries__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>SalesAreaLink__c.pkl_Partdlvitem__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>SalesAreaLink__c.pkl_SalesBlockCustomer__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>SalesAreaLink__c.txt_Accountatcustomer__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>SalesAreaLink__c.txt_CustomerStatus__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>sbaa__Approval__c.Quote__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -618,6 +703,9 @@
     </layoutAssignments>
     <layoutAssignments>
         <layout>SBQQ__Quote__c-SBQQ__Quote Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>SalesAreaLink__c-Sales Area Link Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
         <layout>sbaa__Approval__c-sbaa__Approval Layout</layout>

@@ -208,6 +208,9 @@
         <layout>SBQQ__Quote__c-SBQQ__Quote Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
+        <layout>SalesAreaLink__c-Sales Area Link Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
         <layout>sbaa__Approval__c-sbaa__Approval Layout</layout>
     </layoutAssignments>
     <recordTypeVisibilities>
