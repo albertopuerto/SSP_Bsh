@@ -5,7 +5,13 @@
 */
 @isTest
 public with sharing class TestFactory {
-
+    @testvisible
+    public static Id createId(Schema.SObjectType sObjectType) {
+    String keyPrefix = sObjectType.getDescribe().getKeyPrefix();
+    String uniqueSuffix = '000000000000'; // Static 12 zeros
+    
+    return Id.valueOf(keyPrefix + uniqueSuffix);
+}
 	/**
 	* @author       APC
 	* @description  createSObject constructor
@@ -138,11 +144,12 @@ public with sharing class TestFactory {
 
 		// Get the name field for the object
 		String nameField = String.valueOf(nameFieldMap.get(sObj.getSObjectType()));
-		if (nameField == null) {
+	// namefield is 
+        if (nameField == null) {
 			nameField = 'Name';
 		}
 		Boolean nameIsAutoNumber = sObj.getSobjectType().getDescribe().fields.getMap().get(nameField).getDescribe().isAutoNumber();
-
+         // Boolean nameIsAutoNumber = sObj.getSobjectType().getDescribe().fields.getMap().get(nameField).getDescribe().isAutoNumber() != null ? sObj.getSobjectType().getDescribe().fields.getMap().get(nameField).getDescribe().isAutoNumber() : false;
 		// Clone the object the number of times requested. Increment the name field so each record is unique
 		for (Integer i = 0; i < numberOfObjects; i++) {
 			SObject clonedSObj = newObj.clone(false, true);
@@ -182,8 +189,13 @@ public with sharing class TestFactory {
 		Order.sObjectType => Order.Name,
 		Product2.sObjectType => Product2.Name,
 		Quote.sObjectType => Quote.Name,
-		Apttus__Agreement_Clause__c.sObjectType => Apttus__Agreement_Clause__c.Apttus__ContentId__c
+		Apttus__Agreement_Clause__c.sObjectType => Apttus__Agreement_Clause__c.Apttus__ContentId__c,
+            sbaa__Approval__c.SObjectType => sbaa__Approval__c.Name,
+            sbaa__Approver__c.SObjectType => sbaa__Approver__c.Name,
+            ContentVersion.SObjectType => ContentVersion.Title,
+            ContentDocumentLink.SObjectType => ContentDocumentLink.ContentDocumentId
 	};
+     
 
 	public class TestFactoryException extends Exception {}
 
