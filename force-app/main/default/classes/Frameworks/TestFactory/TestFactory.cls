@@ -5,13 +5,6 @@
 */
 @isTest
 public with sharing class TestFactory {
-    @testvisible
-    public static Id createId(Schema.SObjectType sObjectType) {
-    String keyPrefix = sObjectType.getDescribe().getKeyPrefix();
-    String uniqueSuffix = '000000000000'; // Static 12 zeros
-    
-    return Id.valueOf(keyPrefix + uniqueSuffix);
-}
 	/**
 	* @author       APC
 	* @description  createSObject constructor
