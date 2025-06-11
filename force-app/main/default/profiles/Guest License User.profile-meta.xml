@@ -271,6 +271,10 @@
         <readable>true</readable>
     </fieldPermissions>
     <tabVisibilities>
+        <tab>BoschPartnerFunction__c</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
         <tab>sbaa__Approval__c</tab>
         <visibility>Hidden</visibility>
     </tabVisibilities>

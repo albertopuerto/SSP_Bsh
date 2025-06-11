@@ -3391,6 +3391,10 @@
         <visibility>Hidden</visibility>
     </tabVisibilities>
     <tabVisibilities>
+        <tab>BoschPartnerFunction__c</tab>
+        <visibility>DefaultOn</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
         <tab>CRMC_PP__About_CRMCulture</tab>
         <visibility>Hidden</visibility>
     </tabVisibilities>

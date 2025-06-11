@@ -2581,6 +2581,10 @@
         <visible>false</visible>
     </recordTypeVisibilities>
     <tabVisibilities>
+        <tab>BoschPartnerFunction__c</tab>
+        <visibility>DefaultOn</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
         <tab>cnga__ApprovalCenter</tab>
         <visibility>Hidden</visibility>
     </tabVisibilities>
