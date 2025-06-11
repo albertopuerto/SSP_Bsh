@@ -1874,6 +1874,10 @@
         <visible>true</visible>
     </recordTypeVisibilities>
     <tabVisibilities>
+        <tab>BoschPartnerFunction__c</tab>
+        <visibility>DefaultOn</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
         <tab>SBQQ__Quote__c</tab>
         <visibility>Hidden</visibility>
     </tabVisibilities>

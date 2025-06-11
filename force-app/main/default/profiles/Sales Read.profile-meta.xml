@@ -734,6 +734,10 @@
         <readable>true</readable>
     </fieldPermissions>
     <tabVisibilities>
+        <tab>BoschPartnerFunction__c</tab>
+        <visibility>DefaultOn</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
         <tab>standard-Quote</tab>
         <visibility>Hidden</visibility>
     </tabVisibilities>
