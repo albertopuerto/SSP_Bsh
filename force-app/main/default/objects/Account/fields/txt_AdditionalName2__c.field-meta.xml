@@ -3,10 +3,11 @@
     <fullName>txt_AdditionalName2__c</fullName>
     <description>Additional Name 2 for reference in C4C</description>
     <externalId>false</externalId>
-    <label>Additional Name 2</label>
+    <label>Name 3</label>
     <length>255</length>
     <required>false</required>
     <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
     <type>Text</type>
     <unique>false</unique>
 </CustomField>

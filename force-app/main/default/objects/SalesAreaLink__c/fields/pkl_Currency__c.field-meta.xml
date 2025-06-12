@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>pkl_Currency__c</fullName>
+    <description>Customer&#39;s currency for a sales area</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Customer&#39;s currency for a sales area. This currency will be used to settle the customer&#39;s charges for the given sales organization.</inlineHelpText>
+    <label>Currency</label>
+    <required>true</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetName>pkl_ConditionCurrency</valueSetName>
+    </valueSet>
+</CustomField>

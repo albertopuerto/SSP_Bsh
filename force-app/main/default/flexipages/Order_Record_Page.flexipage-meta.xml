@@ -105,6 +105,19 @@
         <itemInstances>
             <componentInstance>
                 <componentInstanceProperties>
+                    <name>ComponentTitle</name>
+                    <value>Order Product Groups</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>recordId</name>
+                </componentInstanceProperties>
+                <componentName>groupLineItems</componentName>
+                <identifier>c_groupLineItems</identifier>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
                     <name>relatedListComponentOverride</name>
                     <value>NONE</value>
                 </componentInstanceProperties>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GlobalValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customValue>
+        <fullName>Order Block</fullName>
+        <default>false</default>
+        <label>Order Block</label>
+    </customValue>
+    <customValue>
+        <fullName>Quote Block</fullName>
+        <default>false</default>
+        <label>Quote Block</label>
+    </customValue>
+    <customValue>
+        <fullName>Order and Quote Block</fullName>
+        <default>false</default>
+        <label>Order and Quote Block</label>
+    </customValue>
+    <masterLabel>Sales Block Customer</masterLabel>
+    <sorted>false</sorted>
+</GlobalValueSet>

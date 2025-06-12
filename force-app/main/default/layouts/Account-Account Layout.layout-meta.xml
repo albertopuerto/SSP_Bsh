@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Layout xmlns="http://soap.sforce.com/2006/04/metadata">
-    <excludeButtons>DataDotComCompanyHierarchy</excludeButtons>
+    <excludeButtons>DataDotComAccountInsights</excludeButtons>
+    <excludeButtons>DataDotComClean</excludeButtons>
     <excludeButtons>DisableCustomerPortalAccount</excludeButtons>
     <excludeButtons>DisablePartnerPortalAccount</excludeButtons>
     <excludeButtons>IncludeOffline</excludeButtons>
-    <excludeButtons>OpenSlackRecordChannel</excludeButtons>
     <excludeButtons>Share</excludeButtons>
     <layoutSections>
         <customLabel>false</customLabel>
@@ -26,11 +26,19 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
+                <field>txt_Name4__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
                 <field>Type</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Required</behavior>
                 <field>Role__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Required</behavior>
+                <field>pkm_BoschPartnerRole__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
@@ -61,8 +69,8 @@
                 <field>pkl_MaxNoofPartialDeliveries__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>pkm_BoschPartnerRole__c</field>
+                <behavior>Edit</behavior>
+                <field>txt_LegalEntity__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
@@ -395,10 +403,10 @@
         <relatedList>RelatedHistoryList</relatedList>
     </relatedLists>
     <relatedLists>
-        <fields>SalesArea__c.NAME</fields>
-        <fields>ftxt_SalesOrg__c</fields>
-        <fields>ftxt_DistributionChannel__c</fields>
-        <fields>ftxt_Division__c</fields>
+        <fields>ftxt_SalesArea__c</fields>
+        <fields>SalesArea__c.pkl_SalesOrg__c</fields>
+        <fields>SalesArea__c.pkl_DistributionChannel__c</fields>
+        <fields>SalesArea__c.pkl_Division__c</fields>
         <relatedList>SalesAreaLink__c.mdr_Account__c</relatedList>
     </relatedLists>
     <relatedLists>

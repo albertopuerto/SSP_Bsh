@@ -4,7 +4,7 @@
     <description>Distinguish different sales methods</description>
     <externalId>false</externalId>
     <label>Distribution Channel</label>
-    <required>false</required>
+    <required>true</required>
     <trackTrending>false</trackTrending>
     <type>Picklist</type>
     <valueSet>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>pkl_CustPricProcedure__c</fullName>
+    <externalId>false</externalId>
+    <inlineHelpText>Determines which pricing procedure the system should apply when you create a sales document for the customer.</inlineHelpText>
+    <label>Cust. Pric. Procedure</label>
+    <required>true</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetName>Cust_Pric_Procedure</valueSetName>
+    </valueSet>
+</CustomField>
