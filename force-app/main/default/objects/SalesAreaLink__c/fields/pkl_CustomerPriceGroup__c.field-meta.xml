@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>pkl_CustomerPriceGroup__c</fullName>
+    <externalId>false</externalId>
+    <inlineHelpText>A grouping of customers who share the same pricing requirements.</inlineHelpText>
+    <label>Customer Price Group</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetName>Customer_Price_Group</valueSetName>
+    </valueSet>
+</CustomField>

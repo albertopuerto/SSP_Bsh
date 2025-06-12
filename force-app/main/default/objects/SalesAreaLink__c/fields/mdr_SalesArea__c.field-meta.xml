@@ -5,7 +5,6 @@
     <externalId>false</externalId>
     <label>Sales Area</label>
     <referenceTo>SalesArea__c</referenceTo>
-    <relationshipLabel>Sales Area Links</relationshipLabel>
     <relationshipName>SalesAreaLinks</relationshipName>
     <relationshipOrder>1</relationshipOrder>
     <reparentableMasterDetail>false</reparentableMasterDetail>
