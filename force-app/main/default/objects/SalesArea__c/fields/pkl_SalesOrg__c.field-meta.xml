@@ -3,8 +3,8 @@
     <fullName>pkl_SalesOrg__c</fullName>
     <description>Structure sales based on a regional division of the market</description>
     <externalId>false</externalId>
-    <label>Sales Org</label>
-    <required>false</required>
+    <label>Sales Organization</label>
+    <required>true</required>
     <trackTrending>false</trackTrending>
     <type>Picklist</type>
     <valueSet>
