@@ -307,7 +307,7 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
-                <field>SBQQ__VolumeDiscount__c</field>
+                <field>ftxt_VolumeDiscount__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
