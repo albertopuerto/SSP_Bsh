@@ -36,6 +36,11 @@
         <label>Z1</label>
     </customValue>
     <customValue>
+        <fullName>A1</fullName>
+        <default>false</default>
+        <label>A1</label>
+    </customValue>
+    <customValue>
         <fullName>F1</fullName>
         <default>false</default>
         <isActive>false</isActive>
