@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>LoggingLevelWithImage__c</fullName>
+    <businessStatus>DeprecateCandidate</businessStatus>
+    <complianceGroup>PII;GDPR;CCPA</complianceGroup>
+    <deprecated>false</deprecated>
+    <externalId>false</externalId>
+    <formula>CASE(
+    TEXT(LoggingLevel__c),
+    &#39;ERROR&#39;, &#39;⛔&#39;,
+    &#39;WARN&#39;, &#39;⚠️&#39;,
+    &#39;INFO&#39;, &#39;ℹ️&#39;,
+    &#39;DEBUG&#39;, &#39;🐞&#39;,
+    &#39;FINE&#39;, &#39;👍&#39;,
+    &#39;FINER&#39;, &#39;👌&#39;,
+    &#39;FINEST&#39;, &#39;🌟&#39;,
+    &#39;⚙️&#39;
+)
++ &#39; &#39; + TEXT(LoggingLevel__c)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>DEPRECATED: Level</label>
+    <required>false</required>
+    <securityClassification>Confidential</securityClassification>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>
