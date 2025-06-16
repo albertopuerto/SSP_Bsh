@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>pkl_CustomerOrderBlock__c</fullName>
+    <externalId>false</externalId>
+    <inlineHelpText>Indicates if further sales order processing is blocked for the customer. The block applies throughout the specified sales area.</inlineHelpText>
+    <label>Customer Order Block</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetName>Customer_Order_Block</valueSetName>
+    </valueSet>
+</CustomField>

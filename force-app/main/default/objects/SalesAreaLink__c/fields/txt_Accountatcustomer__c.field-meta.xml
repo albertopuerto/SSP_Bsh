@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>txt_Accountatcustomer__c</fullName>
+    <description>This field contains the account number your company is listed under at the customer or vendor.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Shipper&#39;s (Our) Account Number at the Customer or Vendor. This field contains the account number your company is listed under at the customer or vendor.</inlineHelpText>
+    <label>Account at customer</label>
+    <length>12</length>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

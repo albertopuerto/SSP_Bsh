@@ -1,9 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <GlobalValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
     <customValue>
+        <fullName>ADP</fullName>
+        <default>false</default>
+        <label>ADP</label>
+    </customValue>
+    <customValue>
         <fullName>AED</fullName>
         <default>false</default>
         <label>AED</label>
+    </customValue>
+    <customValue>
+        <fullName>AFA</fullName>
+        <default>false</default>
+        <label>AFA</label>
     </customValue>
     <customValue>
         <fullName>AFN</fullName>
@@ -31,9 +41,24 @@
         <label>AOA</label>
     </customValue>
     <customValue>
+        <fullName>AON</fullName>
+        <default>false</default>
+        <label>AON</label>
+    </customValue>
+    <customValue>
+        <fullName>AOR</fullName>
+        <default>false</default>
+        <label>AOR</label>
+    </customValue>
+    <customValue>
         <fullName>ARS</fullName>
         <default>false</default>
         <label>ARS</label>
+    </customValue>
+    <customValue>
+        <fullName>ATS</fullName>
+        <default>false</default>
+        <label>ATS</label>
     </customValue>
     <customValue>
         <fullName>AUD</fullName>
@@ -51,6 +76,11 @@
         <label>AZM</label>
     </customValue>
     <customValue>
+        <fullName>AZN</fullName>
+        <default>false</default>
+        <label>AZN</label>
+    </customValue>
+    <customValue>
         <fullName>BAM</fullName>
         <default>false</default>
         <label>BAM</label>
@@ -64,6 +94,11 @@
         <fullName>BDT</fullName>
         <default>false</default>
         <label>BDT</label>
+    </customValue>
+    <customValue>
+        <fullName>BEF</fullName>
+        <default>false</default>
+        <label>BEF</label>
     </customValue>
     <customValue>
         <fullName>BGN</fullName>
@@ -116,9 +151,19 @@
         <label>BWP</label>
     </customValue>
     <customValue>
+        <fullName>BYB</fullName>
+        <default>false</default>
+        <label>BYB</label>
+    </customValue>
+    <customValue>
         <fullName>BYN</fullName>
         <default>false</default>
         <label>BYN</label>
+    </customValue>
+    <customValue>
+        <fullName>BYR</fullName>
+        <default>false</default>
+        <label>BYR</label>
     </customValue>
     <customValue>
         <fullName>BZD</fullName>
@@ -136,14 +181,29 @@
         <label>CDF</label>
     </customValue>
     <customValue>
+        <fullName>CFP</fullName>
+        <default>false</default>
+        <label>CFP</label>
+    </customValue>
+    <customValue>
         <fullName>CHF</fullName>
         <default>false</default>
         <label>CHF</label>
     </customValue>
     <customValue>
+        <fullName>CLF</fullName>
+        <default>false</default>
+        <label>CLF</label>
+    </customValue>
+    <customValue>
         <fullName>CLP</fullName>
         <default>false</default>
         <label>CLP</label>
+    </customValue>
+    <customValue>
+        <fullName>CLP4</fullName>
+        <default>false</default>
+        <label>CLP4</label>
     </customValue>
     <customValue>
         <fullName>CNY</fullName>
@@ -161,6 +221,11 @@
         <label>CRC</label>
     </customValue>
     <customValue>
+        <fullName>CSD</fullName>
+        <default>false</default>
+        <label>CSD</label>
+    </customValue>
+    <customValue>
         <fullName>CUC</fullName>
         <default>false</default>
         <label>CUC</label>
@@ -176,9 +241,24 @@
         <label>CVE</label>
     </customValue>
     <customValue>
+        <fullName>CYP</fullName>
+        <default>false</default>
+        <label>CYP</label>
+    </customValue>
+    <customValue>
         <fullName>CZK</fullName>
         <default>false</default>
         <label>CZK</label>
+    </customValue>
+    <customValue>
+        <fullName>DEM</fullName>
+        <default>false</default>
+        <label>DEM</label>
+    </customValue>
+    <customValue>
+        <fullName>DEM3</fullName>
+        <default>false</default>
+        <label>DEM3</label>
     </customValue>
     <customValue>
         <fullName>DJF</fullName>
@@ -201,6 +281,16 @@
         <label>DZD</label>
     </customValue>
     <customValue>
+        <fullName>ECS</fullName>
+        <default>false</default>
+        <label>ECS</label>
+    </customValue>
+    <customValue>
+        <fullName>EEK</fullName>
+        <default>false</default>
+        <label>EEK</label>
+    </customValue>
+    <customValue>
         <fullName>EGP</fullName>
         <default>false</default>
         <label>EGP</label>
@@ -209,6 +299,11 @@
         <fullName>ERN</fullName>
         <default>false</default>
         <label>ERN</label>
+    </customValue>
+    <customValue>
+        <fullName>ESP</fullName>
+        <default>false</default>
+        <label>ESP</label>
     </customValue>
     <customValue>
         <fullName>ETB</fullName>
@@ -221,6 +316,16 @@
         <label>EUR</label>
     </customValue>
     <customValue>
+        <fullName>EUR4</fullName>
+        <default>false</default>
+        <label>EUR4</label>
+    </customValue>
+    <customValue>
+        <fullName>FIM</fullName>
+        <default>false</default>
+        <label>FIM</label>
+    </customValue>
+    <customValue>
         <fullName>FJD</fullName>
         <default>false</default>
         <label>FJD</label>
@@ -231,6 +336,11 @@
         <label>FKP</label>
     </customValue>
     <customValue>
+        <fullName>FRF</fullName>
+        <default>false</default>
+        <label>FRF</label>
+    </customValue>
+    <customValue>
         <fullName>GBP</fullName>
         <default>false</default>
         <label>GBP</label>
@@ -239,6 +349,11 @@
         <fullName>GEL</fullName>
         <default>false</default>
         <label>GEL</label>
+    </customValue>
+    <customValue>
+        <fullName>GHC</fullName>
+        <default>false</default>
+        <label>GHC</label>
     </customValue>
     <customValue>
         <fullName>GHS</fullName>
@@ -261,9 +376,19 @@
         <label>GNF</label>
     </customValue>
     <customValue>
+        <fullName>GRD</fullName>
+        <default>false</default>
+        <label>GRD</label>
+    </customValue>
+    <customValue>
         <fullName>GTQ</fullName>
         <default>false</default>
         <label>GTQ</label>
+    </customValue>
+    <customValue>
+        <fullName>GWP</fullName>
+        <default>false</default>
+        <label>GWP</label>
     </customValue>
     <customValue>
         <fullName>GYD</fullName>
@@ -301,6 +426,11 @@
         <label>IDR</label>
     </customValue>
     <customValue>
+        <fullName>IEP</fullName>
+        <default>false</default>
+        <label>IEP</label>
+    </customValue>
+    <customValue>
         <fullName>ILS</fullName>
         <default>false</default>
         <label>ILS</label>
@@ -324,6 +454,11 @@
         <fullName>ISK</fullName>
         <default>false</default>
         <label>ISK</label>
+    </customValue>
+    <customValue>
+        <fullName>ITL</fullName>
+        <default>false</default>
+        <label>ITL</label>
     </customValue>
     <customValue>
         <fullName>JMD</fullName>
@@ -411,6 +546,21 @@
         <label>LSL</label>
     </customValue>
     <customValue>
+        <fullName>LTL</fullName>
+        <default>false</default>
+        <label>LTL</label>
+    </customValue>
+    <customValue>
+        <fullName>LUF</fullName>
+        <default>false</default>
+        <label>LUF</label>
+    </customValue>
+    <customValue>
+        <fullName>LVL</fullName>
+        <default>false</default>
+        <label>LVL</label>
+    </customValue>
+    <customValue>
         <fullName>LYD</fullName>
         <default>false</default>
         <label>LYD</label>
@@ -429,6 +579,11 @@
         <fullName>MGA</fullName>
         <default>false</default>
         <label>MGA</label>
+    </customValue>
+    <customValue>
+        <fullName>MGF</fullName>
+        <default>false</default>
+        <label>MGF</label>
     </customValue>
     <customValue>
         <fullName>MKD</fullName>
@@ -451,9 +606,19 @@
         <label>MOP</label>
     </customValue>
     <customValue>
+        <fullName>MRO</fullName>
+        <default>false</default>
+        <label>MRO</label>
+    </customValue>
+    <customValue>
         <fullName>MRU</fullName>
         <default>false</default>
         <label>MRU</label>
+    </customValue>
+    <customValue>
+        <fullName>MTL</fullName>
+        <default>false</default>
+        <label>MTL</label>
     </customValue>
     <customValue>
         <fullName>MUR</fullName>
@@ -476,9 +641,19 @@
         <label>MXN</label>
     </customValue>
     <customValue>
+        <fullName>MXV</fullName>
+        <default>false</default>
+        <label>MXV</label>
+    </customValue>
+    <customValue>
         <fullName>MYR</fullName>
         <default>false</default>
         <label>MYR</label>
+    </customValue>
+    <customValue>
+        <fullName>MZM</fullName>
+        <default>false</default>
+        <label>MZM</label>
     </customValue>
     <customValue>
         <fullName>MZN</fullName>
@@ -501,6 +676,11 @@
         <label>NIO</label>
     </customValue>
     <customValue>
+        <fullName>NLG</fullName>
+        <default>false</default>
+        <label>NLG</label>
+    </customValue>
+    <customValue>
         <fullName>NOK</fullName>
         <default>false</default>
         <label>NOK</label>
@@ -514,6 +694,11 @@
         <fullName>NZD</fullName>
         <default>false</default>
         <label>NZD</label>
+    </customValue>
+    <customValue>
+        <fullName>NZD5</fullName>
+        <default>false</default>
+        <label>NZD5</label>
     </customValue>
     <customValue>
         <fullName>OMR</fullName>
@@ -551,6 +736,11 @@
         <label>PLN</label>
     </customValue>
     <customValue>
+        <fullName>PTE</fullName>
+        <default>false</default>
+        <label>PTE</label>
+    </customValue>
+    <customValue>
         <fullName>PYG</fullName>
         <default>false</default>
         <label>PYG</label>
@@ -559,6 +749,16 @@
         <fullName>QAR</fullName>
         <default>false</default>
         <label>QAR</label>
+    </customValue>
+    <customValue>
+        <fullName>RMB</fullName>
+        <default>false</default>
+        <label>RMB</label>
+    </customValue>
+    <customValue>
+        <fullName>ROL</fullName>
+        <default>false</default>
+        <label>ROL</label>
     </customValue>
     <customValue>
         <fullName>RON</fullName>
@@ -596,9 +796,19 @@
         <label>SCR</label>
     </customValue>
     <customValue>
+        <fullName>SDD</fullName>
+        <default>false</default>
+        <label>SDD</label>
+    </customValue>
+    <customValue>
         <fullName>SDG</fullName>
         <default>false</default>
         <label>SDG</label>
+    </customValue>
+    <customValue>
+        <fullName>SDP</fullName>
+        <default>false</default>
+        <label>SDP</label>
     </customValue>
     <customValue>
         <fullName>SEK</fullName>
@@ -616,6 +826,16 @@
         <label>SHP</label>
     </customValue>
     <customValue>
+        <fullName>SIT</fullName>
+        <default>false</default>
+        <label>SIT</label>
+    </customValue>
+    <customValue>
+        <fullName>SKK</fullName>
+        <default>false</default>
+        <label>SKK</label>
+    </customValue>
+    <customValue>
         <fullName>SLL</fullName>
         <default>false</default>
         <label>SLL</label>
@@ -631,9 +851,19 @@
         <label>SRD</label>
     </customValue>
     <customValue>
+        <fullName>SRG</fullName>
+        <default>false</default>
+        <label>SRG</label>
+    </customValue>
+    <customValue>
         <fullName>SSP</fullName>
         <default>false</default>
         <label>SSP</label>
+    </customValue>
+    <customValue>
+        <fullName>STD</fullName>
+        <default>false</default>
+        <label>STD</label>
     </customValue>
     <customValue>
         <fullName>STN</fullName>
@@ -661,9 +891,19 @@
         <label>THB</label>
     </customValue>
     <customValue>
+        <fullName>TJR</fullName>
+        <default>false</default>
+        <label>TJR</label>
+    </customValue>
+    <customValue>
         <fullName>TJS</fullName>
         <default>false</default>
         <label>TJS</label>
+    </customValue>
+    <customValue>
+        <fullName>TMM</fullName>
+        <default>false</default>
+        <label>TMM</label>
     </customValue>
     <customValue>
         <fullName>TMT</fullName>
@@ -684,6 +924,11 @@
         <fullName>TPE</fullName>
         <default>false</default>
         <label>TPE</label>
+    </customValue>
+    <customValue>
+        <fullName>TRL</fullName>
+        <default>false</default>
+        <label>TRL</label>
     </customValue>
     <customValue>
         <fullName>TRY</fullName>
@@ -711,6 +956,11 @@
         <label>UAH</label>
     </customValue>
     <customValue>
+        <fullName>UF</fullName>
+        <default>false</default>
+        <label>UF</label>
+    </customValue>
+    <customValue>
         <fullName>UGX</fullName>
         <default>false</default>
         <label>UGX</label>
@@ -721,6 +971,16 @@
         <label>USD</label>
     </customValue>
     <customValue>
+        <fullName>USDN</fullName>
+        <default>false</default>
+        <label>USDN</label>
+    </customValue>
+    <customValue>
+        <fullName>UTM</fullName>
+        <default>false</default>
+        <label>UTM</label>
+    </customValue>
+    <customValue>
         <fullName>UYU</fullName>
         <default>false</default>
         <label>UYU</label>
@@ -729,6 +989,16 @@
         <fullName>UZS</fullName>
         <default>false</default>
         <label>UZS</label>
+    </customValue>
+    <customValue>
+        <fullName>VEB</fullName>
+        <default>false</default>
+        <label>VEB</label>
+    </customValue>
+    <customValue>
+        <fullName>VEF</fullName>
+        <default>false</default>
+        <label>VEF</label>
     </customValue>
     <customValue>
         <fullName>VES</fullName>
@@ -761,6 +1031,11 @@
         <label>XCD</label>
     </customValue>
     <customValue>
+        <fullName>XEU</fullName>
+        <default>false</default>
+        <label>XEU</label>
+    </customValue>
+    <customValue>
         <fullName>XOF</fullName>
         <default>false</default>
         <label>XOF</label>
@@ -776,9 +1051,19 @@
         <label>YER</label>
     </customValue>
     <customValue>
+        <fullName>YUM</fullName>
+        <default>false</default>
+        <label>YUM</label>
+    </customValue>
+    <customValue>
         <fullName>ZAR</fullName>
         <default>false</default>
         <label>ZAR</label>
+    </customValue>
+    <customValue>
+        <fullName>ZMK</fullName>
+        <default>false</default>
+        <label>ZMK</label>
     </customValue>
     <customValue>
         <fullName>ZMW</fullName>
@@ -786,9 +1071,29 @@
         <label>ZMW</label>
     </customValue>
     <customValue>
+        <fullName>ZRN</fullName>
+        <default>false</default>
+        <label>ZRN</label>
+    </customValue>
+    <customValue>
+        <fullName>ZWD</fullName>
+        <default>false</default>
+        <label>ZWD</label>
+    </customValue>
+    <customValue>
         <fullName>ZWL</fullName>
         <default>false</default>
         <label>ZWL</label>
+    </customValue>
+    <customValue>
+        <fullName>ZWN</fullName>
+        <default>false</default>
+        <label>ZWN</label>
+    </customValue>
+    <customValue>
+        <fullName>ZWR</fullName>
+        <default>false</default>
+        <label>ZWR</label>
     </customValue>
     <description>ISO Currency Code</description>
     <masterLabel>Condition Currency</masterLabel>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ExternalClientApplication xmlns="http://soap.sforce.com/2006/04/metadata">
+    <contactEmail>Uwe.Adams@de.bosch.com</contactEmail>
+    <distributionState>Local</distributionState>
+    <isProtected>false</isProtected>
+    <label>JWT Bearer SAP CPI</label>
+</ExternalClientApplication>

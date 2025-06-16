@@ -4,5 +4,6 @@
     <hasActivationRequired>false</hasActivationRequired>
     <label>System Administrator</label>
     <permissionSets>Avoid_Mail_Notifications</permissionSets>
+    <permissionSets>BoschPartnerFunctionAdmin</permissionSets>
     <status>Updated</status>
 </PermissionSetGroup>

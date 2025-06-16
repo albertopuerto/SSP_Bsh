@@ -19,8 +19,13 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Account.txt_AthenaUUID__c</field>
+        <field>Account.pkm_BoschPartnerRole__c</field>
         <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <readable>false</readable>
+        <field>Account.txt_AthenaUUID__c</field>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -248,8 +253,68 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>false</editable>
+        <field>Order.Bill_To_City__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Order.Bill_To_Country__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Order.Bill_To_Postal_Code__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Order.Bill_To_State__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Order.Bill_To_Street__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>Order.PoNumber</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Order.Ship_To_City__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Order.Ship_To_Country__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Order.Ship_To_Postal_Code__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Order.Ship_To_State__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Order.Ship_To_Street__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Order.lkp_BillToAccount__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Order.lkp_ShipToAccount__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -269,6 +334,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <readable>false</readable>
+        <field>SBQQ__QuoteLine__c.cur_MarkupAmount__c</field>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>SBQQ__QuoteLine__c.ftxt_ShortDescription__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -281,6 +351,11 @@
         <editable>true</editable>
         <field>Product2.txr_AdditionaInformation__c</field>
         <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <readable>false</readable>
+        <field>SBQQ__QuoteLine__c.prc_MarkupRate__c</field>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -353,6 +428,11 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>false</editable>
+        <field>SBQQ__Quote__c.ftxt_SalesRepPhone__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>SBQQ__Quote__c.lkp_BillToAccount__c</field>
         <readable>true</readable>
@@ -365,6 +445,91 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>SBQQ__Quote__c.lkp_ToolCoordinator__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>SalesAreaLink__c.chk_CompleteDelivery__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>SalesAreaLink__c.chk_Deletionflagforcustomer__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>SalesAreaLink__c.chk_Rebate__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>SalesAreaLink__c.ftxt_SalesAreaName__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>SalesAreaLink__c.ftxt_SalesArea__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>SalesAreaLink__c.pkl_BillingBlockforCustomer__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>SalesAreaLink__c.pkl_CustomerDeliveryBlock__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>SalesAreaLink__c.pkl_CustomerGroup1__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>SalesAreaLink__c.pkl_CustomerGroup__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>SalesAreaLink__c.pkl_CustomerOrderBlock__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>SalesAreaLink__c.pkl_CustomerPriceGroup__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>SalesAreaLink__c.pkl_InvoicingDates__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>SalesAreaLink__c.pkl_MaxPartDeliveries__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>SalesAreaLink__c.pkl_Partdlvitem__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>SalesAreaLink__c.pkl_SalesBlockCustomer__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>SalesAreaLink__c.txt_Accountatcustomer__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>SalesAreaLink__c.txt_CustomerStatus__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -666,6 +831,9 @@
         <layout>FurtherPriceInformation__c-Further Price Information Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
+        <layout>LogEntry__c-Log Entry Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
         <layout>OrderItem-Order Product Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
@@ -676,6 +844,9 @@
     </layoutAssignments>
     <layoutAssignments>
         <layout>SBQQ__Quote__c-SBQQ__Quote Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>SalesAreaLink__c-Sales Area Link Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
         <layout>sbaa__Approval__c-sbaa__Approval Layout</layout>
@@ -810,6 +981,10 @@
         <recordType>Apttus__APTS_Agreement__c.X2nd_Processor_EPA_GPA</recordType>
         <visible>false</visible>
     </recordTypeVisibilities>
+    <tabVisibilities>
+        <tab>BoschPartnerFunction__c</tab>
+        <visibility>DefaultOn</visibility>
+    </tabVisibilities>
     <tabVisibilities>
         <tab>sbaa__Approval__c</tab>
         <visibility>DefaultOn</visibility>
