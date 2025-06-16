@@ -1,6 +1,60 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
     <apiVersion>63.0</apiVersion>
+    <decisions>
+        <name>Check_Source_Field</name>
+        <label>Check Source Field</label>
+        <locationX>446</locationX>
+        <locationY>395</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Yes</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.SBQQ__Source__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.SBQQ__Source__c</leftValueReference>
+                <operator>IsBlank</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>UpdateAncestorFieldsUpdateAncestorFields</targetReference>
+            </connector>
+            <label>Yes</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>CheckApprovalstatus</name>
+        <label>CheckApprovalstatus</label>
+        <locationX>248</locationX>
+        <locationY>287</locationY>
+        <defaultConnector>
+            <targetReference>Check_Source_Field</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Not Changed</defaultConnectorLabel>
+        <rules>
+            <name>isChanged</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.ApprovalStatus__c</leftValueReference>
+                <operator>IsChanged</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Before_Update_Quote_Fields</targetReference>
+            </connector>
+            <label>isChanged</label>
+        </rules>
+    </decisions>
     <description>BeforeUpdate Quote - update Status aligned with ApprovalStatus field</description>
     <environments>Default</environments>
     <formulas>
@@ -40,8 +94,8 @@ TEXT({!$Record.SBQQ__Status__c})
         <description>Automations in the before update</description>
         <name>Before_Update_Quote_Fields</name>
         <label>Before Update Quote Fields</label>
-        <locationX>176</locationX>
-        <locationY>287</locationY>
+        <locationX>50</locationX>
+        <locationY>395</locationY>
         <inputAssignments>
             <field>SBQQ__Status__c</field>
             <value>
@@ -50,20 +104,31 @@ TEXT({!$Record.SBQQ__Status__c})
         </inputAssignments>
         <inputReference>$Record</inputReference>
     </recordUpdates>
-    <start>
-        <locationX>50</locationX>
-        <locationY>0</locationY>
-        <connector>
-            <targetReference>Before_Update_Quote_Fields</targetReference>
-        </connector>
-        <filterLogic>and</filterLogic>
-        <filters>
-            <field>ApprovalStatus__c</field>
-            <operator>IsChanged</operator>
+    <recordUpdates>
+        <name>UpdateAncestorFieldsUpdateAncestorFields</name>
+        <label>UpdateAncestorFields</label>
+        <locationX>314</locationX>
+        <locationY>503</locationY>
+        <inputAssignments>
+            <field>SBQQ__Primary__c</field>
             <value>
                 <booleanValue>true</booleanValue>
             </value>
-        </filters>
+        </inputAssignments>
+        <inputAssignments>
+            <field>lkp_AncestorQuote__c</field>
+            <value>
+                <elementReference>$Record.SBQQ__Source__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <start>
+        <locationX>122</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>CheckApprovalstatus</targetReference>
+        </connector>
         <object>SBQQ__Quote__c</object>
         <recordTriggerType>Update</recordTriggerType>
         <triggerType>RecordBeforeSave</triggerType>

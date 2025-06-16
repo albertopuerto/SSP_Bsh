@@ -30,7 +30,8 @@ public with sharing class TestFactoryDefaults{
 					Account.pkl_INCOTerms1__c => 'CPT - Carriage Paid To',
 					Account.pkl_PaymentTerms__c => 'Due on receipt',
 					Account.txt_INCOTerms2__c => 'Inco terms 2 text area',
-					Account.pkl_Language__c => 'English'
+					Account.pkl_Language__c => 'English',
+					Account.pkm_BoschPartnerRole__c => 'BBCUSH'
 			};
 		}
 	}
@@ -51,7 +52,8 @@ public with sharing class TestFactoryDefaults{
 					Account.pkl_INCOTerms1__c => 'CPT - Carriage Paid To',
 					Account.pkl_PaymentTerms__c => 'Due on receipt',
 					Account.txt_INCOTerms2__c => 'Inco terms 2 text area',
-					Account.pkl_Language__c => 'English'
+					Account.pkl_Language__c => 'English',
+					Account.pkm_BoschPartnerRole__c => 'BBCUEX'
 			};
 		}
 	}

@@ -9,7 +9,7 @@
     "SBQQ__BottomMargin__c": "3.0",
     "SBQQ__ColumnHeadingField__c": "",
     "SBQQ__ConditionalPrintField__c": "",
-    "SBQQ__DisplayOrder__c": "21.0",
+    "SBQQ__DisplayOrder__c": "70.0",
     "SBQQ__DynamicNumberScale__c": "false",
     "SBQQ__FieldName__c": "ftxt_ShortDescription__c",
     "SBQQ__FontFamily__c": "",
@@ -20,7 +20,7 @@
     "SBQQ__LeftMargin__c": "3.0",
     "SBQQ__RightMargin__c": "3.0",
     "SBQQ__RollUp__c": "false",
-    "SBQQ__SeparateLine__c": "false",
+    "SBQQ__SeparateLine__c": "true",
     "SBQQ__SubGroupSummaryLabel__c": "",
     "SBQQ__SummaryFontWeight__c": "",
     "SBQQ__SummaryFunction__c": "",
@@ -38,7 +38,7 @@
       "Name": "SBQQ__Section__r",
       "ReferencedObject": "SBQQ__TemplateSection__c",
       "ReferencedFields": {
-        "GearsetExternalId__c": ""
+        "GearsetExternalId__c": "AAU3ln1000000Q9B4a"
       }
     },
     {
