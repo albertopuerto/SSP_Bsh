@@ -1741,30 +1741,30 @@
         <layout>APTS_Integration_Transaction__c-Integration Transaction Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>Account-Account Layout</layout>
+        <layout>Account-ISP View Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>Account-Account Layout</layout>
+        <layout>Account-ISP View Layout</layout>
         <recordType>Account.Competitor</recordType>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>Account-Account Layout</layout>
+        <layout>Account-ISP View Layout</layout>
         <recordType>Account.Customer</recordType>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>Account-Account Layout</layout>
+        <layout>Account-ISP View Layout</layout>
         <recordType>Account.Intercompany</recordType>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>Account-Account Layout</layout>
+        <layout>Account-ISP View Layout</layout>
         <recordType>Account.Partner</recordType>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>Account-Account Layout</layout>
+        <layout>Account-ISP View Layout</layout>
         <recordType>Account.Reseller</recordType>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>Account-Account Layout</layout>
+        <layout>Account-ISP View Layout</layout>
         <recordType>Account.Supplier</recordType>
     </layoutAssignments>
     <layoutAssignments>
