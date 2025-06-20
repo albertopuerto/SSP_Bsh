@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebLink xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Survey_CLM</fullName>
+    <availability>online</availability>
+    <description>The link leads the end user to a Qualtrics survey to collect a feedback for their experience with Conga CLM</description>
+    <displayType>button</displayType>
+    <encodingKey>UTF-8</encodingKey>
+    <hasMenubar>false</hasMenubar>
+    <hasScrollbars>true</hasScrollbars>
+    <hasToolbar>false</hasToolbar>
+    <height>600</height>
+    <isResizable>true</isResizable>
+    <linkType>url</linkType>
+    <masterLabel>Feedback</masterLabel>
+    <openType>newWindow</openType>
+    <position>none</position>
+    <protected>false</protected>
+    <showsLocation>false</showsLocation>
+    <showsStatus>false</showsStatus>
+    <url>https://survey.bosch.com/cgi-bin/s.app?A=z61i3Lhm&amp;T-Offering=Conga+Contract+Lifecycle+Management&amp;T-OfferingID=FB-0000862&amp;T-Source=CLMS&amp;T-SourceCategory=Use&amp;T-Stage=Prod&amp;T-SurveyStyle=Fullscreen&amp;T-UserGB=ETAS</url>
+</WebLink>
