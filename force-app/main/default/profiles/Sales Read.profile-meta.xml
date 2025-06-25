@@ -250,6 +250,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Account.pkl_Status__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Account.pkm_BoschPartnerRole__c</field>
         <readable>true</readable>
     </fieldPermissions>
