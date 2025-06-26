@@ -2046,6 +2046,9 @@
         <layout>SBQQ__QuoteTemplate__c-SBQQ__Quote Template Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
+        <layout>SBQQ__QuoteTerm__c-SBQQ__Quote Term Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
         <layout>SBQQ__Quote__c-SBQQ__Quote Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
