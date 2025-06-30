@@ -254,7 +254,7 @@
         </connector>
         <fields>
             <name>Sent_to_SAP_Error</name>
-            <fieldText>&lt;p&gt;Sending Order failed. Please contact support and provide following information: Order Number: &lt;span style=&quot;color: rgb(68, 68, 68); background-color: rgb(255, 255, 255);&quot;&gt;{!get_OrderNumber.OrderNumber}, &lt;/span&gt; CorrelationId: &lt;span style=&quot;background-color: rgb(255, 255, 255); color: rgb(68, 68, 68);&quot;&gt;{!requestBody.orderChange.CorrelationId}&lt;/span&gt;&lt;/p&gt;</fieldText>
+            <fieldText>&lt;p&gt;Sending Order failed. Please contact support and provide following information: &lt;/p&gt;&lt;p&gt;&lt;strong&gt;Order Number: &lt;/strong&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255); color: rgb(68, 68, 68);&quot;&gt;{!get_OrderNumber.OrderNumber}&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;strong&gt;CorrelationId: &lt;/strong&gt;&lt;span style=&quot;color: rgb(68, 68, 68); background-color: rgb(255, 255, 255);&quot;&gt;{!requestBody.orderChange.CorrelationId}&lt;/span&gt;&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
         </fields>
         <showFooter>true</showFooter>
@@ -291,7 +291,7 @@
         </connector>
         <fields>
             <name>Update_Failure</name>
-            <fieldText>&lt;p&gt;Failed to update records that meet the filter criteria.&amp;nbsp;&lt;span style=&quot;color: rgb(68, 68, 68); background-color: rgb(255, 255, 255);&quot;&gt;Please contact support and provide Order Number: {!get_OrderNumber.OrderNumber}.&lt;/span&gt;&lt;/p&gt;</fieldText>
+            <fieldText>&lt;p&gt;Failed to update records that meet the filter criteria.&amp;nbsp;&lt;span style=&quot;background-color: rgb(255, 255, 255); color: rgb(68, 68, 68);&quot;&gt;Please contact support and provide &lt;/span&gt;&lt;strong style=&quot;background-color: rgb(255, 255, 255); color: rgb(68, 68, 68);&quot;&gt;Order Number&lt;/strong&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255); color: rgb(68, 68, 68);&quot;&gt;: {!get_OrderNumber.OrderNumber}.&lt;/span&gt;&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
         </fields>
         <showFooter>true</showFooter>
