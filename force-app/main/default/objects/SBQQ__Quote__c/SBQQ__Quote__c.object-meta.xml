@@ -130,7 +130,7 @@
         <actionName>View</actionName>
         <comment>Action override created by Lightning App Builder during activation.</comment>
         <content>Quote_Record_Page</content>
-        <formFactor>Small</formFactor>
+        <formFactor>Large</formFactor>
         <skipRecordTypeSelect>false</skipRecordTypeSelect>
         <type>Flexipage</type>
     </actionOverrides>
@@ -138,7 +138,7 @@
         <actionName>View</actionName>
         <comment>Action override created by Lightning App Builder during activation.</comment>
         <content>Quote_Record_Page</content>
-        <formFactor>Large</formFactor>
+        <formFactor>Small</formFactor>
         <skipRecordTypeSelect>false</skipRecordTypeSelect>
         <type>Flexipage</type>
     </actionOverrides>
@@ -194,14 +194,11 @@
         <searchFilterFields>UPDATEDBY_USER</searchFilterFields>
         <searchFilterFields>SBQQ__Primary__c</searchFilterFields>
         <searchResultsAdditionalFields>SBQQ__Primary__c</searchResultsAdditionalFields>
-        <searchResultsAdditionalFields>SBQQ__Account__c</searchResultsAdditionalFields>
-        <searchResultsAdditionalFields>SBQQ__Opportunity2__c</searchResultsAdditionalFields>
-        <searchResultsAdditionalFields>SBQQ__Status__c</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>SBQQ__NetAmount__c</searchResultsAdditionalFields>
-        <searchResultsAdditionalFields>SBQQ__ExpirationDate__c</searchResultsAdditionalFields>
-        <searchResultsAdditionalFields>SBQQ__Ordered__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>SBQQ__Status__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>SBQQ__CustomerDiscount__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>SBQQ__PartnerDiscount__c</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>UPDATEDBY_USER</searchResultsAdditionalFields>
-        <searchResultsAdditionalFields>CREATEDBY_USER</searchResultsAdditionalFields>
     </searchLayouts>
     <sharingModel>ReadWrite</sharingModel>
     <visibility>Public</visibility>

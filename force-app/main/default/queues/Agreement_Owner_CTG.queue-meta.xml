@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Queue xmlns="http://soap.sforce.com/2006/04/metadata">
+    <doesSendEmailToMembers>true</doesSendEmailToMembers>
+    <name>ETAS/CTG</name>
+    <queueMembers>
+        <roleAndSubordinatesInternal>
+            <roleAndSubordinateInternal>Controlling_1</roleAndSubordinateInternal>
+        </roleAndSubordinatesInternal>
+        <roles>
+            <role>CTG1_Officer</role>
+        </roles>
+    </queueMembers>
+    <queueSobject>
+        <sobjectType>Apttus__APTS_Agreement__c</sobjectType>
+    </queueSobject>
+</Queue>

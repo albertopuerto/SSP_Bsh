@@ -196,6 +196,9 @@
         <layout>FurtherPriceInformation__c-Further Price Information Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
+        <layout>LogEntry__c-Log Entry Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
         <layout>OrderItem-Order Product Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
@@ -205,7 +208,13 @@
         <layout>SBQQ__QuoteLineGroup__c-SBQQ__Quote Line Group Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
+        <layout>SBQQ__QuoteTerm__c-SBQQ__Quote Term Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
         <layout>SBQQ__Quote__c-SBQQ__Quote Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>SalesAreaLink__c-Sales Area Link Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
         <layout>sbaa__Approval__c-sbaa__Approval Layout</layout>

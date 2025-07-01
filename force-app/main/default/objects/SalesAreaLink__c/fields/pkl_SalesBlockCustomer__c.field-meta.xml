@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>pkl_SalesBlockCustomer__c</fullName>
+    <externalId>false</externalId>
+    <inlineHelpText>Block Sales Support - Sales Block for Customer (Sales Area)</inlineHelpText>
+    <label>Sales Block Customer</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetName>Sales_Block_Customer</valueSetName>
+    </valueSet>
+</CustomField>

@@ -88,7 +88,14 @@ public with sharing class TestFactoryDefaults{
 		*/
 		public Map<Schema.SObjectField, Object> getFieldDefaults() {
 			return new Map<Schema.SObjectField, Object> {
-					Opportunity.Name => 'Test Opportunity'
+            Opportunity.Name => 'Test Opportunity',                          
+            Opportunity.StageName => 'Sales Chance (New)',                 
+            Opportunity.CloseDate => Date.today().addDays(30),              
+            Opportunity.AccountId => null,  //set this in test class while generation                                 
+            Opportunity.CurrencyIsoCode => 'EUR',                            
+            Opportunity.pklLeadingSolutionField__c => 'DAP',                 
+            Opportunity.pklTypeOfOffering__c => 'SW',                        
+            Opportunity.pklTypeOfOpportunity__c => 'Long Term Agreement' 
 			};
 		}
 	}
@@ -146,5 +153,81 @@ public with sharing class TestFactoryDefaults{
 			};
 		}
 	}
+    
+    public class QuoteDefaults implements TestFactory.FieldDefaults{
+        /**
+		 * @author       TLQ1KOR
+		 * @description  define SBQQ__Quote__c getFieldDefaults()
+		 * @return		Map<Schema.SObjectField, Object>
+		 */
+		public Map<Schema.SObjectField, Object> getFieldDefaults() {
+            return new Map<Schema.SObjectField, Object>{
+                SBQQ__Quote__c.Name => 'Test Standard Quote'
+                
+                
+                
+            };
+        
+        }
+    }
+    public class ContentVersionDefaults implements TestFactory.FieldDefaults{
+        /**
+		 * @author       TLQ1KOR
+		 * @description  define Quote getFieldDefaults()
+		 * @return		Map<Schema.SObjectField, Object>
+		 */
+		public Map<Schema.SObjectField, Object> getFieldDefaults() {
+            return new Map<Schema.SObjectField, Object>{
+              ContentVersion.Title => 'Test Document',
+              ContentVersion.PathOnClient => 'TestDocument.pdf',
+              ContentVersion.VersionData => Blob.valueOf('Test Content Data') 
+            };
+        
+        }
+    }
+    public class ContentDocumentLinkDefaults implements TestFactory.FieldDefaults{
+        /**
+		 * @author       TLQ1KOR
+		 * @description  define Quote getFieldDefaults()
+		 * @return		Map<Schema.SObjectField, Object>
+		 */
+		public Map<Schema.SObjectField, Object> getFieldDefaults() {
+            return new Map<Schema.SObjectField, Object>{
+            ContentDocumentLink.ShareType => 'V'
+            };
+        
+        }
+    }
+	
 
-}	
+    public class QuoteLineDefaults implements TestFactory.FieldDefaults{
+        /**
+		 * @author       TLQ1KOR
+		 * @description  define Quote getFieldDefaults()
+		 * @return		Map<Schema.SObjectField, Object>
+		 */
+		public Map<Schema.SObjectField, Object> getFieldDefaults() {
+            return new Map<Schema.SObjectField, Object>{
+                            SBQQ__QuoteLine__c.SBQQ__Quantity__c => 1,
+            SBQQ__QuoteLine__c.SBQQ__ListPrice__c => 100.00
+                
+            };
+        
+        }
+    }
+    public class Product2Defaults implements TestFactory.FieldDefaults{
+        /**
+		 * @author       TLQ1KOR
+		 * @description  define Quote getFieldDefaults()
+		 * @return		Map<Schema.SObjectField, Object>
+		 */
+		public Map<Schema.SObjectField, Object> getFieldDefaults() {
+            return new Map<Schema.SObjectField, Object>{
+                Product2.Name => 'Test Product'
+                
+            };
+        
+        }
+    }
+   
+}

@@ -2401,6 +2401,21 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>true</editable>
+        <field>SalesAreaLink__c.chk_CompleteDelivery__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>SalesAreaLink__c.chk_Deletionflagforcustomer__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>SalesAreaLink__c.chk_Rebate__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>false</editable>
         <field>SalesAreaLink__c.ftxt_DistributionChannel__c</field>
         <readable>true</readable>
@@ -2412,22 +2427,77 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>SalesAreaLink__c.ftxt_SalesAreaName__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>SalesAreaLink__c.ftxt_SalesArea__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>SalesAreaLink__c.ftxt_SalesOrg__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>SalesArea__c.pkl_DistributionChannel__c</field>
+        <field>SalesAreaLink__c.pkl_BillingBlockforCustomer__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>SalesArea__c.pkl_Division__c</field>
+        <field>SalesAreaLink__c.pkl_CustomerDeliveryBlock__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>SalesArea__c.pkl_SalesOrg__c</field>
+        <field>SalesAreaLink__c.pkl_CustomerGroup1__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>SalesAreaLink__c.pkl_CustomerGroup__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>SalesAreaLink__c.pkl_CustomerOrderBlock__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>SalesAreaLink__c.pkl_CustomerPriceGroup__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>SalesAreaLink__c.pkl_InvoicingDates__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>SalesAreaLink__c.pkl_MaxPartDeliveries__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>SalesAreaLink__c.pkl_Partdlvitem__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>SalesAreaLink__c.pkl_SalesBlockCustomer__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>SalesAreaLink__c.txt_Accountatcustomer__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>SalesAreaLink__c.txt_CustomerStatus__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <layoutAssignments>
@@ -2680,6 +2750,9 @@
         <layout>LineItemText__c-Line Item Text Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
+        <layout>LogEntry__c-Log Entry Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
         <layout>Macro-Macro Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
@@ -2746,6 +2819,9 @@
     </layoutAssignments>
     <layoutAssignments>
         <layout>SBQQ__QuoteTemplate__c-SBQQ__Quote Template Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>SBQQ__QuoteTerm__c-SBQQ__Quote Term Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
         <layout>SBQQ__Quote__c-SBQQ__Quote Layout</layout>
