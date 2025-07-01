@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <RecordType xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>FrameContract</fullName>
+    <fullName>Loan_and_License</fullName>
     <active>true</active>
-    <compactLayoutAssignment>Apttus_Default</compactLayoutAssignment>
-    <description>Sales/Services Agreement</description>
-    <label>Frame Contract</label>
+    <description>ETAS provides software and/or hardware free of charge for test and evaluation purposes</description>
+    <label>Loan and License</label>
     <picklistValues>
         <picklist>APTS_Country_Controller__c</picklist>
         <values>
@@ -1151,7 +1150,7 @@
         <picklist>APTS_Type_of_Paper__c</picklist>
         <values>
             <fullName>Own Paper</fullName>
-            <default>true</default>
+            <default>false</default>
         </values>
         <values>
             <fullName>Third Party Paper</fullName>
@@ -1261,10 +1260,6 @@
     <picklistValues>
         <picklist>Apttus__Agreement_Category__c</picklist>
         <values>
-            <fullName>Corporate</fullName>
-            <default>false</default>
-        </values>
-        <values>
             <fullName>ETAS%2FCEU1 Volvo Cars</fullName>
             <default>false</default>
         </values>
@@ -1273,16 +1268,8 @@
             <default>false</default>
         </values>
         <values>
-            <fullName>Procurement</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>Sales</fullName>
-            <default>false</default>
-        </values>
-        <values>
             <fullName>Sales DE</fullName>
-            <default>true</default>
+            <default>false</default>
         </values>
         <values>
             <fullName>Sales EU1 BMW</fullName>

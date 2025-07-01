@@ -133,6 +133,41 @@
                 <default>false</default>
                 <label>Health Check</label>
             </value>
+            <value>
+                <fullName>Maintenance &amp; Support Agreement</fullName>
+                <default>false</default>
+                <label>Maintenance &amp; Support Agreement</label>
+            </value>
+            <value>
+                <fullName>Quotation for Technology-based Services</fullName>
+                <default>false</default>
+                <label>Quotation for Technology-based Services</label>
+            </value>
+            <value>
+                <fullName>Supplier Master Data Sheet</fullName>
+                <default>false</default>
+                <label>Supplier Master Data Sheet</label>
+            </value>
+            <value>
+                <fullName>New License Request</fullName>
+                <default>false</default>
+                <label>New License Request</label>
+            </value>
+            <value>
+                <fullName>Letter of Confirmation</fullName>
+                <default>false</default>
+                <label>Letter of Confirmation</label>
+            </value>
+            <value>
+                <fullName>Customer Specific T&amp;C Agreements</fullName>
+                <default>false</default>
+                <label>Customer Specific T&amp;C Agreements</label>
+            </value>
+            <value>
+                <fullName>License Model Change Request</fullName>
+                <default>false</default>
+                <label>License Model Change Request</label>
+            </value>
         </valueSetDefinition>
     </valueSet>
 </CustomField>

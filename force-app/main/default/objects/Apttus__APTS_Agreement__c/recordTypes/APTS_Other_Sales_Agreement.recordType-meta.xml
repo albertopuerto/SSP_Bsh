@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <RecordType xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>FrameContract</fullName>
+    <fullName>APTS_Other_Sales_Agreement</fullName>
     <active>true</active>
-    <compactLayoutAssignment>Apttus_Default</compactLayoutAssignment>
-    <description>Sales/Services Agreement</description>
-    <label>Frame Contract</label>
+    <description>Examples are License Model Change Request, Customer Specific T&amp;C Agreements, Letter of Confirmation, New License Request, Supplier Master Data Sheet, Quotation for Technology-based Services etc.</description>
+    <label>Other Sales Agreement</label>
     <picklistValues>
         <picklist>APTS_Country_Controller__c</picklist>
         <values>
@@ -1151,7 +1150,7 @@
         <picklist>APTS_Type_of_Paper__c</picklist>
         <values>
             <fullName>Own Paper</fullName>
-            <default>true</default>
+            <default>false</default>
         </values>
         <values>
             <fullName>Third Party Paper</fullName>
@@ -1261,10 +1260,6 @@
     <picklistValues>
         <picklist>Apttus__Agreement_Category__c</picklist>
         <values>
-            <fullName>Corporate</fullName>
-            <default>false</default>
-        </values>
-        <values>
             <fullName>ETAS%2FCEU1 Volvo Cars</fullName>
             <default>false</default>
         </values>
@@ -1273,16 +1268,8 @@
             <default>false</default>
         </values>
         <values>
-            <fullName>Procurement</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>Sales</fullName>
-            <default>false</default>
-        </values>
-        <values>
             <fullName>Sales DE</fullName>
-            <default>true</default>
+            <default>false</default>
         </values>
         <values>
             <fullName>Sales EU1 BMW</fullName>
@@ -1552,8 +1539,36 @@
     <picklistValues>
         <picklist>Apttus__Subtype__c</picklist>
         <values>
+            <fullName>Customer Specific T%26C Agreements</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Letter of Confirmation</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>License Model Change Request</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Maintenance %26 Support Agreement</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>New License Request</fullName>
+            <default>false</default>
+        </values>
+        <values>
             <fullName>Other</fullName>
             <default>true</default>
+        </values>
+        <values>
+            <fullName>Quotation for Technology-based Services</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Supplier Master Data Sheet</fullName>
+            <default>false</default>
         </values>
     </picklistValues>
 </RecordType>
