@@ -2266,6 +2266,10 @@
         <enabled>true</enabled>
     </classAccesses>
     <pageAccesses>
+        <apexPage>ReasignPage</apexPage>
+        <enabled>true</enabled>
+    </pageAccesses>
+    <pageAccesses>
         <apexPage>SubmitQuote</apexPage>
         <enabled>true</enabled>
     </pageAccesses>

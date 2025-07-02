@@ -1,0 +1,80 @@
+<apex:page standardController="sbaa__Approval__c" extensions="sbaa.ApprovalExtController" lightningStylesheets="true"  standardStylesheets="true" showHeader="false" sidebar="false" showQuickActionVfHeader="false">
+    <style>
+        /* Oculta header y footer del modal Lightning */
+        .slds-modal__header, 
+        .slds-modal__footer {
+            display: none !important;
+        }
+        
+        /* Elimina márgenes superiores innecesarios del contenido */
+        .slds-modal__content {
+            padding-top: 0 !important;
+        }
+        .slds-textarea, .slds-input, .lookupInput {
+            width: 100%;
+        }
+    </style>
+    
+    <apex:form >
+        <apex:pageMessages />
+        <div class="sbaa">
+            <div class="slds-page-header">
+                <p class="slds-text-heading--medium slds-text-align--center">
+                    Reassign
+                </p>
+            </div>
+            <!-- Formulario -->
+            <div class="slds-p-around_medium">
+                <div class="slds-form slds-form_stacked">
+
+                    <div class="slds-form-element slds-m-bottom_medium">
+                        <label class="slds-form-element__label" for="assignedTo">Reassign To</label>
+                        <div class="slds-form-element__control">
+                            <apex:inputField value="{!sbaa__Approval__c.sbaa__AssignedTo__c}" styleClass="slds-input" id="text-input-01"/>
+                        </div>
+                    </div>
+
+                    <div class="slds-form-element slds-m-bottom_medium">
+                        <label class="slds-form-element__label" for="comments">Comments</label>
+                        <div class="slds-form-element__control">
+                            <apex:inputTextarea value="{!comments}" styleClass="slds-textarea" rows="4" id="textarea-input-01" />
+                        </div>
+                    </div>
+
+                    <div class="slds-m-top_medium" style="display: flex; justify-content: flex-end;">
+                        <apex:commandButton value="Cancel" 
+                            onclick="handleCancel();" 
+                            styleClass="slds-button slds-button_neutral slds-m-right_small" />
+                    
+                        <apex:commandButton value="Reassign" 
+                            action="{!onReassign}" 
+                            styleClass="slds-button slds-button_brand"
+                            style="background-color: #00396b;color:white" />
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </apex:form>
+
+
+    <script>
+        function handleCancel() {
+            if (window.sforce && window.sforce.one) {
+                sforce.one.navigateToSObject('{!sbaa__Approval__c.Id}');
+            } else {
+                window.history.back();
+            }
+        }
+        document.addEventListener('DOMContentLoaded', function () {
+        const messageText = document.querySelector('.messageText');
+        if (messageText) {
+            const rawMessage = messageText.textContent;
+            const match = rawMessage.match(/FIELD_CUSTOM_VALIDATION_EXCEPTION, (.*?):/);
+            if (match && match[1]) {
+                messageText.textContent = match[1].trim();
+            }
+        }
+    });
+    </script>
+</apex:page>
