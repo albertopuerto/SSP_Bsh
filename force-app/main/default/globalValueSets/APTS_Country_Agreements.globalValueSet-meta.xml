@@ -16,6 +16,11 @@
         <label>Belarus</label>
     </customValue>
     <customValue>
+        <fullName>Belgium</fullName>
+        <default>false</default>
+        <label>Belgium</label>
+    </customValue>
+    <customValue>
         <fullName>Brazil</fullName>
         <default>false</default>
         <label>Brazil</label>
@@ -96,6 +101,11 @@
         <label>Netherlands</label>
     </customValue>
     <customValue>
+        <fullName>New Zealand</fullName>
+        <default>false</default>
+        <label>New Zealand</label>
+    </customValue>
+    <customValue>
         <fullName>Other</fullName>
         <default>false</default>
         <label>Other</label>
@@ -124,6 +134,11 @@
         <fullName>Russia</fullName>
         <default>false</default>
         <label>Russia</label>
+    </customValue>
+    <customValue>
+        <fullName>Serbia</fullName>
+        <default>false</default>
+        <label>Serbia</label>
     </customValue>
     <customValue>
         <fullName>Singapore</fullName>
@@ -157,5 +172,5 @@
     </customValue>
     <description>Controller, Processor. Subprocessor for Data Privacy Related Agreements</description>
     <masterLabel>Country_Agreements</masterLabel>
-    <sorted>false</sorted>
+    <sorted>true</sorted>
 </GlobalValueSet>
