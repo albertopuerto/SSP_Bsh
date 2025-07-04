@@ -9,19 +9,19 @@
     "SBQQ__BottomMargin__c": "0.0",
     "SBQQ__ColumnHeaderHidden__c": "false",
     "SBQQ__ConditionalPrintField__c": "",
-    "SBQQ__DisplayOrder__c": "40.0",
-    "SBQQ__FilterField__c": "",
-    "SBQQ__FilterOperator__c": "",
-    "SBQQ__FilterValue__c": "",
+    "SBQQ__DisplayOrder__c": "50.0",
+    "SBQQ__FilterField__c": "Optional",
+    "SBQQ__FilterOperator__c": "equals",
+    "SBQQ__FilterValue__c": "\"Don't show in this quote template\"",
     "SBQQ__GroupField__c": "",
-    "SBQQ__KeepTogether__c": "Always",
+    "SBQQ__KeepTogether__c": "Auto",
     "SBQQ__KeepWithNext__c": "Auto",
     "SBQQ__KeepWithPrevious__c": "",
-    "SBQQ__PageBreak__c": "",
+    "SBQQ__PageBreak__c": "After",
     "SBQQ__QuoteTotalsPrinted__c": "false",
     "SBQQ__RollUpField__c": "",
     "SBQQ__SummaryDisplay__c": "",
-    "SBQQ__TopMargin__c": "1.0"
+    "SBQQ__TopMargin__c": "0.0"
   },
   "References": [
     {
