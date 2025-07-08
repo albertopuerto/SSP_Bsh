@@ -25,6 +25,11 @@
                 <default>false</default>
                 <label>Error in sending to Athena</label>
             </value>
+            <value>
+                <fullName>Received in Athena for BP creation</fullName>
+                <default>false</default>
+                <label>Received in Athena for BP creation</label>
+            </value>
         </valueSetDefinition>
     </valueSet>
 </CustomField>
