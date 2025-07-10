@@ -95,7 +95,7 @@ public with sharing class TestFactoryDefaults{
             Opportunity.CurrencyIsoCode => 'EUR',                            
             Opportunity.pklLeadingSolutionField__c => 'DAP',                 
             Opportunity.pklTypeOfOffering__c => 'SW',                        
-            Opportunity.pklTypeOfOpportunity__c => 'Long Term Agreement' 
+            Opportunity.pklTypeOfOpportunity__c => 'LTA' 
 			};
 		}
 	}
