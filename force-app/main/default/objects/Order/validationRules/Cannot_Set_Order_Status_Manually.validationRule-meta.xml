@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Cannot_Set_Order_Status_Manually</fullName>
+    <active>true</active>
+    <description>Prevents users to set order status related to the integration with SAP manually</description>
+    <errorConditionFormula>OR (AND(         
+OR (ISPICKVAL(Status, &quot;SentToSAP&quot;),ISPICKVAL(Status, &quot;Activated&quot;)),   
+NOT(chk_BypassValidation__c),      
+ISCHANGED(Status),         
+OR(ISPICKVAL(PRIORVALUE(Status), &quot;Activated&quot;), ISPICKVAL( PRIORVALUE(Status), &quot;OrderReceivedBySAP&quot;))
+)
+,
+AND(
+OR (ISPICKVAL(Status, &quot;OrderReceivedBySAP&quot;),ISPICKVAL(Status, &quot;Activated&quot;)),  
+NOT(chk_BypassValidation__c),          
+ISCHANGED(Status),  
+OR (ISPICKVAL(PRIORVALUE(Status), &quot;Activated&quot;),   
+ISPICKVAL(PRIORVALUE(Status), &quot;SentToSAP&quot; ))
+)
+)</errorConditionFormula>
+    <errorMessage>You cannot set this status manually</errorMessage>
+</ValidationRule>
