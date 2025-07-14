@@ -360,17 +360,7 @@
         <name>Facet-18ef9942-3954-495c-9036-a87492100c73</name>
         <type>Facet</type>
     </flexiPageRegions>
-    <flexiPageRegions>
-        <itemInstances>
-            <fieldInstance>
-                <fieldInstanceProperties>
-                    <name>uiBehavior</name>
-                    <value>readonly</value>
-                </fieldInstanceProperties>
-                <fieldItem>Record.pkl_DuplicateReason__c</fieldItem>
-                <identifier>Recordpkl_DuplicateReason__cField</identifier>
-            </fieldInstance>
-        </itemInstances>
+    <flexiPageRegions>        
         <itemInstances>
             <fieldInstance>
                 <fieldInstanceProperties>
