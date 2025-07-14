@@ -79,16 +79,6 @@
                     <name>uiBehavior</name>
                     <value>none</value>
                 </fieldInstanceProperties>
-                <fieldItem>Record.txt_Name4__c</fieldItem>
-                <identifier>RecordName_4__cField</identifier>
-            </fieldInstance>
-        </itemInstances>
-        <itemInstances>
-            <fieldInstance>
-                <fieldInstanceProperties>
-                    <name>uiBehavior</name>
-                    <value>none</value>
-                </fieldInstanceProperties>
                 <fieldItem>Record.Type</fieldItem>
                 <identifier>RecordTypeField</identifier>
             </fieldInstance>
@@ -167,16 +157,6 @@
             <fieldInstance>
                 <fieldInstanceProperties>
                     <name>uiBehavior</name>
-                    <value>none</value>
-                </fieldInstanceProperties>
-                <fieldItem>Record.txt_LegalEntity__c</fieldItem>
-                <identifier>RecordLegal_Entity__cField</identifier>
-            </fieldInstance>
-        </itemInstances>
-        <itemInstances>
-            <fieldInstance>
-                <fieldInstanceProperties>
-                    <name>uiBehavior</name>
                     <value>readonly</value>
                 </fieldInstanceProperties>
                 <fieldItem>Record.pkm_BoschPartnerRole__c</fieldItem>
@@ -185,6 +165,10 @@
         </itemInstances>
         <itemInstances>
             <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
                 <fieldItem>Record.pkl_Status__c</fieldItem>
                 <identifier>RecordStatus__cField</identifier>
             </fieldInstance>
@@ -376,7 +360,7 @@
         <name>Facet-18ef9942-3954-495c-9036-a87492100c73</name>
         <type>Facet</type>
     </flexiPageRegions>
-    <flexiPageRegions>
+    <flexiPageRegions>        
         <name>Facet-ef4f2a2c-d1f7-47ec-8295-f97f0471ff7a</name>
         <type>Facet</type>
     </flexiPageRegions>
@@ -433,7 +417,7 @@
             <fieldInstance>
                 <fieldInstanceProperties>
                     <name>uiBehavior</name>
-                    <value>none</value>
+                    <value>required</value>
                 </fieldInstanceProperties>
                 <fieldItem>Record.pkl_INCOTerms1__c</fieldItem>
                 <identifier>Recordpkl_INCOTerms1_cField</identifier>
@@ -443,7 +427,7 @@
             <fieldInstance>
                 <fieldInstanceProperties>
                     <name>uiBehavior</name>
-                    <value>none</value>
+                    <value>required</value>
                 </fieldInstanceProperties>
                 <fieldItem>Record.txt_INCOTerms2__c</fieldItem>
                 <identifier>Recordtxt_INCOTerms2_cField</identifier>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+        <label><!-- Status --></label>
+        <name>pkl_Status__c</name>
+        <picklistValues>
+            <masterLabel>Draft</masterLabel>
+            <translation><!-- Draft --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Error in sending to Athena</masterLabel>
+            <translation><!-- Error in sending to Athena --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Received in Athena for BP creation</masterLabel>
+            <translation><!-- Received in Athena for BP creation --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sent to Athena</masterLabel>
+            <translation><!-- Sent to Athena --></translation>
+        </picklistValues>
+    </CustomFieldTranslation>
