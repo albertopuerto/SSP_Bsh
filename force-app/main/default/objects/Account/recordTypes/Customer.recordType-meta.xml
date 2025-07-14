@@ -420,7 +420,6 @@
         </values>
     </picklistValues>
     <picklistValues>
-    <picklistValues>
         <picklist>pkl_INCOTerms1__c</picklist>
         <values>
             <fullName>CPT - Carriage Paid To</fullName>
