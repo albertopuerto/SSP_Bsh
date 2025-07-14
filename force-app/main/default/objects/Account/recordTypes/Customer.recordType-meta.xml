@@ -420,48 +420,6 @@
         </values>
     </picklistValues>
     <picklistValues>
-        <picklist>pkl_DuplicateReason__c</picklist>
-        <values>
-            <fullName>AG %28SP%29 - Customer Discounts</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>AG %28SP%29 - Different GLN</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>AG %28SP%29 - Reseller is defined for every business end user %28service contract partner%29</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>WE %28SH%29 - Cross Docking - same Hub Address but shop address coded in name</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>WE %28SH%29 - Customer operates several business units under the same address with different partner descriptions %28e%2Eg%2E plant codes%29</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>WE %28SH%29 - Delivery to customer with MLB process %28MLB sub-supplier%2C cross-company%2C direct%29</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>WE %28SH%29 - Different Shipping conditions</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>WE %28SH%29 - Different delivery times</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>WE %28SH%29 - Different invoice dispatch types for the same customer</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>WE %28SH%29 - Distributor Model</fullName>
-            <default>false</default>
-        </values>
-    </picklistValues>
     <picklistValues>
         <picklist>pkl_INCOTerms1__c</picklist>
         <values>
