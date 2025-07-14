@@ -360,20 +360,6 @@
         <name>Facet-18ef9942-3954-495c-9036-a87492100c73</name>
         <type>Facet</type>
     </flexiPageRegions>
-    <flexiPageRegions>        
-        <itemInstances>
-            <fieldInstance>
-                <fieldInstanceProperties>
-                    <name>uiBehavior</name>
-                    <value>readonly</value>
-                </fieldInstanceProperties>
-                <fieldItem>Record.txt_DuplicateDescription__c</fieldItem>
-                <identifier>Recordtxt_DuplicateDescription__cField</identifier>
-            </fieldInstance>
-        </itemInstances>
-        <name>Facet-ef4f2a2c-d1f7-47ec-8295-f97f0471ff7a</name>
-        <type>Facet</type>
-    </flexiPageRegions>
     <flexiPageRegions>
         <itemInstances>
             <componentInstance>
