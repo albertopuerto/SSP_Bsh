@@ -23,7 +23,7 @@
         <inputParameters>
             <name>senderAddress</name>
             <value>
-                <stringValue>uwe.adams@de.bosch.com</stringValue>
+                <stringValue>ssp.program2@etas.com</stringValue>
             </value>
         </inputParameters>
         <inputParameters>
@@ -323,7 +323,7 @@
         <name>emailBody</name>
         <isViewedAsPlainText>true</isViewedAsPlainText>
         <text>Dear {!GET_ATM_SCO.User.FirstName} {!GET_ATM_SCO.User.LastName},
-We need to inform you that one of your Customer&apos;s information has been changed.
+We need to inform you that one of your Customer&#39;s information has been changed.
 
 The related Account {!$Record.Name} can be found {!ftxt_LinkToAccount}
 

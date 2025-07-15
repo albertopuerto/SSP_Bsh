@@ -32,7 +32,7 @@
         <inputParameters>
             <name>body</name>
             <value>
-                <stringValue>&quot;Your Opportunity has not been updated in the last 30 days: &quot; + &quot;/lightning/r/Opportunity/&quot; +{!Iteration_on_Opportunities_Found.Id} + &quot;/view&quot; + &quot;\n&quot;</stringValue>
+                <stringValue>Your opportunity ({!Iteration_on_Opportunities_Found.Name}) has not been updated from last 30 days.</stringValue>
             </value>
         </inputParameters>
         <inputParameters>
@@ -191,6 +191,7 @@
         <object>Opportunity</object>
         <queriedFields>Id</queriedFields>
         <queriedFields>OwnerId</queriedFields>
+        <queriedFields>Name</queriedFields>
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordLookups>
     <start>
