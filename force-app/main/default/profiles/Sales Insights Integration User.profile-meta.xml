@@ -1912,6 +1912,10 @@
         <recordType>Apttus__APTS_Agreement__c.APTS_IC_Limited_Sales_Support</recordType>
     </layoutAssignments>
     <layoutAssignments>
+        <layout>Apttus__APTS_Agreement__c-APTS_Sales_Other</layout>
+        <recordType>Apttus__APTS_Agreement__c.APTS_Other_Sales_Agreement</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
         <layout>Apttus__APTS_Agreement__c-APTS_Controlling_layout</layout>
         <recordType>Apttus__APTS_Agreement__c.IC_Development_and_Application</recordType>
     </layoutAssignments>
@@ -1938,6 +1942,10 @@
     <layoutAssignments>
         <layout>Apttus__APTS_Agreement__c-APTS_Controlling_layout</layout>
         <recordType>Apttus__APTS_Agreement__c.IC_NDA</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Apttus__APTS_Agreement__c-APTS_Loan and License</layout>
+        <recordType>Apttus__APTS_Agreement__c.Loan_and_License</recordType>
     </layoutAssignments>
     <layoutAssignments>
         <layout>Apttus__APTS_Agreement__c-APTS_Controlling_layout</layout>
