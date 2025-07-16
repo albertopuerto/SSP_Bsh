@@ -1,11 +1,67 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
     <actionCalls>
+        <description>Logs details about the failed update of Bypass Validation field</description>
+        <name>act_apex_BypassValidationFailed</name>
+        <label>Update Bypass Validation Failed</label>
+        <locationX>704</locationX>
+        <locationY>566</locationY>
+        <actionName>FlowLogEntry</actionName>
+        <actionType>apex</actionType>
+        <connector>
+            <targetReference>act_apex_SaveLog2</targetReference>
+        </connector>
+        <flowTransactionModel>Automatic</flowTransactionModel>
+        <inputParameters>
+            <name>flowName</name>
+            <value>
+                <stringValue>flw_SendOrderToSAP</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>loggingLevelName</name>
+            <value>
+                <stringValue>ERROR</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>message</name>
+            <value>
+                <elementReference>tmp_LogMessageDMLBypass</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>recordId</name>
+            <value>
+                <elementReference>recordId</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>tagsString</name>
+            <value>
+                <stringValue>FLW-DML</stringValue>
+            </value>
+        </inputParameters>
+        <nameSegment>FlowLogEntry</nameSegment>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </actionCalls>
+    <actionCalls>
         <description>Saves the log entry</description>
         <name>act_apex_SaveLog</name>
         <label>Save Log</label>
-        <locationX>1161</locationX>
-        <locationY>523</locationY>
+        <locationX>968</locationX>
+        <locationY>674</locationY>
+        <actionName>Logger</actionName>
+        <actionType>apex</actionType>
+        <flowTransactionModel>Automatic</flowTransactionModel>
+        <nameSegment>Logger</nameSegment>
+    </actionCalls>
+    <actionCalls>
+        <description>Saves the log entry</description>
+        <name>act_apex_SaveLog2</name>
+        <label>Save Log</label>
+        <locationX>704</locationX>
+        <locationY>674</locationY>
         <actionName>Logger</actionName>
         <actionType>apex</actionType>
         <flowTransactionModel>Automatic</flowTransactionModel>
@@ -15,8 +71,8 @@
         <description>Logs details about the request sent to SAP</description>
         <name>act_apex_SendingFailed</name>
         <label>Sending Failed</label>
-        <locationX>963</locationX>
-        <locationY>700</locationY>
+        <locationX>440</locationX>
+        <locationY>890</locationY>
         <actionName>LogCalloutInformation</actionName>
         <actionType>apex</actionType>
         <flowTransactionModel>Automatic</flowTransactionModel>
@@ -74,8 +130,8 @@
         <description>Sends request to SAP. The request contains Order Id and Correlation Id</description>
         <name>act_apex_SendOrdertoSAP</name>
         <label>Send Order to SAP</label>
-        <locationX>755</locationX>
-        <locationY>551</locationY>
+        <locationX>176</locationX>
+        <locationY>674</locationY>
         <actionName>IF001SAPCPICreateOrder.createSolutionQuotation</actionName>
         <actionType>externalService</actionType>
         <connector>
@@ -98,8 +154,8 @@
         <description>Logs details about the failed update of order status</description>
         <name>act_apex_UpdateFailed</name>
         <label>Update Failed</label>
-        <locationX>1157</locationX>
-        <locationY>408</locationY>
+        <locationX>968</locationX>
+        <locationY>566</locationY>
         <actionName>FlowLogEntry</actionName>
         <actionType>apex</actionType>
         <connector>
@@ -144,8 +200,8 @@
         <description>Creates request payload</description>
         <name>asgn_RequestPayload</name>
         <label>Assign request Payload</label>
-        <locationX>758</locationX>
-        <locationY>415</locationY>
+        <locationX>176</locationX>
+        <locationY>566</locationY>
         <assignmentItems>
             <assignToReference>requestBody.orderChange.CorrelationId</assignToReference>
             <operator>Assign</operator>
@@ -177,7 +233,7 @@
     <processMetadataValues>
         <name>CanvasMode</name>
         <value>
-            <stringValue>FREE_FORM_CANVAS</stringValue>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
         </value>
     </processMetadataValues>
     <processMetadataValues>
@@ -191,11 +247,11 @@
         <description>Gets order number to be displayed to the user on a screen</description>
         <name>get_OrderNumber</name>
         <label>Get Order Number</label>
-        <locationX>757</locationX>
-        <locationY>182</locationY>
+        <locationX>176</locationX>
+        <locationY>134</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
-            <targetReference>upd_OrderStatus</targetReference>
+            <targetReference>upd_BypassValidationTrue</targetReference>
         </connector>
         <filterLogic>and</filterLogic>
         <filters>
@@ -212,13 +268,70 @@
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordLookups>
     <recordUpdates>
+        <description>Set Bypass Validation to False</description>
+        <name>upd_BypassValidationFalse</name>
+        <label>Update Bypass Validation False</label>
+        <locationX>176</locationX>
+        <locationY>458</locationY>
+        <connector>
+            <targetReference>asgn_RequestPayload</targetReference>
+        </connector>
+        <faultConnector>
+            <targetReference>act_apex_BypassValidationFailed</targetReference>
+        </faultConnector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>recordId</elementReference>
+            </value>
+        </filters>
+        <inputAssignments>
+            <field>chk_BypassValidation__c</field>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </inputAssignments>
+        <object>Order</object>
+    </recordUpdates>
+    <recordUpdates>
+        <description>Set Bypass Validation to True</description>
+        <name>upd_BypassValidationTrue</name>
+        <label>Update Bypass Validation True</label>
+        <locationX>176</locationX>
+        <locationY>242</locationY>
+        <connector>
+            <targetReference>upd_OrderStatus</targetReference>
+        </connector>
+        <faultConnector>
+            <isGoTo>true</isGoTo>
+            <targetReference>act_apex_BypassValidationFailed</targetReference>
+        </faultConnector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>recordId</elementReference>
+            </value>
+        </filters>
+        <inputAssignments>
+            <field>chk_BypassValidation__c</field>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </inputAssignments>
+        <object>Order</object>
+    </recordUpdates>
+    <recordUpdates>
         <description>Updates the order status</description>
         <name>upd_OrderStatus</name>
         <label>Update Order Status</label>
-        <locationX>757</locationX>
-        <locationY>290</locationY>
+        <locationX>176</locationX>
+        <locationY>350</locationY>
         <connector>
-            <targetReference>asgn_RequestPayload</targetReference>
+            <targetReference>upd_BypassValidationFalse</targetReference>
         </connector>
         <faultConnector>
             <targetReference>scrn_UpdateFailure</targetReference>
@@ -244,8 +357,8 @@
         <description>Displays a  message that the order hasn&#39;t been sent to SAP successfully</description>
         <name>scrn_Failure</name>
         <label>Failure</label>
-        <locationX>963</locationX>
-        <locationY>553</locationY>
+        <locationX>440</locationX>
+        <locationY>782</locationY>
         <allowBack>false</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>false</allowPause>
@@ -264,8 +377,8 @@
         <description>Displays message that the order has been sent to SAP successfully</description>
         <name>scrn_Success</name>
         <label>Success</label>
-        <locationX>755</locationX>
-        <locationY>708</locationY>
+        <locationX>176</locationX>
+        <locationY>782</locationY>
         <allowBack>false</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>false</allowPause>
@@ -281,8 +394,8 @@
         <description>Informs the user that the order status hasn&#39;t been updated</description>
         <name>scrn_UpdateFailure</name>
         <label>Update Failure</label>
-        <locationX>1150</locationX>
-        <locationY>297</locationY>
+        <locationX>968</locationX>
+        <locationY>458</locationY>
         <allowBack>false</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>false</allowPause>
@@ -298,13 +411,18 @@
         <showHeader>false</showHeader>
     </screens>
     <start>
-        <locationX>631</locationX>
-        <locationY>48</locationY>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
         <connector>
             <targetReference>get_OrderNumber</targetReference>
         </connector>
     </start>
     <status>Active</status>
+    <textTemplates>
+        <name>tmp_LogMessageDMLBypass</name>
+        <isViewedAsPlainText>false</isViewedAsPlainText>
+        <text>&lt;p&gt;FLW-DML-00002 - &lt;span style=&quot;background-color: rgb(255, 255, 255); font-size: 14px; font-family: -apple-system, BlinkMacSystemFont, &amp;quot;Segoe UI&amp;quot;, Roboto, Oxygen, Ubuntu, &amp;quot;Fira Sans&amp;quot;, &amp;quot;Droid Sans&amp;quot;, &amp;quot;Helvetica Neue&amp;quot;, sans-serif; color: rgb(23, 43, 77);&quot;&gt;Bypass Validation update failed&lt;/span&gt;&lt;/p&gt;&lt;p&gt;Input: record Id: {!recordId}&lt;/p&gt;&lt;p&gt;Status: Failed&lt;/p&gt;</text>
+    </textTemplates>
     <textTemplates>
         <name>tmpl_LogMessageDML</name>
         <isViewedAsPlainText>true</isViewedAsPlainText>
