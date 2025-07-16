@@ -33,10 +33,6 @@
                 <field>Role__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Required</behavior>
-                <field>pkm_BoschPartnerRole__c</field>
-            </layoutItems>
-            <layoutItems>
                 <behavior>Edit</behavior>
                 <field>txt_SearchTerm1__c</field>
             </layoutItems>
@@ -63,6 +59,10 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>pkl_MaxNoofPartialDeliveries__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>pkl_Status__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
@@ -385,6 +385,21 @@
         <relatedList>RelatedActivityList</relatedList>
     </relatedLists>
     <relatedLists>
+        <fields>NAME</fields>
+        <fields>APTS_Agreement_Number_Old__c</fields>
+        <fields>Apttus__FF_Agreement_Number__c</fields>
+        <fields>APTS_Record_Type_Name__c</fields>
+        <fields>Apttus__Subtype__c</fields>
+        <fields>Apttus__Status_Category__c</fields>
+        <fields>Apttus__Status__c</fields>
+        <fields>Apttus__Contract_End_Date__c</fields>
+        <fields>Apttus__Auto_Renewal__c</fields>
+        <fields>Apttus__Perpetual__c</fields>
+        <relatedList>Apttus__APTS_Agreement__c.Apttus__Account__c</relatedList>
+        <sortField>Apttus__FF_Agreement_Number__c</sortField>
+        <sortOrder>Desc</sortOrder>
+    </relatedLists>
+    <relatedLists>
         <fields>TASK.SUBJECT</fields>
         <fields>TASK.WHO_NAME</fields>
         <fields>ACTIVITY.TASK</fields>
@@ -395,10 +410,10 @@
         <relatedList>RelatedHistoryList</relatedList>
     </relatedLists>
     <relatedLists>
-        <fields>SalesArea__c.NAME</fields>
-        <fields>ftxt_SalesOrg__c</fields>
-        <fields>ftxt_DistributionChannel__c</fields>
-        <fields>ftxt_Division__c</fields>
+        <fields>ftxt_SalesArea__c</fields>
+        <fields>SalesArea__c.pkl_SalesOrg__c</fields>
+        <fields>SalesArea__c.pkl_DistributionChannel__c</fields>
+        <fields>SalesArea__c.pkl_Division__c</fields>
         <relatedList>SalesAreaLink__c.mdr_Account__c</relatedList>
     </relatedLists>
     <relatedLists>

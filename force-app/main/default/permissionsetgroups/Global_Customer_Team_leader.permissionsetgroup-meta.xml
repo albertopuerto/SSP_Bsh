@@ -3,6 +3,7 @@
     <hasActivationRequired>false</hasActivationRequired>
     <label>Global Customer Team leader</label>
     <permissionSets>CPQEnhancedUser</permissionSets>
+    <permissionSets>SAPOutboundIntegration</permissionSets>
     <permissionSets>SalesBasic</permissionSets>
     <status>Updated</status>
 </PermissionSetGroup>

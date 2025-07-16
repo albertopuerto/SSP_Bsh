@@ -23,4 +23,9 @@
         <field>OrderItem.dat_SAPPlannedOrderItemDeliveryDate__c</field>
         <readable>true</readable>
     </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>SBQQ__QuoteTerm__c.chk_AddtoTCs__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
 </PermissionSet>

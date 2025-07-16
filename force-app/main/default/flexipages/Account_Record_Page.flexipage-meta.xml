@@ -79,6 +79,16 @@
                     <name>uiBehavior</name>
                     <value>none</value>
                 </fieldInstanceProperties>
+                <fieldItem>Record.txt_Name4__c</fieldItem>
+                <identifier>RecordName_4__cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
                 <fieldItem>Record.Type</fieldItem>
                 <identifier>RecordTypeField</identifier>
             </fieldInstance>
@@ -91,16 +101,6 @@
                 </fieldInstanceProperties>
                 <fieldItem>Record.Role__c</fieldItem>
                 <identifier>RecordRole_cField</identifier>
-            </fieldInstance>
-        </itemInstances>
-        <itemInstances>
-            <fieldInstance>
-                <fieldInstanceProperties>
-                    <name>uiBehavior</name>
-                    <value>none</value>
-                </fieldInstanceProperties>
-                <fieldItem>Record.pkm_BoschPartnerRole__c</fieldItem>
-                <identifier>RecordBosch_Partner_Role_cField</identifier>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
@@ -161,6 +161,32 @@
                 </fieldInstanceProperties>
                 <fieldItem>Record.txt_AthenaUUID__c</fieldItem>
                 <identifier>Recordtxt_AthenaUUID__cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.txt_LegalEntity__c</fieldItem>
+                <identifier>RecordLegal_Entity__cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>readonly</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.pkm_BoschPartnerRole__c</fieldItem>
+                <identifier>Recordpkm_BoschPartnerRole__cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldItem>Record.pkl_Status__c</fieldItem>
+                <identifier>RecordStatus__cField</identifier>
             </fieldInstance>
         </itemInstances>
         <name>Facet-3bbfbb4b-102f-42f0-84f4-80b389f788f5</name>
@@ -407,7 +433,7 @@
             <fieldInstance>
                 <fieldInstanceProperties>
                     <name>uiBehavior</name>
-                    <value>required</value>
+                    <value>none</value>
                 </fieldInstanceProperties>
                 <fieldItem>Record.pkl_INCOTerms1__c</fieldItem>
                 <identifier>Recordpkl_INCOTerms1_cField</identifier>
@@ -417,7 +443,7 @@
             <fieldInstance>
                 <fieldInstanceProperties>
                     <name>uiBehavior</name>
-                    <value>required</value>
+                    <value>none</value>
                 </fieldInstanceProperties>
                 <fieldItem>Record.txt_INCOTerms2__c</fieldItem>
                 <identifier>Recordtxt_INCOTerms2_cField</identifier>
