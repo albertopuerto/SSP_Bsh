@@ -10536,6 +10536,10 @@
         <visible>true</visible>
     </recordTypeVisibilities>
     <tabSettings>
+        <tab>Apttus__APTS_Agreement__c</tab>
+        <visibility>Visible</visibility>
+    </tabSettings>
+    <tabSettings>
         <tab>cnga__ApprovalCenter</tab>
         <visibility>Visible</visibility>
     </tabSettings>
