@@ -9953,6 +9953,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Apttus__APTS_Agreement__c.Apttus__GoogleDocsReview__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Apttus__APTS_Agreement__c.Apttus__GoogleDriveEnabled__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -10009,6 +10014,21 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Apttus__APTS_Agreement__c.Apttus__Non_Standard_Legal_Language__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Apttus__APTS_Agreement__c.Apttus__Office365ExternalReview__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Apttus__APTS_Agreement__c.Apttus__Office365InternalReview__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Apttus__APTS_Agreement__c.Apttus__Office365Review__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -10124,6 +10144,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Apttus__APTS_Agreement__c.Apttus__Risk_Rating__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Apttus__APTS_Agreement__c.Apttus__SendToTeamReview__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
