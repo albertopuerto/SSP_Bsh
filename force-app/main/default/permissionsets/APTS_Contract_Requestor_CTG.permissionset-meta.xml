@@ -13368,10 +13368,6 @@
         <visible>true</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
-        <recordType>Apttus__APTS_Agreement__c.Intercompany_NDA</recordType>
-        <visible>true</visible>
-    </recordTypeVisibilities>
-    <recordTypeVisibilities>
         <recordType>Apttus__APTS_Agreement__c.Other_IC</recordType>
         <visible>true</visible>
     </recordTypeVisibilities>
