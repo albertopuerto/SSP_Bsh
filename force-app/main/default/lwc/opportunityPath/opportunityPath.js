@@ -2,6 +2,7 @@ import { LightningElement, track} from 'lwc';
 import getNonClosedStatusValues from '@salesforce/apex/pathOpportunity.getNonClosedStatusValues';
 import getClosedStatusValues from '@salesforce/apex/pathOpportunity.getClosedStatusValues';
 import getCloseReasons from '@salesforce/apex/pathOpportunity.getCloseReasons';
+import getOpportunityFields from '@salesforce/apex/pathOpportunity.getOpportunityFields';
 export default class PathOpportunity extends LightningElement {
 @track statusList=[];
 @track expandFields= false;
@@ -59,6 +60,16 @@ selectStage(event){
     var stageName = event.currentTarget.dataset.id;
 
     if(stageName == 'Sales Chance (New)' || stageName == 'Acquisition (Sell)' || stageName == 'Quotation (Quoted)' || stageName == 'Accepted'){
+
+        getOpportunityFields()
+            .then(result => {
+                    this.closeReasons =result.map((o) => ({ label: o, value: o }));
+                   
+                   // alert('test' + JSON.stringify(this.statusList));
+                }).catch((error) => {
+                    console.error("Error in retrieve:", error);
+                    });
+
         this.openClosingOpportunity= false;
     }else{
         this.openClosingOpportunity= true;
