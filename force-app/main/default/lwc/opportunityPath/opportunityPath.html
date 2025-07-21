@@ -1,6 +1,6 @@
 <template>
     <div style="background-color:white;">
-    <div class="slds-path" style="background-color:white; padding: 10px">
+    <div class="slds-path" style="padding: 10px">
         <div class="slds-grid slds-path__track">
             <div class="slds-grid slds-path__scroller-container">
                 <!--button class="slds-button slds-button_icon slds-button_icon-border-filled slds-path__trigger" title="Toggle Sales Coaching" aria-expanded="false" aria-controls="path-coaching-1">
@@ -17,14 +17,13 @@
                 </template>
                 <div class="slds-path__scroller">
                     <div class="slds-path__scroller_inner">
-                        <ul class="slds-path__nav" role="listbox" aria-orientation="horizontal"
-                            aria-labelledby="slds-path__stage-name">
+                        <ul class="slds-path__nav" role="listbox" aria-orientation="horizontal" aria-labelledby="slds-path__stage-name">
                             <!--template-->
                             <!--li class="slds-path__item">
                             <lightning-button-icon icon-name="utility:chevronup"></lightning-button-icon></li-->
                             <template for:each={statusList} for:item="OpportunityStage">
                                 <!--li class="slds-path__item slds-is-current" role="presentation" key={OpportunityStage.label}-->
-                                    <li class="slds-path__item" role="presentation" key={OpportunityStage.label} onclick={selectStage} data-id={OpportunityStage.label}>
+                                    <li class="slds-path__item slds-is-incomplete" role="presentation" key={OpportunityStage.label} onclick={selectStage} data-id={OpportunityStage.label}>
                                     <a aria-selected="true" class="slds-path__link" href="#" id="path-1" role="option"
                                         tabindex="0">
                                         <span class="slds-path__stage">

@@ -34,9 +34,9 @@ public class pathOpportunity {
    public static pathAssistantDTO.pathAssistantWrapper  getOpportunityFields(String opportunityId){
         pathAssistantDTO.pathAssistantWrapper opportunityWrapper = new pathAssistantDTO.pathAssistantWrapper ();
         Opportunity currentOpp = [SELECT Id,recordType.Name from Opportunity where Id=: opportunityId];
-        sObject customPathMetadata= [select Metadata, RecordType.Name,RecordType.SobjectType from PathAssistant where recordType.Name =: currentOpp.recordType.Name limit 1].Metadata;
+        pathOpportunityCallout.getOpportunityPath(currentOpp.recordType.Name);
         
-        opportunityWrapper = JSON.deserialize(currentOppRecordTypePath.Metadata, pathAssistantDTO.pathAssistantWrapper.class); 
+        //opportunityWrapper = JSON.deserialize(currentOppRecordTypePath.Metadata, pathAssistantDTO.pathAssistantWrapper.class); 
        return opportunityWrapper;
    }
 
