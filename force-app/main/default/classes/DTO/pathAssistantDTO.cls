@@ -1,18 +1,27 @@
+
 public with sharing class pathAssistantDTO {
 
+    
     public class pathAssistantStep{
-        public List<String> fieldNames;
-        public String info;
-        public String picklistValueName;
+        @AuraEnabled public List<String> fieldNames;
+        @AuraEnabled public String info;
+        @AuraEnabled public String picklistValueName;
     }
     public class pathAssistantWrapper
     {
-        public Boolean active;
-        public String entityName;
-        public String fieldName;
-        public String masterLabel;
-        public List<pathAssistantStep> pathAssistantSteps;
-        public String recordTypeName;
-        public String urls;
+        @AuraEnabled public Boolean active;
+        @AuraEnabled public String entityName;
+        @AuraEnabled public String fieldName;
+        @AuraEnabled public String masterLabel;
+        @AuraEnabled public List<pathAssistantStep> pathAssistantSteps;
+        @AuraEnabled public String recordTypeName;
+        @AuraEnabled public String urls;
+    }
+
+
+    public class pathAssistantFieldsWrapper
+    {
+        @AuraEnabled public String entityId;
+
     }
 }

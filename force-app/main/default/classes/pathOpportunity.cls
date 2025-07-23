@@ -15,6 +15,14 @@ public class pathOpportunity {
        return statusList;
    }
 
+@AuraEnabled 
+   public static Opportunity  getOpportunityData(String opportunityId){
+        Opportunity currentOpp = [SELECT AccountId,CloseDate,Amount,SBQQ__PrimaryQuote__c,Probability,Budget_Confirmed__c,StageName from Opportunity where Id=: opportunityId];
+        
+        //opportunityWrapper = JSON.deserialize(currentOppRecordTypePath.Metadata, pathAssistantDTO.pathAssistantWrapper.class); 
+        return currentOpp;
+   }
+
 @AuraEnabled
    public static List<String>  getClosedStatusValues(){
        List<String> statusList= new List<String>();
@@ -31,13 +39,31 @@ public class pathOpportunity {
    }
 
 @AuraEnabled 
-   public static pathAssistantDTO.pathAssistantWrapper  getOpportunityFields(String opportunityId){
+   public static pathAssistantDTO.pathAssistantStep  getOpportunityFields(String opportunityId,String newStage){
         pathAssistantDTO.pathAssistantWrapper opportunityWrapper = new pathAssistantDTO.pathAssistantWrapper ();
-        Opportunity currentOpp = [SELECT Id,recordType.Name from Opportunity where Id=: opportunityId];
-        pathOpportunityCallout.getOpportunityPath(currentOpp.recordType.Name);
+        Opportunity currentOpp = [SELECT Id,StageName,recordType.DeveloperName from Opportunity where Id=: opportunityId];
+        String keyField= 'Opportunity'+currentOpp.recordType.DeveloperName;
+
+        Opportunity_Path_Info__mdt PathSettings = [SELECT metadataPath__c from Opportunity_Path_Info__mdt where key_field__c=: keyField];
+        // String pathData = JSON.serialize(opportunityPathData.metadataPath__c);
+        opportunityWrapper = (pathAssistantDTO.pathAssistantWrapper) JSON.deserialize(PathSettings.metadataPath__c, pathAssistantDTO.pathAssistantWrapper.class);
+        System.debug('aaaaaa ' +opportunityWrapper);
+
+
+        pathAssistantDTO.pathAssistantStep currentOppStep= new pathAssistantDTO.pathAssistantStep();
+
+        for(pathAssistantDTO.pathAssistantStep pathStep: opportunityWrapper.pathAssistantSteps){
+            if(pathStep.picklistValueName == newStage){
+                currentOppStep= pathStep;
+                break;
+            }
+        }
+
+        System.debug('last step ' +currentOppStep);
+
         
         //opportunityWrapper = JSON.deserialize(currentOppRecordTypePath.Metadata, pathAssistantDTO.pathAssistantWrapper.class); 
-       return opportunityWrapper;
+        return currentOppStep;
    }
 
 @AuraEnabled

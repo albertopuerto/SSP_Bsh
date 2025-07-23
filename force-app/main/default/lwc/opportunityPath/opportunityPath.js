@@ -3,9 +3,14 @@ import getNonClosedStatusValues from '@salesforce/apex/pathOpportunity.getNonClo
 import getClosedStatusValues from '@salesforce/apex/pathOpportunity.getClosedStatusValues';
 import getCloseReasons from '@salesforce/apex/pathOpportunity.getCloseReasons';
 import getOpportunityFields from '@salesforce/apex/pathOpportunity.getOpportunityFields';
+import getOpportunityData from '@salesforce/apex/pathOpportunity.getOpportunityData';
+
 export default class PathOpportunity extends LightningElement {
 
 @api recordId;
+
+@track actualStep;
+@track opportunityActual;
     
 @track statusList=[];
 @track expandFields= false;
@@ -17,8 +22,18 @@ export default class PathOpportunity extends LightningElement {
 @track selectedStage;
 @track closeReasonSelected;
 @track selectedDescription;
+@track fieldList;
 
-
+getActualOpportunityData(){
+    getOpportunityData({opportunityId: this.recordId})
+        .then(result => {
+            
+                    this.opportunityActual = result;
+                   
+                }).catch((error) => {
+                    console.error("Error in retrieve:", error);
+            });
+}
 
 fillPickLists(){
         getNonClosedStatusValues()
@@ -45,6 +60,7 @@ fillPickLists(){
                    
                    // alert('test' + JSON.stringify(this.statusList));
                 }).catch((error) => {
+                  
                     console.error("Error in retrieve:", error);
             });
       }
@@ -52,8 +68,27 @@ fillPickLists(){
 
 connectedCallback(){
     this.fillPickLists();
+    this.getActualOpportunityData();
 
 }
+getObjectPath(){
+
+    getOpportunityFields({opportunityId: this.recordId,newStage: this.selectedStage})
+            .then(result => {
+              //  this.actualStep=JSON.stringify(result);
+
+                var fields= '';
+                fields = result.fieldNames.map(fieldWrapper => {
+                    this.fieldList += fieldWrapper + ' ';
+                });
+                
+                }).catch((error) => {
+                    console.error("Error in retrieve:", error);
+                    alert(error);
+                    });
+}
+
+
 
 selectStage(event){
 
@@ -62,19 +97,12 @@ selectStage(event){
     stage.classList.add('slds-is-current');
     stage.classList.add('slds-path__nav');
     //console.log(stage);
-    var stageName = event.currentTarget.dataset.id;
+    this.selectedStage = event.currentTarget.dataset.id;
 
-    if(stageName == 'Sales Chance (New)' || stageName == 'Acquisition (Sell)' || stageName == 'Quotation (Quoted)' || stageName == 'Accepted'){
+    if(this.selectedStage == 'Sales Chance (New)' || this.selectedStage == 'Acquisition (Sell)' || this.selectedStage == 'Quotation (Quoted)' || this.selectedStage == 'Accepted'){
 
-        alert(this.recordId);
-        getOpportunityFields({opportunityId: this.recordId})
-            .then(result => {
-                    this.closeReasons =result.map((o) => ({ label: o, value: o }));
-                   
-                   // alert('test' + JSON.stringify(this.statusList));
-                }).catch((error) => {
-                    console.error("Error in retrieve:", error);
-                    });
+        
+        this.getObjectPath();
 
         this.openClosingOpportunity= false;
     }else{
