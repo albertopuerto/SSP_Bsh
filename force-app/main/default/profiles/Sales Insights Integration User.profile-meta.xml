@@ -234,6 +234,16 @@
         <name>Apttus__XA_DisableAutoCheckout</name>
     </customPermissions>
     <fieldPermissions>
+        <editable>true</editable>
+        <field>Account.C4C_Territory_ID__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Account.C4C_Territory_Name__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>false</editable>
         <field>Account.ftxt_ShippingCondition__c</field>
         <readable>true</readable>

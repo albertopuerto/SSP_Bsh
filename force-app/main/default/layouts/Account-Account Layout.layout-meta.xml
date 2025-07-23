@@ -62,7 +62,11 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>pkl_Status__c</field>
+                <field>C4C_Territory_ID__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>C4C_Territory_Name__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
@@ -410,10 +414,10 @@
         <relatedList>RelatedHistoryList</relatedList>
     </relatedLists>
     <relatedLists>
-        <fields>ftxt_SalesArea__c</fields>
-        <fields>SalesArea__c.pkl_SalesOrg__c</fields>
-        <fields>SalesArea__c.pkl_DistributionChannel__c</fields>
-        <fields>SalesArea__c.pkl_Division__c</fields>
+        <fields>SalesArea__c.NAME</fields>
+        <fields>ftxt_SalesOrg__c</fields>
+        <fields>ftxt_DistributionChannel__c</fields>
+        <fields>ftxt_Division__c</fields>
         <relatedList>SalesAreaLink__c.mdr_Account__c</relatedList>
     </relatedLists>
     <relatedLists>
