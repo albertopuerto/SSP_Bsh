@@ -155,22 +155,14 @@
         </itemInstances>
         <itemInstances>
             <fieldInstance>
-                <fieldInstanceProperties>
-                    <name>uiBehavior</name>
-                    <value>readonly</value>
-                </fieldInstanceProperties>
-                <fieldItem>Record.pkm_BoschPartnerRole__c</fieldItem>
-                <identifier>Recordpkm_BoschPartnerRole__cField</identifier>
+                <fieldItem>Record.C4C_Territory_ID__c</fieldItem>
+                <identifier>RecordC4C_Territory_ID__cField</identifier>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
             <fieldInstance>
-                <fieldInstanceProperties>
-                    <name>uiBehavior</name>
-                    <value>none</value>
-                </fieldInstanceProperties>
-                <fieldItem>Record.pkl_Status__c</fieldItem>
-                <identifier>RecordStatus__cField</identifier>
+                <fieldItem>Record.C4C_Territory_Name__c</fieldItem>
+                <identifier>RecordC4C_Territory_Name__cField</identifier>
             </fieldInstance>
         </itemInstances>
         <name>Facet-3bbfbb4b-102f-42f0-84f4-80b389f788f5</name>
@@ -360,7 +352,7 @@
         <name>Facet-18ef9942-3954-495c-9036-a87492100c73</name>
         <type>Facet</type>
     </flexiPageRegions>
-    <flexiPageRegions>        
+    <flexiPageRegions>
         <name>Facet-ef4f2a2c-d1f7-47ec-8295-f97f0471ff7a</name>
         <type>Facet</type>
     </flexiPageRegions>
