@@ -131,7 +131,33 @@
         <actionName>chatterPost</actionName>
         <actionType>chatterPost</actionType>
         <connector>
-            <targetReference>Athena_Failed_Message</targetReference>
+            <targetReference>Update_Acc_Error</targetReference>
+        </connector>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>text</name>
+            <value>
+                <stringValue>Error in sending account to Athena. Please contact support and provide the following details: Account Id ({!Create_Account}), correlation Id: ({!requestBody.accountCreate.CorrelationId})</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>subjectNameOrId</name>
+            <value>
+                <elementReference>Create_Account</elementReference>
+            </value>
+        </inputParameters>
+        <nameSegment>chatterPost</nameSegment>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </actionCalls>
+    <actionCalls>
+        <name>Send_Chatter_Message_500</name>
+        <label>Send Chatter Message 500</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <actionName>chatterPost</actionName>
+        <actionType>chatterPost</actionType>
+        <connector>
+            <targetReference>Update_Acc_Error</targetReference>
         </connector>
         <flowTransactionModel>CurrentTransaction</flowTransactionModel>
         <inputParameters>
@@ -324,9 +350,24 @@
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>Update_Acc_Error</targetReference>
+                <targetReference>Send_Chatter_Message</targetReference>
             </connector>
             <label>Error 404</label>
+        </rules>
+        <rules>
+            <name>Error_500</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>send_Account_to_Athena.500Exc</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Send_Chatter_Message_500</targetReference>
+            </connector>
+            <label>Error 500</label>
         </rules>
     </decisions>
     <decisions>
@@ -524,7 +565,7 @@
         <locationX>0</locationX>
         <locationY>0</locationY>
         <connector>
-            <targetReference>Send_Chatter_Message</targetReference>
+            <targetReference>Athena_Failed_Message</targetReference>
         </connector>
         <filterLogic>and</filterLogic>
         <filters>
@@ -854,7 +895,7 @@
             <targetReference>RecordTypeSelection</targetReference>
         </connector>
     </start>
-    <status>Draft</status>
+    <status>Active</status>
     <textTemplates>
         <name>tmpl_LogMessageDML</name>
         <isViewedAsPlainText>true</isViewedAsPlainText>
