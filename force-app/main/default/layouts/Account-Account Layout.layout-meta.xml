@@ -62,7 +62,11 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>pkl_Status__c</field>
+                <field>C4C_Territory_ID__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>C4C_Territory_Name__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>

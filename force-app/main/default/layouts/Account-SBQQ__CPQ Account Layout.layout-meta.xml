@@ -2,8 +2,10 @@
 <Layout xmlns="http://soap.sforce.com/2006/04/metadata">
     <customButtons>SBQQ__Amend_Assets</customButtons>
     <customButtons>SBQQ__Renew_Assets</customButtons>
+    <excludeButtons>DataDotComAccountInsights</excludeButtons>
+    <excludeButtons>DataDotComClean</excludeButtons>
+    <excludeButtons>DataDotComCompanyHierarchy</excludeButtons>
     <excludeButtons>IncludeOffline</excludeButtons>
-    <excludeButtons>OpenSlackRecordChannel</excludeButtons>
     <excludeButtons>SendEmail</excludeButtons>
     <excludeButtons>XClean</excludeButtons>
     <layoutSections>
@@ -12,6 +14,18 @@
         <editHeading>true</editHeading>
         <label>Account Information</label>
         <layoutColumns>
+            <layoutItems>
+                <behavior>Required</behavior>
+                <field>pkl_INCOTerms1__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Required</behavior>
+                <field>pkl_PaymentTerms__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Required</behavior>
+                <field>txt_INCOTerms2__c</field>
+            </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>OwnerId</field>
@@ -29,10 +43,6 @@
                 <field>Role__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Required</behavior>
-                <field>pkm_BoschPartnerRole__c</field>
-            </layoutItems>
-            <layoutItems>
                 <behavior>Edit</behavior>
                 <field>pkl_IsTradingPartnerNoRequired__c</field>
             </layoutItems>
@@ -46,27 +56,11 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>pkl_Status__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Required</behavior>
-                <field>pkl_INCOTerms1__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Required</behavior>
-                <field>pkl_PaymentTerms__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Required</behavior>
-                <field>txt_INCOTerms2__c</field>
+                <field>C4C_Territory_ID__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>txt_Name4__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>txt_LegalEntity__c</field>
+                <field>C4C_Territory_Name__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
@@ -211,6 +205,11 @@
         <layoutColumns />
         <style>CustomLinks</style>
     </layoutSections>
+    <miniLayout>
+        <fields>pkl_INCOTerms1__c</fields>
+        <fields>pkl_PaymentTerms__c</fields>
+        <fields>txt_INCOTerms2__c</fields>
+    </miniLayout>
     <relatedLists>
         <fields>FULL_NAME</fields>
         <fields>CONTACT.TITLE</fields>
@@ -294,10 +293,10 @@
         <relatedList>RelatedNoteList</relatedList>
     </relatedLists>
     <relatedLists>
-        <fields>ftxt_SalesArea__c</fields>
-        <fields>SalesArea__c.pkl_SalesOrg__c</fields>
-        <fields>SalesArea__c.pkl_DistributionChannel__c</fields>
-        <fields>SalesArea__c.pkl_Division__c</fields>
+        <fields>SalesArea__c.NAME</fields>
+        <fields>ftxt_SalesOrg__c</fields>
+        <fields>ftxt_DistributionChannel__c</fields>
+        <fields>ftxt_Division__c</fields>
         <relatedList>SalesAreaLink__c.mdr_Account__c</relatedList>
     </relatedLists>
     <relatedObjects>ParentId</relatedObjects>
