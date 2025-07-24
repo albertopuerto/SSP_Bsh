@@ -16,11 +16,12 @@ public class pathOpportunity {
    }
 
 @AuraEnabled 
-   public static Opportunity  getOpportunityData(String opportunityId){
-        Opportunity currentOpp = [SELECT AccountId,CloseDate,Amount,SBQQ__PrimaryQuote__c,Probability,Budget_Confirmed__c,StageName from Opportunity where Id=: opportunityId];
+   public static String  getOpportunityActualStage(String opportunityId){
+        Opportunity currentOpp = [SELECT StageName from Opportunity where Id=: opportunityId];
         
+
         //opportunityWrapper = JSON.deserialize(currentOppRecordTypePath.Metadata, pathAssistantDTO.pathAssistantWrapper.class); 
-        return currentOpp;
+        return currentOpp.StageName;
    }
 
 @AuraEnabled

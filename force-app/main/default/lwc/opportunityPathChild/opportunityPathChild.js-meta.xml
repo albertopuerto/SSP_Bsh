@@ -10,7 +10,9 @@
     <targetConfigs>
         <targetConfig targets="lightning__RecordPage">
             <property name="oppid" type="String" label="Record Id" description="Mandatory. Id that identify the opportunity to show."/>
-            <property name="fields" type="String" label="Record Id" description="Object fields"/>
+            <property name="fields" type="String" label="Record fields" description="Object fields"/>
+            <property name="objecttype" type="String" label="Object type" description="Object type"/>
+            <property name="guidance" type="String" label="Guidance" description="Guidance"/>
         </targetConfig>
         
     </targetConfigs>

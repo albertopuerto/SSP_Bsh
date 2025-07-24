@@ -1,26 +1,32 @@
 import { LightningElement,track,api } from 'lwc';
-import getObjectRecordTypes from '@salesforce/apex/pathOpportunityFieldManager.getObjectRecordTypes';
+import getFieldList from '@salesforce/apex/pathOpportunityFieldManager.getFieldList';
 
 
 export default class OpportunityPathChild extends LightningElement {
     
     @api oppid;
     @api fields;
+    @api objecttype;
+    @api guidance;
+
+    @track fieldList;
 
     connectedCallback(){
 
-        setTimeout(()=>{
-            this.getFieldTypes();
-        },5000)
-
-
+        setTimeout(() => {
+            this.getObjectFieldList();
+        }, 1500);
+   
     }
 
-    getFieldTypes(){
+    getObjectFieldList(){
 
-        getObjectRecordTypes({objectStep: this.fields})
+      
+
+        getFieldList({objectStep: this.fields})
                     .then(result => {
-                       alert(this.fields);
+                       alert(result);
+                       this.fieldList= result;
                    
                     }).catch((error) => {
                   

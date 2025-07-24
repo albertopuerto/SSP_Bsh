@@ -3,11 +3,12 @@ import getNonClosedStatusValues from '@salesforce/apex/pathOpportunity.getNonClo
 import getClosedStatusValues from '@salesforce/apex/pathOpportunity.getClosedStatusValues';
 import getCloseReasons from '@salesforce/apex/pathOpportunity.getCloseReasons';
 import getOpportunityFields from '@salesforce/apex/pathOpportunity.getOpportunityFields';
-import getOpportunityData from '@salesforce/apex/pathOpportunity.getOpportunityData';
+import getOpportunityActualStage from '@salesforce/apex/pathOpportunity.getOpportunityActualStage';
 
 export default class PathOpportunity extends LightningElement {
 
 @api recordId;
+@api objectApiName;
 
 @track actualStep;
 @track opportunityActual;
@@ -22,13 +23,16 @@ export default class PathOpportunity extends LightningElement {
 @track selectedStage;
 @track closeReasonSelected;
 @track selectedDescription;
-@track fieldList;
+@track fieldList ='';
 
 getActualOpportunityData(){
-    getOpportunityData({opportunityId: this.recordId})
+    
+    getOpportunityActualStage({opportunityId: this.recordId})
+    
         .then(result => {
-            
-                    this.opportunityActual = result;
+
+                    this.selectedStage = result;
+                    this.getObjectPath();
                    
                 }).catch((error) => {
                     console.error("Error in retrieve:", error);
@@ -67,6 +71,7 @@ fillPickLists(){
 
 
 connectedCallback(){
+
     this.fillPickLists();
     this.getActualOpportunityData();
 
@@ -87,7 +92,6 @@ getObjectPath(){
                     alert(error);
                     });
 }
-
 
 
 selectStage(event){
