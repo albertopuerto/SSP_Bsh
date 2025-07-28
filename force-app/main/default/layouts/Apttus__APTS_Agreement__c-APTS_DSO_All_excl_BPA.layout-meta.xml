@@ -110,11 +110,11 @@
         <layoutColumns>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>APTS_Country_Processor__c</field>
+                <field>APTS_Country_Controller__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>APTS_Country_Controller__c</field>
+                <field>APTS_Country_Processor__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>

@@ -127,6 +127,16 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Account.C4C_Territory_ID__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Account.C4C_Territory_Name__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Account.Description</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -1791,6 +1801,10 @@
         <recordType>Apttus__APTS_Agreement__c.APTS_IC_Limited_Sales_Support</recordType>
     </layoutAssignments>
     <layoutAssignments>
+        <layout>Apttus__APTS_Agreement__c-APTS_Sales_Other</layout>
+        <recordType>Apttus__APTS_Agreement__c.APTS_Other_Sales_Agreement</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
         <layout>Apttus__APTS_Agreement__c-APTS_DSO_All_excl_BPA</layout>
         <recordType>Apttus__APTS_Agreement__c.AVV_BDSG</recordType>
     </layoutAssignments>
@@ -1853,6 +1867,10 @@
     <layoutAssignments>
         <layout>Apttus__APTS_Agreement__c-APTS_DSO_All_excl_BPA</layout>
         <recordType>Apttus__APTS_Agreement__c.Joint_Controllers</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Apttus__APTS_Agreement__c-APTS_Loan and License</layout>
+        <recordType>Apttus__APTS_Agreement__c.Loan_and_License</recordType>
     </layoutAssignments>
     <layoutAssignments>
         <layout>Apttus__APTS_Agreement__c-Apttus__Agreement Layout</layout>
@@ -2044,6 +2062,9 @@
     </layoutAssignments>
     <layoutAssignments>
         <layout>SBQQ__QuoteTemplate__c-SBQQ__Quote Template Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>SBQQ__QuoteTerm__c-SBQQ__Quote Term Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
         <layout>SBQQ__Quote__c-SBQQ__Quote Layout</layout>

@@ -33,6 +33,10 @@
                 <behavior>Edit</behavior>
                 <field>APTS_Agreement_Number_Old__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>APTS_Related_Quote__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns />
         <style>TwoColumnsTopToBottom</style>

@@ -13,6 +13,13 @@ public class QuoteLineEmailController_Test {
             pkl_PaymentTerms__c = 'Net 15'
         );
         insert testAccount;
+        
+        SalesArea__c sal = new SalesArea__c(
+            pkl_DistributionChannel__c = '01',
+            pkl_Division__c = '01',
+            pkl_SalesOrg__c = '0001'
+        );
+        insert sal;
 
         // Create a test Opportunity associated with the Account
         Opportunity testOpportunity = new Opportunity(
@@ -22,7 +29,8 @@ public class QuoteLineEmailController_Test {
             CloseDate = Date.today().addDays(30),
             pklTypeOfOpportunity__c = 'LTA',
             pklLeadingSolutionField__c = 'DAP',
-            pklTypeOfOffering__c = 'SW'
+            pklTypeOfOffering__c = 'SW',
+            lkp_SalesOrganization__c = sal.Id
         );
         insert testOpportunity;
 
@@ -42,7 +50,7 @@ public class QuoteLineEmailController_Test {
                 SBQQ__Quantity__c = 10,
                 pkl_SolutionField__c = 'DEV',
                 SBQQ__ListPrice__c = 100.0,
-                pkl_QuantityUnit__c = 'KG',
+                pkl_QuantityUnit__c = 'Each',
                 pkl_INCOTerms1__c='DAP – Delivered at Place',  
                 txt_INCOTerms2__c = 'Inco Terms',
                 pkl_PaymentTerms__c = 'Net 15'

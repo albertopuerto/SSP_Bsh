@@ -7,11 +7,19 @@
     <picklistValues>
         <picklist>APTS_Country_Controller__c</picklist>
         <values>
+            <fullName>Australia</fullName>
+            <default>false</default>
+        </values>
+        <values>
             <fullName>Austria</fullName>
             <default>false</default>
         </values>
         <values>
             <fullName>Belarus</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Belgium</fullName>
             <default>false</default>
         </values>
         <values>
@@ -79,6 +87,10 @@
             <default>false</default>
         </values>
         <values>
+            <fullName>New Zealand</fullName>
+            <default>false</default>
+        </values>
+        <values>
             <fullName>Other</fullName>
             <default>false</default>
         </values>
@@ -100,6 +112,10 @@
         </values>
         <values>
             <fullName>Russia</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Serbia</fullName>
             <default>false</default>
         </values>
         <values>
@@ -130,11 +146,19 @@
     <picklistValues>
         <picklist>APTS_Country_Processor__c</picklist>
         <values>
+            <fullName>Australia</fullName>
+            <default>false</default>
+        </values>
+        <values>
             <fullName>Austria</fullName>
             <default>false</default>
         </values>
         <values>
             <fullName>Belarus</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Belgium</fullName>
             <default>false</default>
         </values>
         <values>
@@ -202,6 +226,10 @@
             <default>false</default>
         </values>
         <values>
+            <fullName>New Zealand</fullName>
+            <default>false</default>
+        </values>
+        <values>
             <fullName>Other</fullName>
             <default>false</default>
         </values>
@@ -223,6 +251,10 @@
         </values>
         <values>
             <fullName>Russia</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Serbia</fullName>
             <default>false</default>
         </values>
         <values>
@@ -253,11 +285,19 @@
     <picklistValues>
         <picklist>APTS_Country_Subprocessor__c</picklist>
         <values>
+            <fullName>Australia</fullName>
+            <default>false</default>
+        </values>
+        <values>
             <fullName>Austria</fullName>
             <default>false</default>
         </values>
         <values>
             <fullName>Belarus</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Belgium</fullName>
             <default>false</default>
         </values>
         <values>
@@ -325,6 +365,10 @@
             <default>false</default>
         </values>
         <values>
+            <fullName>New Zealand</fullName>
+            <default>false</default>
+        </values>
+        <values>
             <fullName>Other</fullName>
             <default>false</default>
         </values>
@@ -346,6 +390,10 @@
         </values>
         <values>
             <fullName>Russia</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Serbia</fullName>
             <default>false</default>
         </values>
         <values>
@@ -399,6 +447,10 @@
             <default>false</default>
         </values>
         <values>
+            <fullName>Belgium</fullName>
+            <default>false</default>
+        </values>
+        <values>
             <fullName>Brazil</fullName>
             <default>false</default>
         </values>
@@ -463,6 +515,10 @@
             <default>false</default>
         </values>
         <values>
+            <fullName>New Zealand</fullName>
+            <default>false</default>
+        </values>
+        <values>
             <fullName>Other</fullName>
             <default>false</default>
         </values>
@@ -484,6 +540,10 @@
         </values>
         <values>
             <fullName>Russia</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Serbia</fullName>
             <default>false</default>
         </values>
         <values>
@@ -526,6 +586,10 @@
             <default>false</default>
         </values>
         <values>
+            <fullName>Belgium</fullName>
+            <default>false</default>
+        </values>
+        <values>
             <fullName>Brazil</fullName>
             <default>false</default>
         </values>
@@ -590,6 +654,10 @@
             <default>false</default>
         </values>
         <values>
+            <fullName>New Zealand</fullName>
+            <default>false</default>
+        </values>
+        <values>
             <fullName>Other</fullName>
             <default>false</default>
         </values>
@@ -611,6 +679,10 @@
         </values>
         <values>
             <fullName>Russia</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Serbia</fullName>
             <default>false</default>
         </values>
         <values>
@@ -664,6 +736,10 @@
             <default>false</default>
         </values>
         <values>
+            <fullName>Belgium</fullName>
+            <default>false</default>
+        </values>
+        <values>
             <fullName>Brazil</fullName>
             <default>false</default>
         </values>
@@ -728,6 +804,10 @@
             <default>false</default>
         </values>
         <values>
+            <fullName>New Zealand</fullName>
+            <default>false</default>
+        </values>
+        <values>
             <fullName>Other</fullName>
             <default>false</default>
         </values>
@@ -749,6 +829,10 @@
         </values>
         <values>
             <fullName>Russia</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Serbia</fullName>
             <default>false</default>
         </values>
         <values>

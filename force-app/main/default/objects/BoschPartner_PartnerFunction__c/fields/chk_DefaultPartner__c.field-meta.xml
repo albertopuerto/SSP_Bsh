@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>chk_DefaultPartner__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>Used to define a Partner Function as Default</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Default Partner Function</inlineHelpText>
+    <label>Default Partner</label>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>
