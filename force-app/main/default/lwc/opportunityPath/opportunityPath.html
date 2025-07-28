@@ -46,7 +46,7 @@
         <button class="slds-button slds-button_brand slds-path__mark-complete">
             <svg class="slds-button__icon slds-button__icon_left" aria-hidden="true">
                 <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#check"></use>
-            </svg>Mark Status as Complete</button>
+            </svg>Mark Stage as Complete</button>
         <button class="slds-button slds-button_neutral slds-path__trigger-coaching-content" aria-expanded="false" aria-controls="path-coaching-1">Show More</button>
       </div>
 
@@ -54,7 +54,7 @@
     </div>
 
     
-    <c-opportunity-path-child objecttype={objectApiName} fields={fieldList} oppid ={recordId}></c-opportunity-path-child>
+    <c-opportunity-path-child objecttype={objectApiName} fields={fieldList} guidance={stageguidance} oppid ={recordId}></c-opportunity-path-child>
 </div>
     <!--LLamada componente hijo-->
 

@@ -12,6 +12,7 @@ export default class PathOpportunity extends LightningElement {
 
 @track actualStep;
 @track opportunityActual;
+@track stageguidance;
     
 @track statusList=[];
 @track expandFields= false;
@@ -81,16 +82,26 @@ getObjectPath(){
     getOpportunityFields({opportunityId: this.recordId,newStage: this.selectedStage})
             .then(result => {
               //  this.actualStep=JSON.stringify(result);
+                this.fieldList='';
 
                 var fields= '';
                 fields = result.fieldNames.map(fieldWrapper => {
                     this.fieldList += fieldWrapper + ' ';
                 });
-                
+
+
+                var guidance= result.info.replace('<p>','');
+                guidance= guidance.replace('</p>','');
+                this.stageguidance= guidance;
+
+                this.template.querySelector('c-opportunity-path-child').getObjectFieldList();
+               
                 }).catch((error) => {
                     console.error("Error in retrieve:", error);
                     alert(error);
                     });
+
+    
 }
 
 
