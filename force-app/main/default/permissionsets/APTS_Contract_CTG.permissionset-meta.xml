@@ -7140,10 +7140,6 @@
         <visible>true</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
-        <recordType>Apttus__APTS_Agreement__c.Co_marketing_agreement</recordType>
-        <visible>true</visible>
-    </recordTypeVisibilities>
-    <recordTypeVisibilities>
         <recordType>Apttus__APTS_Agreement__c.IC_Development_and_Application</recordType>
         <visible>true</visible>
     </recordTypeVisibilities>
@@ -7168,17 +7164,13 @@
         <visible>true</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
-        <recordType>Apttus__APTS_Agreement__c.NDA_MBS</recordType>
-        <visible>true</visible>
-    </recordTypeVisibilities>
-    <recordTypeVisibilities>
         <recordType>Apttus__APTS_Agreement__c.Other_IC</recordType>
         <visible>true</visible>
     </recordTypeVisibilities>
-    <recordTypeVisibilities>
-        <recordType>Apttus__APTS_Agreement__c.Partner_Distribution_Agreement</recordType>
-        <visible>true</visible>
-    </recordTypeVisibilities>
+    <tabSettings>
+        <tab>Apttus__APTS_Agreement__c</tab>
+        <visibility>Visible</visibility>
+    </tabSettings>
     <tabSettings>
         <tab>Legal_Home_Page</tab>
         <visibility>Visible</visibility>

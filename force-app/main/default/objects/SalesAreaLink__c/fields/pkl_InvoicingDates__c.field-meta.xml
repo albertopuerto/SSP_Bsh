@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>pkl_InvoicingDates__c</fullName>
+    <externalId>false</externalId>
+    <inlineHelpText>Paper contract Terms of Payment = Invoicing date frequency. If, for example, a customer wants to consolidate the invoices you send out, you can predefine the billing schedule in a calendar in the system. During billing, the system automatically proposes the appropriate billing date from the calendar.</inlineHelpText>
+    <label>Invoicing Dates</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetName>Invoicing_Dates</valueSetName>
+    </valueSet>
+</CustomField>

@@ -37,6 +37,10 @@
                 <field>AccountId</field>
             </layoutItems>
             <layoutItems>
+                <behavior>Required</behavior>
+                <field>lkp_SalesOrganization__c</field>
+            </layoutItems>
+            <layoutItems>
                 <behavior>Edit</behavior>
                 <field>Type</field>
             </layoutItems>
@@ -119,6 +123,10 @@
             <layoutItems>
                 <behavior>Readonly</behavior>
                 <field>fcur_WeightedValue__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Pricebook2Id</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsTopToBottom</style>

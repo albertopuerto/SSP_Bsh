@@ -1,6 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <SharingRules xmlns="http://soap.sforce.com/2006/04/metadata">
     <sharingCriteriaRules>
+        <fullName>CDE_Edit_and_View</fullName>
+        <accessLevel>Edit</accessLevel>
+        <description>Sales CDE Team can access Agreements from Category Sales DE</description>
+        <label>CDE Edit and View</label>
+        <sharedTo>
+            <group>Sales_CDE</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>Apttus__Agreement_Category__c</field>
+            <operation>equals</operation>
+            <value>ETAS/CDE</value>
+        </criteriaItems>
+        <includeRecordsOwnedByAll>false</includeRecordsOwnedByAll>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
         <fullName>Controlling_view</fullName>
         <accessLevel>Edit</accessLevel>
         <description>IC Technology Transfer,Other IC,IC SaaS,IC NDA,IC Agent Sales Support,IC Software License,IC Services,IC Reseller Framework,IC Development and Application,IC Limited Sales Support</description>

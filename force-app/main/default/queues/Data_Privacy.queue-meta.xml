@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Queue xmlns="http://soap.sforce.com/2006/04/metadata">
+    <doesSendEmailToMembers>false</doesSendEmailToMembers>
+    <email>office.etasisp@etas.com</email>
+    <name>ETAS/ISP</name>
+    <queueMembers>
+        <roles>
+            <role>Data_Security_Chief_Officer</role>
+            <role>DSO</role>
+        </roles>
+    </queueMembers>
+    <queueSobject>
+        <sobjectType>Apttus__APTS_Agreement__c</sobjectType>
+    </queueSobject>
+</Queue>

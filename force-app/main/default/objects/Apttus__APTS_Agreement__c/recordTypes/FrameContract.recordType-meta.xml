@@ -982,11 +982,23 @@
             <default>false</default>
         </values>
         <values>
+            <fullName>French</fullName>
+            <default>false</default>
+        </values>
+        <values>
             <fullName>German</fullName>
             <default>true</default>
         </values>
         <values>
+            <fullName>Italian</fullName>
+            <default>false</default>
+        </values>
+        <values>
             <fullName>Japanese</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Korean</fullName>
             <default>false</default>
         </values>
     </picklistValues>
@@ -1253,7 +1265,11 @@
             <default>false</default>
         </values>
         <values>
-            <fullName>Other</fullName>
+            <fullName>ETAS%2FCEU1 Volvo Cars</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>ETAS%2FSAS</fullName>
             <default>false</default>
         </values>
         <values>
@@ -1262,6 +1278,18 @@
         </values>
         <values>
             <fullName>Sales</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Sales DE</fullName>
+            <default>true</default>
+        </values>
+        <values>
+            <fullName>Sales EU1 BMW</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Sales EU1 Mercedes</fullName>
             <default>false</default>
         </values>
     </picklistValues>

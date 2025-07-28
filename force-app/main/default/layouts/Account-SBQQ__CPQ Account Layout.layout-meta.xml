@@ -15,6 +15,18 @@
         <label>Account Information</label>
         <layoutColumns>
             <layoutItems>
+                <behavior>Required</behavior>
+                <field>pkl_INCOTerms1__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Required</behavior>
+                <field>pkl_PaymentTerms__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Required</behavior>
+                <field>txt_INCOTerms2__c</field>
+            </layoutItems>
+            <layoutItems>
                 <behavior>Edit</behavior>
                 <field>OwnerId</field>
             </layoutItems>
@@ -41,6 +53,14 @@
             <layoutItems>
                 <behavior>Required</behavior>
                 <field>pkl_Language__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>C4C_Territory_ID__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>C4C_Territory_Name__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
@@ -185,6 +205,11 @@
         <layoutColumns />
         <style>CustomLinks</style>
     </layoutSections>
+    <miniLayout>
+        <fields>pkl_INCOTerms1__c</fields>
+        <fields>pkl_PaymentTerms__c</fields>
+        <fields>txt_INCOTerms2__c</fields>
+    </miniLayout>
     <relatedLists>
         <fields>FULL_NAME</fields>
         <fields>CONTACT.TITLE</fields>

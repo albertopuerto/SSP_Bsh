@@ -4,7 +4,7 @@
     <description>Represent ETAS Solution Fields</description>
     <externalId>false</externalId>
     <label>Division</label>
-    <required>false</required>
+    <required>true</required>
     <trackTrending>false</trackTrending>
     <type>Picklist</type>
     <valueSet>

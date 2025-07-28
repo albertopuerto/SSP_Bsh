@@ -16,6 +16,10 @@
                 <field>AccountId</field>
             </layoutItems>
             <layoutItems>
+                <behavior>Required</behavior>
+                <field>lkp_SalesOrganization__c</field>
+            </layoutItems>
+            <layoutItems>
                 <behavior>Edit</behavior>
                 <field>Type</field>
             </layoutItems>
@@ -108,6 +112,10 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>SBQQ__PrimaryQuote__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Pricebook2Id</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsTopToBottom</style>
