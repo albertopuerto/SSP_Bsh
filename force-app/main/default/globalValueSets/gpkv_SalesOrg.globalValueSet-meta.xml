@@ -1,16 +1,63 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <GlobalValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
     <customValue>
-        <fullName>DE01</fullName>
+        <fullName>0001</fullName>
         <default>false</default>
-        <label>Sales Org. Germany</label>
+        <label>0001</label>
+    </customValue>
+    <customValue>
+        <fullName>0003</fullName>
+        <default>false</default>
+        <label>0003</label>
+    </customValue>
+    <customValue>
+        <fullName>1010</fullName>
+        <default>false</default>
+        <label>1010</label>
+    </customValue>
+    <customValue>
+        <fullName>1710</fullName>
+        <default>false</default>
+        <label>1710</label>
+    </customValue>
+    <customValue>
+        <fullName>AOHU</fullName>
+        <default>false</default>
+        <label>AOHU</label>
+    </customValue>
+    <customValue>
+        <fullName>DEM5</fullName>
+        <default>false</default>
+        <label>DEM5</label>
+    </customValue>
+    <customValue>
+        <fullName>PT01</fullName>
+        <default>false</default>
+        <label>PT01</label>
+    </customValue>
+    <customValue>
+        <fullName>R000</fullName>
+        <default>false</default>
+        <label>R000</label>
+    </customValue>
+    <customValue>
+        <fullName>ZZ11</fullName>
+        <default>false</default>
+        <label>ZZ11</label>
     </customValue>
     <customValue>
         <fullName>US02</fullName>
         <default>false</default>
+        <isActive>false</isActive>
         <label>Sales Org. US</label>
+    </customValue>
+    <customValue>
+        <fullName>DE01</fullName>
+        <default>false</default>
+        <isActive>false</isActive>
+        <label>Sales Org. Germany</label>
     </customValue>
     <description>Structure sales based on a regional division of the market</description>
     <masterLabel>Sales Org</masterLabel>
-    <sorted>false</sorted>
+    <sorted>true</sorted>
 </GlobalValueSet>

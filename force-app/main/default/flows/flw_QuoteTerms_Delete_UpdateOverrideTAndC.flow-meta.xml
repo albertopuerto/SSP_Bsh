@@ -79,6 +79,13 @@
                 <elementReference>$Record.Id</elementReference>
             </value>
         </filters>
+        <filters>
+            <field>chk_AddtoTCs__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </filters>
         <getFirstRecordOnly>true</getFirstRecordOnly>
         <object>SBQQ__QuoteTerm__c</object>
         <queriedFields>Id</queriedFields>

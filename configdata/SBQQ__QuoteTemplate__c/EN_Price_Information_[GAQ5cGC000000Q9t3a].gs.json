@@ -42,7 +42,7 @@
     "SBQQ__GroupShadingColor__c": "FFFFFF",
     "SBQQ__GroupTextAlignment__c": "Left",
     "SBQQ__GroupTextColor__c": "000000",
-    "SBQQ__HeaderHeight__c": "",
+    "SBQQ__HeaderHeight__c": "140.0",
     "SBQQ__HideGroupSubtotals__c": "false",
     "SBQQ__IntroductionTitle__c": "",
     "SBQQ__LeftMargin__c": "0.5",

@@ -1,0 +1,23 @@
+<!-- flowModal.html -->
+<template>
+    <!-- Modal opens automatically -->
+    <section if:true={isModalOpen} class="slds-modal slds-fade-in-open">
+        <div class="slds-modal__container">
+            <header class="slds-modal__header">
+                <h2 class="slds-modal__title">New Account</h2>
+                <button class="slds-button slds-button_icon slds-modal__close" onclick={closeModal}>
+                    <lightning-icon icon-name="utility:close" size="small"></lightning-icon>
+                </button>
+            </header>
+            <div class="slds-modal__content slds-p-around_medium">
+                <lightning-flow 
+                    flow-api-name={flowApiName}
+                    onstatuschange={handleFlowStatusChange}>
+                </lightning-flow>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Backdrop -->
+    <div if:true={isModalOpen} class="slds-backdrop slds-backdrop_open"></div>
+</template>

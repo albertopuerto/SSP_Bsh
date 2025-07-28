@@ -25,6 +25,10 @@
                 <behavior>Readonly</behavior>
                 <field>APTS_Record_Type_Name__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>APTS_Related_Quote__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns />
         <style>TwoColumnsTopToBottom</style>

@@ -10,7 +10,7 @@ Displays the volume discount in amount if discount schedule tiers are defined in
     null,
     IF(
         AND (NOT(ISBLANK(SBQQ__DiscountTier__c)),TEXT(SBQQ__DiscountSchedule__r.SBQQ__DiscountUnit__c) = &quot;Percent&quot;),
-        TEXT(SBQQ__VolumeDiscount__c) + &quot;%&quot;,
+        TEXT(SBQQ__VolumeDiscount__c *10000/SBQQ__ListPrice__c) + &quot;%&quot;,
         IF(
             AND(NOT(ISBLANK(SBQQ__DiscountTier__c)),TEXT(SBQQ__DiscountSchedule__r.SBQQ__DiscountUnit__c) = &quot;Amount&quot;),
             TEXT(CurrencyIsoCode) + &#39; &#39; + TEXT(SBQQ__VolumeDiscount__c * 100),

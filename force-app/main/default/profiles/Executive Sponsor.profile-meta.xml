@@ -3,6 +3,16 @@
     <custom>true</custom>
     <userLicense>Salesforce</userLicense>
     <fieldPermissions>
+        <editable>true</editable>
+        <field>Account.C4C_Territory_ID__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Account.C4C_Territory_Name__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>false</editable>
         <field>Account.ftxt_GTS__c</field>
         <readable>true</readable>
@@ -763,6 +773,9 @@
     </layoutAssignments>
     <layoutAssignments>
         <layout>SBQQ__QuoteLineGroup__c-SBQQ__Quote Line Group Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>SBQQ__QuoteTerm__c-SBQQ__Quote Term Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
         <layout>SBQQ__Quote__c-SBQQ__Quote Layout</layout>

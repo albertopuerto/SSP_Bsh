@@ -48,6 +48,31 @@
                 <default>false</default>
                 <label>Intercompany</label>
             </value>
+            <value>
+                <fullName>Sales DE</fullName>
+                <default>false</default>
+                <label>ETAS/CDE</label>
+            </value>
+            <value>
+                <fullName>Sales EU1 BMW</fullName>
+                <default>false</default>
+                <label>ETAS/CEU1 BMW</label>
+            </value>
+            <value>
+                <fullName>Sales EU1 Mercedes</fullName>
+                <default>false</default>
+                <label>ETAS/CEU1 Mercedes</label>
+            </value>
+            <value>
+                <fullName>ETAS/CEU1 Volvo Cars</fullName>
+                <default>false</default>
+                <label>ETAS/CEU1 Volvo Cars</label>
+            </value>
+            <value>
+                <fullName>ETAS/SAS</fullName>
+                <default>false</default>
+                <label>ETAS/SAS</label>
+            </value>
         </valueSetDefinition>
     </valueSet>
 </CustomField>
