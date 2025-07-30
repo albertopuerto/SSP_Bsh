@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>pkl_MaxPartDeliveries__c</fullName>
+    <description>Maximal Partial Deliveries of the Account for a certain Sales Area</description>
     <externalId>false</externalId>
     <inlineHelpText>The maximum number of partial deliveries you can make (including the first delivery) to satisfy the order quantity for an item.</inlineHelpText>
     <label>Max.Part.Deliveries</label>
