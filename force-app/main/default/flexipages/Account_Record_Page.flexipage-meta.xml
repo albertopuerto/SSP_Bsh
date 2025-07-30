@@ -155,6 +155,12 @@
         </itemInstances>
         <itemInstances>
             <fieldInstance>
+                <fieldItem>Record.pkl_Status__c</fieldItem>
+                <identifier>RecordStatus__cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
                 <fieldItem>Record.C4C_Territory_ID__c</fieldItem>
                 <identifier>RecordC4C_Territory_ID__cField</identifier>
             </fieldInstance>

@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <Profile xmlns="http://soap.sforce.com/2006/04/metadata">
     <custom>true</custom>
     <userLicense>Salesforce</userLicense>
@@ -1949,24 +1949,24 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <readable>false</readable>
+        <editable>true</editable>
         <field>SalesAreaLink__c.chk_CompleteDelivery__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <readable>false</readable>
+        <editable>true</editable>
         <field>SalesAreaLink__c.chk_Deletionflagforcustomer__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <readable>false</readable>
+        <editable>true</editable>
         <field>SalesAreaLink__c.chk_Rebate__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <readable>false</readable>
         <field>SalesAreaLink__c.ftxt_SalesAreaName__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -1974,64 +1974,74 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <readable>false</readable>
+        <editable>true</editable>
         <field>SalesAreaLink__c.pkl_BillingBlockforCustomer__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <readable>false</readable>
+        <editable>true</editable>
         <field>SalesAreaLink__c.pkl_CustomerDeliveryBlock__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <readable>false</readable>
+        <editable>true</editable>
         <field>SalesAreaLink__c.pkl_CustomerGroup1__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <readable>false</readable>
+        <editable>true</editable>
         <field>SalesAreaLink__c.pkl_CustomerGroup__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <readable>false</readable>
+        <editable>true</editable>
         <field>SalesAreaLink__c.pkl_CustomerOrderBlock__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <readable>false</readable>
+        <editable>true</editable>
         <field>SalesAreaLink__c.pkl_CustomerPriceGroup__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <readable>false</readable>
+        <editable>true</editable>
+        <field>SalesAreaLink__c.pkl_INCOTerm__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>SalesAreaLink__c.pkl_InvoicingDates__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <readable>false</readable>
+        <editable>true</editable>
         <field>SalesAreaLink__c.pkl_MaxPartDeliveries__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <readable>false</readable>
+        <editable>true</editable>
         <field>SalesAreaLink__c.pkl_Partdlvitem__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <readable>false</readable>
+        <editable>true</editable>
         <field>SalesAreaLink__c.pkl_SalesBlockCustomer__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <readable>false</readable>
+        <editable>true</editable>
         <field>SalesAreaLink__c.txt_Accountatcustomer__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <readable>false</readable>
+        <editable>true</editable>
         <field>SalesAreaLink__c.txt_CustomerStatus__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>SalesAreaLink__c.txt_IncotermLocation__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
