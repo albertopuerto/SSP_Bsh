@@ -2679,6 +2679,10 @@
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
     <tabVisibilities>
+        <tab>SalesArea__c</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
         <tab>cnga__ApprovalCenter</tab>
         <visibility>Hidden</visibility>
     </tabVisibilities>

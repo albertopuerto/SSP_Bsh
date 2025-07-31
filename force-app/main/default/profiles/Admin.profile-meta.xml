@@ -20090,7 +20090,7 @@
     </tabVisibilities>
     <tabVisibilities>
         <tab>SalesArea__c</tab>
-        <visibility>Hidden</visibility>
+        <visibility>DefaultOn</visibility>
     </tabVisibilities>
     <tabVisibilities>
         <tab>cnga__ApprovalCenter</tab>
