@@ -8,9 +8,9 @@ public class SalesAreaLinkTriggerHandler_Test {
         insert testAccountList;
         
         SalesArea__c sal = (SalesArea__c)TestFactory.createSObject(new SalesArea__c(), false);
-        sal.pkl_DistributionChannel__c = '01';
-        sal.pkl_Division__c = '00';
-        sal.pkl_SalesOrg__c = '0001';
+        sal.pkl_DistributionChannel__c = 'A1';
+        sal.pkl_Division__c = '01';
+        sal.pkl_SalesOrg__c = 'DEM5';
         insert sal;
     }
     
