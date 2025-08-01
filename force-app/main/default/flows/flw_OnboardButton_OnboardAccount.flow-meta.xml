@@ -111,7 +111,7 @@
             <targetReference>Update_Account</targetReference>
         </connector>
         <faultConnector>
-            <targetReference>Update_Acc_Error</targetReference>
+            <targetReference>Check_Error_Code</targetReference>
         </faultConnector>
         <flowTransactionModel>Automatic</flowTransactionModel>
         <inputParameters>
@@ -121,6 +121,58 @@
             </value>
         </inputParameters>
         <nameSegment>IF002SAPCPISendAccount.createBusinessPartner</nameSegment>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </actionCalls>
+    <actionCalls>
+        <name>Send_Chatter_Message</name>
+        <label>Send Chatter Message</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <actionName>chatterPost</actionName>
+        <actionType>chatterPost</actionType>
+        <connector>
+            <targetReference>Update_Acc_Error</targetReference>
+        </connector>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>text</name>
+            <value>
+                <stringValue>Error in sending account to Athena. Please contact support and provide the following details: Account Id ({!Create_Account}), correlation Id: ({!requestBody.accountCreate.CorrelationId})</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>subjectNameOrId</name>
+            <value>
+                <elementReference>Create_Account</elementReference>
+            </value>
+        </inputParameters>
+        <nameSegment>chatterPost</nameSegment>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </actionCalls>
+    <actionCalls>
+        <name>Send_Chatter_Message_500</name>
+        <label>Send Chatter Message 500</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <actionName>chatterPost</actionName>
+        <actionType>chatterPost</actionType>
+        <connector>
+            <targetReference>Update_Acc_Error</targetReference>
+        </connector>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>text</name>
+            <value>
+                <stringValue>Error in sending account to Athena. Please contact support and provide the following details: Account Id ({!Create_Account}), correlation Id: ({!requestBody.accountCreate.CorrelationId})</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>subjectNameOrId</name>
+            <value>
+                <elementReference>Create_Account</elementReference>
+            </value>
+        </inputParameters>
+        <nameSegment>chatterPost</nameSegment>
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </actionCalls>
     <actionCalls>
@@ -157,6 +209,12 @@
             <name>httpRequestBody</name>
             <value>
                 <elementReference>tmpl_RequestBodyTXT</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>logMessage</name>
+            <value>
+                <stringValue>Error in sending account to Athena. Please contact support and provide the following details: Account Id ({!Create_Account}), correlation Id: ({!requestBody.accountCreate.CorrelationId})</stringValue>
             </value>
         </inputParameters>
         <inputParameters>
@@ -275,6 +333,43 @@
             <stringValue>true</stringValue>
         </value>
     </choices>
+    <decisions>
+        <name>Check_Error_Code</name>
+        <label>Check Error Code</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Error_404</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>send_Account_to_Athena.404Exc</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Send_Chatter_Message</targetReference>
+            </connector>
+            <label>Error 404</label>
+        </rules>
+        <rules>
+            <name>Error_500</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>send_Account_to_Athena.500Exc</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Send_Chatter_Message_500</targetReference>
+            </connector>
+            <label>Error 500</label>
+        </rules>
+    </decisions>
     <decisions>
         <name>Check_User_Response</name>
         <label>Check User Response</label>
@@ -651,6 +746,7 @@
             <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
             <isRequired>true</isRequired>
         </fields>
+        <nextOrFinishButtonLabel>Validate Address</nextOrFinishButtonLabel>
         <showFooter>true</showFooter>
         <showHeader>false</showHeader>
     </screens>
@@ -670,7 +766,7 @@
             <fieldText>&lt;p style=&quot;text-align: center;&quot;&gt;&lt;strong style=&quot;color: rgb(244, 23, 23); font-size: 14px;&quot;&gt;The Address validation will be implemented later, click next to continue.&lt;/strong&gt;&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
         </fields>
-        <nextOrFinishButtonLabel>Next</nextOrFinishButtonLabel>
+        <nextOrFinishButtonLabel>Check Duplicate</nextOrFinishButtonLabel>
         <showFooter>true</showFooter>
         <showHeader>false</showHeader>
     </screens>
@@ -687,7 +783,7 @@
         </connector>
         <fields>
             <name>failure</name>
-            <fieldText>&lt;p style=&quot;text-align: center;&quot;&gt;&lt;strong style=&quot;color: rgb(183, 24, 16);&quot;&gt;Account creation in the Athena is failed&lt;/strong&gt;&lt;/p&gt;</fieldText>
+            <fieldText>&lt;p style=&quot;text-align: center;&quot;&gt;&lt;strong style=&quot;color: rgb(183, 24, 16);&quot;&gt;Account creation in the Athena is failed, please check chatter messaged  for more details.&lt;/strong&gt;&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
         </fields>
         <showFooter>true</showFooter>

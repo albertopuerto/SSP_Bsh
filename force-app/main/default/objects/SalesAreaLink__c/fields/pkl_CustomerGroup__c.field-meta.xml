@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>pkl_CustomerGroup__c</fullName>
+    <description>Customer Group of an Account for a certain Sales Area</description>
     <externalId>false</externalId>
     <inlineHelpText>Identifies a particular group of customers (for example, wholesale or retail) for the purpose of pricing or generating statistics.You can freely define customer groups according to the needs of your organization. You assign a customer group to an individual customer in either the customer master record of the sold-to party or in the sales document. In SD Customizing, you can create a condition type that lets you create pricing records for customer groups. Additionally, when you want to generate sales stat</inlineHelpText>
     <label>Customer Group</label>

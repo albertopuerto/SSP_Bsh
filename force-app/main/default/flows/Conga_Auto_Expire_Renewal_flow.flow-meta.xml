@@ -1,11 +1,83 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <description>when a an auto renew=true in an agreement and renewal terms in months - filled in, then the end data should extend with the months filled in in &quot;renewal terms&quot;</description>
+        <name>Extend_the_end_data_of_an_agreement</name>
+        <label>Extend the end data of an agreement</label>
+        <locationX>314</locationX>
+        <locationY>468</locationY>
+        <actionName>FlowLogEntry</actionName>
+        <actionType>apex</actionType>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>flowName</name>
+            <value>
+                <stringValue>FLW-DML-00004</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>loggingLevelName</name>
+            <value>
+                <stringValue>Error</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>message</name>
+            <value>
+                <stringValue>FLW-DML-00004</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>tagsString</name>
+            <value>
+                <stringValue>FLW-DML</stringValue>
+            </value>
+        </inputParameters>
+        <nameSegment>FlowLogEntry</nameSegment>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </actionCalls>
+    <actionCalls>
+        <description>Agreement with no Auto renew = True should auto expire if the end data is already in the past</description>
+        <name>Store_loggs_for_update_failed</name>
+        <label>Store loggs for update</label>
+        <locationX>842</locationX>
+        <locationY>468</locationY>
+        <actionName>FlowLogEntry</actionName>
+        <actionType>apex</actionType>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>flowName</name>
+            <value>
+                <stringValue>FLW-DML-00003</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>loggingLevelName</name>
+            <value>
+                <stringValue>Error</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>message</name>
+            <value>
+                <stringValue>FLW-DML-00003</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>tagsString</name>
+            <value>
+                <stringValue>FLW-DML</stringValue>
+            </value>
+        </inputParameters>
+        <nameSegment>FlowLogEntry</nameSegment>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </actionCalls>
     <apiVersion>55.0</apiVersion>
     <decisions>
         <description>Check if auto renew is true</description>
         <name>Check_if_auto_renew_is_true</name>
         <label>Check if auto renew is true</label>
-        <locationX>314</locationX>
+        <locationX>578</locationX>
         <locationY>252</locationY>
         <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
         <rules>
@@ -86,8 +158,11 @@
         <description>Auto expire if auto renew is false</description>
         <name>Auto_expire_if_auto_renew_is_false</name>
         <label>Auto expire if auto renew is false</label>
-        <locationX>314</locationX>
+        <locationX>578</locationX>
         <locationY>360</locationY>
+        <faultConnector>
+            <targetReference>Store_loggs_for_update_failed</targetReference>
+        </faultConnector>
         <inputAssignments>
             <field>Apttus__Status_Category__c</field>
             <value>
@@ -108,6 +183,9 @@
         <label>Update end date and renew flag</label>
         <locationX>50</locationX>
         <locationY>360</locationY>
+        <faultConnector>
+            <targetReference>Extend_the_end_data_of_an_agreement</targetReference>
+        </faultConnector>
         <inputAssignments>
             <field>Apttus__Auto_Renewal__c</field>
             <value>
@@ -123,7 +201,7 @@
         <inputReference>$Record</inputReference>
     </recordUpdates>
     <start>
-        <locationX>188</locationX>
+        <locationX>452</locationX>
         <locationY>0</locationY>
         <connector>
             <targetReference>Check_if_auto_renew_is_true</targetReference>
@@ -158,5 +236,5 @@
         </schedule>
         <triggerType>Scheduled</triggerType>
     </start>
-    <status>Draft</status>
+    <status>Active</status>
 </Flow>

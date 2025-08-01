@@ -224,6 +224,21 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>SalesArea__c.txt_DistributionChannelDescription__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>SalesArea__c.txt_DivisionDescription__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>SalesArea__c.txt_SalesOrganizationDescription__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>sbaa__Approval__c.Quote__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -315,6 +330,10 @@
         <recordType>Apttus__APTS_Agreement__c.APTS_IC_Limited_Sales_Support</recordType>
     </layoutAssignments>
     <layoutAssignments>
+        <layout>Apttus__APTS_Agreement__c-APTS_Sales_Other</layout>
+        <recordType>Apttus__APTS_Agreement__c.APTS_Other_Sales_Agreement</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
         <layout>Apttus__APTS_Agreement__c-APTS_DSO_All_excl_BPA</layout>
         <recordType>Apttus__APTS_Agreement__c.AVV_BDSG</recordType>
     </layoutAssignments>
@@ -379,6 +398,10 @@
         <recordType>Apttus__APTS_Agreement__c.Joint_Controllers</recordType>
     </layoutAssignments>
     <layoutAssignments>
+        <layout>Apttus__APTS_Agreement__c-APTS_Loan and License</layout>
+        <recordType>Apttus__APTS_Agreement__c.Loan_and_License</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
         <layout>Apttus__APTS_Agreement__c-Apttus__Agreement Layout</layout>
         <recordType>Apttus__APTS_Agreement__c.MSA</recordType>
     </layoutAssignments>
@@ -431,6 +454,9 @@
     </layoutAssignments>
     <layoutAssignments>
         <layout>SBQQ__QuoteLineGroup__c-SBQQ__Quote Line Group Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>SBQQ__QuoteTerm__c-SBQQ__Quote Term Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
         <layout>SBQQ__Quote__c-SBQQ__Quote Layout</layout>
@@ -574,6 +600,10 @@
     <tabVisibilities>
         <tab>BoschPartnerFunction__c</tab>
         <visibility>DefaultOn</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>SalesArea__c</tab>
+        <visibility>Hidden</visibility>
     </tabVisibilities>
     <tabVisibilities>
         <tab>sbaa__Approval__c</tab>

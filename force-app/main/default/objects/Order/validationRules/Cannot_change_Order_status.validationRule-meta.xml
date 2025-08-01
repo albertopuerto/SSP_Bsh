@@ -3,6 +3,13 @@
     <fullName>Cannot_change_Order_status</fullName>
     <active>true</active>
     <description>This is to block users from changing order status when it is activated.</description>
-    <errorConditionFormula>AND( ISCHANGED(Status), ISPICKVAL(Status, &quot;Draft&quot;), ISPICKVAL(PRIORVALUE(Status), &quot;Activated&quot;) )</errorConditionFormula>
-    <errorMessage>You cannot change the Order status back to &#39;Draft&#39; once it has been Activated.</errorMessage>
+    <errorConditionFormula>AND( ISCHANGED(Status), 
+     ISPICKVAL(Status, &quot;Draft&quot;), 
+      OR (ISPICKVAL(PRIORVALUE(Status), &quot;Activated&quot;), 
+      ISPICKVAL( PRIORVALUE(Status), &quot;SentToSAP&quot;), 
+        ISPICKVAL(PRIORVALUE(Status), &quot;OrderReceivedBySAP&quot;)
+        
+)
+)</errorConditionFormula>
+    <errorMessage>Order status cannot be changed back when order has been activated.</errorMessage>
 </ValidationRule>
