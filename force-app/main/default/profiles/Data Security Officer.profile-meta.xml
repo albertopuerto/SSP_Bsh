@@ -1735,6 +1735,21 @@
         <field>SalesAreaLink__c.txt_CustomerStatus__c</field>
         <readable>true</readable>
     </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>SalesArea__c.txt_DistributionChannelDescription__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>SalesArea__c.txt_DivisionDescription__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>SalesArea__c.txt_SalesOrganizationDescription__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
     <layoutAssignments>
         <layout>APTS_Error_Code_Repository__c-Error Code Master Layout</layout>
     </layoutAssignments>
