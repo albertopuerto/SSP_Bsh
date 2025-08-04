@@ -3,6 +3,7 @@
     <fullName>txt_SalesOrganizationDescription__c</fullName>
     <description>Sales Organization Description</description>
     <externalId>false</externalId>
+    <inlineHelpText>Description of Sales Organization of a Customer</inlineHelpText>
     <label>Sales Organization Description</label>
     <length>20</length>
     <required>false</required>
