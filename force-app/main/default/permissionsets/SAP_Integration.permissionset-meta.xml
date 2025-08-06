@@ -49,7 +49,7 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Account.txt_LegalEntity__c</field>
+        <field>Account.txt_AdditionalName__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
