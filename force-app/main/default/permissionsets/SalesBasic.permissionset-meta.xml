@@ -1564,6 +1564,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>OrderItem.pkl_ReasonofCancellation__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>PriceElement__c.num_ConditionRateValue__c</field>
         <readable>true</readable>
     </fieldPermissions>
