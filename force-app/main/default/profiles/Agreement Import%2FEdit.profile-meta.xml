@@ -1806,6 +1806,21 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>SalesArea__c.txt_DistributionChannelDescription__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>SalesArea__c.txt_DivisionDescription__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>SalesArea__c.txt_SalesOrganizationDescription__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>sbaa__ApprovalChain__c.sbaa__TargetObject__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -3233,6 +3248,10 @@
     </tabVisibilities>
     <tabVisibilities>
         <tab>CRMC_PP__Grid_Settings</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>SalesArea__c</tab>
         <visibility>Hidden</visibility>
     </tabVisibilities>
     <tabVisibilities>

@@ -14,14 +14,14 @@
     "SBQQ__FilterOperator__c": "",
     "SBQQ__FilterValue__c": "",
     "SBQQ__GroupField__c": "",
-    "SBQQ__KeepTogether__c": "Always",
+    "SBQQ__KeepTogether__c": "Auto",
     "SBQQ__KeepWithNext__c": "Auto",
     "SBQQ__KeepWithPrevious__c": "",
-    "SBQQ__PageBreak__c": "",
+    "SBQQ__PageBreak__c": "Before",
     "SBQQ__QuoteTotalsPrinted__c": "false",
     "SBQQ__RollUpField__c": "",
     "SBQQ__SummaryDisplay__c": "",
-    "SBQQ__TopMargin__c": "2.0"
+    "SBQQ__TopMargin__c": "0.0"
   },
   "References": [
     {
