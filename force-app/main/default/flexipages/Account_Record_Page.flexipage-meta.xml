@@ -155,18 +155,30 @@
         </itemInstances>
         <itemInstances>
             <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
                 <fieldItem>Record.pkl_Status__c</fieldItem>
                 <identifier>RecordStatus__cField</identifier>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
             <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
                 <fieldItem>Record.C4C_Territory_ID__c</fieldItem>
                 <identifier>RecordC4C_Territory_ID__cField</identifier>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
             <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
                 <fieldItem>Record.C4C_Territory_Name__c</fieldItem>
                 <identifier>RecordC4C_Territory_Name__cField</identifier>
             </fieldInstance>
@@ -243,6 +255,16 @@
                 </fieldInstanceProperties>
                 <fieldItem>Record.ftxt_GTS__c</fieldItem>
                 <identifier>Recordftxt_GTS_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>readonly</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.dtm_DatetimeofcreationinAthena__c</fieldItem>
+                <identifier>Recorddtm_DatetimeofcreationinAthena_cField</identifier>
             </fieldInstance>
         </itemInstances>
         <name>Facet-bbd70fe4-b2af-47e0-bcaf-adcc609214d1</name>
