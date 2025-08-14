@@ -3,7 +3,7 @@
     <caseAccessLevel>Edit</caseAccessLevel>
     <contactAccessLevel>Edit</contactAccessLevel>
     <mayForecastManagerShare>false</mayForecastManagerShare>
-    <name>Sales coordinator CDE</name>
+    <name>Sales coordinator CEU2</name>
     <opportunityAccessLevel>Edit</opportunityAccessLevel>
-    <parentRole>Global_Customer_Team_Lead_CDE</parentRole>
+    <parentRole>Sales_Manager_CEU2_GB</parentRole>
 </Role>
