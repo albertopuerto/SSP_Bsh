@@ -3,7 +3,7 @@
     <caseAccessLevel>Edit</caseAccessLevel>
     <contactAccessLevel>Edit</contactAccessLevel>
     <mayForecastManagerShare>false</mayForecastManagerShare>
-    <name>Sales coordinator CDE</name>
+    <name>Acquisition Manager</name>
     <opportunityAccessLevel>Edit</opportunityAccessLevel>
-    <parentRole>Global_Customer_Team_Lead_CDE</parentRole>
+    <parentRole>Cross_Acquisition_Team_Lead_Europe</parentRole>
 </Role>
