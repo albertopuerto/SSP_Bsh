@@ -1141,31 +1141,15 @@
     <picklistValues>
         <picklist>APTS_Solution_Fields__c</picklist>
         <values>
-            <fullName>ETAS-DAP</fullName>
+            <fullName>ETAS-ECM%2FPG</fullName>
             <default>false</default>
         </values>
         <values>
-            <fullName>ETAS-DEV</fullName>
+            <fullName>ETAS-ICA%2FPG</fullName>
             <default>false</default>
         </values>
         <values>
-            <fullName>ETAS-E2E</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>ETAS-MSS</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>ETAS-SEC</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>ETAS-VCS</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>ETAS-VOS</fullName>
+            <fullName>ETAS-SID%2FPG</fullName>
             <default>false</default>
         </values>
     </picklistValues>

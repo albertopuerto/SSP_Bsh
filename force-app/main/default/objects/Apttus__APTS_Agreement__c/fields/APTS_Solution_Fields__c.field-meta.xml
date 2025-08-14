@@ -14,11 +14,6 @@
         <valueSetDefinition>
             <sorted>false</sorted>
             <value>
-                <fullName>ETAS-E2E</fullName>
-                <default>false</default>
-                <label>ETAS-E2E</label>
-            </value>
-            <value>
                 <fullName>ETAS-ECM/PG</fullName>
                 <default>false</default>
                 <label>ETAS-ECM/PG</label>
@@ -44,6 +39,12 @@
                 <default>false</default>
                 <isActive>false</isActive>
                 <label>ETAS-DEV</label>
+            </value>
+            <value>
+                <fullName>ETAS-E2E</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>ETAS-E2E</label>
             </value>
             <value>
                 <fullName>ETAS-MSS</fullName>
