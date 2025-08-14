@@ -6,6 +6,7 @@
     <externalId>false</externalId>
     <formula>IF(AND(ISPICKVAL(Apttus__Status_Category__c,&quot;In Effect&quot;), (Apttus__Contract_Duration_Days__c &gt; 0), (Apttus__Contracted_Days__c &gt; 0)), (Apttus__Contract_Duration_Days__c - Apttus__Contracted_Days__c), 0)</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <inlineHelpText>If the agreement is In Effect, this value is calculated as Contract Duration Days less Contracted Days (formula)</inlineHelpText>
     <label>Remaining Contracted Days</label>
     <precision>18</precision>
     <required>false</required>

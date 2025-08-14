@@ -5,6 +5,7 @@
     <deprecated>false</deprecated>
     <description>To indicate whether this agreement contains non-standard language</description>
     <externalId>false</externalId>
+    <inlineHelpText>ETAS standard template with changes</inlineHelpText>
     <label>Non Standard Legal Language</label>
     <trackFeedHistory>false</trackFeedHistory>
     <trackHistory>false</trackHistory>
