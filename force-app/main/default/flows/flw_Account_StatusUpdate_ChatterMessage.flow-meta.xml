@@ -44,6 +44,7 @@
             <connector>
                 <targetReference>update_timestamp</targetReference>
             </connector>
+            <doesRequireRecordChangedToMeetCriteria>true</doesRequireRecordChangedToMeetCriteria>
             <label>Status is Created in Athena</label>
         </rules>
     </decisions>
