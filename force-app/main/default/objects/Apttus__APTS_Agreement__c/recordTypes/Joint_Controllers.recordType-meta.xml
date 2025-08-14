@@ -399,6 +399,10 @@
             <default>false</default>
         </values>
         <values>
+            <fullName>Belgium</fullName>
+            <default>false</default>
+        </values>
+        <values>
             <fullName>Brazil</fullName>
             <default>false</default>
         </values>
@@ -463,6 +467,10 @@
             <default>false</default>
         </values>
         <values>
+            <fullName>New Zealand</fullName>
+            <default>false</default>
+        </values>
+        <values>
             <fullName>Other</fullName>
             <default>false</default>
         </values>
@@ -484,6 +492,10 @@
         </values>
         <values>
             <fullName>Russia</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Serbia</fullName>
             <default>false</default>
         </values>
         <values>
@@ -526,6 +538,10 @@
             <default>false</default>
         </values>
         <values>
+            <fullName>Belgium</fullName>
+            <default>false</default>
+        </values>
+        <values>
             <fullName>Brazil</fullName>
             <default>false</default>
         </values>
@@ -590,6 +606,10 @@
             <default>false</default>
         </values>
         <values>
+            <fullName>New Zealand</fullName>
+            <default>false</default>
+        </values>
+        <values>
             <fullName>Other</fullName>
             <default>false</default>
         </values>
@@ -611,6 +631,10 @@
         </values>
         <values>
             <fullName>Russia</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Serbia</fullName>
             <default>false</default>
         </values>
         <values>
@@ -664,6 +688,10 @@
             <default>false</default>
         </values>
         <values>
+            <fullName>Belgium</fullName>
+            <default>false</default>
+        </values>
+        <values>
             <fullName>Brazil</fullName>
             <default>false</default>
         </values>
@@ -728,6 +756,10 @@
             <default>false</default>
         </values>
         <values>
+            <fullName>New Zealand</fullName>
+            <default>false</default>
+        </values>
+        <values>
             <fullName>Other</fullName>
             <default>false</default>
         </values>
@@ -749,6 +781,10 @@
         </values>
         <values>
             <fullName>Russia</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Serbia</fullName>
             <default>false</default>
         </values>
         <values>
@@ -1259,6 +1295,26 @@
     </picklistValues>
     <picklistValues>
         <picklist>Apttus__Agreement_Category__c</picklist>
+        <values>
+            <fullName>ETAS%2FCEU1</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>ETAS%2FCEU2</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>ETAS%2FCRB</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>ETAS%2FCRN%2F-CJL</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>ETAS%2FCVW</fullName>
+            <default>false</default>
+        </values>
         <values>
             <fullName>Privacy</fullName>
             <default>true</default>
