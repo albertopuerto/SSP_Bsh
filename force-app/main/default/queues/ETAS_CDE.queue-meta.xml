@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Queue xmlns="http://soap.sforce.com/2006/04/metadata">
+    <doesSendEmailToMembers>false</doesSendEmailToMembers>
+    <email>sales.de@etas.com</email>
+    <name>ETAS/CDE</name>
+    <queueMembers>
+        <roles>
+            <role>Sales_coordinator_CDE</role>
+            <role>Sales_Manager_CDE</role>
+        </roles>
+    </queueMembers>
+    <queueSobject>
+        <sobjectType>Apttus__APTS_Agreement__c</sobjectType>
+    </queueSobject>
+</Queue>
