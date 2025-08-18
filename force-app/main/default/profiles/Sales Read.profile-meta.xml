@@ -250,16 +250,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Account.C4C_Territory_ID__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>Account.C4C_Territory_Name__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
         <field>Account.Description</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -324,6 +314,11 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>true</editable>
+        <field>Account.pkl_C4C_Territory_Name__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>false</editable>
         <field>Account.pkl_CivilianCustomer__c</field>
         <readable>true</readable>
@@ -366,6 +361,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Account.txt_AthenaUUID__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Account.txt_C4C_Territory_ID__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -2010,11 +2010,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>SalesAreaLink__c.pkl_INCOTerm__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
         <field>SalesAreaLink__c.pkl_InvoicingDates__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -2041,11 +2036,6 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>SalesAreaLink__c.txt_CustomerStatus__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>SalesAreaLink__c.txt_IncotermLocation__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
