@@ -4,6 +4,7 @@
     <deprecated>false</deprecated>
     <description>Date agreement was sent to other party for signatures</description>
     <externalId>false</externalId>
+    <inlineHelpText>Date agreement was sent to other party for signatures</inlineHelpText>
     <label>Other Party Sent Date</label>
     <required>false</required>
     <trackFeedHistory>false</trackFeedHistory>

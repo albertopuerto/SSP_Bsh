@@ -69,6 +69,10 @@
                 <behavior>Edit</behavior>
                 <field>APTS_Agreement_Number_Old__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>pkl_ETAS_affiliates_covered__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
