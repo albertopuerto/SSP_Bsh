@@ -163,26 +163,6 @@
                 <identifier>RecordStatus__cField</identifier>
             </fieldInstance>
         </itemInstances>
-        <itemInstances>
-            <fieldInstance>
-                <fieldInstanceProperties>
-                    <name>uiBehavior</name>
-                    <value>none</value>
-                </fieldInstanceProperties>
-                <fieldItem>Record.C4C_Territory_ID__c</fieldItem>
-                <identifier>RecordC4C_Territory_ID__cField</identifier>
-            </fieldInstance>
-        </itemInstances>
-        <itemInstances>
-            <fieldInstance>
-                <fieldInstanceProperties>
-                    <name>uiBehavior</name>
-                    <value>none</value>
-                </fieldInstanceProperties>
-                <fieldItem>Record.C4C_Territory_Name__c</fieldItem>
-                <identifier>RecordC4C_Territory_Name__cField</identifier>
-            </fieldInstance>
-        </itemInstances>
         <name>Facet-3bbfbb4b-102f-42f0-84f4-80b389f788f5</name>
         <type>Facet</type>
     </flexiPageRegions>
