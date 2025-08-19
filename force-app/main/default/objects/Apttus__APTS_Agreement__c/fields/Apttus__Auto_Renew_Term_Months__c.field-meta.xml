@@ -4,6 +4,7 @@
     <deprecated>false</deprecated>
     <description>The number of months to extend the agreement</description>
     <externalId>false</externalId>
+    <inlineHelpText>The number of months to extend the agreement</inlineHelpText>
     <label>Renewal Term (Months)</label>
     <precision>4</precision>
     <required>false</required>
