@@ -78,10 +78,6 @@
                 <field>Apttus__Agreement_Category__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Apttus__Parent_Agreement__c</field>
-            </layoutItems>
-            <layoutItems>
                 <behavior>Required</behavior>
                 <field>Apttus__Account__c</field>
             </layoutItems>
@@ -97,6 +93,14 @@
                 <behavior>Edit</behavior>
                 <field>pkl_ETAS_affiliates_covered__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Required</behavior>
+                <field>APTS_Governing_Law__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>APTS_Other_Governing_Law__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
@@ -109,14 +113,6 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Required</behavior>
-                <field>APTS_Governing_Law__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>APTS_Other_Governing_Law__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Required</behavior>
                 <field>APTS_Type_of_Paper__c</field>
             </layoutItems>
             <layoutItems>
@@ -125,11 +121,7 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Apttus__Requestor__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>OwnerId</field>
+                <field>Apttus__Parent_Agreement__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
@@ -138,6 +130,14 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>APTS_Related_Quote__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>OwnerId</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Apttus__Requestor__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsTopToBottom</style>
@@ -158,14 +158,6 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>APTS_Payment_Terms__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>APTS_Other_Payment_Term__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
                 <field>APTS_IP_Indemnification__c</field>
             </layoutItems>
             <layoutItems>
@@ -174,7 +166,7 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>CurrencyIsoCode</field>
+                <field>APTS_ETAS_Products__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
@@ -184,11 +176,19 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>APTS_ETAS_Products__c</field>
+                <field>Apttus__Total_Contract_Value__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Apttus__Total_Contract_Value__c</field>
+                <field>CurrencyIsoCode</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>APTS_Payment_Terms__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>APTS_Other_Payment_Term__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsLeftToRight</style>

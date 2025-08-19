@@ -3,6 +3,7 @@
     <customButtons>Apttus__AgreementHierarchy</customButtons>
     <excludeButtons>ChangeOwnerOne</excludeButtons>
     <excludeButtons>ChangeRecordType</excludeButtons>
+    <excludeButtons>OpenSlackRecordChannel</excludeButtons>
     <excludeButtons>PrintableView</excludeButtons>
     <excludeButtons>Share</excludeButtons>
     <excludeButtons>Submit</excludeButtons>
@@ -48,10 +49,6 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Apttus__Parent_Agreement__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
                 <field>Apttus__Primary_Contact__c</field>
             </layoutItems>
             <layoutItems>
@@ -69,6 +66,10 @@
             <layoutItems>
                 <behavior>Required</behavior>
                 <field>APTS_Internal_Legal_Entity__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>pkl_ETAS_affiliates_covered__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
@@ -98,7 +99,7 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>OwnerId</field>
+                <field>Apttus__Parent_Agreement__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
@@ -110,7 +111,7 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>pkl_ETAS_affiliates_covered__c</field>
+                <field>OwnerId</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsLeftToRight</style>
@@ -595,63 +596,7 @@
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
-        <fields>Apttus_Approval__Action__c</fields>
-        <fields>Apttus_Approval__Step_Name__c</fields>
-        <fields>Apttus_Approval__Status_Link__c</fields>
-        <fields>Apttus_Approval__Date__c</fields>
-        <fields>Apttus_Approval__Assigned_To_Name__c</fields>
-        <fields>Apttus_Approval__Request_Comments__c</fields>
-        <fields>Apttus_Approval__Actual_Approver__c</fields>
-        <fields>Apttus_Approval__Approver_Comments__c</fields>
-        <relatedList>Apttus_Approval__Approval_Request__c.Apttus_Approval__Related_Agreement__c</relatedList>
-    </relatedLists>
-    <relatedLists>
-        <fields>NAME</fields>
-        <fields>Apttus_Approval__Step_Name__c</fields>
-        <fields>Apttus_Approval__Assigned_To_Link__c</fields>
-        <fields>Apttus_Approval__Approval_Status__c</fields>
-        <fields>Apttus_Approval__Approver_Comments__c</fields>
-        <relatedList>Apttus_Approval__Approval_Request_History__c.Apttus_Approval__Related_Agreement__c</relatedList>
-    </relatedLists>
-    <relatedLists>
-        <customButtons>Apttus__New_Child_Agreement</customButtons>
-        <excludeButtons>New</excludeButtons>
-        <fields>NAME</fields>
-        <fields>Apttus__FF_Agreement_Number__c</fields>
-        <fields>Apttus__Account__c</fields>
-        <fields>Apttus__Status_Category__c</fields>
-        <fields>Apttus__Status__c</fields>
-        <fields>Apttus__Contract_End_Date__c</fields>
-        <relatedList>Apttus__APTS_Agreement__c.Apttus__Parent_Agreement__c</relatedList>
-    </relatedLists>
-    <relatedLists>
-        <fields>NAME</fields>
-        <fields>Apttus__Relationship_From_Type__c</fields>
-        <fields>Apttus__APTS_Contract_To__c</fields>
-        <relatedList>Apttus__APTS_Related_Agreement__c.Apttus__APTS_Contract_From__c</relatedList>
-    </relatedLists>
-    <relatedLists>
-        <fields>NAME</fields>
-        <fields>Apttus__Relationship_To_Type__c</fields>
-        <fields>Apttus__APTS_Contract_From__c</fields>
-        <relatedList>Apttus__APTS_Related_Agreement__c.Apttus__APTS_Contract_To__c</relatedList>
-    </relatedLists>
-    <relatedLists>
-        <fields>NAME</fields>
-        <fields>Apttus__Title__c</fields>
-        <fields>Apttus__DocumentVersionId__c</fields>
-        <fields>Apttus__View__c</fields>
-        <fields>CREATEDBY_USER</fields>
-        <fields>CREATED_DATE</fields>
-        <relatedList>Apttus__DocumentVersionDetail__c.Agreement__c</relatedList>
-    </relatedLists>
-    <relatedLists>
-        <fields>NAME</fields>
-        <relatedList>Apttus_DocuApi__DocuSignDefaultRecipient2__c.Apttus_CMDSign__AgreementId__c</relatedList>
-    </relatedLists>
-    <relatedLists>
-        <fields>NAME</fields>
-        <relatedList>Apttus_DocuApi__DocuSignEnvelope__c.Apttus_CMDSign__Agreement__c</relatedList>
+        <relatedList>Apttus__AgreementHierarchy__c.Apttus__AgreementLeafId__c</relatedList>
     </relatedLists>
     <showEmailCheckbox>false</showEmailCheckbox>
     <showHighlightsPanel>false</showHighlightsPanel>
