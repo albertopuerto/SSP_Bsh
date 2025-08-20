@@ -400,6 +400,10 @@
             <default>false</default>
         </values>
         <values>
+            <fullName>Belgium</fullName>
+            <default>false</default>
+        </values>
+        <values>
             <fullName>Brazil</fullName>
             <default>false</default>
         </values>
@@ -464,6 +468,10 @@
             <default>false</default>
         </values>
         <values>
+            <fullName>New Zealand</fullName>
+            <default>false</default>
+        </values>
+        <values>
             <fullName>Other</fullName>
             <default>false</default>
         </values>
@@ -485,6 +493,10 @@
         </values>
         <values>
             <fullName>Russia</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Serbia</fullName>
             <default>false</default>
         </values>
         <values>
@@ -527,6 +539,10 @@
             <default>false</default>
         </values>
         <values>
+            <fullName>Belgium</fullName>
+            <default>false</default>
+        </values>
+        <values>
             <fullName>Brazil</fullName>
             <default>false</default>
         </values>
@@ -591,6 +607,10 @@
             <default>false</default>
         </values>
         <values>
+            <fullName>New Zealand</fullName>
+            <default>false</default>
+        </values>
+        <values>
             <fullName>Other</fullName>
             <default>false</default>
         </values>
@@ -612,6 +632,10 @@
         </values>
         <values>
             <fullName>Russia</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Serbia</fullName>
             <default>false</default>
         </values>
         <values>
@@ -665,6 +689,10 @@
             <default>false</default>
         </values>
         <values>
+            <fullName>Belgium</fullName>
+            <default>false</default>
+        </values>
+        <values>
             <fullName>Brazil</fullName>
             <default>false</default>
         </values>
@@ -729,6 +757,10 @@
             <default>false</default>
         </values>
         <values>
+            <fullName>New Zealand</fullName>
+            <default>false</default>
+        </values>
+        <values>
             <fullName>Other</fullName>
             <default>false</default>
         </values>
@@ -750,6 +782,10 @@
         </values>
         <values>
             <fullName>Russia</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Serbia</fullName>
             <default>false</default>
         </values>
         <values>
@@ -1074,31 +1110,15 @@
     <picklistValues>
         <picklist>APTS_Solution_Fields__c</picklist>
         <values>
-            <fullName>ETAS-DAP</fullName>
+            <fullName>ETAS-ECM%2FPG</fullName>
             <default>false</default>
         </values>
         <values>
-            <fullName>ETAS-DEV</fullName>
+            <fullName>ETAS-ICA%2FPG</fullName>
             <default>false</default>
         </values>
         <values>
-            <fullName>ETAS-E2E</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>ETAS-MSS</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>ETAS-SEC</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>ETAS-VCS</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>ETAS-VOS</fullName>
+            <fullName>ETAS-SID%2FPG</fullName>
             <default>false</default>
         </values>
     </picklistValues>
@@ -1265,11 +1285,23 @@
             <default>false</default>
         </values>
         <values>
-            <fullName>ETAS%2FCEU1 Volvo Cars</fullName>
+            <fullName>ETAS%2FCEU1</fullName>
             <default>false</default>
         </values>
         <values>
-            <fullName>ETAS%2FSAS</fullName>
+            <fullName>ETAS%2FCEU2</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>ETAS%2FCRB</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>ETAS%2FCRN%2F-CJL</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>ETAS%2FCVW</fullName>
             <default>false</default>
         </values>
         <values>
@@ -1283,14 +1315,6 @@
         <values>
             <fullName>Sales DE</fullName>
             <default>true</default>
-        </values>
-        <values>
-            <fullName>Sales EU1 BMW</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>Sales EU1 Mercedes</fullName>
-            <default>false</default>
         </values>
     </picklistValues>
     <picklistValues>
@@ -1554,6 +1578,17 @@
         <values>
             <fullName>Other</fullName>
             <default>true</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>pkl_ETAS_affiliates_covered__c</picklist>
+        <values>
+            <fullName>No</fullName>
+            <default>true</default>
+        </values>
+        <values>
+            <fullName>Yes</fullName>
+            <default>false</default>
         </values>
     </picklistValues>
 </RecordType>

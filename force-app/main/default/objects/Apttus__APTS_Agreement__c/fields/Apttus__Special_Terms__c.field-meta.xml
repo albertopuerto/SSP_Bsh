@@ -4,6 +4,7 @@
     <deprecated>false</deprecated>
     <description>Identifies any special terms related to contract</description>
     <externalId>false</externalId>
+    <inlineHelpText>Identifies any special terms related to contract</inlineHelpText>
     <label>Special Terms</label>
     <length>32000</length>
     <trackFeedHistory>false</trackFeedHistory>

@@ -4,6 +4,7 @@
     <deprecated>false</deprecated>
     <description>Date the final, executed copy was mailed to the other party</description>
     <externalId>false</externalId>
+    <inlineHelpText>Date the final, executed copy was mailed to the other party</inlineHelpText>
     <label>Executed Copy Mailed Out Date</label>
     <required>false</required>
     <trackFeedHistory>false</trackFeedHistory>

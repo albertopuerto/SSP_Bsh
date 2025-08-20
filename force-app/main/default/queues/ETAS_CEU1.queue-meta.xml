@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Queue xmlns="http://soap.sforce.com/2006/04/metadata">
+    <doesSendEmailToMembers>false</doesSendEmailToMembers>
+    <name>ETAS/CEU1</name>
+    <queueMembers>
+        <roles>
+            <role>Sales_coordinator_CEU1</role>
+            <role>Sales_Manager_CEU1</role>
+        </roles>
+    </queueMembers>
+    <queueSobject>
+        <sobjectType>Apttus__APTS_Agreement__c</sobjectType>
+    </queueSobject>
+</Queue>

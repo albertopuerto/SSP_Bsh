@@ -54,24 +54,29 @@
                 <label>ETAS/CDE</label>
             </value>
             <value>
-                <fullName>Sales EU1 BMW</fullName>
+                <fullName>ETAS/CVW</fullName>
                 <default>false</default>
-                <label>ETAS/CEU1 BMW</label>
+                <label>ETAS/CVW</label>
             </value>
             <value>
-                <fullName>Sales EU1 Mercedes</fullName>
+                <fullName>ETAS/CRB</fullName>
                 <default>false</default>
-                <label>ETAS/CEU1 Mercedes</label>
+                <label>ETAS/CRB</label>
             </value>
             <value>
-                <fullName>ETAS/CEU1 Volvo Cars</fullName>
+                <fullName>ETAS/CEU1</fullName>
                 <default>false</default>
-                <label>ETAS/CEU1 Volvo Cars</label>
+                <label>ETAS/CEU1</label>
             </value>
             <value>
-                <fullName>ETAS/SAS</fullName>
+                <fullName>ETAS/CEU2</fullName>
                 <default>false</default>
-                <label>ETAS/SAS</label>
+                <label>ETAS/CEU2</label>
+            </value>
+            <value>
+                <fullName>ETAS/CRN/-CJL</fullName>
+                <default>false</default>
+                <label>ETAS/CRN/-CJL</label>
             </value>
         </valueSetDefinition>
     </valueSet>

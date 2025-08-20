@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>ETAS_CEU2_APTS_Agreement</fullName>
+    <filterScope>Queue</filterScope>
+    <label>ETAS/CEU2</label>
+    <queue>ETAS_CEU2</queue>
+    <sharedTo>
+        <allInternalUsers />
+    </sharedTo>
+</ListView>

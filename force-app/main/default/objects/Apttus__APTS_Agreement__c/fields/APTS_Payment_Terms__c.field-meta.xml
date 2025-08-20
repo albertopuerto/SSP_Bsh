@@ -3,6 +3,7 @@
     <fullName>APTS_Payment_Terms__c</fullName>
     <description>Created for CLM based Accelerator</description>
     <externalId>false</externalId>
+    <inlineHelpText>The payment terms of the agreement</inlineHelpText>
     <label>Payment Terms</label>
     <required>false</required>
     <trackFeedHistory>false</trackFeedHistory>

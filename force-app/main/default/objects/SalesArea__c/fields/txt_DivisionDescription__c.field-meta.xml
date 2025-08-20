@@ -3,6 +3,7 @@
     <fullName>txt_DivisionDescription__c</fullName>
     <description>Division Description</description>
     <externalId>false</externalId>
+    <inlineHelpText>Description of Distribution Division of a Customer</inlineHelpText>
     <label>Division Description</label>
     <length>20</length>
     <required>false</required>

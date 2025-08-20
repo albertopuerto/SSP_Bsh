@@ -14,39 +14,61 @@
         <valueSetDefinition>
             <sorted>false</sorted>
             <value>
+                <fullName>ETAS-ECM/PG</fullName>
+                <default>false</default>
+                <label>ETAS-ECM/PG</label>
+            </value>
+            <value>
+                <fullName>ETAS-SID/PG</fullName>
+                <default>false</default>
+                <label>ETAS-SID/PG</label>
+            </value>
+            <value>
+                <fullName>ETAS-ICA/PG</fullName>
+                <default>false</default>
+                <label>ETAS-ICA/PG</label>
+            </value>
+            <value>
                 <fullName>ETAS-DAP</fullName>
                 <default>false</default>
+                <isActive>false</isActive>
                 <label>ETAS-DAP</label>
             </value>
             <value>
                 <fullName>ETAS-DEV</fullName>
                 <default>false</default>
+                <isActive>false</isActive>
                 <label>ETAS-DEV</label>
-            </value>
-            <value>
-                <fullName>ETAS-SEC</fullName>
-                <default>false</default>
-                <label>ETAS-SEC</label>
-            </value>
-            <value>
-                <fullName>ETAS-VOS</fullName>
-                <default>false</default>
-                <label>ETAS-VOS</label>
-            </value>
-            <value>
-                <fullName>ETAS-MSS</fullName>
-                <default>false</default>
-                <label>ETAS-MSS</label>
-            </value>
-            <value>
-                <fullName>ETAS-VCS</fullName>
-                <default>false</default>
-                <label>ETAS-VCS</label>
             </value>
             <value>
                 <fullName>ETAS-E2E</fullName>
                 <default>false</default>
+                <isActive>false</isActive>
                 <label>ETAS-E2E</label>
+            </value>
+            <value>
+                <fullName>ETAS-MSS</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>ETAS-MSS</label>
+            </value>
+            <value>
+                <fullName>ETAS-SEC</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>ETAS-SEC</label>
+            </value>
+            <value>
+                <fullName>ETAS-VCS</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>ETAS-VCS</label>
+            </value>
+            <value>
+                <fullName>ETAS-VOS</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>ETAS-VOS</label>
             </value>
         </valueSetDefinition>
     </valueSet>
