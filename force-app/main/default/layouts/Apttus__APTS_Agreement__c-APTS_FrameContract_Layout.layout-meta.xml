@@ -44,16 +44,12 @@
                 <field>APTS_Solution_Fields__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Edit</behavior>
+                <behavior>Required</behavior>
                 <field>Apttus__Agreement_Category__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>Apttus__Primary_Contact__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Required</behavior>
-                <field>APTS_Language__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Required</behavior>
@@ -68,7 +64,7 @@
                 <field>APTS_Internal_Legal_Entity__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Edit</behavior>
+                <behavior>Required</behavior>
                 <field>pkl_ETAS_affiliates_covered__c</field>
             </layoutItems>
         </layoutColumns>
@@ -80,6 +76,10 @@
             <layoutItems>
                 <behavior>Readonly</behavior>
                 <field>Apttus__Status__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Required</behavior>
+                <field>APTS_Language__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Required</behavior>
@@ -136,7 +136,11 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>CurrencyIsoCode</field>
+                <field>APTS_Payment_Terms__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>APTS_Other_Payment_Term__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
@@ -153,7 +157,11 @@
                 <field>APTS_Risks__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Required</behavior>
+                <behavior>Edit</behavior>
+                <field>CurrencyIsoCode</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
                 <field>Apttus__Total_Contract_Value__c</field>
             </layoutItems>
         </layoutColumns>
@@ -185,10 +193,6 @@
                 <behavior>Readonly</behavior>
                 <field>APTS_Liability_Slight_Ratio__c</field>
             </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>APTS_Liability_Type_Gross__c</field>
-            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
@@ -206,6 +210,10 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>APTS_IP_Indemnification_cap__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>APTS_Liability_Type_Gross__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
@@ -234,7 +242,15 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
+                <field>chk_DataSecurityReviewed__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
                 <field>APTS_Data_Security__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>APTS_Non_Standard_Data_security_Details__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
@@ -249,10 +265,6 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>APTS_Tax_Clause_Reviewed__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>APTS_Non_Standard_Data_security_Details__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsLeftToRight</style>
@@ -376,14 +388,6 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>Apttus__Perpetual__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Required</behavior>
-                <field>APTS_Payment_Terms__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>APTS_Other_Payment_Term__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
