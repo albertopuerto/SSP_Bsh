@@ -466,6 +466,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Apttus__APTS_Agreement__c.chk_DataSecurityReviewed__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Apttus__APTS_Agreement__c.pkl_ETAS_affiliates_covered__c</field>
         <readable>true</readable>
     </fieldPermissions>
