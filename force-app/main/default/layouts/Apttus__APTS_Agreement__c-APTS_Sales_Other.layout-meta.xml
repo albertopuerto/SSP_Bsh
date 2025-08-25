@@ -90,7 +90,7 @@
                 <field>APTS_Internal_Legal_Entity__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Edit</behavior>
+                <behavior>Required</behavior>
                 <field>pkl_ETAS_affiliates_covered__c</field>
             </layoutItems>
             <layoutItems>
@@ -158,14 +158,6 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>APTS_IP_Indemnification__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>APTS_IP_Indemnification_cap__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
                 <field>APTS_ETAS_Products__c</field>
             </layoutItems>
         </layoutColumns>
@@ -203,11 +195,19 @@
                 <behavior>Edit</behavior>
                 <field>APTS_Limitation_of_Liability__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>APTS_Limitation_of_Liability_Description__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>APTS_Limitation_of_Liability_Description__c</field>
+                <field>APTS_IP_Indemnification__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>APTS_IP_Indemnification_cap__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsTopToBottom</style>
@@ -220,6 +220,10 @@
         <layoutColumns>
             <layoutItems>
                 <behavior>Edit</behavior>
+                <field>APTS_Export_Clause_Reviewed__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
                 <field>APTS_Export__c</field>
             </layoutItems>
             <layoutItems>
@@ -228,14 +232,22 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>APTS_Export_Clause_Reviewed__c</field>
+                <field>chk_DataSecurityReviewed__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>APTS_Data_Security__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>APTS_Non_Standard_Data_security_Details__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>APTS_Tax_Clause_Reviewed__c</field>
+            </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>APTS_Tax__c</field>
@@ -243,14 +255,6 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>APTS_Non_Standard_Tax_Details__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>APTS_Tax_Clause_Reviewed__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>APTS_Non_Standard_Data_security_Details__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsTopToBottom</style>

@@ -86,7 +86,7 @@
                 <field>APTS_Internal_Legal_Entity__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Edit</behavior>
+                <behavior>Required</behavior>
                 <field>pkl_ETAS_affiliates_covered__c</field>
             </layoutItems>
             <layoutItems>
@@ -106,6 +106,10 @@
             <layoutItems>
                 <behavior>Readonly</behavior>
                 <field>Apttus__Status__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>APTS_Language__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Required</behavior>
