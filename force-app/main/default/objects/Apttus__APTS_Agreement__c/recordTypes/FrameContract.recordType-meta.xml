@@ -1281,10 +1281,6 @@
     <picklistValues>
         <picklist>Apttus__Agreement_Category__c</picklist>
         <values>
-            <fullName>Corporate</fullName>
-            <default>false</default>
-        </values>
-        <values>
             <fullName>ETAS%2FCEU1</fullName>
             <default>false</default>
         </values>
@@ -1302,14 +1298,6 @@
         </values>
         <values>
             <fullName>ETAS%2FCVW</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>Procurement</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>Sales</fullName>
             <default>false</default>
         </values>
         <values>
