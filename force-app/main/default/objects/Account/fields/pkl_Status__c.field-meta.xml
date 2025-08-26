@@ -8,22 +8,13 @@
     <trackHistory>false</trackHistory>
     <type>Picklist</type>
     <valueSet>
+        <restricted>true</restricted>
         <valueSetDefinition>
             <sorted>false</sorted>
             <value>
-                <fullName>Draft</fullName>
+                <fullName>Bosch Partner Number not Received</fullName>
                 <default>false</default>
-                <label>Draft</label>
-            </value>
-            <value>
-                <fullName>Sent to Athena</fullName>
-                <default>false</default>
-                <label>Sent to Athena</label>
-            </value>
-            <value>
-                <fullName>Error in sending to Athena</fullName>
-                <default>false</default>
-                <label>Error in sending to Athena</label>
+                <label>Bosch Partner Number not Received</label>
             </value>
             <value>
                 <fullName>Created in Athena</fullName>
@@ -31,14 +22,24 @@
                 <label>Created in Athena</label>
             </value>
             <value>
-                <fullName>Bosch Partner Number not Received</fullName>
+                <fullName>Draft</fullName>
                 <default>false</default>
-                <label>Bosch Partner Number not Received</label>
+                <label>Draft</label>
+            </value>
+            <value>
+                <fullName>Error in sending to Athena</fullName>
+                <default>false</default>
+                <label>Error in sending to Athena</label>
             </value>
             <value>
                 <fullName>Received in Athena for BP creation</fullName>
                 <default>false</default>
                 <label>Received in Athena for BP creation</label>
+            </value>
+            <value>
+                <fullName>Sent to Athena</fullName>
+                <default>false</default>
+                <label>Sent to Athena</label>
             </value>
         </valueSetDefinition>
     </valueSet>

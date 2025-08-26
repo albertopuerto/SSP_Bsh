@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>C4C_Territory_ID__c</fullName>
+    <fullName>txt_C4C_Territory_ID__c</fullName>
     <description>Sales Territory ID from C4C application</description>
     <externalId>false</externalId>
     <label>C4C Territory ID</label>

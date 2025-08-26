@@ -4,10 +4,11 @@
     <deprecated>false</deprecated>
     <description>The end date for this agreement</description>
     <externalId>false</externalId>
+    <inlineHelpText>The end date for this agreement</inlineHelpText>
     <label>Agreement End Date</label>
     <required>false</required>
     <trackFeedHistory>false</trackFeedHistory>
-    <trackHistory>false</trackHistory>
+    <trackHistory>true</trackHistory>
     <trackTrending>false</trackTrending>
     <type>Date</type>
 </CustomField>

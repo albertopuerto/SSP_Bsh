@@ -6,6 +6,7 @@
     <externalId>false</externalId>
     <formula>Apttus__Renewal_Notice_Date__c  -   Apttus__Internal_Renewal_Notification_Days__c</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <inlineHelpText>Date by which internal notice of internal renewal is approaching – Issue Renewal Notice Date less internal renewal notification days</inlineHelpText>
     <label>Internal Renewal Start Date</label>
     <required>false</required>
     <trackHistory>false</trackHistory>

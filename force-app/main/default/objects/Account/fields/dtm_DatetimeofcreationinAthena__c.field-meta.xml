@@ -1,14 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>C4C_Territory_Name__c</fullName>
+    <fullName>dtm_DatetimeofcreationinAthena__c</fullName>
+    <description>to store the data and time when the Account is created in Athena</description>
     <externalId>false</externalId>
-    <label>C4C Territory Name</label>
+    <label>Date/time of creation in Athena</label>
     <required>false</required>
     <trackFeedHistory>false</trackFeedHistory>
     <trackHistory>false</trackHistory>
-    <type>Picklist</type>
-    <valueSet>
-        <restricted>true</restricted>
-        <valueSetName>C4C_Territory</valueSetName>
-    </valueSet>
+    <type>DateTime</type>
 </CustomField>

@@ -1560,4 +1560,31 @@
             <default>false</default>
         </values>
     </picklistValues>
+    <picklistValues>
+        <picklist>pkl_Status__c</picklist>
+        <values>
+            <fullName>Bosch Partner Number not Received</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Created in Athena</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Draft</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Error in sending to Athena</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Received in Athena for BP creation</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Sent to Athena</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
 </RecordType>

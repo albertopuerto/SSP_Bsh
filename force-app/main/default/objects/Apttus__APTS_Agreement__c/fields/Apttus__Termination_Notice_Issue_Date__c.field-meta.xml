@@ -4,6 +4,7 @@
     <deprecated>false</deprecated>
     <description>Date termination notice was sent / received</description>
     <externalId>false</externalId>
+    <inlineHelpText>Date termination notice was sent / received</inlineHelpText>
     <label>Termination Notice Issue Date</label>
     <required>false</required>
     <trackFeedHistory>false</trackFeedHistory>

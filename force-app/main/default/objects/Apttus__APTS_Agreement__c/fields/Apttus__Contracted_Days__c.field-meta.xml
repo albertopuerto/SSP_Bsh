@@ -6,6 +6,7 @@
     <externalId>false</externalId>
     <formula>IF(AND(NOT(ISNULL(Apttus__Contract_Start_Date__c )), ISPICKVAL(Apttus__Status_Category__c,&quot;In Effect&quot;)), (TODAY() - Apttus__Contract_Start_Date__c ) + 1, 0)</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <inlineHelpText>Days from Contract Start Date to Current Date if the contract is In Effect and Start Date is set (formula)</inlineHelpText>
     <label>Contracted Days</label>
     <precision>18</precision>
     <required>false</required>
