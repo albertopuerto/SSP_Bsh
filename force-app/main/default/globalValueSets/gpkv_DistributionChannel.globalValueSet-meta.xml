@@ -1,56 +1,68 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <GlobalValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
     <customValue>
-        <fullName>01</fullName>
-        <default>false</default>
-        <label>01</label>
-    </customValue>
-    <customValue>
-        <fullName>10</fullName>
-        <default>false</default>
-        <label>10</label>
-    </customValue>
-    <customValue>
-        <fullName>11</fullName>
-        <default>false</default>
-        <label>11</label>
-    </customValue>
-    <customValue>
-        <fullName>12</fullName>
-        <default>false</default>
-        <label>12</label>
-    </customValue>
-    <customValue>
-        <fullName>13</fullName>
-        <default>false</default>
-        <label>13</label>
-    </customValue>
-    <customValue>
-        <fullName>14</fullName>
-        <default>false</default>
-        <label>14</label>
-    </customValue>
-    <customValue>
-        <fullName>Z1</fullName>
-        <default>false</default>
-        <label>Z1</label>
-    </customValue>
-    <customValue>
         <fullName>A1</fullName>
         <default>false</default>
         <label>A1</label>
     </customValue>
     <customValue>
-        <fullName>F1</fullName>
+        <fullName>B1</fullName>
+        <default>false</default>
+        <label>B1</label>
+    </customValue>
+    <customValue>
+        <fullName>01</fullName>
         <default>false</default>
         <isActive>false</isActive>
-        <label>Intercompany sales</label>
+        <label>01</label>
+    </customValue>
+    <customValue>
+        <fullName>10</fullName>
+        <default>false</default>
+        <isActive>false</isActive>
+        <label>10</label>
+    </customValue>
+    <customValue>
+        <fullName>11</fullName>
+        <default>false</default>
+        <isActive>false</isActive>
+        <label>11</label>
     </customValue>
     <customValue>
         <fullName>F0</fullName>
         <default>false</default>
         <isActive>false</isActive>
         <label>Direct sales</label>
+    </customValue>
+    <customValue>
+        <fullName>13</fullName>
+        <default>false</default>
+        <isActive>false</isActive>
+        <label>13</label>
+    </customValue>
+    <customValue>
+        <fullName>14</fullName>
+        <default>false</default>
+        <isActive>false</isActive>
+        <label>14</label>
+    </customValue>
+    <customValue>
+        <fullName>Z1</fullName>
+        <default>false</default>
+        <isActive>false</isActive>
+        <label>Z1</label>
+    </customValue>
+    <customValue>
+        <fullName>12</fullName>
+        <default>false</default>
+        <isActive>false</isActive>
+        <label>12</label>
+    </customValue>
+    <customValue>
+        <fullName>F1</fullName>
+        <default>false</default>
+        <isActive>false</isActive>
+        <label>Intercompany sales</label>
     </customValue>
     <description>Distinguish different sales methods</description>
     <masterLabel>Distribution Channel</masterLabel>

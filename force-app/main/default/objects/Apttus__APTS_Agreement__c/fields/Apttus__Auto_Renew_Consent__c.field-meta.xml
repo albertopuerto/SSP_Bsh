@@ -5,6 +5,7 @@
     <deprecated>false</deprecated>
     <description>Indicates whether consent is required to extend / renew this agreement</description>
     <externalId>false</externalId>
+    <inlineHelpText>Indicates whether consent is required to extend/renew this agreement</inlineHelpText>
     <label>Renewal Consent</label>
     <trackFeedHistory>false</trackFeedHistory>
     <trackHistory>false</trackHistory>

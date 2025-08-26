@@ -4,6 +4,7 @@
     <deprecated>false</deprecated>
     <description>Date other party returned signed agreement</description>
     <externalId>false</externalId>
+    <inlineHelpText>Date other party returned signed agreement</inlineHelpText>
     <label>Other Party Returned Date</label>
     <required>false</required>
     <trackFeedHistory>false</trackFeedHistory>

@@ -3,7 +3,7 @@
     <fullName>lkp_SalesOrganization__c</fullName>
     <deleteConstraint>Restrict</deleteConstraint>
     <externalId>false</externalId>
-    <label>SalesOrganization</label>
+    <label>Sales Organization</label>
     <referenceTo>SalesArea__c</referenceTo>
     <relationshipLabel>Opportunities</relationshipLabel>
     <relationshipName>Opportunities</relationshipName>

@@ -4,6 +4,7 @@
     <defaultValue>&quot;One&quot;</defaultValue>
     <description>Created for CLM based accelerator</description>
     <externalId>false</externalId>
+    <inlineHelpText>The duration of the agreement from the start date - in years</inlineHelpText>
     <label>Term (Years)</label>
     <required>false</required>
     <trackFeedHistory>false</trackFeedHistory>

@@ -4,6 +4,7 @@
     <deprecated>false</deprecated>
     <description>Specifies any terms for renewal</description>
     <externalId>false</externalId>
+    <inlineHelpText>Specifies any terms for renewal</inlineHelpText>
     <label>Renewal Terms</label>
     <length>32000</length>
     <trackFeedHistory>false</trackFeedHistory>

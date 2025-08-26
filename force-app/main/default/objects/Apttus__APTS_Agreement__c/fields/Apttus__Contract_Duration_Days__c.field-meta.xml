@@ -6,6 +6,7 @@
     <externalId>false</externalId>
     <formula>IF(AND(ISPICKVAL(Apttus__Status_Category__c,&quot;In Effect&quot;), (Apttus__Contract_End_Date__c &gt;= Apttus__Contract_Start_Date__c)),  (Apttus__Contract_End_Date__c - Apttus__Contract_Start_Date__c) + 1 , 0)</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <inlineHelpText>The duration from Start Date to End Date in days (formula)</inlineHelpText>
     <label>Contract Duration (Days)</label>
     <precision>18</precision>
     <required>false</required>

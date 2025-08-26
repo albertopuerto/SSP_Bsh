@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>pkl_BillingBlockforCustomer__c</fullName>
+    <description>Billing Block of an Account for a certain Sales Area</description>
     <externalId>false</externalId>
     <inlineHelpText>Indicates if further billing activities are blocked for the customer. The block applies throughout the specified sales area. If you enter a blocking indicator, billing that is already underway is continued. However, you cannot process the document further.</inlineHelpText>
     <label>Billing Block for Customer</label>
