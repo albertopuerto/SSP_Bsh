@@ -156,6 +156,7 @@
     </quickActionList>
     <relatedLists>
         <excludeButtons>MassChangeOwner</excludeButtons>
+        <excludeButtons>New</excludeButtons>
         <fields>NAME</fields>
         <fields>Opportunity.NAME</fields>
         <fields>Opportunity.OPP_AMOUNT</fields>
