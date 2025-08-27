@@ -4,6 +4,7 @@
     <deprecated>false</deprecated>
     <description>Indicates the duration in months of the contract from the start date</description>
     <externalId>false</externalId>
+    <inlineHelpText>Indicates the duration in months of the contract from the start date</inlineHelpText>
     <label>Term (Months)</label>
     <precision>4</precision>
     <required>false</required>

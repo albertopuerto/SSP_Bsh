@@ -16,12 +16,7 @@
     </userPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Account.C4C_Territory_ID__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>Account.C4C_Territory_Name__c</field>
+        <field>Account.dtm_DatetimeofcreationinAthena__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -36,6 +31,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Account.pkl_C4C_Territory_Name__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Account.pkm_BoschPartnerRole__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -43,6 +43,11 @@
         <editable>false</editable>
         <readable>false</readable>
         <field>Account.txt_AthenaUUID__c</field>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Account.txt_C4C_Territory_ID__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -187,6 +192,16 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Apttus__APTS_Agreement__c.Bosch_Privacy_Agreement_Name__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Apttus__APTS_Agreement__c.chk_DataSecurityReviewed__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Apttus__APTS_Agreement__c.pkl_ETAS_affiliates_covered__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>

@@ -167,7 +167,7 @@
     </nameField>
     <pluralLabel>Agreements</pluralLabel>
     <recordTypeTrackFeedHistory>false</recordTypeTrackFeedHistory>
-    <recordTypeTrackHistory>false</recordTypeTrackHistory>
+    <recordTypeTrackHistory>true</recordTypeTrackHistory>
     <searchLayouts>
         <customTabListAdditionalFields>Apttus__FF_Agreement_Number__c</customTabListAdditionalFields>
         <customTabListAdditionalFields>Apttus__Account__c</customTabListAdditionalFields>

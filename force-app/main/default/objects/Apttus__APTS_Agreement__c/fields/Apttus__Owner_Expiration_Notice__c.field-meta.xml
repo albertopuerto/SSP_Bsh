@@ -4,6 +4,7 @@
     <deprecated>false</deprecated>
     <description>To indicate the number of days prior to expiration date that a notification needs to be sent to the owner</description>
     <externalId>false</externalId>
+    <inlineHelpText>To indicate the number of days prior to expiration date that a notification needs to be sent to the owner</inlineHelpText>
     <label>Owner Expiration Notice</label>
     <required>false</required>
     <trackFeedHistory>false</trackFeedHistory>

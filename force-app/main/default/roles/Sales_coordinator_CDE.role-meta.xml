@@ -5,5 +5,5 @@
     <mayForecastManagerShare>false</mayForecastManagerShare>
     <name>Sales coordinator CDE</name>
     <opportunityAccessLevel>Edit</opportunityAccessLevel>
-    <parentRole>Sales_Manager_CDE</parentRole>
+    <parentRole>Global_Customer_Team_Lead_CDE</parentRole>
 </Role>

@@ -1,6 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <SharingRules xmlns="http://soap.sforce.com/2006/04/metadata">
     <sharingCriteriaRules>
+        <fullName>CA_EU_ALL_Agreements</fullName>
+        <accessLevel>Edit</accessLevel>
+        <description>Can access all agreements from ETAS/CDE; ETAS/CVW; ETAS/CRB; ETAS/CEU1; ETAS/CEU2; ETAS/CRN/-CJL</description>
+        <label>CA_EU ALL Agreements</label>
+        <sharedTo>
+            <group>CA_EU_Agreements</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>Apttus__Agreement_Category__c</field>
+            <operation>equals</operation>
+            <value>ETAS/CDE,ETAS/CEU1,ETAS/CVW,ETAS/CEU2,ETAS/CRN/-CJL,ETAS/CRB</value>
+        </criteriaItems>
+        <includeRecordsOwnedByAll>true</includeRecordsOwnedByAll>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
         <fullName>CDE_Edit_and_View</fullName>
         <accessLevel>Edit</accessLevel>
         <description>Sales CDE Team can access Agreements from Category Sales DE</description>

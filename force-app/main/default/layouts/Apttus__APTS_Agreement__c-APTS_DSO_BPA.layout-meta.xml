@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Layout xmlns="http://soap.sforce.com/2006/04/metadata">
     <customButtons>Apttus__AgreementHierarchy</customButtons>
-    <excludeButtons>OpenSlackRecordChannel</excludeButtons>
     <excludeButtons>Share</excludeButtons>
     <excludeButtons>Submit</excludeButtons>
     <feedLayout>
@@ -58,7 +57,7 @@
                 <field>APTS_Record_Type_Name__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Edit</behavior>
+                <behavior>Required</behavior>
                 <field>Apttus__Agreement_Category__c</field>
             </layoutItems>
             <layoutItems>
@@ -68,6 +67,10 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>APTS_Agreement_Number_Old__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>pkl_ETAS_affiliates_covered__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>

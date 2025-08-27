@@ -4,6 +4,7 @@
     <deprecated>false</deprecated>
     <description>Notice period prior to termination</description>
     <externalId>false</externalId>
+    <inlineHelpText>Notice period prior to termination</inlineHelpText>
     <label>Termination Notice Days</label>
     <precision>4</precision>
     <required>false</required>

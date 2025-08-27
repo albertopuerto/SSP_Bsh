@@ -4,6 +4,7 @@
     <deprecated>false</deprecated>
     <description>Notification period prior to Renewal Notice Date when notification is sent out internally that renewal is approaching</description>
     <externalId>false</externalId>
+    <inlineHelpText>Notification period prior to Renewal Notice Date when notification is sent out internally that renewal is approaching</inlineHelpText>
     <label>Internal Renewal Notification Days</label>
     <precision>4</precision>
     <required>false</required>
