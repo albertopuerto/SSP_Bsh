@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>txt_PartnerFunction__c</fullName>
+    <caseSensitive>false</caseSensitive>
+    <description>Unique field to prevent duplicate records</description>
     <externalId>false</externalId>
     <label>Partner Function</label>
     <length>2</length>
-    <required>false</required>
+    <required>true</required>
     <trackTrending>false</trackTrending>
     <type>Text</type>
-    <unique>false</unique>
+    <unique>true</unique>
 </CustomField>
