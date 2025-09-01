@@ -3,9 +3,6 @@
     <fullName>RolesRequired</fullName>
     <active>true</active>
     <description>Ensures at least one role is selected for Account Contact Relationship</description>
-    <errorConditionFormula>AND(
-  ISBLANK(Roles),
-  NOT(ISNEW())
-)</errorConditionFormula>
+    <errorConditionFormula>ISBLANK(Roles)</errorConditionFormula>
     <errorMessage>At least one role needs to be selected</errorMessage>
 </ValidationRule>
