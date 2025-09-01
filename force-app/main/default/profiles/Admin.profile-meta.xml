@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <Profile xmlns="http://soap.sforce.com/2006/04/metadata">
     <custom>false</custom>
     <userLicense>Salesforce</userLicense>
@@ -19054,6 +19054,9 @@
     </layoutAssignments>
     <layoutAssignments>
         <layout>FeedItem-Feed Item Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>FlowRecord-Flow Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
         <layout>FurtherPriceInformation__c-Further Price Information Layout</layout>
