@@ -1,4 +1,4 @@
-public with sharing class pathOpportunityFieldManager {
+public with sharing class PathOpportunityFieldManager {
    
     @AuraEnabled 
    public static List<String>  getFieldList (String objectStep){

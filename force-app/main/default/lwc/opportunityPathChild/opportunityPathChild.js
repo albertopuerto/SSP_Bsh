@@ -9,26 +9,18 @@ export default class OpportunityPathChild extends LightningElement {
     @api objecttype;
     @api guidance;
 
-    @track fieldList =[];
     @track isModeEdition = false;
+    
+    fieldList =[];
+    
+    connectedCallback() {
+        this.loadFields();
+    }
 
-    @api
-    getObjectFieldList(){
-
-    setTimeout(() => {
-
-      this.fieldList= [];
-
-        getFieldList({objectStep: this.fields})
-                    .then(result => {
-                
-                       this.fieldList= result;
-                   
-                    }).catch((error) => {
-                  
-                        console.error("Error in retrieve:", error);
-                    });
-     }, 1500);
+    loadFields() {
+    getFieldList({ objectStep: this.fields })
+        .then(result => { this.fieldList = result; })
+        .catch(error => { console.error('Error in retrieve:', error); });
     }
     
     enableEdition(event){

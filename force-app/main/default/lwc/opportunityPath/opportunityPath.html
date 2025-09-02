@@ -1,111 +1,81 @@
 <template>
-    <div style="background-color:white;">
-    <div class="slds-path" style="padding: 10px">
-        <div class="slds-grid slds-path__track">
-            <div class="slds-grid slds-path__scroller-container">
-                <!--button class="slds-button slds-button_icon slds-button_icon-border-filled slds-path__trigger" title="Toggle Sales Coaching" aria-expanded="false" aria-controls="path-coaching-1">
-                    <svg class="slds-button__icon" aria-hidden="true">
-                        <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#chevronright"></use>
-                    </svg>
-                    <span class="slds-assistive-text">Show Details</span>
-                </button-->
-                <template if:false={expandFields}>
-                <lightning-button-icon data-id="chevron-right" icon-name="utility:chevronright" style="padding-right: 15px" disabled = true></lightning-button-icon>
-                </template>
-                <template if:true={expandFields}>
-                <lightning-button-icon data-id="chevron-down" icon-name="utility:chevrondown" style="padding-right: 15px" disabled = true></lightning-button-icon>
-                </template>
-                <div class="slds-path__scroller">
-                    <div class="slds-path__scroller_inner">
-                        <ul class="slds-path__nav" role="listbox" aria-orientation="horizontal" aria-labelledby="slds-path__stage-name">
-                            <!--template-->
-                            <!--li class="slds-path__item">
-                            <lightning-button-icon icon-name="utility:chevronup"></lightning-button-icon></li-->
-                            <template for:each={statusList} for:item="OpportunityStage">
-                                <!--li class="slds-path__item slds-is-current" role="presentation" key={OpportunityStage.label}-->
-                                    <li class="slds-path__item slds-is-incomplete" role="presentation" key={OpportunityStage.label} onclick={selectStage} data-id={OpportunityStage.label}>
-                                    <a aria-selected="true" class="slds-path__link" href="#" id="path-1" role="option"
-                                        tabindex="0">
-                                        <span class="slds-path__stage">
-                                       <svg class="slds-icon slds-icon_x-small" aria-hidden="true">
-                                          <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#check"></use>
-                                       </svg>
-                                       <span class="slds-assistive-text">Current Stage:</span>
-                                        </span>
-                                        <span class="slds-path__title" >{OpportunityStage.label}</span>
-                                    </a>
-                                </li>  
-                                </template>
-                        
-                        </ul>
+    <template if:true={showPath}>
+        <div style="background-color:white;">
+            <div class="slds-path" style="padding: 10px">
+                <div class="slds-grid slds-path__track">
+                    <div class="slds-grid slds-path__scroller-container">
+                        <lightning-button-icon icon-name={chevronIcon} disabled={disableChevronIcon} style="padding-right: 15px" onclick={expandPath}></lightning-button-icon>
+                        <div class="slds-path__scroller">
+                            <div class="slds-path__scroller_inner">
+                                <ul class="slds-path__nav" role="listbox" aria-orientation="horizontal" aria-labelledby="slds-path__stage-name">
+                                    <template for:each={statusList} for:item="OpportunityStage">
+                                        <li class={OpportunityStage.className} role="presentation" key={OpportunityStage.label} onclick={selectStage} data-id={OpportunityStage.label}>
+                                            <a aria-selected="true" class="slds-path__link" href="#" id={OpportunityStage.label} role="option" tabindex="0">
+                                                <span class="slds-path__stage">
+                                                    <lightning-icon icon-name="utility:check" alternative-text="check" size="xx-small" class="slds-button__icon slds-button__icon_left" variant="inverse"></lightning-icon>
+                                                    <span class="slds-assistive-text">Current Stage:</span>
+                                                </span>
+                                                <span class="slds-path__title">{OpportunityStage.label}</span>
+                                            </a>
+                                        </li>
+                                    </template>
+
+                                </ul>
+                            </div>
+                        </div>
                     </div>
-                 </div>
-           </div>
-           <div class="slds-grid slds-path__action">
-        <span id="slds-path__stage-name" class="slds-path__stage-name">Stage: Sales Chance (New)</span>
-        <button class="slds-button slds-button_brand slds-path__mark-complete">
-            <svg class="slds-button__icon slds-button__icon_left" aria-hidden="true">
-                <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#check"></use>
-            </svg>Mark Stage as Complete</button>
-        <button class="slds-button slds-button_neutral slds-path__trigger-coaching-content" aria-expanded="false" aria-controls="path-coaching-1">Show More</button>
-      </div>
+                    <div class="slds-grid slds-path__action">
+                        <span id="slds-path__stage-name" class="slds-path__stage-name">Stage: Sales Chance (New)</span>
+                        <button class="slds-button slds-button_brand slds-path__mark-complete" onclick={onSubmitStageClick}>
+                            <lightning-icon if:true={isSelectedCurrent} icon-name="utility:check" alternative-text="check" size="xx-small" class="slds-button__icon slds-button__icon_left" variant="inverse"></lightning-icon>
+                            {completeButtonText}
+                        </button>                        
+                        <button class="slds-button slds-button_neutral slds-path__trigger-coaching-content" aria-expanded="false" aria-controls="path-coaching-1">Show More</button>
+                    </div>
 
-        </div>
-    </div>
-
-    
-    <c-opportunity-path-child objecttype={objectApiName} fields={fieldList} guidance={stageguidance} oppid ={recordId}></c-opportunity-path-child>
-</div>
-    <!--LLamada componente hijo-->
-
-    <template if:true={openClosingOpportunity}>
-            <section role="dialog" tabindex="-1" aria-labelledby="" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
-            <div style="width:1000px;" class="slds-modal__container">
-                <!-- modal header start -->
-                <header class="slds-modal__header" style="border-top-left-radius: 20px; border-top-right-radius: 20px;">
-                    <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close" onclick={hideModalDelete}>
-                        <lightning-icon icon-name="utility:close"
-                        alternative-text="close"
-                        variant="inverse"
-                        size="small" ></lightning-icon>
-                        <span class="slds-assistive-text">Close</span>
-                    </button>
-                    <h1 id="" class="slds-text-heading_medium slds-hyphenate">Close This Opportunity</h1>
-                </header>
-            
-                <!-- modal body start -->
-                <div class="slds-modal__content slds-p-around_medium" id="modal-staffingCreationContent">
-                    <lightning-combobox
-                        name="stagesPicklist"
-                        label="Stage"
-                        value={selectedStage}
-                        placeholder="Select the role"
-                        options={closedStagesList}
-                        onchange={onCloseStatusSelected}
-                        required>
-                    </lightning-combobox>
-                
-                    <template if:true = {showCloseReason}>
-                        <lightning-combobox
-                            name="lostReason"
-                            label="Lost Reason"
-                            value={closeReasonSelected}
-                            options={closeReasons}
-                            required>
-                        </lightning-combobox>
-                        <lightning-input required value={selectedDescription} type="text" name="input1" label="Lost Reason Description:" onchange={onFilterStartDateChange}></lightning-input>
-                    </template>
                 </div>
-                <!-- modal footer start-->
-                <footer class="slds-modal__footer" style="border-bottom-left-radius: 20px; border-bottom-right-radius: 20px;">
-                    <lightning-button label="Close" title="Cancel" onclick={hideModalStaffingCreation} class="slds-m-left_x-small"></lightning-button>
-                </footer>
-            
             </div>
+
+            <template if:true={showStageDetails}>
+                <c-opportunity-path-child objecttype={objectApiName} fields={fieldList} guidance={stageguidance} oppid={recordId}></c-opportunity-path-child>
+            </template>
+        </div>
+
+
+        <template if:true={openClosingOpportunity}>
+            <section role="dialog" tabindex="-1" aria-labelledby="" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open" onclick={cancelClosingOpportunity}>
+                <div style="width:1000px;" class="slds-modal__container" onclick={stopPropagation}>
+                    <!-- modal header start -->
+                    <header class="slds-modal__header"
+                        style="border-top-left-radius: 20px; border-top-right-radius: 20px;">
+                        <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close" onclick={cancelClosingOpportunity}>
+                            <lightning-icon icon-name="utility:close" alternative-text="close" variant="inverse" size="small"></lightning-icon>
+                            <span class="slds-assistive-text">Close</span>
+                        </button>
+                        <h1 id="" class="slds-text-heading_medium slds-hyphenate">Close This Opportunity</h1>
+                    </header>
+
+                    <!-- modal body start -->
+                    <div class="slds-modal__content slds-p-around_medium" id="modal-staffingCreationContent">
+                        <lightning-combobox name="stagesPicklist" label="Stage" value={selectedStage} placeholder="Select the role" options={closedStagesList} onchange={onCloseStatusSelected} required>
+                        </lightning-combobox>
+
+                        <template if:true={showCloseReason}>
+                            <lightning-combobox name="lossReason" label="Loss Reason" value={closeLossReasonSelected} options={closeReasons} required>
+                            </lightning-combobox>
+                            <lightning-input required value={closeLossDescription} type="text" name="input1" onchange={onLossDescriptionChange}
+                                label="Loss Reason Description:"></lightning-input>
+                        </template>
+                    </div>
+                    <!-- modal footer start-->
+                    <footer class="slds-modal__footer" style="border-bottom-left-radius: 20px; border-bottom-right-radius: 20px;">
+                        <lightning-button label="Cancel" title="Cancel" onclick={cancelClosingOpportunity} class="slds-m-left_x-small"></lightning-button>
+                        <lightning-button label="Save" title="Save" onclick={saveClosingOpportunity} class="slds-m-left_x-small"></lightning-button>
+                    </footer>
+
+                </div>
             </section>
             <div class="slds-backdrop slds-backdrop_open"></div>
 
-            
-
         </template>
-</template>
+    </template>

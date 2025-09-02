@@ -1,4 +1,4 @@
-public with sharing class pathOpportunityCallout {
+public with sharing class PathOpportunityCallout {
     
        public static String getOpportunityPath(String recordTypeName){
 
