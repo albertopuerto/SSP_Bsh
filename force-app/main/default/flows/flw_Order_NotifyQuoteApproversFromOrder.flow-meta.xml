@@ -68,7 +68,7 @@
             <assignToReference>col_Recipients</assignToReference>
             <operator>Add</operator>
             <value>
-                <elementReference>Loop_Approvals.sbaa__Approver__r.OwnerId</elementReference>
+                <elementReference>Loop_Approvals.sbaa__Approver__r.sbaa__User__r.Id</elementReference>
             </value>
         </assignmentItems>
         <connector>

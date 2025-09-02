@@ -24,9 +24,47 @@
             </value>
         </inputParameters>
         <nameSegment>chatterPost</nameSegment>
+        <offset>0</offset>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </actionCalls>
+    <actionCalls>
+        <name>Log_Quote_Missing_Values_Error</name>
+        <label>Log Quote Missing Values Error</label>
+        <locationX>314</locationX>
+        <locationY>1271</locationY>
+        <actionName>FlowLogEntry</actionName>
+        <actionType>apex</actionType>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>flowName</name>
+            <value>
+                <stringValue>flw_Quote_AfterUpdate</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>loggingLevelName</name>
+            <value>
+                <stringValue>ERROR</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>message</name>
+            <value>
+                <stringValue>Quote missing values error displayed  </stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>tagsString</name>
+            <value>
+                <stringValue>missing-values</stringValue>
+            </value>
+        </inputParameters>
+        <nameSegment>FlowLogEntry</nameSegment>
+        <offset>0</offset>
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </actionCalls>
     <apiVersion>60.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
     <assignments>
         <name>asgn_ChatterPostEnd</name>
         <label>Assign Chatter Post End</label>
@@ -94,6 +132,9 @@
         <label>Quote missing values</label>
         <locationX>314</locationX>
         <locationY>1163</locationY>
+        <connector>
+            <targetReference>Log_Quote_Missing_Values_Error</targetReference>
+        </connector>
         <customErrorMessages>
             <errorMessage>Quote needs to be marked as primary &amp; in status &quot;presented&quot; and needs to have quote lines before it can be ordered.</errorMessage>
             <isFieldError>false</isFieldError>
@@ -227,12 +268,6 @@
         <connector>
             <targetReference>Create_Price_Elements</targetReference>
         </connector>
-        <inputAssignments>
-            <field>SBQQ__Ordered__c</field>
-            <value>
-                <booleanValue>true</booleanValue>
-            </value>
-        </inputAssignments>
         <inputAssignments>
             <field>SBQQ__Status__c</field>
             <value>
