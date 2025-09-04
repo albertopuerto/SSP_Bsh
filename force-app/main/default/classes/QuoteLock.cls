@@ -71,6 +71,10 @@ public class QuoteLock extends fflib_SObjectDomain {
     /**
      * @description Validates that only exempt fields are being modified
      */
+    @TestVisible
+    private void testValidateQuoteModifications(SBQQ__Quote__c newQuote, SBQQ__Quote__c oldQuote, Set<String> exemptFields) {
+    validateQuoteModifications(newQuote, oldQuote, exemptFields);
+     }
     private void validateQuoteModifications(SBQQ__Quote__c newQuote, SBQQ__Quote__c oldQuote, Set<String> exemptFields) {
         for (String fieldName : newQuote.getSObjectType().getDescribe().fields.getMap().keySet()) {
             if (!exemptFields.contains(fieldName) && newQuote.get(fieldName) != oldQuote.get(fieldName)) {
