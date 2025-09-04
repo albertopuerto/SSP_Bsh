@@ -22,7 +22,7 @@ private class QuoteLockTriggerTest {
             SalesArea__c salesArea = new SalesArea__c(
             pkl_DistributionChannel__c = 'A1',
             pkl_Division__c = '01',
-            pkl_SalesOrg__c = '0001'
+            pkl_SalesOrg__c = 'DEM5'
         );
         insert salesArea;        
         // Create Opportunity with required lookup field
