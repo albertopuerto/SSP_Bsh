@@ -41,7 +41,7 @@ public class QuoteLock extends fflib_SObjectDomain {
             for (SBQQ__Quote__c newQuote : getQuotes()) {
                 SBQQ__Quote__c oldQuote = (SBQQ__Quote__c) existingRecords.get(newQuote.Id);
                 
-                if (isQuoteLocked(newQuote)) {
+                if (isQuoteLocked(oldQuote)) {
                     Logger.debug('Processing locked quote: ' + newQuote.Id + ' with status: ' + newQuote.SBQQ__Status__c);
                     validateQuoteModifications(newQuote, oldQuote, exemptFields);
                 } else {
