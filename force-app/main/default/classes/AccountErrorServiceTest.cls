@@ -39,6 +39,72 @@ public class AccountErrorServiceTest {
         System.assertNotEquals(responseString, null, 'Response should not be null');
         System.assertNotEquals(responseString, '', 'Response should not be empty');
     }
+     @IsTest
+    static void testNonApiGatewayError() {
+        // Create a test Account using TestFactory
+        Account[] testAccountList = (Account[])TestFactory.createSObjectList(new Account(), 1);
+        testAccountList[0].pkl_Status__c = 'Sent to Athena';
+        insert testAccountList;
+        Account testAccount = testAccountList[0];
+        
+        // Prepare test request body for non-API Gateway error (500) - this will cover lines 35-65
+        String requestBody = '{"businessPartnerCreateError": {' +
+            '"Id": "' + testAccount.Id + '",' +
+            '"Status Code": "500",' +
+            '"Status Text": "Creation of Business Partner in Athena Failed",' +
+            '"CorrelationId": "test-correlation-123"' +
+        '}}';
+        
+        Test.startTest();
+        // Call the AccountErrorService method
+        String responseString = AccountErrorService.handlePostRequest(requestBody);
+        Test.stopTest();
+        
+        // Parse response (RESP5 format)
+        Map<String, Object> response = (Map<String, Object>) JSON.deserializeUntyped(responseString);
+        
+        // Assert that the response matches expected RESP5 format
+        System.assertEquals('0', response.get('errorcode'), 'Error code should be 0 for success');
+        System.assertEquals('Error processed successfully', response.get('errorMessage'), 'Success message should match');
+        System.assertEquals('test-correlation-123', response.get('correlationId'), 'CorrelationId should match');
+        System.assertEquals(String.valueOf(testAccount.Id), response.get('Id'), 'Account Id should match');
+        
+        // Verify account status was updated to "Error in sending to Athena"
+        Account updatedAccount = [SELECT pkl_Status__c FROM Account WHERE Id = :testAccount.Id];
+        System.assertEquals('Error in sending to Athena', updatedAccount.pkl_Status__c, 'Account status should be updated to Error in sending to Athena');
+        
+        // Verify that the response is not empty
+        System.assertNotEquals(responseString, null, 'Response should not be null');
+        System.assertNotEquals(responseString, '', 'Response should not be empty');
+    }
+    @IsTest
+    static void testApiGatewayError() {
+        // Create a test Account using TestFactory
+        Account[] testAccountList = (Account[])TestFactory.createSObjectList(new Account(), 1);
+        testAccountList[0].pkl_Status__c = 'Sent to Athena';
+        insert testAccountList;
+        Account testAccount = testAccountList[0];
+        
+        // Test API Gateway error (400)
+        String requestBody = '{"businessPartnerCreateError": {' +
+            '"Id": "' + testAccount.Id + '",' +
+            '"Status Code": "400",' +
+            '"Status Text": "Mandatory field not present",' +
+            '"CorrelationId": "test-correlation-400"' +
+        '}}';
+        
+        Test.startTest();
+        String responseString = AccountErrorService.handlePostRequest(requestBody);
+        Test.stopTest();
+        
+        // Parse response
+        Map<String, Object> response = (Map<String, Object>) JSON.deserializeUntyped(responseString);
+        
+        // Assert successful processing
+        System.assertEquals('0', response.get('errorcode'), 'Error code should be 0 for 400 error');
+        System.assertEquals('Error processed successfully', response.get('errorMessage'), 'Success message should match');
+        System.assertEquals('test-correlation-400', response.get('correlationId'), 'CorrelationId should match');
+    }
     
     @IsTest
     static void testMultipleAccountsProcessing() {
