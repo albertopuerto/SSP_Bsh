@@ -269,6 +269,12 @@
             <targetReference>Create_Price_Elements</targetReference>
         </connector>
         <inputAssignments>
+            <field>SBQQ__Ordered__c</field>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
             <field>SBQQ__Status__c</field>
             <value>
                 <stringValue>Accepted</stringValue>
