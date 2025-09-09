@@ -95,7 +95,8 @@ public with sharing class TestFactoryDefaults{
             Opportunity.CurrencyIsoCode => 'EUR',                            
             Opportunity.pklLeadingSolutionField__c => 'DAP',                 
             Opportunity.pklTypeOfOffering__c => 'SW',                        
-            Opportunity.pklTypeOfOpportunity__c => 'Long Term Agreement' 
+            Opportunity.pklTypeOfOpportunity__c => 'LTA',
+            Opportunity.lkp_SalesOrganization__c => null
 			};
 		}
 	}
@@ -162,7 +163,7 @@ public with sharing class TestFactoryDefaults{
 		 */
 		public Map<Schema.SObjectField, Object> getFieldDefaults() {
             return new Map<Schema.SObjectField, Object>{
-                SBQQ__Quote__c.Name => 'Test Standard Quote'
+                SBQQ__Quote__c.SBQQ__Type__c	 => 'Quote'
                 
                 
                 
