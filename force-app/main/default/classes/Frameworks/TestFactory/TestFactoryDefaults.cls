@@ -57,6 +57,27 @@ public with sharing class TestFactoryDefaults{
 			};
 		}
 	}
+    /**
+	* @author       APC
+	* @description  OrderDefaults constructor
+	*/
+	public class OrderDefaults implements TestFactory.FieldDefaults {
+		/**
+		* @author       APC
+		* @description  define contact getFieldDefaults()
+		* @return		Map<Schema.SObjectField, Object>
+		*/
+		public Map<Schema.SObjectField, Object> getFieldDefaults() {
+			return new Map<Schema.SObjectField, Object> {
+					Order.Status => 'Draft',
+					Order.EffectiveDate => Date.today(),
+                    Order.pkl_INCOTerms1__c => 'CPT - Carriage Paid To',
+                    Order.pkl_PaymentTerms__c=> 'Due on receipt',
+                    Order.CurrencyIsoCode=> 'EUR'
+			};
+		}
+	}
+
 
 	/**
 	* @author       APC

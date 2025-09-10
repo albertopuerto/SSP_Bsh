@@ -922,6 +922,12 @@
     <flexiPageRegions>
         <itemInstances>
             <componentInstance>
+                <componentName>creditLimit</componentName>
+                <identifier>c_creditLimit</identifier>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
                 <componentInstanceProperties>
                     <name>hideHeader</name>
                     <value>true</value>
