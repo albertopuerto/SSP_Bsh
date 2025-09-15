@@ -98,6 +98,7 @@ export default class creditLimit extends LightningElement {
      this.getOrderCreditLimit();
     }, 500);
    
+    //this.getAuthorizationToken();
     
     }
 

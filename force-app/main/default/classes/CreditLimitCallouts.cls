@@ -68,7 +68,7 @@ public with sharing class CreditLimitCallouts {
 
         if(isQuote){
 
-        	request.setEndpoint('callout:creditLimitCheck_usernamePass');
+        	request.setEndpoint('callout:creditLimitCheckOuathCallout');
                 
             if(quoteToCalculate.SBQQ__Status__c == 'Accepted'){
 
@@ -79,7 +79,7 @@ public with sharing class CreditLimitCallouts {
                 
          }else if(isOrder){
              
-         	 request.setEndpoint('callout:creditLimitCheck_usernamePass');
+         	 request.setEndpoint('callout:creditLimitCheckOuathCallout');
                 
              String bodyWrapper = JSON.serialize(CreditLimitWrapperManager.createCreditWorthinessRequest(orgId,orderToCalculate.Current_Credit_Limit_including_VAT__c,orderToCalculate.CurrencyIsoCode,orderToCalculate.Account.txt_AthenaUUID__c));
               
@@ -87,7 +87,7 @@ public with sharing class CreditLimitCallouts {
               
          }else if(isAccount){   
              
-         	request.setEndpoint('callout:creditLimitAccount_usernamePass');
+         	request.setEndpoint('callout:creditLimitAccountOuathCallout');
                 
             String bodyWrapper = JSON.serialize(CreditLimitWrapperManager.createAccountRequest(orgId,actualAccount.BillingCountry,actualAccount.txt_AthenaUUID__c));
               
