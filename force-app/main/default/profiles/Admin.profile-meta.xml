@@ -9764,6 +9764,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>OrderItem.pkl_OverallProcessedStatus__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>OrderItem.txt_SAPExternalLineItemId__c</field>
         <readable>true</readable>
     </fieldPermissions>
