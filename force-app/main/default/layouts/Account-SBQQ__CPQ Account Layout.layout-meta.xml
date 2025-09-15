@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <Layout xmlns="http://soap.sforce.com/2006/04/metadata">
     <customButtons>SBQQ__Amend_Assets</customButtons>
     <customButtons>SBQQ__Renew_Assets</customButtons>
@@ -56,11 +56,11 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>C4C_Territory_ID__c</field>
+                <field>txt_C4C_Territory_ID__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>C4C_Territory_Name__c</field>
+                <field>pkl_C4C_Territory_Name__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
