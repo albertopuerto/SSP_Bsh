@@ -34,6 +34,7 @@
             </value>
         </inputParameters>
         <nameSegment>FlowLogEntry</nameSegment>
+        <offset>0</offset>
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </actionCalls>
     <actionCalls>
@@ -70,9 +71,11 @@
             </value>
         </inputParameters>
         <nameSegment>FlowLogEntry</nameSegment>
+        <offset>0</offset>
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </actionCalls>
     <apiVersion>55.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
     <decisions>
         <description>Check if auto renew is true</description>
         <name>Check_if_auto_renew_is_true</name>
@@ -117,6 +120,13 @@
                 <operator>LessThanOrEqualTo</operator>
                 <rightValue>
                     <elementReference>$Flow.CurrentDate</elementReference>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Apttus__Contract_End_Date__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
                 </rightValue>
             </conditions>
             <connector>
@@ -236,5 +246,5 @@
         </schedule>
         <triggerType>Scheduled</triggerType>
     </start>
-    <status>Active</status>
+    <status>Draft</status>
 </Flow>
