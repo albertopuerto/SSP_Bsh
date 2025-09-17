@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <PermissionSet xmlns="http://soap.sforce.com/2006/04/metadata">
-    <description>Management of Product Recreating Integration user permissions -MaterialsManagementAPI permission set.</description>
+    <description>Grant CPI integration user permissions over product2 object and related fields. License SalesforceAPIIntegrationPsl</description>
     <fieldPermissions>
         <editable>true</editable>
         <field>Product2.Description</field>
@@ -67,7 +67,8 @@
         <readable>true</readable>
     </fieldPermissions>
     <hasActivationRequired>false</hasActivationRequired>
-    <label>MaterialsManagement</label>
+    <label>MaterialsManagementAPI</label>
+    <license>SalesforceAPIIntegrationPsl</license>
     <objectPermissions>
         <allowCreate>true</allowCreate>
         <allowDelete>false</allowDelete>
