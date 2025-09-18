@@ -78,6 +78,27 @@ public with sharing class TestFactoryDefaults{
 		}
 	}
 
+	/**
+	* @author       APC
+	* @description  OrderItemDefaults constructor
+	*/
+	public class OrderItemDefaults implements TestFactory.FieldDefaults {
+		/**
+		* @author       APC
+		* @description  define orderItems getFieldDefaults()
+		* @return		Map<Schema.SObjectField, Object>
+		*/
+		public Map<Schema.SObjectField, Object> getFieldDefaults() {
+			return new Map<Schema.SObjectField, Object> {
+					OrderItem.txt_SAPExternalLineItemId__c => '123124124'//,
+					/*OrderItem.EffectiveDate => Date.today(),
+                    OrderItem.pkl_INCOTerms1__c => 'CPT - Carriage Paid To',
+                    OrderItem.pkl_PaymentTerms__c=> 'Due on receipt',
+                    OrderItem.CurrencyIsoCode=> 'EUR'*/
+			};
+		}
+	}
+
 
 	/**
 	* @author       APC

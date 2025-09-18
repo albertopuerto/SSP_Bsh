@@ -6,6 +6,7 @@ public class CreditLimitCalloutsTest {
         Account[] testAccountList = (Account[])TestFactory.createSObjectList(new Account(), 1);
         testAccountList[0].CurrencyIsoCode = 'EUR';
         testAccountList[0].txt_AthenaUUID__c='123213123';
+        testAccountList[0].BillingCountry= 'DE';
         insert testAccountList;
         
         SBQQ__Quote__c[] quoteList = (SBQQ__Quote__c [])TestFactory.createSObjectList(new SBQQ__Quote__c(),1);
@@ -16,8 +17,13 @@ public class CreditLimitCalloutsTest {
         insert quoteList;
         
         Order[] orderList = (Order [])TestFactory.createSObjectList(new Order(),1);
+        orderList[0].Status= 'Draft';
         orderList[0].AccountId= testAccountList[0].Id;
         insert orderList;
+
+		OrderItem[] orderItemList = (OrderItem [])TestFactory.createSObjectList(new OrderItem(),1);
+		orderItemList[0].OrderId= orderList[0].Id;
+		insert orderItemList;
     }
 	
     
@@ -26,7 +32,7 @@ public class CreditLimitCalloutsTest {
     	// Set mock callout class
     	
         Account testAccount = [SELECT Id from Account LIMIT 1];
-        SBQQ__Quote__c quoteTest = [SELECT Id,SBQQ__Status__c,Bill_To_Country__c from SBQQ__Quote__c LIMIT 1];
+        SBQQ__Quote__c quoteTest = [SELECT Id,SBQQ__Status__c,Bill_To_Country__c,SBQQ__Account__r.BillingCountry,SBQQ__Account__r.txt_AthenaUUID__c from SBQQ__Quote__c LIMIT 1];
         quoteTest.SBQQ__Status__c='Accepted';
         update quoteTest;
         
@@ -34,7 +40,8 @@ public class CreditLimitCalloutsTest {
     	Test.setMock(HttpCalloutMock.class, new VertexMockClass());
     	// This causes a fake response to be sent
     	// from the class that implements HttpCalloutMock.
-    	HttpResponse response = CreditLimitCallouts.startVertexCallouts(false, true, false, quoteTest.Id, quoteTest, null);
+    	// startVertexCallouts(Boolean isAccount, Boolean isQuote,Boolean isOrder,SBQQ__Quote__c quoteToCalculate,Order orderToCalculate)
+    	HttpResponse response = CreditLimitCallouts.startVertexCallouts(false, true, false, quoteTest, null);
     	// Verify that the response received contains fake values
     	String contentType = response.getHeader('Content-Type');
     	Assert.isTrue(contentType == 'application/json');
@@ -56,7 +63,8 @@ public class CreditLimitCalloutsTest {
         Test.setMock(HttpCalloutMock.class, new CreditLimitMockClass());
     	// This causes a fake response to be sent
     	// from the class that implements HttpCalloutMock.
-    	HttpResponse response = CreditLimitCallouts.startCreditLimitCallouts(true, false, false, testAccount.Id, '1111', null, null, testAccount);
+    	HttpResponse response = CreditLimitCallouts.startCreditLimitCallouts(true, false, false,'1111',null, null, testAccount);
+        
     	// Verify that the response received contains fake values
     	String contentType = response.getHeader('Content-Type');
     	Assert.isTrue(contentType == 'application/json');
@@ -77,7 +85,7 @@ public class CreditLimitCalloutsTest {
     	Test.startTest();
         Test.setMock(HttpCalloutMock.class, new CreditLimitWorthinessMock());
     	
-    	HttpResponse response = CreditLimitCallouts.startCreditLimitCallouts(false, true, false, quoteTest.Id, '1111', quoteTest, null, null);
+    	HttpResponse response = CreditLimitCallouts.startCreditLimitCallouts(false, true, false, '1111', quoteTest, null, null);
     
     	String contentType = response.getHeader('Content-Type');
     	Assert.isTrue(contentType == 'application/json');
@@ -92,14 +100,15 @@ public class CreditLimitCalloutsTest {
         @isTest
 	static void testCreditLimitCalloutOrder() {
     	
-        Order orderTest = [SELECT Id,Current_Credit_Limit_including_VAT__c,CurrencyIsoCode,Account.txt_AthenaUUID__c from Order LIMIT 1];
+        Order orderTest = [SELECT Id,Status,Current_Credit_Limit_including_VAT__c,CurrencyIsoCode,Account.txt_AthenaUUID__c from Order LIMIT 1];
         orderTest.Current_Credit_Limit_including_VAT__c= 10;
+        orderTest.Status= 'Activated';
         update orderTest;
   
     	Test.startTest();
         Test.setMock(HttpCalloutMock.class, new CreditLimitWorthinessMock());
     	
-    	HttpResponse response = CreditLimitCallouts.startCreditLimitCallouts(false, false, true, orderTest.Id, '1111', null, orderTest, null);
+    	HttpResponse response = CreditLimitCallouts.startCreditLimitCallouts(false, false, true,'1111', null, orderTest, null);
         
     
     	String contentType = response.getHeader('Content-Type');
