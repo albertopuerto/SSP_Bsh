@@ -23,7 +23,7 @@
         <inputParameters>
             <name>senderAddress</name>
             <value>
-                <stringValue>ssp.program2@etas.com</stringValue>
+                <stringValue>uwe.adams@de.bosch.com</stringValue>
             </value>
         </inputParameters>
         <inputParameters>
@@ -57,8 +57,10 @@
             </value>
         </inputParameters>
         <nameSegment>emailSimple</nameSegment>
+        <offset>0</offset>
     </actionCalls>
     <apiVersion>62.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
     <decisions>
         <description>Verifies the criteria necessary to warn or not to warn of the change in the account</description>
         <name>Check_for_relevant_Changes</name>
@@ -68,7 +70,7 @@
         <defaultConnectorLabel>Not Relevant</defaultConnectorLabel>
         <rules>
             <name>Changed</name>
-            <conditionLogic>(1 OR 2 OR 3 OR 4 OR 5 OR 6 OR 7 OR 8 OR 9 OR 10 OR 11 OR 12 OR 13 OR 14 OR 15 OR 16) AND 17 AND 18</conditionLogic>
+            <conditionLogic>(1 OR 2 OR 3 OR 4 OR 5 OR 6 OR 7 OR 8 OR 9 OR 10 OR 11 OR 12 OR 13 OR 14 ) AND 15 AND 16</conditionLogic>
             <conditions>
                 <leftValueReference>$Record.Name</leftValueReference>
                 <operator>IsChanged</operator>
@@ -148,20 +150,6 @@
             </conditions>
             <conditions>
                 <leftValueReference>$Record.pkl_PaymentTerms__c</leftValueReference>
-                <operator>IsChanged</operator>
-                <rightValue>
-                    <booleanValue>true</booleanValue>
-                </rightValue>
-            </conditions>
-            <conditions>
-                <leftValueReference>$Record.pkl_INCOTerms1__c</leftValueReference>
-                <operator>IsChanged</operator>
-                <rightValue>
-                    <booleanValue>true</booleanValue>
-                </rightValue>
-            </conditions>
-            <conditions>
-                <leftValueReference>$Record.txt_INCOTerms2__c</leftValueReference>
                 <operator>IsChanged</operator>
                 <rightValue>
                     <booleanValue>true</booleanValue>
