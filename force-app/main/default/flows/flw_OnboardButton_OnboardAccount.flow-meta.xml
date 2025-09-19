@@ -36,6 +36,7 @@
             </value>
         </inputParameters>
         <nameSegment>FlowLogEntry</nameSegment>
+        <offset>0</offset>
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </actionCalls>
     <actionCalls>
@@ -48,6 +49,7 @@
         <actionType>apex</actionType>
         <flowTransactionModel>Automatic</flowTransactionModel>
         <nameSegment>Logger</nameSegment>
+        <offset>0</offset>
     </actionCalls>
     <actionCalls>
         <name>Copy_1_of_Navigate_to_the_Record</name>
@@ -64,6 +66,7 @@
             </value>
         </inputParameters>
         <nameSegment>c:NavigateToTheRecord</nameSegment>
+        <offset>0</offset>
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </actionCalls>
     <actionCalls>
@@ -81,6 +84,7 @@
             </value>
         </inputParameters>
         <nameSegment>c:NavigateToTheRecord</nameSegment>
+        <offset>0</offset>
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </actionCalls>
     <actionCalls>
@@ -98,6 +102,7 @@
             </value>
         </inputParameters>
         <nameSegment>c:NavigateToTheRecord</nameSegment>
+        <offset>0</offset>
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </actionCalls>
     <actionCalls>
@@ -121,6 +126,7 @@
             </value>
         </inputParameters>
         <nameSegment>IF002SAPCPISendAccount.createBusinessPartner</nameSegment>
+        <offset>0</offset>
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </actionCalls>
     <actionCalls>
@@ -131,7 +137,7 @@
         <actionName>chatterPost</actionName>
         <actionType>chatterPost</actionType>
         <connector>
-            <targetReference>Update_Acc_Error</targetReference>
+            <targetReference>Athena_Failed_Message</targetReference>
         </connector>
         <flowTransactionModel>CurrentTransaction</flowTransactionModel>
         <inputParameters>
@@ -147,32 +153,7 @@
             </value>
         </inputParameters>
         <nameSegment>chatterPost</nameSegment>
-        <storeOutputAutomatically>true</storeOutputAutomatically>
-    </actionCalls>
-    <actionCalls>
-        <name>Send_Chatter_Message_500</name>
-        <label>Send Chatter Message 500</label>
-        <locationX>0</locationX>
-        <locationY>0</locationY>
-        <actionName>chatterPost</actionName>
-        <actionType>chatterPost</actionType>
-        <connector>
-            <targetReference>Update_Acc_Error</targetReference>
-        </connector>
-        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
-        <inputParameters>
-            <name>text</name>
-            <value>
-                <stringValue>Error in sending account to Athena. Please contact support and provide the following details: Account Id ({!Create_Account}), correlation Id: ({!requestBody.accountCreate.CorrelationId})</stringValue>
-            </value>
-        </inputParameters>
-        <inputParameters>
-            <name>subjectNameOrId</name>
-            <value>
-                <elementReference>Create_Account</elementReference>
-            </value>
-        </inputParameters>
-        <nameSegment>chatterPost</nameSegment>
+        <offset>0</offset>
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </actionCalls>
     <actionCalls>
@@ -236,8 +217,10 @@
             </value>
         </inputParameters>
         <nameSegment>LogCalloutInformation</nameSegment>
+        <offset>0</offset>
     </actionCalls>
     <apiVersion>64.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
     <assignments>
         <name>Assign_request_Body</name>
         <label>Assign request Body</label>
@@ -350,7 +333,7 @@
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>Send_Chatter_Message</targetReference>
+                <targetReference>Update_Acc_Error</targetReference>
             </connector>
             <label>Error 404</label>
         </rules>
@@ -365,7 +348,7 @@
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>Send_Chatter_Message_500</targetReference>
+                <targetReference>Update_Acc_Error</targetReference>
             </connector>
             <label>Error 500</label>
         </rules>
@@ -409,14 +392,6 @@
         </filters>
         <object>RecordType</object>
         <valueField>Id</valueField>
-    </dynamicChoiceSets>
-    <dynamicChoiceSets>
-        <name>IncotermValues</name>
-        <dataType>Picklist</dataType>
-        <displayField xsi:nil="true" />
-        <object xsi:nil="true" />
-        <picklistField>pkl_INCOTerms1__c</picklistField>
-        <picklistObject>Account</picklistObject>
     </dynamicChoiceSets>
     <dynamicChoiceSets>
         <name>paymentTermValues</name>
@@ -521,12 +496,6 @@
             </value>
         </inputAssignments>
         <inputAssignments>
-            <field>pkl_INCOTerms1__c</field>
-            <value>
-                <elementReference>Incoterm</elementReference>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
             <field>pkl_Language__c</field>
             <value>
                 <elementReference>Account.pkl_Language__c</elementReference>
@@ -550,12 +519,6 @@
                 <elementReference>selectedRoleCode</elementReference>
             </value>
         </inputAssignments>
-        <inputAssignments>
-            <field>txt_INCOTerms2__c</field>
-            <value>
-                <elementReference>Incoterm_Location</elementReference>
-            </value>
-        </inputAssignments>
         <object>Account</object>
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordCreates>
@@ -565,7 +528,7 @@
         <locationX>0</locationX>
         <locationY>0</locationY>
         <connector>
-            <targetReference>Athena_Failed_Message</targetReference>
+            <targetReference>Send_Chatter_Message</targetReference>
         </connector>
         <filterLogic>and</filterLogic>
         <filters>
@@ -686,23 +649,6 @@
             <dataType>String</dataType>
             <fieldText>Payment Terms</fieldText>
             <fieldType>DropdownBox</fieldType>
-            <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
-            <isRequired>true</isRequired>
-        </fields>
-        <fields>
-            <name>Incoterm</name>
-            <choiceReferences>IncotermValues</choiceReferences>
-            <dataType>String</dataType>
-            <fieldText>INCOTERM</fieldText>
-            <fieldType>DropdownBox</fieldType>
-            <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
-            <isRequired>true</isRequired>
-        </fields>
-        <fields>
-            <name>Incoterm_Location</name>
-            <dataType>String</dataType>
-            <fieldText>INCOTERM Location</fieldText>
-            <fieldType>InputField</fieldType>
             <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
             <isRequired>true</isRequired>
         </fields>
