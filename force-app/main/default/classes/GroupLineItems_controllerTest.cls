@@ -7,9 +7,7 @@ private class GroupLineItems_controllerTest {
         Account testAccount = new Account(
             Name = 'Test Account',
             Role__c='ETDE Domestic Customer',
-            pkl_Language__c='English', 
-            pkl_INCOTerms1__c='DAP – Delivered at Place',  
-            txt_INCOTerms2__c = 'Inco Terms',
+            pkl_Language__c='English',
             pkl_PaymentTerms__c = 'Net 15',
             pkm_BoschPartnerRole__c = 'BBCUEX'
 
@@ -121,8 +119,6 @@ private class GroupLineItems_controllerTest {
             EffectiveDate = Date.today(),
             Status = 'Draft',
             Pricebook2Id = standardPricebook.Id,
-            pkl_INCOTerms1__c='DAP – Delivered at Place',  
-            txt_INCOTerms2__c = 'Inco Terms',
             pkl_PaymentTerms__c = 'Net 15'
         );
         insert testOrder;
@@ -137,8 +133,6 @@ private class GroupLineItems_controllerTest {
                 SBQQ__QuoteLine__c = quoteLines[i].Id,
                 Quantity = quoteLines[i].SBQQ__Quantity__c,
                 UnitPrice = 100.00,
-                pkl_INCOTerms1__c='DAP – Delivered at Place',  
-                txt_INCOTerms2__c = 'Inco Terms',
                 pkl_PaymentTerms__c = 'Net 15',
                 pkl_QuantityUnit__c = 'Each'
             ));
