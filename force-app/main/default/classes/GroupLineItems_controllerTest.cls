@@ -13,6 +13,12 @@ private class GroupLineItems_controllerTest {
 
         );
         insert testAccount;
+        SalesArea__c sal = new SalesArea__c(
+            pkl_DistributionChannel__c = 'A1',
+            pkl_Division__c = '01',
+            pkl_SalesOrg__c = '0001'
+        );
+        insert sal;
         
         // Create test opportunity
          Opportunity testOpportunity = new Opportunity(
@@ -22,7 +28,8 @@ private class GroupLineItems_controllerTest {
             CloseDate = Date.today().addDays(30),
             pklTypeOfOpportunity__c = 'LTA',
             pklLeadingSolutionField__c = 'DAP',
-            pklTypeOfOffering__c = 'SW'
+            pklTypeOfOffering__c = 'SW',
+            lkp_SalesOrganization__c = sal.Id
         );
         insert testOpportunity;
         

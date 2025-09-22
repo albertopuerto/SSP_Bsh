@@ -13,7 +13,7 @@ public class QuoteLineEmailController_Test {
         insert testAccount;
         
         SalesArea__c sal = new SalesArea__c(
-            pkl_DistributionChannel__c = '01',
+            pkl_DistributionChannel__c = 'A1',
             pkl_Division__c = '01',
             pkl_SalesOrg__c = '0001'
         );

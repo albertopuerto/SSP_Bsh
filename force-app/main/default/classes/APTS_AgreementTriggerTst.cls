@@ -18,6 +18,13 @@ private class APTS_AgreementTriggerTst {
     testAcc.pkl_PaymentTerms__c = 'Net 15';
     insert testAcc;
     
+    SalesArea__c sal = new SalesArea__c(
+            pkl_DistributionChannel__c = 'A1',
+            pkl_Division__c = '01',
+            pkl_SalesOrg__c = '0001'
+        );
+        insert sal;
+    
     Opportunity opp = new Opportunity();
     opp.Name ='testOpptyforTestClass';
     opp.CloseDate = system.today()+4;
@@ -26,7 +33,7 @@ private class APTS_AgreementTriggerTst {
     opp.pklTypeOfOpportunity__c = 'LTA';
     opp.pklLeadingSolutionField__c = 'DAP';
     opp.AccountId = testAcc.Id;
-    
+    opp.lkp_SalesOrganization__c = sal.Id;
     insert opp;
     
     APTS_integration_Allowed__c obj = new APTS_integration_Allowed__c(Name = 'Integration_Allowed', APTS_Allow_Callout__c = true);
