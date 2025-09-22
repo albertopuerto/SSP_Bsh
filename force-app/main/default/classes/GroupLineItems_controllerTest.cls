@@ -143,7 +143,9 @@ private class GroupLineItems_controllerTest {
                 Quantity = quoteLines[i].SBQQ__Quantity__c,
                 UnitPrice = 100.00,
                 pkl_PaymentTerms__c = 'Net 15',
-                pkl_QuantityUnit__c = 'Each'
+                pkl_QuantityUnit__c = 'Each',
+                pkl_INCOTerms1__c='DAP – Delivered at Place',  
+                txt_INCOTerms2__c = 'Inco Terms'
             ));
         }
         insert orderItems;
