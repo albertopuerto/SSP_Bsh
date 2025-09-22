@@ -126,7 +126,9 @@ private class GroupLineItems_controllerTest {
             EffectiveDate = Date.today(),
             Status = 'Draft',
             Pricebook2Id = standardPricebook.Id,
-            pkl_PaymentTerms__c = 'Net 15'
+            pkl_PaymentTerms__c = 'Net 15',
+            pkl_INCOTerms1__c='DAP – Delivered at Place',  
+            txt_INCOTerms2__c = 'Inco Terms'
         );
         insert testOrder;
         
