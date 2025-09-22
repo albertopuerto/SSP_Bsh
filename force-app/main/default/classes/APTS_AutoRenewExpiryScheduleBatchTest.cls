@@ -20,7 +20,7 @@ private class APTS_AutoRenewExpiryScheduleBatchTest{
     SalesArea__c sal = new SalesArea__c(
             pkl_DistributionChannel__c = 'A1',
             pkl_Division__c = '01',
-            pkl_SalesOrg__c = '0001'
+            pkl_SalesOrg__c = 'DEM5'
         );
         insert sal;
     
