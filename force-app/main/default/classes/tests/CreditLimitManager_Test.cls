@@ -1,5 +1,5 @@
 @isTest
-public class CreditLimitManagerTest {
+public class CreditLimitManager_Test {
     @testSetup
     public static void initRecords(){
         
@@ -9,7 +9,7 @@ public class CreditLimitManagerTest {
         testAccountList[0].BillingCountry= 'DE';
         insert testAccountList;
         
-         SBQQ__Quote__c[] quoteList = (SBQQ__Quote__c [])TestFactory.createSObjectList(new SBQQ__Quote__c(),1);
+        SBQQ__Quote__c[] quoteList = (SBQQ__Quote__c [])TestFactory.createSObjectList(new SBQQ__Quote__c(),1);
         quoteList[0].SBQQ__Status__c = 'Draft';
         quoteList[0].CurrencyIsoCode = 'EUR';
         quoteList[0].SBQQ__Account__r = testAccountList[0];
@@ -17,10 +17,24 @@ public class CreditLimitManagerTest {
         insert quoteList;
         
         Order[] orderList = (Order [])TestFactory.createSObjectList(new Order(),1);
+        orderList[0].Status= 'Draft';
         orderList[0].AccountId= testAccountList[0].Id;
         insert orderList;
+
+		Product2[] productList = (Product2 [])TestFactory.createSObjectList(new Product2(),1);
+        insert productList;
+
+		PricebookEntry[] pricebookEntryList = (PricebookEntry [])TestFactory.createSObjectList(new PricebookEntry(),1);
+		pricebookEntryList[0].Product2Id = productList[0].Id;
+		insert pricebookEntryList;
+
+		OrderItem[] orderItemList = (OrderItem [])TestFactory.createSObjectList(new OrderItem(),1);
+		orderItemList[0].OrderId= orderList[0].Id;
+		orderItemList[0].Product2Id= productList[0].Id;
+		orderItemList[0].PricebookEntryId= pricebookEntryList[0].Id;
+		insert orderItemList;
         
-         List<VertexMethods.responseTaxes> listTaxes = new List<VertexMethods.responseTaxes>();
+        List<VertexMethods.responseTaxes> listTaxes = new List<VertexMethods.responseTaxes>();
         
         VertexMethods.responseTaxes taxes= new VertexMethods.responseTaxes();
         taxes.id ='1';
@@ -100,7 +114,7 @@ public class CreditLimitManagerTest {
 
     
    		CreditLimitWrappers.CreditManagementAccount creditAccount = new CreditLimitWrappers.CreditManagementAccount();
-        creditAccount.DebtorPartyInternalID = accDebtorParty;
+        creditAccount.debtorPartyInternalID = accDebtorParty;
         creditAccount.CreditsegmentInternalID = '142234';
         creditAccount.CreditSegmentDescription = segmentDesc;
         creditAccount.CreditWorthinessCheckingRuleCode = '254534';
@@ -142,7 +156,7 @@ public class CreditLimitManagerTest {
         
         
         
-        CreditLimitWrappers.debtorPartyInternalID worthinessDebtorParty = new CreditLimitWrappers.debtorPartyInternalID();
+        CreditLimitWrappers.DebtorPartyInternalID worthinessDebtorParty = new CreditLimitWrappers.DebtorPartyInternalID();
         worthinessDebtorParty.schemeID = '232';
         worthinessDebtorParty.schemeAgencyID='323535';
         worthinessDebtorParty.dollar='323535';    
@@ -170,7 +184,7 @@ public class CreditLimitManagerTest {
         risk.Code='9907';
         risk.ValidityPeriod=worthRiskValidity;
               
-        CreditLimitWrappers.ratingValidityPeriod ratingValidity = new CreditLimitWrappers.ratingValidityPeriod();
+        CreditLimitWrappers.RatingValidityPeriod ratingValidity = new CreditLimitWrappers.RatingValidityPeriod();
         ratingValidity.endDateTime = '2025-09-09';
         
         CreditLimitWrappers.Rating rating = new CreditLimitWrappers.Rating();
@@ -216,7 +230,7 @@ public class CreditLimitManagerTest {
         CreditLimitManager.checkAthenaId(testAccount.Id);
         Test.setMock(HttpCalloutMock.class, new CreditLimitMockClass());
     	
-    	HttpResponse response = CreditLimitCallouts.startCreditLimitCallouts(true, false, false, testAccount.Id, '1111', null, null, testAccount);
+    	HttpResponse response = CreditLimitCallouts.startCreditLimitCallouts(true, false, false,'1111', null, null, testAccount);
     	
     	String contentType = response.getHeader('Content-Type');
     	Assert.isTrue(contentType == 'application/json');
@@ -233,15 +247,16 @@ public class CreditLimitManagerTest {
    
      @isTest
 	static void checkQuote() {
+        
     	
-        SBQQ__Quote__c quoteTest = [SELECT Id,SBQQ__Status__c,Bill_To_Country__c,Current_Credit_Limit_including_VAT__c,CurrencyIsoCode,SBQQ__Account__r.txt_AthenaUUID__c from SBQQ__Quote__c LIMIT 1];
-        quoteTest.Current_Credit_Limit_including_VAT__c= 10;
+        SBQQ__Quote__c quoteTest = [SELECT Id,SBQQ__Status__c,Bill_To_Country__c,cur_Current_Credit_Limit_including_VAT__c,CurrencyIsoCode,SBQQ__Account__r.txt_AthenaUUID__c from SBQQ__Quote__c LIMIT 1];
+        quoteTest.cur_Current_Credit_Limit_including_VAT__c= 10;
         quoteTest.SBQQ__Status__c='Accepted';
         update quoteTest;
     	Test.startTest();
         Test.setMock(HttpCalloutMock.class, new CreditLimitWorthinessMock());
     	
-    	HttpResponse response = CreditLimitCallouts.startCreditLimitCallouts(false, true, false, quoteTest.Id, '1111', quoteTest, null, null);
+    	HttpResponse response = CreditLimitCallouts.startCreditLimitCallouts(false, true, false, '1111', quoteTest, null, null);
     
     	String contentType = response.getHeader('Content-Type');
     	Assert.isTrue(contentType == 'application/json');
@@ -257,14 +272,15 @@ public class CreditLimitManagerTest {
         @isTest
 	static void checkOrder() {
     	
-        Order orderTest = [SELECT Id,Current_Credit_Limit_including_VAT__c,CurrencyIsoCode,Account.txt_AthenaUUID__c from Order LIMIT 1];
-        orderTest.Current_Credit_Limit_including_VAT__c= 10;
+        Order orderTest = [SELECT Id,Status,cur_Current_Credit_Limit_including_VAT__c,CurrencyIsoCode,Account.txt_AthenaUUID__c from Order LIMIT 1];
+        orderTest.cur_Current_Credit_Limit_including_VAT__c= 10;
+        orderTest.Status= 'Activated';
         update orderTest;
   
     	Test.startTest();
         Test.setMock(HttpCalloutMock.class, new CreditLimitWorthinessMock());
     	
-    	HttpResponse response = CreditLimitCallouts.startCreditLimitCallouts(false, false, true, orderTest.Id, '1111', null, orderTest, null);
+    	HttpResponse response = CreditLimitCallouts.startCreditLimitCallouts(false, false, true,'1111', null, orderTest, null);
     
     	String contentType = response.getHeader('Content-Type');
     	Assert.isTrue(contentType == 'application/json');

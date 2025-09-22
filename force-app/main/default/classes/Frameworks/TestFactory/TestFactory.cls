@@ -187,7 +187,8 @@ public with sharing class TestFactory {
         sbaa__Approver__c.SObjectType => sbaa__Approver__c.Name,
         ContentVersion.SObjectType => ContentVersion.Title,
         ContentDocumentLink.SObjectType => ContentDocumentLink.ContentDocumentId,
-		OrderItem.sObjectType => OrderItem.txt_SAPExternalLineItemId__c
+		OrderItem.sObjectType => OrderItem.txt_SAPExternalLineItemId__c,
+		PricebookEntry.sObjectType => PricebookEntry.GearsetExternalId__c
 	};
      
 

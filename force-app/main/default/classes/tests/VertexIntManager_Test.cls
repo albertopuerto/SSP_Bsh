@@ -1,5 +1,5 @@
 @isTest
-public class VertexIntManagerTest {
+public class VertexIntManager_Test {
 
     @testSetup
     static void initObjects(){
@@ -16,8 +16,22 @@ public class VertexIntManagerTest {
         insert quoteList;
         
         Order[] orderList = (Order [])TestFactory.createSObjectList(new Order(),1);
+        orderList[0].Status= 'Draft';
         orderList[0].AccountId= testAccountList[0].Id;
         insert orderList;
+
+		Product2[] productList = (Product2 [])TestFactory.createSObjectList(new Product2(),1);
+        insert productList;
+
+		PricebookEntry[] pricebookEntryList = (PricebookEntry [])TestFactory.createSObjectList(new PricebookEntry(),1);
+		pricebookEntryList[0].Product2Id = productList[0].Id;
+		insert pricebookEntryList;
+
+		OrderItem[] orderItemList = (OrderItem [])TestFactory.createSObjectList(new OrderItem(),1);
+		orderItemList[0].OrderId= orderList[0].Id;
+		orderItemList[0].Product2Id= productList[0].Id;
+		orderItemList[0].PricebookEntryId= pricebookEntryList[0].Id;
+		insert orderItemList;
         
         List<VertexMethods.responseTaxes> listTaxes = new List<VertexMethods.responseTaxes>();
         
@@ -72,7 +86,7 @@ public class VertexIntManagerTest {
         
     	DateTime todayDateTime = DateTime.now();
         
-    	SBQQ__Quote__c quoteTest = [SELECT Id,SBQQ__Status__c,Bill_To_Country__c,Current_Credit_Limit_including_VAT__c,CurrencyIsoCode,SBQQ__Account__r.txt_AthenaUUID__c,SBQQ__Account__c from SBQQ__Quote__c LIMIT 1];
+    	SBQQ__Quote__c quoteTest = [SELECT Id,SBQQ__Status__c,Bill_To_Country__c,cur_Current_Credit_Limit_including_VAT__c,CurrencyIsoCode,SBQQ__Account__r.txt_AthenaUUID__c,SBQQ__Account__c from SBQQ__Quote__c LIMIT 1];
        
         quoteTest.SBQQ__Status__c='Accepted';
         update quoteTest;
@@ -88,7 +102,10 @@ public class VertexIntManagerTest {
         
         DateTime todayDateTime = DateTime.now();
     
-    	Order orderTest = [SELECT Id,Current_Credit_Limit_including_VAT__c,CurrencyIsoCode,Account.txt_AthenaUUID__c,AccountId,Account.BillingCountry from Order LIMIT 1];
+    	Order orderTest = [SELECT Id,Status,cur_Current_Credit_Limit_including_VAT__c,CurrencyIsoCode,Account.txt_AthenaUUID__c,Account.BillingCountry from Order LIMIT 1];
+        orderTest.cur_Current_Credit_Limit_including_VAT__c= 10;
+        orderTest.Status= 'Activated';
+        update orderTest;
         
     	Test.startTest();
     	

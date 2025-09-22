@@ -166,7 +166,7 @@ public with sharing class CreditLimitManager {
             for(VertexMethods.responseItem taxItem: vertexResponseBody.items){
                 for(VertexMethods.responseTaxes tax: taxItem.taxes){
 
-                    quoteToCalculate.Current_Credit_Limit_including_VAT__c = (quoteToCalculate.SBQQ__NetAmount__c * tax.taxRate)/100 + quoteToCalculate.SBQQ__NetAmount__c;
+                    quoteToCalculate.cur_Current_Credit_Limit_including_VAT__c = (quoteToCalculate.SBQQ__NetAmount__c * tax.taxRate)/100 + quoteToCalculate.SBQQ__NetAmount__c;
                     uow.registerDirty(quoteToCalculate);
   
                     System.debug('taxes'+ tax.taxRate);
@@ -230,7 +230,7 @@ public with sharing class CreditLimitManager {
             for(VertexMethods.responseItem taxItem: vertexResponseBody.items){
                 for(VertexMethods.responseTaxes tax: taxItem.taxes){
 
-                    orderToCalculate.Current_Credit_Limit_including_VAT__c = (orderToCalculate.TotalAmount * tax.taxRate)/100 + orderToCalculate.TotalAmount;
+                    orderToCalculate.cur_Current_Credit_Limit_including_VAT__c = (orderToCalculate.TotalAmount * tax.taxRate)/100 + orderToCalculate.TotalAmount;
                     uow.registerDirty(orderToCalculate);
   
                     System.debug('taxes'+ tax.taxRate);
@@ -286,7 +286,7 @@ public with sharing class CreditLimitManager {
             creditLimitresponse = creditLimitCallouts.startCreditLimitCallouts(isAccount, isQuote,isOrder,orgId,null,null,actualAccount);
         
             if(Test.isRunningTest() && isAccount){
-                creditLimitresponse.setBody('{"Envelope":{"Header":"","Body":{"CreditManagementAccountByIDResponse":{"MessageHeader":{"ID":"D6B2D2D3CE021FD0A399EAD2F9065196","CreationDateTime":"2025-09-08T16:17:38.739Z"},"CreditManagementAccount":{"DebtorPartyInternalID":{"@schemeID":"PartyID","@schemeAgencyID":"SAP0BHL011","$":"4001831001"},"CreditsegmentInternalID":"5370","CreditSegmentDescription":{"@languageCode":"de"},"CreditWorthinessCheckingRuleCode":"ZR","CreditWorthinessCheckingSchemeCode":"ZB","SpecialAttentionRequiredIndicator":"false","BlockedIndicator":"false","BlockingReasonCodeDescription":{"@languageCode":"de"},"CreditLimitAmount":{"@currencyCode":"EUR","$":"500000.0"},"CreditLimitValidityPeriod":{"StartDate":"2025-09-08","EndDate":"2026-09-30"},"CreditExposure":{"Amount":{"@currencyCode":"EUR","$":"0.0"},"DynamicCheckCreditHorizonEndDate":"2025-10-08"},"CreditRating":{"Code":"       93","ValidityPeriod":{"StartDate":"2025-06-13","EndDate":"2026-03-07"}},"CreditRiskClass":{"Code":"B","ValidityPeriod":{"StartDate":"2025-06-13","EndDate":"2026-03-07"},"Description":{"@languageCode":"de","$":"Geringes Ausfallrisiko"}},"PaymentBehaviourSummary":{"DaysOfSalesOutstandingAverageDuration":"0 "}}}}}}');
+                creditLimitresponse.setBody('{"Envelope":{"Header":"","Body":{"CreditManagementAccountByIDResponse":{"MessageHeader":{"ID":"D6B2D2D3CE021FD0A399EAD2F9065196","CreationDateTime":"2025-09-08T16:17:38.739Z"},"CreditManagementAccount":{"debtorPartyInternalID":{"@schemeID":"PartyID","@schemeAgencyID":"SAP0BHL011","$":"4001831001"},"CreditsegmentInternalID":"5370","CreditSegmentDescription":{"@languageCode":"de"},"CreditWorthinessCheckingRuleCode":"ZR","CreditWorthinessCheckingSchemeCode":"ZB","SpecialAttentionRequiredIndicator":"false","BlockedIndicator":"false","BlockingReasonCodeDescription":{"@languageCode":"de"},"CreditLimitAmount":{"@currencyCode":"EUR","$":"500000.0"},"CreditLimitValidityPeriod":{"StartDate":"2025-09-08","EndDate":"2026-09-30"},"CreditExposure":{"Amount":{"@currencyCode":"EUR","$":"0.0"},"DynamicCheckCreditHorizonEndDate":"2025-10-08"},"CreditRating":{"Code":"       93","ValidityPeriod":{"StartDate":"2025-06-13","EndDate":"2026-03-07"}},"CreditRiskClass":{"Code":"B","ValidityPeriod":{"StartDate":"2025-06-13","EndDate":"2026-03-07"},"Description":{"@languageCode":"de","$":"Geringes Ausfallrisiko"}},"PaymentBehaviourSummary":{"DaysOfSalesOutstandingAverageDuration":"0 "}}}}}}');
                 creditLimitresponse.setStatusCode(200);
             }
 

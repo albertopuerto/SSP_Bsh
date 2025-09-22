@@ -1,5 +1,5 @@
 @isTest
-public class CreditLimitCalloutsTest {
+public class CreditLimitCallouts_Test {
     
     @testSetup
     static void initObjects(){
@@ -13,7 +13,7 @@ public class CreditLimitCalloutsTest {
         quoteList[0].SBQQ__Status__c = 'Draft';
         quoteList[0].CurrencyIsoCode = 'EUR';
         quoteList[0].SBQQ__Account__r = testAccountList[0];
-        quoteList[0].Current_Credit_Limit_including_VAT__c = 10;
+        quoteList[0].cur_Current_Credit_Limit_including_VAT__c = 10;
         insert quoteList;
         
         Order[] orderList = (Order [])TestFactory.createSObjectList(new Order(),1);
@@ -21,8 +21,17 @@ public class CreditLimitCalloutsTest {
         orderList[0].AccountId= testAccountList[0].Id;
         insert orderList;
 
+		Product2[] productList = (Product2 [])TestFactory.createSObjectList(new Product2(),1);
+        insert productList;
+
+		PricebookEntry[] pricebookEntryList = (PricebookEntry [])TestFactory.createSObjectList(new PricebookEntry(),1);
+		pricebookEntryList[0].Product2Id = productList[0].Id;
+		insert pricebookEntryList;
+
 		OrderItem[] orderItemList = (OrderItem [])TestFactory.createSObjectList(new OrderItem(),1);
 		orderItemList[0].OrderId= orderList[0].Id;
+		orderItemList[0].Product2Id= productList[0].Id;
+		orderItemList[0].PricebookEntryId= pricebookEntryList[0].Id;
 		insert orderItemList;
     }
 	
@@ -79,7 +88,7 @@ public class CreditLimitCalloutsTest {
     @isTest
 	static void testCreditLimitCalloutQuote() {
     	
-        SBQQ__Quote__c quoteTest = [SELECT Id,SBQQ__Status__c,Bill_To_Country__c,Current_Credit_Limit_including_VAT__c,CurrencyIsoCode,SBQQ__Account__r.txt_AthenaUUID__c from SBQQ__Quote__c LIMIT 1];
+        SBQQ__Quote__c quoteTest = [SELECT Id,SBQQ__Status__c,Bill_To_Country__c,cur_Current_Credit_Limit_including_VAT__c,CurrencyIsoCode,SBQQ__Account__r.txt_AthenaUUID__c from SBQQ__Quote__c LIMIT 1];
         quoteTest.SBQQ__Status__c='Accepted';
         update quoteTest;
     	Test.startTest();
@@ -100,8 +109,8 @@ public class CreditLimitCalloutsTest {
         @isTest
 	static void testCreditLimitCalloutOrder() {
     	
-        Order orderTest = [SELECT Id,Status,Current_Credit_Limit_including_VAT__c,CurrencyIsoCode,Account.txt_AthenaUUID__c from Order LIMIT 1];
-        orderTest.Current_Credit_Limit_including_VAT__c= 10;
+        Order orderTest = [SELECT Id,Status,cur_Current_Credit_Limit_including_VAT__c,CurrencyIsoCode,Account.txt_AthenaUUID__c from Order LIMIT 1];
+        orderTest.cur_Current_Credit_Limit_including_VAT__c= 10;
         orderTest.Status= 'Activated';
         update orderTest;
   

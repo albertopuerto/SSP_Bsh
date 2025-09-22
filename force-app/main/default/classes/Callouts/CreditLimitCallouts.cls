@@ -1,5 +1,6 @@
 public with sharing class CreditLimitCallouts {
 
+    // method that makes the callouts to vertex
     public static HttpResponse startVertexCallouts(Boolean isAccount, Boolean isQuote,Boolean isOrder,SBQQ__Quote__c quoteToCalculate,Order orderToCalculate){
 
         Http vertexHttp= new Http();
@@ -70,18 +71,18 @@ public with sharing class CreditLimitCallouts {
 
         	request.setEndpoint('callout:creditLimitCheckOuathCallout');
 
-            String bodyWrapper = JSON.serialize(CreditLimitWrapperManager.createCreditWorthinessRequest(orgId,quoteToCalculate.Current_Credit_Limit_including_VAT__c,quoteToCalculate.CurrencyIsoCode,quoteToCalculate.SBQQ__Account__r.txt_AthenaUUID__c ));
+            String bodyWrapper = JSON.serialize(CreditLimitWrapperManager.createCreditWorthinessRequest(orgId,quoteToCalculate.cur_Current_Credit_Limit_including_VAT__c,quoteToCalculate.CurrencyIsoCode,quoteToCalculate.SBQQ__Account__r.txt_AthenaUUID__c ));
             finalCreditLimitBody= CreditLimitUtilMethods.formatRequest(bodyWrapper);
                 
-         }else if(isOrder && orderToCalculate.Status == 'Activated'){
+        }else if(isOrder && orderToCalculate.Status == 'Activated'){
              
-         	 request.setEndpoint('callout:creditLimitCheckOuathCallout');
+         	request.setEndpoint('callout:creditLimitCheckOuathCallout');
                 
-             String bodyWrapper = JSON.serialize(CreditLimitWrapperManager.createCreditWorthinessRequest(orgId,orderToCalculate.Current_Credit_Limit_including_VAT__c,orderToCalculate.CurrencyIsoCode,orderToCalculate.Account.txt_AthenaUUID__c));
+            String bodyWrapper = JSON.serialize(CreditLimitWrapperManager.createCreditWorthinessRequest(orgId,orderToCalculate.cur_Current_Credit_Limit_including_VAT__c,orderToCalculate.CurrencyIsoCode,orderToCalculate.Account.txt_AthenaUUID__c));
               
-             finalCreditLimitBody= CreditLimitUtilMethods.formatRequest(bodyWrapper);
+            finalCreditLimitBody= CreditLimitUtilMethods.formatRequest(bodyWrapper);
               
-         }else if(isAccount){   
+        }else if(isAccount){   
              
          	request.setEndpoint('callout:creditLimitAccountOuathCallout');
                 
@@ -89,24 +90,24 @@ public with sharing class CreditLimitCallouts {
               
             finalCreditLimitBody= CreditLimitUtilMethods.formatRequest(bodyWrapper);
              
-         }
+        }
         
-         request.setBody(finalCreditLimitBody);
+        request.setBody(finalCreditLimitBody);
       
-         List<SBQQ__Quote__c> listQuotesToUpdate = new List<SBQQ__Quote__c>();
-         List<Order> listOrdersToUpdate = new List<Order>();
+        List<SBQQ__Quote__c> listQuotesToUpdate = new List<SBQQ__Quote__c>();
+        List<Order> listOrdersToUpdate = new List<Order>();
 
-         System.debug(request.getBody());
+        System.debug(request.getBody());
         
-         // revisar si se puede hacer con el get status code
-         if(request.getBody() != null && request.getBody() != ''){
+        // revisar si se puede hacer con el get status code
+        if(request.getBody() != null && request.getBody() != ''){
              
-         	creditLimitResponse = creditLimitHttp.send(request);
+            creditLimitResponse = creditLimitHttp.send(request);
              
-         }
+        }
         
         System.debug('responsee'+ creditLimitResponse.getBody());
-         return creditLimitResponse;
+        return creditLimitResponse;
             
     }
 }

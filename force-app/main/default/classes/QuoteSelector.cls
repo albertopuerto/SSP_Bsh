@@ -2,7 +2,7 @@ public with sharing class QuoteSelector extends fflib_SObjectSelector {
      public List<Schema.SObjectField> getSObjectFieldList() {
         return new List<Schema.SObjectField> {
            SBQQ__Quote__c.SBQQ__Status__c,
-           SBQQ__Quote__c.Current_Credit_Limit_including_VAT__c, 
+           SBQQ__Quote__c.cur_Current_Credit_Limit_including_VAT__c, 
            SBQQ__Quote__c.Bill_To_Country__c,
            SBQQ__Quote__c.SBQQ__NetAmount__c,
            SBQQ__Quote__c.CurrencyIsoCode
@@ -17,7 +17,7 @@ public with sharing class QuoteSelector extends fflib_SObjectSelector {
             newQueryFactory(false)
                 .selectField(SBQQ__Quote__c.SBQQ__Status__c)
                 .selectField(SBQQ__Quote__c.SBQQ__Account__c)
-                .selectField(SBQQ__Quote__c.Current_Credit_Limit_including_VAT__c)
+               .selectField(SBQQ__Quote__c.cur_Current_Credit_Limit_including_VAT__c)
                 .selectField(SBQQ__Quote__c.Bill_To_Country__c)
                 .selectField(SBQQ__Quote__c.SBQQ__NetAmount__c)
                 .selectField(SBQQ__Quote__c.CurrencyIsoCode)

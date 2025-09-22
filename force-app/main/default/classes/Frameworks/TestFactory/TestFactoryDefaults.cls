@@ -73,7 +73,8 @@ public with sharing class TestFactoryDefaults{
 					Order.EffectiveDate => Date.today(),
                     Order.pkl_INCOTerms1__c => 'CPT - Carriage Paid To',
                     Order.pkl_PaymentTerms__c=> 'Due on receipt',
-                    Order.CurrencyIsoCode=> 'EUR'
+                    Order.CurrencyIsoCode=> 'EUR',
+					Order.Pricebook2Id => Test.getStandardPricebookId()
 			};
 		}
 	}
@@ -90,11 +91,32 @@ public with sharing class TestFactoryDefaults{
 		*/
 		public Map<Schema.SObjectField, Object> getFieldDefaults() {
 			return new Map<Schema.SObjectField, Object> {
-					OrderItem.txt_SAPExternalLineItemId__c => '123124124'//,
-					/*OrderItem.EffectiveDate => Date.today(),
+					OrderItem.txt_SAPExternalLineItemId__c => '123124124',
+					OrderItem.UnitPrice => 20,
                     OrderItem.pkl_INCOTerms1__c => 'CPT - Carriage Paid To',
                     OrderItem.pkl_PaymentTerms__c=> 'Due on receipt',
-                    OrderItem.CurrencyIsoCode=> 'EUR'*/
+					OrderItem.pkl_QuantityUnit__c=> 'Each',
+					OrderItem.txt_INCOTerms2__c=> 'Due on receipt test',
+                    OrderItem.Quantity=> 2
+			};
+		}
+	}
+
+	/**
+	* @author       APC
+	* @description  PricebookEntryDefaults constructor
+	*/
+	public class PricebookEntryDefaults implements TestFactory.FieldDefaults {
+		/**
+		* @author       APC
+		* @description  define orderItems getFieldDefaults()
+		* @return		Map<Schema.SObjectField, Object>
+		*/
+		public Map<Schema.SObjectField, Object> getFieldDefaults() {
+			return new Map<Schema.SObjectField, Object> {
+					PricebookEntry.GearsetExternalId__c => '123124124',
+					PricebookEntry.Pricebook2Id => Test.getStandardPricebookId(),
+					PricebookEntry.UnitPrice => 10
 			};
 		}
 	}

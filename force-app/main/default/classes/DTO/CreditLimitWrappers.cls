@@ -1,5 +1,5 @@
 public without sharing class CreditLimitWrappers {
-    public class accountRequest{
+    public class AccountRequest{
         public String DebtorPartyInternalID;
         public String schemeAgencyID;
         public String CreditsegmentInternalID;

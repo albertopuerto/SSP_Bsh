@@ -2,7 +2,7 @@ public with sharing class OrderSelector extends fflib_SObjectSelector {
      public List<Schema.SObjectField> getSObjectFieldList() {
         return new List<Schema.SObjectField> {
            SBQQ__Quote__c.SBQQ__Status__c,
-           SBQQ__Quote__c.Current_Credit_Limit_including_VAT__c, 
+           SBQQ__Quote__c.cur_Current_Credit_Limit_including_VAT__c, 
            SBQQ__Quote__c.Bill_To_Country__c,
            SBQQ__Quote__c.SBQQ__NetAmount__c,
            SBQQ__Quote__c.CurrencyIsoCode
@@ -17,7 +17,7 @@ public with sharing class OrderSelector extends fflib_SObjectSelector {
             newQueryFactory(false)
                 .selectField(Order.Status)
                 .selectField(Order.AccountId)
-                .selectField(Order.Current_Credit_Limit_including_VAT__c)
+                .selectField(Order.cur_Current_Credit_Limit_including_VAT__c)
                 .selectField(Order.TotalAmount)
                 .selectField(Order.CurrencyIsoCode)
                 .selectField('Account.txt_AthenaUUID__c')
