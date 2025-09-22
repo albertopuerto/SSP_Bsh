@@ -3,11 +3,11 @@ public with sharing class CreditLimitManager {
     public static List<Order> listOrdersToUpdate = new List<Order>();
 
     @AuraEnabled
-    public static String  getObjectCurrency(Boolean isAccount, Boolean isQuote,Boolean isOrder,String objectRecordId) {
+    public static String  getObjectCurrency(Boolean isAccount,String objectRecordId) {
 
     	String objCurrency;
         if(isAccount){
-            Account acc = [Select Id,CurrencyIsoCode from Account where Id =: objectRecordId ];
+            Account acc = [Select Id,CurrencyIsoCode from Account where Id =: objectRecordId WITH SECURITY_ENFORCED ];
             objCurrency = acc.CurrencyIsoCode;
         }
 
@@ -18,7 +18,7 @@ public with sharing class CreditLimitManager {
     public static Boolean  checkAthenaId(String objectRecordId) {
 
         Boolean hasAthenaId;
-        Account acc = [Select Id,CurrencyIsoCode,txt_AthenaUUID__c from Account where Id =: objectRecordId ];
+        Account acc = [Select Id,CurrencyIsoCode,txt_AthenaUUID__c from Account where Id =: objectRecordId WITH SECURITY_ENFORCED];
         
         if(acc.txt_AthenaUUID__c != null){
             hasAthenaId = true;
@@ -32,7 +32,7 @@ public with sharing class CreditLimitManager {
     
     
     @AuraEnabled
-    public static CreditLimitWrappers.creditLimitInfoWrapper callGetLimit(Boolean isAccount, Boolean isQuote,Boolean isOrder,String objectRecordId) {
+    public static CreditLimitWrappers.creditLimitInfoWrapper callGetLimit(String objectAPIName,String objectRecordId) {
 
     	String creditLimit = '';
 
@@ -42,12 +42,12 @@ public with sharing class CreditLimitManager {
         CreditLimitWrappers.creditLimitInfoWrapper lastInfoWrapper = new CreditLimitWrappers.creditLimitInfoWrapper();
         try{
 
-            if(isAccount){
-                lastInfoWrapper=getAccountLimit(true,false,false,objectRecordId);
-            }else if(isQuote){
-                lastInfoWrapper=getQuoteLimit(false,true,false,objectRecordId);
-            }else if(isOrder){
-                lastInfoWrapper=getOrderLimit(false,false,true,objectRecordId);
+            if(objectAPIName =='Account'){
+                lastInfoWrapper=getAccountLimit(objectRecordId);
+            }else if(objectAPIName =='SBQQ__Quote__c'){
+                lastInfoWrapper=getQuoteLimit(objectRecordId);
+            }else if(objectAPIName =='Order'){
+                lastInfoWrapper=getOrderLimit(objectRecordId);
             }
 
         //    updateOrderAndQuotes();
@@ -57,7 +57,7 @@ public with sharing class CreditLimitManager {
            // lastInfoWrapper.status= creditLimitresponse.getStatusCode();
             lastInfoWrapper.success= false;
 
-        	Logger.error('Error while creating the log - '+ ex.getMessage()).setRecordId(objectRecordId);
+        	Logger.error('We found an error during the process - '+ ex.getMessage()).setRecordId(objectRecordId);
         }finally{
         	saveLog();
         }
@@ -67,9 +67,8 @@ public with sharing class CreditLimitManager {
     }
 
     @AuraEnabled
-    public static CreditLimitWrappers.creditLimitInfoWrapper getLimit(Boolean isAccount, Boolean isQuote,Boolean isOrder,SBQQ__Quote__c quotetoCalculate,Order orderToCalculate){
+    public static CreditLimitWrappers.creditLimitInfoWrapper getLimit(SBQQ__Quote__c quotetoCalculate,Order orderToCalculate){
 
-        String orgId =  [SELECT Id FROM Organization LIMIT 1 ].Id;
         CreditLimitWrappers.creditLimitInfoWrapper lastInfoWrapper = new CreditLimitWrappers.creditLimitInfoWrapper();
 
         CreditLimitWrappers.wrapperResponse responseBody;
@@ -79,7 +78,7 @@ public with sharing class CreditLimitManager {
 
         HttpResponse creditLimitResponse;
 
-        creditLimitresponse = creditLimitCallouts.startCreditLimitCallouts(isAccount, isQuote,isOrder,orgId,quoteToCalculate,orderToCalculate,null);
+        creditLimitresponse = creditLimitCallouts.startCreditLimitCallouts(quoteToCalculate,orderToCalculate,null);
 
         if(Test.isRunningTest()){
             creditLimitResponse.setBody('{"Envelope":{"Header":"","Body":{"CreditWorthinessResponse":{"CreditWorthiness":{"CreditSegmentInternalID":"5370","Indicator":"true","CheckingDescription":[{"@languageCode":"en","$":"Credit segment 5370 of partner 4001831001"},{"@languageCode":"EN","$":"ID: 510936342"}],"DebtorPartyBlockedIndicator":"false","DebtorPartySpecialAttentionRequiredIndicator":"false","DynamicCheckHorizonEndDate":"2025-10-04","DebtorParty":{"InternalID":{"@schemeID":"PartyID","@schemeAgencyID":"SAP0BHL011","$":"4001831001"}},"Rating":{"Code":"       93","ValidityPeriod":{"EndDateTime":"2026-03-03T00:00:00Z"}},"RiskClass":{"Code":"B","ValidityPeriod":{"EndDateTime":"2026-03-03T00:00:00Z"}},"CreditLimit":{"Amount":{"@currencyCode":"EUR","$":"500000.0"},"ValidityPeriod":{"EndDateTime":"2026-09-30T00:00:00Z"}},"CreditExposure":{"Amount":{"@currencyCode":"EUR","$":"0.0"}}}}}}}');
@@ -126,7 +125,7 @@ public with sharing class CreditLimitManager {
     }
 
     @AuraEnabled
-    public static CreditLimitWrappers.creditLimitInfoWrapper getquoteLimit(Boolean isAccount, Boolean isQuote,Boolean isOrder,String objectRecordId) {
+    public static CreditLimitWrappers.creditLimitInfoWrapper getquoteLimit(String objectRecordId) {
     
         SBQQ__Quote__c quotetoCalculate = new SBQQ__Quote__c();
 
@@ -146,7 +145,7 @@ public with sharing class CreditLimitManager {
         quoteToCalculate=quotes[0];
 
         if(!Test.isRunningTest()){ 
-            	vertexResponse = CreditLimitCallouts.startVertexCallouts(isAccount, isQuote,isOrder,quoteToCalculate,null);
+            	vertexResponse = CreditLimitCallouts.startVertexCallouts(quoteToCalculate,null);
             	System.debug('bodyWithoutSerialize -------- '+ vertexResponse.getBody());
         }else{
                 
@@ -173,14 +172,14 @@ public with sharing class CreditLimitManager {
                 }
             }
                  	//   updateOrderAndQuotes();
-            lastInfoWrapper=getLimit(false, true, false, quoteToCalculate,null);
+            lastInfoWrapper=getLimit(quoteToCalculate,null);
 
             uow.commitWork();
 
         }else{
-                /*    Logger.error('Request error details - '+ response.getStatusCode() +'-'+response.getStatus())
-                    .addTags(('API,TEST').split(','))
-                    .setRecordId(objectRecordId);*/
+            Logger.error('Error while doing the quote vertex callout - '+ vertexResponse.getStatusCode() +'-'+vertexResponse.getStatus())
+            .addTags(('API,TEST').split(','))
+            .setRecordId(objectRecordId);
         }
 
                         //creditLimit = creditManagement.CreditLimitAmount.dollar;
@@ -190,7 +189,7 @@ public with sharing class CreditLimitManager {
     }
 
     @AuraEnabled
-    public static CreditLimitWrappers.creditLimitInfoWrapper getOrderLimit(Boolean isAccount, Boolean isQuote,Boolean isOrder,String objectRecordId) {
+    public static CreditLimitWrappers.creditLimitInfoWrapper getOrderLimit(String objectRecordId) {
     
         Order orderToCalculate= new Order();
 
@@ -210,7 +209,7 @@ public with sharing class CreditLimitManager {
         orderToCalculate=orders[0];
 
         if(!Test.isRunningTest()){ 
-            	vertexResponse = CreditLimitCallouts.startVertexCallouts(isAccount, isQuote,isOrder,null,orderToCalculate);
+            	vertexResponse = CreditLimitCallouts.startVertexCallouts(null,orderToCalculate);
             	System.debug('bodyWithoutSerialize -------- '+ vertexResponse.getBody());
         }else{
                 
@@ -237,14 +236,14 @@ public with sharing class CreditLimitManager {
                 }
             }
             
-            lastInfoWrapper= getLimit(false,false,true,null,orderToCalculate);
+            lastInfoWrapper= getLimit(null,orderToCalculate);
             //   updateOrderAndQuotes();
 
              uow.commitWork();
         }else{
-                /*    Logger.error('Request error details - '+ response.getStatusCode() +'-'+response.getStatus())
-                    .addTags(('API,TEST').split(','))
-                    .setRecordId(objectRecordId);*/
+            Logger.error('Error while doing the order vertex callout - '+ vertexResponse.getStatusCode() +'-'+vertexResponse.getStatus())
+            .addTags(('API,TEST').split(','))
+            .setRecordId(objectRecordId);
         }
 
                         //creditLimit = creditManagement.CreditLimitAmount.dollar;
@@ -254,7 +253,7 @@ public with sharing class CreditLimitManager {
     }
 
     @AuraEnabled
-    public static CreditLimitWrappers.creditLimitInfoWrapper getAccountLimit(Boolean isAccount, Boolean isQuote,Boolean isOrder,String objectRecordId) {
+    public static CreditLimitWrappers.creditLimitInfoWrapper getAccountLimit(String objectRecordId) {
     
         Account actualAccount = new Account();
         String finalBodyresponse;
@@ -264,8 +263,6 @@ public with sharing class CreditLimitManager {
         Set<Id> accountIds = new Set<Id>();
 
         accountIds.add(objectRecordId);
-
-        String orgId =  [SELECT Id FROM Organization LIMIT 1 ].Id;
 
         CreditLimitWrappers.creditLimitInfoWrapper lastInfoWrapper = new CreditLimitWrappers.creditLimitInfoWrapper();
 
@@ -283,10 +280,10 @@ public with sharing class CreditLimitManager {
 
             HttpResponse creditLimitresponse = new HttpResponse();
 
-            creditLimitresponse = creditLimitCallouts.startCreditLimitCallouts(isAccount, isQuote,isOrder,orgId,null,null,actualAccount);
+            creditLimitresponse = creditLimitCallouts.startCreditLimitCallouts(null,null,actualAccount);
         
-            if(Test.isRunningTest() && isAccount){
-                creditLimitresponse.setBody('{"Envelope":{"Header":"","Body":{"CreditManagementAccountByIDResponse":{"MessageHeader":{"ID":"D6B2D2D3CE021FD0A399EAD2F9065196","CreationDateTime":"2025-09-08T16:17:38.739Z"},"CreditManagementAccount":{"debtorPartyInternalID":{"@schemeID":"PartyID","@schemeAgencyID":"SAP0BHL011","$":"4001831001"},"CreditsegmentInternalID":"5370","CreditSegmentDescription":{"@languageCode":"de"},"CreditWorthinessCheckingRuleCode":"ZR","CreditWorthinessCheckingSchemeCode":"ZB","SpecialAttentionRequiredIndicator":"false","BlockedIndicator":"false","BlockingReasonCodeDescription":{"@languageCode":"de"},"CreditLimitAmount":{"@currencyCode":"EUR","$":"500000.0"},"CreditLimitValidityPeriod":{"StartDate":"2025-09-08","EndDate":"2026-09-30"},"CreditExposure":{"Amount":{"@currencyCode":"EUR","$":"0.0"},"DynamicCheckCreditHorizonEndDate":"2025-10-08"},"CreditRating":{"Code":"       93","ValidityPeriod":{"StartDate":"2025-06-13","EndDate":"2026-03-07"}},"CreditRiskClass":{"Code":"B","ValidityPeriod":{"StartDate":"2025-06-13","EndDate":"2026-03-07"},"Description":{"@languageCode":"de","$":"Geringes Ausfallrisiko"}},"PaymentBehaviourSummary":{"DaysOfSalesOutstandingAverageDuration":"0 "}}}}}}');
+            if(Test.isRunningTest()){
+                creditLimitresponse.setBody('{"Envelope":{"header":"","body":{"CreditManagementAccountByIDResponse":{"MessageHeader":{"ID":"D6B2D2D3CE021FD0A399EAD2F9065196","CreationDateTime":"2025-09-08T16:17:38.739Z"},"CreditManagementAccount":{"debtorPartyInternalID":{"@schemeID":"PartyID","@schemeAgencyID":"SAP0BHL011","$":"4001831001"},"CreditsegmentInternalID":"5370","CreditSegmentDescription":{"@languageCode":"de"},"CreditWorthinessCheckingRuleCode":"ZR","CreditWorthinessCheckingSchemeCode":"ZB","SpecialAttentionRequiredIndicator":"false","BlockedIndicator":"false","BlockingReasonCodeDescription":{"@languageCode":"de"},"CreditLimitAmount":{"@currencyCode":"EUR","$":"500000.0"},"CreditLimitValidityPeriod":{"StartDate":"2025-09-08","EndDate":"2026-09-30"},"CreditExposure":{"Amount":{"@currencyCode":"EUR","$":"0.0"},"DynamicCheckCreditHorizonEndDate":"2025-10-08"},"CreditRating":{"Code":"       93","ValidityPeriod":{"StartDate":"2025-06-13","EndDate":"2026-03-07"}},"CreditRiskClass":{"Code":"B","ValidityPeriod":{"StartDate":"2025-06-13","EndDate":"2026-03-07"},"Description":{"@languageCode":"de","$":"Geringes Ausfallrisiko"}},"PaymentBehaviourSummary":{"DaysOfSalesOutstandingAverageDuration":"0 "}}}}}}');
                 creditLimitresponse.setStatusCode(200);
             }
 
@@ -312,7 +309,7 @@ public with sharing class CreditLimitManager {
 
                 }else if(accountResponseBody.Envelope.Body.CreditManagementAccountByIDResponse.CreditManagementAccount != null){
                     String curr;
-                    curr= getObjectCurrency(true,false,false,actualAccount.Id);
+                    curr= getObjectCurrency(true,actualAccount.Id);
                     creditManagement= accountResponseBody.Envelope.Body.CreditManagementAccountByIDResponse.CreditManagementAccount;
                     System.debug('creditWorthiness '+creditManagement);
                     System.debug('creditWorthinessDescs22'+creditManagement.CreditLimitAmount);
@@ -336,10 +333,10 @@ public with sharing class CreditLimitManager {
 
     public static void updateOrderAndQuotes(){
         
-    	if(!listQuotesToUpdate.isEmpty()){
+    	if(!listQuotesToUpdate.isEmpty() && SBQQ__Quote__c.SObjectType.getDescribe().isAccessible() && SBQQ__Quote__c.sObjectType.getDescribe().isUpdateable() ){
             update listQuotesToUpdate;
         }
-        if(!listOrdersToUpdate.isEmpty()){
+        if(!listOrdersToUpdate.isEmpty() && Order.SObjectType.getDescribe().isAccessible() && Order.sObjectType.getDescribe().isUpdateable()){
             update listOrdersToUpdate;
         }
                 

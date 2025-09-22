@@ -145,7 +145,7 @@ export default class creditLimit extends LightningElement {
 getAccountCreditLimit(){
         
 
-         getObjectCurrency({isAccount:this.accountRecord,isQuote: this.quoteRecord, isOrder: this.orderRecord,objectRecordId : this.recordId})
+         getObjectCurrency({isAccount:this.accountRecord,objectRecordId : this.recordId})
             .then(result => {
                 if(result != null){
                     this.objectCurrency=result;
@@ -153,7 +153,7 @@ getAccountCreditLimit(){
             })
 
        
-        callGetLimit({isAccount:this.accountRecord,isQuote: this.quoteRecord, isOrder: this.orderRecord,objectRecordId : this.recordId})
+        callGetLimit({objectAPIName : this.objectApiName,objectRecordId : this.recordId})
             .then(result => {
                 if(result != null){
                     this.creditInfoWrapper = result;

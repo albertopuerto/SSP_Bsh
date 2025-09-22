@@ -34,9 +34,9 @@ public class CreditLimitManager_Test {
 		orderItemList[0].PricebookEntryId= pricebookEntryList[0].Id;
 		insert orderItemList;
         
-        List<VertexMethods.responseTaxes> listTaxes = new List<VertexMethods.responseTaxes>();
+        List<VertexMethods.ResponseTaxes> listTaxes = new List<VertexMethods.ResponseTaxes>();
         
-        VertexMethods.responseTaxes taxes= new VertexMethods.responseTaxes();
+        VertexMethods.ResponseTaxes taxes= new VertexMethods.ResponseTaxes();
         taxes.id ='1';
         taxes.taxTypeCode ='1';
         taxes.taxRate = 2;
@@ -51,7 +51,7 @@ public class CreditLimitManager_Test {
        // taxes.taxAdditionalInformation additionalInformation 
         listTaxes.add(taxes);
         
-        VertexMethods.itemAdditionalInformation additional = new VertexMethods.itemAdditionalInformation ();
+        VertexMethods.ItemAdditionalInformation additional = new VertexMethods.ItemAdditionalInformation ();
         additional.totalTax ='10';
         additional.totalRate ='10';
         additional.taxAssist2 = 'a';
@@ -68,22 +68,22 @@ public class CreditLimitManager_Test {
         CreditLimitWrappers.CreditSegmentDescription segmentDesc = new CreditLimitWrappers.CreditSegmentDescription();
         segmentDesc.languageCode = 'EUR';
         
-        CreditLimitWrappers.accountCreditLimitAmount accLimitAmount = new CreditLimitWrappers.accountCreditLimitAmount();
+        CreditLimitWrappers.AccountCreditLimitAmount accLimitAmount = new CreditLimitWrappers.AccountCreditLimitAmount();
         accLimitAmount.currencyCode = 'EUR';
         accLimitAmount.dollar='1232';
         
-        CreditLimitWrappers.accountCreditLimitValidityPeriod validityPeriod = new CreditLimitWrappers.accountCreditLimitValidityPeriod();
+        CreditLimitWrappers.AccountCreditLimitValidityPeriod validityPeriod = new CreditLimitWrappers.AccountCreditLimitValidityPeriod();
         validityPeriod.startDate = '2025-09-09';
         validityPeriod.endDate = '2025-09-09';
         
-        CreditLimitWrappers.accountCreditExposureAmount exposureAmount = new CreditLimitWrappers.accountCreditExposureAmount();
+        CreditLimitWrappers.AccountCreditExposureAmount exposureAmount = new CreditLimitWrappers.AccountCreditExposureAmount();
         exposureAmount.currencyCode = 'EUR';
         exposureAmount.dollar='1232';
         
-        CreditLimitWrappers.accountCreditExposure accCreditExposure = new CreditLimitWrappers.accountCreditExposure();
-        accCreditExposure.Percent = '232';
-        accCreditExposure.DynamicCheckCreditHorizonEndDate='2025-09-09';
-        accCreditExposure.Amount=exposureAmount;
+        CreditLimitWrappers.AccountCreditExposure accCreditExposure = new CreditLimitWrappers.AccountCreditExposure();
+        accCreditExposure.percent = '232';
+        accCreditExposure.dynamicCheckCreditHorizonEndDate='2025-09-09';
+        accCreditExposure.amount=exposureAmount;
         
         CreditLimitWrappers.CreditRiskDescription riskDescription = new CreditLimitWrappers.CreditRiskDescription();
         riskDescription.languageCode = 'EUR';
@@ -94,17 +94,17 @@ public class CreditLimitManager_Test {
         riskValidity.endDate = '2025-09-09';
         
         CreditLimitWrappers.CreditRiskClass creditRisk = new CreditLimitWrappers.CreditRiskClass();
-        creditRisk.Description = riskDescription;
-        creditRisk.Code='9907';
-        creditRisk.ValidityPeriod=riskValidity;
+        creditRisk.description = riskDescription;
+        creditRisk.code='9907';
+        creditRisk.validityPeriod=riskValidity;
               
         CreditLimitWrappers.CreditRatingValidityPeriod creditRatingValidity = new CreditLimitWrappers.CreditRatingValidityPeriod();
         creditRatingValidity.startDate = '2025-09-09';
         creditRatingValidity.endDate = '2025-09-09';
         
         CreditLimitWrappers.CreditRating creditRating = new CreditLimitWrappers.CreditRating();
-        creditRating.Code = '2235245332';
-        creditRating.ValidityPeriod=creditRatingValidity;
+        creditRating.code = '2235245332';
+        creditRating.validityPeriod=creditRatingValidity;
         
        
         CreditLimitWrappers.accountDebtorPartyInternalID accDebtorParty = new CreditLimitWrappers.accountDebtorPartyInternalID();
@@ -115,39 +115,39 @@ public class CreditLimitManager_Test {
     
    		CreditLimitWrappers.CreditManagementAccount creditAccount = new CreditLimitWrappers.CreditManagementAccount();
         creditAccount.debtorPartyInternalID = accDebtorParty;
-        creditAccount.CreditsegmentInternalID = '142234';
-        creditAccount.CreditSegmentDescription = segmentDesc;
-        creditAccount.CreditWorthinessCheckingRuleCode = '254534';
-        creditAccount.CreditWorthinessCheckingSchemeCode = '10';
-        creditAccount.SpecialAttentionRequiredIndicator = '23';
-        creditAccount.BlockedIndicator = '10';
-        creditAccount.BlockingReasonCodeDescription = blockReasonDesc;
-        creditAccount.CreditLimitAmount = accLimitAmount;
-        creditAccount.CreditLimitValidityPeriod = validityPeriod;
-        creditAccount.CreditExposure = accCreditExposure;
-        creditAccount.CreditRating = creditRating;
-        creditAccount.CreditRiskClass = creditRisk;
+        creditAccount.creditsegmentInternalID = '142234';
+        creditAccount.creditSegmentDescription = segmentDesc;
+        creditAccount.creditWorthinessCheckingRuleCode = '254534';
+        creditAccount.creditWorthinessCheckingSchemeCode = '10';
+        creditAccount.specialAttentionRequiredIndicator = '23';
+        creditAccount.blockedIndicator = '10';
+        creditAccount.blockingReasonCodeDescription = blockReasonDesc;
+        creditAccount.creditLimitAmount = accLimitAmount;
+        creditAccount.creditLimitValidityPeriod = validityPeriod;
+        creditAccount.creditExposure = accCreditExposure;
+        creditAccount.creditRating = creditRating;
+        creditAccount.creditRiskClass = creditRisk;
       //  creditAccount.PaymentBehaviourSummary = '';
      //   creditAccount.CommitmentTotal = '';
         
         CreditLimitWrappers.MessageHeader messageHeader = new CreditLimitWrappers.MessageHeader();
-        messageHeader.Id = '232';
-        messageHeader.CreationDateTime='323535';
+        messageHeader.id = '232';
+        messageHeader.creationDateTime='323535';
        
         CreditLimitWrappers.CreditManagementAccountByIDResponse creditAccountResponse = new CreditLimitWrappers.CreditManagementAccountByIDResponse();
-        creditAccountResponse.MessageHeader= messageHeader;
+        creditAccountResponse.messageHeader= messageHeader;
         
-        CreditLimitWrappers.accountBody body = new CreditLimitWrappers.accountBody();
+        CreditLimitWrappers.AccountBody body = new CreditLimitWrappers.AccountBody();
       
-        body.CreditManagementAccountByIDResponse = creditAccountResponse;
+        body.creditManagementAccountByIDResponse = creditAccountResponse;
      
-        CreditLimitWrappers.accountEnvelope envelope = new CreditLimitWrappers.accountEnvelope();
-        envelope.Body = body;
-        envelope.Header='321';
+        CreditLimitWrappers.AccountEnvelope envelope = new CreditLimitWrappers.AccountEnvelope();
+        envelope.body = body;
+        envelope.header='321';
         
-        CreditLimitWrappers.accountWrapperResponse wrapper = new CreditLimitWrappers.accountWrapperResponse();
+        CreditLimitWrappers.AccountWrapperResponse wrapper = new CreditLimitWrappers.AccountWrapperResponse();
       
-        wrapper.Envelope = envelope;
+        wrapper.envelope = envelope;
         
      
         
@@ -239,7 +239,7 @@ public class CreditLimitManager_Test {
     	String expectedValue = '{"CreditManagementAccountByIDResponse":{"MessageHeader":{"ID":"D6B2D2D3CE021FD0A2B358C6DE278E94","CreationDateTime":"2025-09-04T14:23:49.194Z"}';
     	//Assert.areEqual(expectedValue, actualValue);
     	Assert.areEqual(200, response.getStatusCode());
-        CreditLimitManager.getObjectCurrency(true,false,false,testAccount.Id);
+        CreditLimitManager.getObjectCurrency(true,testAccount.Id);
         CreditLimitManager.callGetLimit(true,false,false,testAccount.Id);
 
               Test.stopTest();

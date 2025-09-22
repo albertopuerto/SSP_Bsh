@@ -7,13 +7,10 @@ public with sharing class VertexIntManager {
             vertexWrapper.auxId = '723E4D234A111FD087EC4B69ED931D18';
             vertexWrapper.actualDate = dt.formatGMT('yyyy-MM-dd\'T\'HH:mm:ss.SSS\'Z\'');
 
-            vertexWrapper.companyInformation = new VertexMethods.CompanyInformation('5000', 'X', '------------------------X', 'XX');
+            vertexWrapper.companyInformation = new VertexMethods.CompanyInformation('X', '------------------------X', 'XX');
 
             vertexWrapper.items = new List<VertexMethods.Item>{
                 new VertexMethods.Item(
-                    '000001',
-                    'NO_PRODUCT',
-                    '1.000',
                 '1.00',
                 new List<VertexMethods.AssignedParty>{
                     new VertexMethods.AssignedParty('5000', 'SHIP_TO'),
@@ -31,7 +28,7 @@ public with sharing class VertexIntManager {
 
             vertexWrapper.parties = new List<VertexMethods.Party>{
                 new VertexMethods.PartySimple('5000', countryCode),
-                new VertexMethods.PartyComplete('DUMMY123', countryCode, new List<VertexMethods.TaxRegistration>{
+                new VertexMethods.PartyComplete(countryCode, new List<VertexMethods.TaxRegistration>{
                     new VertexMethods.TaxRegistration('VAT', 'XXX', countryCode)
                 },      new VertexMethods.AdditionalInformation('Y')),
                 new VertexMethods.PartySimple('CONTRACT_FROM', countryCode),

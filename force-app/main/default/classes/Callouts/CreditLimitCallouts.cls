@@ -1,7 +1,7 @@
 public with sharing class CreditLimitCallouts {
 
     // method that makes the callouts to vertex
-    public static HttpResponse startVertexCallouts(Boolean isAccount, Boolean isQuote,Boolean isOrder,SBQQ__Quote__c quoteToCalculate,Order orderToCalculate){
+    public static HttpResponse startVertexCallouts(SBQQ__Quote__c quoteToCalculate,Order orderToCalculate){
 
         Http vertexHttp= new Http();
         HttpRequest vertexRequest = new HttpRequest();
@@ -20,14 +20,14 @@ public with sharing class CreditLimitCallouts {
 
         String finalVertexBody;
         
-        if(isQuote && quoteToCalculate.SBQQ__Status__c == 'Accepted'){
+        if(quoteToCalculate != null && quoteToCalculate.SBQQ__Status__c == 'Accepted'){
 
             // Si no es accepted bloquearlo por js y ponerle un tooltip
             //  dto = new VertexBodyDTO(DateTime.now(), quoteToCalculate.Bill_To_Country__c);
             String bodyWrapper = JSON.serialize(VertexIntManager.createRequest(todayDateTime,quoteToCalculate.SBQQ__Account__r.BillingCountry));
             finalVertexBody = CreditLimitUtilMethods.formatRequest(bodyWrapper);
                 
-        }else if(isOrder && orderToCalculate.Status == 'Activated'){
+        }else if(orderToCalculate != null && orderToCalculate.Status == 'Activated'){
                 
         	String bodyWrapper = JSON.serialize(VertexIntManager.createRequest(todayDateTime,orderToCalculate.Account.BillingCountry));
             finalVertexBody = CreditLimitUtilMethods.formatRequest(bodyWrapper);
@@ -48,8 +48,9 @@ public with sharing class CreditLimitCallouts {
         
     }
     
-    public static HttpResponse startCreditLimitCallouts(Boolean isAccount, Boolean isQuote,Boolean isOrder,String orgId,SBQQ__Quote__c quoteToCalculate,Order orderToCalculate,Account actualAccount){
+    public static HttpResponse startCreditLimitCallouts(SBQQ__Quote__c quoteToCalculate,Order orderToCalculate,Account actualAccount){
         
+        String orgId = [SELECT Id FROM Organization WITH SECURITY_ENFORCED LIMIT 1].Id;
         HttpResponse creditLimitResponse = new HttpResponse();
         HttpRequest request = new HttpRequest();
         Http creditLimitHttp= new Http();
@@ -67,22 +68,22 @@ public with sharing class CreditLimitCallouts {
 
         String finalCreditLimitBody;
 
-        if(isQuote && quoteToCalculate.SBQQ__Status__c == 'Accepted'){
+        if(quoteToCalculate != null && quoteToCalculate.SBQQ__Status__c == 'Accepted'){
 
         	request.setEndpoint('callout:creditLimitCheckOuathCallout');
 
-            String bodyWrapper = JSON.serialize(CreditLimitWrapperManager.createCreditWorthinessRequest(orgId,quoteToCalculate.cur_Current_Credit_Limit_including_VAT__c,quoteToCalculate.CurrencyIsoCode,quoteToCalculate.SBQQ__Account__r.txt_AthenaUUID__c ));
+            String bodyWrapper = JSON.serialize(CreditLimitWrapperManager.createCreditWorthinessRequest(quoteToCalculate.cur_Current_Credit_Limit_including_VAT__c,quoteToCalculate.CurrencyIsoCode,quoteToCalculate.SBQQ__Account__r.txt_AthenaUUID__c ));
             finalCreditLimitBody= CreditLimitUtilMethods.formatRequest(bodyWrapper);
                 
-        }else if(isOrder && orderToCalculate.Status == 'Activated'){
+        }else if(orderToCalculate != null && orderToCalculate.Status == 'Activated'){
              
          	request.setEndpoint('callout:creditLimitCheckOuathCallout');
                 
-            String bodyWrapper = JSON.serialize(CreditLimitWrapperManager.createCreditWorthinessRequest(orgId,orderToCalculate.cur_Current_Credit_Limit_including_VAT__c,orderToCalculate.CurrencyIsoCode,orderToCalculate.Account.txt_AthenaUUID__c));
+            String bodyWrapper = JSON.serialize(CreditLimitWrapperManager.createCreditWorthinessRequest(orderToCalculate.cur_Current_Credit_Limit_including_VAT__c,orderToCalculate.CurrencyIsoCode,orderToCalculate.Account.txt_AthenaUUID__c));
               
             finalCreditLimitBody= CreditLimitUtilMethods.formatRequest(bodyWrapper);
               
-        }else if(isAccount){   
+        }else if(actualAccount != null){   
              
          	request.setEndpoint('callout:creditLimitAccountOuathCallout');
                 

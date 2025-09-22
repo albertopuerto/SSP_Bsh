@@ -1,4 +1,4 @@
-global class VertexMethods {
+public class VertexMethods {
     public String auxId { get; set; }
     public String transactionTypeCode { get; set; }
     public String actualDate { get; set; }
@@ -9,12 +9,12 @@ global class VertexMethods {
     public List<Product> products { get; set; }
     public List<Party> parties { get; set; }
 
-    global class CompanyInformation {
-        global String assignedPartyId { get; set; }
-        global AdditionalInformation additionalInformation { get; set; }
+    public class CompanyInformation {
+        public String assignedPartyId { get; set; }
+        public AdditionalInformation additionalInformation { get; set; }
 
-        global CompanyInformation(String id, String pass, String code, String type) {
-            this.assignedPartyId = id;
+        public CompanyInformation(String pass, String code, String type) {
+            this.assignedPartyId = '5000';
             this.additionalInformation = new AdditionalInformation(pass, code, type);
         }
     }
@@ -44,10 +44,10 @@ global class VertexMethods {
         public List<AssignedParty> assignedParties { get; set; }
         public ItemAdditionalInfo additionalInformation { get; set; }
 
-        public Item(String id, String productId, String quantity, String price, List<AssignedParty> parties, ItemAdditionalInfo info) {
-            this.id = id;
-            this.assignedProductId = productId;
-            this.quantity = quantity;
+        public Item(String price, List<AssignedParty> parties, ItemAdditionalInfo info) {
+            this.id = '000001';
+            this.assignedProductId = 'NO_PRODUCT';
+            this.quantity = '1.000';
             this.unitPrice = price;
             this.assignedParties = parties;
             this.additionalInformation = info;
@@ -101,8 +101,8 @@ global class VertexMethods {
         public AdditionalInformation additionalInformation { get; set; }
 
 
-        public PartyComplete(String id, String country, List<TaxRegistration> regs, AdditionalInformation info) {
-            this.id = id;
+        public PartyComplete(String country, List<TaxRegistration> regs, AdditionalInformation info) {
+            this.id = 'DUMMY123';
             this.countryRegionCode = country;
             this.taxRegistrations = regs;
             this.additionalInformation = info;
@@ -126,22 +126,22 @@ global class VertexMethods {
     }
 
 
-    public class taxAdditionalInformation{
+    public class TaxAdditionalInformation{
         public String taxAssist0 { get; set; }
-        public String JurisdictionLevel { get; set; }
-        public String SellerRegistrationId { get; set; }
-        public String Imposition { get; set; }
-        public String JurisdictionName { get; set; }
-        public String SitusCtry { get; set; }
-        public String RateClassification { get; set; }
-        public String ImpositionType { get; set; }
-        public String DeductibleRate { get; set; }
-        public String Level { get; set; }
-        public String InvoiceTextCode { get; set; }
-        public String BuyerRegistrationId { get; set; }
-        public String Situs { get; set; }
+        public String jurisdictionLevel { get; set; }
+        public String sellerRegistrationId { get; set; }
+        public String imposition { get; set; }
+        public String jurisdictionName { get; set; }
+        public String situsCtry { get; set; }
+        public String rateClassification { get; set; }
+        public String impositionType { get; set; }
+        public String deductibleRate { get; set; }
+        public String level { get; set; }
+        public String invoiceTextCode { get; set; }
+        public String buyerRegistrationId { get; set; }
+        public String situs { get; set; }
     }
-    public class itemAdditionalInformation{
+    public class ItemAdditionalInformation{
         public String totalTax { get; set; }
         public String totalRate { get; set; }
         public String taxAssist2 { get; set; }
@@ -153,10 +153,10 @@ global class VertexMethods {
         public String outFcode25 { get; set; }
 
     }
-    public class itemAdditionalPartnerInfo{
+    public class ItemAdditionalPartnerInfo{
         public String partnerName { get; set; }
     }
-    public class responseTaxes {
+    public class ResponseTaxes {
         public String id { get; set; }
         public String taxTypeCode { get; set; }
         public Decimal taxRate { get; set; }
@@ -168,25 +168,25 @@ global class VertexMethods {
         public Decimal nonDeductibleTaxRate { get; set; }
         public Decimal deductibleTaxAmount { get; set; }
         public Decimal nonDeductibleTaxAmount { get; set; }
-        public taxAdditionalInformation additionalInformation { get; set; }
+        public TaxAdditionalInformation additionalInformation { get; set; }
     }
 
-    public class responseItem{
+    public class ResponseItem{
         public String id { get; set; }
         public String countryRegionCode { get; set; }
         public String taxEventCode { get; set; }
-        public List<responseTaxes> taxes{ get; set; }
+        public List<ResponseTaxes> taxes{ get; set; }
        
-        public itemAdditionalInformation additionalInformation { get; set; }
+        public ItemAdditionalInformation additionalInformation { get; set; }
     }
 
-    public class wrapperResponse {
+    public class WrapperResponse {
          public String auxId { get; set; }
          public String actualDate { get; set; }
          public String currencyCode { get; set; }
          public String amountTypeCode { get; set; }
-         public List<responseItem> items { get; set; }
-         public itemAdditionalPartnerInfo additionalInformation { get; set; }
+         public List<ResponseItem> items { get; set; }
+         public ItemAdditionalPartnerInfo additionalInformation { get; set; }
     }
 
 }

@@ -1,38 +1,38 @@
 public without sharing class CreditLimitWrappers {
     public class AccountRequest{
-        public String DebtorPartyInternalID;
+        public String debtorPartyInternalID;
         public String schemeAgencyID;
-        public String CreditsegmentInternalID;
+        public String creditsegmentInternalID;
         public String languageCode;
     }
 
     public class CheckingSchedule{
-        public Date ValuationDate;
-        public Decimal CheckedAmount;
-        public String CreditSegmentInternalID;
+        public Date valuationDate;
+        public Decimal checkedAmount;
+        public String creditSegmentInternalID;
         public String currencyCode;
     }
 
     public class DebtorParty{
-        public String InternalID;
+        public String internalID;
         public String schemeAgencyID;
     }
 
     public class CreditWorthinessQueryRequest{
-        public String CreditSegmentInternalID;
-        public CheckingSchedule CheckingSchedule;
-        public DebtorParty DebtorParty;
+        public String creditSegmentInternalID;
+        public CheckingSchedule checkingSchedule;
+        public DebtorParty debtorParty;
         
     }
 
-     // response side of the wrapper 
+     // response side of the wrapper
 
     public class CheckingDescs{
         public String languageCode { get; set; }  // replace with @languageCode
         public String dollar { get; set; }   // replace with $
     }
 
-    public class debtorPartyInternalID {
+    public class DebtorPartyInternalID {
         public String schemeID { get; set; } // replace with @schemeId
         public String schemeAgencyID { get; set; } // replace with @schemeAgencyID
         public String dollar { get; set; } // replace with $
@@ -40,82 +40,82 @@ public without sharing class CreditLimitWrappers {
 
 
     public class DebtorPartyResponse{
-        public debtorPartyInternalID InternalID { get; set; }
+        public DebtorPartyInternalID internalID { get; set; }
     }
 
-    public class ratingValidityPeriod {
-        public String EndDateTime { get; set; }
+    public class RatingValidityPeriod {
+        public String endDateTime { get; set; }
     }
 
     public class Rating{
-        public String Code { get; set; }
-        public RatingValidityPeriod ValidityPeriod { get; set; }
+        public String code { get; set; }
+        public RatingValidityPeriod validityPeriod { get; set; }
     }
 
     public class RiskClassValidityPeriod {
-        public String EndDateTime { get; set; }
+        public String endDateTime { get; set; }
     }
 
     public class RiskClass{
-        public String Code { get; set; }
-        public RiskClassValidityPeriod ValidityPeriod { get; set; }
+        public String code { get; set; }
+        public RiskClassValidityPeriod validityPeriod { get; set; }
     }
 
-    public class creditLimitAmount{
+    public class CreditLimitAmount{
         public String currencyCode { get; set; } // replace with @currencyCode
         public String dollar { get; set; }   // replace with $
     }
 
-    public class creditLimitValidityPeriod {
-        public String EndDateTime { get; set; }
+    public class CreditLimitValidityPeriod {
+        public String endDateTime { get; set; }
     }
 
-     public class creditLimitResponse{
-        public creditLimitAmount Amount { get; set; }
-        public creditLimitValidityPeriod ValidityPeriod { get; set; }
+     public class CreditLimitResponse{
+        public CreditLimitAmount amount { get; set; }
+        public CreditLimitValidityPeriod validityPeriod { get; set; }
     }
 
-     public class creditExposureAmount{
+     public class CreditExposureAmount{
         public String currencyCode { get; set; } // replace with @currencyCode
         public String dollar { get; set; }  // replace with $
     }
 
-    public class creditExposure{
-        public creditExposureAmount Amount { get; set; }
+    public class CreditExposure{
+        public CreditExposureAmount amount { get; set; }
     }
 
    
     public class CreditWorthiness{
-        public String CreditSegmentInternalID { get; set; }
-        public String Indicator { get; set; }
-        public List<CheckingDescs> CheckingDescription { get; set; }
-        public String DebtorPartyBlockedIndicator { get; set; }
-        public String DebtorPartySpecialAttentionRequiredIndicator { get; set; }
-        public String DynamicCheckHorizonEndDate { get; set; }
-        public DebtorPartyResponse DebtorParty { get; set; }
-        public Rating Rating { get; set; }
-        public RiskClass RiskClass { get; set; }
-        public creditLimitResponse creditLimit { get; set; }
-        public creditExposure CreditExposure { get; set; }
+        public String creditSegmentInternalID { get; set; }
+        public String indicator { get; set; }
+        public List<CheckingDescs> checkingDescription { get; set; }
+        public String debtorPartyBlockedIndicator { get; set; }
+        public String debtorPartySpecialAttentionRequiredIndicator { get; set; }
+        public String dynamicCheckHorizonEndDate { get; set; }
+        public DebtorPartyResponse debtorParty { get; set; }
+        public Rating rating { get; set; }
+        public RiskClass riskClass { get; set; }
+        public CreditLimitResponse creditLimit { get; set; }
+        public CreditExposure creditExposure { get; set; }
 
       //  public 
     }
     
     public class CreditWorthinessResponse{
-        public CreditWorthiness CreditWorthiness { get; set; }
+        public CreditWorthiness creditWorthiness { get; set; }
     }
 
     public class Body {
-        public CreditWorthinessResponse CreditWorthinessResponse { get; set; }
+        public CreditWorthinessResponse creditWorthinessResponse { get; set; }
     }
 
     public class Envelope {
-        public String Header { get; set; }
-        public Body Body { get; set; }
+        public String header { get; set; }
+        public Body body { get; set; }
     }
 
-     public class wrapperResponse {
-        public Envelope Envelope { get; set; }
+     public class WrapperResponse {
+        public Envelope envelope { get; set; }
     }
 
 
@@ -131,30 +131,30 @@ public without sharing class CreditLimitWrappers {
         public String dollar;
      }
      public class CommitmentTotal{
-        public String CreditCommitmentTypeCode;
-        public CreditCommitmentTotalAmount CreditCommitmentTotalAmount;
-        public RelatedAccountsCommitmentTotalAmount RelatedAccountsCommitmentTotalAmount;
+        public String creditCommitmentTypeCode;
+        public CreditCommitmentTotalAmount creditCommitmentTotalAmount;
+        public RelatedAccountsCommitmentTotalAmount relatedAccountsCommitmentTotalAmount;
      }
      public class CollectionAgencySubmittedAmount{
         public String currencyCode;
         public String dollar;
      }
-     public class withDiscountTotalAmount{
+     public class WithDiscountTotalAmount{
         public String currencyCode;
         public String dollar;
      }
      public class WithDiscountPaymentsAverageArrearsDuration{
-        public String AverageArrearsDuration;
-        public withDiscountTotalAmount CurrentYearTotalAmount;
+        public String averageArrearsDuration;
+        public WithDiscountTotalAmount currentYearTotalAmount;
      }
 
-    public class withoutDiscountTotalAmount{
+    public class WithoutDiscountTotalAmount{
         public String currencyCode;
         public String dollar;
      }
      public class WithoutDiscountPaymentsAverageArrearsDuration{
-        public String AverageArrearsDuration;
-        public withoutDiscountTotalAmount CurrentYearTotalAmount;
+        public String averageArrearsDuration;
+        public WithoutDiscountTotalAmount currentYearTotalAmount;
      }
      public class LastTwelfeMonthsSalesVolumeAmount{
         public String currencyCode;
@@ -173,60 +173,60 @@ public without sharing class CreditLimitWrappers {
         public String dollar;
      }
      public class OldestOpenItem {
-        public String AccountingDocumentID;
-        public String AccountingDocumentItemID;
-        public OldestOpenItemAmount OldestOpenItemAmount;
-        public String OverdueNetDate;
+        public String accountingDocumentID;
+        public String accountingDocumentItemID;
+        public OldestOpenItemAmount oldestOpenItemAmount;
+        public String overdueNetDate;
      }
      public class PaymentBehaviourSummary{
-        public OldestOpenItem OldestOpenItem;
-        public ReceivablesTotalAmount ReceivablesTotalAmount;
-        public String DaysOfSalesOutstandingAverageDuration;
-        public LastTwelfeMonthsCreditExposureMaximumAmount LastTwelfeMonthsCreditExposureMaximumAmount;
-        public LastTwelfeMonthsSalesVolumeAmount LastTwelfeMonthsSalesVolumeAmount;
-        public WithoutDiscountPaymentsAverageArrearsDuration WithoutDiscountPaymentsAverageArrearsDuration;
-        public WithDiscountPaymentsAverageArrearsDuration WithDiscountPaymentsAverageArrearsDuration;
-        public CollectionAgencySubmittedAmount CollectionAgencySubmittedAmount;
+        public OldestOpenItem oldestOpenItem;
+        public ReceivablesTotalAmount receivablesTotalAmount;
+        public String daysOfSalesOutstandingAverageDuration;
+        public LastTwelfeMonthsCreditExposureMaximumAmount lastTwelfeMonthsCreditExposureMaximumAmount;
+        public LastTwelfeMonthsSalesVolumeAmount lastTwelfeMonthsSalesVolumeAmount;
+        public WithoutDiscountPaymentsAverageArrearsDuration withoutDiscountPaymentsAverageArrearsDuration;
+        public WithDiscountPaymentsAverageArrearsDuration withDiscountPaymentsAverageArrearsDuration;
+        public CollectionAgencySubmittedAmount collectionAgencySubmittedAmount;
         
      }
 
      public class CreditRiskValidityPeriod{
-        public String StartDate;
-        public String EndDate;
+        public String startDate;
+        public String endDate;
      }
      public class CreditRiskDescription{
         public String languageCode;
         public String dollar;
      }
       public class CreditRiskClass{
-        public CreditRiskValidityPeriod ValidityPeriod;
-        public String Code;
-        public CreditRiskDescription Description;
+        public CreditRiskValidityPeriod validityPeriod;
+        public String code;
+        public CreditRiskDescription description;
      }
 
      public class CreditRatingValidityPeriod{
-        public String StartDate;
-        public String EndDate;
+        public String startDate;
+        public String endDate;
      }
       public class CreditRating{
-        public CreditRatingValidityPeriod ValidityPeriod;
-        public String Code;
+        public CreditRatingValidityPeriod validityPeriod;
+        public String code;
      }
-      public class accountCreditExposureAmount{
+      public class AccountCreditExposureAmount{
         public String currencyCode;
         public String dollar;
      }
-      public class accountCreditExposure{
-        public accountCreditExposureAmount Amount;
-        public String Percent;
-        public String DynamicCheckCreditHorizonEndDate;
+      public class AccountCreditExposure{
+        public AccountCreditExposureAmount amount;
+        public String percent;
+        public String dynamicCheckCreditHorizonEndDate;
      }
 
-     public class accountCreditLimitValidityPeriod{
-        public String StartDate;
-        public String EndDate;
+     public class AccountCreditLimitValidityPeriod{
+        public String startDate;
+        public String endDate;
      }
-     public class accountCreditLimitAmount{
+     public class AccountCreditLimitAmount{
         public String currencyCode;
         public String dollar;
      }
@@ -239,66 +239,66 @@ public without sharing class CreditLimitWrappers {
         public String languageCode { get; set; }
     }
 
-    public class accountDebtorPartyInternalID{
+    public class AccountDebtorPartyInternalID{
         public String schemeID { get; set; }
         public String schemeAgencyID { get; set; }
         public String dollar { get; set; }
     }
 
      public class MessageHeader{
-        public String ID { get; set; }
-        public String CreationDateTime {get; set;}
+        public String iD { get; set; }
+        public String creationDateTime {get; set;}
     }
    
     public class CreditManagementAccount{
-        public accountDebtorPartyInternalID DebtorPartyInternalID { get; set; }
-        public String CreditsegmentInternalID { get; set; }
-        public CreditSegmentDescription CreditSegmentDescription { get; set; }
-        public String CreditWorthinessCheckingRuleCode { get; set; }
-        public String CreditWorthinessCheckingSchemeCode { get; set; }
-        public String SpecialAttentionRequiredIndicator { get; set; }
-        public String BlockedIndicator { get; set; }
-        public BlockingReasonCodeDescription BlockingReasonCodeDescription { get; set; }
-        public accountCreditLimitAmount CreditLimitAmount { get; set; }
-        public accountCreditLimitValidityPeriod CreditLimitValidityPeriod { get; set; }
-        public accountCreditExposure CreditExposure { get; set; }
-        public CreditRating CreditRating { get; set; }
-        public CreditRiskClass CreditRiskClass { get; set; }
-        public PaymentBehaviourSummary PaymentBehaviourSummary { get; set; }
-        public List<CommitmentTotal> CommitmentTotal { get; set; }
+        public AccountDebtorPartyInternalID debtorPartyInternalID { get; set; }
+        public String creditsegmentInternalID { get; set; }
+        public CreditSegmentDescription creditSegmentDescription { get; set; }
+        public String creditWorthinessCheckingRuleCode { get; set; }
+        public String creditWorthinessCheckingSchemeCode { get; set; }
+        public String specialAttentionRequiredIndicator { get; set; }
+        public String blockedIndicator { get; set; }
+        public BlockingReasonCodeDescription blockingReasonCodeDescription { get; set; }
+        public AccountCreditLimitAmount creditLimitAmount { get; set; }
+        public AccountCreditLimitValidityPeriod creditLimitValidityPeriod { get; set; }
+        public AccountCreditExposure creditExposure { get; set; }
+        public CreditRating creditRating { get; set; }
+        public CreditRiskClass creditRiskClass { get; set; }
+        public PaymentBehaviourSummary paymentBehaviourSummary { get; set; }
+        public List<CommitmentTotal> commitmentTotal { get; set; }
     }    
     public class LogItem {
-        public String TypeID {get;set;}
-        public String SeverityCode {get;set;}
-        public String Note {get;set;}
+        public String typeID {get;set;}
+        public String severityCode {get;set;}
+        public String note {get;set;}
     }
         
     public class LogAccount {
-        public String MaximumLogItemSeverityCode {get;set;}
-        public LogItem Item {get;set;}
+        public String maximumLogItemSeverityCode {get;set;}
+        public LogItem item {get;set;}
     }    
       //  public 
     
     public class CreditManagementAccountByIDResponse {
-        public MessageHeader MessageHeader { get; set; }
-        public CreditManagementAccount CreditManagementAccount {get;set;}
-        public LogAccount Log {get;set;}
+        public MessageHeader messageHeader { get; set; }
+        public CreditManagementAccount creditManagementAccount {get;set;}
+        public LogAccount log {get;set;}
     }
 
-    public class accountBody {
-        public CreditManagementAccountByIDResponse CreditManagementAccountByIDResponse { get; set; }
+    public class AccountBody {
+        public CreditManagementAccountByIDResponse creditManagementAccountByIDResponse { get; set; }
     }
 
-    public class accountEnvelope {
-        public String Header { get; set; }
-        public accountBody Body { get; set; }
+    public class AccountEnvelope {
+        public String header { get; set; }
+        public AccountBody body { get; set; }
     }
 
-     public class accountWrapperResponse {
-        public accountEnvelope Envelope { get; set; }
+     public class AccountWrapperResponse {
+        public AccountEnvelope envelope { get; set; }
     }
     
-    public class creditLimitInfoWrapper {
+    public class CreditLimitInfoWrapper {
         @AuraEnabled public Integer status { get; set; }
         @AuraEnabled public String message { get; set; }
         @AuraEnabled public Boolean success { get; set; }

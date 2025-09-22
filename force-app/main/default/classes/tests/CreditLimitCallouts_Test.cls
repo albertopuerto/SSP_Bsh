@@ -53,12 +53,12 @@ public class CreditLimitCallouts_Test {
     	HttpResponse response = CreditLimitCallouts.startVertexCallouts(false, true, false, quoteTest, null);
     	// Verify that the response received contains fake values
     	String contentType = response.getHeader('Content-Type');
-    	Assert.isTrue(contentType == 'application/json');
+    	System.assertEquals(contentType ,'application/json','Content type is application/json');
     	String actualValue = response.getBody();
     	System.debug(response.getBody());
     	String expectedValue = '{"id":"723E4D234A111FD087EC4B69ED931D18","date":"2025-09-04T14:56:10.428Z","currencyCode":"EUR","amountTypeCode":"NET","items":[{"id":"000001","countryRegionCode":"DE","taxEventCode":"IGSTC","taxes":[{"taxTypeCode":"1","taxRate":19.00,"taxableBaseAmount":1.0,"taxAmount":0.19,"dueCategoryCode":"RECEIVABLE","isTaxDeferred":false,"deductibleTaxRate":100.0,"nonDeductibleTaxRate":0.0,"deductibleTaxAmount":0.19,"nonDeductibleTaxAmount":0.0,"additionalInformation":{"taxAssist0":"tax.taxCode&#124;POST&#124;&#124;IGSTC&#124;G_Set_Vertex_TaxDecisionCode_P","JurisdictionLevel":"COUNTRY","SellerRegistrationId":"XXX","Imposition":"VAT","JurisdictionName":"GERMANY","SitusCtry":"DE","RateClassification":"Standard Rate","ImpositionType":"VAT","DeductibleRate":"1.0","Level":"1","InvoiceTextCode":"&#124;21&#124;","BuyerRegistrationId":"DE811128135","Situs":"DE"}}],"additionalInformation":{"totalTax":"0.19","totalRate":"19.0000","taxAssist2":"buyer.department&#124;PRE&#124;&#124;5000&#124;G_Set Tax Payer Hierarchy_P","taxAssist3":"buyer.division&#124;PRE&#124;&#124;EMEA&#124;G_Set Tax Payer Hierarchy_P","taxAssist0":"FLEX.input.Error_Msg&#124;PRE&#124;&#124;UMTD&#124;G_Set_Default_Mapping_UMTD_P","taxAssist1":"buyer.company&#124;PRE&#124;5000&#124;GLOBAL SHELL&#124;G_Set Tax Payer Hierarchy_P","taxAssist4":"purchase.purchaseClass&#124;PRE&#124;&#124;null&#124;G_Set_Default_Mapping_UMTD_P","taxCode":"IGSTC","outFcode25":"UMTD"}}],"additionalInformation":{"partnerName":"Vertex"}}';
     	//Assert.areEqual(expectedValue, actualValue);
-    	Assert.areEqual(200, response.getStatusCode());
+		System.assertEquals(200, response.getStatusCode(),'Success callout');
         Test.stopTest();
 	}
     
@@ -76,12 +76,12 @@ public class CreditLimitCallouts_Test {
         
     	// Verify that the response received contains fake values
     	String contentType = response.getHeader('Content-Type');
-    	Assert.isTrue(contentType == 'application/json');
+    	System.assertEquals(contentType ,'application/json','Content type is application/json');
     	String actualValue = response.getBody();
     	System.debug(response.getBody());
     	//String expectedValue = '{"CreditManagementAccountByIDResponse":{"MessageHeader":{"ID":"D6B2D2D3CE021FD0A2B358C6DE278E94","CreationDateTime":"2025-09-04T14:23:49.194Z"}';
     	//Assert.areEqual(expectedValue, actualValue);
-    	Assert.areEqual(200, response.getStatusCode());
+    	System.assertEquals(200, response.getStatusCode(),'Success callout');
         Test.stopTest();
 	}
     
@@ -97,12 +97,12 @@ public class CreditLimitCallouts_Test {
     	HttpResponse response = CreditLimitCallouts.startCreditLimitCallouts(false, true, false, '1111', quoteTest, null, null);
     
     	String contentType = response.getHeader('Content-Type');
-    	Assert.isTrue(contentType == 'application/json');
+    	System.assertEquals(contentType ,'application/json','Content type is application/json');
     	String actualValue = response.getBody();
     	System.debug(response.getBody());
     	String expectedValue = '{"Envelope":{"Header":"","Body":{"CreditWorthinessResponse":{"CreditWorthiness":{"CreditSegmentInternalID":"5370","Indicator":"true","CheckingDescription":[{"@languageCode":"en","$":"Credit segment 5370 of partner 4001831001"},{"@languageCode":"EN","$":"ID: 510936342"}],"DebtorPartyBlockedIndicator":"false","DebtorPartySpecialAttentionRequiredIndicator":"false","DynamicCheckHorizonEndDate":"2025-10-04","DebtorParty":{"InternalID":{"@schemeID":"PartyID","@schemeAgencyID":"SAP0BHL011","$":"4001831001"}},"Rating":{"Code":"       93","ValidityPeriod":{"EndDateTime":"2026-03-03T00:00:00Z"}},"RiskClass":{"Code":"B","ValidityPeriod":{"EndDateTime":"2026-03-03T00:00:00Z"}},"CreditLimit":{"Amount":{"@currencyCode":"EUR","$":"500000.0"},"ValidityPeriod":{"EndDateTime":"2026-09-30T00:00:00Z"}},"CreditExposure":{"Amount":{"@currencyCode":"EUR","$":"0.0"}}}}}}}';
-    	Assert.areEqual(expectedValue, actualValue);
-    	Assert.areEqual(200, response.getStatusCode());
+    	System.assertEquals(expectedValue, actualValue, 'We receive the correct response');
+    	System.assertEquals(200, response.getStatusCode(),'Success callout');
         Test.stopTest();
 	}
     
@@ -121,12 +121,12 @@ public class CreditLimitCallouts_Test {
         
     
     	String contentType = response.getHeader('Content-Type');
-    	Assert.isTrue(contentType == 'application/json');
+    	System.assertEquals(contentType ,'application/json','Content type is application/json');
     	String actualValue = response.getBody();
     	System.debug(response.getBody());
     	String expectedValue = '{"Envelope":{"Header":"","Body":{"CreditWorthinessResponse":{"CreditWorthiness":{"CreditSegmentInternalID":"5370","Indicator":"true","CheckingDescription":[{"@languageCode":"en","$":"Credit segment 5370 of partner 4001831001"},{"@languageCode":"EN","$":"ID: 510936342"}],"DebtorPartyBlockedIndicator":"false","DebtorPartySpecialAttentionRequiredIndicator":"false","DynamicCheckHorizonEndDate":"2025-10-04","DebtorParty":{"InternalID":{"@schemeID":"PartyID","@schemeAgencyID":"SAP0BHL011","$":"4001831001"}},"Rating":{"Code":"       93","ValidityPeriod":{"EndDateTime":"2026-03-03T00:00:00Z"}},"RiskClass":{"Code":"B","ValidityPeriod":{"EndDateTime":"2026-03-03T00:00:00Z"}},"CreditLimit":{"Amount":{"@currencyCode":"EUR","$":"500000.0"},"ValidityPeriod":{"EndDateTime":"2026-09-30T00:00:00Z"}},"CreditExposure":{"Amount":{"@currencyCode":"EUR","$":"0.0"}}}}}}}';
-    	Assert.areEqual(expectedValue, actualValue);
-    	Assert.areEqual(200, response.getStatusCode());
+    	System.assertEquals(expectedValue, actualValue, 'We receive the correct response');
+    	System.assertEquals(200, response.getStatusCode(),'Success callout');
         Test.stopTest();
 	}
 }

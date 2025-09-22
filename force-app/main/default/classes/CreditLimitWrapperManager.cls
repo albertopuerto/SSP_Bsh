@@ -7,34 +7,34 @@ public with sharing class CreditLimitWrapperManager {
 
             CreditLimitWrappers.AccountRequest accRequest= new CreditLimitWrappers.AccountRequest();
             accRequest.debtorPartyInternalID=boschPartnerId;
-            accRequest.CreditsegmentInternalID= CREDITSEGMENTID;
+            accRequest.creditsegmentInternalID= CREDITSEGMENTID;
             accRequest.schemeAgencyID = agencyId;
             accRequest.languageCode = objectCurrency;
 
             return accRequest;
         }
 
-    public static CreditLimitWrappers.CreditWorthinessQueryRequest createCreditWorthinessRequest(String agencyId,Decimal objectAmount,String objectCurrency,String boschPartnerId){
+    public static CreditLimitWrappers.CreditWorthinessQueryRequest createCreditWorthinessRequest(Decimal objectAmount,String objectCurrency,String boschPartnerId){
 
-        
+        String agencyId = [SELECT Id FROM Organization WITH SECURITY_ENFORCED LIMIT 1].Id;
         //			TO CHECK 
         CreditLimitWrappers.CheckingSchedule schedule= new CreditLimitWrappers.CheckingSchedule();
 
         
-        schedule.ValuationDate= Date.newInstance(2025,02,10); // check if needs to be today or a static date
-        schedule.CheckedAmount= objectAmount;
-        schedule.CreditSegmentInternalID= CREDITSEGMENTID;
+        schedule.valuationDate= Date.newInstance(2025,02,10); // check if needs to be today or a static date
+        schedule.checkedAmount= objectAmount;
+        schedule.creditSegmentInternalID= CREDITSEGMENTID;
         schedule.currencyCode= objectCurrency;
 
         CreditLimitWrappers.DebtorParty debtor = new CreditLimitWrappers.DebtorParty();
-        debtor.InternalID= boschPartnerId;
+        debtor.internalID= boschPartnerId;
         debtor.schemeAgencyID = agencyId;
 
 
         CreditLimitWrappers.CreditWorthinessQueryRequest request= new CreditLimitWrappers.CreditWorthinessQueryRequest();
-        request.CreditSegmentInternalID= CREDITSEGMENTID;
-        request.DebtorParty=debtor;
-        request.CheckingSchedule=schedule;
+        request.creditSegmentInternalID= CREDITSEGMENTID;
+        request.debtorParty=debtor;
+        request.checkingSchedule=schedule;
 
         return request;
 
