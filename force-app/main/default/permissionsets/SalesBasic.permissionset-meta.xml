@@ -2915,4 +2915,8 @@
         <recordType>Opportunity.StandardSolutionOrder</recordType>
         <visible>true</visible>
     </recordTypeVisibilities>
+    <classAccesses>
+        <apexClass>CustomPath</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
 </PermissionSet>
