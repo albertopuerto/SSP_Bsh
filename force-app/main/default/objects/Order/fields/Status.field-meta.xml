@@ -3,7 +3,16 @@
     <fullName>Status</fullName>
     <description>Indication of the stage that the order has reached in the order business process.
 
-You can add values to this picklist within two system-defined order status categories: Draft and Activated. You can use these status categories to track orders within your business process using reports and views. Some user permissions apply specifically to draft statuses. Others apply specifically to activated statuses.</description>
+You can add values to this picklist within two system-defined order status categories
+Draft: The order was just created and awaiting review
+Activated: The orders is active and ready to be managed
+Sent to SAP: The order was sent to SAP
+Order Received by SAP: SAP confirmed that the order reached their system. Not the management is done in SAP
+Paused: The order was put in hold from SAP or Salesforce side, the reason should had been provided.
+SAP Fulfil Execution: SAP is managing the order, the solution quotation was created and partially delivery may be in process.
+Shipping: The order is on its way to the final customer.
+Canceled: The order was canceled and the reason should had been provide
+Order Delivered: THe order was completly fullfilled and reached the customer. No further management is needed.</description>
     <trackFeedHistory>true</trackFeedHistory>
     <trackHistory>true</trackHistory>
     <type>Picklist</type>
