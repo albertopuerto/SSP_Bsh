@@ -87,7 +87,6 @@ public with sharing class TestFactoryDefaults{
 		* @return		Map<Schema.SObjectField, Object>
 		*/
 		public Map<Schema.SObjectField, Object> getFieldDefaults() {
-			system.debug('Getting Opportunity defaults');
 			return new Map<Schema.SObjectField, Object> {
             Opportunity.Name => 'Test Opportunity',                          
             Opportunity.StageName => 'Sales Chance (New)',                 
