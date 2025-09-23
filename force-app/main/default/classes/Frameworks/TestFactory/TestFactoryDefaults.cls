@@ -80,13 +80,14 @@ public with sharing class TestFactoryDefaults{
 	* @author       APC
 	* @description  OpportunityDefault constructor
 	*/
-	public class OpportunityDefault implements TestFactory.FieldDefaults {
+	public class OpportunityDefaults implements TestFactory.FieldDefaults {
 		/**
 		* @author       APC
 		* @description  define Opportunity getFieldDefaults()
 		* @return		Map<Schema.SObjectField, Object>
 		*/
 		public Map<Schema.SObjectField, Object> getFieldDefaults() {
+			system.debug('Getting Opportunity defaults');
 			return new Map<Schema.SObjectField, Object> {
             Opportunity.Name => 'Test Opportunity',                          
             Opportunity.StageName => 'Sales Chance (New)',                 
@@ -95,7 +96,7 @@ public with sharing class TestFactoryDefaults{
             Opportunity.CurrencyIsoCode => 'EUR',                            
             Opportunity.pklLeadingSolutionField__c => 'DAP',                 
             Opportunity.pklTypeOfOffering__c => 'SW',                        
-            Opportunity.pklTypeOfOpportunity__c => 'Long Term Agreement' 
+            Opportunity.pklTypeOfOpportunity__c => 'LTA' 
 			};
 		}
 	}
@@ -229,5 +230,22 @@ public with sharing class TestFactoryDefaults{
         
         }
     }
+
+	public class SalesAreaDefaults implements TestFactory.FieldDefaults{
+		/**
+		 * @author       FSJ
+		 * @description  define SalesArea__c getFieldDefaults()
+		 * @return		Map<Schema.SObjectField, Object>
+		 */
+		public Map<Schema.SObjectField, Object> getFieldDefaults() {
+			return new Map<Schema.SObjectField, Object>{
+				SalesArea__c.pkl_SalesOrg__c => 'R000',
+				SalesArea__c.pkl_DistributionChannel__c => '01',
+				SalesArea__c.pkl_Division__c => '01'
+				
+			};
+		
+		}
+	}
    
 }

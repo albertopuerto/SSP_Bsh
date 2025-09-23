@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomMetadata xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <label>Opportunity Standard</label>
+    <protected>false</protected>
+    <values>
+        <field>closed_Stages__c</field>
+        <value xsi:type="xsd:string">{
+	&quot;Losts&quot;: [
+		&quot;Lost&quot;,
+		&quot;Project Cancelled&quot;,
+		&quot;Invalid Data&quot;
+	],
+	&quot;Wons&quot;: [
+		&quot;Won (Awarded)&quot;
+	]
+}</value>
+    </values>
+    <values>
+        <field>key_field__c</field>
+        <value xsi:type="xsd:string">Opportunity_StandardSolutionOrder</value>
+    </values>
+    <values>
+        <field>closeFlow__c</field>
+        <value xsi:type="xsd:string">flw_OpportunityClose</value>
+    </values>
+    <values>
+        <field>finalStage__c</field>
+        <value xsi:type="xsd:string">Closed</value>
+    </values>
+    <values>
+        <field>metadataPath__c</field>
+        <value xsi:type="xsd:string">{
+  &quot;active&quot;: true,
+  &quot;entityName&quot;: &quot;Opportunity&quot;,
+  &quot;fieldName&quot;: &quot;StageName&quot;,
+  &quot;masterLabel&quot;: &quot;SSP Opportunity- Standard Solution Order&quot;,
+  &quot;pathAssistantSteps&quot;: [
+    {
+      &quot;fieldNames&quot;: [
+        &quot;AccountId&quot;,
+        &quot;CloseDate&quot;,
+        &quot;Amount&quot;,
+        &quot;SBQQ__PrimaryQuote__c&quot;
+      ],
+      &quot;info&quot;: &quot;&lt;p&gt;Business is secure. Sales Order from Customer not yet received. Sales Order not yet entered in SAP&lt;/p&gt;&quot;,
+      &quot;picklistValueName&quot;: &quot;Accepted&quot;
+    },
+    {
+      &quot;fieldNames&quot;: [
+        &quot;AccountId&quot;,
+        &quot;CloseDate&quot;,
+        &quot;Probability&quot;,
+        &quot;Amount&quot;,
+        &quot;SBQQ__PrimaryQuote__c&quot;
+      ],
+      &quot;info&quot;: &quot;&lt;p&gt;Opportunity is in qualification and/or analysis, Price Information and/or Quote in preparation. No quotation is sent to the customer yet&lt;/p&gt;&quot;,
+      &quot;picklistValueName&quot;: &quot;Acquisition (Sell)&quot;
+    },
+    {
+      &quot;fieldNames&quot;: [
+        &quot;AccountId&quot;,
+        &quot;CloseDate&quot;,
+        &quot;Amount&quot;,
+        &quot;SBQQ__PrimaryQuote__c&quot;
+      ],
+      &quot;info&quot;: &quot;&lt;p&gt;Use in case of mistaken Opportunity Creation&lt;/p&gt;&quot;,
+      &quot;picklistValueName&quot;: &quot;Invalid Data&quot;
+    },
+    {
+      &quot;fieldNames&quot;: [
+        &quot;AccountId&quot;,
+        &quot;CloseDate&quot;,
+        &quot;Amount&quot;,
+        &quot;Loss_Reason__c&quot;,
+        &quot;txa_LossReasonDescription__c&quot;
+      ],
+      &quot;info&quot;: &quot;&lt;p&gt;Project is lost. Reason must be provided&lt;/p&gt;&quot;,
+      &quot;picklistValueName&quot;: &quot;Lost&quot;
+    },
+    {
+      &quot;fieldNames&quot;: [
+        &quot;AccountId&quot;,
+        &quot;CloseDate&quot;,
+        &quot;Amount&quot;,
+        &quot;SBQQ__PrimaryQuote__c&quot;
+      ],
+      &quot;info&quot;: &quot;&lt;p&gt;Project is cancelled by customer e.g. due to missing budget&lt;/p&gt;&quot;,
+      &quot;picklistValueName&quot;: &quot;Project Cancelled&quot;
+    },
+    {
+      &quot;fieldNames&quot;: [
+        &quot;AccountId&quot;,
+        &quot;CloseDate&quot;,
+        &quot;Probability&quot;,
+        &quot;Amount&quot;,
+        &quot;SBQQ__PrimaryQuote__c&quot;
+      ],
+      &quot;info&quot;: &quot;&lt;p&gt;Price Information and/or Quote is approved within ETAS, sent to Customer and in negotiation. No business award from customer yet&lt;/p&gt;&quot;,
+      &quot;picklistValueName&quot;: &quot;Quotation (Quoted)&quot;
+    },
+    {
+      &quot;fieldNames&quot;: [
+        &quot;AccountId&quot;,
+        &quot;CloseDate&quot;,
+        &quot;Probability&quot;,
+        &quot;Amount&quot;,
+        &quot;Budget_Confirmed__c&quot;
+      ],
+      &quot;info&quot;: &quot;&lt;p&gt;Sales chance in early stage. Details missing to quantify and schedule. Use this Stage in Pre-Selling Phase to indicate Potential Business&lt;/p&gt;&quot;,
+      &quot;picklistValueName&quot;: &quot;Sales Chance (New)&quot;
+    },
+    {
+      &quot;fieldNames&quot;: [
+        &quot;AccountId&quot;,
+        &quot;CloseDate&quot;,
+        &quot;Amount&quot;,
+        &quot;SBQQ__PrimaryQuote__c&quot;
+      ],
+      &quot;info&quot;: &quot;&lt;p&gt;Reception of order completed&lt;/p&gt;&quot;,
+      &quot;picklistValueName&quot;: &quot;Won (Awarded)&quot;
+    }
+  ],
+  &quot;recordTypeName&quot;: &quot;StandardSolutionOrder&quot;,
+  &quot;urls&quot;: null
+}</value>
+    </values>
+</CustomMetadata>
