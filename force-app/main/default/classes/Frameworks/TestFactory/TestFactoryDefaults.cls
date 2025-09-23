@@ -238,8 +238,8 @@ public with sharing class TestFactoryDefaults{
 		 */
 		public Map<Schema.SObjectField, Object> getFieldDefaults() {
 			return new Map<Schema.SObjectField, Object>{
-				SalesArea__c.pkl_SalesOrg__c => 'R000',
-				SalesArea__c.pkl_DistributionChannel__c => '01',
+				SalesArea__c.pkl_SalesOrg__c => 'DEM5',
+				SalesArea__c.pkl_DistributionChannel__c => 'A1',
 				SalesArea__c.pkl_Division__c => '01'
 				
 			};
