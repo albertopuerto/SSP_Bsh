@@ -3,16 +3,16 @@ public with sharing class CreditLimitWrapperManager {
     public static final String CREDITSEGMENTID = '5370'; // Now it is a constant but in the future it will be mapped properly (salesforce/cpi)
     
     public static CreditLimitWrappers.AccountRequest createAccountRequest(String agencyId,String objectCurrency,String boschPartnerId){
-            CreditLimitWrappers creditLimitWrapper = new CreditLimitWrappers();
+        CreditLimitWrappers creditLimitWrapper = new CreditLimitWrappers();
 
-            CreditLimitWrappers.AccountRequest accRequest= new CreditLimitWrappers.AccountRequest();
-            accRequest.debtorPartyInternalID=boschPartnerId;
-            accRequest.creditsegmentInternalID= CREDITSEGMENTID;
-            accRequest.schemeAgencyID = agencyId;
-            accRequest.languageCode = objectCurrency;
+        CreditLimitWrappers.AccountRequest accRequest= new CreditLimitWrappers.AccountRequest();
+        accRequest.debtorPartyInternalID=boschPartnerId;
+        accRequest.creditsegmentInternalID= CREDITSEGMENTID;
+        accRequest.schemeAgencyID = agencyId;
+        accRequest.languageCode = objectCurrency;
 
-            return accRequest;
-        }
+        return accRequest;
+    }
 
     public static CreditLimitWrappers.CreditWorthinessQueryRequest createCreditWorthinessRequest(Decimal objectAmount,String objectCurrency,String boschPartnerId){
 

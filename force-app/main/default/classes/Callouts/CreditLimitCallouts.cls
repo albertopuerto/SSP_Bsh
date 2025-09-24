@@ -50,7 +50,7 @@ public with sharing class CreditLimitCallouts {
     
     public static HttpResponse startCreditLimitCallouts(SBQQ__Quote__c quoteToCalculate,Order orderToCalculate,Account actualAccount){
         
-        String orgId = [SELECT Id FROM Organization WITH SECURITY_ENFORCED LIMIT 1].Id;
+        String orgId = [SELECT Id FROM Organization WITH USER_MODE LIMIT 1].Id;
         HttpResponse creditLimitResponse = new HttpResponse();
         HttpRequest request = new HttpRequest();
         Http creditLimitHttp= new Http();
@@ -85,7 +85,7 @@ public with sharing class CreditLimitCallouts {
               
         }else if(actualAccount != null){   
              
-         	request.setEndpoint('callout:creditLimitAccountOuathCallout');
+         	request.setEndpoint('callout:creditLimitAccount_usernamePass');
                 
             String bodyWrapper = JSON.serialize(CreditLimitWrapperManager.createAccountRequest(orgId,actualAccount.BillingCountry,actualAccount.txt_AthenaUUID__c));
               

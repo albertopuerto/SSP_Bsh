@@ -18,6 +18,7 @@ export default class creditLimit extends LightningElement {
    @track accountLimit = 0;
    @track authToken;
    @api objectApiName;
+ 
    @api recordId;
    @track quoteLimitMessage;
    @track quoteLimitSuccess = false;
@@ -150,9 +151,8 @@ getAccountCreditLimit(){
                 if(result != null){
                     this.objectCurrency=result;
                 }
-            })
+            })  
 
-       
         callGetLimit({objectAPIName : this.objectApiName,objectRecordId : this.recordId})
             .then(result => {
                 if(result != null){
