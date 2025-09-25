@@ -1400,6 +1400,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>OrderItem.pkl_OverallProcessedStatus__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>PriceElement__c.num_ConditionRateValue__c</field>
         <readable>true</readable>
     </fieldPermissions>

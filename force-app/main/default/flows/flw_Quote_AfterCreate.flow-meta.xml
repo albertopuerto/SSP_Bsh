@@ -129,10 +129,6 @@
         <name>upd_Quote_Fields</name>
         <label>Update Quote Fields</label>
         <locationX>176</locationX>
-        <locationY>647</locationY>
-        <connector>
-            <targetReference>Updated_Quote</targetReference>
-        </connector>
         <inputAssignments>
             <field>pkl_PaymentTerms__c</field>
             <value>

@@ -34,11 +34,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Account.txt_AdditionalName__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
         <field>Account.txt_AthenaUUID__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -65,6 +60,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>OrderItem.ftxt_ProductCode__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>OrderItem.pkl_OverallProcessedStatus__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
