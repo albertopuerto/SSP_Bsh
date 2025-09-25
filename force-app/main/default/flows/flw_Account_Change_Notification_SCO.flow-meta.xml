@@ -1,12 +1,56 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
     <actionCalls>
+        <name>Log_Notification_Sent</name>
+        <label>Log_Notification_Sent</label>
+        <locationX>314</locationX>
+        <locationY>755</locationY>
+        <actionName>FlowLogEntry</actionName>
+        <actionType>apex</actionType>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>flowName</name>
+            <value>
+                <stringValue>flw_Account_Change_Notification_SCO</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>loggingLevelName</name>
+            <value>
+                <stringValue>INFO</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>message</name>
+            <value>
+                <stringValue>Account change notification sent for {!$Record.Name}</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>recordId</name>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>tagsString</name>
+            <value>
+                <stringValue>FLW-SYS-00007</stringValue>
+            </value>
+        </inputParameters>
+        <nameSegment>FlowLogEntry</nameSegment>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </actionCalls>
+    <actionCalls>
         <name>Send_Mail_Notification_to_SCO</name>
         <label>Send Mail Notification to Sales Coordinator</label>
         <locationX>50</locationX>
         <locationY>647</locationY>
         <actionName>emailSimple</actionName>
         <actionType>emailSimple</actionType>
+        <faultConnector>
+            <targetReference>Log_Notification_Sent</targetReference>
+        </faultConnector>
         <flowTransactionModel>CurrentTransaction</flowTransactionModel>
         <inputParameters>
             <name>emailAddresses</name>
@@ -306,7 +350,7 @@
         <recordTriggerType>Update</recordTriggerType>
         <triggerType>RecordAfterSave</triggerType>
     </start>
-    <status>Active</status>
+    <status>Draft</status>
     <textTemplates>
         <name>emailBody</name>
         <isViewedAsPlainText>true</isViewedAsPlainText>
