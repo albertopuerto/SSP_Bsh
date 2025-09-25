@@ -51,21 +51,9 @@
         <locationX>176</locationX>
         <locationY>431</locationY>
         <inputAssignments>
-            <field>pkl_INCOTerms1__c</field>
-            <value>
-                <elementReference>Get_AccountFieldValues.pkl_INCOTerms1__c</elementReference>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
             <field>pkl_PaymentTerms__c</field>
             <value>
                 <elementReference>Get_AccountFieldValues.pkl_PaymentTerms__c</elementReference>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <field>txt_INCOTerms2__c</field>
-            <value>
-                <elementReference>Get_AccountFieldValues.txt_INCOTerms2__c</elementReference>
             </value>
         </inputAssignments>
         <inputReference>$Record</inputReference>
