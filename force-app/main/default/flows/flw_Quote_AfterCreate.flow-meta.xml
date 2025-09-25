@@ -24,7 +24,6 @@
             </value>
         </inputParameters>
         <nameSegment>FlowLogEntry</nameSegment>
-        <offset>0</offset>
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </actionCalls>
     <actionCalls>
@@ -51,7 +50,6 @@
             </value>
         </inputParameters>
         <nameSegment>FlowLogEntry</nameSegment>
-        <offset>0</offset>
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </actionCalls>
     <actionCalls>
@@ -75,11 +73,9 @@
             </value>
         </inputParameters>
         <nameSegment>FlowLogEntry</nameSegment>
-        <offset>0</offset>
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </actionCalls>
     <apiVersion>60.0</apiVersion>
-    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
     <description>- copies values from Account fields to newly created Quote</description>
     <environments>Default</environments>
     <interviewLabel>Quote_AfterCreate {!$Flow.CurrentDateTime}</interviewLabel>
@@ -122,7 +118,6 @@
         </filters>
         <getFirstRecordOnly>true</getFirstRecordOnly>
         <object>Account</object>
-        <queriedFields>Id</queriedFields>
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordLookups>
     <recordUpdates>
