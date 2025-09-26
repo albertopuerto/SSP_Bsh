@@ -24,7 +24,6 @@
             </value>
         </inputParameters>
         <nameSegment>FlowLogEntry</nameSegment>
-        <offset>0</offset>
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </actionCalls>
     <actionCalls>
@@ -51,7 +50,6 @@
             </value>
         </inputParameters>
         <nameSegment>FlowLogEntry</nameSegment>
-        <offset>0</offset>
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </actionCalls>
     <actionCalls>
@@ -75,11 +73,9 @@
             </value>
         </inputParameters>
         <nameSegment>FlowLogEntry</nameSegment>
-        <offset>0</offset>
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </actionCalls>
     <apiVersion>60.0</apiVersion>
-    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
     <description>- copies values from Account fields to newly created Quote</description>
     <environments>Default</environments>
     <interviewLabel>Quote_AfterCreate {!$Flow.CurrentDateTime}</interviewLabel>
@@ -122,13 +118,16 @@
         </filters>
         <getFirstRecordOnly>true</getFirstRecordOnly>
         <object>Account</object>
-        <queriedFields>Id</queriedFields>
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordLookups>
     <recordUpdates>
         <name>upd_Quote_Fields</name>
         <label>Update Quote Fields</label>
         <locationX>176</locationX>
+        <locationY>647</locationY>
+        <connector>
+            <targetReference>Updated_Quote</targetReference>
+        </connector>
         <inputAssignments>
             <field>pkl_PaymentTerms__c</field>
             <value>
