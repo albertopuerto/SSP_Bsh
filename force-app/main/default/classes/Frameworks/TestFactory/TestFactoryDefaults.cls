@@ -27,9 +27,7 @@ public with sharing class TestFactoryDefaults{
 					Account.ShippingCountry => 'sTest',
 					Account.txt_AthenaUUID__c => '1111',
 					Account.Role__c => 'ETDE Domestic Customer',
-					Account.pkl_INCOTerms1__c => 'CPT - Carriage Paid To',
 					Account.pkl_PaymentTerms__c => 'Due on receipt',
-					Account.txt_INCOTerms2__c => 'Inco terms 2 text area',
 					Account.pkl_Language__c => 'English',
 					Account.pkm_BoschPartnerRole__c => 'BBCUSH'
 			};
@@ -49,9 +47,7 @@ public with sharing class TestFactoryDefaults{
 					Account.Phone => '0123456',
 					Account.txt_AthenaUUID__c => '2222',
 					Account.Role__c => 'ETDE Domestic Customer',
-					Account.pkl_INCOTerms1__c => 'CPT - Carriage Paid To',
 					Account.pkl_PaymentTerms__c => 'Due on receipt',
-					Account.txt_INCOTerms2__c => 'Inco terms 2 text area',
 					Account.pkl_Language__c => 'English',
 					Account.pkm_BoschPartnerRole__c => 'BBCUEX'
 			};
