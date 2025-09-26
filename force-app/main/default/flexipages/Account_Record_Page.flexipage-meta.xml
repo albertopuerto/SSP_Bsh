@@ -79,16 +79,6 @@
                     <name>uiBehavior</name>
                     <value>none</value>
                 </fieldInstanceProperties>
-                <fieldItem>Record.txt_Name4__c</fieldItem>
-                <identifier>RecordName_4__cField</identifier>
-            </fieldInstance>
-        </itemInstances>
-        <itemInstances>
-            <fieldInstance>
-                <fieldInstanceProperties>
-                    <name>uiBehavior</name>
-                    <value>none</value>
-                </fieldInstanceProperties>
                 <fieldItem>Record.Type</fieldItem>
                 <identifier>RecordTypeField</identifier>
             </fieldInstance>
@@ -161,26 +151,6 @@
                 </fieldInstanceProperties>
                 <fieldItem>Record.txt_AthenaUUID__c</fieldItem>
                 <identifier>Recordtxt_AthenaUUID__cField</identifier>
-            </fieldInstance>
-        </itemInstances>
-        <itemInstances>
-            <fieldInstance>
-                <fieldInstanceProperties>
-                    <name>uiBehavior</name>
-                    <value>none</value>
-                </fieldInstanceProperties>
-                <fieldItem>Record.txt_LegalEntity__c</fieldItem>
-                <identifier>RecordLegal_Entity__cField</identifier>
-            </fieldInstance>
-        </itemInstances>
-        <itemInstances>
-            <fieldInstance>
-                <fieldInstanceProperties>
-                    <name>uiBehavior</name>
-                    <value>readonly</value>
-                </fieldInstanceProperties>
-                <fieldItem>Record.pkm_BoschPartnerRole__c</fieldItem>
-                <identifier>Recordpkm_BoschPartnerRole__cField</identifier>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
@@ -265,6 +235,16 @@
                 </fieldInstanceProperties>
                 <fieldItem>Record.ftxt_GTS__c</fieldItem>
                 <identifier>Recordftxt_GTS_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>readonly</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.dtm_DatetimeofcreationinAthena__c</fieldItem>
+                <identifier>Recorddtm_DatetimeofcreationinAthena_cField</identifier>
             </fieldInstance>
         </itemInstances>
         <name>Facet-bbd70fe4-b2af-47e0-bcaf-adcc609214d1</name>
@@ -835,10 +815,6 @@
         <itemInstances>
             <componentInstance>
                 <componentInstanceProperties>
-                    <name>label</name>
-                    <value>Tabs</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
                     <name>tabs</name>
                     <value>maintabs</value>
                 </componentInstanceProperties>
@@ -916,6 +892,12 @@
     <flexiPageRegions>
         <itemInstances>
             <componentInstance>
+                <componentName>creditLimit</componentName>
+                <identifier>c_creditLimit</identifier>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
                 <componentInstanceProperties>
                     <name>hideHeader</name>
                     <value>true</value>
@@ -926,10 +908,6 @@
         </itemInstances>
         <itemInstances>
             <componentInstance>
-                <componentInstanceProperties>
-                    <name>label</name>
-                    <value>Tabs</value>
-                </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>tabs</name>
                     <value>sidebartabs</value>
