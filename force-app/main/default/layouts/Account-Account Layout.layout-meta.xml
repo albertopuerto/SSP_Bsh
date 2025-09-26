@@ -64,6 +64,14 @@
                 <behavior>Edit</behavior>
                 <field>pkl_Status__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>txt_C4C_Territory_ID__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>pkl_C4C_Territory_Name__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
@@ -153,7 +161,6 @@
                 <field>pkl_PaymentTerms__c</field>
             </layoutItems>
         </layoutColumns>
-        <layoutColumns />
         <style>TwoColumnsLeftToRight</style>
     </layoutSections>
     <layoutSections>
@@ -333,6 +340,13 @@
         <fields>SBQQ__Opportunity2__c</fields>
         <fields>SBQQ__ExpirationDate__c</fields>
         <relatedList>SBQQ__Quote__c.SBQQ__Account__c</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <excludeButtons>New</excludeButtons>
+        <fields>ORDERS.ORDER_NUMBER</fields>
+        <fields>ORDERS.STATUS</fields>
+        <fields>ORDERS.TOTAL_AMOUNT</fields>
+        <relatedList>RelatedOrderList</relatedList>
     </relatedLists>
     <relatedLists>
         <excludeButtons>NewContact</excludeButtons>
