@@ -3072,4 +3072,8 @@
         <tab>SalesArea__c</tab>
         <visibility>Visible</visibility>
     </tabSettings>
+    <classAccesses>
+        <apexClass>CustomPath</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
 </PermissionSet>

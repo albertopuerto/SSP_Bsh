@@ -1,0 +1,72 @@
+<template>
+    <template if:true={showPath}>
+        <div style="background-color:white;">
+            <div class="slds-path" style="padding: 10px">
+                <div class="slds-grid slds-path__track">
+                    <div class="slds-grid slds-path__scroller-container">
+                        <lightning-button-icon icon-name={chevronIcon} disabled={disableChevronIcon} style="padding-right: 15px" onclick={expandPath}></lightning-button-icon>
+                        <div class="slds-path__scroller">
+                            <div class="slds-path__scroller_inner">
+                                <ul class="slds-path__nav" role="listbox" aria-orientation="horizontal" aria-labelledby="slds-path__stage-name">
+                                    <template for:each={statusList} for:item="OpportunityStage">
+                                        <li class={OpportunityStage.className} role="presentation" key={OpportunityStage.label} onclick={selectStage} data-id={OpportunityStage.label} onmouseover={pathStageMouseOver} onmouseout={pathStageMouseOut}>
+                                            <a aria-selected="true" class="slds-path__link" href="#" id={OpportunityStage.label} role="option" tabindex="0">
+                                                <span class="slds-path__stage">
+                                                    <lightning-icon icon-name="utility:check" alternative-text="check" size="xx-small" class="slds-button__icon slds-button__icon_left" variant="inverse"></lightning-icon>
+                                                    <span class="slds-assistive-text">Current Stage:</span>
+                                                </span>
+                                                <span class="slds-path__title">{OpportunityStage.label}</span>
+                                            </a>
+                                            
+                                        </li>
+                                    </template>
+                                </ul>
+                                <template if:true={showTooltip}>
+                                    <div class="slds-popover slds-popover_tooltip slds-nubbin_top" role="tooltip" style={tooltipStyle}>
+                                        <div class="slds-popover__body">{toolTipText}</div>
+                                    </div>
+                                </template>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slds-grid slds-path__action">
+                        <span id="slds-path__stage-name" class="slds-path__stage-name">Stage: Sales Chance (New)</span>
+                        <button class="slds-button slds-button_brand slds-path__mark-complete" onclick={onSubmitStageClick}>
+                            <lightning-icon if:true={isSelectedCurrent} icon-name="utility:check" alternative-text="check" size="xx-small" class="slds-button__icon slds-button__icon_left" variant="inverse"></lightning-icon>
+                            {completeButtonText}
+                        </button>                        
+                        <button class="slds-button slds-button_neutral slds-path__trigger-coaching-content" aria-expanded="false" aria-controls="path-coaching-1">Show More</button>
+                    </div>
+
+                </div>
+            </div>
+
+            <template if:true={showStageDetails}>
+                <c-guidance-custom-path objectname={objectName} fields={fieldList} guidance={stageguidance} recordid={recordId}></c-guidance-custom-path>
+            </template>
+        </div>
+
+
+        <template if:true={openClosingFlow}>
+            <section role="dialog" tabindex="-1" aria-labelledby="" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open" onclick={cancelClosingFlow}>
+                <div style="width:1000px;" class="slds-modal__container" onclick={stopPropagation}>
+                    <header class="slds-modal__header" >
+                        <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close" onclick={cancelClosingFlow}>
+                            <lightning-icon icon-name="utility:close" alternative-text="close" variant="inverse" size="small"></lightning-icon>
+                            <span class="slds-assistive-text">Close</span>
+                        </button>
+                    </header>
+                    <div class="slds-modal__content slds-p-around_medium" id="modal-staffingCreationContent">
+                        <lightning-flow
+                            flow-api-name={flowName}
+                            flow-input-variables={flowInputs}
+                            onstatuschange={handleFlowStatus}
+                        >
+                        </lightning-flow>
+                    </div>
+                </div>
+            </section>
+            <div class="slds-backdrop slds-backdrop_open"></div>
+
+        </template>
+    </template>
