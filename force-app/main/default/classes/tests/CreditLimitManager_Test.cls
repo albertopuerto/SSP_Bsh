@@ -240,7 +240,7 @@ public class CreditLimitManager_Test {
     	    String expectedValue = '{"CreditManagementAccountByIDResponse":{"MessageHeader":{"ID":"D6B2D2D3CE021FD0A2B358C6DE278E94","CreationDateTime":"2025-09-04T14:23:49.194Z"}';
     	    Assert.areEqual(expectedValue, actualValue,'The response body is the expected value');
     	    Assert.areEqual(200, response.getStatusCode(), 'The status code is 200');
-            CreditLimitManager.getObjectCurrency(true,testAccount.Id);
+            CreditLimitManager.getObjectCurrency('Account',testAccount.Id);
             CreditLimitManager.getAccountLimit(testAccount.Id);
         }
 
