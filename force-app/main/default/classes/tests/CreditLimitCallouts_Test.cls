@@ -55,7 +55,7 @@ public class CreditLimitCallouts_Test {
 		System.runAs(productManagerUser){
     		Test.setMock(HttpCalloutMock.class, new VertexMockClass());
 
-    		HttpResponse response = CreditLimitCallouts.startVertexCallouts(quoteTest, null);
+    		HttpResponse response = CreditLimitCallouts.getVertexInformation(quoteTest, null);
     		// Verify that the response received contains fake values
     		String contentType = response.getHeader('Content-Type');
     		Assert.isTrue(contentType == 'application/json','The content type is of Content-Type');

@@ -6,12 +6,12 @@ public with sharing class CreditLimitCallouts {
 
     /**
 	* @author       APB
-	* @description  startVertexCallouts method
+	* @description  getVertexInformation method
 	* @param		quoteToCalculate SBQQ__Quote__c
     * @param		orderToCalculate Order
 	* @return		HttpResponse
 	*/
-    public static HttpResponse startVertexCallouts(SBQQ__Quote__c quoteToCalculate,Order orderToCalculate){
+    public static HttpResponse getVertexInformation(SBQQ__Quote__c quoteToCalculate,Order orderToCalculate){
 
         Http vertexHttp= new Http();
         HttpRequest vertexRequest = new HttpRequest();

@@ -86,15 +86,6 @@ public with sharing class CreditLimitManager {
                 finalBodyresponse =creditLimitresponse.getBody().replace ('"$"','"dollar"').replace ('"@languageCode"','"languageCode"').replace ('"@schemeID"','"schemeID"').replace ('"@schemeAgencyID"','"schemeAgencyID"').replace ('"@currencyCode"','"currencyCode"');
                 responseBody= (CreditLimitWrappers.wrapperResponse)JSON.deserialize(finalBodyresponse, CreditLimitWrappers.wrapperResponse.class);
                 creditWorthiness= responseBody.Envelope.Body.CreditWorthinessResponse.CreditWorthiness;
-
-                for(CreditLimitWrappers.CheckingDescs description :creditWorthiness.CheckingDescription){
-                    if(description.dollar.contains('Credit limit')){
-
-                        lastInfoWrapper.message= description.dollar;
-                    	lastInfoWrapper.status= creditLimitresponse.getStatusCode();
-                    	lastInfoWrapper.success= false;
-                    }
-                }
             }else{
                 String objectRecordId = quoteToCalculate != null ? quoteToCalculate.Id : orderToCalculate.Id;
 
@@ -105,6 +96,18 @@ public with sharing class CreditLimitManager {
                 .addTags(('API,TEST').split(','))
                 .setRecordId(objectRecordId);
             }
+        }
+
+        if(creditWorthiness != null){
+            for(CreditLimitWrappers.CheckingDescs description :creditWorthiness.CheckingDescription){
+                    if(description.dollar.contains('Credit limit')){
+
+                        lastInfoWrapper.message= description.dollar;
+                    	lastInfoWrapper.status= creditLimitresponse.getStatusCode();
+                    	lastInfoWrapper.success= false;
+
+                    }
+                }
         }
 
         return lastInfoWrapper;
@@ -130,7 +133,7 @@ public with sharing class CreditLimitManager {
         VertexMethods.wrapperResponse vertexResponseBody = new VertexMethods.wrapperResponse();
 
         fflib_SObjectUnitOfWork uow = new fflib_SObjectUnitOfWork( new List<SObjectType> { SBQQ__Quote__c.SObjectType,Account.SObjectType});
-        vertexResponse = CreditLimitCallouts.startVertexCallouts(quoteToCalculate,null);
+        vertexResponse = CreditLimitCallouts.getVertexInformation(quoteToCalculate,null);
 
         if(vertexResponse != null && vertexResponse.getStatusCode()== 200){
 
@@ -180,7 +183,7 @@ public with sharing class CreditLimitManager {
 
         fflib_SObjectUnitOfWork uow = new fflib_SObjectUnitOfWork( new List<SObjectType> { Order.SObjectType,Account.SObjectType});
 
-        vertexResponse = CreditLimitCallouts.startVertexCallouts(null,orderToCalculate);
+        vertexResponse = CreditLimitCallouts.getVertexInformation(null,orderToCalculate);
 
         if(vertexResponse != null && vertexResponse.getStatusCode()== 200){
 
@@ -241,7 +244,16 @@ public with sharing class CreditLimitManager {
                 finalBodyresponse =creditLimitresponse.getBody().replace ('"$"','"dollar"').replace ('"@languageCode"','"languageCode"').replace ('"@schemeID"','"schemeID"').replace ('"@schemeAgencyID"','"schemeAgencyID"').replace ('"@currencyCode"','"currencyCode"').replace('"CreditsegmentInternalID"', '"creditsegmentInternalID"').replace('"DebtorPartyInternalID"', '"debtorPartyInternalID"');
                 accountResponseBody= (CreditLimitWrappers.accountWrapperResponse)JSON.deserialize(finalBodyresponse, CreditLimitWrappers.accountWrapperResponse.class);
 
-                if(accountResponseBody.Envelope.Body.CreditManagementAccountByIDResponse.Log != null){
+            }else{
+                lastInfoWrapper.message= creditLimitresponse.getBody();
+                lastInfoWrapper.status= creditLimitresponse.getStatusCode();
+                lastInfoWrapper.success= false;
+                Logger.error('Error while doing the account credit limit callout - '+ creditLimitresponse.getStatusCode() +'-'+creditLimitresponse.getStatus())
+                .addTags(('API,TEST').split(','))
+                .setRecordId(objectRecordId);
+            }
+             if(accountResponseBody.Envelope.Body.CreditManagementAccountByIDResponse.Log != null){
+
                     logAccount = accountResponseBody.Envelope.Body.CreditManagementAccountByIDResponse.Log;
 
                     lastInfoWrapper.message= logAccount.Item.Note;
@@ -256,15 +268,6 @@ public with sharing class CreditLimitManager {
                     lastInfoWrapper.success= true;
 
                 }
-
-            }else{
-                lastInfoWrapper.message= creditLimitresponse.getBody();
-                lastInfoWrapper.status= creditLimitresponse.getStatusCode();
-                lastInfoWrapper.success= false;
-                Logger.error('Error while doing the account credit limit callout - '+ creditLimitresponse.getStatusCode() +'-'+creditLimitresponse.getStatus())
-                .addTags(('API,TEST').split(','))
-                .setRecordId(objectRecordId);
-            }
         }
         return lastInfoWrapper;
     }
