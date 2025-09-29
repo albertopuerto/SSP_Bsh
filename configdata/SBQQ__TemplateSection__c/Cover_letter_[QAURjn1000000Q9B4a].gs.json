@@ -21,7 +21,7 @@
     "SBQQ__QuoteTotalsPrinted__c": "false",
     "SBQQ__RollUpField__c": "",
     "SBQQ__SummaryDisplay__c": "",
-    "SBQQ__TopMargin__c": "1.0"
+    "SBQQ__TopMargin__c": "0.0"
   },
   "References": [
     {

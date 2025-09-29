@@ -131,7 +131,33 @@
         <actionName>chatterPost</actionName>
         <actionType>chatterPost</actionType>
         <connector>
-            <targetReference>Athena_Failed_Message</targetReference>
+            <targetReference>Update_Acc_Error</targetReference>
+        </connector>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>text</name>
+            <value>
+                <stringValue>Error in sending account to Athena. Please contact support and provide the following details: Account Id ({!Create_Account}), correlation Id: ({!requestBody.accountCreate.CorrelationId})</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>subjectNameOrId</name>
+            <value>
+                <elementReference>Create_Account</elementReference>
+            </value>
+        </inputParameters>
+        <nameSegment>chatterPost</nameSegment>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </actionCalls>
+    <actionCalls>
+        <name>Send_Chatter_Message_500</name>
+        <label>Send Chatter Message 500</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <actionName>chatterPost</actionName>
+        <actionType>chatterPost</actionType>
+        <connector>
+            <targetReference>Update_Acc_Error</targetReference>
         </connector>
         <flowTransactionModel>CurrentTransaction</flowTransactionModel>
         <inputParameters>
@@ -324,9 +350,24 @@
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>Update_Acc_Error</targetReference>
+                <targetReference>Send_Chatter_Message</targetReference>
             </connector>
             <label>Error 404</label>
+        </rules>
+        <rules>
+            <name>Error_500</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>send_Account_to_Athena.500Exc</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Send_Chatter_Message_500</targetReference>
+            </connector>
+            <label>Error 500</label>
         </rules>
     </decisions>
     <decisions>
@@ -368,14 +409,6 @@
         </filters>
         <object>RecordType</object>
         <valueField>Id</valueField>
-    </dynamicChoiceSets>
-    <dynamicChoiceSets>
-        <name>IncotermValues</name>
-        <dataType>Picklist</dataType>
-        <displayField xsi:nil="true" />
-        <object xsi:nil="true" />
-        <picklistField>pkl_INCOTerms1__c</picklistField>
-        <picklistObject>Account</picklistObject>
     </dynamicChoiceSets>
     <dynamicChoiceSets>
         <name>paymentTermValues</name>
@@ -480,12 +513,6 @@
             </value>
         </inputAssignments>
         <inputAssignments>
-            <field>pkl_INCOTerms1__c</field>
-            <value>
-                <elementReference>Incoterm</elementReference>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
             <field>pkl_Language__c</field>
             <value>
                 <elementReference>Account.pkl_Language__c</elementReference>
@@ -509,12 +536,6 @@
                 <elementReference>selectedRoleCode</elementReference>
             </value>
         </inputAssignments>
-        <inputAssignments>
-            <field>txt_INCOTerms2__c</field>
-            <value>
-                <elementReference>Incoterm_Location</elementReference>
-            </value>
-        </inputAssignments>
         <object>Account</object>
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordCreates>
@@ -524,7 +545,7 @@
         <locationX>0</locationX>
         <locationY>0</locationY>
         <connector>
-            <targetReference>Send_Chatter_Message</targetReference>
+            <targetReference>Athena_Failed_Message</targetReference>
         </connector>
         <filterLogic>and</filterLogic>
         <filters>
@@ -645,23 +666,6 @@
             <dataType>String</dataType>
             <fieldText>Payment Terms</fieldText>
             <fieldType>DropdownBox</fieldType>
-            <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
-            <isRequired>true</isRequired>
-        </fields>
-        <fields>
-            <name>Incoterm</name>
-            <choiceReferences>IncotermValues</choiceReferences>
-            <dataType>String</dataType>
-            <fieldText>INCOTERM</fieldText>
-            <fieldType>DropdownBox</fieldType>
-            <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
-            <isRequired>true</isRequired>
-        </fields>
-        <fields>
-            <name>Incoterm_Location</name>
-            <dataType>String</dataType>
-            <fieldText>INCOTERM Location</fieldText>
-            <fieldType>InputField</fieldType>
             <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
             <isRequired>true</isRequired>
         </fields>
@@ -854,7 +858,7 @@
             <targetReference>RecordTypeSelection</targetReference>
         </connector>
     </start>
-    <status>Draft</status>
+    <status>Active</status>
     <textTemplates>
         <name>tmpl_LogMessageDML</name>
         <isViewedAsPlainText>true</isViewedAsPlainText>

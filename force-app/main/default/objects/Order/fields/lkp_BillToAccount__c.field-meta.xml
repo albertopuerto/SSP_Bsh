@@ -5,6 +5,16 @@
     <description>This field is to select Bill-to Account</description>
     <externalId>false</externalId>
     <label>Bill-to Account</label>
+    <lookupFilter>
+        <active>true</active>
+        <errorMessage>The selected Account status shouldn&#39;t be &quot;Bosch Partner Number not Received&quot;.</errorMessage>
+        <filterItems>
+            <field>Account.pkl_Status__c</field>
+            <operation>notEqual</operation>
+            <value>Bosch Partner Number not Received</value>
+        </filterItems>
+        <isOptional>false</isOptional>
+    </lookupFilter>
     <referenceTo>Account</referenceTo>
     <relationshipLabel>Orders</relationshipLabel>
     <relationshipName>Orders</relationshipName>

@@ -113,6 +113,9 @@
         <layout>ExportControlSheet__c-Export Control Sheet Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
+        <layout>FlowRecord-Flow Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
         <layout>FurtherPriceInformation__c-Further Price Information Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
@@ -281,6 +284,10 @@
     </fieldPermissions>
     <tabVisibilities>
         <tab>BoschPartnerFunction__c</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>SalesArea__c</tab>
         <visibility>Hidden</visibility>
     </tabVisibilities>
     <tabVisibilities>

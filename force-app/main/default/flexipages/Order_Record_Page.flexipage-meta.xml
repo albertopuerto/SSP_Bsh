@@ -263,6 +263,12 @@
     <flexiPageRegions>
         <itemInstances>
             <componentInstance>
+                <componentName>creditLimit</componentName>
+                <identifier>c_creditLimit</identifier>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
                 <componentInstanceProperties>
                     <name>tabs</name>
                     <value>Facet-cdf0c88e-933e-42b5-b9f4-6be3a04f0a73</value>

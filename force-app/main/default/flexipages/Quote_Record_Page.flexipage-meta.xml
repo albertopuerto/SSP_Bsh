@@ -293,6 +293,16 @@
                 <identifier>RecordSubmittedUser_cField</identifier>
             </fieldInstance>
         </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.Current_Credit_Limit_including_VAT__c</fieldItem>
+                <identifier>RecordCurrent_Credit_Limit_including_VAT__cField</identifier>
+            </fieldInstance>
+        </itemInstances>
         <name>Facet-0609b9e2-6c3c-426c-b101-c29c1c45dc5e</name>
         <type>Facet</type>
     </flexiPageRegions>
@@ -1549,6 +1559,19 @@
         <type>Facet</type>
     </flexiPageRegions>
     <flexiPageRegions>
+        <itemInstances>
+            <componentInstance>
+                <componentName>creditLimit</componentName>
+                <identifier>c_creditLimit</identifier>
+                <visibilityRule>
+                    <criteria>
+                        <leftValue>{!Record.SBQQ__Status__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>Accepted</rightValue>
+                    </criteria>
+                </visibilityRule>
+            </componentInstance>
+        </itemInstances>
         <itemInstances>
             <componentInstance>
                 <componentInstanceProperties>

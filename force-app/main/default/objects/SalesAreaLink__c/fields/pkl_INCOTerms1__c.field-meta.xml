@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>pkl_INCOTerms1__c</fullName>
-    <description>Defines the terms of sales and the passing of risks.</description>
+    <description>Incoterm of the Account for a certain Sales Area</description>
     <externalId>false</externalId>
     <inlineHelpText>An incoterms version is an edition containing a list of international terms for transportation that is defined by the International Chamber of Commerce (ICC).</inlineHelpText>
     <label>Incoterm</label>

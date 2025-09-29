@@ -27,9 +27,7 @@ public with sharing class TestFactoryDefaults{
 					Account.ShippingCountry => 'sTest',
 					Account.txt_AthenaUUID__c => '1111',
 					Account.Role__c => 'ETDE Domestic Customer',
-					Account.pkl_INCOTerms1__c => 'CPT - Carriage Paid To',
 					Account.pkl_PaymentTerms__c => 'Due on receipt',
-					Account.txt_INCOTerms2__c => 'Inco terms 2 text area',
 					Account.pkl_Language__c => 'English',
 					Account.pkm_BoschPartnerRole__c => 'BBCUSH'
 			};
@@ -49,14 +47,33 @@ public with sharing class TestFactoryDefaults{
 					Account.Phone => '0123456',
 					Account.txt_AthenaUUID__c => '2222',
 					Account.Role__c => 'ETDE Domestic Customer',
-					Account.pkl_INCOTerms1__c => 'CPT - Carriage Paid To',
 					Account.pkl_PaymentTerms__c => 'Due on receipt',
-					Account.txt_INCOTerms2__c => 'Inco terms 2 text area',
 					Account.pkl_Language__c => 'English',
 					Account.pkm_BoschPartnerRole__c => 'BBCUEX'
 			};
 		}
 	}
+    /**
+	* @author       APC
+	* @description  OrderDefaults constructor
+	*/
+	public class OrderDefaults implements TestFactory.FieldDefaults {
+		/**
+		* @author       APC
+		* @description  define contact getFieldDefaults()
+		* @return		Map<Schema.SObjectField, Object>
+		*/
+		public Map<Schema.SObjectField, Object> getFieldDefaults() {
+			return new Map<Schema.SObjectField, Object> {
+					Order.Status => 'Draft',
+					Order.EffectiveDate => Date.today(),
+                    Order.pkl_INCOTerms1__c => 'CPT - Carriage Paid To',
+                    Order.pkl_PaymentTerms__c=> 'Due on receipt',
+                    Order.CurrencyIsoCode=> 'EUR'
+			};
+		}
+	}
+
 
 	/**
 	* @author       APC
@@ -95,7 +112,8 @@ public with sharing class TestFactoryDefaults{
             Opportunity.CurrencyIsoCode => 'EUR',                            
             Opportunity.pklLeadingSolutionField__c => 'DAP',                 
             Opportunity.pklTypeOfOffering__c => 'SW',                        
-            Opportunity.pklTypeOfOpportunity__c => 'LTA' 
+            Opportunity.pklTypeOfOpportunity__c => 'LTA',
+            Opportunity.lkp_SalesOrganization__c => null
 			};
 		}
 	}
@@ -162,7 +180,7 @@ public with sharing class TestFactoryDefaults{
 		 */
 		public Map<Schema.SObjectField, Object> getFieldDefaults() {
             return new Map<Schema.SObjectField, Object>{
-                SBQQ__Quote__c.Name => 'Test Standard Quote'
+                SBQQ__Quote__c.SBQQ__Type__c	 => 'Quote'
                 
                 
                 

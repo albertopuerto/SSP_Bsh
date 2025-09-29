@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Creation of Business Partner in Athena Failed</description>
+    <encodingKey>UTF-8</encodingKey>
+    <letterhead>ETAS</letterhead>
+    <name>Athena_Account_Failed</name>
+    <style>freeForm</style>
+    <subject>Creation of Business Partner in Athena Failed</subject>
+    <textOnly>&lt;p&gt;Creation of Business Partner in Athena Failed. Account name: {!Account.Name}, correlationId: {!Task.Description}. Please contact application support by sending this information.&lt;/p&gt;</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

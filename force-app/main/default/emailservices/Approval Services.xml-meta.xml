@@ -5,6 +5,13 @@
     <authenticationFailureAction>Bounce</authenticationFailureAction>
     <authorizationFailureAction>Bounce</authorizationFailureAction>
     <authorizedSenders>bosch.com</authorizedSenders>
+    <emailServicesAddresses>
+    <authorizedSenders>bosch.com</authorizedSenders>
+    <developerName>ApprovalMail</developerName>
+    <isActive>true</isActive>
+    <localPart>approval_services</localPart>
+    <runAsUser>system.user@bosch-ssp.org.uat</runAsUser>
+    </emailServicesAddresses>
     <errorRoutingAddress>uwe.adams@de.bosch.com</errorRoutingAddress>
     <functionInactiveAction>Bounce</functionInactiveAction>
     <functionName>Approval Services</functionName>

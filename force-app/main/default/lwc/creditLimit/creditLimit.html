@@ -1,0 +1,95 @@
+<template>
+    <lightning-card>
+        <div style="align-items:center;">
+            <template if:false ={quoteRecord}>
+            <!--<h2 style="text-align:center; margin-bottom: 15px;">Click in the button to get the credit amount</h2>-->
+            </template>
+             <template if:true ={quoteRecord}>
+           <!--  <p style="margin-left:500px; padding-bottom:20px;"> Quote credit limit </p>-->
+             </template>
+    
+            <template if:true ={accountRecord}>
+        
+                <lightning-button style="margin-left: 160px;" class="getButton" label="Get account credit limit" title="Get account credit limit" disabled={disableButton} onclick={getAccountCreditLimit} ></lightning-button>
+            
+                <template if:true={showAccountLimit}>
+                <p style="padding-top:20px;text-align:center;"> The limit for this account is <lightning-formatted-number value={accountLimit} format-style="currency" currency-code={objectCurrency} minimum-fraction-digits="2"></lightning-formatted-number></p>
+                </template>
+                 <template if:true={showError}>
+                <p style="padding-top:20px;text-align:center;color:#ba0517;"> {errorMessage}</p>
+                </template>
+            </template>
+            
+
+          
+            
+            <template if:true ={quoteRecord}>
+                  <template if:true ={isLoading}>
+                <lightning-spinner alternative-text="Loading"></lightning-spinner>
+            </template>
+               
+                <template if:false ={isLoading}>
+            
+                    <table style="padding:10px;">
+                        <tr>
+                             <template if:true={quoteLimitSuccess}>
+                                <td style="color:green;">
+                                    <p style="margin-left: 200px;padding-top:15px; padding-left:20px;color:green;">Success</p>
+                                </td>
+                            </template>
+                            <template if:true={quoteLimitError}>
+                                <td style="color:#ba0517;">
+                                    <p style="margin-left: 200px;padding-top:15px; padding-left:20px;color:#ba0517;">Error</p>
+                                </td>
+                            </template>
+                        </tr>
+                        <tr>
+                            <template if:true={quoteLimitSuccess}>
+                            <td>
+                                <p style="margin-left: 100px;padding-top:5px;padding-bottom:15px;padding-left:20px;color:green;">{quoteLimitMessage}</p>
+                            </td>
+                            </template>
+                            <template if:true={quoteLimitError}>    
+                            <td>
+                                <p style="margin-left: 20px;padding-top:5px;padding-left:20px;padding-bottom:15px;color:#ba0517;">{quoteLimitMessage}</p>
+                            </td>
+                            </template>
+                        </tr>
+                    </table>
+                </template>
+            </template>
+
+<template if:true ={orderRecord}>
+               
+                    <table style="padding:10px;">
+                        <tr>
+                             <template if:true={orderLimitSuccess}>
+                                <td style="color:green;">
+                                    <p style="margin-left: 200px;padding-top:15px; padding-left:20px;color:green;">Success</p>
+                                </td>
+                            </template>
+                            <template if:true={orderLimitError}>
+                                <td style="color:#ba0517;">
+                                    <p style="margin-left: 200px;padding-top:15px; padding-left:20px;color:#ba0517;">Error</p>
+                                </td>
+                            </template>
+                        </tr>
+                        <tr>
+                            <template if:true={orderLimitSuccess}>
+                            <td>
+                                <p style="margin-left: 100px;padding-top:5px;padding-bottom:15px;padding-left:20px;color:green;">{orderLimitMessage}</p>
+                            </td>
+                            </template>
+                            <template if:true={orderLimitError}>    
+                            <td>
+                                <p style="margin-left: 20px;padding-top:5px;padding-left:20px;padding-bottom:15px;color:#ba0517;">{orderLimitMessage}</p>
+                            </td>
+                            </template>
+                        </tr>
+                    </table>
+               
+            </template>
+        </div>
+    </lightning-card>
+    
+</template>
