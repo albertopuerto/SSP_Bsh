@@ -39,9 +39,6 @@ public class CreditLimitManager_Test {
 		orderItemList[0].PricebookEntryId= pricebookEntryList[0].Id;
 		insert orderItemList;
 
-        User user = (User)TestFactory.createSObject(new User(), 'TestFactoryDefaults.ProductManagerUserDefaults', true);
-		insert user;
-
         CreditLimitWrappers.BlockingReasonCodeDescription blockReasonDesc = new CreditLimitWrappers.BlockingReasonCodeDescription();
         blockReasonDesc.languageCode = 'EUR';
 
@@ -226,7 +223,7 @@ public class CreditLimitManager_Test {
     @isTest
     public static void checkAccount(){
 
-        User productManagerUser = [SELECT Id from User LIMIT 1];
+        User productManagerUser = (User)TestFactory.createSObject(new User(), 'TestFactoryDefaults.ProductManagerUserDefaults', true);
         Account testAccount = [SELECT Id,BillingCountry,CurrencyIsoCode,txt_AthenaUUID__c from Account LIMIT 1];
         Test.startTest();
         System.runAs(productManagerUser){
@@ -250,7 +247,7 @@ public class CreditLimitManager_Test {
     @isTest
 	static void checkQuote() {
 
-    	User productManagerUser = [SELECT Id from User LIMIT 1];
+    	User productManagerUser = (User)TestFactory.createSObject(new User(), 'TestFactoryDefaults.ProductManagerUserDefaults', true);
         SBQQ__Quote__c quoteTest = [SELECT Id,SBQQ__Status__c,Bill_To_Country__c,cur_Current_Credit_Limit_including_VAT__c,CurrencyIsoCode,SBQQ__Account__r.txt_AthenaUUID__c from SBQQ__Quote__c LIMIT 1];
         quoteTest.cur_Current_Credit_Limit_including_VAT__c= 10;
         quoteTest.SBQQ__Status__c='Accepted';
@@ -274,7 +271,7 @@ public class CreditLimitManager_Test {
         @isTest
 	static void checkOrder() {
 
-        User productManagerUser = [SELECT Id from User LIMIT 1];
+        User productManagerUser = (User)TestFactory.createSObject(new User(), 'TestFactoryDefaults.ProductManagerUserDefaults', true);
         Order orderTest = [SELECT Id,Status,cur_Current_Credit_Limit_including_VAT__c,CurrencyIsoCode,Account.txt_AthenaUUID__c from Order LIMIT 1];
         orderTest.cur_Current_Credit_Limit_including_VAT__c= 10;
         orderTest.Status= 'Activated';

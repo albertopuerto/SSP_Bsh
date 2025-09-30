@@ -38,14 +38,13 @@ public class CreditLimitCallouts_Test {
 		orderItemList[0].PricebookEntryId= pricebookEntryList[0].Id;
 		insert orderItemList;
 
-		User user = (User)TestFactory.createSObject(new User(), 'TestFactoryDefaults.ProductManagerUserDefaults', true);
-		insert user;
     }
 
     @isTest
 	static void testVertexCallout() {
 
-		User productManagerUser = [SELECT Id from User LIMIT 1];
+		User productManagerUser = (User)TestFactory.createSObject(new User(), 'TestFactoryDefaults.ProductManagerUserDefaults', true);
+
         SBQQ__Quote__c quoteTest = [SELECT Id,SBQQ__Status__c,Bill_To_Country__c,SBQQ__Account__r.BillingCountry,SBQQ__Account__r.txt_AthenaUUID__c from SBQQ__Quote__c LIMIT 1];
         quoteTest.SBQQ__Status__c='Accepted';
         update quoteTest;
@@ -70,7 +69,7 @@ public class CreditLimitCallouts_Test {
     @isTest
 	static void testCreditLimitCalloutAccount() {
 
-		User productManagerUser = [SELECT Id from User LIMIT 1];
+		User productManagerUser = (User)TestFactory.createSObject(new User(), 'TestFactoryDefaults.ProductManagerUserDefaults', true);
 		Account testAccount = [SELECT Id,BillingCountry,txt_AthenaUUID__c from Account LIMIT 1];
 
     	Test.startTest();
@@ -93,7 +92,7 @@ public class CreditLimitCallouts_Test {
     @isTest
 	static void testCreditLimitCalloutQuote() {
 
-		User productManagerUser = [SELECT Id from User LIMIT 1];
+		User productManagerUser = (User)TestFactory.createSObject(new User(), 'TestFactoryDefaults.ProductManagerUserDefaults', true);
 
         SBQQ__Quote__c quoteTest = [SELECT Id,SBQQ__Status__c,Bill_To_Country__c,cur_Current_Credit_Limit_including_VAT__c,CurrencyIsoCode,SBQQ__Account__r.txt_AthenaUUID__c from SBQQ__Quote__c LIMIT 1];
         quoteTest.SBQQ__Status__c='Accepted';
@@ -118,7 +117,7 @@ public class CreditLimitCallouts_Test {
     @isTest
 	static void testCreditLimitCalloutOrder() {
 
-		User productManagerUser = [SELECT Id from User LIMIT 1];
+		User productManagerUser = (User)TestFactory.createSObject(new User(), 'TestFactoryDefaults.ProductManagerUserDefaults', true);
         Order orderTest = [SELECT Id,Status,cur_Current_Credit_Limit_including_VAT__c,CurrencyIsoCode,Account.txt_AthenaUUID__c from Order LIMIT 1];
         orderTest.cur_Current_Credit_Limit_including_VAT__c= 10;
         orderTest.Status= 'Activated';

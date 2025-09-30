@@ -37,9 +37,6 @@ public class VertexIntManager_Test {
 		orderItemList[0].PricebookEntryId= pricebookEntryList[0].Id;
 		insert orderItemList;
 
-        User user = (User)TestFactory.createSObject(new User(), 'TestFactoryDefaults.ProductManagerUserDefaults', true);
-		insert user;
-
         List<VertexMethods.responseTaxes> listTaxes = new List<VertexMethods.responseTaxes>();
 
         VertexMethods.responseTaxes taxes= new VertexMethods.responseTaxes();
@@ -85,7 +82,7 @@ public class VertexIntManager_Test {
     }
     @isTest
 	static void createQuoteVertexRequest() {
-        User productManagerUser = [SELECT Id from User LIMIT 1];
+        User productManagerUser = (User)TestFactory.createSObject(new User(), 'TestFactoryDefaults.ProductManagerUserDefaults', true);
     	DateTime todayDateTime = DateTime.now();
     	SBQQ__Quote__c quoteTest = [SELECT Id,SBQQ__Status__c,Bill_To_Country__c,cur_Current_Credit_Limit_including_VAT__c,CurrencyIsoCode,SBQQ__Account__r.txt_AthenaUUID__c,SBQQ__Account__c from SBQQ__Quote__c LIMIT 1];
         quoteTest.SBQQ__Status__c='Accepted';
@@ -100,7 +97,7 @@ public class VertexIntManager_Test {
 	}
     @isTest
 	static void createOrderVertexRequest() {
-        User productManagerUser = [SELECT Id from User LIMIT 1];
+        User productManagerUser = (User)TestFactory.createSObject(new User(), 'TestFactoryDefaults.ProductManagerUserDefaults', true);
         DateTime todayDateTime = DateTime.now();
 
     	Order orderTest = [SELECT Id,Status,cur_Current_Credit_Limit_including_VAT__c,CurrencyIsoCode,Account.txt_AthenaUUID__c,Account.BillingCountry from Order LIMIT 1];
