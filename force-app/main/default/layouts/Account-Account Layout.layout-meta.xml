@@ -416,10 +416,10 @@
         <relatedList>RelatedHistoryList</relatedList>
     </relatedLists>
     <relatedLists>
-        <fields>ftxt_SalesArea__c</fields>
-        <fields>SalesArea__c.pkl_SalesOrg__c</fields>
-        <fields>SalesArea__c.pkl_DistributionChannel__c</fields>
-        <fields>SalesArea__c.pkl_Division__c</fields>
+        <fields>SalesArea__c.NAME</fields>
+        <fields>ftxt_SalesOrg__c</fields>
+        <fields>ftxt_DistributionChannel__c</fields>
+        <fields>ftxt_Division__c</fields>
         <relatedList>SalesAreaLink__c.mdr_Account__c</relatedList>
     </relatedLists>
     <relatedLists>
