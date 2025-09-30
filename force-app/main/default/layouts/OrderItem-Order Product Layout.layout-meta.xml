@@ -16,6 +16,10 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
+                <field>pkl_OverallProcessedStatus__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
                 <field>ProductCode</field>
             </layoutItems>
             <layoutItems>

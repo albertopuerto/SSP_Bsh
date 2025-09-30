@@ -1,7 +1,7 @@
 /**
 * @author       TLQ1KOR
 * @date         2025
-* @description  BSSP-9781:If-002 Negative scenario 4
+* @description  BSSP-9781:If-002 Negative scenario 4 and 5
 */
 @RestResource(urlMapping='/athenaAccountErrorHandler')
 global with sharing class AccountErrorService {
@@ -29,6 +29,10 @@ global with sharing class AccountErrorService {
             
             Logger.debug('Processing error for Account Id: ' + id + ', CorrelationId: ' + correlationId);
             
+            if (statusCode == '400' || statusCode == '403' || statusCode == '404') {
+                return handleApiGatewayError(id, statusCode, statusText, correlationId);
+            }
+            
             // Query the Account
             List<Account> accounts = [SELECT Id, Name, OwnerId, Owner.Email, Owner.Name, Owner.FirstName, Owner.LastName 
                                     FROM Account 
@@ -42,10 +46,7 @@ global with sharing class AccountErrorService {
             update account;
             
             Logger.debug('Account status updated to "Error in sending to Athena" for Account: ' + account.Name);
-            
-            // Create account link
-            String accountLink = System.URL.getOrgDomainUrl().toExternalForm() + '/' + account.Id;
-            
+                    
             // Send Email to Account Owner
             sendEmailNotification(
                 account.Owner.FirstName, 
@@ -53,7 +54,6 @@ global with sharing class AccountErrorService {
                 account.Name, 
                 statusText, 
                 correlationId, 
-                accountLink,
                 account.OwnerId,
                 account.Id
             );
@@ -75,8 +75,50 @@ global with sharing class AccountErrorService {
             'correlationId' => correlationId
         });
     }
-    
-    private static void sendEmailNotification(String firstName, String lastName, String accountName, String statusText, String correlationId, String accountLink, Id ownerId, Id accountId) {
+    private static String handleApiGatewayError(String id, String statusCode, String statusText, String correlationId) {
+        try {
+            Logger.debug('Processing API Gateway error for Account Id: ' + id + ', Status Code: ' + statusCode);
+            
+            // Query the Account
+            List<Account> accounts = [SELECT Id, Name, OwnerId, Owner.Email, Owner.Name, Owner.FirstName, Owner.LastName 
+                                    FROM Account 
+                                    WHERE Id = :id 
+                                    LIMIT 1];
+            
+            Account account = accounts[0];
+            
+            // Update Account Status to "Error in sending to Athena"
+            account.pkl_Status__c = 'Error in sending to Athena';
+            update account;
+            
+            Logger.debug('Account status updated to "Error in sending to Athena" for Account: ' + account.Name);
+           
+            
+            // Send Email to Account Owner
+            sendEmailNotification(
+                account.Owner.FirstName, 
+                account.Owner.LastName, 
+                account.Name, 
+                statusText, 
+                correlationId, 
+                account.OwnerId,
+                account.Id
+            );
+            
+            Logger.info('Successfully processed API Gateway error for Account: ' + account.Name + ', Status Code: ' + statusCode);
+            
+        } catch (Exception ex) {
+            Logger.error('Exception in handleApiGatewayError for Account Id: ' + id + ', Status Code: ' + statusCode, ex);
+        }
+        
+        return JSON.serialize(new Map<String, String>{
+            'Id' => id,
+            'errorcode' => '0',
+            'errorMessage' => 'Error processed successfully',
+            'correlationId' => correlationId
+        });
+    }
+    private static void sendEmailNotification(String firstName, String lastName, String accountName, String statusText, String correlationId, Id ownerId, Id accountId) {
         try {
             Logger.debug('Sending email notification to Account Owner. AccountId: ' + accountId + ', OwnerId: ' + ownerId);
             
