@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <PermissionSet xmlns="http://soap.sforce.com/2006/04/metadata">
     <description>A permission set allowing to fully manage (CRED) list of the products</description>
+    <hasActivationRequired>false</hasActivationRequired>
+    <label>ProductManagementBasic</label>
     <fieldPermissions>
         <editable>true</editable>
         <field>Product2.Description</field>
@@ -406,8 +408,6 @@
         <field>Product2.txr_AdditionaInformation__c</field>
         <readable>true</readable>
     </fieldPermissions>
-    <hasActivationRequired>false</hasActivationRequired>
-    <label>ProductManagementBasic</label>
     <objectPermissions>
         <allowCreate>true</allowCreate>
         <allowDelete>true</allowDelete>
@@ -415,6 +415,7 @@
         <allowRead>true</allowRead>
         <modifyAllRecords>false</modifyAllRecords>
         <object>Product2</object>
+        <viewAllFields>false</viewAllFields>
         <viewAllRecords>false</viewAllRecords>
     </objectPermissions>
 </PermissionSet>
