@@ -3,14 +3,4 @@
     <description>Give the CPQ integration user access to standard objects used by Salesforce CPQ.</description>
     <hasActivationRequired>true</hasActivationRequired>
     <label>Salesforce CPQ Integration User (Unmanaged)</label>
-    <objectPermissions>
-        <allowCreate>true</allowCreate>
-        <allowDelete>true</allowDelete>
-        <allowEdit>true</allowEdit>
-        <allowRead>true</allowRead>
-        <modifyAllRecords>false</modifyAllRecords>
-        <object>Product2</object>
-        <viewAllFields>false</viewAllFields>
-        <viewAllRecords>false</viewAllRecords>
-    </objectPermissions>
 </PermissionSet>
