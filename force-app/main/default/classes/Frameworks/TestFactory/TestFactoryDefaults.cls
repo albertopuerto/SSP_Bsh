@@ -142,9 +142,9 @@ public with sharing class TestFactoryDefaults{
 
 	/**
 	* @author       APC
-	* @description  OpportunityDefault constructor
+	* @description  OpportunityDefaults constructor
 	*/
-	public class OpportunityDefault implements TestFactory.FieldDefaults {
+	public class OpportunityDefaults implements TestFactory.FieldDefaults {
 		/**
 		* @author       APC
 		* @description  define Opportunity getFieldDefaults()
@@ -214,7 +214,8 @@ public with sharing class TestFactoryDefaults{
 				User.Country => 'United States',
 				User.Timezonesidkey => 'America/Los_Angeles',
 				User.FederationIdentifier => 'userPM@etasbosch.com' + system.currentTimeMillis(),
-				User.Username => 'userPM@etasbosch.com' + system.currentTimeMillis()
+				User.Username => 'userPM@etasbosch.com' + system.currentTimeMillis(),
+				User.IsActive  => true
 			};
 		}
 	}
