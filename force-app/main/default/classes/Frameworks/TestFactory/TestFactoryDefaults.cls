@@ -97,7 +97,7 @@ public with sharing class TestFactoryDefaults{
 	* @author       APC
 	* @description  OpportunityDefault constructor
 	*/
-	public class OpportunityDefault implements TestFactory.FieldDefaults {
+	public class OpportunityDefaults implements TestFactory.FieldDefaults {
 		/**
 		* @author       APC
 		* @description  define Opportunity getFieldDefaults()
@@ -247,5 +247,22 @@ public with sharing class TestFactoryDefaults{
         
         }
     }
+
+	public class SalesAreaDefaults implements TestFactory.FieldDefaults{
+		/**
+		 * @author       FSJ
+		 * @description  define SalesArea__c getFieldDefaults()
+		 * @return		Map<Schema.SObjectField, Object>
+		 */
+		public Map<Schema.SObjectField, Object> getFieldDefaults() {
+			return new Map<Schema.SObjectField, Object>{
+				SalesArea__c.pkl_SalesOrg__c => 'DEM5',
+				SalesArea__c.pkl_DistributionChannel__c => 'A1',
+				SalesArea__c.pkl_Division__c => '01'
+				
+			};
+		
+		}
+	}
    
 }
