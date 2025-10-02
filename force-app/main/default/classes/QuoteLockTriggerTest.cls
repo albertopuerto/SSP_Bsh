@@ -38,6 +38,7 @@ private class QuoteLockTriggerTest {
         insert quoteList;
     }
 
+    // To check systemrunas and the permssions
     @IsTest
     static void testTriggerExecutionDraftQuote() {
         // Get test data from setup
@@ -56,6 +57,7 @@ private class QuoteLockTriggerTest {
 
     }
 
+    // To check systemrunas and the permssions
     @IsTest
     static void testQuoteLockingFunctionality() {
         // Get test data from setup
