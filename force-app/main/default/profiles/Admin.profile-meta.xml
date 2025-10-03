@@ -9179,6 +9179,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Opportunity.pkl_StatusofPlaniswareSync__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>OpportunityLineItem.Apttus_Approval__Approval_Status__c</field>
         <readable>true</readable>
     </fieldPermissions>

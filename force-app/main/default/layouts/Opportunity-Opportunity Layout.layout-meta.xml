@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Layout xmlns="http://soap.sforce.com/2006/04/metadata">
+    <excludeButtons>OpenSlackRecordChannel</excludeButtons>
     <excludeButtons>Submit</excludeButtons>
     <layoutSections>
         <customLabel>false</customLabel>
@@ -78,6 +79,10 @@
             <layoutItems>
                 <behavior>Readonly</behavior>
                 <field>idx_OpportunityIdnumber__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>pkl_StatusofPlaniswareSync__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
