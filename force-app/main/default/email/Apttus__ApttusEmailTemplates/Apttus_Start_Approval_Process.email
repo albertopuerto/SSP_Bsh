@@ -1,0 +1,23 @@
+<table border="0" cellpadding="5" width="550" cellspacing="5" height="400" >
+<tr valign="top" height="400" >
+<td tEditID="c1r1" style=" background-color:#FFFFFF; bEditID:r3st1; color:#000000; bLabel:main; font-size:12pt; font-family:arial;" aEditID="c1r1" locked="0" >
+<![CDATA[<font face="Arial, sans-serif" style="color: rgb(0, 0, 0);" size="2"><font style=""><font style="">Dear </font><font style="">{!Apttus__APTS_Agreement__c.Apttus__Requestor__c},</font></font> 
+</font><p style="color: rgb(0, 0, 0);"><font face="Arial, sans-serif" size="2">&nbsp;</font></p>
+<p style="color: rgb(0, 0, 0);"><font face="Arial, sans-serif" size="2">The final document for following agreement has been checked-in, please initiate approval process on the agreement record :</font></p>
+<p style="color: rgb(0, 0, 0);"><font face="Arial, sans-serif" size="2">&nbsp;</font></p>
+<p style="color: rgb(0, 0, 0);"><font face="Arial, sans-serif" size="2">Number:{!Apttus__APTS_Agreement__c.Apttus__FF_Agreement_Number__c}</font></p>
+<p style="color: rgb(0, 0, 0);"><font face="Arial, sans-serif" size="2">Name: {!Apttus__APTS_Agreement__c.Name}</font></p>
+<p style="color: rgb(0, 0, 0);"><font face="Arial, sans-serif" size="2">Start Date: {!Apttus__APTS_Agreement__c.Apttus__Contract_Start_Date__c}</font></p>
+<p style="color: rgb(0, 0, 0);"><font face="Arial, sans-serif" size="2" style="">End Date: {!Apttus__APTS_Agreement__c.Apttus__Contract_End_Date__c}</font></p><p style=""><font face="Arial, sans-serif" size="2" style="color: rgb(0, 0, 0);">Link :&nbsp;</font><font face="Arial, sans-serif" size="2">{!Apttus__APTS_Agreement__c.Link}</font></p><p style=""><font face="Arial, sans-serif" size="2"><br></font></p>
+<p style="color: rgb(0, 0, 0);"><font face="Arial, sans-serif" size="2">&nbsp;</font></p>
+<p style="color: rgb(0, 0, 0);"><font face="Arial, sans-serif" size="2">Thank You!</font></p>
+<table id="topTable" height="450" cellspacing="0" cellpadding="0" width="500" style="font-size: 12pt; font-family: arial; color: rgb(0, 0, 0);">
+<tbody>
+<tr valign="top">
+<td style="FONT-SIZE: 12pt; COLOR: rgb(0,0,0); FONT-FAMILY: arial; BACKGROUND-COLOR: rgb(255,255,255)" height="300" styleinsert="1">
+<table height="400" cellspacing="5" cellpadding="5" width="550" border="0">
+<tbody>
+<tr valign="top" height="400">
+<td style="FONT-SIZE: 12pt; COLOR: rgb(0,0,0); FONT-FAMILY: arial; BACKGROUND-COLOR: rgb(255,255,255)" locked="0" teditid="c1r1" aeditid="c1r1"><br></td></tr></tbody></table></td></tr></tbody></table>]]></td>
+</tr>
+</table>
