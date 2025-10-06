@@ -416,6 +416,8 @@
         <relatedList>RelatedHistoryList</relatedList>
     </relatedLists>
     <relatedLists>
+        <customButtons>New</customButtons>
+        <excludeButtons>New</excludeButtons>
         <fields>SalesArea__c.NAME</fields>
         <fields>ftxt_SalesOrg__c</fields>
         <fields>ftxt_DistributionChannel__c</fields>
