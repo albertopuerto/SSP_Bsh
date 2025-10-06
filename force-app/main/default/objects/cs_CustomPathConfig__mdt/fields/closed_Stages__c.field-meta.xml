@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>closed_Stages__c</fullName>
+    <description>JSON with closed lost and won stages values in this format:
+{
+	&quot;Losts&quot;: [
+		&quot;Lost&quot;,
+		&quot;Project Cancelled&quot;,
+		&quot;Invalid Data&quot;
+	],
+	&quot;Wons&quot;: [
+		&quot;Won (Awarded)&quot;
+	]
+}</description>
+    <externalId>false</externalId>
+    <fieldManageability>DeveloperControlled</fieldManageability>
+    <inlineHelpText>JSON with closed lost and won stages values in this format:
+{
+	&quot;Losts&quot;: [
+		&quot;Lost&quot;,
+		&quot;Project Cancelled&quot;,
+		&quot;Invalid Data&quot;
+	],
+	&quot;Wons&quot;: [
+		&quot;Won (Awarded)&quot;
+	]
+}</inlineHelpText>
+    <label>closed Stages</label>
+    <length>12000</length>
+    <type>LongTextArea</type>
+    <visibleLines>3</visibleLines>
+</CustomField>

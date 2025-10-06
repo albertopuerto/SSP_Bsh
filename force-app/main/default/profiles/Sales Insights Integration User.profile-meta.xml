@@ -234,19 +234,14 @@
         <name>Apttus__XA_DisableAutoCheckout</name>
     </customPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <field>Account.ftxt_ShippingCondition__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
         <editable>true</editable>
         <field>Account.pkl_C4C_Territory_Name__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
+        <editable>false</editable>
+        <readable>false</readable>
         <field>Account.pkm_BoschPartnerRole__c</field>
-        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>

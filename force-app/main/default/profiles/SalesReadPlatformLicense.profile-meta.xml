@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Profile xmlns="http://soap.sforce.com/2006/04/metadata">
     <custom>true</custom>
     <description>With the Platform User License we only have the possibility to assign a limited Platform User porfile which is locked for editing. This profiles clones the Salesforcre Platform User Profile.</description>
@@ -203,11 +203,6 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <field>Account.ftxt_ShippingCondition__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
         <editable>true</editable>
         <field>Account.pkl_C4C_Territory_Name__c</field>
         <readable>true</readable>
@@ -220,6 +215,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Account.pkm_BoschPartnerRole__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Account.txt_AccountIDC4C__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>

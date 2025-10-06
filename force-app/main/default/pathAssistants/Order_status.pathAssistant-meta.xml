@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PathAssistant xmlns="http://soap.sforce.com/2006/04/metadata">
+    <active>true</active>
+    <entityName>Order</entityName>
+    <fieldName>Status</fieldName>
+    <masterLabel>Order status</masterLabel>
+    <pathAssistantSteps>
+        <fieldNames>AccountId</fieldNames>
+        <fieldNames>OpportunityId</fieldNames>
+        <fieldNames>Status</fieldNames>
+        <fieldNames>OrderNumber</fieldNames>
+        <fieldNames>EffectiveDate</fieldNames>
+        <info>&lt;p&gt;&lt;span style=&quot;font-size: 14px;&quot;&gt;The order is active and ready to be managed&lt;/span&gt;&lt;/p&gt;</info>
+        <picklistValueName>Activated</picklistValueName>
+    </pathAssistantSteps>
+    <pathAssistantSteps>
+        <fieldNames>AccountId</fieldNames>
+        <fieldNames>OpportunityId</fieldNames>
+        <fieldNames>OrderNumber</fieldNames>
+        <fieldNames>ShippingAddress</fieldNames>
+        <fieldNames>Status</fieldNames>
+        <info>&lt;p&gt;&lt;span style=&quot;font-size: 14px;&quot;&gt;The order was canceled, and the reason should had been provided&lt;/span&gt;&lt;/p&gt;</info>
+        <picklistValueName>Canceled (Final – Lost)</picklistValueName>
+    </pathAssistantSteps>
+    <pathAssistantSteps>
+        <fieldNames>AccountId</fieldNames>
+        <fieldNames>OpportunityId</fieldNames>
+        <fieldNames>OrderNumber</fieldNames>
+        <fieldNames>Status</fieldNames>
+        <info>&lt;p&gt;&lt;span style=&quot;font-size: 14px;&quot;&gt;The order was just created and awaiting review&lt;/span&gt;&lt;/p&gt;</info>
+        <picklistValueName>Draft</picklistValueName>
+    </pathAssistantSteps>
+    <pathAssistantSteps>
+        <fieldNames>AccountId</fieldNames>
+        <fieldNames>OpportunityId</fieldNames>
+        <fieldNames>OrderNumber</fieldNames>
+        <fieldNames>ShippingAddress</fieldNames>
+        <fieldNames>Status</fieldNames>
+        <info>&lt;p&gt;&lt;span style=&quot;font-size: 14px;&quot;&gt;The order was completely fulfilled and reached the customer. No further management is needed.&lt;/span&gt;&lt;/p&gt;</info>
+        <picklistValueName>Order Delivered (Final – Won)</picklistValueName>
+    </pathAssistantSteps>
+    <pathAssistantSteps>
+        <fieldNames>AccountId</fieldNames>
+        <fieldNames>OpportunityId</fieldNames>
+        <fieldNames>OrderNumber</fieldNames>
+        <fieldNames>Status</fieldNames>
+        <info>&lt;p&gt;&lt;span style=&quot;font-size: 14px;&quot;&gt;SAP confirmed that the order reached their system. Not the management is done in SAP&lt;/span&gt;&lt;/p&gt;</info>
+        <picklistValueName>OrderReceivedBySAP</picklistValueName>
+    </pathAssistantSteps>
+    <pathAssistantSteps>
+        <fieldNames>AccountId</fieldNames>
+        <fieldNames>OpportunityId</fieldNames>
+        <fieldNames>OrderNumber</fieldNames>
+        <fieldNames>Status</fieldNames>
+        <info>&lt;p&gt;&lt;span style=&quot;font-size: 14px;&quot;&gt;The order was put in hold from SAP or Salesforce side; the reason should had been provided.&lt;/span&gt;&lt;/p&gt;</info>
+        <picklistValueName>Paused</picklistValueName>
+    </pathAssistantSteps>
+    <pathAssistantSteps>
+        <fieldNames>AccountId</fieldNames>
+        <fieldNames>OpportunityId</fieldNames>
+        <fieldNames>OrderNumber</fieldNames>
+        <fieldNames>txt_SAPExternalSolutionQuotationId__c</fieldNames>
+        <fieldNames>Status</fieldNames>
+        <info>&lt;p&gt;&lt;span style=&quot;font-size: 14px;&quot;&gt;SAP is managing the order; the solution quotation was created and partially delivery may be in process.&lt;/span&gt;&lt;/p&gt;</info>
+        <picklistValueName>SAP Fulfillment Execution</picklistValueName>
+    </pathAssistantSteps>
+    <pathAssistantSteps>
+        <fieldNames>AccountId</fieldNames>
+        <fieldNames>OpportunityId</fieldNames>
+        <fieldNames>OrderNumber</fieldNames>
+        <fieldNames>Status</fieldNames>
+        <info>&lt;p&gt;&lt;span style=&quot;font-size: 14px;&quot;&gt;The order was sent to SAP&lt;/span&gt;&lt;/p&gt;</info>
+        <picklistValueName>SentToSAP</picklistValueName>
+    </pathAssistantSteps>
+    <pathAssistantSteps>
+        <fieldNames>AccountId</fieldNames>
+        <fieldNames>OpportunityId</fieldNames>
+        <fieldNames>OrderNumber</fieldNames>
+        <fieldNames>ShippingAddress</fieldNames>
+        <fieldNames>Status</fieldNames>
+        <info>&lt;p&gt;&lt;span style=&quot;font-size: 14px;&quot;&gt;The order is on its way to the final customer.&lt;/span&gt;&lt;/p&gt;</info>
+        <picklistValueName>Shipping</picklistValueName>
+    </pathAssistantSteps>
+    <recordTypeName>__MASTER__</recordTypeName>
+</PathAssistant>
