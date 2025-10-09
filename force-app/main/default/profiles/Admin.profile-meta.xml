@@ -17487,6 +17487,21 @@
         <field>SalesAreaLink__c.ftxt_SalesArea__c</field>
         <readable>true</readable>
     </fieldPermissions>
+        <fieldPermissions>
+        <editable>false</editable>
+        <field>SalesAreaLink__c.ftxt_SalesOrg__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>SalesAreaLink__c.ftxt_DistributionChannel__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>SalesAreaLink__c.ftxt_Division__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
         <field>SalesAreaLink__c.pkl_BillingBlockforCustomer__c</field>
