@@ -418,7 +418,7 @@
     <relatedLists>
         <customButtons>New</customButtons>
         <excludeButtons>New</excludeButtons>
-        <fields>SalesArea__c.NAME</fields>
+        <fields>ftxt_SalesArea__c</fields>
         <fields>ftxt_SalesOrg__c</fields>
         <fields>ftxt_DistributionChannel__c</fields>
         <fields>ftxt_Division__c</fields>
