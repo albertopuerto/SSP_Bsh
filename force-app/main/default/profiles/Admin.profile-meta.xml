@@ -8508,8 +8508,8 @@
         <field>BoschPartner_PartnerFunction__c.chk_DefaultPartner__c</field>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <readable>false</readable>
+        <editable>true</editable>
+        <readable>true</readable>
         <field>BoschPartner_PartnerFunction__c.lkp_BoschPartnerFunction__c</field>
     </fieldPermissions>
     <fieldPermissions>
