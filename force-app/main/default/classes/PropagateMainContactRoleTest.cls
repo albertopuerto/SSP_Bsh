@@ -17,7 +17,6 @@ public class PropagateMainContactRoleTest {
             Contact[] testContactList = (Contact[])TestFactory.createSObjectList(new Contact(), 1);
             testContactList[0].AccountId = testAccountList[0].Id;
             testContactList[0].mpkl_RoleMainAccount__c = '0001';
-            testContactList[0].Language__c = 'English';
             testContactList[0].pkl_Language__c = 'English';
             testContactList[0].pkl_Status__c = 'Active';
             testContactList[0].pkl_AccountGroup__c = 'ETDE Contact ETCN Contact';
