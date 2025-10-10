@@ -29,13 +29,12 @@ public class ContactBeforeUpdateTest {
     @IsTest
     public static void succesfullUpdateOfRoleMainAccountField(){
         User productManagerUser = (User)TestFactory.createSObject(new User(), 'TestFactoryDefaults.ProductManagerUserDefaults', true);
+        Account testAccount = [Select Id from Account LIMIT 1];
+        Contact testContact = [Select Id from Contact LIMIT 1];
         System.runAs(productManagerUser){
 
             AccountContactRelation acr = [Select Id,mpkl_PartnerRoles__c from AccountContactRelation WHERE ContactId =: testContact.Id AND AccountId =: testAccount.Id LIMIT 1];
             Assert.areEqual('0001', acr.mpkl_PartnerRoles__c, 'Role should be 0001');
-            Account testAccount = [Select Id from Account LIMIT 1];
-            Contact testContact = [Select Id from Contact LIMIT 1];
-
 
             testContact.mpkl_RoleMainAccount__c = '0003;0001;';
             update testContact;
