@@ -19,7 +19,7 @@
         </connector>
     </assignments>
     <environments>Default</environments>
-    <interviewLabel>beforeUpdate {!$Flow.CurrentDateTime}</interviewLabel>
+    <interviewLabel>Contact beforeUpdate {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Contact beforeUpdate</label>
     <loops>
         <name>lp_Account_Contact_Relations_Loop</name>
