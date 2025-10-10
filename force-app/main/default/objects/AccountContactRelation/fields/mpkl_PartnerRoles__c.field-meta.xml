@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>mpkl_PartnerRoles__c</fullName>
+    <label>Partner Roles</label>
+    <required>true</required>
+    <type>MultiselectPicklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetName>gpkv_ContactRoles</valueSetName>
+    </valueSet>
+    <visibleLines>4</visibleLines>
+</CustomField>

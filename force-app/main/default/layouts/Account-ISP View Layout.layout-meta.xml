@@ -394,7 +394,7 @@
         <fields>ACCCONRELATION.IS_DIRECT</fields>
         <fields>CONTACT.EMAIL</fields>
         <fields>CONTACT.PHONE1</fields>
-        <fields>ACCCONRELATION.ROLES</fields>
+        <fields>mpkl_PartnerRoles__c</fields>
         <relatedList>RelatedAccountContactRelationList</relatedList>
     </relatedLists>
     <relatedLists>

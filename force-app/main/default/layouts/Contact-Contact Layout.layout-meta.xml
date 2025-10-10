@@ -82,6 +82,10 @@
                 <behavior>Edit</behavior>
                 <field>txt_LocationDetails__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Required</behavior>
+                <field>mpkl_RoleMainAccount__c</field>
+            </layoutItems>
         </layoutColumns>
         <style>OneColumn</style>
     </layoutSections>
@@ -251,7 +255,7 @@
     <relatedLists>
         <fields>ACCOUNT.NAME</fields>
         <fields>ACCCONRELATION.IS_DIRECT</fields>
-        <fields>ACCCONRELATION.ROLES</fields>
+        <fields>mpkl_PartnerRoles__c</fields>
         <relatedList>RelatedContactAccountRelationList</relatedList>
     </relatedLists>
     <relatedLists>
