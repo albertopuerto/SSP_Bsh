@@ -149,6 +149,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Account.pkl_DuplicateReason__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Account.pkl_MaxNoofPartialDeliveries__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -185,6 +190,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Account.txt_C4C_Territory_ID__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Account.txt_DuplicateDescription__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -9762,7 +9772,7 @@
         <field>OrderItem.pkl_OverallProcessedStatus__c</field>
         <readable>true</readable>
     </fieldPermissions>
-        <fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>OrderItem.pkl_ReasonofCancellation__c</field>
         <readable>true</readable>
@@ -17487,7 +17497,7 @@
         <field>SalesAreaLink__c.ftxt_SalesArea__c</field>
         <readable>true</readable>
     </fieldPermissions>
-        <fieldPermissions>
+    <fieldPermissions>
         <editable>false</editable>
         <field>SalesAreaLink__c.ftxt_SalesOrg__c</field>
         <readable>true</readable>
