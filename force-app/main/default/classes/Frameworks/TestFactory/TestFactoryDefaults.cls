@@ -97,7 +97,7 @@ public with sharing class TestFactoryDefaults{
 	* @author       APC
 	* @description  OpportunityDefault constructor
 	*/
-	public class OpportunityDefault implements TestFactory.FieldDefaults {
+	public class OpportunityDefaults implements TestFactory.FieldDefaults {
 		/**
 		* @author       APC
 		* @description  define Opportunity getFieldDefaults()
