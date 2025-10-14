@@ -3,6 +3,6 @@
     <fullName>RolesRequired</fullName>
     <active>true</active>
     <description>Ensures at least one role is selected for Account Contact Relationship</description>
-    <errorConditionFormula>ISBLANK(Roles)</errorConditionFormula>
+    <errorConditionFormula>ISBLANK(mpkl_PartnerRoles__c)</errorConditionFormula>
     <errorMessage>At least one role needs to be selected</errorMessage>
 </ValidationRule>

@@ -3,7 +3,7 @@
  * @author TLQ1KOR
  * @date 2025
  */
-trigger QuoteLockTrigger on SBQQ__Quote__c (after update) {
+trigger QuoteLockTrigger on SBQQ__Quote__c (before update) {
     
     fflib_SObjectDomain.triggerHandler(QuoteLock.class);
 }

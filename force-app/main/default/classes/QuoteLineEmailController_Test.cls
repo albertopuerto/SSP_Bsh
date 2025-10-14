@@ -7,17 +7,15 @@ public class QuoteLineEmailController_Test {
         Account testAccount = new Account(
             Name = 'Test Account',
             Role__c='ETDE Domestic Customer',
-            pkl_Language__c='English', 
-            pkl_INCOTerms1__c='DAP – Delivered at Place',  
-            txt_INCOTerms2__c = 'Inco Terms',
+            pkl_Language__c='English',
             pkl_PaymentTerms__c = 'Net 15'
         );
         insert testAccount;
         
         SalesArea__c sal = new SalesArea__c(
-            pkl_DistributionChannel__c = '01',
+            pkl_DistributionChannel__c = 'A1',
             pkl_Division__c = '01',
-            pkl_SalesOrg__c = '0001'
+            pkl_SalesOrg__c = 'DEM5'
         );
         insert sal;
 

@@ -27,9 +27,7 @@ public with sharing class TestFactoryDefaults{
 					Account.ShippingCountry => 'sTest',
 					Account.txt_AthenaUUID__c => '1111',
 					Account.Role__c => 'ETDE Domestic Customer',
-					Account.pkl_INCOTerms1__c => 'CPT - Carriage Paid To',
 					Account.pkl_PaymentTerms__c => 'Due on receipt',
-					Account.txt_INCOTerms2__c => 'Inco terms 2 text area',
 					Account.pkl_Language__c => 'English',
 					Account.pkm_BoschPartnerRole__c => 'BBCUSH'
 			};
@@ -49,9 +47,7 @@ public with sharing class TestFactoryDefaults{
 					Account.Phone => '0123456',
 					Account.txt_AthenaUUID__c => '2222',
 					Account.Role__c => 'ETDE Domestic Customer',
-					Account.pkl_INCOTerms1__c => 'CPT - Carriage Paid To',
 					Account.pkl_PaymentTerms__c => 'Due on receipt',
-					Account.txt_INCOTerms2__c => 'Inco terms 2 text area',
 					Account.pkl_Language__c => 'English',
 					Account.pkm_BoschPartnerRole__c => 'BBCUEX'
 			};
@@ -283,4 +279,22 @@ public with sharing class TestFactoryDefaults{
             };
         }
     }
+
+	public class SalesAreaDefaults implements TestFactory.FieldDefaults{
+		/**
+		 * @author       FSJ
+		 * @description  define SalesArea__c getFieldDefaults()
+		 * @return		Map<Schema.SObjectField, Object>
+		 */
+		public Map<Schema.SObjectField, Object> getFieldDefaults() {
+			return new Map<Schema.SObjectField, Object>{
+				SalesArea__c.pkl_SalesOrg__c => 'DEM5',
+				SalesArea__c.pkl_DistributionChannel__c => 'A1',
+				SalesArea__c.pkl_Division__c => '01'
+				
+			};
+		
+		}
+	}
+   
 }

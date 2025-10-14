@@ -3,7 +3,7 @@
     <fullName>txt_DistributionChannelDescription__c</fullName>
     <description>Distribution Channel Description</description>
     <externalId>false</externalId>
-    <inlineHelpText>Description of Distribution Division of a Customer</inlineHelpText>
+    <inlineHelpText>Description of Distribution Channel of a Customer</inlineHelpText>
     <label>Distribution Channel Description</label>
     <length>20</length>
     <required>false</required>

@@ -1,0 +1,52 @@
+<template>
+
+    <div class="slds-path__content" id="path-coaching-2">
+        <div class="slds-path__coach slds-grid">
+            <div class="slds-path__keys">
+                <div class="slds-grid slds-grid_align-spread slds-path__coach-title">
+                    <h2 style="margin-left:10px;">Key Fields </h2>
+                    <button class="slds-button slds-path__coach-edit slds-text-body_small"
+                        onclick={enableEdition}>Edit</button>
+                </div>
+                <div class="slds-form" role="list">
+
+                    <div style="padding:10px;">
+                        <lightning-record-form object-api-name={objectname} fields={fieldList} record-id={recordid} onsubmit={handleSubmit} mode="view" onsuccess={handleSuccess}>
+
+                        </lightning-record-form>
+                    </div>
+                </div>
+            </div>
+            <div class="slds-path__guidance">
+                <h2 style="" class="slds-path__coach-title"> Guidance for Success </h2>
+                <div class="slds-text-longform slds-path__guidance-content guidance-container" lwc:dom="manual">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <template if:true={isModeEdition}>
+        <section role="dialog" tabindex="-1" aria-labelledby="" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open slds-modal_medium"  onclick={cancelEdit}>
+            <div style="width:1000px;" class="slds-modal__container" onclick={stopPropagation}>
+
+                    <header class="slds-modal__header">
+                        <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close" onclick={cancelEdit}>
+                            <lightning-icon icon-name="utility:close" alternative-text="close" variant="inverse" size="small"></lightning-icon>
+                            <span class="slds-assistive-text">Close</span>
+                        </button>
+                        <h1 id="" class="slds-text-heading_medium slds-hyphenate">Edit</h1>
+                    </header>
+
+                <div class="slds-modal__content slds-p-around_medium" id="modal-staffingCreationContent">
+                    <lightning-record-form object-api-name={objectname} fields={fieldList} record-id={recordid} onsubmit={handleSubmit} mode="edit" onsuccess={handleSuccess} oncancel={handleCancel}>
+
+                    </lightning-record-form>
+                </div>
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+
+
+
+    </template>
+</template>
