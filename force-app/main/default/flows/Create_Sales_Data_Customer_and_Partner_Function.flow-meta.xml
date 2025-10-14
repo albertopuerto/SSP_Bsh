@@ -1,6 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
     <actionCalls>
+        <name>Copy_1_of_Navigate</name>
+        <label>Copy 1 of Navigate</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <actionName>c:NavigateToTheRecord</actionName>
+        <actionType>component</actionType>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>recordId</name>
+            <value>
+                <elementReference>recordId</elementReference>
+            </value>
+        </inputParameters>
+        <nameSegment>c:NavigateToTheRecord</nameSegment>
+        <offset>0</offset>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </actionCalls>
+    <actionCalls>
         <name>Log_Create_Sales_Data_Customer</name>
         <label>Log Create Sales Data Customer</label>
         <locationX>0</locationX>
@@ -177,6 +195,31 @@
             <stringValue>{&quot;location&quot;:&quot;top&quot;,&quot;type&quot;:&quot;simple&quot;}</stringValue>
         </value>
     </customProperties>
+    <decisions>
+        <name>error_check</name>
+        <label>error check</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>Log_Create_Sales_Data_Customer</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>error1</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Create_Sales_Data_Customer</leftValueReference>
+                <operator>HasError</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Error</targetReference>
+            </connector>
+            <label>error</label>
+        </rules>
+    </decisions>
     <environments>Default</environments>
     <interviewLabel>Create Sales Data Customer and Partner Function {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Create Sales Data Customer and Partner Function</label>
@@ -222,10 +265,29 @@
             <targetReference>Set_Default_Sales_Data_Customer</targetReference>
         </connector>
         <faultConnector>
-            <targetReference>Log_Create_Sales_Data_Customer</targetReference>
+            <targetReference>error_check</targetReference>
         </faultConnector>
         <inputReference>varSalesAreaLink</inputReference>
     </recordCreates>
+    <screens>
+        <name>Error</name>
+        <label>Error</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>true</allowPause>
+        <connector>
+            <targetReference>Copy_1_of_Navigate</targetReference>
+        </connector>
+        <fields>
+            <name>FIELD_CUSTOM_VALIDATION_EXCEPTION</name>
+            <fieldText>&lt;p&gt;Sales Data Customer record already exist for combination of: Sales Organization, Distribution Channel and Division.&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
     <screens>
         <name>NewBosch</name>
         <label>NewBoschPatnerFunction</label>
@@ -435,7 +497,7 @@
         <name>varBoschpatnerfunction</name>
         <dataType>SObject</dataType>
         <isCollection>false</isCollection>
-        <isInput>true</isInput>
+        <isInput>false</isInput>
         <isOutput>false</isOutput>
         <objectType>BoschPartner_PartnerFunction__c</objectType>
     </variables>
@@ -443,7 +505,7 @@
         <name>varSalesAreaLink</name>
         <dataType>SObject</dataType>
         <isCollection>false</isCollection>
-        <isInput>true</isInput>
+        <isInput>false</isInput>
         <isOutput>false</isOutput>
         <objectType>SalesAreaLink__c</objectType>
     </variables>
