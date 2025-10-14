@@ -36,7 +36,7 @@ public with sharing class TestFactoryDefaults{
 
 	/**
 	* @author       APC
-	* @description  SupplierAccountDefault specific default set to be used in the future, be careful, 
+	* @description  SupplierAccountDefault specific default set to be used in the future, be careful,
 						once this class will be changed, the test should be properly changed as well
 	*/
 	public class SupplierAccountDefault implements TestFactory.FieldDefaults {
@@ -97,7 +97,7 @@ public with sharing class TestFactoryDefaults{
 	* @author       APC
 	* @description  OpportunityDefault constructor
 	*/
-	public class OpportunityDefaults implements TestFactory.FieldDefaults {
+	public class OpportunityDefault implements TestFactory.FieldDefaults {
 		/**
 		* @author       APC
 		* @description  define Opportunity getFieldDefaults()
@@ -105,13 +105,13 @@ public with sharing class TestFactoryDefaults{
 		*/
 		public Map<Schema.SObjectField, Object> getFieldDefaults() {
 			return new Map<Schema.SObjectField, Object> {
-            Opportunity.Name => 'Test Opportunity',                          
-            Opportunity.StageName => 'Sales Chance (New)',                 
-            Opportunity.CloseDate => Date.today().addDays(30),              
-            Opportunity.AccountId => null,  //set this in test class while generation                                 
-            Opportunity.CurrencyIsoCode => 'EUR',                            
-            Opportunity.pklLeadingSolutionField__c => 'DAP',                 
-            Opportunity.pklTypeOfOffering__c => 'SW',                        
+            Opportunity.Name => 'Test Opportunity',
+            Opportunity.StageName => 'Sales Chance (New)',
+            Opportunity.CloseDate => Date.today().addDays(30),
+            Opportunity.AccountId => null,  //set this in test class while generation
+            Opportunity.CurrencyIsoCode => 'EUR',
+            Opportunity.pklLeadingSolutionField__c => 'DAP',
+            Opportunity.pklTypeOfOffering__c => 'SW',
             Opportunity.pklTypeOfOpportunity__c => 'LTA',
             Opportunity.lkp_SalesOrganization__c => null
 			};
@@ -130,7 +130,7 @@ public with sharing class TestFactoryDefaults{
 		 */
 		public Map<Schema.SObjectField, Object> getFieldDefaults() {
 			return new Map<Schema.SObjectField, Object>{
-				User.Alias => 'userSalesRead',
+				User.Alias => 'userSR',
 				User.Email => 'testusuario1@example.com',
 				User.Emailencodingkey => 'UTF-8',
 				User.Languagelocalekey => 'en_US',
@@ -171,7 +171,7 @@ public with sharing class TestFactoryDefaults{
 			};
 		}
 	}
-    
+
     public class QuoteDefaults implements TestFactory.FieldDefaults{
         /**
 		 * @author       TLQ1KOR
@@ -181,11 +181,11 @@ public with sharing class TestFactoryDefaults{
 		public Map<Schema.SObjectField, Object> getFieldDefaults() {
             return new Map<Schema.SObjectField, Object>{
                 SBQQ__Quote__c.SBQQ__Type__c	 => 'Quote'
-                
-                
-                
+
+
+
             };
-        
+
         }
     }
     public class ContentVersionDefaults implements TestFactory.FieldDefaults{
@@ -198,9 +198,9 @@ public with sharing class TestFactoryDefaults{
             return new Map<Schema.SObjectField, Object>{
               ContentVersion.Title => 'Test Document',
               ContentVersion.PathOnClient => 'TestDocument.pdf',
-              ContentVersion.VersionData => Blob.valueOf('Test Content Data') 
+              ContentVersion.VersionData => Blob.valueOf('Test Content Data')
             };
-        
+
         }
     }
     public class ContentDocumentLinkDefaults implements TestFactory.FieldDefaults{
@@ -213,10 +213,10 @@ public with sharing class TestFactoryDefaults{
             return new Map<Schema.SObjectField, Object>{
             ContentDocumentLink.ShareType => 'V'
             };
-        
+
         }
     }
-	
+
 
     public class QuoteLineDefaults implements TestFactory.FieldDefaults{
         /**
@@ -228,9 +228,9 @@ public with sharing class TestFactoryDefaults{
             return new Map<Schema.SObjectField, Object>{
                             SBQQ__QuoteLine__c.SBQQ__Quantity__c => 1,
             SBQQ__QuoteLine__c.SBQQ__ListPrice__c => 100.00
-                
+
             };
-        
+
         }
     }
     public class Product2Defaults implements TestFactory.FieldDefaults{
@@ -242,13 +242,14 @@ public with sharing class TestFactoryDefaults{
 		public Map<Schema.SObjectField, Object> getFieldDefaults() {
             return new Map<Schema.SObjectField, Object>{
                 Product2.Name => 'Test Product'
-                
+
             };
-        
+
         }
+
     }
 
-	public class SalesAreaDefaults implements TestFactory.FieldDefaults{
+    public class SalesAreaDefaults implements TestFactory.FieldDefaults{
 		/**
 		 * @author       FSJ
 		 * @description  define SalesArea__c getFieldDefaults()
@@ -259,10 +260,9 @@ public with sharing class TestFactoryDefaults{
 				SalesArea__c.pkl_SalesOrg__c => 'DEM5',
 				SalesArea__c.pkl_DistributionChannel__c => 'A1',
 				SalesArea__c.pkl_Division__c => '01'
-				
 			};
-		
+
 		}
 	}
-   
+
 }
