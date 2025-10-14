@@ -474,7 +474,11 @@
         <allowRead>true</allowRead>
         <modifyAllRecords>false</modifyAllRecords>
         <object>Product2</object>
-        <viewAllFields>false</viewAllFields>
+        <viewAllFields>true</viewAllFields>
         <viewAllRecords>false</viewAllRecords>
     </objectPermissions>
+    <tabSettings>
+        <tab>standard-Product2</tab>
+        <visibility>Visible</visibility>
+    </tabSettings>
 </PermissionSet>
