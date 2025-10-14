@@ -4,12 +4,15 @@
         <name>Account_Team</name>
         <label>Account Team</label>
         <locationX>270</locationX>
-        <locationY>2819</locationY>
+        <locationY>3599</locationY>
         <actionName>customNotificationAction</actionName>
         <actionType>customNotificationAction</actionType>
         <connector>
             <targetReference>Loop_2</targetReference>
         </connector>
+        <faultConnector>
+            <targetReference>Log_Account_Team_Notified</targetReference>
+        </faultConnector>
         <flowTransactionModel>CurrentTransaction</flowTransactionModel>
         <inputParameters>
             <name>customNotifTypeId</name>
@@ -42,16 +45,197 @@
             </value>
         </inputParameters>
         <nameSegment>customNotificationAction</nameSegment>
+        <offset>0</offset>
+    </actionCalls>
+    <actionCalls>
+        <name>Log_Account_Owner_Notified</name>
+        <label>Log Account Owner Notified</label>
+        <locationX>50</locationX>
+        <locationY>1811</locationY>
+        <actionName>FlowLogEntry</actionName>
+        <actionType>apex</actionType>
+        <connector>
+            <targetReference>Save_Log2</targetReference>
+        </connector>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>flowName</name>
+            <value>
+                <stringValue>Notification_about_opportunity_changes</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>loggingLevelName</name>
+            <value>
+                <stringValue>INFO</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>message</name>
+            <value>
+                <stringValue>Account owner notification sent for opportunity</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>recordId</name>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>tagsString</name>
+            <value>
+                <stringValue>opportunity-notification,account-owner</stringValue>
+            </value>
+        </inputParameters>
+        <nameSegment>FlowLogEntry</nameSegment>
+        <offset>0</offset>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </actionCalls>
+    <actionCalls>
+        <name>Log_Account_Team_Notified</name>
+        <label>Log Account Team Notified</label>
+        <locationX>534</locationX>
+        <locationY>3707</locationY>
+        <actionName>FlowLogEntry</actionName>
+        <actionType>apex</actionType>
+        <connector>
+            <targetReference>Save_Logs4</targetReference>
+        </connector>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>flowName</name>
+            <value>
+                <stringValue>Notification_about_opportunity_changes</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>loggingLevelName</name>
+            <value>
+                <stringValue>INFO</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>message</name>
+            <value>
+                <stringValue>Account team notification sent for opportunity</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>recordId</name>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>tagsString</name>
+            <value>
+                <stringValue>FLW-SYS-00008</stringValue>
+            </value>
+        </inputParameters>
+        <nameSegment>FlowLogEntry</nameSegment>
+        <offset>0</offset>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </actionCalls>
+    <actionCalls>
+        <name>log_opp_notification</name>
+        <label>log opp notification</label>
+        <locationX>50</locationX>
+        <locationY>1187</locationY>
+        <actionName>FlowLogEntry</actionName>
+        <actionType>apex</actionType>
+        <connector>
+            <targetReference>Save_Log</targetReference>
+        </connector>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>flowName</name>
+            <value>
+                <stringValue>Notification_about_opportunity_changes</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>loggingLevelName</name>
+            <value>
+                <stringValue>INFO</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>message</name>
+            <value>
+                <stringValue>Opportunity notification sent for {!$Record.Name}</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>recordId</name>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>tagsString</name>
+            <value>
+                <stringValue>opportunity-notification,owner-notification</stringValue>
+            </value>
+        </inputParameters>
+        <nameSegment>FlowLogEntry</nameSegment>
+        <offset>0</offset>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </actionCalls>
+    <actionCalls>
+        <name>Log_Opp_Team_Notified</name>
+        <label>Log Opp Team Notified</label>
+        <locationX>534</locationX>
+        <locationY>2651</locationY>
+        <actionName>FlowLogEntry</actionName>
+        <actionType>apex</actionType>
+        <connector>
+            <targetReference>Save_Logs3</targetReference>
+        </connector>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>flowName</name>
+            <value>
+                <stringValue>Notification_about_opportunity_changes</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>loggingLevelName</name>
+            <value>
+                <stringValue>INFO</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>message</name>
+            <value>
+                <stringValue>Opportunity team notification sent for opportunity</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>recordId</name>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>tagsString</name>
+            <value>
+                <stringValue>FLW-SYS-00007</stringValue>
+            </value>
+        </inputParameters>
+        <nameSegment>FlowLogEntry</nameSegment>
+        <offset>0</offset>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
     </actionCalls>
     <actionCalls>
         <name>Notify_Account_Owner</name>
         <label>Notify Account Owner</label>
         <locationX>50</locationX>
-        <locationY>1487</locationY>
+        <locationY>1703</locationY>
         <actionName>customNotificationAction</actionName>
         <actionType>customNotificationAction</actionType>
         <connector>
-            <targetReference>OpportunityTeamMember_records</targetReference>
+            <targetReference>Log_Account_Owner_Notified</targetReference>
         </connector>
         <flowTransactionModel>CurrentTransaction</flowTransactionModel>
         <inputParameters>
@@ -85,17 +269,21 @@
             </value>
         </inputParameters>
         <nameSegment>customNotificationAction</nameSegment>
+        <offset>0</offset>
     </actionCalls>
     <actionCalls>
         <name>Opp_Team_Notification</name>
         <label>Opp Team Notification</label>
         <locationX>270</locationX>
-        <locationY>2111</locationY>
+        <locationY>2543</locationY>
         <actionName>customNotificationAction</actionName>
         <actionType>customNotificationAction</actionType>
         <connector>
             <targetReference>OppTeamLoop</targetReference>
         </connector>
+        <faultConnector>
+            <targetReference>Log_Opp_Team_Notified</targetReference>
+        </faultConnector>
         <flowTransactionModel>CurrentTransaction</flowTransactionModel>
         <inputParameters>
             <name>customNotifTypeId</name>
@@ -128,6 +316,7 @@
             </value>
         </inputParameters>
         <nameSegment>customNotificationAction</nameSegment>
+        <offset>0</offset>
     </actionCalls>
     <actionCalls>
         <name>Opportunity_Notification</name>
@@ -137,7 +326,7 @@
         <actionName>customNotificationAction</actionName>
         <actionType>customNotificationAction</actionType>
         <connector>
-            <targetReference>Assignment_2</targetReference>
+            <targetReference>log_opp_notification</targetReference>
         </connector>
         <flowTransactionModel>CurrentTransaction</flowTransactionModel>
         <inputParameters>
@@ -171,8 +360,64 @@
             </value>
         </inputParameters>
         <nameSegment>customNotificationAction</nameSegment>
+        <offset>0</offset>
+    </actionCalls>
+    <actionCalls>
+        <description>Save the Logs</description>
+        <name>Save_Log</name>
+        <label>Save Log</label>
+        <locationX>50</locationX>
+        <locationY>1295</locationY>
+        <actionName>Logger</actionName>
+        <actionType>apex</actionType>
+        <connector>
+            <targetReference>Assignment_2</targetReference>
+        </connector>
+        <flowTransactionModel>Automatic</flowTransactionModel>
+        <nameSegment>Logger</nameSegment>
+        <offset>0</offset>
+    </actionCalls>
+    <actionCalls>
+        <description>Save the Logs</description>
+        <name>Save_Log2</name>
+        <label>Save Log</label>
+        <locationX>50</locationX>
+        <locationY>1919</locationY>
+        <actionName>Logger</actionName>
+        <actionType>apex</actionType>
+        <connector>
+            <targetReference>OpportunityTeamMember_records</targetReference>
+        </connector>
+        <flowTransactionModel>Automatic</flowTransactionModel>
+        <nameSegment>Logger</nameSegment>
+        <offset>0</offset>
+    </actionCalls>
+    <actionCalls>
+        <description>Save the Logs</description>
+        <name>Save_Logs3</name>
+        <label>Save Logs</label>
+        <locationX>534</locationX>
+        <locationY>2759</locationY>
+        <actionName>Logger</actionName>
+        <actionType>apex</actionType>
+        <flowTransactionModel>Automatic</flowTransactionModel>
+        <nameSegment>Logger</nameSegment>
+        <offset>0</offset>
+    </actionCalls>
+    <actionCalls>
+        <description>Save the Logs</description>
+        <name>Save_Logs4</name>
+        <label>Save Logs</label>
+        <locationX>534</locationX>
+        <locationY>3815</locationY>
+        <actionName>Logger</actionName>
+        <actionType>apex</actionType>
+        <flowTransactionModel>Automatic</flowTransactionModel>
+        <nameSegment>Logger</nameSegment>
+        <offset>0</offset>
     </actionCalls>
     <apiVersion>63.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
     <assignments>
         <name>Add_Last_Modified_User_to_Notified_List</name>
         <label>Add Last Modified User to Notified List</label>
@@ -193,7 +438,7 @@
         <name>Assignment_2</name>
         <label>Assignment 2</label>
         <locationX>182</locationX>
-        <locationY>1271</locationY>
+        <locationY>1487</locationY>
         <assignmentItems>
             <assignToReference>TeamMemberNotif</assignToReference>
             <operator>Add</operator>
@@ -208,8 +453,8 @@
     <assignments>
         <name>assignment_3</name>
         <label>assignment_3</label>
-        <locationX>402</locationX>
-        <locationY>1895</locationY>
+        <locationX>534</locationX>
+        <locationY>2327</locationY>
         <assignmentItems>
             <assignToReference>OppTeamRecip</assignToReference>
             <operator>Add</operator>
@@ -224,8 +469,8 @@
     <assignments>
         <name>assignment_4</name>
         <label>assignment 4</label>
-        <locationX>402</locationX>
-        <locationY>2603</locationY>
+        <locationX>534</locationX>
+        <locationY>3383</locationY>
         <assignmentItems>
             <assignToReference>AccTeamMember</assignToReference>
             <operator>Add</operator>
@@ -257,7 +502,7 @@
         <name>accownisblank</name>
         <label>accownisblank</label>
         <locationX>182</locationX>
-        <locationY>1379</locationY>
+        <locationY>1595</locationY>
         <defaultConnector>
             <targetReference>OpportunityTeamMember_records</targetReference>
         </defaultConnector>
@@ -281,8 +526,8 @@
     <decisions>
         <name>isaccteamblank</name>
         <label>isaccteamblank</label>
-        <locationX>402</locationX>
-        <locationY>2711</locationY>
+        <locationX>534</locationX>
+        <locationY>3491</locationY>
         <defaultConnector>
             <targetReference>Loop_2</targetReference>
         </defaultConnector>
@@ -306,8 +551,8 @@
     <decisions>
         <name>isoppteamblank</name>
         <label>isoppteamblank</label>
-        <locationX>402</locationX>
-        <locationY>2003</locationY>
+        <locationX>534</locationX>
+        <locationY>2435</locationY>
         <defaultConnector>
             <targetReference>OppTeamLoop</targetReference>
         </defaultConnector>
@@ -448,7 +693,7 @@
         <name>Loop_2</name>
         <label>Loop Through Account Team Mem</label>
         <locationX>182</locationX>
-        <locationY>2495</locationY>
+        <locationY>3275</locationY>
         <collectionReference>Acc_Team</collectionReference>
         <iterationOrder>Asc</iterationOrder>
         <nextValueConnector>
@@ -459,7 +704,7 @@
         <name>OppTeamLoop</name>
         <label>Loop through Opp Team Member</label>
         <locationX>182</locationX>
-        <locationY>1787</locationY>
+        <locationY>2219</locationY>
         <collectionReference>OpportunityTeamMember_records</collectionReference>
         <iterationOrder>Asc</iterationOrder>
         <nextValueConnector>
@@ -492,7 +737,7 @@
         <name>Acc_Team</name>
         <label>Acc Team</label>
         <locationX>182</locationX>
-        <locationY>2387</locationY>
+        <locationY>3167</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Loop_2</targetReference>
@@ -609,7 +854,7 @@
         <name>OpportunityTeamMember_records</name>
         <label>OpportunityTeamMember records</label>
         <locationX>182</locationX>
-        <locationY>1679</locationY>
+        <locationY>2111</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>OppTeamLoop</targetReference>

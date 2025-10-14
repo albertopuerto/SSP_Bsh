@@ -1,6 +1,58 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <name>Log_Account_Team_Member_Created</name>
+        <label>Log Account Team Member Created</label>
+        <locationX>314</locationX>
+        <locationY>647</locationY>
+        <actionName>FlowLogEntry</actionName>
+        <actionType>apex</actionType>
+        <connector>
+            <targetReference>Save_log</targetReference>
+        </connector>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>flowName</name>
+            <value>
+                <stringValue>flw_Account_OnCreate_AddAccounTeamMember</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>loggingLevelName</name>
+            <value>
+                <stringValue>INFO</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>message</name>
+            <value>
+                <stringValue>Account team member created for SCO user on account {!$Record.Name}</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>tagsString</name>
+            <value>
+                <stringValue>FLW-DML-00007</stringValue>
+            </value>
+        </inputParameters>
+        <nameSegment>FlowLogEntry</nameSegment>
+        <offset>0</offset>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </actionCalls>
+    <actionCalls>
+        <description>Save the logs</description>
+        <name>Save_log</name>
+        <label>Save log</label>
+        <locationX>314</locationX>
+        <locationY>755</locationY>
+        <actionName>Logger</actionName>
+        <actionType>apex</actionType>
+        <flowTransactionModel>Automatic</flowTransactionModel>
+        <nameSegment>Logger</nameSegment>
+        <offset>0</offset>
+    </actionCalls>
     <apiVersion>60.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
     <assignments>
         <name>assgn_ValuesToTeamMemberRecord</name>
         <label>Assign values to Team Member record</label>
@@ -42,7 +94,7 @@
         <description>Checks if the user that triggered the Flow is a SCO user.</description>
         <name>decn_IsSCOUser</name>
         <label>Is SCO User?</label>
-        <locationX>182</locationX>
+        <locationX>314</locationX>
         <locationY>323</locationY>
         <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
         <rules>
@@ -89,10 +141,13 @@
         <label>Account Team Member</label>
         <locationX>50</locationX>
         <locationY>539</locationY>
+        <faultConnector>
+            <targetReference>Log_Account_Team_Member_Created</targetReference>
+        </faultConnector>
         <inputReference>obj_AccountTeamMember</inputReference>
     </recordCreates>
     <start>
-        <locationX>56</locationX>
+        <locationX>188</locationX>
         <locationY>0</locationY>
         <connector>
             <targetReference>decn_IsSCOUser</targetReference>

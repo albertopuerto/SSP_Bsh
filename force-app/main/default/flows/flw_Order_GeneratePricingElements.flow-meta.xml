@@ -1,6 +1,109 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <name>Log_General_Flow_Error</name>
+        <label>Log General Flow Error</label>
+        <locationX>882</locationX>
+        <locationY>566</locationY>
+        <actionName>FlowLogEntry</actionName>
+        <actionType>apex</actionType>
+        <connector>
+            <targetReference>Save_Logs1</targetReference>
+        </connector>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>flowName</name>
+            <value>
+                <stringValue>flw_Order_GeneratePricingElements</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>loggingLevelName</name>
+            <value>
+                <stringValue>ERROR</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>message</name>
+            <value>
+                <stringValue>General error in Generate Pricing Elements flow: {!Error_message}</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>tagsString</name>
+            <value>
+                <stringValue>pricing-flow,general-error,flow-fault</stringValue>
+            </value>
+        </inputParameters>
+        <nameSegment>FlowLogEntry</nameSegment>
+        <offset>0</offset>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </actionCalls>
+    <actionCalls>
+        <name>Log_Price_Element_Error</name>
+        <label>Log Price Element Error</label>
+        <locationX>754</locationX>
+        <locationY>782</locationY>
+        <actionName>FlowLogEntry</actionName>
+        <actionType>apex</actionType>
+        <connector>
+            <targetReference>Save_Logs</targetReference>
+        </connector>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>flowName</name>
+            <value>
+                <stringValue>flw_Order_GeneratePricingElements</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>loggingLevelName</name>
+            <value>
+                <stringValue>ERROR</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>message</name>
+            <value>
+                <stringValue>Error occurred during price element creation: {!Error_message}</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>tagsString</name>
+            <value>
+                <stringValue>pricing-error,price-element</stringValue>
+            </value>
+        </inputParameters>
+        <nameSegment>FlowLogEntry</nameSegment>
+        <offset>0</offset>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </actionCalls>
+    <actionCalls>
+        <description>Save the Logs</description>
+        <name>Save_Logs</name>
+        <label>Save Logs</label>
+        <locationX>754</locationX>
+        <locationY>890</locationY>
+        <actionName>Logger</actionName>
+        <actionType>apex</actionType>
+        <flowTransactionModel>Automatic</flowTransactionModel>
+        <nameSegment>Logger</nameSegment>
+        <offset>0</offset>
+    </actionCalls>
+    <actionCalls>
+        <description>Save the Logs</description>
+        <name>Save_Logs1</name>
+        <label>Save Logs</label>
+        <locationX>882</locationX>
+        <locationY>674</locationY>
+        <actionName>Logger</actionName>
+        <actionType>apex</actionType>
+        <flowTransactionModel>Automatic</flowTransactionModel>
+        <nameSegment>Logger</nameSegment>
+        <offset>0</offset>
+    </actionCalls>
     <apiVersion>63.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
     <assignments>
         <name>Handle_Error</name>
         <label>Handle Error</label>
@@ -20,6 +123,9 @@
                 <elementReference>$Flow.FaultMessage</elementReference>
             </value>
         </assignmentItems>
+        <connector>
+            <targetReference>Log_General_Flow_Error</targetReference>
+        </connector>
     </assignments>
     <assignments>
         <name>Set_Error_Message</name>
@@ -40,12 +146,15 @@
                 <stringValue>“Error occured during creation of price elements. Order Number:  &quot; + {!OrderId.Id} +&quot; Please consult your line of support providing this data.&quot;</stringValue>
             </value>
         </assignmentItems>
+        <connector>
+            <targetReference>Log_Price_Element_Error</targetReference>
+        </connector>
     </assignments>
     <assignments>
         <name>Set_Success_Result</name>
         <label>Set Success Result</label>
         <locationX>402</locationX>
-        <locationY>998</locationY>
+        <locationY>1214</locationY>
         <assignmentItems>
             <assignToReference>GenerationResult</assignToReference>
             <operator>Assign</operator>
