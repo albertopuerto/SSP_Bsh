@@ -1280,6 +1280,10 @@
     <picklistValues>
         <picklist>Apttus__Agreement_Category__c</picklist>
         <values>
+            <fullName>ETAS%2FBDO</fullName>
+            <default>false</default>
+        </values>
+        <values>
             <fullName>ETAS%2FCEU1</fullName>
             <default>false</default>
         </values>
@@ -1288,7 +1292,15 @@
             <default>false</default>
         </values>
         <values>
+            <fullName>ETAS%2FCOM</fullName>
+            <default>false</default>
+        </values>
+        <values>
             <fullName>ETAS%2FCRB</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>ETAS%2FCRN</fullName>
             <default>false</default>
         </values>
         <values>
@@ -1297,6 +1309,50 @@
         </values>
         <values>
             <fullName>ETAS%2FCVW</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>ETAS%2FECI</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>ETAS%2FES</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>ETAS%2FHR</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>ETAS%2FICA-PG</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>ETAS%2FNE-EX</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>ETAS%2FNXT</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>ETAS%2FQMM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>ETAS%2FSCC</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>ETAS-ECM%2FPG</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>ETAS-ICA%2FPG</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>ETAS-SID%2FPG</fullName>
             <default>false</default>
         </values>
         <values>
@@ -1545,6 +1601,17 @@
         <values>
             <fullName>Other</fullName>
             <default>true</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>pkl_CustomerAffiliatesCovered__c</picklist>
+        <values>
+            <fullName>No</fullName>
+            <default>true</default>
+        </values>
+        <values>
+            <fullName>Yes</fullName>
+            <default>false</default>
         </values>
     </picklistValues>
     <picklistValues>
