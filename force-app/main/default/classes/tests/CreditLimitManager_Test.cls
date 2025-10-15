@@ -38,7 +38,7 @@ public class CreditLimitManager_Test {
 		orderItemList[0].Product2Id= productList[0].Id;
 		orderItemList[0].PricebookEntryId= pricebookEntryList[0].Id;
 		insert orderItemList;
-        
+
         orderList[0].cur_Current_Credit_Limit_including_VAT__c= 10;
         orderList[0].Status= 'Activated';
         update orderList;
@@ -278,7 +278,7 @@ public class CreditLimitManager_Test {
     	    String expectedValue = '{"Envelope":{"Header":"","Body":{"CreditWorthinessResponse":{"CreditWorthiness":{"CreditSegmentInternalID":"5370","Indicator":"true","CheckingDescription":[{"@languageCode":"en","$":"Credit segment 5370 of partner 4001831001"},{"@languageCode":"EN","$":"ID: 510936342"}],"DebtorPartyBlockedIndicator":"false","DebtorPartySpecialAttentionRequiredIndicator":"false","DynamicCheckHorizonEndDate":"2025-10-04","DebtorParty":{"InternalID":{"@schemeID":"PartyID","@schemeAgencyID":"SAP0BHL011","$":"4001831001"}},"Rating":{"Code":"       93","ValidityPeriod":{"EndDateTime":"2026-03-03T00:00:00Z"}},"RiskClass":{"Code":"B","ValidityPeriod":{"EndDateTime":"2026-03-03T00:00:00Z"}},"CreditLimit":{"Amount":{"@currencyCode":"EUR","$":"500000.0"},"ValidityPeriod":{"EndDateTime":"2026-09-30T00:00:00Z"}},"CreditExposure":{"Amount":{"@currencyCode":"EUR","$":"0.0"}}}}}}}';
     	    Assert.areEqual(expectedValue, actualValue,'The response body is the expected value');
     	    Assert.areEqual(200, response.getStatusCode(), 'The status code is 200');*/
-            CreditLimitManager.callGetLimit('SBQQ__Quote__c',quoteTest.Id);
+            CreditLimitManager.callGetLimit('SBQQ__Quote__c', quoteTest.Id);
         }
         Test.stopTest();
 	}
