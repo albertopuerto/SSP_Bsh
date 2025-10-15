@@ -25,14 +25,14 @@ public class CreditLimitManager_Test {
         orderList[0].Status= 'Draft';
         orderList[0].AccountId= testAccountList[0].Id;
         insert orderList;
-        
+
         Product2[] productList = (Product2 [])TestFactory.createSObjectList(new Product2(),1);
         insert productList;
 
 		PricebookEntry[] pricebookEntryList = (PricebookEntry [])TestFactory.createSObjectList(new PricebookEntry(),1);
 		pricebookEntryList[0].Product2Id = productList[0].Id;
 		insert pricebookEntryList;
-        
+
         OrderItem[] orderItemList = (OrderItem [])TestFactory.createSObjectList(new OrderItem(),1);
 		orderItemList[0].OrderId= orderList[0].Id;
 		orderItemList[0].Product2Id= productList[0].Id;
