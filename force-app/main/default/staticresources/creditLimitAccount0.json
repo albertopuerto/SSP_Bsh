@@ -1,0 +1,41 @@
+{
+    "Envelope": {
+        "Header": "",
+        "Body": {
+            "CreditManagementAccountByIDResponse": {
+                "MessageHeader": {
+                    "ID": "D6B2D2D3CE021FE0AA9C37A37AACCD9C",
+                    "CreationDateTime": "2025-10-14T09:39:54.231Z"
+                },
+                "CreditManagementAccount": {
+                    "DebtorPartyInternalID": {
+                        "@schemeID": "PartyID",
+                        "@schemeAgencyID": "SAP0BHL011",
+                        "$": "4001831001"
+                    },
+                    "CreditWorthinessCheckingRuleCode": "ZR",
+                    "CreditWorthinessCheckingSchemeCode": "ZA",
+                    "SpecialAttentionRequiredIndicator": "false",
+                    "BlockedIndicator": "false",
+                    "CreditRating": {
+                        "Code": "       97",
+                        "ValidityPeriod": {
+                            "StartDate": "2025-01-26",
+                            "EndDate": "2026-04-12"
+                        }
+                    },
+                    "CreditRiskClass": {
+                        "Code": "A",
+                        "ValidityPeriod": {
+                            "StartDate": "2024-02-16",
+                            "EndDate": "2026-04-12"
+                        }
+                    },
+                    "PaymentBehaviourSummary": {
+                        "DaysOfSalesOutstandingAverageDuration": "0 "
+                    }
+                }
+            }
+        }
+    }
+}
