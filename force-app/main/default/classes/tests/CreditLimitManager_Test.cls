@@ -259,16 +259,11 @@ public class CreditLimitManager_Test {
         	 
             StaticResource sr = [SELECT Body FROM StaticResource WHERE Name = 'vertexSuccess'];
 			String vertexBody = sr.Body.toString();
-            System.debug('vertexBody'+ vertexBody);
            	HttpCalloutMock res1 = new HTTPMockGenerator(200, vertexBody);
             
             StaticResource sr2 = [SELECT Body FROM StaticResource WHERE Name = 'creditLimitQuoteOrderExceded'];
 			String creditLimitBody = sr2.Body.toString();
-            System.debug('creditLimitBody'+ creditLimitBody);
             HttpCalloutMock res2 = new HTTPMockGenerator(200, creditLimitBody);
-            
-            System.debug('res1'+ res1);
-            System.debug('res2'+ res2);
             String remainingUrlVertex = '/sap-tax-service/tax/v1/quote';
             HttpMultiRequestMockGenerator multiMock = new HttpMultiRequestMockGenerator();
             multiMock.putMock('https://api.status.salesforce.com/v1/instances/DEU114S/status',new HTTPMockGenerator(200, '{"status":"OK"}'));
@@ -298,16 +293,14 @@ public class CreditLimitManager_Test {
             
           StaticResource sr = [SELECT Body FROM StaticResource WHERE Name = 'vertexSuccess'];
 			String vertexBody = sr.Body.toString();
-            System.debug('vertexBody'+ vertexBody);
+
            	HttpCalloutMock res1 = new HTTPMockGenerator(200, vertexBody);
             
             StaticResource sr2 = [SELECT Body FROM StaticResource WHERE Name = 'creditLimitQuoteOrderExceded'];
 			String creditLimitBody = sr2.Body.toString();
-            System.debug('creditLimitBody'+ creditLimitBody);
+       
             HttpCalloutMock res2 = new HTTPMockGenerator(200, creditLimitBody);
-            
-            System.debug('res1'+ res1);
-            System.debug('res2'+ res2);
+    
             String remainingUrlVertex = '/sap-tax-service/tax/v1/quote';
             HttpMultiRequestMockGenerator multiMock = new HttpMultiRequestMockGenerator();
             multiMock.putMock('https://api.status.salesforce.com/v1/instances/DEU114S/status',new HTTPMockGenerator(200, '{"status":"OK"}'));
