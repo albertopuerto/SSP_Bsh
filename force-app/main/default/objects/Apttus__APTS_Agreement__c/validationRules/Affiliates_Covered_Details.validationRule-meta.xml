@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Affiliates_Covered_Details</fullName>
+    <active>true</active>
+    <description>If Customer affiliates covered is confirmed, please describe which are the legal entities included</description>
+    <errorConditionFormula>AND(
+ISPICKVAL(pkl_CustomerAffiliatesCovered__c,&#39;Yes&#39;),
+ISBLANK(txa_AffiliatesCoveredDetails__c)
+)</errorConditionFormula>
+    <errorDisplayField>txa_AffiliatesCoveredDetails__c</errorDisplayField>
+    <errorMessage>Please describe which customer affiliates are included</errorMessage>
+</ValidationRule>
