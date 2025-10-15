@@ -1,8 +1,8 @@
 <template>
     <lightning-card title="Credit Limit">
-        <template if:false={accountRecord}>
+       
             <lightning-icon size="small" style="cursor:pointer;" onclick={refreshCallMethodWorthiness} icon-name="utility:refresh" slot="actions" alternative-text="refresh"></lightning-icon>
-        </template>
+        
         <template if:true={accountRecord}>
             <template if:true={disableButton}>
                 <span slot="actions" style=" margin-right:11px;color:orange;"> <lightning-icon class="slds-current-color" icon-name="utility:warning" size="small" alternative-text="Warning" title="Warning"></lightning-icon></span>
@@ -28,11 +28,11 @@
                 </div>
 
                 <template if:true={showAccountLimit}>
-                <p style="padding-top:20px;text-align:center;"> The limit for this account is <lightning-formatted-number value={accountLimit} format-style="currency" currency-code={objectCurrency} minimum-fraction-digits="2"></lightning-formatted-number></p>
+                <p data-id="messageText" style="padding-top:20px;text-align:center;"> The limit for this account is <lightning-formatted-number value={accountLimit} format-style="currency" currency-code={objectCurrency} minimum-fraction-digits="2"></lightning-formatted-number></p>
                 </template>
                 <template if:true={showError}>
                     <div>
-                        <p style="padding-top:20px;text-align:center;"> <span style=" margin-right:11px;color:#ba0517;"> <lightning-icon class="slds-current-color" display={showError} icon-name="utility:error" size="small" alternative-text="Error" title="Error"></lightning-icon></span> {errorMessage}</p>
+                        <p data-id="errorText" style="padding-top:20px;text-align:center;"> <span style=" margin-right:11px;color:#ba0517;"> <lightning-icon class="slds-current-color" display={showError} icon-name="utility:error" size="small" alternative-text="Error" title="Error"></lightning-icon></span> {errorMessage}</p>
                     </div>
                 
                 </template>

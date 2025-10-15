@@ -38,20 +38,20 @@ public with sharing class CreditLimitWrapperManager {
         //			TO CHECK
         CreditLimitWrappers.CheckingSchedule schedule= new CreditLimitWrappers.CheckingSchedule();
 
-        schedule.valuationDate= Date.newInstance(2025,02,10); // check if needs to be today or a static date
-        schedule.checkedAmount= objectAmount;
-        schedule.creditSegmentInternalID= CREDITSEGMENTID;
+        schedule.ValuationDate= Date.newInstance(2025,02,10); // check if needs to be today or a static date
+        schedule.CheckedAmount= objectAmount;
+        schedule.CreditSegmentInternalID= CREDITSEGMENTID;
         schedule.currencyCode= objectCurrency;
 
         CreditLimitWrappers.DebtorParty debtor = new CreditLimitWrappers.DebtorParty();
-        debtor.internalID= boschPartnerId;
+        debtor.InternalID= boschPartnerId;
         debtor.schemeAgencyID = agencyId;
 
 
         CreditLimitWrappers.CreditWorthinessQueryRequest request= new CreditLimitWrappers.CreditWorthinessQueryRequest();
-        request.creditSegmentInternalID= CREDITSEGMENTID;
-        request.debtorParty=debtor;
-        request.checkingSchedule=schedule;
+        request.CreditSegmentInternalID= CREDITSEGMENTID;
+        request.DebtorParty=debtor;
+        request.CheckingSchedule=schedule;
 
         return request;
 

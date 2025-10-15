@@ -82,7 +82,7 @@ public with sharing class CreditLimitCallouts {
 
         }else if(actualAccount != null){
 
-         	request.setEndpoint('callout:creditLimitAccount_usernamePass');
+         	request.setEndpoint('callout:CreditLimitOuathAccount');
             String bodyWrapper = JSON.serialize(CreditLimitWrapperManager.createAccountRequest(orgId,actualAccount.BillingCountry,actualAccount.txt_AthenaUUID__c));
             finalCreditLimitBody= CreditLimitUtilMethods.formatRequest(bodyWrapper);
 

@@ -20,9 +20,9 @@ public without sharing class CreditLimitWrappers {
 	* @description  CreditWorthinessQueryRequest Request wrapper CheckingSchedule
 	*/
     public class CheckingSchedule{
-        public Date valuationDate;
-        public Decimal checkedAmount;
-        public String creditSegmentInternalID;
+        public Date ValuationDate;
+        public Decimal CheckedAmount;
+        public String CreditSegmentInternalID;
         public String currencyCode;
     }
 
@@ -31,7 +31,7 @@ public without sharing class CreditLimitWrappers {
 	* @description  CreditWorthinessQueryRequest Request wrapper DebtorParty
 	*/
     public class DebtorParty{
-        public String internalID;
+        public String InternalID;
         public String schemeAgencyID;
     }
 
@@ -40,9 +40,9 @@ public without sharing class CreditLimitWrappers {
 	* @description  CreditWorthinessQueryRequest Request wrapper
 	*/
     public class CreditWorthinessQueryRequest{
-        public String creditSegmentInternalID;
-        public CheckingSchedule checkingSchedule;
-        public DebtorParty debtorParty;
+        public String CreditSegmentInternalID;
+        public CheckingSchedule CheckingSchedule;
+        public DebtorParty DebtorParty;
     }
 
      // response side of the wrapper

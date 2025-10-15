@@ -29,6 +29,25 @@ public with sharing class CreditLimitManager {
 
     /**
 	* @author       APB
+	* @description  method to take the actual account
+    * @param		objectRecordId String
+	* @return		List<Account>
+	*/
+    @AuraEnabled(cacheable=true)
+
+    public static List<Account>  getAccountFields(String objectRecordId) {
+
+    	List<Account> listAccounts= new List<Account>();
+
+        Set<Id> objectIds = new Set<Id>();
+        objectIds.add(objectRecordId);
+        listAccounts = new AccountSelector().selectById(objectIds);
+
+        return listAccounts;
+    }
+
+    /**
+	* @author       APB
 	* @description  method that depending on the object api name calls to the respective method to get the limit
 	* @param		objectAPIName String
     * @param		objectRecordId String
@@ -49,7 +68,7 @@ public with sharing class CreditLimitManager {
             }
 
         }catch(Exception ex){
-            lastInfoWrapper.message= ex.getMessage();
+            lastInfoWrapper.message= ex.getMessage() + ex.getLineNumber();
             lastInfoWrapper.success= false;
 
         	Logger.error('We found an error during the process - '+ ex.getMessage()).setRecordId(objectRecordId);
@@ -132,7 +151,7 @@ public with sharing class CreditLimitManager {
         HttpResponse vertexResponse= new HttpResponse();
         VertexMethods.wrapperResponse vertexResponseBody = new VertexMethods.wrapperResponse();
 
-        fflib_SObjectUnitOfWork uow = new fflib_SObjectUnitOfWork( new List<SObjectType> { SBQQ__Quote__c.SObjectType,Account.SObjectType});
+        fflib_SObjectUnitOfWork uow = new fflib_SObjectUnitOfWork( new List<SObjectType> { SBQQ__Quote__c.SObjectType});
         vertexResponse = CreditLimitCallouts.getVertexInformation(quoteToCalculate,null);
 
         if(vertexResponse != null && vertexResponse.getStatusCode()== 200){
@@ -204,6 +223,7 @@ public with sharing class CreditLimitManager {
             lastInfoWrapper= getLimit(null,orderToCalculate,objectApiName);
 
             uow.commitWork();
+
         }else{
             Logger.error('Error while doing the order vertex callout - '+ vertexResponse.getStatusCode() +'-'+vertexResponse.getStatus())
             .addTags(('API,TEST').split(','))
@@ -243,7 +263,22 @@ public with sharing class CreditLimitManager {
 
                 finalBodyresponse =creditLimitresponse.getBody().replace ('"$"','"dollar"').replace ('"@languageCode"','"languageCode"').replace ('"@schemeID"','"schemeID"').replace ('"@schemeAgencyID"','"schemeAgencyID"').replace ('"@currencyCode"','"currencyCode"').replace('"CreditsegmentInternalID"', '"creditsegmentInternalID"').replace('"DebtorPartyInternalID"', '"debtorPartyInternalID"');
                 accountResponseBody= (CreditLimitWrappers.accountWrapperResponse)JSON.deserialize(finalBodyresponse, CreditLimitWrappers.accountWrapperResponse.class);
+                lastInfoWrapper.message= '0';
+                lastInfoWrapper.success= true;
 
+                if(accountResponseBody.Envelope.Body.CreditManagementAccountByIDResponse.Log != null){
+
+                    logAccount = accountResponseBody.Envelope.Body.CreditManagementAccountByIDResponse.Log;
+
+                    lastInfoWrapper.message= logAccount.Item.Note;
+                    lastInfoWrapper.status= creditLimitresponse.getStatusCode();
+                    lastInfoWrapper.success= false;
+
+                }else if(accountResponseBody.Envelope.Body.CreditManagementAccountByIDResponse.CreditManagementAccount.CreditLimitAmount != null){
+                    creditManagement= accountResponseBody.Envelope.Body.CreditManagementAccountByIDResponse.CreditManagementAccount;
+                    lastInfoWrapper.status= creditLimitresponse.getStatusCode();
+                    lastInfoWrapper.message= creditManagement.CreditLimitAmount.dollar != null ? creditManagement.CreditLimitAmount.dollar :'0';
+                }
             }else{
                 lastInfoWrapper.message= creditLimitresponse.getBody();
                 lastInfoWrapper.status= creditLimitresponse.getStatusCode();
@@ -252,22 +287,6 @@ public with sharing class CreditLimitManager {
                 .addTags(('API,TEST').split(','))
                 .setRecordId(objectRecordId);
             }
-             if(accountResponseBody.Envelope.Body.CreditManagementAccountByIDResponse.Log != null){
-
-                    logAccount = accountResponseBody.Envelope.Body.CreditManagementAccountByIDResponse.Log;
-
-                    lastInfoWrapper.message= logAccount.Item.Note;
-                    lastInfoWrapper.status= creditLimitresponse.getStatusCode();
-                    lastInfoWrapper.success= false;
-
-                }else if(accountResponseBody.Envelope.Body.CreditManagementAccountByIDResponse.CreditManagementAccount != null){
-
-                    creditManagement= accountResponseBody.Envelope.Body.CreditManagementAccountByIDResponse.CreditManagementAccount;
-                    lastInfoWrapper.message= creditManagement.CreditLimitAmount.dollar;
-                    lastInfoWrapper.status= creditLimitresponse.getStatusCode();
-                    lastInfoWrapper.success= true;
-
-                }
         }
         return lastInfoWrapper;
     }

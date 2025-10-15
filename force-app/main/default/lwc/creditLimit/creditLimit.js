@@ -1,14 +1,14 @@
 import { LightningElement, track , api ,wire} from 'lwc';
 import callGetLimit from '@salesforce/apex/CreditLimitManager.callGetLimit';
 import getObjectCurrency from '@salesforce/apex/CreditLimitManager.getObjectCurrency';
-import { getRecord } from "lightning/uiRecordApi";
+import getAccountFields from '@salesforce/apex/CreditLimitManager.getAccountFields';
 export default class creditLimit extends LightningElement {
    @track accountRecord = false;
    @track quoteRecord = false;
    @track orderRecord = false;
    @track showAccountLimit = false;
    @track showError = false;
-   @track accountLimit = 0;
+   @track accountLimit;
    @track authToken;
    @api objectApiName;
    @api recordId;
@@ -30,40 +30,46 @@ export default class creditLimit extends LightningElement {
    @track creditInfoWrapper;
 
    @track recordData;
+   @track account =[];
 
    @track buttonTitle = '';
 
-    @wire(getRecord, { recordId: "$recordId", fields: ["Account.txt_AthenaUUID__c"] })
-    wiredAccount({ data }) {
+    @wire(getAccountFields,{objectRecordId : '$recordId'})
+    wiredAccounts({ error,data }) {
+
+    if(this.objectApiName == 'Account'){
+    console.log('accounts' + JSON.stringify(data));
     
-    if(data){
-    this.recordData = data;
-    this.detectObject();
+    if (data) {
+        this.account = data;
+        this.error = undefined;
+        
+        this.accountRecord = true;
+    
+            if (this.account[0].txt_AthenaUUID__c !=null) {
+        
+                this.disableButton=false;
+                this.buttonTitle= '';
+            
+            }else{
+       
+                this.disableButton=true; 
+                this.buttonTitle= 'Please fill the Athena ID before checking the Credit Limit';
+           
+            }
+  
+        
+    } else if (error) {
+        this.error = error;
+        this.account = undefined;
     }
+}
     
   }
 
    detectObject(){
 
-    this.emptyVariables();
-        
-    if(this.objectApiName == 'Account'){
-        
-        this.accountRecord = true;
-    
-        if (this.recordData.fields.txt_AthenaUUID__c.value !=null) {
-        
-            this.disableButton=false;
-            this.buttonTitle= '';
-            
-        }else{
-       
-            this.disableButton=true; 
-            this.buttonTitle= 'Please fill the Athena ID before checking the Credit Limit';
-           
-        }
-  
-    }else if(this.objectApiName == 'SBQQ__Quote__c'){
+    if(this.objectApiName == 'SBQQ__Quote__c'){
         this.quoteRecord = true;
     }else if(this.objectApiName == 'Order'){
         this.orderRecord = true;
@@ -71,22 +77,22 @@ export default class creditLimit extends LightningElement {
     }
     
     connectedCallback(){
+    this.detectObject();
     
-     this.detectObject();
-    
-     if(this.quoteRecord== true){
+    if(this.quoteRecord== true){
       
         this.getQuoteCreditLimit();
-        
-     }
+    
+    }
      this.getOrderCreditLimit();
     
     }
     
     refreshCallMethodWorthiness(){
+        
         this.emptyVariables();
         this.isLoading=true;
-
+    
         if(this.quoteRecord== true){
       
             this.getQuoteCreditLimit();
@@ -101,7 +107,7 @@ export default class creditLimit extends LightningElement {
         this.errorMessage= '';
         this.quoteLimitMessage= '';
         this.orderLimitMessage= '';
-        this.accountLimit= 0;
+        this.accountLimit;
         this.showAccountLimit= false;
         this.showError= false;
         this.quoteLimitSuccess = false;
@@ -114,6 +120,7 @@ export default class creditLimit extends LightningElement {
    
    // call to a class for the three methods one class apart with the three calls to the three endpoints and the respective errors to nebula, If there is any error or failure send a toast
 getAccountCreditLimit(){
+    this.emptyVariables();
         
     getObjectCurrency({objectAPIName:this.objectApiName,objectRecordId : this.recordId})
         .then(result => {
@@ -142,7 +149,7 @@ getAccountCreditLimit(){
 
     getQuoteCreditLimit(){ 
     
-    callGetLimit({isAccount:this.accountRecord,isQuote: this.quoteRecord, isOrder: this.orderRecord,objectRecordId : this.recordId})
+    callGetLimit({objectAPIName : this.objectApiName,objectRecordId : this.recordId})
         .then(result => {
               
             if(result.success == false){
@@ -162,7 +169,7 @@ getAccountCreditLimit(){
    }
 
    getOrderCreditLimit(){
-        callGetLimit({isAccount:this.accountRecord,isQuote: this.quoteRecord, isOrder: this.orderRecord,objectRecordId : this.recordId})
+        callGetLimit({objectAPIName : this.objectApiName,objectRecordId : this.recordId})
             .then(result => {
 
                 if(result.success == false){
