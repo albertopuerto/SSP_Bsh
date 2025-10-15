@@ -9,7 +9,6 @@ global with sharing class AccountErrorService {
     @HttpPost
     global static String handlePostRequest(String requestBody) {
         String id = '';
-        String correlationId = '';
         
         try {
             Logger.info('AccountErrorService.handlePostRequest started');
@@ -25,12 +24,11 @@ global with sharing class AccountErrorService {
             id = (String) errorData.get('Id');
             String statusCode = (String) errorData.get('Status Code');
             String statusText = (String) errorData.get('Status Text');
-            correlationId = (String) errorData.get('CorrelationId');
             
-            Logger.debug('Processing error for Account Id: ' + id + ', CorrelationId: ' + correlationId);
+            Logger.debug('Processing error for Account Id: ' + id);
             
             if (statusCode == '400' || statusCode == '403' || statusCode == '404') {
-                return handleApiGatewayError(id, statusCode, statusText, correlationId);
+                return handleApiGatewayError(id, statusCode, statusText);
             }
             
             // Query the Account
@@ -53,16 +51,15 @@ global with sharing class AccountErrorService {
                 account.Owner.LastName, 
                 account.Name, 
                 statusText, 
-                correlationId, 
                 account.OwnerId,
                 account.Id
             );
             
-            Logger.info('Successfully processed error for Account: ' + account.Name + ', CorrelationId: ' + correlationId);
+            Logger.info('Successfully processed error for Account: ' + account.Name);
 
             
         } catch (Exception ex) {
-            Logger.error('Exception in handlePostRequest for Account Id: ' + id + ', CorrelationId: ' + correlationId, ex);
+            Logger.error('Exception in handlePostRequest for Account Id: ' + id, ex);
         } finally {
             Logger.saveLog();
         }
@@ -71,11 +68,10 @@ global with sharing class AccountErrorService {
         return JSON.serialize(new Map<String, String>{
             'Id' => id,
             'errorcode' => '0',
-            'errorMessage' => 'Error processed successfully',
-            'correlationId' => correlationId
+            'errorMessage' => 'Error processed successfully'
         });
     }
-    private static String handleApiGatewayError(String id, String statusCode, String statusText, String correlationId) {
+    private static String handleApiGatewayError(String id, String statusCode, String statusText) {
         try {
             Logger.debug('Processing API Gateway error for Account Id: ' + id + ', Status Code: ' + statusCode);
             
@@ -100,7 +96,6 @@ global with sharing class AccountErrorService {
                 account.Owner.LastName, 
                 account.Name, 
                 statusText, 
-                correlationId, 
                 account.OwnerId,
                 account.Id
             );
@@ -114,11 +109,10 @@ global with sharing class AccountErrorService {
         return JSON.serialize(new Map<String, String>{
             'Id' => id,
             'errorcode' => '0',
-            'errorMessage' => 'Error processed successfully',
-            'correlationId' => correlationId
+            'errorMessage' => 'Error processed successfully'
         });
     }
-    private static void sendEmailNotification(String firstName, String lastName, String accountName, String statusText, String correlationId, Id ownerId, Id accountId) {
+    private static void sendEmailNotification(String firstName, String lastName, String accountName, String statusText, Id ownerId, Id accountId) {
         try {
             Logger.debug('Sending email notification to Account Owner. AccountId: ' + accountId + ', OwnerId: ' + ownerId);
             
@@ -145,10 +139,10 @@ global with sharing class AccountErrorService {
             // Send the email
             Messaging.sendEmail(new Messaging.SingleEmailMessage[] { email });
             
-            Logger.info('Email sent successfully to account owner. AccountName: ' + accountName + ', CorrelationId: ' + correlationId);
+            Logger.info('Email sent successfully to account owner. AccountName: ' + accountName);
             
         } catch (Exception ex) {
-            Logger.error('Exception in sendEmailNotification for Account: ' + accountName + ', CorrelationId: ' + correlationId, ex);
+            Logger.error('Exception in sendEmailNotification for Account: ' + accountName, ex);
         }
     }
 }
