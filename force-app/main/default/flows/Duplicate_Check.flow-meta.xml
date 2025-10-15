@@ -83,9 +83,20 @@
                 <elementReference>GuranteedDuplicateRecordsTable.firstSelectedRow.boschPartnerNumber__c</elementReference>
             </value>
         </assignmentItems>
-        <connector>
-            <targetReference>Show_BP_Number</targetReference>
-        </connector>
+        <assignmentItems>
+            <assignToReference>Dup_reason</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Account.pkl_DuplicateReason__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>Dup_Desc</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Account.txt_DuplicateDescription__c</elementReference>
+            </value>
+        </assignmentItems>
     </assignments>
     <assignments>
         <name>Assign_values_to_requestbody</name>
@@ -157,22 +168,6 @@
         </assignmentItems>
         <connector>
             <targetReference>Check_for_Duplicates_in_Athena</targetReference>
-        </connector>
-    </assignments>
-    <assignments>
-        <name>Assignment_9</name>
-        <label>Assignment 9</label>
-        <locationX>0</locationX>
-        <locationY>0</locationY>
-        <assignmentItems>
-            <assignToReference>NoOfRecords</assignToReference>
-            <operator>AssignCount</operator>
-            <value>
-                <elementReference>HighScoreDuplicates</elementReference>
-            </value>
-        </assignmentItems>
-        <connector>
-            <targetReference>Iterate_Guarantee_Duplicates</targetReference>
         </connector>
     </assignments>
     <assignments>
@@ -408,7 +403,7 @@
             </rightValue>
         </conditions>
         <connector>
-            <targetReference>Assignment_9</targetReference>
+            <targetReference>Iterate_Guarantee_Duplicates</targetReference>
         </connector>
     </collectionProcessors>
     <customProperties>
@@ -422,10 +417,7 @@
         <label>Check Duplicates</label>
         <locationX>0</locationX>
         <locationY>0</locationY>
-        <defaultConnector>
-            <targetReference>Iterate_Potential_Duplicate_Collection</targetReference>
-        </defaultConnector>
-        <defaultConnectorLabel>Potential Duplicates</defaultConnectorLabel>
+        <defaultConnectorLabel>Default outcome</defaultConnectorLabel>
         <rules>
             <name>Guarantee_Duplicates</name>
             <conditionLogic>and</conditionLogic>
@@ -455,6 +447,21 @@
                 <targetReference>No_Duplicates_Screen</targetReference>
             </connector>
             <label>No Duplicates</label>
+        </rules>
+        <rules>
+            <name>Potential_Duplicates</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Check_for_Duplicates_in_Athena.200.potentialDuplicates</leftValueReference>
+                <operator>IsEmpty</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Iterate_Potential_Duplicate_Collection</targetReference>
+            </connector>
+            <label>Potential Duplicates</label>
         </rules>
     </decisions>
     <decisions>
@@ -556,12 +563,6 @@
         <dataType>String</dataType>
         <expression>TEXT(UNIXTIMESTAMP(NOW()))</expression>
     </formulas>
-    <formulas>
-        <name>DuplicateSize</name>
-        <dataType>Number</dataType>
-        <expression>{!HighScoreDuplicates}.size</expression>
-        <scale>0</scale>
-    </formulas>
     <interviewLabel>Duplicate Check : {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Duplicate Check :Operational Customer Duplicates</label>
     <loops>
@@ -612,6 +613,32 @@
     </processMetadataValues>
     <processType>Flow</processType>
     <screens>
+        <name>Copy_1_of_Duplicate_Reason_Screen</name>
+        <label>Copy 1 of Duplicate Reason Screen</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>false</allowPause>
+        <connector>
+            <targetReference>Assign_value_to_BP_Number</targetReference>
+        </connector>
+        <fields>
+            <fieldType>ObjectProvided</fieldType>
+            <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+            <isRequired>false</isRequired>
+            <objectFieldReference>Account.pkl_DuplicateReason__c</objectFieldReference>
+        </fields>
+        <fields>
+            <fieldType>ObjectProvided</fieldType>
+            <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+            <isRequired>false</isRequired>
+            <objectFieldReference>Account.txt_DuplicateDescription__c</objectFieldReference>
+        </fields>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
+    <screens>
         <name>Duplicate_Reason_Screen</name>
         <label>Duplicate Reason Screen</label>
         <locationX>0</locationX>
@@ -654,22 +681,6 @@
         <showHeader>true</showHeader>
     </screens>
     <screens>
-        <name>Show_BP_Number</name>
-        <label>Show BP Number</label>
-        <locationX>0</locationX>
-        <locationY>0</locationY>
-        <allowBack>true</allowBack>
-        <allowFinish>true</allowFinish>
-        <allowPause>true</allowPause>
-        <fields>
-            <name>ShowBPnumber</name>
-            <fieldText>&lt;p&gt;This is the BP number : {!BoschPartnerNumber}&lt;/p&gt;</fieldText>
-            <fieldType>DisplayText</fieldType>
-        </fields>
-        <showFooter>true</showFooter>
-        <showHeader>true</showHeader>
-    </screens>
-    <screens>
         <name>Show_Guaranteed_Duplicates</name>
         <label>Show Guaranteed Duplicates</label>
         <locationX>0</locationX>
@@ -678,71 +689,8 @@
         <allowFinish>true</allowFinish>
         <allowPause>false</allowPause>
         <connector>
-            <targetReference>Assign_value_to_BP_Number</targetReference>
+            <targetReference>Copy_1_of_Duplicate_Reason_Screen</targetReference>
         </connector>
-        <fields>
-            <name>DupRecordSize</name>
-            <fieldText>&lt;p&gt;Duplicate record size: {!NoOfRecords}&lt;/p&gt;</fieldText>
-            <fieldType>DisplayText</fieldType>
-        </fields>
-        <fields>
-            <name>GuranteedDuplicateRecordsTableReadonly</name>
-            <dataTypeMappings>
-                <typeName>T</typeName>
-                <typeValue>Duplicate_Record__mdt</typeValue>
-            </dataTypeMappings>
-            <extensionName>flowruntime:datatable</extensionName>
-            <fieldType>ComponentInstance</fieldType>
-            <inputParameters>
-                <name>label</name>
-                <value>
-                    <stringValue>Data Table</stringValue>
-                </value>
-            </inputParameters>
-            <inputParameters>
-                <name>selectionMode</name>
-                <value>
-                    <stringValue>NO_SELECTION</stringValue>
-                </value>
-            </inputParameters>
-            <inputParameters>
-                <name>minRowSelection</name>
-                <value>
-                    <numberValue>0.0</numberValue>
-                </value>
-            </inputParameters>
-            <inputParameters>
-                <name>tableData</name>
-                <value>
-                    <elementReference>HighScoreDuplicates</elementReference>
-                </value>
-            </inputParameters>
-            <inputParameters>
-                <name>maxRowSelection</name>
-                <value>
-                    <numberValue>0.0</numberValue>
-                </value>
-            </inputParameters>
-            <inputParameters>
-                <name>columns</name>
-                <value>
-                    <stringValue>[{&quot;apiName&quot;:&quot;boschPartnerNumber__c&quot;,&quot;guid&quot;:&quot;column-a255&quot;,&quot;editable&quot;:false,&quot;hasCustomHeaderLabel&quot;:true,&quot;customHeaderLabel&quot;:&quot;Bosch Partner Number&quot;,&quot;wrapText&quot;:true,&quot;order&quot;:0,&quot;label&quot;:&quot;boschPartnerNumber&quot;,&quot;type&quot;:&quot;text&quot;},{&quot;apiName&quot;:&quot;matchingScore__c&quot;,&quot;guid&quot;:&quot;column-2341&quot;,&quot;editable&quot;:false,&quot;hasCustomHeaderLabel&quot;:true,&quot;customHeaderLabel&quot;:&quot;Matching Score&quot;,&quot;wrapText&quot;:true,&quot;order&quot;:1,&quot;label&quot;:&quot;matchingScore&quot;,&quot;type&quot;:&quot;text&quot;},{&quot;apiName&quot;:&quot;organizationName__c&quot;,&quot;guid&quot;:&quot;column-aeab&quot;,&quot;editable&quot;:false,&quot;hasCustomHeaderLabel&quot;:true,&quot;customHeaderLabel&quot;:&quot;Name&quot;,&quot;wrapText&quot;:true,&quot;order&quot;:2,&quot;label&quot;:&quot;organizationName&quot;,&quot;type&quot;:&quot;text&quot;},{&quot;apiName&quot;:&quot;countryCode__c&quot;,&quot;guid&quot;:&quot;column-647e&quot;,&quot;editable&quot;:false,&quot;hasCustomHeaderLabel&quot;:true,&quot;customHeaderLabel&quot;:&quot;Country&quot;,&quot;wrapText&quot;:true,&quot;order&quot;:3,&quot;label&quot;:&quot;countryCode&quot;,&quot;type&quot;:&quot;text&quot;},{&quot;apiName&quot;:&quot;street__c&quot;,&quot;guid&quot;:&quot;column-3058&quot;,&quot;editable&quot;:false,&quot;hasCustomHeaderLabel&quot;:true,&quot;customHeaderLabel&quot;:&quot;Street&quot;,&quot;wrapText&quot;:true,&quot;order&quot;:4,&quot;label&quot;:&quot;street&quot;,&quot;type&quot;:&quot;text&quot;}]</stringValue>
-                </value>
-            </inputParameters>
-            <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
-            <isRequired>true</isRequired>
-            <storeOutputAutomatically>true</storeOutputAutomatically>
-            <visibilityRule>
-                <conditionLogic>and</conditionLogic>
-                <conditions>
-                    <leftValueReference>NoOfRecords</leftValueReference>
-                    <operator>LessThanOrEqualTo</operator>
-                    <rightValue>
-                        <numberValue>0.0</numberValue>
-                    </rightValue>
-                </conditions>
-            </visibilityRule>
-        </fields>
         <fields>
             <name>GuranteedDuplicateRecordsTable</name>
             <dataTypeMappings>
@@ -766,7 +714,7 @@
             <inputParameters>
                 <name>minRowSelection</name>
                 <value>
-                    <numberValue>1.0</numberValue>
+                    <numberValue>0.0</numberValue>
                 </value>
             </inputParameters>
             <inputParameters>
@@ -796,16 +744,10 @@
             <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
             <isRequired>true</isRequired>
             <storeOutputAutomatically>true</storeOutputAutomatically>
-            <visibilityRule>
-                <conditionLogic>and</conditionLogic>
-                <conditions>
-                    <leftValueReference>NoOfRecords</leftValueReference>
-                    <operator>GreaterThan</operator>
-                    <rightValue>
-                        <numberValue>0.0</numberValue>
-                    </rightValue>
-                </conditions>
-            </visibilityRule>
+            <validationRule>
+                <errorMessage>&lt;p&gt;You can only select the record with Highest matching score&lt;/p&gt;</errorMessage>
+                <formulaExpression>{!GuranteedDuplicateRecordsTable.firstSelectedRow.matchingScore__c} == TEXT({!HighestMatchingScore})</formulaExpression>
+            </validationRule>
         </fields>
         <helpText>&lt;p style=&quot;text-align: center;&quot;&gt;Guaranteed Duplicates&lt;span style=&quot;font-size: 14px;&quot;&gt;&lt;span class=&quot;ql-cursor&quot;&gt;﻿&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;</helpText>
         <showFooter>true</showFooter>
@@ -890,7 +832,7 @@
             <targetReference>Assign_values_to_requestbody</targetReference>
         </connector>
     </start>
-    <status>Draft</status>
+    <status>Active</status>
     <transforms>
         <name>CurrentRecordMatchingScore</name>
         <label>CurrentRecordMatchingScore</label>
@@ -955,41 +897,12 @@
         <isCollection>false</isCollection>
         <isInput>false</isInput>
         <isOutput>true</isOutput>
-    </variables>
-    <variables>
-        <name>Corporate_Duplicate_Collection</name>
-        <apexClass>ExternalService__IF123AccountDuplicateCheck_checkx20duplicatex20account_OUT_200_guaranteedDuplicates</apexClass>
-        <dataType>Apex</dataType>
-        <isCollection>true</isCollection>
-        <isInput>false</isInput>
-        <isOutput>false</isOutput>
+        <value>
+            <stringValue></stringValue>
+        </value>
     </variables>
     <variables>
         <name>currentItem_HighScoreDuplicates</name>
-        <dataType>SObject</dataType>
-        <isCollection>false</isCollection>
-        <isInput>false</isInput>
-        <isOutput>false</isOutput>
-        <objectType>Duplicate_Record__mdt</objectType>
-    </variables>
-    <variables>
-        <name>currentItem_HighScoreRecords</name>
-        <apexClass>ExternalService__IF123AccountDuplicateCheck_checkx20duplicatex20account_OUT_200_guaranteedDuplicates</apexClass>
-        <dataType>Apex</dataType>
-        <isCollection>false</isCollection>
-        <isInput>false</isInput>
-        <isOutput>false</isOutput>
-    </variables>
-    <variables>
-        <name>currentItem_Matching_score_above_90</name>
-        <dataType>SObject</dataType>
-        <isCollection>false</isCollection>
-        <isInput>false</isInput>
-        <isOutput>false</isOutput>
-        <objectType>Duplicate_Record__mdt</objectType>
-    </variables>
-    <variables>
-        <name>currentItemFromSourceCollection</name>
         <dataType>SObject</dataType>
         <isCollection>false</isCollection>
         <isInput>false</isInput>
@@ -1003,6 +916,20 @@
         <isInput>false</isInput>
         <isOutput>false</isOutput>
         <objectType>Duplicate_Record__mdt</objectType>
+    </variables>
+    <variables>
+        <name>Dup_Desc</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>Dup_reason</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
     </variables>
     <variables>
         <name>GuranteedCollection</name>
@@ -1031,29 +958,10 @@
         <isOutput>false</isOutput>
     </variables>
     <variables>
-        <name>NoOfRecords</name>
-        <dataType>Number</dataType>
-        <isCollection>false</isCollection>
-        <isInput>false</isInput>
-        <isOutput>false</isOutput>
-        <scale>0</scale>
-        <value>
-            <numberValue>0.0</numberValue>
-        </value>
-    </variables>
-    <variables>
         <name>PostalCode</name>
         <dataType>String</dataType>
         <isCollection>false</isCollection>
         <isInput>true</isInput>
-        <isOutput>false</isOutput>
-    </variables>
-    <variables>
-        <name>Potential_Duplicate_Collection</name>
-        <apexClass>ExternalService__IF123AccountDuplicateCheck_checkx20duplicatex20account_OUT_200_potentialDuplicates</apexClass>
-        <dataType>Apex</dataType>
-        <isCollection>true</isCollection>
-        <isInput>false</isInput>
         <isOutput>false</isOutput>
     </variables>
     <variables>
@@ -1071,13 +979,5 @@
         <isCollection>false</isCollection>
         <isInput>false</isInput>
         <isOutput>false</isOutput>
-    </variables>
-    <variables>
-        <name>varSelectedRecord</name>
-        <dataType>SObject</dataType>
-        <isCollection>false</isCollection>
-        <isInput>false</isInput>
-        <isOutput>false</isOutput>
-        <objectType>Duplicate_Record__mdt</objectType>
     </variables>
 </Flow>
