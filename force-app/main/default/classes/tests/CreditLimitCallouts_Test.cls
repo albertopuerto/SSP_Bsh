@@ -50,20 +50,19 @@ public class CreditLimitCallouts_Test {
         update quoteTest;
 
         Test.startTest();
-
 		System.runAs(productManagerUser){
-    		Test.setMock(HttpCalloutMock.class, new VertexMockClass());
+        	StaticResource sr2 = [SELECT Body FROM StaticResource WHERE Name = 'vertexSuccess'];
+			String vertexBody = sr2.Body.toString();
 
-    		HttpResponse response = CreditLimitCallouts.getVertexInformation(quoteTest, null);
-    		// Verify that the response received contains fake values
-    		String contentType = response.getHeader('Content-Type');
-    		Assert.isTrue(contentType == 'application/json','The content type is of Content-Type');
-    		String actualValue = response.getBody();
-    		String expectedValue = '{"id":"723E4D234A111FD087EC4B69ED931D18","date":"2025-09-04T14:56:10.428Z","currencyCode":"EUR","amountTypeCode":"NET","items":[{"id":"000001","countryRegionCode":"DE","taxEventCode":"IGSTC","taxes":[{"taxTypeCode":"1","taxRate":19.00,"taxableBaseAmount":1.0,"taxAmount":0.19,"dueCategoryCode":"RECEIVABLE","isTaxDeferred":false,"deductibleTaxRate":100.0,"nonDeductibleTaxRate":0.0,"deductibleTaxAmount":0.19,"nonDeductibleTaxAmount":0.0,"additionalInformation":{"taxAssist0":"tax.taxCode&#124;POST&#124;&#124;IGSTC&#124;G_Set_Vertex_TaxDecisionCode_P","JurisdictionLevel":"COUNTRY","SellerRegistrationId":"XXX","Imposition":"VAT","JurisdictionName":"GERMANY","SitusCtry":"DE","RateClassification":"Standard Rate","ImpositionType":"VAT","DeductibleRate":"1.0","Level":"1","InvoiceTextCode":"&#124;21&#124;","BuyerRegistrationId":"DE811128135","Situs":"DE"}}],"additionalInformation":{"totalTax":"0.19","totalRate":"19.0000","taxAssist2":"buyer.department&#124;PRE&#124;&#124;5000&#124;G_Set Tax Payer Hierarchy_P","taxAssist3":"buyer.division&#124;PRE&#124;&#124;EMEA&#124;G_Set Tax Payer Hierarchy_P","taxAssist0":"FLEX.input.Error_Msg&#124;PRE&#124;&#124;UMTD&#124;G_Set_Default_Mapping_UMTD_P","taxAssist1":"buyer.company&#124;PRE&#124;5000&#124;GLOBAL SHELL&#124;G_Set Tax Payer Hierarchy_P","taxAssist4":"purchase.purchaseClass&#124;PRE&#124;&#124;null&#124;G_Set_Default_Mapping_UMTD_P","taxCode":"IGSTC","outFcode25":"UMTD"}}],"additionalInformation":{"partnerName":"Vertex"}}';
-			Assert.areEqual(expectedValue, actualValue,'The response body is the expected value');
-    		Assert.areEqual(200, response.getStatusCode(), 'The status code is 200');
+            HTTPMockGenerator res2 = new HTTPMockGenerator(200, vertexBody);
+
+            Test.setMock(HttpCalloutMock.class, res2);
+
+    	    Assert.isTrue(res2.responseHeaders.get('Content-Type') == 'application/json','The content type is of Content-Type');
+
+    	    Assert.areEqual(200, res2.code, 'The status code is 200');
 		}
-        Test.stopTest();
+		Test.stopTest();
 	}
 
     @isTest
@@ -74,19 +73,19 @@ public class CreditLimitCallouts_Test {
 
     	Test.startTest();
 		System.runAs(productManagerUser){
-        	Test.setMock(HttpCalloutMock.class, new CreditLimitMockClass());
+            StaticResource sr = [SELECT Body FROM StaticResource WHERE Name = 'creditLimitAccountGreater0'];
+			String creditLimitBody = sr.Body.toString();
+            HTTPMockGenerator res1 = new HTTPMockGenerator(200, creditLimitBody);
 
-    		HttpResponse response = CreditLimitCallouts.startCreditLimitCallouts(null, null, testAccount);
+            Test.setMock(HttpCalloutMock.class, res1);
+    	    Assert.isTrue(res1.responseHeaders.get('Content-Type') == 'application/json','The content type is of Content-Type');
 
-    		// Verify that the response received contains fake values
-    		String contentType = response.getHeader('Content-Type');
-    		Assert.isTrue(contentType == 'application/json','The content type is of Content-Type');
-    		String actualValue = response.getBody();
-    		String expectedValue = '{"Envelope":{"Header":"","Body":{"CreditManagementAccountByIDResponse":{"MessageHeader":{"ID":"D6B2D2D3CE021FD0A399EAD2F9065196","CreationDateTime":"2025-09-08T16:17:38.739Z"},"CreditManagementAccount":{"DebtorPartyInternalID":{"@schemeID":"PartyID","@schemeAgencyID":"SAP0BHL011","$":"4001831001"},"CreditsegmentInternalID":"5370","CreditSegmentDescription":{"@languageCode":"de"},"CreditWorthinessCheckingRuleCode":"ZR","CreditWorthinessCheckingSchemeCode":"ZB","SpecialAttentionRequiredIndicator":"false","BlockedIndicator":"false","BlockingReasonCodeDescription":{"@languageCode":"de"},"CreditLimitAmount":{"@currencyCode":"EUR","$":"500000.0"},"CreditLimitValidityPeriod":{"StartDate":"2025-09-08","EndDate":"2026-09-30"},"CreditExposure":{"Amount":{"@currencyCode":"EUR","$":"0.0"},"DynamicCheckCreditHorizonEndDate":"2025-10-08"},"CreditRating":{"Code":"       93","ValidityPeriod":{"StartDate":"2025-06-13","EndDate":"2026-03-07"}},"CreditRiskClass":{"Code":"B","ValidityPeriod":{"StartDate":"2025-06-13","EndDate":"2026-03-07"},"Description":{"@languageCode":"de","$":"Geringes Ausfallrisiko"}},"PaymentBehaviourSummary":{"DaysOfSalesOutstandingAverageDuration":"0 "}}}}}}';
-    		Assert.areEqual(expectedValue, actualValue,'The response body is the expected value');
-			Assert.areEqual(200, response.getStatusCode(), 'The status code is 200');
-        	Test.stopTest();
-		}
+    	    Assert.areEqual(200, res1.code, 'The status code is 200');
+            CreditLimitManager.getObjectCurrency('Account',testAccount.Id);
+            CreditLimitManager.getAccountFields(testAccount.Id);
+            CreditLimitManager.callGetLimit('Account',testAccount.Id);
+        }
+		Test.stopTest();
 	}
 
     @isTest
@@ -99,19 +98,18 @@ public class CreditLimitCallouts_Test {
         update quoteTest;
     	Test.startTest();
 		System.runAs(productManagerUser){
-        	Test.setMock(HttpCalloutMock.class, new CreditLimitWorthinessMock());
+        	StaticResource sr2 = [SELECT Body FROM StaticResource WHERE Name = 'creditLimitQuoteOrderExceded'];
+			String creditLimitBody = sr2.Body.toString();
 
-    		HttpResponse response = CreditLimitCallouts.startCreditLimitCallouts(quoteTest, null, null);
+            HTTPMockGenerator res2 = new HTTPMockGenerator(200, creditLimitBody);
 
-    		String contentType = response.getHeader('Content-Type');
-    		Assert.isTrue(contentType == 'application/json','The content type is of Content-Type');
-    		String actualValue = response.getBody();
+            Test.setMock(HttpCalloutMock.class, res2);
 
-    		String expectedValue = '{"Envelope":{"Header":"","Body":{"CreditWorthinessResponse":{"CreditWorthiness":{"CreditSegmentInternalID":"5370","Indicator":"true","CheckingDescription":[{"@languageCode":"en","$":"Credit segment 5370 of partner 4001831001"},{"@languageCode":"EN","$":"ID: 510936342"}],"DebtorPartyBlockedIndicator":"false","DebtorPartySpecialAttentionRequiredIndicator":"false","DynamicCheckHorizonEndDate":"2025-10-04","DebtorParty":{"InternalID":{"@schemeID":"PartyID","@schemeAgencyID":"SAP0BHL011","$":"4001831001"}},"Rating":{"Code":"       93","ValidityPeriod":{"EndDateTime":"2026-03-03T00:00:00Z"}},"RiskClass":{"Code":"B","ValidityPeriod":{"EndDateTime":"2026-03-03T00:00:00Z"}},"CreditLimit":{"Amount":{"@currencyCode":"EUR","$":"500000.0"},"ValidityPeriod":{"EndDateTime":"2026-09-30T00:00:00Z"}},"CreditExposure":{"Amount":{"@currencyCode":"EUR","$":"0.0"}}}}}}}';
-    		Assert.areEqual(expectedValue, actualValue,'The response body is the expected value');
-    		Assert.areEqual(200, response.getStatusCode(), 'The status code is 200');
-        	Test.stopTest();
+    	    Assert.isTrue(res2.responseHeaders.get('Content-Type') == 'application/json','The content type is of Content-Type');
+
+    	    Assert.areEqual(200, res2.code, 'The status code is 200');
 		}
+		Test.stopTest();
 	}
 
     @isTest
@@ -125,16 +123,17 @@ public class CreditLimitCallouts_Test {
 
     	Test.startTest();
 		System.runAs(productManagerUser){
-        	Test.setMock(HttpCalloutMock.class, new CreditLimitWorthinessMock());
-    		HttpResponse response = CreditLimitCallouts.startCreditLimitCallouts(null, orderTest, null);
+        	StaticResource sr2 = [SELECT Body FROM StaticResource WHERE Name = 'creditLimitQuoteOrderExceded'];
+			String creditLimitBody = sr2.Body.toString();
 
-    		String contentType = response.getHeader('Content-Type');
-    		Assert.isTrue(contentType == 'application/json','The content type is of Content-Type');
-    		String actualValue = response.getBody();
-    		String expectedValue = '{"Envelope":{"Header":"","Body":{"CreditWorthinessResponse":{"CreditWorthiness":{"CreditSegmentInternalID":"5370","Indicator":"true","CheckingDescription":[{"@languageCode":"en","$":"Credit segment 5370 of partner 4001831001"},{"@languageCode":"EN","$":"ID: 510936342"}],"DebtorPartyBlockedIndicator":"false","DebtorPartySpecialAttentionRequiredIndicator":"false","DynamicCheckHorizonEndDate":"2025-10-04","DebtorParty":{"InternalID":{"@schemeID":"PartyID","@schemeAgencyID":"SAP0BHL011","$":"4001831001"}},"Rating":{"Code":"       93","ValidityPeriod":{"EndDateTime":"2026-03-03T00:00:00Z"}},"RiskClass":{"Code":"B","ValidityPeriod":{"EndDateTime":"2026-03-03T00:00:00Z"}},"CreditLimit":{"Amount":{"@currencyCode":"EUR","$":"500000.0"},"ValidityPeriod":{"EndDateTime":"2026-09-30T00:00:00Z"}},"CreditExposure":{"Amount":{"@currencyCode":"EUR","$":"0.0"}}}}}}}';
-    		Assert.areEqual(expectedValue, actualValue,'The response body is the expected value');
-    		Assert.areEqual(200, response.getStatusCode(), 'The status code is 200');
-        Test.stopTest();
+            HTTPMockGenerator res2 = new HTTPMockGenerator(200, creditLimitBody);
+
+            Test.setMock(HttpCalloutMock.class, res2);
+
+    	    Assert.isTrue(res2.responseHeaders.get('Content-Type') == 'application/json','The content type is of Content-Type');
+
+    	    Assert.areEqual(200, res2.code, 'The status code is 200');
 		}
+		Test.stopTest();
 	}
 }

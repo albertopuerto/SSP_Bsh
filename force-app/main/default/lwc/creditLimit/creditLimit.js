@@ -2,7 +2,12 @@ import { LightningElement, track , api ,wire} from 'lwc';
 import callGetLimit from '@salesforce/apex/CreditLimitManager.callGetLimit';
 import getObjectCurrency from '@salesforce/apex/CreditLimitManager.getObjectCurrency';
 import getAccountFields from '@salesforce/apex/CreditLimitManager.getAccountFields';
+import limitAccountMessage from "@salesforce/label/c.limitAccountMessage";
 export default class creditLimit extends LightningElement {
+
+    label = {
+        limitAccountMessage
+    };
    @track accountRecord = false;
    @track quoteRecord = false;
    @track orderRecord = false;
@@ -27,7 +32,8 @@ export default class creditLimit extends LightningElement {
 
    @track objectCurrency;
    
-   @track creditInfoWrapper;
+    @track creditInfoWrapper;
+    @track accountCredtiLimitLabel = 'Get account credit limit';
 
    @track recordData;
    @track account =[];
@@ -118,7 +124,6 @@ export default class creditLimit extends LightningElement {
         this.orderLimitMessage= '';
     }
    
-   // call to a class for the three methods one class apart with the three calls to the three endpoints and the respective errors to nebula, If there is any error or failure send a toast
 getAccountCreditLimit(){
     this.emptyVariables();
         
@@ -137,9 +142,11 @@ getAccountCreditLimit(){
                 this.accountLimit= this.creditInfoWrapper.message;
 
                 if(this.creditInfoWrapper.success== true){
+                    this.accountCredtiLimitLabel= 'Get account credit limit';
                     this.showAccountLimit= true;
                 }else{
-                    this.showError= true;     
+                    this.showError= true;
+                    this.accountCredtiLimitLabel= 'Refresh Account Credit Limit';     
                     this.errorMessage= this.creditInfoWrapper.message;               
                 }
             }

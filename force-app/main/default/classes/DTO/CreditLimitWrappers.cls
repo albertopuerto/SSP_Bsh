@@ -9,9 +9,9 @@ public without sharing class CreditLimitWrappers {
 	* @description  Account Request wrapper
 	*/
     public class AccountRequest{
-        public String debtorPartyInternalID;
+        public String DebtorPartyInternalID;
         public String schemeAgencyID;
-        public String creditsegmentInternalID;
+        public String CreditsegmentInternalID;
         public String languageCode;
     }
 

@@ -5,7 +5,7 @@
 */
 @isTest
 public class HTTPMultiRequestMockGenerator implements HttpCalloutMock {
-	Map<String, HttpCalloutMock> mapRequest;
+	public Map<String, HttpCalloutMock> mapRequest;
 
 	// /**
 	//  * @author       APC

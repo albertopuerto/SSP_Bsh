@@ -68,7 +68,7 @@ public with sharing class CreditLimitManager {
             }
 
         }catch(Exception ex){
-            lastInfoWrapper.message= ex.getMessage() + ex.getLineNumber();
+            lastInfoWrapper.message= ex.getMessage() + ' ' + ex.getLineNumber();
             lastInfoWrapper.success= false;
 
         	Logger.error('We found an error during the process - '+ ex.getMessage()).setRecordId(objectRecordId);
@@ -100,33 +100,43 @@ public with sharing class CreditLimitManager {
 
         creditLimitresponse = creditLimitCallouts.startCreditLimitCallouts(quoteToCalculate,orderToCalculate,null);
 
-        if(creditLimitresponse != null ){
-            if(creditLimitresponse.getStatusCode()== 200){
-                finalBodyresponse =creditLimitresponse.getBody().replace ('"$"','"dollar"').replace ('"@languageCode"','"languageCode"').replace ('"@schemeID"','"schemeID"').replace ('"@schemeAgencyID"','"schemeAgencyID"').replace ('"@currencyCode"','"currencyCode"');
-                responseBody= (CreditLimitWrappers.wrapperResponse)JSON.deserialize(finalBodyresponse, CreditLimitWrappers.wrapperResponse.class);
-                creditWorthiness= responseBody.Envelope.Body.CreditWorthinessResponse.CreditWorthiness;
-            }else{
-                String objectRecordId = quoteToCalculate != null ? quoteToCalculate.Id : orderToCalculate.Id;
 
-                lastInfoWrapper.message= creditLimitresponse.getBody();
-                lastInfoWrapper.status= creditLimitresponse.getStatusCode();
-                lastInfoWrapper.success= false;
-                Logger.error('Error while doing the credit limit callout for the object - '+ objectApiName+'-'+ creditLimitresponse.getStatusCode() +'-'+creditLimitresponse.getStatus())
-                .addTags(('API,TEST').split(','))
-                .setRecordId(objectRecordId);
-            }
+        if(creditLimitRespnse == null){
+            return lastInfoWrapper;
+        }
+
+        if(creditLimitresponse != null  && creditLimitresponse.getStatusCode()== 200){
+
+            finalBodyresponse =creditLimitresponse.getBody().replace ('"$"','"dollar"').replace ('"@languageCode"','"languageCode"').replace ('"@schemeID"','"schemeID"').replace ('"@schemeAgencyID"','"schemeAgencyID"').replace ('"@currencyCode"','"currencyCode"');
+            responseBody= (CreditLimitWrappers.wrapperResponse)JSON.deserialize(finalBodyresponse, CreditLimitWrappers.wrapperResponse.class);
+            creditWorthiness= responseBody.Envelope.Body.CreditWorthinessResponse.CreditWorthiness;
+
+        }else{
+
+            String objectRecordId = quoteToCalculate != null ? quoteToCalculate.Id : orderToCalculate.Id;
+
+            lastInfoWrapper.message= creditLimitresponse.getBody();
+            lastInfoWrapper.status= creditLimitresponse.getStatusCode();
+            lastInfoWrapper.success= false;
+            Logger.error('Error while doing the credit limit callout for the object - '+ objectApiName+'-'+ creditLimitresponse.getStatusCode() +'-'+creditLimitresponse.getStatus())
+            .addTags(('API,TEST').split(','))
+            .setRecordId(objectRecordId);
         }
 
         if(creditWorthiness != null){
+
+                lastInfoWrapper.message= creditWorthiness.CreditLimit == null ? 'The account has not a correct bosch partner id' : ' ';
+                lastInfoWrapper.status= creditLimitresponse.getStatusCode();
+                lastInfoWrapper.success= false;
             for(CreditLimitWrappers.CheckingDescs description :creditWorthiness.CheckingDescription){
-                    if(description.dollar.contains('Credit limit')){
+                if(description.dollar.contains('Credit limit')){
 
-                        lastInfoWrapper.message= description.dollar;
-                    	lastInfoWrapper.status= creditLimitresponse.getStatusCode();
-                    	lastInfoWrapper.success= false;
+                    lastInfoWrapper.message= description.dollar;
+                    lastInfoWrapper.status= creditLimitresponse.getStatusCode();
+                    lastInfoWrapper.success= false;
 
-                    }
                 }
+            }
         }
 
         return lastInfoWrapper;

@@ -30,8 +30,6 @@ public with sharing class CreditLimitCallouts {
 
         if(quoteToCalculate != null && quoteToCalculate.SBQQ__Status__c == 'Accepted'){
 
-            // Si no es accepted bloquearlo por js y ponerle un tooltip
-            //  dto = new VertexBodyDTO(DateTime.now(), quoteToCalculate.Bill_To_Country__c);
             String bodyWrapper = JSON.serialize(VertexIntManager.createRequest(todayDateTime,quoteToCalculate.SBQQ__Account__r.BillingCountry));
             finalVertexBody = CreditLimitUtilMethods.formatRequest(bodyWrapper);
 
