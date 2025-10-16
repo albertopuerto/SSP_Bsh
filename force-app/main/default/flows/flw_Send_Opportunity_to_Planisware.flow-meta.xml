@@ -1,6 +1,106 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
     <actionCalls>
+        <name>log_get_opp_record</name>
+        <label>log get opp record</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <actionName>FlowLogEntry</actionName>
+        <actionType>apex</actionType>
+        <connector>
+            <targetReference>save_opp_get</targetReference>
+        </connector>
+        <flowTransactionModel>Automatic</flowTransactionModel>
+        <inputParameters>
+            <name>flowName</name>
+            <value>
+                <stringValue>flw_Send_Opportunity_to_Planisware</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>loggingLevelName</name>
+            <value>
+                <stringValue>Error</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>message</name>
+            <value>
+                <stringValue>Error while retrieving the Opportunity record</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>recordId</name>
+            <value>
+                <elementReference>recordId</elementReference>
+            </value>
+        </inputParameters>
+        <nameSegment>FlowLogEntry</nameSegment>
+        <offset>0</offset>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </actionCalls>
+    <actionCalls>
+        <name>Log_Update_Opp</name>
+        <label>Log Update Opp</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <actionName>FlowLogEntry</actionName>
+        <actionType>apex</actionType>
+        <connector>
+            <targetReference>save_opp_update_log</targetReference>
+        </connector>
+        <flowTransactionModel>Automatic</flowTransactionModel>
+        <inputParameters>
+            <name>flowName</name>
+            <value>
+                <stringValue>flw_Send_Opportunity_to_Planisware</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>loggingLevelName</name>
+            <value>
+                <stringValue>Error</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>message</name>
+            <value>
+                <stringValue>Error while updating the Opportunity</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>recordId</name>
+            <value>
+                <elementReference>recordId</elementReference>
+            </value>
+        </inputParameters>
+        <nameSegment>FlowLogEntry</nameSegment>
+        <offset>0</offset>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </actionCalls>
+    <actionCalls>
+        <name>save_opp_get</name>
+        <label>save opp get</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <actionName>Logger</actionName>
+        <actionType>apex</actionType>
+        <flowTransactionModel>Automatic</flowTransactionModel>
+        <nameSegment>Logger</nameSegment>
+        <offset>0</offset>
+    </actionCalls>
+    <actionCalls>
+        <name>save_opp_update_log</name>
+        <label>save opp update log</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <actionName>Logger</actionName>
+        <actionType>apex</actionType>
+        <flowTransactionModel>Automatic</flowTransactionModel>
+        <nameSegment>Logger</nameSegment>
+        <offset>0</offset>
+    </actionCalls>
+    <actionCalls>
         <name>Send_Opp_data_to_PLW</name>
         <label>Send Opp data to PLW</label>
         <locationX>0</locationX>
@@ -154,6 +254,45 @@
             <label>Error 500</label>
         </rules>
     </decisions>
+    <decisions>
+        <name>Check_Required_Fields</name>
+        <label>Check Required Fields</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>Show_Missing_values</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>value missing</defaultConnectorLabel>
+        <rules>
+            <name>has_value</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Get_Opp_Record_Info.Account.txt_AthenaUUID__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>Get_Opp_Record_Info.lkp_SalesOrganization__r.pkl_SalesOrg__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>Get_Opp_Record_Info.idx_OpportunityIdnumber__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Assign_Request_Body</targetReference>
+            </connector>
+            <label>has value</label>
+        </rules>
+    </decisions>
     <environments>Default</environments>
     <formulas>
         <name>CorrelationId</name>
@@ -181,6 +320,30 @@
         </value>
     </processMetadataValues>
     <processType>Flow</processType>
+    <recordLookups>
+        <name>Get_Opp_Record_Info</name>
+        <label>Get Opp Record Info</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Check_Required_Fields</targetReference>
+        </connector>
+        <faultConnector>
+            <targetReference>log_get_opp_record</targetReference>
+        </faultConnector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>recordId</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>Opportunity</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
     <recordUpdates>
         <name>Update_Opp_with_Error_Status</name>
         <label>Update Opp with Error Status</label>
@@ -210,6 +373,9 @@
         <label>Update Opp with PLW Status</label>
         <locationX>0</locationX>
         <locationY>0</locationY>
+        <faultConnector>
+            <targetReference>Log_Update_Opp</targetReference>
+        </faultConnector>
         <filterLogic>and</filterLogic>
         <filters>
             <field>Id</field>
@@ -246,6 +412,22 @@
         <showHeader>true</showHeader>
     </screens>
     <screens>
+        <name>Show_Missing_values</name>
+        <label>Show Missing values</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>true</allowPause>
+        <fields>
+            <name>values_missed_message</name>
+            <fieldText>&lt;p&gt;&lt;strong style=&quot;font-size: 14px;&quot;&gt;Please check below before sending Opportunity to Planisware:&lt;/strong&gt;&lt;/p&gt;&lt;ol&gt;&lt;li&gt;Opportunity should have Sales Organization linked to it.&lt;/li&gt;&lt;li&gt;Opportunity id number field shouldn&#39;t be blank.&lt;/li&gt;&lt;li&gt;Linked Account should contain &quot;Bosch Partner Number&quot; value.&lt;/li&gt;&lt;/ol&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <showFooter>true</showFooter>
+        <showHeader>false</showHeader>
+    </screens>
+    <screens>
         <name>Success_Screen</name>
         <label>Success Screen</label>
         <locationX>0</locationX>
@@ -268,7 +450,7 @@
         <locationX>0</locationX>
         <locationY>0</locationY>
         <connector>
-            <targetReference>Assign_Request_Body</targetReference>
+            <targetReference>Get_Opp_Record_Info</targetReference>
         </connector>
     </start>
     <status>Active</status>
