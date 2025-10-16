@@ -183,10 +183,12 @@ public with sharing class TestFactory {
 		Product2.sObjectType => Product2.Name,
 		Quote.sObjectType => Quote.Name,
 		Apttus__Agreement_Clause__c.sObjectType => Apttus__Agreement_Clause__c.Apttus__ContentId__c,
-            sbaa__Approval__c.SObjectType => sbaa__Approval__c.Name,
-            sbaa__Approver__c.SObjectType => sbaa__Approver__c.Name,
-            ContentVersion.SObjectType => ContentVersion.Title,
-            ContentDocumentLink.SObjectType => ContentDocumentLink.ContentDocumentId
+        sbaa__Approval__c.SObjectType => sbaa__Approval__c.Name,
+        sbaa__Approver__c.SObjectType => sbaa__Approver__c.Name,
+        ContentVersion.SObjectType => ContentVersion.Title,
+        ContentDocumentLink.SObjectType => ContentDocumentLink.ContentDocumentId,
+		OrderItem.sObjectType => OrderItem.txt_SAPExternalLineItemId__c,
+		PricebookEntry.sObjectType => PricebookEntry.GearsetExternalId__c
 	};
      
 

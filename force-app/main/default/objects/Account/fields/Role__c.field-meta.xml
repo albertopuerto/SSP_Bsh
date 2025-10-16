@@ -32,6 +32,46 @@
                 <default>false</default>
                 <label>ETJP Domestic Customer</label>
             </value>
+            <value>
+                <fullName>ETJP Foreign Customer</fullName>
+                <default>false</default>
+                <label>ETJP Foreign Customer</label>
+            </value>
+            <value>
+                <fullName>ETUS Foreign Customer</fullName>
+                <default>false</default>
+                <label>ETUS Foreign Customer</label>
+            </value>
+            <value>
+                <fullName>ETDE Foreign Customer</fullName>
+                <default>false</default>
+                <label>ETDE Foreign Customer</label>
+            </value>
+            <value>
+                <fullName>ETKR Domestic Customer</fullName>
+                <default>false</default>
+                <label>ETKR Domestic Customer</label>
+            </value>
+            <value>
+                <fullName>ETGB Domestic Customer</fullName>
+                <default>false</default>
+                <label>ETGB Domestic Customer</label>
+            </value>
+            <value>
+                <fullName>ETCN Foreign Customer</fullName>
+                <default>false</default>
+                <label>ETCN Foreign Customer</label>
+            </value>
+            <value>
+                <fullName>ETGB Foreign Customer</fullName>
+                <default>false</default>
+                <label>ETGB Foreign Customer</label>
+            </value>
+            <value>
+                <fullName>ETAS Intercompany</fullName>
+                <default>false</default>
+                <label>ETAS Intercompany</label>
+            </value>
         </valueSetDefinition>
     </valueSet>
 </CustomField>

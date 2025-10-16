@@ -1,21 +1,14 @@
 import { LightningElement, track , api ,wire} from 'lwc';
-import { getObjectInfo } from 'lightning/uiRecordApi';
-import getAuthorizatiToken from '@salesforce/apex/CreditLimitGetAuthorizations.getAuthorizationToken';
 import callGetLimit from '@salesforce/apex/CreditLimitManager.callGetLimit';
-import checkAthenaId from '@salesforce/apex/CreditLimitManager.checkAthenaId';
 import getObjectCurrency from '@salesforce/apex/CreditLimitManager.getObjectCurrency';
-import { getRecord } from "lightning/uiRecordApi";
-
-import { ShowToastEvent } from 'lightning/platformShowToastEvent';
-
-
+import getAccountFields from '@salesforce/apex/CreditLimitManager.getAccountFields';
 export default class creditLimit extends LightningElement {
    @track accountRecord = false;
    @track quoteRecord = false;
    @track orderRecord = false;
    @track showAccountLimit = false;
    @track showError = false;
-   @track accountLimit = 0;
+   @track accountLimit;
    @track authToken;
    @api objectApiName;
    @api recordId;
@@ -37,38 +30,46 @@ export default class creditLimit extends LightningElement {
    @track creditInfoWrapper;
 
    @track recordData;
+   @track account =[];
 
-    @wire(getRecord, { recordId: "$recordId", fields: ["Account.txt_AthenaUUID__c"] })
-    wiredAccount({ data, error }) {
+   @track buttonTitle = '';
+
+    @wire(getAccountFields,{objectRecordId : '$recordId'})
+    wiredAccounts({ error,data }) {
+
+    if(this.objectApiName == 'Account'){
+    console.log('accounts' + JSON.stringify(data));
     
-    if(data){
-    this.recordData = data;
-    this.detectObject();
+    if (data) {
+        this.account = data;
+        this.error = undefined;
+        
+        this.accountRecord = true;
+    
+            if (this.account[0].txt_AthenaUUID__c !=null) {
+        
+                this.disableButton=false;
+                this.buttonTitle= '';
+            
+            }else{
+       
+                this.disableButton=true; 
+                this.buttonTitle= 'Please fill the Athena ID before checking the Credit Limit';
+           
+            }
+  
+        
+    } else if (error) {
+        this.error = error;
+        this.account = undefined;
     }
-    
-  //  alert('aaaaa '+ JSON.stringify(data.fields));
+}
     
   }
 
    detectObject(){
-        
-    if(this.objectApiName == 'Account'){
-        this.accountRecord = true;
-    
-        if (this.recordData.fields.txt_AthenaUUID__c.value !=null) {
-        
-            this.disableButton=false;
-        }else{
-       
-            this.disableButton=true; 
-        }
-    /*
-            checkAthenaId({objectRecordId : this.recordId})
-            .then(result => {
-               
-            
-            })*/
-    }else if(this.objectApiName == 'SBQQ__Quote__c'){
+
+    if(this.objectApiName == 'SBQQ__Quote__c'){
         this.quoteRecord = true;
     }else if(this.objectApiName == 'Order'){
         this.orderRecord = true;
@@ -76,83 +77,99 @@ export default class creditLimit extends LightningElement {
     }
     
     connectedCallback(){
+    this.detectObject();
     
-    setTimeout(() => {
-     this.detectObject();
-    
-     if(this.quoteRecord== true){
+    if(this.quoteRecord== true){
       
         this.getQuoteCreditLimit();
-        
-     }
-     this.getOrderCreditLimit();
-    }, 500);
-   
     
     }
+     this.getOrderCreditLimit();
+    
+    }
+    
+    refreshCallMethodWorthiness(){
+        
+        this.emptyVariables();
+        this.isLoading=true;
+    
+        if(this.quoteRecord== true){
+      
+            this.getQuoteCreditLimit();
+        
+        }else if(this.orderRecord==true){
 
-    getAuthorizationToken(){
-        getAuthorizatiToken({recordId : this.recordId})
-        .then(result => {
-            this.authToken = result;
-        })
+            this.getOrderCreditLimit();
+        }
+    }
+
+    emptyVariables(){
+        this.errorMessage= '';
+        this.quoteLimitMessage= '';
+        this.orderLimitMessage= '';
+        this.accountLimit;
+        this.showAccountLimit= false;
+        this.showError= false;
+        this.quoteLimitSuccess = false;
+        this.quoteLimitError= false;
+        this.quoteLimitMessage= '';
+        this.orderLimitSuccess= false;
+        this.orderLimitError= false;
+        this.orderLimitMessage= '';
     }
    
    // call to a class for the three methods one class apart with the three calls to the three endpoints and the respective errors to nebula, If there is any error or failure send a toast
-   getAccountCreditLimit(){
+getAccountCreditLimit(){
+    this.emptyVariables();
         
+    getObjectCurrency({objectAPIName:this.objectApiName,objectRecordId : this.recordId})
+        .then(result => {
+            if(result != null){
+                this.objectCurrency=result;
+            }
+        })
 
-         getObjectCurrency({isAccount:this.accountRecord,isQuote: this.quoteRecord, isOrder: this.orderRecord,objectRecordId : this.recordId})
-            .then(result => {
-                if(result != null){
-                    this.objectCurrency=result;
-                }
-            })
-
-       
-        callGetLimit({isAccount:this.accountRecord,isQuote: this.quoteRecord, isOrder: this.orderRecord,objectRecordId : this.recordId})
-            .then(result => {
-                if(result != null){
-                    this.creditInfoWrapper = result;
-                   
-                    console.log('wrap message '+JSON.stringify(result));
+    callGetLimit({objectAPIName : this.objectApiName,objectRecordId : this.recordId})
+        .then(result => {
+            if(result != null){
+                this.creditInfoWrapper = result;
                 
-                    this.accountLimit= this.creditInfoWrapper.message;
+                this.accountLimit= this.creditInfoWrapper.message;
 
-                    if(this.creditInfoWrapper.success== true){
-                        this.showAccountLimit= true;
-                    }else{
-                        this.showError= true;     
-                        this.errorMessage= this.creditInfoWrapper.message;               
-                    }
+                if(this.creditInfoWrapper.success== true){
+                    this.showAccountLimit= true;
+                }else{
+                    this.showError= true;     
+                    this.errorMessage= this.creditInfoWrapper.message;               
                 }
-            })
+            }
+        })
       
    }
 
-   getQuoteCreditLimit(){ 
+    getQuoteCreditLimit(){ 
     
-        callGetLimit({isAccount:this.accountRecord,isQuote: this.quoteRecord, isOrder: this.orderRecord,objectRecordId : this.recordId})
-            .then(result => {
+    callGetLimit({objectAPIName : this.objectApiName,objectRecordId : this.recordId})
+        .then(result => {
               
-                if(result.success == false){
+            if(result.success == false){
                     
-                    this.quoteLimitMessage= result.message;
-                    this.quoteLimitError=true;
+                this.quoteLimitMessage= result.message;
+                this.quoteLimitError=true;
 
-                }else{
+            }else{
                    
-                    this.quoteLimitMessage= 'The credit limit has not been exceeded yet';
-                    this.quoteLimitSuccess= true;
-                }
+                this.quoteLimitMessage= 'The credit limit has not been exceeded yet';
+                this.quoteLimitSuccess= true;
+            }
                
-                this.isLoading= false;
+            this.isLoading= false;
                
-            })
+        })
    }
 
    getOrderCreditLimit(){
-        callGetLimit({isAccount:this.accountRecord,isQuote: this.quoteRecord, isOrder: this.orderRecord,objectRecordId : this.recordId})
+        callGetLimit({objectAPIName : this.objectApiName,objectRecordId : this.recordId})
             .then(result => {
 
                 if(result.success == false){
@@ -166,7 +183,7 @@ export default class creditLimit extends LightningElement {
                     this.orderLimitSuccess= true;
                 }
               
-                
+                this.isLoading= false;
             })
    }
 }
