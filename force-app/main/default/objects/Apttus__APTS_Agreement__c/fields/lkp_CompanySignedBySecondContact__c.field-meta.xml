@@ -2,8 +2,8 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>lkp_CompanySignedBySecondContact__c</fullName>
     <deleteConstraint>Restrict</deleteConstraint>
-    <description>ETAS employee who signed the agreement as a first person</description>
-    <inlineHelpText>ETAS employee who signed the agreement as a first person</inlineHelpText>
+    <description>ETAS employee who signed the agreement as a second person</description>
+    <inlineHelpText>ETAS employee who signed the agreement as a second person</inlineHelpText>
     <label>Company Signed By (second contact)</label>
     <referenceTo>Contact</referenceTo>
     <relationshipLabel>Signature</relationshipLabel>
