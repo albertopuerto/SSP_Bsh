@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>txa_AffiliatesCoveredDetails__c</fullName>
+    <description>Please, describe which affiliates are included</description>
+    <inlineHelpText>Please, describe which affiliates are included</inlineHelpText>
+    <label>Affiliates covered details</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>TextArea</type>
+</CustomField>
