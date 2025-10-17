@@ -299,8 +299,8 @@
                     <name>uiBehavior</name>
                     <value>none</value>
                 </fieldInstanceProperties>
-                <fieldItem>Record.Current_Credit_Limit_including_VAT__c</fieldItem>
-                <identifier>RecordCurrent_Credit_Limit_including_VAT__cField</identifier>
+                <fieldItem>Record.cur_Current_Credit_Limit_including_VAT__c</fieldItem>
+                <identifier>Recordcur_Current_Credit_Limit_including_VAT_cField</identifier>
             </fieldInstance>
         </itemInstances>
         <name>Facet-0609b9e2-6c3c-426c-b101-c29c1c45dc5e</name>

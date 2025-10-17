@@ -1318,6 +1318,11 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>true</editable>
+        <field>Order.cur_Current_Credit_Limit_including_VAT__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>false</editable>
         <field>Order.ftxt_PONo__c</field>
         <readable>true</readable>
@@ -1562,7 +1567,7 @@
         <field>OrderItem.ServiceDate</field>
         <readable>true</readable>
     </fieldPermissions>
-        <fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>OrderItem.pkl_ItemStage__c</field>
         <readable>true</readable>

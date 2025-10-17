@@ -190,4 +190,28 @@
         <shortDescription>MyQueue</shortDescription>
         <value>My Queue</value>
     </labels>
+    <labels>
+        <fullName>creditLimitAccountButton</fullName>
+        <categories>CreditLimit</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>creditLimitAccountButton</shortDescription>
+        <value>Get account credit limit</value>
+    </labels>
+    <labels>
+        <fullName>creditLimitAccountButtonRetry</fullName>
+        <categories>CreditLimit</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>creditLimitAccountButtonRetry</shortDescription>
+        <value>Refresh Account Credit Limit</value>
+    </labels>
+    <labels>
+        <fullName>limitAccountMessage</fullName>
+        <categories>CreditLimit</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>limitAccountMessage</shortDescription>
+        <value>The limit for this account is</value>
+    </labels>
 </CustomLabels>

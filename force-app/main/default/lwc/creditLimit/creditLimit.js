@@ -3,10 +3,12 @@ import callGetLimit from '@salesforce/apex/CreditLimitManager.callGetLimit';
 import getObjectCurrency from '@salesforce/apex/CreditLimitManager.getObjectCurrency';
 import getAccountFields from '@salesforce/apex/CreditLimitManager.getAccountFields';
 import limitAccountMessage from "@salesforce/label/c.limitAccountMessage";
+import creditLimitAccountButton from "@salesforce/label/c.creditLimitAccountButton";
+import creditLimitAccountButtonRetry from "@salesforce/label/c.creditLimitAccountButtonRetry";
 export default class creditLimit extends LightningElement {
 
     label = {
-        limitAccountMessage
+        limitAccountMessage,
     };
    @track accountRecord = false;
    @track quoteRecord = false;
@@ -14,7 +16,6 @@ export default class creditLimit extends LightningElement {
    @track showAccountLimit = false;
    @track showError = false;
    @track accountLimit;
-   @track authToken;
    @api objectApiName;
    @api recordId;
    @track quoteLimitMessage;
@@ -33,9 +34,8 @@ export default class creditLimit extends LightningElement {
    @track objectCurrency;
    
     @track creditInfoWrapper;
-    @track accountCredtiLimitLabel = 'Get account credit limit';
+    @track accountCredtiLimitLabel = creditLimitAccountButton;
 
-   @track recordData;
    @track account =[];
 
    @track buttonTitle = '';
@@ -113,7 +113,6 @@ export default class creditLimit extends LightningElement {
         this.errorMessage= '';
         this.quoteLimitMessage= '';
         this.orderLimitMessage= '';
-        this.accountLimit;
         this.showAccountLimit= false;
         this.showError= false;
         this.quoteLimitSuccess = false;
@@ -142,11 +141,11 @@ getAccountCreditLimit(){
                 this.accountLimit= this.creditInfoWrapper.message;
 
                 if(this.creditInfoWrapper.success== true){
-                    this.accountCredtiLimitLabel= 'Get account credit limit';
+                    this.accountCredtiLimitLabel= creditLimitAccountButton;
                     this.showAccountLimit= true;
                 }else{
                     this.showError= true;
-                    this.accountCredtiLimitLabel= 'Refresh Account Credit Limit';     
+                    this.accountCredtiLimitLabel= creditLimitAccountButtonRetry;     
                     this.errorMessage= this.creditInfoWrapper.message;               
                 }
             }

@@ -92,7 +92,6 @@ public with sharing class CreditLimitManager {
         CreditLimitWrappers.creditLimitInfoWrapper lastInfoWrapper = new CreditLimitWrappers.creditLimitInfoWrapper();
 
         CreditLimitWrappers.wrapperResponse responseBody;
-        String finalBodyresponse;
 
         CreditLimitWrappers.CreditWorthiness creditWorthiness= new CreditLimitWrappers.CreditWorthiness();
 
@@ -100,15 +99,9 @@ public with sharing class CreditLimitManager {
 
         creditLimitresponse = creditLimitCallouts.startCreditLimitCallouts(quoteToCalculate,orderToCalculate,null);
 
-
-        if(creditLimitRespnse == null){
-            return lastInfoWrapper;
-        }
-
         if(creditLimitresponse != null  && creditLimitresponse.getStatusCode()== 200){
 
-            finalBodyresponse =creditLimitresponse.getBody().replace ('"$"','"dollar"').replace ('"@languageCode"','"languageCode"').replace ('"@schemeID"','"schemeID"').replace ('"@schemeAgencyID"','"schemeAgencyID"').replace ('"@currencyCode"','"currencyCode"');
-            responseBody= (CreditLimitWrappers.wrapperResponse)JSON.deserialize(finalBodyresponse, CreditLimitWrappers.wrapperResponse.class);
+            responseBody= (CreditLimitWrappers.wrapperResponse)JSON.deserialize(CreditLimitUtilMethods.formatResponse(creditLimitresponse.getBody()), CreditLimitWrappers.wrapperResponse.class);
             creditWorthiness= responseBody.Envelope.Body.CreditWorthinessResponse.CreditWorthiness;
 
         }else{
@@ -127,7 +120,7 @@ public with sharing class CreditLimitManager {
 
                 lastInfoWrapper.message= creditWorthiness.CreditLimit == null ? 'The account has not a correct bosch partner id' : ' ';
                 lastInfoWrapper.status= creditLimitresponse.getStatusCode();
-                lastInfoWrapper.success= false;
+                lastInfoWrapper.success= creditWorthiness.CreditLimit == null ? false : true;
             for(CreditLimitWrappers.CheckingDescs description :creditWorthiness.CheckingDescription){
                 if(description.dollar.contains('Credit limit')){
 
@@ -166,9 +159,7 @@ public with sharing class CreditLimitManager {
 
         if(vertexResponse != null && vertexResponse.getStatusCode()== 200){
 
-            String finalBodyresponse =vertexResponse.getBody().replace ('"id"','"auxId"').replace ('"date"','"actualDate"').replace ('"number"','"taxNumber"');
-
-            vertexResponseBody= (VertexMethods.wrapperResponse)JSON.deserialize(finalBodyresponse, VertexMethods.wrapperResponse.class);
+            vertexResponseBody= (VertexMethods.wrapperResponse)JSON.deserialize(CreditLimitUtilMethods.formatResponse(vertexResponse.getBody()), VertexMethods.wrapperResponse.class);
 
             for(VertexMethods.responseItem taxItem: vertexResponseBody.items){
                 for(VertexMethods.responseTaxes tax: taxItem.taxes){
@@ -216,9 +207,7 @@ public with sharing class CreditLimitManager {
 
         if(vertexResponse != null && vertexResponse.getStatusCode()== 200){
 
-            String finalBodyresponse =vertexResponse.getBody().replace ('"id"','"auxId"').replace ('"date"','"actualDate"').replace ('"number"','"taxNumber"');
-
-            vertexResponseBody= (VertexMethods.wrapperResponse)JSON.deserialize(finalBodyresponse, VertexMethods.wrapperResponse.class);
+            vertexResponseBody= (VertexMethods.wrapperResponse)JSON.deserialize(CreditLimitUtilMethods.formatResponse(vertexResponse.getBody()), VertexMethods.wrapperResponse.class);
 
             for(VertexMethods.responseItem taxItem: vertexResponseBody.items){
                 for(VertexMethods.responseTaxes tax: taxItem.taxes){
@@ -271,7 +260,7 @@ public with sharing class CreditLimitManager {
 
             if(creditLimitresponse != null && creditLimitresponse.getStatusCode()== 200){
 
-                finalBodyresponse =creditLimitresponse.getBody().replace ('"$"','"dollar"').replace ('"@languageCode"','"languageCode"').replace ('"@schemeID"','"schemeID"').replace ('"@schemeAgencyID"','"schemeAgencyID"').replace ('"@currencyCode"','"currencyCode"').replace('"CreditsegmentInternalID"', '"creditsegmentInternalID"').replace('"DebtorPartyInternalID"', '"debtorPartyInternalID"');
+                finalBodyResponse = CreditLimitUtilMethods.formatResponse(creditLimitresponse.getBody());
                 accountResponseBody= (CreditLimitWrappers.accountWrapperResponse)JSON.deserialize(finalBodyresponse, CreditLimitWrappers.accountWrapperResponse.class);
                 lastInfoWrapper.message= '0';
                 lastInfoWrapper.success= true;

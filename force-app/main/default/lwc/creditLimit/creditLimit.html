@@ -1,8 +1,9 @@
 <template>
     <lightning-card title="Credit Limit">
        
+        <template if:false ={accountRecord}>
             <lightning-icon size="small" class="pointer" onclick={refreshCallMethodWorthiness} icon-name="utility:refresh" slot="actions" alternative-text="refresh"></lightning-icon>
-        
+        </template>
         <template if:true={accountRecord}>
             <template if:true={disableButton}>
                 <span slot="actions" class="smallMarginLeft statusWarning"> <lightning-icon class="slds-current-color" icon-name="utility:warning" size="small" alternative-text="Warning" title="Warning"></lightning-icon></span>
