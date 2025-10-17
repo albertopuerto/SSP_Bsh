@@ -1,0 +1,56 @@
+{
+    "id": "723E4D234A111FD087EC4B69ED931D18",
+    "date": "2025-09-04T14:56:10.428Z",
+    "currencyCode": "EUR",
+    "amountTypeCode": "NET",
+    "items": [
+        {
+            "id": "000001",
+            "countryRegionCode": "DE",
+            "taxEventCode": "IGSTC",
+            "taxes": [
+                {
+                    "taxTypeCode": "1",
+                    "taxRate": 19,
+                    "taxableBaseAmount": 1,
+                    "taxAmount": 0.19,
+                    "dueCategoryCode": "RECEIVABLE",
+                    "isTaxDeferred": false,
+                    "deductibleTaxRate": 100,
+                    "nonDeductibleTaxRate": 0,
+                    "deductibleTaxAmount": 0.19,
+                    "nonDeductibleTaxAmount": 0,
+                    "additionalInformation": {
+                        "taxAssist0": "tax.taxCode&#124;POST&#124;&#124;IGSTC&#124;G_Set_Vertex_TaxDecisionCode_P",
+                        "JurisdictionLevel": "COUNTRY",
+                        "SellerRegistrationId": "XXX",
+                        "Imposition": "VAT",
+                        "JurisdictionName": "GERMANY",
+                        "SitusCtry": "DE",
+                        "RateClassification": "Standard Rate",
+                        "ImpositionType": "VAT",
+                        "DeductibleRate": "1.0",
+                        "Level": "1",
+                        "InvoiceTextCode": "&#124;21&#124;",
+                        "BuyerRegistrationId": "DE811128135",
+                        "Situs": "DE"
+                    }
+                }
+            ],
+            "additionalInformation": {
+                "totalTax": "0.19",
+                "totalRate": "19.0000",
+                "taxAssist2": "buyer.department&#124;PRE&#124;&#124;5000&#124;G_Set Tax Payer Hierarchy_P",
+                "taxAssist3": "buyer.division&#124;PRE&#124;&#124;EMEA&#124;G_Set Tax Payer Hierarchy_P",
+                "taxAssist0": "FLEX.input.Error_Msg&#124;PRE&#124;&#124;UMTD&#124;G_Set_Default_Mapping_UMTD_P",
+                "taxAssist1": "buyer.company&#124;PRE&#124;5000&#124;GLOBAL SHELL&#124;G_Set Tax Payer Hierarchy_P",
+                "taxAssist4": "purchase.purchaseClass&#124;PRE&#124;&#124;null&#124;G_Set_Default_Mapping_UMTD_P",
+                "taxCode": "IGSTC",
+                "outFcode25": "UMTD"
+            }
+        }
+    ],
+    "additionalInformation": {
+        "partnerName": "Vertex"
+    }
+}

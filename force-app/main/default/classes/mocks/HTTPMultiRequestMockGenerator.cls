@@ -11,9 +11,9 @@ public class HTTPMultiRequestMockGenerator implements HttpCalloutMock {
 	//  * @author       APC
 	//  * @description  HTTPMultiRequestMockGenerator constructor, if needed unblock and add basic mocks
 	//  */
-	// public HTTPMultiRequestMockGenerator() {
-	// 	this.mapRequest = if needed add the basic mocks(); that we want to include always here
-	// }
+	 public HTTPMultiRequestMockGenerator() {
+	 	this.mapRequest = new Map<String, HttpCalloutMock>();
+	 }
 
 	/**
 	 * @author       APC
