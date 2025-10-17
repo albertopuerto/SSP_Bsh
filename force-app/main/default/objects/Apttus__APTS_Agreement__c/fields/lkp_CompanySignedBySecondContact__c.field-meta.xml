@@ -6,7 +6,7 @@
     <inlineHelpText>ETAS employee who signed the agreement as a second person</inlineHelpText>
     <label>Company Signed By (second contact)</label>
     <referenceTo>Contact</referenceTo>
-    <relationshipLabel>Agreement (Company Signed By 2nd)</relationshipLabel>
+    <relationshipLabel>Signature</relationshipLabel>
     <relationshipName>Agreements3</relationshipName>
     <required>false</required>
     <trackFeedHistory>false</trackFeedHistory>
