@@ -411,14 +411,6 @@
         <valueField>Id</valueField>
     </dynamicChoiceSets>
     <dynamicChoiceSets>
-        <name>IncotermValues</name>
-        <dataType>Picklist</dataType>
-        <displayField xsi:nil="true" />
-        <object xsi:nil="true" />
-        <picklistField>pkl_INCOTerms1__c</picklistField>
-        <picklistObject>Account</picklistObject>
-    </dynamicChoiceSets>
-    <dynamicChoiceSets>
         <name>paymentTermValues</name>
         <dataType>Picklist</dataType>
         <displayField xsi:nil="true" />
@@ -521,12 +513,6 @@
             </value>
         </inputAssignments>
         <inputAssignments>
-            <field>pkl_INCOTerms1__c</field>
-            <value>
-                <elementReference>Incoterm</elementReference>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
             <field>pkl_Language__c</field>
             <value>
                 <elementReference>Account.pkl_Language__c</elementReference>
@@ -548,12 +534,6 @@
             <field>pkm_BoschPartnerRole__c</field>
             <value>
                 <elementReference>selectedRoleCode</elementReference>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <field>txt_INCOTerms2__c</field>
-            <value>
-                <elementReference>Incoterm_Location</elementReference>
             </value>
         </inputAssignments>
         <object>Account</object>
@@ -686,23 +666,6 @@
             <dataType>String</dataType>
             <fieldText>Payment Terms</fieldText>
             <fieldType>DropdownBox</fieldType>
-            <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
-            <isRequired>true</isRequired>
-        </fields>
-        <fields>
-            <name>Incoterm</name>
-            <choiceReferences>IncotermValues</choiceReferences>
-            <dataType>String</dataType>
-            <fieldText>INCOTERM</fieldText>
-            <fieldType>DropdownBox</fieldType>
-            <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
-            <isRequired>true</isRequired>
-        </fields>
-        <fields>
-            <name>Incoterm_Location</name>
-            <dataType>String</dataType>
-            <fieldText>INCOTERM Location</fieldText>
-            <fieldType>InputField</fieldType>
             <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
             <isRequired>true</isRequired>
         </fields>

@@ -1,7 +1,7 @@
 /**
 * @author       TLQ1KOR
 * @date         2025
-* @description  BSSP-9781:If-002 Negative scenario 4
+* @description  BSSP-9781:If-002 Negative scenario 4 and 5
 */
 @RestResource(urlMapping='/athenaAccountErrorHandler')
 global with sharing class AccountErrorService {
@@ -9,7 +9,6 @@ global with sharing class AccountErrorService {
     @HttpPost
     global static String handlePostRequest(String requestBody) {
         String id = '';
-        String correlationId = '';
         
         try {
             Logger.info('AccountErrorService.handlePostRequest started');
@@ -25,9 +24,12 @@ global with sharing class AccountErrorService {
             id = (String) errorData.get('Id');
             String statusCode = (String) errorData.get('Status Code');
             String statusText = (String) errorData.get('Status Text');
-            correlationId = (String) errorData.get('CorrelationId');
             
-            Logger.debug('Processing error for Account Id: ' + id + ', CorrelationId: ' + correlationId);
+            Logger.debug('Processing error for Account Id: ' + id);
+            
+            if (statusCode == '400' || statusCode == '403' || statusCode == '404') {
+                return handleApiGatewayError(id, statusCode, statusText);
+            }
             
             // Query the Account
             List<Account> accounts = [SELECT Id, Name, OwnerId, Owner.Email, Owner.Name, Owner.FirstName, Owner.LastName 
@@ -42,27 +44,22 @@ global with sharing class AccountErrorService {
             update account;
             
             Logger.debug('Account status updated to "Error in sending to Athena" for Account: ' + account.Name);
-            
-            // Create account link
-            String accountLink = System.URL.getOrgDomainUrl().toExternalForm() + '/' + account.Id;
-            
+                    
             // Send Email to Account Owner
             sendEmailNotification(
                 account.Owner.FirstName, 
                 account.Owner.LastName, 
                 account.Name, 
                 statusText, 
-                correlationId, 
-                accountLink,
                 account.OwnerId,
                 account.Id
             );
             
-            Logger.info('Successfully processed error for Account: ' + account.Name + ', CorrelationId: ' + correlationId);
+            Logger.info('Successfully processed error for Account: ' + account.Name);
 
             
         } catch (Exception ex) {
-            Logger.error('Exception in handlePostRequest for Account Id: ' + id + ', CorrelationId: ' + correlationId, ex);
+            Logger.error('Exception in handlePostRequest for Account Id: ' + id, ex);
         } finally {
             Logger.saveLog();
         }
@@ -71,12 +68,51 @@ global with sharing class AccountErrorService {
         return JSON.serialize(new Map<String, String>{
             'Id' => id,
             'errorcode' => '0',
-            'errorMessage' => 'Error processed successfully',
-            'correlationId' => correlationId
+            'errorMessage' => 'Error processed successfully'
         });
     }
-    
-    private static void sendEmailNotification(String firstName, String lastName, String accountName, String statusText, String correlationId, String accountLink, Id ownerId, Id accountId) {
+    private static String handleApiGatewayError(String id, String statusCode, String statusText) {
+        try {
+            Logger.debug('Processing API Gateway error for Account Id: ' + id + ', Status Code: ' + statusCode);
+            
+            // Query the Account
+            List<Account> accounts = [SELECT Id, Name, OwnerId, Owner.Email, Owner.Name, Owner.FirstName, Owner.LastName 
+                                    FROM Account 
+                                    WHERE Id = :id 
+                                    LIMIT 1];
+            
+            Account account = accounts[0];
+            
+            // Update Account Status to "Error in sending to Athena"
+            account.pkl_Status__c = 'Error in sending to Athena';
+            update account;
+            
+            Logger.debug('Account status updated to "Error in sending to Athena" for Account: ' + account.Name);
+           
+            
+            // Send Email to Account Owner
+            sendEmailNotification(
+                account.Owner.FirstName, 
+                account.Owner.LastName, 
+                account.Name, 
+                statusText, 
+                account.OwnerId,
+                account.Id
+            );
+            
+            Logger.info('Successfully processed API Gateway error for Account: ' + account.Name + ', Status Code: ' + statusCode);
+            
+        } catch (Exception ex) {
+            Logger.error('Exception in handleApiGatewayError for Account Id: ' + id + ', Status Code: ' + statusCode, ex);
+        }
+        
+        return JSON.serialize(new Map<String, String>{
+            'Id' => id,
+            'errorcode' => '0',
+            'errorMessage' => 'Error processed successfully'
+        });
+    }
+    private static void sendEmailNotification(String firstName, String lastName, String accountName, String statusText, Id ownerId, Id accountId) {
         try {
             Logger.debug('Sending email notification to Account Owner. AccountId: ' + accountId + ', OwnerId: ' + ownerId);
             
@@ -103,10 +139,10 @@ global with sharing class AccountErrorService {
             // Send the email
             Messaging.sendEmail(new Messaging.SingleEmailMessage[] { email });
             
-            Logger.info('Email sent successfully to account owner. AccountName: ' + accountName + ', CorrelationId: ' + correlationId);
+            Logger.info('Email sent successfully to account owner. AccountName: ' + accountName);
             
         } catch (Exception ex) {
-            Logger.error('Exception in sendEmailNotification for Account: ' + accountName + ', CorrelationId: ' + correlationId, ex);
+            Logger.error('Exception in sendEmailNotification for Account: ' + accountName, ex);
         }
     }
 }

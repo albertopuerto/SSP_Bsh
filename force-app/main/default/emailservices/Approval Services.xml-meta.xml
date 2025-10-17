@@ -4,7 +4,7 @@
     <attachmentOption>None</attachmentOption>
     <authenticationFailureAction>Bounce</authenticationFailureAction>
     <authorizationFailureAction>Bounce</authorizationFailureAction>
-    <authorizedSenders>bosch.com</authorizedSenders>
+    <authorizedSenders>bosch.com</authorizedSenders>   
     <errorRoutingAddress>uwe.adams@de.bosch.com</errorRoutingAddress>
     <functionInactiveAction>Bounce</functionInactiveAction>
     <functionName>Approval Services</functionName>
