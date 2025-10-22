@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>txa_OtherPartySignedByUnlistedTitle__c</fullName>
-    <description>Employee which has signed the agreement from other party - not listed in the Contacts</description>
-    <inlineHelpText>Employee which has signed the agreement from other party - not listed in the Contacts</inlineHelpText>
+    <description>Title of the person from customer/supplier/partner who has signed the agrement second (not listed in the contacts)</description>
+    <inlineHelpText>Title of the person from customer/supplier/partner who has signed the agrement second (not listed in the contacts)</inlineHelpText>
     <label>Other Party Signed By Title (Unlisted)</label>
     <required>false</required>
     <trackFeedHistory>false</trackFeedHistory>

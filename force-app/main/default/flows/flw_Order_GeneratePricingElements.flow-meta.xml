@@ -1,10 +1,212 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <name>act_apex_AddLogEntry</name>
+        <label>Log Price Element Error</label>
+        <locationX>666</locationX>
+        <locationY>1082</locationY>
+        <actionName>FlowLogEntry</actionName>
+        <actionType>apex</actionType>
+        <flowTransactionModel>Automatic</flowTransactionModel>
+        <inputParameters>
+            <name>faultMessage</name>
+            <value>
+                <elementReference>$Flow.FaultMessage</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>flowName</name>
+            <value>
+                <stringValue>flw_Order_GeneratePricingElements</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>loggingLevelName</name>
+            <value>
+                <stringValue>ERROR</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>message</name>
+            <value>
+                <stringValue>FLW-DML-00009 - {!Error_message}</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>recordId</name>
+            <value>
+                <elementReference>obj_Order.Id</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>saveLog</name>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>tagsString</name>
+            <value>
+                <stringValue>FLW-DML</stringValue>
+            </value>
+        </inputParameters>
+        <nameSegment>FlowLogEntry</nameSegment>
+        <offset>0</offset>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </actionCalls>
+    <actionCalls>
+        <description>Save the log</description>
+        <name>act_apex_SaveLog</name>
+        <label>Save Log</label>
+        <locationX>930</locationX>
+        <locationY>674</locationY>
+        <actionName>Logger</actionName>
+        <actionType>apex</actionType>
+        <flowTransactionModel>Automatic</flowTransactionModel>
+        <nameSegment>Logger</nameSegment>
+        <offset>0</offset>
+    </actionCalls>
+    <actionCalls>
+        <name>Log_General_Flow_Error</name>
+        <label>Log General Flow Error</label>
+        <locationX>930</locationX>
+        <locationY>566</locationY>
+        <actionName>FlowLogEntry</actionName>
+        <actionType>apex</actionType>
+        <connector>
+            <targetReference>act_apex_SaveLog</targetReference>
+        </connector>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>flowName</name>
+            <value>
+                <stringValue>flw_Order_GeneratePricingElements</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>loggingLevelName</name>
+            <value>
+                <stringValue>ERROR</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>message</name>
+            <value>
+                <stringValue>General error in Generate Pricing Elements flow: {!Error_message}</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>tagsString</name>
+            <value>
+                <stringValue>pricing-flow,general-error,flow-fault</stringValue>
+            </value>
+        </inputParameters>
+        <nameSegment>FlowLogEntry</nameSegment>
+        <offset>0</offset>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </actionCalls>
     <apiVersion>63.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <assignments>
+        <name>asgn_ErrorMessage</name>
+        <label>Set Error Message</label>
+        <locationX>666</locationX>
+        <locationY>974</locationY>
+        <assignmentItems>
+            <assignToReference>GenerationResult</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>Error_message</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>Error occurred during creation of price elements. Order Number:  {!obj_Order.OrderNumber}</stringValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>act_apex_AddLogEntry</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>asgn_PriceElement</name>
+        <label>Assign Price Element Fields</label>
+        <locationX>490</locationX>
+        <locationY>566</locationY>
+        <assignmentItems>
+            <assignToReference>obj_PriceElement.lkp_OrderItem__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>lp_Through_Order_Products.Id</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>obj_PriceElement.pkl_ConditionCurrency__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>lp_Through_Order_Products.CurrencyIsoCode</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>obj_PriceElement.pkl_ConditionType__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>List Price</stringValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>obj_PriceElement.num_ConditionRateValue__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>lp_Through_Order_Products.TotalPrice</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>asgn_PriceElementToCollection</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>asgn_PriceElementToCollection</name>
+        <label>Assign Price Element to Collection</label>
+        <locationX>490</locationX>
+        <locationY>674</locationY>
+        <assignmentItems>
+            <assignToReference>objs_PriceElement</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>obj_PriceElement</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>lp_Through_Order_Products</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>asgn_SuccessResult</name>
+        <label>Set Success Result</label>
+        <locationX>402</locationX>
+        <locationY>974</locationY>
+        <assignmentItems>
+            <assignToReference>GenerationResult</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>Error_message</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue></stringValue>
+            </value>
+        </assignmentItems>
+    </assignments>
     <assignments>
         <name>Handle_Error</name>
         <label>Handle Error</label>
-        <locationX>882</locationX>
+        <locationX>930</locationX>
         <locationY>458</locationY>
         <assignmentItems>
             <assignToReference>GenerationResult</assignToReference>
@@ -20,46 +222,9 @@
                 <elementReference>$Flow.FaultMessage</elementReference>
             </value>
         </assignmentItems>
-    </assignments>
-    <assignments>
-        <name>Set_Error_Message</name>
-        <label>Set Error Message</label>
-        <locationX>754</locationX>
-        <locationY>674</locationY>
-        <assignmentItems>
-            <assignToReference>GenerationResult</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <booleanValue>false</booleanValue>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>Error_message</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <stringValue>“Error occured during creation of price elements. Order Number:  &quot; + {!OrderId.Id} +&quot; Please consult your line of support providing this data.&quot;</stringValue>
-            </value>
-        </assignmentItems>
-    </assignments>
-    <assignments>
-        <name>Set_Success_Result</name>
-        <label>Set Success Result</label>
-        <locationX>402</locationX>
-        <locationY>998</locationY>
-        <assignmentItems>
-            <assignToReference>GenerationResult</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <booleanValue>true</booleanValue>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>Error_message</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <stringValue></stringValue>
-            </value>
-        </assignmentItems>
+        <connector>
+            <targetReference>Log_General_Flow_Error</targetReference>
+        </connector>
     </assignments>
     <assignments>
         <name>SetNoOrderError</name>
@@ -94,7 +259,7 @@
             <name>No_Order_Found</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
-                <leftValueReference>OrderId.Id</leftValueReference>
+                <leftValueReference>obj_Order.Id</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
                     <stringValue></stringValue>
@@ -110,17 +275,17 @@
     <interviewLabel>Generate Pricing Elements {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Generate Pricing Elements</label>
     <loops>
-        <name>Loop_Through_Order_Products</name>
+        <name>lp_Through_Order_Products</name>
         <label>Loop Through Order Products</label>
         <locationX>402</locationX>
         <locationY>458</locationY>
         <collectionReference>varOrderProducts</collectionReference>
         <iterationOrder>Asc</iterationOrder>
         <nextValueConnector>
-            <targetReference>Create_Price_Element</targetReference>
+            <targetReference>asgn_PriceElement</targetReference>
         </nextValueConnector>
         <noMoreValuesConnector>
-            <targetReference>Set_Success_Result</targetReference>
+            <targetReference>cre_PriceElement</targetReference>
         </noMoreValuesConnector>
     </loops>
     <processMetadataValues>
@@ -143,42 +308,17 @@
     </processMetadataValues>
     <processType>AutoLaunchedFlow</processType>
     <recordCreates>
-        <name>Create_Price_Element</name>
-        <label>Create Price Element</label>
-        <locationX>490</locationX>
-        <locationY>566</locationY>
-        <assignRecordIdToReference>PriceItemID</assignRecordIdToReference>
+        <name>cre_PriceElement</name>
+        <label>Create Price Elements</label>
+        <locationX>402</locationX>
+        <locationY>866</locationY>
         <connector>
-            <targetReference>Loop_Through_Order_Products</targetReference>
+            <targetReference>asgn_SuccessResult</targetReference>
         </connector>
         <faultConnector>
-            <targetReference>Set_Error_Message</targetReference>
+            <targetReference>asgn_ErrorMessage</targetReference>
         </faultConnector>
-        <inputAssignments>
-            <field>lkp_OrderItem__c</field>
-            <value>
-                <elementReference>Loop_Through_Order_Products.Id</elementReference>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <field>num_ConditionRateValue__c</field>
-            <value>
-                <elementReference>Loop_Through_Order_Products.TotalPrice</elementReference>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <field>pkl_ConditionCurrency__c</field>
-            <value>
-                <elementReference>Loop_Through_Order_Products.CurrencyIsoCode</elementReference>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <field>pkl_ConditionType__c</field>
-            <value>
-                <stringValue>List Price</stringValue>
-            </value>
-        </inputAssignments>
-        <object>PriceElement__c</object>
+        <inputReference>objs_PriceElement</inputReference>
     </recordCreates>
     <recordLookups>
         <name>Get_Order_Products</name>
@@ -187,7 +327,7 @@
         <locationY>350</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
-            <targetReference>Loop_Through_Order_Products</targetReference>
+            <targetReference>lp_Through_Order_Products</targetReference>
         </connector>
         <faultConnector>
             <targetReference>Handle_Error</targetReference>
@@ -195,9 +335,9 @@
         <filterLogic>and</filterLogic>
         <filters>
             <field>OrderId</field>
-            <operator>NotEqualTo</operator>
+            <operator>EqualTo</operator>
             <value>
-                <stringValue></stringValue>
+                <elementReference>obj_Order.Id</elementReference>
             </value>
         </filters>
         <object>OrderItem</object>
@@ -207,6 +347,7 @@
         <queriedFields>TotalPrice</queriedFields>
     </recordLookups>
     <recordLookups>
+        <description>In the current implementation the quote is converted always in one order. If process is changed and quote should be converted into more than one orders, this flow should be updated or replaced with Apex trigger.</description>
         <name>Get_Orders</name>
         <label>Get Orders</label>
         <locationX>226</locationX>
@@ -228,8 +369,9 @@
             </value>
         </filters>
         <object>Order</object>
-        <outputReference>OrderId</outputReference>
+        <outputReference>obj_Order</outputReference>
         <queriedFields>Id</queriedFields>
+        <queriedFields>OrderNumber</queriedFields>
     </recordLookups>
     <start>
         <locationX>100</locationX>
@@ -262,7 +404,7 @@
         <isOutput>true</isOutput>
     </variables>
     <variables>
-        <name>OrderId</name>
+        <name>obj_Order</name>
         <dataType>SObject</dataType>
         <isCollection>false</isCollection>
         <isInput>false</isInput>
@@ -270,14 +412,20 @@
         <objectType>Order</objectType>
     </variables>
     <variables>
-        <name>PriceItemID</name>
-        <dataType>String</dataType>
+        <name>obj_PriceElement</name>
+        <dataType>SObject</dataType>
         <isCollection>false</isCollection>
         <isInput>false</isInput>
-        <isOutput>true</isOutput>
-        <value>
-            <elementReference>Create_Price_Element</elementReference>
-        </value>
+        <isOutput>false</isOutput>
+        <objectType>PriceElement__c</objectType>
+    </variables>
+    <variables>
+        <name>objs_PriceElement</name>
+        <dataType>SObject</dataType>
+        <isCollection>true</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>PriceElement__c</objectType>
     </variables>
     <variables>
         <name>quoteId</name>
