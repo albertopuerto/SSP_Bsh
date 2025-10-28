@@ -47,7 +47,8 @@ public with sharing class ContentDocumentDomain extends fflib_SObjectDomain{
             }
         }
         catch(Exception ex) {
-            Logger.error('Error in ContentDocumentDomain.onAfterDelete', ex);
+            Logger.error('APX-EXC-00001: Error deleting related Additional Document records.', + ex.getMessage(), ex)
+                  .addTags(new List<String>{'APX-EXC'});
             throw ex;
         } finally {
             Logger.saveLog();
