@@ -1560,4 +1560,23 @@
             <default>false</default>
         </values>
     </picklistValues>
+    <picklistValues>
+        <picklist>pkm_BoschPartnerRole__c</picklist>
+        <values>
+            <fullName>BBCUBP</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>BBCUEX</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>BBCUPR</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>BBCUSH</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
 </RecordType>
