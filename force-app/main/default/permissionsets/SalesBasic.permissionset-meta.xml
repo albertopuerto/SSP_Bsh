@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <PermissionSet xmlns="http://soap.sforce.com/2006/04/metadata">
     <description>Allows Key Account Managers to create Opportunity records</description>
     <hasActivationRequired>false</hasActivationRequired>
@@ -680,11 +680,6 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>BoschPartner_PartnerFunction__c.chk_DefaultPartner__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>BoschPartner_PartnerFunction__c.lkp_BoschPartnerFunction__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
