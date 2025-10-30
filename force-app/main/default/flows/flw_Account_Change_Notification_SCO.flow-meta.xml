@@ -20,13 +20,13 @@
         <inputParameters>
             <name>loggingLevelName</name>
             <value>
-                <stringValue>INFO</stringValue>
+                <stringValue>ERROR</stringValue>
             </value>
         </inputParameters>
         <inputParameters>
             <name>message</name>
             <value>
-                <stringValue>Account change notification sent for {!$Record.Name}</stringValue>
+                <stringValue>FLW-SYS-00007-Account change notification sent for {!$Record.Name}</stringValue>
             </value>
         </inputParameters>
         <inputParameters>
@@ -38,7 +38,7 @@
         <inputParameters>
             <name>tagsString</name>
             <value>
-                <stringValue>FLW-SYS-00007</stringValue>
+                <stringValue>FLW-SYS</stringValue>
             </value>
         </inputParameters>
         <nameSegment>FlowLogEntry</nameSegment>

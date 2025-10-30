@@ -3,13 +3,16 @@
     <actionCalls>
         <name>Account_Team</name>
         <label>Account Team</label>
-        <locationX>270</locationX>
-        <locationY>2819</locationY>
+        <locationX>402</locationX>
+        <locationY>3863</locationY>
         <actionName>customNotificationAction</actionName>
         <actionType>customNotificationAction</actionType>
         <connector>
             <targetReference>Loop_2</targetReference>
         </connector>
+        <faultConnector>
+            <targetReference>Log_Acc_Team_Notif_Error</targetReference>
+        </faultConnector>
         <flowTransactionModel>CurrentTransaction</flowTransactionModel>
         <inputParameters>
             <name>customNotifTypeId</name>
@@ -48,12 +51,15 @@
         <name>Notify_Account_Owner</name>
         <label>Notify Account Owner</label>
         <locationX>50</locationX>
-        <locationY>1487</locationY>
+        <locationY>1835</locationY>
         <actionName>customNotificationAction</actionName>
         <actionType>customNotificationAction</actionType>
         <connector>
             <targetReference>OpportunityTeamMember_records</targetReference>
         </connector>
+        <faultConnector>
+            <targetReference>Log_Account_Owner_notif_Error</targetReference>
+        </faultConnector>
         <flowTransactionModel>CurrentTransaction</flowTransactionModel>
         <inputParameters>
             <name>customNotifTypeId</name>
@@ -91,13 +97,16 @@
     <actionCalls>
         <name>Opp_Team_Notification</name>
         <label>Opp Team Notification</label>
-        <locationX>270</locationX>
-        <locationY>2111</locationY>
+        <locationX>402</locationX>
+        <locationY>2807</locationY>
         <actionName>customNotificationAction</actionName>
         <actionType>customNotificationAction</actionType>
         <connector>
             <targetReference>OppTeamLoop</targetReference>
         </connector>
+        <faultConnector>
+            <targetReference>Log_Opp_Team_Notif_Error</targetReference>
+        </faultConnector>
         <flowTransactionModel>CurrentTransaction</flowTransactionModel>
         <inputParameters>
             <name>customNotifTypeId</name>
@@ -142,6 +151,9 @@
         <connector>
             <targetReference>Assignment_2</targetReference>
         </connector>
+        <faultConnector>
+            <targetReference>Opp_notification</targetReference>
+        </faultConnector>
         <flowTransactionModel>CurrentTransaction</flowTransactionModel>
         <inputParameters>
             <name>customNotifTypeId</name>
@@ -181,7 +193,7 @@
     <assignments>
         <name>Add_Last_Modified_User_to_Notified_List</name>
         <label>Add Last Modified User to Notified List</label>
-        <locationX>182</locationX>
+        <locationX>314</locationX>
         <locationY>539</locationY>
         <assignmentItems>
             <assignToReference>notifiedUserIds</assignToReference>
@@ -197,8 +209,8 @@
     <assignments>
         <name>Assignment_2</name>
         <label>Assignment 2</label>
-        <locationX>182</locationX>
-        <locationY>1271</locationY>
+        <locationX>314</locationX>
+        <locationY>1619</locationY>
         <assignmentItems>
             <assignToReference>TeamMemberNotif</assignToReference>
             <operator>Add</operator>
@@ -213,8 +225,8 @@
     <assignments>
         <name>assignment_3</name>
         <label>assignment_3</label>
-        <locationX>402</locationX>
-        <locationY>1895</locationY>
+        <locationX>666</locationX>
+        <locationY>2591</locationY>
         <assignmentItems>
             <assignToReference>OppTeamRecip</assignToReference>
             <operator>Add</operator>
@@ -229,8 +241,8 @@
     <assignments>
         <name>assignment_4</name>
         <label>assignment 4</label>
-        <locationX>402</locationX>
-        <locationY>2603</locationY>
+        <locationX>666</locationX>
+        <locationY>3647</locationY>
         <assignmentItems>
             <assignToReference>AccTeamMember</assignToReference>
             <operator>Add</operator>
@@ -245,7 +257,7 @@
     <assignments>
         <name>Opportunity_Owner</name>
         <label>Opportunity Owner</label>
-        <locationX>182</locationX>
+        <locationX>314</locationX>
         <locationY>863</locationY>
         <assignmentItems>
             <assignToReference>Recepients</assignToReference>
@@ -261,8 +273,8 @@
     <decisions>
         <name>accownisblank</name>
         <label>accownisblank</label>
-        <locationX>182</locationX>
-        <locationY>1379</locationY>
+        <locationX>314</locationX>
+        <locationY>1727</locationY>
         <defaultConnector>
             <targetReference>OpportunityTeamMember_records</targetReference>
         </defaultConnector>
@@ -286,8 +298,8 @@
     <decisions>
         <name>isaccteamblank</name>
         <label>isaccteamblank</label>
-        <locationX>402</locationX>
-        <locationY>2711</locationY>
+        <locationX>666</locationX>
+        <locationY>3755</locationY>
         <defaultConnector>
             <targetReference>Loop_2</targetReference>
         </defaultConnector>
@@ -311,8 +323,8 @@
     <decisions>
         <name>isoppteamblank</name>
         <label>isoppteamblank</label>
-        <locationX>402</locationX>
-        <locationY>2003</locationY>
+        <locationX>666</locationX>
+        <locationY>2699</locationY>
         <defaultConnector>
             <targetReference>OppTeamLoop</targetReference>
         </defaultConnector>
@@ -336,7 +348,7 @@
     <decisions>
         <name>Ownerisnotblank</name>
         <label>Ownerisnotblank</label>
-        <locationX>182</locationX>
+        <locationX>314</locationX>
         <locationY>971</locationY>
         <defaultConnector>
             <targetReference>Assignment_2</targetReference>
@@ -452,8 +464,8 @@
     <loops>
         <name>Loop_2</name>
         <label>Loop Through Account Team Mem</label>
-        <locationX>182</locationX>
-        <locationY>2495</locationY>
+        <locationX>314</locationX>
+        <locationY>3539</locationY>
         <collectionReference>Acc_Team</collectionReference>
         <iterationOrder>Asc</iterationOrder>
         <nextValueConnector>
@@ -463,8 +475,8 @@
     <loops>
         <name>OppTeamLoop</name>
         <label>Loop through Opp Team Member</label>
-        <locationX>182</locationX>
-        <locationY>1787</locationY>
+        <locationX>314</locationX>
+        <locationY>2483</locationY>
         <collectionReference>OpportunityTeamMember_records</collectionReference>
         <iterationOrder>Asc</iterationOrder>
         <nextValueConnector>
@@ -496,8 +508,8 @@
     <recordLookups>
         <name>Acc_Team</name>
         <label>Acc Team</label>
-        <locationX>182</locationX>
-        <locationY>2387</locationY>
+        <locationX>314</locationX>
+        <locationY>3431</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Loop_2</targetReference>
@@ -526,7 +538,7 @@
     <recordLookups>
         <name>Get_Account_Owner</name>
         <label>Get Account Owner</label>
-        <locationX>182</locationX>
+        <locationX>314</locationX>
         <locationY>755</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
@@ -548,7 +560,7 @@
     <recordLookups>
         <name>Get_Last_Modified_User</name>
         <label>Get Last Modified User</label>
-        <locationX>182</locationX>
+        <locationX>314</locationX>
         <locationY>431</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
@@ -570,7 +582,7 @@
     <recordLookups>
         <name>Get_Notification_Type</name>
         <label>Get Notification Type</label>
-        <locationX>182</locationX>
+        <locationX>314</locationX>
         <locationY>323</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
@@ -591,7 +603,7 @@
     <recordLookups>
         <name>Get_Opportunity_Owner</name>
         <label>Get Opportunity Owner</label>
-        <locationX>182</locationX>
+        <locationX>314</locationX>
         <locationY>647</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
@@ -613,8 +625,8 @@
     <recordLookups>
         <name>OpportunityTeamMember_records</name>
         <label>OpportunityTeamMember records</label>
-        <locationX>182</locationX>
-        <locationY>1679</locationY>
+        <locationX>314</locationX>
+        <locationY>2375</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>OppTeamLoop</targetReference>
@@ -641,7 +653,7 @@
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordLookups>
     <start>
-        <locationX>56</locationX>
+        <locationX>188</locationX>
         <locationY>0</locationY>
         <connector>
             <targetReference>Get_Notification_Type</targetReference>
@@ -695,6 +707,13 @@
         <isCollection>false</isCollection>
         <isInput>false</isInput>
         <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>Error_message</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
     </variables>
     <variables>
         <name>NoticationType</name>

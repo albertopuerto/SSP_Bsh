@@ -78,7 +78,7 @@
     <processType>AutoLaunchedFlow</processType>
     <recordLookups>
         <name>Get_Records_1</name>
-        <label>Get Records</label>
+        <label>Get Records1</label>
         <locationX>176</locationX>
         <locationY>323</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
@@ -119,5 +119,5 @@
         <recordTriggerType>Create</recordTriggerType>
         <triggerType>RecordAfterSave</triggerType>
     </start>
-    <status>Active</status>
+    <status>Draft</status>
 </Flow>
