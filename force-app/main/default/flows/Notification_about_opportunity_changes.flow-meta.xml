@@ -45,7 +45,141 @@
             </value>
         </inputParameters>
         <nameSegment>customNotificationAction</nameSegment>
+    </actionCalls>
+    <actionCalls>
+        <name>Log_Acc_Team_Notif_Error</name>
+        <label>Log Acc Team Notif Error</label>
+        <locationX>666</locationX>
+        <locationY>3971</locationY>
+        <actionName>FlowLogEntry</actionName>
+        <actionType>apex</actionType>
+        <connector>
+            <targetReference>Save_Log3</targetReference>
+        </connector>
+        <flowTransactionModel>Automatic</flowTransactionModel>
+        <inputParameters>
+            <name>faultMessage</name>
+            <value>
+                <elementReference>$Flow.FaultMessage</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>flowName</name>
+            <value>
+                <stringValue>Notification_about_opportunity_changes</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>loggingLevelName</name>
+            <value>
+                <stringValue>ERROR</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>message</name>
+            <value>
+                <stringValue> FLW-SYS-00012 - {!Error_message}</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>tagsString</name>
+            <value>
+                <stringValue>FLW-SYS</stringValue>
+            </value>
+        </inputParameters>
+        <nameSegment>FlowLogEntry</nameSegment>
         <offset>0</offset>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </actionCalls>
+    <actionCalls>
+        <name>Log_Account_Owner_notif_Error</name>
+        <label>Log Account Owner notif Error</label>
+        <locationX>314</locationX>
+        <locationY>1943</locationY>
+        <actionName>FlowLogEntry</actionName>
+        <actionType>apex</actionType>
+        <connector>
+            <targetReference>Save_Log</targetReference>
+        </connector>
+        <flowTransactionModel>Automatic</flowTransactionModel>
+        <inputParameters>
+            <name>faultMessage</name>
+            <value>
+                <elementReference>$Flow.FaultMessage</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>flowName</name>
+            <value>
+                <stringValue>Notification_about_opportunity_changes</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>loggingLevelName</name>
+            <value>
+                <stringValue>ERROR</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>message</name>
+            <value>
+                <stringValue>FLW-SYS-00014 - {!Error_message}</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>tagsString</name>
+            <value>
+                <stringValue>FLW-SYS</stringValue>
+            </value>
+        </inputParameters>
+        <nameSegment>FlowLogEntry</nameSegment>
+        <offset>0</offset>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </actionCalls>
+    <actionCalls>
+        <name>Log_Opp_Team_Notif_Error</name>
+        <label>Log Opp Team Notif Error</label>
+        <locationX>666</locationX>
+        <locationY>2915</locationY>
+        <actionName>FlowLogEntry</actionName>
+        <actionType>apex</actionType>
+        <connector>
+            <targetReference>Save_logs1</targetReference>
+        </connector>
+        <flowTransactionModel>Automatic</flowTransactionModel>
+        <inputParameters>
+            <name>faultMessage</name>
+            <value>
+                <elementReference>$Flow.FaultMessage</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>flowName</name>
+            <value>
+                <stringValue>Notification_about_opportunity_changes</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>loggingLevelName</name>
+            <value>
+                <stringValue>ERROR</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>message</name>
+            <value>
+                <stringValue> FLW-SYS-00011 - {!Error_message}</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>tagsString</name>
+            <value>
+                <stringValue> FLW-SYS</stringValue>
+            </value>
+        </inputParameters>
+        <nameSegment>FlowLogEntry</nameSegment>
+        <offset>0</offset>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
     </actionCalls>
     <actionCalls>
         <name>Notify_Account_Owner</name>
@@ -92,7 +226,57 @@
             </value>
         </inputParameters>
         <nameSegment>customNotificationAction</nameSegment>
+    </actionCalls>
+    <actionCalls>
+        <name>Opp_notification</name>
+        <label>Log Opp Notification Error</label>
+        <locationX>314</locationX>
+        <locationY>1187</locationY>
+        <actionName>FlowLogEntry</actionName>
+        <actionType>apex</actionType>
+        <connector>
+            <targetReference>save_logs</targetReference>
+        </connector>
+        <flowTransactionModel>Automatic</flowTransactionModel>
+        <inputParameters>
+            <name>faultMessage</name>
+            <value>
+                <elementReference>$Flow.FaultMessage</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>flowName</name>
+            <value>
+                <stringValue>Notification_about_opportunity_changes</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>loggingLevelName</name>
+            <value>
+                <stringValue>ERROR</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>message</name>
+            <value>
+                <stringValue>FLW-SYS-00013- {!Error_message}</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>recordId</name>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>tagsString</name>
+            <value>
+                <stringValue>FLW-SYS</stringValue>
+            </value>
+        </inputParameters>
+        <nameSegment>FlowLogEntry</nameSegment>
         <offset>0</offset>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
     </actionCalls>
     <actionCalls>
         <name>Opp_Team_Notification</name>
@@ -139,7 +323,6 @@
             </value>
         </inputParameters>
         <nameSegment>customNotificationAction</nameSegment>
-        <offset>0</offset>
     </actionCalls>
     <actionCalls>
         <name>Opportunity_Notification</name>
@@ -186,10 +369,55 @@
             </value>
         </inputParameters>
         <nameSegment>customNotificationAction</nameSegment>
+    </actionCalls>
+    <actionCalls>
+        <description>Save the logs</description>
+        <name>Save_Log</name>
+        <label>Save Log</label>
+        <locationX>314</locationX>
+        <locationY>2051</locationY>
+        <actionName>Logger</actionName>
+        <actionType>apex</actionType>
+        <flowTransactionModel>Automatic</flowTransactionModel>
+        <nameSegment>Logger</nameSegment>
+        <offset>0</offset>
+    </actionCalls>
+    <actionCalls>
+        <name>Save_Log3</name>
+        <label>Save Log</label>
+        <locationX>666</locationX>
+        <locationY>4079</locationY>
+        <actionName>Logger</actionName>
+        <actionType>apex</actionType>
+        <flowTransactionModel>Automatic</flowTransactionModel>
+        <nameSegment>Logger</nameSegment>
+        <offset>0</offset>
+    </actionCalls>
+    <actionCalls>
+        <description>save the logs</description>
+        <name>save_logs</name>
+        <label>save logs</label>
+        <locationX>314</locationX>
+        <locationY>1295</locationY>
+        <actionName>Logger</actionName>
+        <actionType>apex</actionType>
+        <flowTransactionModel>Automatic</flowTransactionModel>
+        <nameSegment>Logger</nameSegment>
+        <offset>0</offset>
+    </actionCalls>
+    <actionCalls>
+        <description>Save the logs</description>
+        <name>Save_logs1</name>
+        <label>Save logs</label>
+        <locationX>666</locationX>
+        <locationY>3023</locationY>
+        <actionName>Logger</actionName>
+        <actionType>apex</actionType>
+        <flowTransactionModel>Automatic</flowTransactionModel>
+        <nameSegment>Logger</nameSegment>
         <offset>0</offset>
     </actionCalls>
     <apiVersion>63.0</apiVersion>
-    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
     <assignments>
         <name>Add_Last_Modified_User_to_Notified_List</name>
         <label>Add Last Modified User to Notified List</label>
@@ -662,7 +890,7 @@
         <recordTriggerType>Update</recordTriggerType>
         <triggerType>RecordAfterSave</triggerType>
     </start>
-    <status>Draft</status>
+    <status>Active</status>
     <textTemplates>
         <name>AlertNotifyBody</name>
         <isViewedAsPlainText>true</isViewedAsPlainText>
