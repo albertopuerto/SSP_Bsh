@@ -15,6 +15,13 @@
         <value>Agreement Request Portal</value>
     </labels>
     <labels>
+        <fullName>ApprovalCreatorCannotApprove</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Approval Creator Cannot Approve</shortDescription>
+        <value>You can&#39;t approve an approval you created yourself, you need another approver.</value>
+    </labels>
+    <labels>
         <fullName>ApttusEMailServiceAddress</fullName>
         <language>en_US</language>
         <protected>false</protected>

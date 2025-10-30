@@ -19659,10 +19659,6 @@
         <apexClass>QuoteLineEmailController_Test</apexClass>
         <enabled>true</enabled>
     </classAccesses>
-    <pageAccesses>
-        <apexPage>ReasignPage</apexPage>
-        <enabled>true</enabled>
-    </pageAccesses>
     <classAccesses>
         <apexClass>TestFactory</apexClass>
         <enabled>true</enabled>
@@ -19971,6 +19967,10 @@
         <apexClass>sbaa__ApprovalExtControllerTests</apexClass>
         <enabled>true</enabled>
     </classAccesses>
+    <pageAccesses>
+        <apexPage>ReasignPage</apexPage>
+        <enabled>true</enabled>
+    </pageAccesses>
     <pageAccesses>
         <apexPage>APTSMD_StartWizard</apexPage>
         <enabled>true</enabled>
