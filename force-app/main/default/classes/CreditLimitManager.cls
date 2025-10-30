@@ -111,7 +111,7 @@ public with sharing class CreditLimitManager {
             lastInfoWrapper.message= creditLimitresponse.getBody();
             lastInfoWrapper.status= creditLimitresponse.getStatusCode();
             lastInfoWrapper.success= false;
-            Logger.error('APX-INT,APX-EXC - Error while doing the credit limit callout for the object - '+ objectApiName+'-'+ creditLimitresponse.getStatusCode() +'-'+creditLimitresponse.getStatus())
+            Logger.error('APX-INT,APX-EXC - Error while fetching the credit limit callout for the object - '+ objectApiName+'-'+ creditLimitresponse.getStatusCode() +'-'+creditLimitresponse.getStatus())
             .addTags(('APX-INT,APX-EXC').split(','))
             .setRecordId(objectRecordId);
         }
@@ -174,7 +174,7 @@ public with sharing class CreditLimitManager {
             uow.commitWork();
 
         }else{
-            Logger.error('APX-INT,APX-EXC - Error while doing the quote vertex callout - '+ vertexResponse.getStatusCode() +'-'+vertexResponse.getStatus())
+            Logger.error('APX-INT,APX-EXC - Error while fetching the quote vertex callout - '+ vertexResponse.getStatusCode() +'-'+vertexResponse.getStatus())
             .addTags(('APX-INT,APX-EXC').split(','))
             .setRecordId(objectRecordId);
         }
@@ -224,7 +224,7 @@ public with sharing class CreditLimitManager {
             uow.commitWork();
 
         }else{
-            Logger.error('APX-INT,APX-EXC - Error while doing the order vertex callout - '+ vertexResponse.getStatusCode() +'-'+vertexResponse.getStatus())
+            Logger.error('APX-INT,APX-EXC - Error while fetching the order vertex callout - '+ vertexResponse.getStatusCode() +'-'+vertexResponse.getStatus())
             .addTags(('APX-INT,APX-EXC').split(','))
             .setRecordId(objectRecordId);
         }
