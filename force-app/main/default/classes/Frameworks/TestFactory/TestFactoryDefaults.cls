@@ -69,7 +69,50 @@ public with sharing class TestFactoryDefaults{
 					Order.EffectiveDate => Date.today(),
                     Order.pkl_INCOTerms1__c => 'CPT - Carriage Paid To',
                     Order.pkl_PaymentTerms__c=> 'Due on receipt',
-                    Order.CurrencyIsoCode=> 'EUR'
+                    Order.CurrencyIsoCode=> 'EUR',
+					Order.Pricebook2Id => Test.getStandardPricebookId()
+			};
+		}
+	}
+
+	/**
+	* @author       APC
+	* @description  OrderItemDefaults constructor
+	*/
+	public class OrderItemDefaults implements TestFactory.FieldDefaults {
+		/**
+		* @author       APC
+		* @description  define orderItems getFieldDefaults()
+		* @return		Map<Schema.SObjectField, Object>
+		*/
+		public Map<Schema.SObjectField, Object> getFieldDefaults() {
+			return new Map<Schema.SObjectField, Object> {
+					OrderItem.txt_SAPExternalLineItemId__c => '123124124',
+					OrderItem.UnitPrice => 20,
+                    OrderItem.pkl_INCOTerms1__c => 'CPT - Carriage Paid To',
+                    OrderItem.pkl_PaymentTerms__c=> 'Due on receipt',
+					OrderItem.pkl_QuantityUnit__c=> 'Each',
+					OrderItem.txt_INCOTerms2__c=> 'Due on receipt test',
+                    OrderItem.Quantity=> 2
+			};
+		}
+	}
+
+	/**
+	* @author       APC
+	* @description  PricebookEntryDefaults constructor
+	*/
+	public class PricebookEntryDefaults implements TestFactory.FieldDefaults {
+		/**
+		* @author       APC
+		* @description  define orderItems getFieldDefaults()
+		* @return		Map<Schema.SObjectField, Object>
+		*/
+		public Map<Schema.SObjectField, Object> getFieldDefaults() {
+			return new Map<Schema.SObjectField, Object> {
+					PricebookEntry.GearsetExternalId__c => '123124124',
+					PricebookEntry.Pricebook2Id => Test.getStandardPricebookId(),
+					PricebookEntry.UnitPrice => 10
 			};
 		}
 	}
@@ -95,7 +138,7 @@ public with sharing class TestFactoryDefaults{
 
 	/**
 	* @author       APC
-	* @description  OpportunityDefault constructor
+	* @description  OpportunityDefaults constructor
 	*/
 	public class OpportunityDefaults implements TestFactory.FieldDefaults {
 		/**
@@ -167,7 +210,8 @@ public with sharing class TestFactoryDefaults{
 				User.Country => 'United States',
 				User.Timezonesidkey => 'America/Los_Angeles',
 				User.FederationIdentifier => 'userPM@etasbosch.com' + system.currentTimeMillis(),
-				User.Username => 'userPM@etasbosch.com' + system.currentTimeMillis()
+				User.Username => 'userPM@etasbosch.com' + system.currentTimeMillis(),
+				User.IsActive  => true
 			};
 		}
 	}
