@@ -3,7 +3,7 @@
     <actionCalls>
         <name>Quote_Terms_Processing_Log</name>
         <label>Quote Terms Processing Log</label>
-        <locationX>50</locationX>
+        <locationX>314</locationX>
         <locationY>647</locationY>
         <actionName>FlowLogEntry</actionName>
         <actionType>apex</actionType>
@@ -42,7 +42,7 @@
     <actionCalls>
         <name>Quote_Terms_Processing_Log2</name>
         <label>Quote Terms Processing Log</label>
-        <locationX>314</locationX>
+        <locationX>842</locationX>
         <locationY>647</locationY>
         <actionName>FlowLogEntry</actionName>
         <actionType>apex</actionType>
@@ -76,7 +76,7 @@
         <description>Save the Logs</description>
         <name>Save_Logs</name>
         <label>Save Logs</label>
-        <locationX>50</locationX>
+        <locationX>314</locationX>
         <locationY>755</locationY>
         <actionName>Logger</actionName>
         <actionType>apex</actionType>
@@ -88,7 +88,7 @@
         <description>Save the Logs</description>
         <name>Save_Logs1</name>
         <label>Save Logs</label>
-        <locationX>314</locationX>
+        <locationX>842</locationX>
         <locationY>755</locationY>
         <actionName>Logger</actionName>
         <actionType>apex</actionType>
@@ -101,7 +101,7 @@
     <decisions>
         <name>Decision_1</name>
         <label>Decision 1</label>
-        <locationX>182</locationX>
+        <locationX>314</locationX>
         <locationY>431</locationY>
         <defaultConnector>
             <targetReference>Include_Standard_T_C</targetReference>
@@ -162,7 +162,7 @@
     <recordLookups>
         <name>Get_Active_Custom_Quote_Terms</name>
         <label>Get Active Custom Quote Terms</label>
-        <locationX>182</locationX>
+        <locationX>314</locationX>
         <locationY>323</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
@@ -207,9 +207,9 @@
         <label>Exclude Standard T&amp;C</label>
         <locationX>50</locationX>
         <locationY>539</locationY>
-        <connector>
+        <faultConnector>
             <targetReference>Quote_Terms_Processing_Log</targetReference>
-        </connector>
+        </faultConnector>
         <filterLogic>and</filterLogic>
         <filters>
             <field>Id</field>
@@ -229,11 +229,11 @@
     <recordUpdates>
         <name>Include_Standard_T_C</name>
         <label>Include Standard T&amp;C</label>
-        <locationX>314</locationX>
+        <locationX>578</locationX>
         <locationY>539</locationY>
-        <connector>
+        <faultConnector>
             <targetReference>Quote_Terms_Processing_Log2</targetReference>
-        </connector>
+        </faultConnector>
         <filterLogic>and</filterLogic>
         <filters>
             <field>Id</field>
@@ -251,7 +251,7 @@
         <object>SBQQ__Quote__c</object>
     </recordUpdates>
     <start>
-        <locationX>56</locationX>
+        <locationX>188</locationX>
         <locationY>0</locationY>
         <connector>
             <targetReference>Get_Active_Custom_Quote_Terms</targetReference>
