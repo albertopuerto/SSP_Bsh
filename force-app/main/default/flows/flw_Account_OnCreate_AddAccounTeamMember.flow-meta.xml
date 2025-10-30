@@ -12,6 +12,12 @@
         </connector>
         <flowTransactionModel>CurrentTransaction</flowTransactionModel>
         <inputParameters>
+            <name>faultMessage</name>
+            <value>
+                <elementReference>$Flow.FaultMessage</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
             <name>flowName</name>
             <value>
                 <stringValue>flw_Account_OnCreate_AddAccounTeamMember</stringValue>
@@ -20,19 +26,19 @@
         <inputParameters>
             <name>loggingLevelName</name>
             <value>
-                <stringValue>INFO</stringValue>
+                <stringValue>ERROR</stringValue>
             </value>
         </inputParameters>
         <inputParameters>
             <name>message</name>
             <value>
-                <stringValue>Account team member created for SCO user on account {!$Record.Name}</stringValue>
+                <stringValue>FLW-DML-00007-Account team member created for SCO user on account {!$Record.Name}</stringValue>
             </value>
         </inputParameters>
         <inputParameters>
             <name>tagsString</name>
             <value>
-                <stringValue>FLW-DML-00007</stringValue>
+                <stringValue>FLW-DML</stringValue>
             </value>
         </inputParameters>
         <nameSegment>FlowLogEntry</nameSegment>
