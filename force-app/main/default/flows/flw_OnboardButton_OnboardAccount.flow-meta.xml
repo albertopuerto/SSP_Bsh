@@ -528,31 +528,31 @@
         <inputAssignments>
             <field>BillingCity</field>
             <value>
-                <elementReference>City</elementReference>
+                <elementReference>Account.BillingCity</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
             <field>BillingCountry</field>
             <value>
-                <elementReference>Country</elementReference>
+                <elementReference>Account.BillingCountry</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
             <field>BillingPostalCode</field>
             <value>
-                <elementReference>Zip_Postal_Code</elementReference>
+                <elementReference>Account.BillingPostalCode</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
             <field>BillingState</field>
             <value>
-                <elementReference>State</elementReference>
+                <elementReference>Account.BillingState</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
             <field>BillingStreet</field>
             <value>
-                <elementReference>Street</elementReference>
+                <elementReference>Account.BillingStreet</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
@@ -734,44 +734,10 @@
             <isRequired>true</isRequired>
         </fields>
         <fields>
-            <name>Street</name>
-            <dataType>String</dataType>
-            <fieldText>Street</fieldText>
-            <fieldType>InputField</fieldType>
+            <fieldType>ObjectProvided</fieldType>
             <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
-            <isRequired>true</isRequired>
-        </fields>
-        <fields>
-            <name>City</name>
-            <dataType>String</dataType>
-            <fieldText>City</fieldText>
-            <fieldType>InputField</fieldType>
-            <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
-            <isRequired>true</isRequired>
-        </fields>
-        <fields>
-            <name>State</name>
-            <dataType>String</dataType>
-            <fieldText>State</fieldText>
-            <fieldType>InputField</fieldType>
-            <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
-            <isRequired>true</isRequired>
-        </fields>
-        <fields>
-            <name>Country</name>
-            <dataType>String</dataType>
-            <fieldText>Country</fieldText>
-            <fieldType>InputField</fieldType>
-            <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
-            <isRequired>true</isRequired>
-        </fields>
-        <fields>
-            <name>Zip_Postal_Code</name>
-            <dataType>String</dataType>
-            <fieldText>Zip/Postal Code</fieldText>
-            <fieldType>InputField</fieldType>
-            <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
-            <isRequired>true</isRequired>
+            <isRequired>false</isRequired>
+            <objectFieldReference>Account.BillingAddress</objectFieldReference>
         </fields>
         <nextOrFinishButtonLabel>Validate Address</nextOrFinishButtonLabel>
         <showFooter>true</showFooter>

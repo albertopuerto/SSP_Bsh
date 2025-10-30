@@ -193,6 +193,7 @@
         <searchFilterFields>Apttus__Contract_End_Date__c</searchFilterFields>
         <searchResultsAdditionalFields>Apttus__FF_Agreement_Number__c</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>Apttus__Account__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>APTS_Record_Type_Name__c</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>Apttus__Status_Category__c</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>Apttus__Status__c</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>Apttus__Contract_End_Date__c</searchResultsAdditionalFields>

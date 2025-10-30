@@ -147,6 +147,16 @@
                 <default>false</default>
                 <label>ETAS/ECI</label>
             </value>
+            <value>
+                <fullName>ETAS/CKR</fullName>
+                <default>false</default>
+                <label>ETAS/CKR</label>
+            </value>
+            <value>
+                <fullName>ETAS/CJP</fullName>
+                <default>false</default>
+                <label>ETAS/CJP</label>
+            </value>
         </valueSetDefinition>
     </valueSet>
 </CustomField>
