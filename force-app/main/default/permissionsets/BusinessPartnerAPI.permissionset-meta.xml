@@ -88,11 +88,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Account.txt_VATID__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
         <field>BoschPartner_PartnerFunction__c.chk_DefaultPartner__c</field>
         <readable>true</readable>
     </fieldPermissions>
