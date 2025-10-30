@@ -17,7 +17,7 @@
         <inputParameters>
             <name>loggingLevelName</name>
             <value>
-                <stringValue>INFO</stringValue>
+                <stringValue>Error</stringValue>
             </value>
         </inputParameters>
         <inputParameters>
