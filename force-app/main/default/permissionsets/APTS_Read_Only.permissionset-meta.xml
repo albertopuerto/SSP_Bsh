@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <PermissionSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Conga Contract Management Read Only Permission that allows users to view Agreements</description>
+    <hasActivationRequired>false</hasActivationRequired>
+    <label>Conga Read Only</label>
     <classAccesses>
         <apexClass>APTS_AgreementCounts</apexClass>
         <enabled>true</enabled>
@@ -5300,7 +5303,6 @@
         <apexClass>cnga__UserContext</apexClass>
         <enabled>true</enabled>
     </classAccesses>
-    <description>Conga Contract Management Read Only Permission that allows users to view Agreements</description>
     <fieldPermissions>
         <editable>false</editable>
         <field>Apttus__APTS_Agreement__c.APTS_Agreed_Use__c</field>
@@ -6486,8 +6488,6 @@
         <field>Apttus__DocumentVersion__c.Apttus__View__c</field>
         <readable>true</readable>
     </fieldPermissions>
-    <hasActivationRequired>false</hasActivationRequired>
-    <label>Conga Read Only</label>
     <objectPermissions>
         <allowCreate>false</allowCreate>
         <allowDelete>false</allowDelete>
@@ -6810,6 +6810,7 @@
         <allowRead>true</allowRead>
         <modifyAllRecords>false</modifyAllRecords>
         <object>Apttus__RetentionPolicy__c</object>
+        <viewAllFields>false</viewAllFields>
         <viewAllRecords>false</viewAllRecords>
     </objectPermissions>
     <objectPermissions>
