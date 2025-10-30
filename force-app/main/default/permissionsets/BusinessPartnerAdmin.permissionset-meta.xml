@@ -7,7 +7,7 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
+        <editable>false</editable>
         <field>Account.AccountSource</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -309,11 +309,6 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>BoschPartner_PartnerFunction__c.chk_DefaultPartner__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>BoschPartner_PartnerFunction__c.lkp_BoschPartnerFunction__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
