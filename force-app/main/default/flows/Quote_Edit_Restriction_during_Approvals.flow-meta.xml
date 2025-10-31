@@ -1,6 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
     <actionCalls>
+        <name>Log_Quote_Edit_Restricted</name>
+        <label>Log Quote Edit Restricted</label>
+        <locationX>50</locationX>
+        <locationY>647</locationY>
+        <actionName>FlowLogEntry</actionName>
+        <actionType>apex</actionType>
+        <connector>
+            <targetReference>Save_Logs</targetReference>
+        </connector>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>flowName</name>
+            <value>
+                <stringValue>Quote_Edit_Restriction_during_Approvals</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>loggingLevelName</name>
+            <value>
+                <stringValue>ERROR</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>message</name>
+            <value>
+                <stringValue>Quote edit restriction enforced for quote {!$Record.Name} - currently in approval process</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>recordId</name>
+            <value>
+                <elementReference>$Record.SubmittedUser__c</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>tagsString</name>
+            <value>
+                <stringValue>quote-restriction</stringValue>
+            </value>
+        </inputParameters>
+        <nameSegment>FlowLogEntry</nameSegment>
+        <offset>0</offset>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </actionCalls>
+    <actionCalls>
         <name>Quote_Validator</name>
         <label>Quote Validator</label>
         <locationX>182</locationX>
@@ -27,6 +72,18 @@
         <offset>0</offset>
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </actionCalls>
+    <actionCalls>
+        <description>Save the Logs</description>
+        <name>Save_Logs</name>
+        <label>Save Logs</label>
+        <locationX>50</locationX>
+        <locationY>755</locationY>
+        <actionName>Logger</actionName>
+        <actionType>apex</actionType>
+        <flowTransactionModel>Automatic</flowTransactionModel>
+        <nameSegment>Logger</nameSegment>
+        <offset>0</offset>
+    </actionCalls>
     <apiVersion>63.0</apiVersion>
     <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
     <customErrors>
@@ -34,6 +91,9 @@
         <label>Cannot Edit Quote in Approval Process</label>
         <locationX>50</locationX>
         <locationY>539</locationY>
+        <connector>
+            <targetReference>Log_Quote_Edit_Restricted</targetReference>
+        </connector>
         <customErrorMessages>
             <errorMessage>&quot;You cannot edit this quote because it is in the approval process. Only designated approvers can make changes while approval is pending.&quot;</errorMessage>
             <isFieldError>false</isFieldError>
