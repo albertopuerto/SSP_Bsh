@@ -1,0 +1,64 @@
+{
+    "Envelope": {
+        "Header": "",
+        "Body": {
+            "CreditWorthinessResponse": {
+                "CreditWorthiness": {
+                    "CreditSegmentInternalID": "5370",
+                    "Indicator": "false",
+                    "CheckingDescription": [
+                        {
+                            "@languageCode": "en",
+                            "$": "Credit segment 5370 of partner 4001831001"
+                        },
+                        {
+                            "@languageCode": "en",
+                            "$": "Credit limit 0,00 EUR has been exceeded by 12.368,00 EUR in the horizon"
+                        },
+                        {
+                            "@languageCode": "EN",
+                            "$": "ID: 374438069"
+                        }
+                    ],
+                    "DebtorPartyBlockedIndicator": "false",
+                    "DebtorPartySpecialAttentionRequiredIndicator": "false",
+                    "DynamicCheckHorizonEndDate": "2025-07-23",
+                    "DebtorParty": {
+                        "InternalID": {
+                            "@schemeID": "PartyID",
+                            "@schemeAgencyID": "SAP0BHL011",
+                            "$": "4001831001"
+                        }
+                    },
+                    "Rating": {
+                        "Code": "       87",
+                        "ValidityPeriod": {
+                            "EndDateTime": "2025-12-20T00:00:00Z"
+                        }
+                    },
+                    "RiskClass": {
+                        "Code": "B",
+                        "ValidityPeriod": {
+                            "EndDateTime": "2025-12-20T00:00:00Z"
+                        }
+                    },
+                    "CreditLimit": {
+                        "Amount": {
+                            "@currencyCode": "EUR",
+                            "$": "0.0"
+                        },
+                        "ValidityPeriod": {
+                            "EndDateTime": "2026-06-18T00:00:00Z"
+                        }
+                    },
+                    "CreditExposure": {
+                        "Amount": {
+                            "@currencyCode": "EUR",
+                            "$": "12368.0"
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

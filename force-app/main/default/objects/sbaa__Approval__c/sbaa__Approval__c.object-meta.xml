@@ -161,7 +161,7 @@
     <enableSearch>true</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
-    <externalSharingModel>ReadWrite</externalSharingModel>
+    <externalSharingModel>Private</externalSharingModel>
     <label>Approval</label>
     <nameField>
         <displayFormat>A-{00000}</displayFormat>
@@ -170,6 +170,6 @@
     </nameField>
     <pluralLabel>Approvals</pluralLabel>
     <searchLayouts />
-    <sharingModel>ReadWrite</sharingModel>
+    <sharingModel>Read</sharingModel>
     <visibility>Public</visibility>
 </CustomObject>

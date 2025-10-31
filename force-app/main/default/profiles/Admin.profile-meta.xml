@@ -19072,6 +19072,9 @@
         <layout>Apttus__DocumentImportLog__c-Apttus__Document Import Log Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
+        <layout>Apttus__RetentionPolicy__c-Apttus__Retention Policy Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
         <layout>Asset-Asset Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
@@ -19659,10 +19662,6 @@
         <apexClass>QuoteLineEmailController_Test</apexClass>
         <enabled>true</enabled>
     </classAccesses>
-    <pageAccesses>
-        <apexPage>ReasignPage</apexPage>
-        <enabled>true</enabled>
-    </pageAccesses>
     <classAccesses>
         <apexClass>TestFactory</apexClass>
         <enabled>true</enabled>
@@ -19972,6 +19971,14 @@
         <enabled>true</enabled>
     </classAccesses>
     <pageAccesses>
+        <apexPage>Apttus__RetentionPolicyEdit</apexPage>
+        <enabled>true</enabled>
+    </pageAccesses>
+    <pageAccesses>
+        <apexPage>ReasignPage</apexPage>
+        <enabled>true</enabled>
+    </pageAccesses>
+    <pageAccesses>
         <apexPage>APTSMD_StartWizard</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
@@ -20219,6 +20226,10 @@
         <apexPage>SubmitQuote</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
+    <tabVisibilities>
+        <tab>Apttus__RetentionPolicy__c</tab>
+        <visibility>DefaultOn</visibility>
+    </tabVisibilities>
     <tabVisibilities>
         <tab>BoschPartnerFunction__c</tab>
         <visibility>DefaultOn</visibility>

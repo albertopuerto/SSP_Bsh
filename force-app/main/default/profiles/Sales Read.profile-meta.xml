@@ -2524,6 +2524,10 @@
         <readable>true</readable>
     </fieldPermissions>
     <tabVisibilities>
+        <tab>Apttus__RetentionPolicy__c</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
         <tab>BoschPartnerFunction__c</tab>
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
@@ -3387,6 +3391,9 @@
     </layoutAssignments>
     <layoutAssignments>
         <layout>Apttus__DocumentImportLog__c-Apttus__Document Import Log Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Apttus__RetentionPolicy__c-Apttus__Retention Policy Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
         <layout>Asset-Asset Layout</layout>

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>ftxt_OtherPartySignedByTitle__c</fullName>
-    <description>Other party&#39;s position of the person who signed the agreement (first)</description>
+    <description>Title of the person from customer/supplier/partner who has signed the agrement first</description>
     <externalId>false</externalId>
     <formula>Apttus__Other_Party_Signed_By__r.Title</formula>
-    <inlineHelpText>Other party&#39;s position of the person who signed the agreement (first)</inlineHelpText>
+    <inlineHelpText>Title of the person from customer/supplier/partner who has signed the agrement first</inlineHelpText>
     <label>Other Party Signed By Title</label>
     <required>false</required>
     <trackHistory>false</trackHistory>

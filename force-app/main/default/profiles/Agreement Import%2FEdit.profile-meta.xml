@@ -2392,6 +2392,9 @@
         <recordType>Apttus__APTS_Agreement__c.BPA</recordType>
     </layoutAssignments>
     <layoutAssignments>
+        <layout>Apttus__RetentionPolicy__c-Apttus__Retention Policy Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
         <layout>Contact-Contact Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
@@ -3300,6 +3303,10 @@
         <recordType>SBQQ__ConfigurationAttribute__c.SBQQ__Global_Attribute</recordType>
         <visible>false</visible>
     </recordTypeVisibilities>
+    <tabVisibilities>
+        <tab>Apttus__RetentionPolicy__c</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
     <tabVisibilities>
         <tab>BoschPartnerFunction__c</tab>
         <visibility>DefaultOn</visibility>

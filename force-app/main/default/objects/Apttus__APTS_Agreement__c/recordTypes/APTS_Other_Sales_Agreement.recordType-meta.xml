@@ -1292,6 +1292,14 @@
             <default>false</default>
         </values>
         <values>
+            <fullName>ETAS%2FCJP</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>ETAS%2FCKR</fullName>
+            <default>false</default>
+        </values>
+        <values>
             <fullName>ETAS%2FCOM</fullName>
             <default>false</default>
         </values>
