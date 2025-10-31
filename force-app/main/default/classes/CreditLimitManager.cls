@@ -71,9 +71,7 @@ public with sharing class CreditLimitManager {
             lastInfoWrapper.message= ex.getMessage() + ex.getLineNumber();
             lastInfoWrapper.success= false;
 
-            Logger.error('APX-EXC-00002, - We found an error during the Credit Limit process - '+ ex.getMessage())
-                .addTags('APX-EXC')
-                .setRecordId(objectRecordId);
+        	Logger.error('We found an error during the process - '+ ex.getMessage()).setRecordId(objectRecordId);
         }finally{
         	saveLog();
         }
@@ -113,8 +111,8 @@ public with sharing class CreditLimitManager {
                 lastInfoWrapper.message= creditLimitresponse.getBody();
                 lastInfoWrapper.status= creditLimitresponse.getStatusCode();
                 lastInfoWrapper.success= false;
-                Logger.error('APX-INT-00004, - Error while doing the credit limit callout for the object - '+ objectApiName+'-'+ creditLimitresponse.getStatusCode() +'-'+creditLimitresponse.getBody())
-                .addTags('APX-INT')
+                Logger.error('Error while doing the credit limit callout for the object - '+ objectApiName+'-'+ creditLimitresponse.getStatusCode() +'-'+creditLimitresponse.getStatus())
+                .addTags(('API,TEST').split(','))
                 .setRecordId(objectRecordId);
             }
         }
@@ -175,8 +173,8 @@ public with sharing class CreditLimitManager {
             uow.commitWork();
 
         }else{
-            Logger.error('APX-INT-00003, - Error while retrieving the quote vertex callout - '+ vertexResponse.getStatusCode() +'-'+vertexResponse.getBody())
-            .addTags('APX-INT')
+            Logger.error('Error while doing the quote vertex callout - '+ vertexResponse.getStatusCode() +'-'+vertexResponse.getStatus())
+            .addTags(('API,TEST').split(','))
             .setRecordId(objectRecordId);
         }
 
@@ -227,8 +225,8 @@ public with sharing class CreditLimitManager {
             uow.commitWork();
 
         }else{
-            Logger.error('APX-INT-00002, - Error while retrieving the order vertex callout - '+ vertexResponse.getStatusCode() +'-'+vertexResponse.getBody())
-            .addTags('APX-INT')
+            Logger.error('Error while doing the order vertex callout - '+ vertexResponse.getStatusCode() +'-'+vertexResponse.getStatus())
+            .addTags(('API,TEST').split(','))
             .setRecordId(objectRecordId);
         }
 
@@ -285,8 +283,8 @@ public with sharing class CreditLimitManager {
                 lastInfoWrapper.message= creditLimitresponse.getBody();
                 lastInfoWrapper.status= creditLimitresponse.getStatusCode();
                 lastInfoWrapper.success= false;
-                Logger.error('APX-INT-00001, - Error while fetching the account credit limit callout - '+ creditLimitresponse.getStatusCode() +'-'+creditLimitresponse.getBody())
-                .addTags('APX-INT')
+                Logger.error('Error while doing the account credit limit callout - '+ creditLimitresponse.getStatusCode() +'-'+creditLimitresponse.getStatus())
+                .addTags(('API,TEST').split(','))
                 .setRecordId(objectRecordId);
             }
         }
