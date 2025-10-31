@@ -13,8 +13,7 @@ public class AccountErrorServiceTest {
         String requestBody = '{"businessPartnerCreateError": {' +
             '"Id": "' + testAccount.Id + '",' +
             '"Status Code": "400",' +
-            '"Status Text": "Creation of Business Partner in Athena Failed",' +
-            '"CorrelationId": "test-correlation-123"' +
+            '"Status Text": "Creation of Business Partner in Athena Failed"' +
         '}}';
         
         Test.startTest();
@@ -28,7 +27,6 @@ public class AccountErrorServiceTest {
         // Assert that the response matches expected RESP5 format
         System.assertEquals('0', response.get('errorcode'), 'Error code should be 0 for success');
         System.assertEquals('Error processed successfully', response.get('errorMessage'), 'Success message should match');
-        System.assertEquals('test-correlation-123', response.get('correlationId'), 'CorrelationId should match');
         System.assertEquals(String.valueOf(testAccount.Id), response.get('Id'), 'Account Id should match');
         
         // Verify account status was updated to "Error in sending to Athena"
@@ -51,8 +49,7 @@ public class AccountErrorServiceTest {
         String requestBody = '{"businessPartnerCreateError": {' +
             '"Id": "' + testAccount.Id + '",' +
             '"Status Code": "500",' +
-            '"Status Text": "Creation of Business Partner in Athena Failed",' +
-            '"CorrelationId": "test-correlation-123"' +
+            '"Status Text": "Creation of Business Partner in Athena Failed"' +
         '}}';
         
         Test.startTest();
@@ -66,7 +63,6 @@ public class AccountErrorServiceTest {
         // Assert that the response matches expected RESP5 format
         System.assertEquals('0', response.get('errorcode'), 'Error code should be 0 for success');
         System.assertEquals('Error processed successfully', response.get('errorMessage'), 'Success message should match');
-        System.assertEquals('test-correlation-123', response.get('correlationId'), 'CorrelationId should match');
         System.assertEquals(String.valueOf(testAccount.Id), response.get('Id'), 'Account Id should match');
         
         // Verify account status was updated to "Error in sending to Athena"
@@ -89,8 +85,7 @@ public class AccountErrorServiceTest {
         String requestBody = '{"businessPartnerCreateError": {' +
             '"Id": "' + testAccount.Id + '",' +
             '"Status Code": "400",' +
-            '"Status Text": "Mandatory field not present",' +
-            '"CorrelationId": "test-correlation-400"' +
+            '"Status Text": "Mandatory field not present"' +
         '}}';
         
         Test.startTest();
@@ -103,7 +98,6 @@ public class AccountErrorServiceTest {
         // Assert successful processing
         System.assertEquals('0', response.get('errorcode'), 'Error code should be 0 for 400 error');
         System.assertEquals('Error processed successfully', response.get('errorMessage'), 'Success message should match');
-        System.assertEquals('test-correlation-400', response.get('correlationId'), 'CorrelationId should match');
     }
     
     @IsTest
@@ -124,8 +118,7 @@ public class AccountErrorServiceTest {
             String requestBody = '{"businessPartnerCreateError": {' +
                 '"Id": "' + testAccount.Id + '",' +
                 '"Status Code": "400",' +
-                '"Status Text": "Creation of Business Partner in Athena Failed",' +
-                '"CorrelationId": "correlation-' + i + '"' +
+                '"Status Text": "Creation of Business Partner in Athena Failed"' +
             '}}';
             
             String responseString = AccountErrorService.handlePostRequest(requestBody);
@@ -133,7 +126,6 @@ public class AccountErrorServiceTest {
             
             // Assert successful processing for each account
             System.assertEquals('0', response.get('errorcode'), 'Error code should be 0 for account ' + i);
-            System.assertEquals('correlation-' + i, response.get('correlationId'), 'CorrelationId should match for account ' + i);
         }
         
         Test.stopTest();

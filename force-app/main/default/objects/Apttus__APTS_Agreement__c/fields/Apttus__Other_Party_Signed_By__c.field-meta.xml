@@ -4,7 +4,7 @@
     <deleteConstraint>SetNull</deleteConstraint>
     <deprecated>false</deprecated>
     <description>Link to contact record to identify external signatory</description>
-    <externalId>false</externalId>
+    <inlineHelpText>A person from customer/supplier/partner who has signed the agrement first</inlineHelpText>
     <label>Other Party Signed By</label>
     <referenceTo>Contact</referenceTo>
     <relationshipName>R00N50000001Xl0MEAS</relationshipName>

@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <PermissionSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>This Permission set is for Contact Requester for CLM</description>
+    <hasActivationRequired>false</hasActivationRequired>
+    <label>Conga Contract Requester</label>
     <applicationVisibilities>
         <application>Apttus_Approval__ApttusApprovalsManagement</application>
         <visible>true</visible>
@@ -5340,7 +5343,6 @@
         <enabled>true</enabled>
         <name>Agreement_Process_Flow_Setting__mdt</name>
     </customMetadataTypeAccesses>
-    <description>This Permission set is for Contact Requester for CLM</description>
     <fieldPermissions>
         <editable>true</editable>
         <field>Apttus_Approval__Approval_Request_History__c.Apttus_Approval__Action_Approve_Id__c</field>
@@ -9896,8 +9898,6 @@
         <field>Apttus__Wizard__c.Apttus__WizardStepStartId__c</field>
         <readable>true</readable>
     </fieldPermissions>
-    <hasActivationRequired>false</hasActivationRequired>
-    <label>Conga Contract Requester</label>
     <objectPermissions>
         <allowCreate>true</allowCreate>
         <allowDelete>true</allowDelete>
@@ -10292,6 +10292,7 @@
         <allowRead>true</allowRead>
         <modifyAllRecords>false</modifyAllRecords>
         <object>Apttus__RetentionPolicy__c</object>
+        <viewAllFields>false</viewAllFields>
         <viewAllRecords>false</viewAllRecords>
     </objectPermissions>
     <objectPermissions>
