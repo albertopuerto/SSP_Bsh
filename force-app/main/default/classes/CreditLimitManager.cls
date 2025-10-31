@@ -72,7 +72,7 @@ public with sharing class CreditLimitManager {
             lastInfoWrapper.success= false;
 
         	Logger.error('APX-EXC-00002, - We found an error during the Credit Limit process - '+ ex.getMessage())
-            .addTags('APX-EXC')
+            .addTags(new List<String>{'APX-EXC'})
             .setRecordId(objectRecordId);
         }finally{
         	saveLog();
@@ -114,7 +114,7 @@ public with sharing class CreditLimitManager {
             lastInfoWrapper.status= creditLimitresponse.getStatusCode();
             lastInfoWrapper.success= false;
             Logger.error('APX-INT-00004, - Error while doing the credit limit callout for the object - '+ objectApiName+'-'+ creditLimitresponse.getStatusCode() +'-'+creditLimitresponse.getBody())
-            .addTags('APX-INT')
+            .addTags(new List<String>{'APX-INT'})
             .setRecordId(objectRecordId);
         }
 
@@ -177,7 +177,7 @@ public with sharing class CreditLimitManager {
 
         }else{
             Logger.error('APX-INT-00003, - Error while retrieving the quote vertex callout - '+ vertexResponse.getStatusCode() +'-'+vertexResponse.getBody())
-            .addTags('APX-INT')
+            .addTags(new List<String>{'APX-INT'})
             .setRecordId(objectRecordId);
         }
 
@@ -227,7 +227,7 @@ public with sharing class CreditLimitManager {
 
         }else{
             Logger.error('APX-INT-00002, - Error while retrieving the order vertex callout - '+ vertexResponse.getStatusCode() +'-'+vertexResponse.getBody())
-            .addTags('APX-INT')
+            .addTags(new List<String>{'APX-INT'})
             .setRecordId(objectRecordId);
         }
 
@@ -285,7 +285,7 @@ public with sharing class CreditLimitManager {
                 lastInfoWrapper.status= creditLimitresponse.getStatusCode();
                 lastInfoWrapper.success= false;
                 Logger.error('APX-INT-00001, - Error while fetching the account credit limit callout - '+ creditLimitresponse.getStatusCode() +'-'+creditLimitresponse.getBody())
-                .addTags('APX-INT')
+                .addTags(new List<String>{'APX-INT'})
                 .setRecordId(objectRecordId);
             }
         }
