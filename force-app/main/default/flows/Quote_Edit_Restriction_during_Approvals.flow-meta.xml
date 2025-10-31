@@ -24,9 +24,11 @@
             </value>
         </inputParameters>
         <nameSegment>GroupService</nameSegment>
+        <offset>0</offset>
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </actionCalls>
     <apiVersion>63.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
     <customErrors>
         <name>Cannot_Edit_Quote_in_Approval_Process</name>
         <label>Cannot Edit Quote in Approval Process</label>
@@ -87,7 +89,7 @@
         <connector>
             <targetReference>Quote_Validator</targetReference>
         </connector>
-        <filterLogic>(1 AND 2) OR (3 AND 4)</filterLogic>
+        <filterLogic>(1 AND 2 AND 5 AND 6) OR (3 AND 4 AND 5 AND 6)</filterLogic>
         <filters>
             <field>SBQQ__Status__c</field>
             <operator>EqualTo</operator>
@@ -114,6 +116,20 @@
             <operator>NotEqualTo</operator>
             <value>
                 <stringValue>Approval Pending</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>SBQQ__Status__c</field>
+            <operator>NotEqualTo</operator>
+            <value>
+                <stringValue>Rejected</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>SBQQ__Status__c</field>
+            <operator>NotEqualTo</operator>
+            <value>
+                <stringValue>Approved</stringValue>
             </value>
         </filters>
         <object>SBQQ__Quote__c</object>
