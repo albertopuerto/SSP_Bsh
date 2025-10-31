@@ -26,6 +26,11 @@
                 <default>false</default>
                 <label>BBCUBP</label>
             </value>
+            <value>
+                <fullName>BBCUPR</fullName>
+                <default>false</default>
+                <label>BBCUPR</label>
+            </value>
         </valueSetDefinition>
     </valueSet>
     <visibleLines>4</visibleLines>

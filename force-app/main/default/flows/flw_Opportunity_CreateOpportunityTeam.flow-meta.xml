@@ -1,6 +1,109 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <name>Log_Add_Opp_Owner_Error</name>
+        <label>Log_Add_Opp_Owner_Error</label>
+        <locationX>446</locationX>
+        <locationY>1787</locationY>
+        <actionName>FlowLogEntry</actionName>
+        <actionType>apex</actionType>
+        <connector>
+            <targetReference>Save_Log2</targetReference>
+        </connector>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>flowName</name>
+            <value>
+                <stringValue>flw_Opportunity_CreateOpportunityTeam</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>loggingLevelName</name>
+            <value>
+                <stringValue>ERROR</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>message</name>
+            <value>
+                <stringValue>Failed to add opportunity owner to opportunity team: {!$Flow.FaultMessage}</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>tagsString</name>
+            <value>
+                <stringValue>FLW-DML-00006</stringValue>
+            </value>
+        </inputParameters>
+        <nameSegment>FlowLogEntry</nameSegment>
+        <offset>0</offset>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </actionCalls>
+    <actionCalls>
+        <name>Log_Opportunity_Team_Creation_Error</name>
+        <label>Log_Opportunity_Team_Creation_Error</label>
+        <locationX>710</locationX>
+        <locationY>1463</locationY>
+        <actionName>FlowLogEntry</actionName>
+        <actionType>apex</actionType>
+        <connector>
+            <targetReference>Save_Log</targetReference>
+        </connector>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>flowName</name>
+            <value>
+                <stringValue>flw_Opportunity_CreateOpportunityTeam</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>loggingLevelName</name>
+            <value>
+                <stringValue>ERROR</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>message</name>
+            <value>
+                <stringValue>Failed to create opportunity team: {!$Flow.FaultMessage}</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>tagsString</name>
+            <value>
+                <stringValue>FLW-DML-00005</stringValue>
+            </value>
+        </inputParameters>
+        <nameSegment>FlowLogEntry</nameSegment>
+        <offset>0</offset>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </actionCalls>
+    <actionCalls>
+        <description>Save the logs</description>
+        <name>Save_Log</name>
+        <label>Save Log</label>
+        <locationX>710</locationX>
+        <locationY>1571</locationY>
+        <actionName>Logger</actionName>
+        <actionType>apex</actionType>
+        <flowTransactionModel>Automatic</flowTransactionModel>
+        <nameSegment>Logger</nameSegment>
+        <offset>0</offset>
+    </actionCalls>
+    <actionCalls>
+        <description>Save the logs</description>
+        <name>Save_Log2</name>
+        <label>Save Log</label>
+        <locationX>446</locationX>
+        <locationY>1895</locationY>
+        <actionName>Logger</actionName>
+        <actionType>apex</actionType>
+        <flowTransactionModel>Automatic</flowTransactionModel>
+        <nameSegment>Logger</nameSegment>
+        <offset>0</offset>
+    </actionCalls>
     <apiVersion>62.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
     <assignments>
         <description>Change the role of Account Team Member to Acquisition Manager if he/she is an Opportunity Owner</description>
         <name>asgn_NewTeamRole</name>
@@ -110,6 +213,9 @@
         <label>Error Message</label>
         <locationX>710</locationX>
         <locationY>1355</locationY>
+        <connector>
+            <targetReference>Log_Opportunity_Team_Creation_Error</targetReference>
+        </connector>
         <customErrorMessages>
             <errorMessage>The Opportunity Team hasn&#39;t been created. Please review the Account Team on the Opportunity Account and fix the issue. The Opportunity Team should be the same as the Account Team.</errorMessage>
             <isFieldError>false</isFieldError>
@@ -120,6 +226,9 @@
         <label>Error Message Opp Owner</label>
         <locationX>446</locationX>
         <locationY>1679</locationY>
+        <connector>
+            <targetReference>Log_Add_Opp_Owner_Error</targetReference>
+        </connector>
         <customErrorMessages>
             <errorMessage>The Opportunity Owner hasn&#39;t been added to the Opportunity Team.</errorMessage>
             <isFieldError>false</isFieldError>

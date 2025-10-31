@@ -1,11 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
     <apiVersion>54.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <assignments>
+        <name>Assigned_to_a_Queue</name>
+        <label>Assigned to a Queue</label>
+        <locationX>1146</locationX>
+        <locationY>376</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.OwnerId</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Check_Queue_Mapping.Id</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Update_Agreement_fields_when_cancelled</targetReference>
+        </connector>
+    </assignments>
     <assignments>
         <name>Else_Update</name>
         <label>Set the start date</label>
-        <locationX>921</locationX>
-        <locationY>290</locationY>
+        <locationX>924</locationX>
+        <locationY>403</locationY>
         <assignmentItems>
             <assignToReference>$Record.Apttus__Perpetual__c</assignToReference>
             <operator>Assign</operator>
@@ -20,8 +37,8 @@
     <assignments>
         <name>Update_Agreement_Name_Requested_Date</name>
         <label>Update Agreement Name &amp; Requested Date</label>
-        <locationX>686</locationX>
-        <locationY>359</locationY>
+        <locationX>945</locationX>
+        <locationY>546</locationY>
         <assignmentItems>
             <assignToReference>$Record.Name</assignToReference>
             <operator>Assign</operator>
@@ -86,8 +103,8 @@
     <decisions>
         <name>Check_if_Agreement_is_Created</name>
         <label>Check if Agreement is Created</label>
-        <locationX>333</locationX>
-        <locationY>547</locationY>
+        <locationX>341</locationX>
+        <locationY>585</locationY>
         <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
         <rules>
             <name>Check_if_Agreement_is_Created1</name>
@@ -106,10 +123,64 @@
         </rules>
     </decisions>
     <decisions>
+        <name>Error_if_Queues_does_not_map_Category</name>
+        <label>Error if Queues does not map Category</label>
+        <locationX>1137</locationX>
+        <locationY>220</locationY>
+        <defaultConnector>
+            <targetReference>Assigned_to_a_Queue</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>ERROR_ON_Category_vs_Queue</name>
+            <conditionLogic>or</conditionLogic>
+            <conditions>
+                <leftValueReference>Queue_Name</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Error</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>Check_Queue_Mapping</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Update_Agreement_fields_when_cancelled</targetReference>
+            </connector>
+            <label>ERROR ON Category vs Queue</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>New_or_Existing_Agreement</name>
+        <label>New or Existing Agreement</label>
+        <locationX>783</locationX>
+        <locationY>101</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>NEW</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record__Prior.OwnerId</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Check_Queue_Mapping</targetReference>
+            </connector>
+            <label>NEW</label>
+        </rules>
+    </decisions>
+    <decisions>
         <name>Update_Agreement_fields_when_cancelled</name>
         <label>Update Agreement fields when cancelled</label>
-        <locationX>329</locationX>
-        <locationY>293</locationY>
+        <locationX>328</locationX>
+        <locationY>272</locationY>
         <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
         <rules>
             <name>Check_if_the_Agreement_is_Cancelled</name>
@@ -263,9 +334,6 @@
                     <booleanValue>true</booleanValue>
                 </rightValue>
             </conditions>
-            <connector>
-                <targetReference>Update_Agreement_Name_Requested_Date</targetReference>
-            </connector>
             <label>Check if Agreement is Created or Account or Start Date is Changed</label>
         </rules>
     </decisions>
@@ -297,6 +365,11 @@
         <dataType>Boolean</dataType>
         <expression>ISNULL({!$Record.Apttus__Contract_End_Date__c})</expression>
     </formulas>
+    <formulas>
+        <name>Queue_Name</name>
+        <dataType>String</dataType>
+        <expression>CASE({!$Record.Apttus__Agreement_Category__c}, &#39;Sales&#39;, &#39;SA1/GM&#39;, &#39;Privacy&#39;, &#39;EB&#39;,&#39;Error&#39;)</expression>
+    </formulas>
     <interviewLabel>Conga Agreement Before Insert/Update Actions Flow {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Conga Agreement Before Insert/Update Actions Flow</label>
     <processMetadataValues>
@@ -318,15 +391,36 @@
         </value>
     </processMetadataValues>
     <processType>AutoLaunchedFlow</processType>
+    <recordLookups>
+        <name>Check_Queue_Mapping</name>
+        <label>Check Queue Mapping</label>
+        <locationX>1053</locationX>
+        <locationY>84</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Error_if_Queues_does_not_map_Category</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Name</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>Queue_Name</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>Group</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
     <start>
         <locationX>211</locationX>
         <locationY>23</locationY>
         <connector>
-            <targetReference>Else_Update</targetReference>
+            <targetReference>New_or_Existing_Agreement</targetReference>
         </connector>
         <object>Apttus__APTS_Agreement__c</object>
         <recordTriggerType>CreateAndUpdate</recordTriggerType>
         <triggerType>RecordBeforeSave</triggerType>
     </start>
-    <status>Active</status>
+    <status>Obsolete</status>
 </Flow>
