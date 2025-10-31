@@ -443,7 +443,7 @@
     </fieldPermissions>
     <hasActivationRequired>false</hasActivationRequired>
     <label>Business Partner Admin</label>
-    <license>SalesforceAPIIntegrationPsl</license>
+    <license>Salesforce</license>
     <objectPermissions>
         <allowCreate>true</allowCreate>
         <allowDelete>true</allowDelete>
