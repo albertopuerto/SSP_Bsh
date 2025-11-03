@@ -35,7 +35,7 @@
     <description>Grants access to view and execute the Vertex calculation button, which performs an external API call to the Vertex tax service and updates the Amount field based on the response.</description>
     <externalCredentialPrincipalAccesses>
         <enabled>true</enabled>
-        <externalCredentialPrincipal>creditLimitOauthAuthentication-admin access</externalCredentialPrincipal>
+        <externalCredentialPrincipal>creditLimitOauthAuthentication-admin</externalCredentialPrincipal>
     </externalCredentialPrincipalAccesses>
     <externalCredentialPrincipalAccesses>
         <enabled>true</enabled>
