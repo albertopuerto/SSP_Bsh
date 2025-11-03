@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomMetadata xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <label>FSJ Test</label>
+    <protected>false</protected>
+    <values>
+        <field>accountId__c</field>
+        <value xsi:type="xsd:string">9319a5d4-b075-450a-87d6-4b563b454703</value>
+    </values>
+    <values>
+        <field>audience__c</field>
+        <value xsi:type="xsd:string">account-d.docusign.com</value>
+    </values>
+    <values>
+        <field>baseUrl__c</field>
+        <value xsi:type="xsd:string">https://demo.docusign.net/restapi/v2.1</value>
+    </values>
+    <values>
+        <field>certificateName__c</field>
+        <value xsi:type="xsd:string">docusignjwt</value>
+    </values>
+    <values>
+        <field>clientId__c</field>
+        <value xsi:type="xsd:string">5151dc0c-c0f4-49f9-a3b2-2d79a8518871</value>
+    </values>
+    <values>
+        <field>userId__c</field>
+        <value xsi:type="xsd:string">b2c33fe8-e796-401c-b894-f80d94bc11f6</value>
+    </values>
+</CustomMetadata>

@@ -1,0 +1,220 @@
+public with sharing class DocuSignService {
+    private String clientId;
+    private String userId;
+    private String audience;
+    private String certName;
+    private String accountId;
+    private String baseUrl;
+
+    private static String cachedAccessToken;
+    private static Long tokenExpirationEpoch;
+
+    public DocuSignService(String configName) {
+        Docusign_Setting__mdt config = [SELECT clientId__c, userId__c, audience__c, certificateName__c, accountId__c, baseUrl__c FROM Docusign_Setting__mdt WHERE DeveloperName = :configName LIMIT 1];
+        this.clientId = config.clientId__c;
+        this.userId = config.userId__c;
+        this.audience = config.audience__c;
+        this.certName = config.certificateName__c;
+        this.accountId = config.accountId__c;
+        this.baseUrl = config.baseUrl__c;
+    }
+
+    public String getAccessToken() {
+        Long now = DateTime.now().getTime() / 1000;
+
+        if (cachedAccessToken != null && tokenExpirationEpoch != null && now < tokenExpirationEpoch - 60) {
+            return cachedAccessToken;
+        }
+
+        Long exp = now + 3600;
+
+        Map<String, Object> header = new Map<String, Object>{
+            'alg' => 'RS256',
+            'typ' => 'JWT'
+        };
+
+        Map<String, Object> claims = new Map<String, Object>{
+            'iss' => clientId,
+            'sub' => userId,
+            'aud' => audience,
+            'iat' => now,
+            'exp' => exp,
+            'scope' => 'signature impersonation'
+        };
+
+        String headerEncoded = encodeBase64Url(JSON.serialize(header));
+        String claimsEncoded = encodeBase64Url(JSON.serialize(claims));
+        String unsignedJWT = headerEncoded + '.' + claimsEncoded;
+
+        Blob signature = Crypto.signWithCertificate('RSA-SHA256', Blob.valueOf(unsignedJWT), certName);
+        String signedJWT = unsignedJWT + '.' + encodeBase64Url(signature);
+
+        HttpRequest req = new HttpRequest();
+        req.setEndpoint('https://account-d.docusign.com/oauth/token');
+        req.setMethod('POST');
+        req.setHeader('Content-Type', 'application/x-www-form-urlencoded');
+        req.setBody('grant_type=urn:ietf:params:oauth:grant-type:jwt-bearer&assertion=' + signedJWT);
+
+        Http http = new Http();
+        HttpResponse res = http.send(req);
+
+        if (res.getStatusCode() != 200) {
+            throw new CalloutException('Failed to get access token: ' + res.getBody());
+        }
+
+        Map<String, Object> jsonRes = (Map<String, Object>) JSON.deserializeUntyped(res.getBody());
+        cachedAccessToken = (String) jsonRes.get('access_token');
+        tokenExpirationEpoch = now + ((Integer) jsonRes.get('expires_in'));
+
+        return cachedAccessToken;
+    }
+
+    public String getRecentEnvelopesJson(Integer daysBack) {
+        String accessToken = getAccessToken();
+
+        Datetime fromDateDT = Datetime.newInstance(Date.today().addDays(-daysBack), Time.newInstance(0, 0, 0, 0));
+        String fromDate = fromDateDT.formatGmt('yyyy-MM-dd\'T\'HH:mm:ss\'Z\'');
+        String endpoint = baseUrl + '/accounts/' + accountId + '/envelopes?from_date=' + fromDate;
+
+        HttpRequest req = new HttpRequest();
+        req.setEndpoint(endpoint);
+        req.setMethod('GET');
+        req.setHeader('Authorization', 'Bearer ' + accessToken);
+        req.setHeader('Accept', 'application/json');
+
+        Http http = new Http();
+        HttpResponse res = http.send(req);
+
+        if (res.getStatusCode() != 200) {
+            throw new CalloutException('Failed to retrieve envelopes: ' + res.getBody());
+        }
+
+        return res.getBody();
+    }
+
+    public String sendEnvelope(String recipientEmail, String recipientName, String documentBase64, String documentName) {
+        String accessToken = getAccessToken();
+        String endpoint = baseUrl + '/accounts/' + accountId + '/envelopes';
+
+        Map<String, Object> envelopeDefinition = new Map<String, Object>{
+            'emailSubject' => 'Por favor firme el documento adjunto',
+            'documents' => new List<Object>{
+                new Map<String, Object>{
+                    'documentBase64' => documentBase64,
+                    'name' => documentName,
+                    'fileExtension' => 'pdf',
+                    'documentId' => '1'
+                }
+            },
+            'recipients' => new Map<String, Object>{
+                'signers' => new List<Object>{
+                    new Map<String, Object>{
+                        'email' => recipientEmail,
+                        'name' => recipientName,
+                        'recipientId' => '1',
+                        'routingOrder' => '1',
+                        'tabs' => new Map<String, Object>{
+                            'signHereTabs' => new List<Object>{
+                                new Map<String, Object>{
+                                    'anchorString' => '/firma/',
+                                    'anchorYOffset' => '0',
+                                    'anchorUnits' => 'pixels',
+                                    'anchorXOffset' => '0'
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            'status' => 'sent'
+        };
+
+        HttpRequest req = new HttpRequest();
+        req.setEndpoint(endpoint);
+        req.setMethod('POST');
+        req.setHeader('Authorization', 'Bearer ' + accessToken);
+        req.setHeader('Content-Type', 'application/json');
+        req.setBody(JSON.serialize(envelopeDefinition));
+
+        Http http = new Http();
+        HttpResponse res = http.send(req);
+
+        Map<String, Object> resMap = (Map<String, Object>) JSON.deserializeUntyped(res.getBody());
+        String envelopeId = (String) resMap.get('envelopeId');
+        system.debug('Response: ' + res.getBody());
+        
+        if (res.getStatusCode() != 201) {
+            throw new CalloutException('Failed to send envelope: ' + res.getBody());
+        }
+
+        return envelopeId;
+    }
+
+    public Blob getSignedDocument(String envelopeId, String documentId) {
+        String accessToken = getAccessToken();
+        String endpoint = baseUrl + '/accounts/' + accountId + '/envelopes/' + envelopeId + '/documents/' + documentId;
+
+        HttpRequest req = new HttpRequest();
+        req.setEndpoint(endpoint);
+        req.setMethod('GET');
+        req.setHeader('Authorization', 'Bearer ' + accessToken);
+        req.setHeader('Accept', 'application/pdf');
+
+        Http http = new Http();
+        HttpResponse res = http.send(req);
+
+        if (res.getStatusCode() != 200) {
+            throw new CalloutException('Failed to download signed document: ' + res.getBody());
+        }
+
+        return res.getBodyAsBlob();
+    }
+
+    private static String encodeBase64Url(String input) {
+        return EncodingUtil.base64Encode(Blob.valueOf(input)).replace('+', '-').replace('/', '_').replace('=', '');
+    }
+
+    private static String encodeBase64Url(Blob input) {
+        return EncodingUtil.base64Encode(input).replace('+', '-').replace('/', '_').replace('=', '');
+    }
+
+    @InvocableMethod(label='Get documents' description='Get Documents related to the recordId')
+    public static List<OutputVariables> getDocumentsbyId(List<Id> recordIds) {
+        List<ContentDocumentLink> contentVersions = [SELECT Id,LinkedEntityId, ContentDocumentId FROM ContentDocumentLink WHERE LinkedEntityId IN :recordIds];
+
+        map <Id, list<Id>> mapIdDocs = new map<Id, list<Id>>();
+        Set<Id> docIds = new Set<Id>();
+        for (ContentDocumentLink cdl : contentVersions) {
+            if (!mapIdDocs.containsKey(cdl.LinkedEntityId)) {
+                mapIdDocs.put(cdl.LinkedEntityId, new List<Id>());
+            }
+            mapIdDocs.get(cdl.LinkedEntityId).add(cdl.ContentDocumentId);
+            docIds.add(cdl.ContentDocumentId);
+        }
+
+        List<ContentDocument> docs = [SELECT Id, Title FROM ContentDocument WHERE Id IN :docIds];
+        map<Id, ContentDocument> mapDocs = new map<Id, ContentDocument>();
+        for (ContentDocument cd : docs) {
+            mapDocs.put(cd.Id, cd);
+        }   
+
+        List<OutputVariables> retList = new List<OutputVariables>();
+        for (Id recId : mapIdDocs.keySet()) {
+            OutputVariables ov = new OutputVariables();
+            ov.files = new List<ContentDocument>();
+            for (Id docId : mapIdDocs.get(recId)) {
+                if (mapDocs.containsKey(docId)) {
+                    ov.files.add(mapDocs.get(docId));
+                }
+            }
+            retList.add(ov);
+        }
+
+        return retList;
+    }
+
+    public class OutputVariables {
+        @InvocableVariable(label='files' description='list of files')
+        public List<ContentDocument> files;
+    }
+}

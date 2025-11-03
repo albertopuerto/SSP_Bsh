@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomMetadata xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <label>APC Test</label>
+    <protected>false</protected>
+    <values>
+        <field>accountId__c</field>
+        <value xsi:type="xsd:string">60a673ee-0671-4300-aebd-fea62aefc056</value>
+    </values>
+    <values>
+        <field>audience__c</field>
+        <value xsi:type="xsd:string">account-d.docusign.com</value>
+    </values>
+    <values>
+        <field>baseUrl__c</field>
+        <value xsi:type="xsd:string">https://demo.docusign.net/restapi/v2.1</value>
+    </values>
+    <values>
+        <field>certificateName__c</field>
+        <value xsi:type="xsd:string">docusignpocapc</value>
+    </values>
+    <values>
+        <field>clientId__c</field>
+        <value xsi:type="xsd:string">45c43c66-6fde-4ae1-b07c-37996a709118</value>
+    </values>
+    <values>
+        <field>userId__c</field>
+        <value xsi:type="xsd:string">f74898fc-070e-4c0b-91b8-8536041d7f19</value>
+    </values>
+</CustomMetadata>
