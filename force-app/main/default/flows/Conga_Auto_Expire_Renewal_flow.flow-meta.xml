@@ -34,7 +34,110 @@
             </value>
         </inputParameters>
         <nameSegment>FlowLogEntry</nameSegment>
+        <offset>0</offset>
         <storeOutputAutomatically>true</storeOutputAutomatically>
+    </actionCalls>
+    <actionCalls>
+        <name>Notify_the_owner_120_Days_before_the_Agreement_Expiration</name>
+        <label>Notify the owner 120 Days before the Agreement Expiration</label>
+        <locationX>2426</locationX>
+        <locationY>360</locationY>
+        <actionName>Apttus__APTS_Agreement__c.APTS_Expire_After_120_Days</actionName>
+        <actionType>emailAlert</actionType>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>SObjectRowId</name>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </inputParameters>
+        <nameSegment>Apttus__APTS_Agreement__c.APTS_Expire_After_120_Days</nameSegment>
+        <offset>0</offset>
+    </actionCalls>
+    <actionCalls>
+        <name>Notify_the_owner_15_Days_before_the_Agreement_Expiration</name>
+        <label>Notify the owner 15 Days before the Agreement Expiration</label>
+        <locationX>1370</locationX>
+        <locationY>360</locationY>
+        <actionName>Apttus__APTS_Agreement__c.APTS_Expire_After_15_Days</actionName>
+        <actionType>emailAlert</actionType>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>SObjectRowId</name>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </inputParameters>
+        <nameSegment>Apttus__APTS_Agreement__c.APTS_Expire_After_15_Days</nameSegment>
+        <offset>0</offset>
+    </actionCalls>
+    <actionCalls>
+        <name>Notify_the_owner_30_Days_before_the_Agreement_Expiration</name>
+        <label>Notify the owner 30 Days before the Agreement Expiration</label>
+        <locationX>1634</locationX>
+        <locationY>360</locationY>
+        <actionName>Apttus__APTS_Agreement__c.APTS_Expire_After_30_Days</actionName>
+        <actionType>emailAlert</actionType>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>SObjectRowId</name>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </inputParameters>
+        <nameSegment>Apttus__APTS_Agreement__c.APTS_Expire_After_30_Days</nameSegment>
+        <offset>0</offset>
+    </actionCalls>
+    <actionCalls>
+        <name>Notify_the_owner_45_Days_before_the_Agreement_Expiration</name>
+        <label>Notify the owner 45 Days before the Agreement Expiration</label>
+        <locationX>1898</locationX>
+        <locationY>360</locationY>
+        <actionName>Apttus__APTS_Agreement__c.APTS_Expire_After_45_Days</actionName>
+        <actionType>emailAlert</actionType>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>SObjectRowId</name>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </inputParameters>
+        <nameSegment>Apttus__APTS_Agreement__c.APTS_Expire_After_45_Days</nameSegment>
+        <offset>0</offset>
+    </actionCalls>
+    <actionCalls>
+        <name>Notify_the_owner_60_Days_before_the_Agreement_Expiration</name>
+        <label>Notify the owner 60 Days before the Agreement Expiration</label>
+        <locationX>2162</locationX>
+        <locationY>360</locationY>
+        <actionName>Apttus__APTS_Agreement__c.APTS_Expire_After_60_Days</actionName>
+        <actionType>emailAlert</actionType>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>SObjectRowId</name>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </inputParameters>
+        <nameSegment>Apttus__APTS_Agreement__c.APTS_Expire_After_60_Days</nameSegment>
+        <offset>0</offset>
+    </actionCalls>
+    <actionCalls>
+        <name>NotifyNinetyDaysBeforeExpiration</name>
+        <label>NotifyNinetyDaysBeforeExpiration</label>
+        <locationX>1106</locationX>
+        <locationY>360</locationY>
+        <actionName>Apttus__APTS_Agreement__c.APTS_Expire_After_90_Days</actionName>
+        <actionType>emailAlert</actionType>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>SObjectRowId</name>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </inputParameters>
+        <nameSegment>Apttus__APTS_Agreement__c.APTS_Expire_After_90_Days</nameSegment>
+        <offset>0</offset>
     </actionCalls>
     <actionCalls>
         <description>Agreement with no Auto renew = True should auto expire if the end data is already in the past</description>
@@ -70,14 +173,16 @@
             </value>
         </inputParameters>
         <nameSegment>FlowLogEntry</nameSegment>
+        <offset>0</offset>
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </actionCalls>
     <apiVersion>55.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
     <decisions>
         <description>Check if auto renew is true</description>
         <name>Check_if_auto_renew_is_true</name>
         <label>Check if auto renew is true</label>
-        <locationX>578</locationX>
+        <locationX>1370</locationX>
         <locationY>252</locationY>
         <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
         <rules>
@@ -119,19 +224,188 @@
                     <elementReference>$Flow.CurrentDate</elementReference>
                 </rightValue>
             </conditions>
+            <conditions>
+                <leftValueReference>$Record.Apttus__Contract_End_Date__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
             <connector>
                 <targetReference>Auto_expire_if_auto_renew_is_false</targetReference>
             </connector>
             <label>Auto Expire</label>
         </rules>
+        <rules>
+            <name>Check_90_Days_Before_Expiration</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>CalculateNinetyDaysBeforeExpiration</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <elementReference>$Flow.CurrentDate</elementReference>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Apttus__Owner_Expiration_Notice__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>90 Days</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>NotifyNinetyDaysBeforeExpiration</targetReference>
+            </connector>
+            <label>Check 90 Days Before Expiration</label>
+        </rules>
+        <rules>
+            <name>Check_15_Days_Before_Expiration</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Apttus__Owner_Expiration_Notice__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>15 Days</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>CalculateFifteenDaysBeforeExpiration</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <elementReference>$Flow.CurrentDate</elementReference>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Notify_the_owner_15_Days_before_the_Agreement_Expiration</targetReference>
+            </connector>
+            <label>Check 15 Days Before Expiration</label>
+        </rules>
+        <rules>
+            <name>Check_30_Days_Before_Expiration</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Apttus__Owner_Expiration_Notice__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>30 Days</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>CalculateThirtyDaysBeforeExpiration</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <elementReference>$Flow.CurrentDate</elementReference>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Notify_the_owner_30_Days_before_the_Agreement_Expiration</targetReference>
+            </connector>
+            <label>Check 30 Days Before Expiration</label>
+        </rules>
+        <rules>
+            <name>Check_45_Days_Before_Expiration</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>CalculateFourtyFiveDaysBeforeExpiration</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <elementReference>$Flow.CurrentDate</elementReference>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Apttus__Owner_Expiration_Notice__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>45 Days</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Notify_the_owner_45_Days_before_the_Agreement_Expiration</targetReference>
+            </connector>
+            <label>Check 45 Days Before Expiration</label>
+        </rules>
+        <rules>
+            <name>Check_60_Days_Before_Expiration</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Apttus__Owner_Expiration_Notice__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>60 Days</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>CalculateSixtyDaysBeforeExpiration</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <elementReference>$Flow.CurrentDate</elementReference>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Notify_the_owner_60_Days_before_the_Agreement_Expiration</targetReference>
+            </connector>
+            <label>Check 60 Days Before Expiration</label>
+        </rules>
+        <rules>
+            <name>Check_120_Days_Before_Expiration</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Apttus__Owner_Expiration_Notice__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>120 Days</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>CalculateHundredtwentyDaysBeforeExpiration</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <elementReference>$Flow.CurrentDate</elementReference>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Notify_the_owner_120_Days_before_the_Agreement_Expiration</targetReference>
+            </connector>
+            <label>Check 120 Days Before Expiration</label>
+        </rules>
     </decisions>
     <description>When the agreement reaches its end date this flow will check whether the agreement has auto renewal flag true or not, if the auto renewal flag is false then the flow will simply turn the status and status category to Expired Expired, and if the auto renewal flag is true and Term months is not null then the flow will renew the agreement and add the term months to the end date and turn the renewal flag to false after renewing the agreement.</description>
     <environments>Default</environments>
+    <formulas>
+        <name>CalculateFifteenDaysBeforeExpiration</name>
+        <dataType>Date</dataType>
+        <expression>IF(ISBLANK({!$Record.Apttus__Contract_End_Date__c}),null,({!$Record.Apttus__Contract_End_Date__c}-15))</expression>
+    </formulas>
+    <formulas>
+        <name>CalculateFourtyFiveDaysBeforeExpiration</name>
+        <dataType>Date</dataType>
+        <expression>IF(ISBLANK({!$Record.Apttus__Contract_End_Date__c}),null,({!$Record.Apttus__Contract_End_Date__c}-45))</expression>
+    </formulas>
+    <formulas>
+        <name>CalculateHundredtwentyDaysBeforeExpiration</name>
+        <dataType>Date</dataType>
+        <expression>IF(ISBLANK({!$Record.Apttus__Contract_End_Date__c}),null,({!$Record.Apttus__Contract_End_Date__c}-120))</expression>
+    </formulas>
     <formulas>
         <description>Calculate new end date</description>
         <name>Calculatenewenddate</name>
         <dataType>Date</dataType>
         <expression>AddMonths({!$Record.Apttus__Contract_End_Date__c},{!$Record.Apttus__Auto_Renew_Term_Months__c})</expression>
+    </formulas>
+    <formulas>
+        <name>CalculateNinetyDaysBeforeExpiration</name>
+        <dataType>Date</dataType>
+        <expression>IF(ISBLANK({!$Record.Apttus__Contract_End_Date__c}),null,({!$Record.Apttus__Contract_End_Date__c}-90))</expression>
+    </formulas>
+    <formulas>
+        <name>CalculateSixtyDaysBeforeExpiration</name>
+        <dataType>Date</dataType>
+        <expression>IF(ISBLANK({!$Record.Apttus__Contract_End_Date__c}),null,({!$Record.Apttus__Contract_End_Date__c}-60))</expression>
+    </formulas>
+    <formulas>
+        <name>CalculateThirtyDaysBeforeExpiration</name>
+        <dataType>Date</dataType>
+        <expression>IF(ISBLANK({!$Record.Apttus__Contract_End_Date__c}),null,({!$Record.Apttus__Contract_End_Date__c}-30))</expression>
     </formulas>
     <interviewLabel>Conga Auto Expire/Renewal flow {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Conga Auto Expire/Renewal flow</label>
@@ -201,7 +475,7 @@
         <inputReference>$Record</inputReference>
     </recordUpdates>
     <start>
-        <locationX>452</locationX>
+        <locationX>1244</locationX>
         <locationY>0</locationY>
         <connector>
             <targetReference>Check_if_auto_renew_is_true</targetReference>

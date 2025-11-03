@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PathAssistant xmlns="http://soap.sforce.com/2006/04/metadata">
+    <active>true</active>
+    <entityName>Apttus__APTS_Agreement__c</entityName>
+    <fieldName>Apttus__Status_Category__c</fieldName>
+    <masterLabel>Agreement Stage - OtherSalesAgr</masterLabel>
+    <pathAssistantSteps>
+        <info>&lt;p&gt;&lt;span style=&quot;font-size: 13px;&quot;&gt;Agreement information cannot be changed while in &amp;quot;Expired&amp;quot;&lt;/span&gt;&lt;/p&gt;</info>
+        <picklistValueName>Expired</picklistValueName>
+    </pathAssistantSteps>
+    <pathAssistantSteps>
+        <info>&lt;p&gt;&lt;span style=&quot;font-size: 13px;&quot;&gt;Agreement information cannot be changed while in &amp;quot;In Effect&amp;quot;&lt;/span&gt;&lt;/p&gt;</info>
+        <picklistValueName>In Effect</picklistValueName>
+    </pathAssistantSteps>
+    <pathAssistantSteps>
+        <info>&lt;p&gt;&lt;span style=&quot;font-size: 13px;&quot;&gt;Agreement information cannot be changed while in &amp;quot;Terminated&amp;quot;&lt;/span&gt;&lt;/p&gt;</info>
+        <picklistValueName>Terminated</picklistValueName>
+    </pathAssistantSteps>
+    <recordTypeName>APTS_Other_Sales_Agreement</recordTypeName>
+</PathAssistant>

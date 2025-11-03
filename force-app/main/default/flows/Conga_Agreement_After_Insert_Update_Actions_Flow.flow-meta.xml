@@ -16,7 +16,7 @@
             </value>
         </inputParameters>
         <nameSegment>APTS_AutoActivationViaFlow</nameSegment>
-        <versionSegment>1</versionSegment>
+        <offset>0</offset>
     </actionCalls>
     <actionCalls>
         <name>Notify_Legal_team_to_Activate_for_Wet_Ink_Signature</name>
@@ -33,7 +33,7 @@
             </value>
         </inputParameters>
         <nameSegment>Apttus__APTS_Agreement__c.APTS_Notify_Legal_team_to_Activate_for_Wet_Ink_Signature</nameSegment>
-        <versionSegment>1</versionSegment>
+        <offset>0</offset>
     </actionCalls>
     <actionCalls>
         <name>Notify_Requestor_to_initiate_approvals</name>
@@ -50,7 +50,7 @@
             </value>
         </inputParameters>
         <nameSegment>Apttus__APTS_Agreement__c.APTS_Notify_Requestor_to_initiate_approvals</nameSegment>
-        <versionSegment>1</versionSegment>
+        <offset>0</offset>
     </actionCalls>
     <actionCalls>
         <name>Send_Agreement_Approved_Notice</name>
@@ -67,7 +67,7 @@
             </value>
         </inputParameters>
         <nameSegment>Apttus__APTS_Agreement__c.APTS_Send_Agreement_Approved_Notice</nameSegment>
-        <versionSegment>1</versionSegment>
+        <offset>0</offset>
     </actionCalls>
     <actionCalls>
         <name>Send_Approval_Rejected_Notice</name>
@@ -84,7 +84,7 @@
             </value>
         </inputParameters>
         <nameSegment>Apttus__APTS_Agreement__c.APTS_Approval_Rejected_Notification</nameSegment>
-        <versionSegment>1</versionSegment>
+        <offset>0</offset>
     </actionCalls>
     <actionCalls>
         <name>Send_Cancellation_Email_to_Owner</name>
@@ -101,7 +101,7 @@
             </value>
         </inputParameters>
         <nameSegment>Apttus__APTS_Agreement__c.APTS_Cancelleation_Notice_Email_to_Owner</nameSegment>
-        <versionSegment>1</versionSegment>
+        <offset>0</offset>
     </actionCalls>
     <actionCalls>
         <name>Send_Expire_Notice_Email_to_Owner</name>
@@ -118,7 +118,7 @@
             </value>
         </inputParameters>
         <nameSegment>Apttus__APTS_Agreement__c.APTS_Expire_Notice_Email_to_Owner</nameSegment>
-        <versionSegment>1</versionSegment>
+        <offset>0</offset>
     </actionCalls>
     <actionCalls>
         <name>Termination_Notice_Email_to_Owner</name>
@@ -135,9 +135,10 @@
             </value>
         </inputParameters>
         <nameSegment>Apttus__APTS_Agreement__c.APTS_Termination_Notice_Email_to_Owner</nameSegment>
-        <versionSegment>1</versionSegment>
+        <offset>0</offset>
     </actionCalls>
     <apiVersion>54.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
     <decisions>
         <name>Agreement_Process_Flow_Custom_Metadata_Check</name>
         <label>Agreement Process Flow Custom Metadata Check</label>
@@ -154,9 +155,6 @@
                     <booleanValue>false</booleanValue>
                 </rightValue>
             </conditions>
-            <connector>
-                <targetReference>Notify_Legal_team_to_Activate_for_Wet_Ink_Signature</targetReference>
-            </connector>
             <label>Check Process Flow is not Auto Activated</label>
         </rules>
         <rules>
@@ -212,9 +210,6 @@
                     <stringValue>Approved</stringValue>
                 </rightValue>
             </conditions>
-            <connector>
-                <targetReference>Send_Agreement_Approved_Notice</targetReference>
-            </connector>
             <label>Check if the Agreement is Approved</label>
         </rules>
         <rules>
@@ -262,9 +257,6 @@
                     <booleanValue>false</booleanValue>
                 </rightValue>
             </conditions>
-            <connector>
-                <targetReference>Send_Approval_Rejected_Notice</targetReference>
-            </connector>
             <label>Check if the Agreement is rejected</label>
         </rules>
         <rules>
@@ -298,9 +290,6 @@
                     <stringValue>Cancelled</stringValue>
                 </rightValue>
             </conditions>
-            <connector>
-                <targetReference>Send_Cancellation_Email_to_Owner</targetReference>
-            </connector>
             <label>Check if the Agreement is Cancelled</label>
         </rules>
         <rules>
@@ -348,9 +337,6 @@
                     <stringValue>Expired</stringValue>
                 </rightValue>
             </conditions>
-            <connector>
-                <targetReference>Send_Expire_Notice_Email_to_Owner</targetReference>
-            </connector>
             <label>Check if the Agreement is Expired</label>
         </rules>
         <rules>
@@ -434,9 +420,6 @@
                     <booleanValue>false</booleanValue>
                 </rightValue>
             </conditions>
-            <connector>
-                <targetReference>Notify_Requestor_to_initiate_approvals</targetReference>
-            </connector>
             <label>Check if Agreement Approval Status is Approval required and renewal consent is False</label>
         </rules>
         <rules>
@@ -484,9 +467,6 @@
                     <stringValue>Terminated</stringValue>
                 </rightValue>
             </conditions>
-            <connector>
-                <targetReference>Termination_Notice_Email_to_Owner</targetReference>
-            </connector>
             <label>Check if Agreement Status Category is Terminated and status is Terminated</label>
         </rules>
         <rules>
@@ -526,6 +506,7 @@
             <label>Check Record Type Change</label>
         </rules>
     </decisions>
+    <environments>Default</environments>
     <formulas>
         <name>Check_if_record_is_new</name>
         <dataType>Boolean</dataType>

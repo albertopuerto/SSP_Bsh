@@ -31,6 +31,11 @@
         <label>Net 90</label>
     </customValue>
     <customValue>
+        <fullName>Other</fullName>
+        <default>false</default>
+        <label>Other</label>
+    </customValue>
+    <customValue>
         <fullName>Prepayment</fullName>
         <default>false</default>
         <label>Prepayment</label>

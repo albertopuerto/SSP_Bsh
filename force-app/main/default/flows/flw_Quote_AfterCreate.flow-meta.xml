@@ -1,6 +1,85 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <name>Retrieved_Account_Fields</name>
+        <label>Retrieved Account Fields</label>
+        <locationX>704</locationX>
+        <locationY>431</locationY>
+        <actionName>FlowLogEntry</actionName>
+        <actionType>apex</actionType>
+        <connector>
+            <targetReference>Save_Logs1</targetReference>
+        </connector>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>flowName</name>
+            <value>
+                <stringValue>flw_Quote_AfterCreate</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>message</name>
+            <value>
+                <stringValue>Retrieved Account field values for Quote: {!$Record.Id}</stringValue>
+            </value>
+        </inputParameters>
+        <nameSegment>FlowLogEntry</nameSegment>
+        <offset>0</offset>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </actionCalls>
+    <actionCalls>
+        <description>Save the Logs</description>
+        <name>Save_Logs</name>
+        <label>Save Logs</label>
+        <locationX>440</locationX>
+        <locationY>647</locationY>
+        <actionName>Logger</actionName>
+        <actionType>apex</actionType>
+        <flowTransactionModel>Automatic</flowTransactionModel>
+        <nameSegment>Logger</nameSegment>
+        <offset>0</offset>
+    </actionCalls>
+    <actionCalls>
+        <description>Save the Logs</description>
+        <name>Save_Logs1</name>
+        <label>Save Logs</label>
+        <locationX>704</locationX>
+        <locationY>539</locationY>
+        <actionName>Logger</actionName>
+        <actionType>apex</actionType>
+        <flowTransactionModel>Automatic</flowTransactionModel>
+        <nameSegment>Logger</nameSegment>
+        <offset>0</offset>
+    </actionCalls>
+    <actionCalls>
+        <name>Updated_Quote</name>
+        <label>Updated Quote</label>
+        <locationX>440</locationX>
+        <locationY>539</locationY>
+        <actionName>FlowLogEntry</actionName>
+        <actionType>apex</actionType>
+        <connector>
+            <targetReference>Save_Logs</targetReference>
+        </connector>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>flowName</name>
+            <value>
+                <stringValue>flw_Quote_AfterCreate</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>message</name>
+            <value>
+                <stringValue>Updated Quote fields based on Account values for Quote: {!$Record.Id}</stringValue>
+            </value>
+        </inputParameters>
+        <nameSegment>FlowLogEntry</nameSegment>
+        <offset>0</offset>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </actionCalls>
     <apiVersion>60.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
     <description>- copies values from Account fields to newly created Quote</description>
     <environments>Default</environments>
     <interviewLabel>Quote_AfterCreate {!$Flow.CurrentDateTime}</interviewLabel>
@@ -33,6 +112,9 @@
         <connector>
             <targetReference>upd_Quote_Fields</targetReference>
         </connector>
+        <faultConnector>
+            <targetReference>Retrieved_Account_Fields</targetReference>
+        </faultConnector>
         <filterLogic>and</filterLogic>
         <filters>
             <field>Id</field>
@@ -43,6 +125,7 @@
         </filters>
         <getFirstRecordOnly>true</getFirstRecordOnly>
         <object>Account</object>
+        <queriedFields>Id</queriedFields>
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordLookups>
     <recordUpdates>
@@ -50,22 +133,13 @@
         <label>Update Quote Fields</label>
         <locationX>176</locationX>
         <locationY>431</locationY>
-        <inputAssignments>
-            <field>pkl_INCOTerms1__c</field>
-            <value>
-                <elementReference>Get_AccountFieldValues.pkl_INCOTerms1__c</elementReference>
-            </value>
-        </inputAssignments>
+        <faultConnector>
+            <targetReference>Updated_Quote</targetReference>
+        </faultConnector>
         <inputAssignments>
             <field>pkl_PaymentTerms__c</field>
             <value>
                 <elementReference>Get_AccountFieldValues.pkl_PaymentTerms__c</elementReference>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <field>txt_INCOTerms2__c</field>
-            <value>
-                <elementReference>Get_AccountFieldValues.txt_INCOTerms2__c</elementReference>
             </value>
         </inputAssignments>
         <inputReference>$Record</inputReference>

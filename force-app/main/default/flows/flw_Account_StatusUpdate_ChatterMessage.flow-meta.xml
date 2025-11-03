@@ -30,9 +30,6 @@
         <label>Check if Status is &quot;Created in Athena&quot;</label>
         <locationX>0</locationX>
         <locationY>0</locationY>
-        <defaultConnector>
-            <targetReference>Post_Chatter_Message</targetReference>
-        </defaultConnector>
         <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
         <rules>
             <name>Status_is_Created_in_Athena</name>
@@ -45,12 +42,18 @@
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>Post_Chatter_Message</targetReference>
+                <targetReference>update_timestamp</targetReference>
             </connector>
+            <doesRequireRecordChangedToMeetCriteria>true</doesRequireRecordChangedToMeetCriteria>
             <label>Status is Created in Athena</label>
         </rules>
     </decisions>
     <environments>Default</environments>
+    <formulas>
+        <name>CurrentTime</name>
+        <dataType>DateTime</dataType>
+        <expression>Now()</expression>
+    </formulas>
     <interviewLabel>flw_Account_StatusUpdate_ChatterMessage {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Account Status Update chatter message</label>
     <processMetadataValues>
@@ -72,6 +75,22 @@
         </value>
     </processMetadataValues>
     <processType>AutoLaunchedFlow</processType>
+    <recordUpdates>
+        <name>update_timestamp</name>
+        <label>update timestamp</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Post_Chatter_Message</targetReference>
+        </connector>
+        <inputAssignments>
+            <field>dtm_DatetimeofcreationinAthena__c</field>
+            <value>
+                <elementReference>CurrentTime</elementReference>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
     <start>
         <locationX>0</locationX>
         <locationY>0</locationY>

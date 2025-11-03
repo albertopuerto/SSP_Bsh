@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomPermission xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Allows visibility of the Vertex calculation button, which triggers an external API call to calculate tax and update the related amount field.</description>
+    <isLicensed>false</isLicensed>
+    <label>Can view vertex button</label>
+</CustomPermission>

@@ -4,7 +4,7 @@
     <deleteConstraint>SetNull</deleteConstraint>
     <deprecated>false</deprecated>
     <description>Link to contact record to identify internal signatory</description>
-    <externalId>false</externalId>
+    <inlineHelpText>ETAS employee who signed the agreement as a first person</inlineHelpText>
     <label>Company Signed By</label>
     <referenceTo>Contact</referenceTo>
     <relationshipName>R00N50000001Xl0CEAS</relationshipName>

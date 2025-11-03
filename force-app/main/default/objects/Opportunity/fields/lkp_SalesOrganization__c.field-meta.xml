@@ -2,8 +2,7 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>lkp_SalesOrganization__c</fullName>
     <deleteConstraint>Restrict</deleteConstraint>
-    <externalId>false</externalId>
-    <label>Sales Organization</label>
+    <label>Sales Area</label>
     <referenceTo>SalesArea__c</referenceTo>
     <relationshipLabel>Opportunities</relationshipLabel>
     <relationshipName>Opportunities</relationshipName>
