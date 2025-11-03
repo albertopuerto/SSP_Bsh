@@ -33,14 +33,6 @@
         <name>CanViewVertexButton</name>
     </customPermissions>
     <description>Grants access to view and execute the Vertex calculation button, which performs an external API call to the Vertex tax service and updates the Amount field based on the response.</description>
-    <externalCredentialPrincipalAccesses>
-        <enabled>true</enabled>
-        <externalCredentialPrincipal>creditLimitOauthAuthentication-admin</externalCredentialPrincipal>
-    </externalCredentialPrincipalAccesses>
-    <externalCredentialPrincipalAccesses>
-        <enabled>true</enabled>
-        <externalCredentialPrincipal>vertexBasicAuthentication-username_password</externalCredentialPrincipal>
-    </externalCredentialPrincipalAccesses>
     <fieldPermissions>
         <editable>false</editable>
         <field>Order.cur_Current_Credit_Limit_including_VAT__c</field>
