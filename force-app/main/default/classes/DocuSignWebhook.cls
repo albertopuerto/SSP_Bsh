@@ -1,3 +1,8 @@
+/**
+ * @description       : PoC restResource to be notified once the event is fired in docusign app 
+ *                          complete webservice and clean code and update description
+ * @author            : APC
+**/
 @RestResource(urlMapping='/docusignWebhook/*')
 global with sharing class DocuSignWebhook {
 
@@ -13,7 +18,6 @@ global with sharing class DocuSignWebhook {
         a.Description = body;
         insert a;
 
-        // Suponiendo que el webhook envía JSON
         Map<String, Object> payload = (Map<String, Object>) JSON.deserializeUntyped(body);
         System.debug('Payload: ' + payload);
         String event = (String) payload.get('event');
@@ -44,8 +48,8 @@ global with sharing class DocuSignWebhook {
 
     @future(callout=true)
     global static void processWebhookAsync(String envelopeId, String documentId) {
-            DocuSignService service = new DocuSignService('FSJ_Test');
-            String accessToken = service.getAccessToken();
+            DocuSignService service = new DocuSignService('APC_Test');
+            // String accessToken = service.getAccessToken();
 
             Blob signedDocument = service.getSignedDocument(envelopeId, 'combined');
 

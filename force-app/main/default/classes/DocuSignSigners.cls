@@ -1,9 +1,13 @@
+/**
+ * @description       : Methods to send documents to be signed via DocuSign. PoC implementation.
+ * @author            : APC
+**/
 public with sharing class DocuSignSigners {
     @InvocableMethod(label='Send documents' description='Send Documents related to the sign')
     public static List<String> sendToSign(List<InputVariables> signatures) {
         InputVariables input = signatures[0];
 
-        DocuSignService service = new DocuSignService('FSJ_Test');
+        DocuSignService service = new DocuSignService('APC_Test');
 
         system.debug('input.document.Id ' + input.document.Id);
         ContentVersion cv = [SELECT VersionData FROM ContentVersion WHERE ContentDocumentId = :input.document.Id LIMIT 1];
