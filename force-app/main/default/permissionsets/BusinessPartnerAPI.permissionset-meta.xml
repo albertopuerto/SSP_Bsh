@@ -317,11 +317,6 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <field>BoschPartner_PartnerFunction__c.txt_PartnerCounter__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
         <editable>true</editable>
         <field>SalesAreaLink__c.chk_CompleteDelivery__c</field>
         <readable>true</readable>
