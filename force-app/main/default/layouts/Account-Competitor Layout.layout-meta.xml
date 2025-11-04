@@ -38,10 +38,6 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Required</behavior>
-                <field>pkl_PaymentTerms__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Required</behavior>
                 <field>CurrencyIsoCode</field>
             </layoutItems>
             <layoutItems>
@@ -168,6 +164,18 @@
         <fields>pkl_ProjectsAndCollaborations__c</fields>
         <fields>CREATED_DATE</fields>
         <relatedList>ExportControlSheet__c.Account__c</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <fields>lkp_ReferencedAccount__c</fields>
+        <fields>pkl_ReasonCategory__c</fields>
+        <fields>txt_ReasonDescription__c</fields>
+        <relatedList>DuplicateAccountRelation__c.lkp_Account__c</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <fields>lkp_Account__c</fields>
+        <fields>pkl_ReasonCategory__c</fields>
+        <fields>txt_ReasonDescription__c</fields>
+        <relatedList>DuplicateAccountRelation__c.lkp_ReferencedAccount__c</relatedList>
     </relatedLists>
     <relatedObjects>ParentId</relatedObjects>
     <showEmailCheckbox>false</showEmailCheckbox>
