@@ -58,17 +58,24 @@ private class ApprovalControllerTest {
         Account[] accountList = (Account[])TestFactory.createSObjectList(new Account(), 1);
         accountList[0].Name = 'TestAccount1'; 
         insert accountList;
+
+        //Create Sales Area
+         SalesArea__c sArea = (SalesArea__c)TestFactory.createSObject(new SalesArea__c());
+            sArea.pkl_SalesOrg__c = '0001';
+            sArea.pkl_DistributionChannel__c ='	01'; 
+            sArea.pkl_Division__c = '00';
+        insert sArea;
         
         //Create Opportunity (required for Quote)
         Opportunity opp = (Opportunity)TestFactory.createSObject(new Opportunity());
-        opp.Name = 'Test Opportunity';
-        opp.AccountId = accountList[0].Id;
-        opp.StageName = 'Prospecting';
-        opp.CloseDate = Date.today().addDays(30);
-        opp.pklLeadingSolutionField__c = 'DEV';
+            opp.Name = 'Test Opportunity';
+            opp.AccountId = accountList[0].Id;
+            opp.StageName = 'Prospecting';
+            opp.CloseDate = Date.today().addDays(30);
+            opp.pklLeadingSolutionField__c = 'DEV';
             opp.pklTypeOfOpportunity__c = 'LTA';
             opp.pklTypeOfOffering__c = 'SW';
-            opp.lkp_SalesOrganization__c = 'a4KbY000000qORFUA2';
+            opp.lkp_SalesOrganization__c = sArea.Id;
             insert opp;
         
         // Create Quote
