@@ -1,6 +1,10 @@
+/**
+	* @author       APB
+	* @description  DocumentForDocusign class
+	*/
 public with sharing class  DocumentForDocusign {
-    @AuraEnabled 
+    @AuraEnabled
     public Id documentId;
-    @AuraEnabled 
+    @AuraEnabled
     public String documentTitle;
 }

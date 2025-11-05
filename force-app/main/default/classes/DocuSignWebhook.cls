@@ -6,6 +6,10 @@
 @RestResource(urlMapping='/docusignWebhook/*')
 global with sharing class DocuSignWebhook {
 
+    /**
+	* @author       APB
+	* @description  handleWebhook method
+	*/
     @HttpPost
     global static void handleWebhook() {
         RestRequest req = RestContext.request;
@@ -13,10 +17,11 @@ global with sharing class DocuSignWebhook {
 
         System.debug('Webhook body: ' + body);
 
+        /*
         Task a = new Task();
         a.Subject = 'DocuSign Webhook received';
         a.Description = body;
-        insert a;
+        insert a;*/
 
         Map<String, Object> payload = (Map<String, Object>) JSON.deserializeUntyped(body);
         System.debug('Payload: ' + payload);
@@ -38,30 +43,41 @@ global with sharing class DocuSignWebhook {
                     update sig; 
                 }
             } catch (Exception e) {
-                Task a2 = new Task();
+                /*Task a2 = new Task();
                 a2.Subject = 'DocuSign Webhook Error';
                 a2.Description = 'Error processing webhook: ' + e.getMessage();
-                insert a2;
+                insert a2;*/
             }
         }
     }
 
+    /**
+	* @author       APB
+	* @description  processWebhookAsync method
+    * @param        envelopeId String
+    * @param        documentId String
+	*/
     @future(callout=true)
     global static void processWebhookAsync(String envelopeId, String documentId) {
-            DocuSignService service = new DocuSignService('APC_Test');
-            // String accessToken = service.getAccessToken();
 
-            Blob signedDocument = service.getSignedDocument(envelopeId, 'combined');
+        DocuSignService service = new DocuSignService('APC_Test');
+        Set<Id> docIds = new Set<Id>();
+        docIds.add(documentId);
+        fflib_SObjectUnitOfWork uow = new fflib_SObjectUnitOfWork( new List<SObjectType> { ContentVersion.SObjectType});
+        // String accessToken = service.getAccessToken();
 
-            ContentDocument cd = [SELECT Id, Title FROM ContentDocument WHERE Id = :documentId LIMIT 1];
-            if (cd != null) {
-                ContentVersion cv = new ContentVersion();
-                cv.Title = 'Signed_' + cd.Title;
-                cv.PathOnClient = 'Signed_' + cd.Title + '.pdf';
-                cv.VersionData = signedDocument;
-                cv.ContentDocumentId = cd.Id;
-                insert cv;
-            }
+        Blob signedDocument = service.getSignedDocument(envelopeId, 'combined');
+
+        ContentDocument cd = new ContentDocumentSelector().selectById(docIds)[0];
+        if (cd != null) {
+            ContentVersion cv = new ContentVersion();
+            cv.Title = 'Signed_' + cd.Title;
+            cv.PathOnClient = 'Signed_' + cd.Title + '.pdf';
+            cv.VersionData = signedDocument;
+            cv.ContentDocumentId = cd.Id;
+            uow.registerNew(cv);
+            uow.commitWork();
+        }
 
             /*if (res.getStatusCode() == 200) {
                 Blob pdfBlob = res.getBodyAsBlob();

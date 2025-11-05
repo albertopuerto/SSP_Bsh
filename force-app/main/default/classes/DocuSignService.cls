@@ -1,3 +1,7 @@
+/**
+	* @author       APB
+	* @description  DocuSignService class
+	*/
 public with sharing class DocuSignService {
     private String clientId;
     private String userId;
@@ -9,8 +13,13 @@ public with sharing class DocuSignService {
     private static String cachedAccessToken;
     private static Long tokenExpirationEpoch;
 
+    /**
+	* @author       APB
+	* @description  DocuSignService constructor
+	* @param		configName String
+	*/
     public DocuSignService(String configName) {
-        Docusign_Setting__mdt config = [SELECT clientId__c, userId__c, audience__c, certificateName__c, accountId__c, baseUrl__c FROM Docusign_Setting__mdt WHERE DeveloperName = :configName LIMIT 1];
+        Docusign_Setting__mdt config = [SELECT clientId__c, userId__c, audience__c, certificateName__c, accountId__c, baseUrl__c FROM Docusign_Setting__mdt WHERE DeveloperName = :configName WITH USER_MODE LIMIT 1];
         this.clientId = config.clientId__c;
         this.userId = config.userId__c;
         this.audience = config.audience__c;
@@ -19,6 +28,11 @@ public with sharing class DocuSignService {
         this.baseUrl = config.baseUrl__c;
     }
 
+    /**
+	* @author       APB
+	* @description  Method that gets the access token
+	* @return		String
+	*/
     public String getAccessToken() {
         Long now = DateTime.now().getTime() / 1000;
 
@@ -59,7 +73,8 @@ public with sharing class DocuSignService {
         HttpResponse res = http.send(req);
 
         if (res.getStatusCode() != 200) {
-            throw new CalloutException('Failed to get access token: ' + res.getBody());
+            Logger.error('APX-INT-00006 - Failed when trying to get the access token - '+ res.getStatusCode() +'-'+res.getBody()).addTag('APX-INT');
+            throw new CalloutException('Failed when trying to get the access token: ' + res.getBody());
         }
 
         Map<String, Object> jsonRes = (Map<String, Object>) JSON.deserializeUntyped(res.getBody());
@@ -69,6 +84,12 @@ public with sharing class DocuSignService {
         return cachedAccessToken;
     }
 
+    /**
+	* @author       APB
+	* @description  Method that get the email JSON
+	* @param		daysBack Integer
+	* @return		String
+	*/
     public String getRecentEnvelopesJson(Integer daysBack) {
         String accessToken = getAccessToken();
 
@@ -86,12 +107,22 @@ public with sharing class DocuSignService {
         HttpResponse res = http.send(req);
 
         if (res.getStatusCode() != 200) {
+            Logger.error('APX-INT-00007 - Failed when trying to get the envelopes - '+ res.getStatusCode() +'-'+res.getBody()).addTag('APX-INT');
             throw new CalloutException('Failed to retrieve envelopes: ' + res.getBody());
         }
 
         return res.getBody();
     }
 
+    /**
+	* @author       APB
+	* @description  Method that send the email
+	* @param		recipientEmail String
+    * @param		recipientName String
+    * @param		documentBase64 String
+    * @param		documentName String
+	* @return		String
+	*/
     public String sendEnvelope(String recipientEmail, String recipientName, String documentBase64, String documentName) {
         String accessToken = getAccessToken();
         String endpoint = baseUrl + '/accounts/' + accountId + '/envelopes';
@@ -142,14 +173,22 @@ public with sharing class DocuSignService {
         Map<String, Object> resMap = (Map<String, Object>) JSON.deserializeUntyped(res.getBody());
         String envelopeId = (String) resMap.get('envelopeId');
         system.debug('Response: ' + res.getBody());
-        
+
         if (res.getStatusCode() != 201) {
+            Logger.error('APX-INT-00008 - Failed when sending the envelope - '+ res.getStatusCode() +'-'+res.getBody()).addTag('APX-INT');
             throw new CalloutException('Failed to send envelope: ' + res.getBody());
         }
 
         return envelopeId;
     }
 
+    /**
+	* @author       APB
+	* @description  Method that download the signed document
+	* @param		envelopeId String
+    * @param		documentId String
+	* @return		Blob
+	*/
     public Blob getSignedDocument(String envelopeId, String documentId) {
         String accessToken = getAccessToken();
         String endpoint = baseUrl + '/accounts/' + accountId + '/envelopes/' + envelopeId + '/documents/' + documentId;
@@ -164,6 +203,7 @@ public with sharing class DocuSignService {
         HttpResponse res = http.send(req);
 
         if (res.getStatusCode() != 200) {
+            Logger.error('APX-INT-00009 - Failed to download the signed document - '+ res.getStatusCode() +'-'+res.getBody()).addTag('APX-INT');
             throw new CalloutException('Failed to download signed document: ' + res.getBody());
         }
 
@@ -178,9 +218,19 @@ public with sharing class DocuSignService {
         return EncodingUtil.base64Encode(input).replace('+', '-').replace('/', '_').replace('=', '');
     }
 
+    /**
+	* @author       APB
+	* @description  Method that get the documents related to the record given
+	* @param		recordIds List<Id>
+	* @return		List<OutputVariables>
+	*/
     @InvocableMethod(label='Get documents' description='Get Documents related to the recordId')
     public static List<OutputVariables> getDocumentsbyId(List<Id> recordIds) {
-        List<ContentDocumentLink> contentVersions = [SELECT Id,LinkedEntityId, ContentDocumentId FROM ContentDocumentLink WHERE LinkedEntityId IN :recordIds];
+        Set<Id> contentVersionIds = new Set<Id>();
+        for(String recordId : recordIds){
+            contentVersionIds.add(recordId);
+        }
+        List<ContentDocumentLink> contentVersions = new ContentDocumentLinkSelector().selectContentDocumentLink(contentVersionIds);
 
         map <Id, list<Id>> mapIdDocs = new map<Id, list<Id>>();
         Set<Id> docIds = new Set<Id>();
@@ -192,11 +242,11 @@ public with sharing class DocuSignService {
             docIds.add(cdl.ContentDocumentId);
         }
 
-        List<ContentDocument> docs = [SELECT Id, Title FROM ContentDocument WHERE Id IN :docIds];
+        List<ContentDocument> docs = new ContentDocumentSelector().selectById(docIds);
         map<Id, ContentDocument> mapDocs = new map<Id, ContentDocument>();
         for (ContentDocument cd : docs) {
             mapDocs.put(cd.Id, cd);
-        }   
+        }
 
         List<OutputVariables> retList = new List<OutputVariables>();
         for (Id recId : mapIdDocs.keySet()) {
@@ -213,6 +263,10 @@ public with sharing class DocuSignService {
         return retList;
     }
 
+    /**
+	* @author       APB
+	* @description  OutputVariables class has the list of files to be signed
+	*/
     public class OutputVariables {
         @InvocableVariable(label='files' description='list of files')
         public List<ContentDocument> files;

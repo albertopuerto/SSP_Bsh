@@ -3,14 +3,24 @@
  * @author            : APC
 **/
 public with sharing class DocuSignSigners {
+    /**
+	* @author       APB
+	* @description  Method that send the documents to sign
+	* @param		signatures List<InputVariables>
+	* @return		List<String>
+	*/
     @InvocableMethod(label='Send documents' description='Send Documents related to the sign')
     public static List<String> sendToSign(List<InputVariables> signatures) {
         InputVariables input = signatures[0];
 
+        Set<Id> contentVersionIds = new Set<Id>();
+        contentVersionIds.add(input.document.Id);
+
         DocuSignService service = new DocuSignService('APC_Test');
 
         system.debug('input.document.Id ' + input.document.Id);
-        ContentVersion cv = [SELECT VersionData FROM ContentVersion WHERE ContentDocumentId = :input.document.Id LIMIT 1];
+        ContentVersion cv = new ContentVersionSelector().selectContentVersion(contentVersionIds)[0];
+
         Blob myPdfBlob = cv.VersionData;
         String base64Doc = EncodingUtil.base64Encode(myPdfBlob);
 
@@ -21,11 +31,15 @@ public with sharing class DocuSignSigners {
             base64Doc,
             input.document.Title
         );
-        
+
         system.debug('Result: ' + result);
         return new List<String>{result};
     }
 
+    /**
+	* @author       APB
+	* @description  InputVariables class has the document to sign and the email of the signer
+	*/
     public class InputVariables {
         @InvocableVariable(label='Document' description='Document to be signed')
         public ContentDocument document;
