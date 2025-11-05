@@ -61,9 +61,9 @@ private class ApprovalControllerTest {
 
         //Create Sales Area
          SalesArea__c sArea = (SalesArea__c)TestFactory.createSObject(new SalesArea__c());
-            sArea.pkl_SalesOrg__c = '0001';
-            sArea.pkl_DistributionChannel__c ='	01'; 
-            sArea.pkl_Division__c = '00';
+            sArea.pkl_SalesOrg__c = 'DEM5';
+            sArea.pkl_DistributionChannel__c ='	A1'; 
+            sArea.pkl_Division__c = '01';
         insert sArea;
         
         //Create Opportunity (required for Quote)
