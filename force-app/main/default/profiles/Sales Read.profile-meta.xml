@@ -1059,6 +1059,16 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>false</editable>
+        <field>DuplicateAccountRelation__c.pkl_ReasonCategory__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>DuplicateAccountRelation__c.txt_ReasonDescription__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>ExportControlSheet__c.chk_IsActive__c</field>
         <readable>true</readable>
@@ -2558,6 +2568,10 @@
     <tabVisibilities>
         <tab>Competitor__c</tab>
         <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>DuplicateAccountRelation__c</tab>
+        <visibility>DefaultOn</visibility>
     </tabVisibilities>
     <tabVisibilities>
         <tab>Legal_Home_Page</tab>

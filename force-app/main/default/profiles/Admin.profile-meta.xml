@@ -9029,6 +9029,16 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>DuplicateAccountRelation__c.pkl_ReasonCategory__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>DuplicateAccountRelation__c.txt_ReasonDescription__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>ExportControlSheet__c.chk_IsActive__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -19129,6 +19139,9 @@
         <layout>Contract-Contract Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
+        <layout>DuplicateAccountRelation__c-Duplicate Account Relation Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
         <layout>DuplicateRecordSet-Duplicate Record Set Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
@@ -20276,6 +20289,10 @@
     <tabVisibilities>
         <tab>Competitor__c</tab>
         <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>DuplicateAccountRelation__c</tab>
+        <visibility>DefaultOn</visibility>
     </tabVisibilities>
     <tabVisibilities>
         <tab>Legal_Home_Page</tab>
