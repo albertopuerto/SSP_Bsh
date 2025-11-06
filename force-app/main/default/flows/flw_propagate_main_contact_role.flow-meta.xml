@@ -25,10 +25,26 @@
     </processMetadataValues>
     <processType>AutoLaunchedFlow</processType>
     <recordUpdates>
+        <name>Contact</name>
+        <label>Contact Role</label>
+        <locationX>677</locationX>
+        <locationY>500</locationY>
+        <inputAssignments>
+            <field>mpkl_RoleMainAccount__c</field>
+            <value>
+                <elementReference>$Record.mpkl_PartnerRoles__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record.Contact</inputReference>
+    </recordUpdates>
+    <recordUpdates>
         <name>upd_updatePartnerRolesOnRecord</name>
         <label>updatePartnerRolesOnRecord</label>
-        <locationX>666</locationX>
+        <locationX>667</locationX>
         <locationY>352</locationY>
+        <connector>
+            <targetReference>Contact</targetReference>
+        </connector>
         <inputAssignments>
             <field>mpkl_PartnerRoles__c</field>
             <value>
@@ -53,7 +69,7 @@
         </filters>
         <object>AccountContactRelation</object>
         <recordTriggerType>Create</recordTriggerType>
-        <triggerType>RecordBeforeSave</triggerType>
+        <triggerType>RecordAfterSave</triggerType>
     </start>
     <status>Active</status>
 </Flow>

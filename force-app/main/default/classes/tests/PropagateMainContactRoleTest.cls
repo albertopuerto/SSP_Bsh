@@ -40,4 +40,33 @@ public class PropagateMainContactRoleTest {
             Test.stopTest();
         }
     }
+    @IsTest
+public static void testPropagateRoleFromACRToContact(){
+    Account testAccount = [SELECT Id FROM Account LIMIT 1];
+    Contact testContact = [SELECT Id, mpkl_RoleMainAccount__c FROM Contact LIMIT 1];
+    
+    User productManagerUser = (User)TestFactory.createSObject(new User(), 'TestFactoryDefaults.ProductManagerUserDefaults', true);
+    System.runAs(productManagerUser){
+        Test.startTest();
+        
+        // Get the ACR
+        AccountContactRelation acr = [SELECT Id, mpkl_PartnerRoles__c 
+                                      FROM AccountContactRelation 
+                                      WHERE ContactId = :testContact.Id 
+                                      AND AccountId = :testAccount.Id 
+                                      LIMIT 1];
+        
+        // Update Partner Roles on ACR
+        acr.mpkl_PartnerRoles__c = '0003';
+        update acr;
+        
+        Test.stopTest();
+        
+        // Verify Contact was updated
+        Contact updatedContact = [SELECT Id, mpkl_RoleMainAccount__c 
+                                  FROM Contact 
+                                  WHERE Id = :testContact.Id];
+        Assert.areEqual('0003', updatedContact.mpkl_RoleMainAccount__c, 'Contact Role should be updated to 0003');
+    }
+}
 }
