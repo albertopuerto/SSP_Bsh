@@ -77,6 +77,7 @@ public with sharing class DocuSignService {
             throw new CalloutException('Failed when trying to get the access token: ' + res.getBody());
         }
 
+        System.debug(res.getBody());
         Map<String, Object> jsonRes = (Map<String, Object>) JSON.deserializeUntyped(res.getBody());
         cachedAccessToken = (String) jsonRes.get('access_token');
         tokenExpirationEpoch = now + ((Integer) jsonRes.get('expires_in'));
@@ -90,7 +91,8 @@ public with sharing class DocuSignService {
 	* @param		daysBack Integer
 	* @return		String
 	*/
-    public String getRecentEnvelopesJson(Integer daysBack) {
+   /* public String getRecentEnvelopesJson(Integer daysBack) {
+        
         String accessToken = getAccessToken();
 
         Datetime fromDateDT = Datetime.newInstance(Date.today().addDays(-daysBack), Time.newInstance(0, 0, 0, 0));
@@ -112,7 +114,7 @@ public with sharing class DocuSignService {
         }
 
         return res.getBody();
-    }
+    }*/
 
     /**
 	* @author       APB
