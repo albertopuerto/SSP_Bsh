@@ -176,7 +176,7 @@ public with sharing class DocuSignService {
         String envelopeId = (String) resMap.get('envelopeId');
         system.debug('Response: ' + res.getBody());
 
-        if (res.getStatusCode() != 201) {
+        if (res.getStatusCode() != 201 && res.getStatusCode() != 200 ) {
             Logger.error('APX-INT-00008 - Failed when sending the envelope - '+ res.getStatusCode() +'-'+res.getBody()).addTag('APX-INT');
             throw new CalloutException('Failed to send envelope: ' + res.getBody());
         }

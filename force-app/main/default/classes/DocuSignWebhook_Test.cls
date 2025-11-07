@@ -34,17 +34,23 @@ public class DocuSignWebhook_Test {
         insert linkList;
         
         Signature__c signature = new Signature__c(
-        Envelope_Id__c = 'xxxxxxxx-xxxx-xxx'
+        Envelope_Id__c = 'xxxxxxxx-xxxx-xxx',
+        Document_Id__c= contentDocumentId
         );
         insert signature;
     }
     @IsTest
     static void testReceiveData() {
         // Step 1: Create mock JSON payload
+        StaticResource sr = [SELECT Body FROM StaticResource WHERE Name = 'getAccessTokenBody'];
+		String tokenBody = sr.Body.toString();
+
+        HTTPMockGenerator res2 = new HTTPMockGenerator(200, tokenBody);
+
+        Test.setMock(HttpCalloutMock.class, res2);
         
         StaticResource sr2 = [SELECT Body FROM StaticResource WHERE Name = 'documentSignWebhookRequest'];
 		String mockJson = sr2.Body.toString();
-        Test.setMock(HttpCalloutMock.class, mockJson);
         
         // Step 2: Set up mock RestRequest
         RestRequest req = new RestRequest();
