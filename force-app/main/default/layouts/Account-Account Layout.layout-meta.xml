@@ -156,10 +156,6 @@
                 <behavior>Required</behavior>
                 <field>CurrencyIsoCode</field>
             </layoutItems>
-            <layoutItems>
-                <behavior>Required</behavior>
-                <field>pkl_PaymentTerms__c</field>
-            </layoutItems>
         </layoutColumns>
         <style>TwoColumnsLeftToRight</style>
     </layoutSections>
@@ -429,6 +425,23 @@
     </relatedLists>
     <relatedLists>
         <relatedList>RelatedEntityHistoryList</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <fields>lkp_ReferencedAccount__c</fields>
+        <fields>pkl_ReasonCategory__c</fields>
+        <fields>txt_ReasonDescription__c</fields>
+        <relatedList>DuplicateAccountRelation__c.lkp_Account__c</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <fields>lkp_Account__c</fields>
+        <fields>pkl_ReasonCategory__c</fields>
+        <fields>txt_ReasonDescription__c</fields>
+        <relatedList>DuplicateAccountRelation__c.lkp_ReferencedAccount__c</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <fields>txt_TaxNumber__c</fields>
+        <fields>txt_TaxCategory__c</fields>
+        <relatedList>TaxNumber__c.mdr_AccountId__c</relatedList>
     </relatedLists>
     <relatedObjects>ParentId</relatedObjects>
     <showEmailCheckbox>false</showEmailCheckbox>
