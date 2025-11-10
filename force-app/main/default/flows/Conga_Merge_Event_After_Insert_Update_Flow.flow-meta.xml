@@ -1,11 +1,69 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <name>Log_Updated_Agreements</name>
+        <label>Log Updated Agreements</label>
+        <locationX>1106</locationX>
+        <locationY>1139</locationY>
+        <actionName>FlowLogEntry</actionName>
+        <actionType>apex</actionType>
+        <connector>
+            <targetReference>Save_Logs</targetReference>
+        </connector>
+        <flowTransactionModel>Automatic</flowTransactionModel>
+        <inputParameters>
+            <name>flowName</name>
+            <value>
+                <stringValue>Conga_Merge_Event_After_Insert_Update_Flow</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>loggingLevelName</name>
+            <value>
+                <stringValue>ERROR</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>message</name>
+            <value>
+                <stringValue>Error while updating Agreements</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>recordId</name>
+            <value>
+                <elementReference>AgreementUpdateRec.RecordTypeId</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>tagsString</name>
+            <value>
+                <stringValue>FLW-DML-00010</stringValue>
+            </value>
+        </inputParameters>
+        <nameSegment>FlowLogEntry</nameSegment>
+        <offset>0</offset>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </actionCalls>
+    <actionCalls>
+        <description>Save Logs</description>
+        <name>Save_Logs</name>
+        <label>Save Logs</label>
+        <locationX>1106</locationX>
+        <locationY>1247</locationY>
+        <actionName>Logger</actionName>
+        <actionType>apex</actionType>
+        <flowTransactionModel>Automatic</flowTransactionModel>
+        <nameSegment>Logger</nameSegment>
+        <offset>0</offset>
+    </actionCalls>
     <apiVersion>54.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
     <assignments>
         <name>Assign_Agreement_Ready_for_Signature</name>
         <label>Assign Agreement Ready for Signature</label>
-        <locationX>928</locationX>
-        <locationY>493</locationY>
+        <locationX>50</locationX>
+        <locationY>647</locationY>
         <assignmentItems>
             <assignToReference>AgreementUpdateRec.Apttus__Status__c</assignToReference>
             <operator>Assign</operator>
@@ -34,8 +92,8 @@
     <assignments>
         <name>Assign_Agreement_Ready_for_Signatures_for_Generate_Event_for_Diff_Profess_Flow</name>
         <label>Assign Agreement Ready for Signatures for Generate Event for Diff Profess Flow</label>
-        <locationX>1151</locationX>
-        <locationY>358</locationY>
+        <locationX>578</locationX>
+        <locationY>755</locationY>
         <assignmentItems>
             <assignToReference>AgreementUpdateRec.Apttus__Status__c</assignToReference>
             <operator>Assign</operator>
@@ -64,8 +122,8 @@
     <decisions>
         <name>Agreement_Process_Flow_Check</name>
         <label>Agreement Process Flow Check</label>
-        <locationX>917</locationX>
-        <locationY>316</locationY>
+        <locationX>446</locationX>
+        <locationY>647</locationY>
         <defaultConnector>
             <targetReference>Assign_Agreement_Ready_for_Signatures_for_Generate_Event_for_Diff_Profess_Flow</targetReference>
         </defaultConnector>
@@ -81,6 +139,7 @@
                 </rightValue>
             </conditions>
             <connector>
+                <isGoTo>true</isGoTo>
                 <targetReference>Assign_Agreement_Ready_for_Signature</targetReference>
             </connector>
             <label>Check Process Flow Same</label>
@@ -89,8 +148,8 @@
     <decisions>
         <name>Check_Merge_Event_Trigger_Events</name>
         <label>Check Merge Event Trigger Events</label>
-        <locationX>613</locationX>
-        <locationY>543</locationY>
+        <locationX>446</locationX>
+        <locationY>539</locationY>
         <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
         <rules>
             <name>Check_In_Merge_Event</name>
@@ -137,6 +196,7 @@
             <label>Check Generate Merge Event</label>
         </rules>
     </decisions>
+    <environments>Default</environments>
     <interviewLabel>Conga Merge Event After Insert/Update Flow {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Conga Merge Event After Insert/Update Flow</label>
     <processMetadataValues>
@@ -148,7 +208,7 @@
     <processMetadataValues>
         <name>CanvasMode</name>
         <value>
-            <stringValue>FREE_FORM_CANVAS</stringValue>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
         </value>
     </processMetadataValues>
     <processMetadataValues>
@@ -161,8 +221,8 @@
     <recordLookups>
         <name>Get_Agreement_Process_Flow_Custom_Metadata</name>
         <label>Get Agreement Process Flow Custom Metadata</label>
-        <locationX>617</locationX>
-        <locationY>410</locationY>
+        <locationX>446</locationX>
+        <locationY>431</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Check_Merge_Event_Trigger_Events</targetReference>
@@ -182,8 +242,8 @@
     <recordLookups>
         <name>Get_Agreements</name>
         <label>Get Agreements</label>
-        <locationX>616</locationX>
-        <locationY>309</locationY>
+        <locationX>446</locationX>
+        <locationY>323</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Get_Agreement_Process_Flow_Custom_Metadata</targetReference>
@@ -203,13 +263,16 @@
     <recordUpdates>
         <name>Update_Agreement</name>
         <label>Update Agreement</label>
-        <locationX>1053</locationX>
-        <locationY>495</locationY>
+        <locationX>446</locationX>
+        <locationY>1031</locationY>
+        <faultConnector>
+            <targetReference>Log_Updated_Agreements</targetReference>
+        </faultConnector>
         <inputReference>AgreementUpdateRec</inputReference>
     </recordUpdates>
     <start>
-        <locationX>489</locationX>
-        <locationY>13</locationY>
+        <locationX>320</locationX>
+        <locationY>0</locationY>
         <connector>
             <targetReference>Get_Agreements</targetReference>
         </connector>

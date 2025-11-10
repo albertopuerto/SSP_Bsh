@@ -3,13 +3,16 @@
     <actionCalls>
         <name>act_SendEmail</name>
         <label>Send Email</label>
-        <locationX>440</locationX>
-        <locationY>576</locationY>
+        <locationX>490</locationX>
+        <locationY>792</locationY>
         <actionName>emailSimple</actionName>
         <actionType>emailSimple</actionType>
         <connector>
             <targetReference>lp_AccountTeamMembers</targetReference>
         </connector>
+        <faultConnector>
+            <targetReference>LogContractExpirationEmailSent</targetReference>
+        </faultConnector>
         <flowTransactionModel>CurrentTransaction</flowTransactionModel>
         <inputParameters>
             <name>emailAddresses</name>
@@ -42,14 +45,144 @@
             </value>
         </inputParameters>
         <nameSegment>emailSimple</nameSegment>
-        <versionSegment>1</versionSegment>
+        <offset>0</offset>
+    </actionCalls>
+    <actionCalls>
+        <name>Check_the_account_team_member</name>
+        <label>Check the account team member</label>
+        <locationX>226</locationX>
+        <locationY>468</locationY>
+        <actionName>FlowLogEntry</actionName>
+        <actionType>apex</actionType>
+        <connector>
+            <targetReference>decn_AccountTeamMembers</targetReference>
+        </connector>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>flowName</name>
+            <value>
+                <stringValue>flw_Contract_SendReminderForExpiration</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>message</name>
+            <value>
+                <stringValue>Retrieved Account Team Members for Contract ID: {!$Record.Id}&quot;</stringValue>
+            </value>
+        </inputParameters>
+        <nameSegment>FlowLogEntry</nameSegment>
+        <offset>0</offset>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </actionCalls>
+    <actionCalls>
+        <name>Contract_send_reminder_check</name>
+        <label>Contract send reminder check</label>
+        <locationX>226</locationX>
+        <locationY>252</locationY>
+        <actionName>FlowLogEntry</actionName>
+        <actionType>apex</actionType>
+        <connector>
+            <targetReference>get_AccountTeamMember</targetReference>
+        </connector>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>flowName</name>
+            <value>
+                <stringValue>flw_Contract_SendReminderForExpiration</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>message</name>
+            <value>
+                <stringValue>&quot;Flow started for Contract ID: {!$Record.Id}&quot;</stringValue>
+            </value>
+        </inputParameters>
+        <nameSegment>FlowLogEntry</nameSegment>
+        <offset>0</offset>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </actionCalls>
+    <actionCalls>
+        <name>LogContractExpirationEmailSent</name>
+        <label>Log Contract Expiration Email Sent</label>
+        <locationX>754</locationX>
+        <locationY>900</locationY>
+        <actionName>FlowLogEntry</actionName>
+        <actionType>apex</actionType>
+        <connector>
+            <targetReference>save_log</targetReference>
+        </connector>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>flowName</name>
+            <value>
+                <stringValue>flw_Contract_SendReminderForExpiration</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>loggingLevelName</name>
+            <value>
+                <stringValue>INFO</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>message</name>
+            <value>
+                <stringValue>Contract expiration reminder email sent for contract {!$Record.ContractNumber}</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>tagsString</name>
+            <value>
+                <stringValue>FLW-SYS-00008</stringValue>
+            </value>
+        </inputParameters>
+        <nameSegment>FlowLogEntry</nameSegment>
+        <offset>0</offset>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </actionCalls>
+    <actionCalls>
+        <description>save the logs</description>
+        <name>save_log</name>
+        <label>save log</label>
+        <locationX>754</locationX>
+        <locationY>1008</locationY>
+        <actionName>Logger</actionName>
+        <actionType>apex</actionType>
+        <flowTransactionModel>Automatic</flowTransactionModel>
+        <nameSegment>Logger</nameSegment>
+        <offset>0</offset>
+    </actionCalls>
+    <actionCalls>
+        <name>Warning</name>
+        <label>Warning</label>
+        <locationX>50</locationX>
+        <locationY>684</locationY>
+        <actionName>FlowLogEntry</actionName>
+        <actionType>apex</actionType>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>flowName</name>
+            <value>
+                <stringValue>flw_Contract_SendReminderForExpiration</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>message</name>
+            <value>
+                <stringValue>No Account Team Members found for contract ID</stringValue>
+            </value>
+        </inputParameters>
+        <nameSegment>FlowLogEntry</nameSegment>
+        <offset>0</offset>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
     </actionCalls>
     <apiVersion>62.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
     <decisions>
         <name>decn_AccountTeamMembers</name>
         <label>Has Account Team Members</label>
-        <locationX>176</locationX>
-        <locationY>360</locationY>
+        <locationX>226</locationX>
+        <locationY>576</locationY>
         <defaultConnector>
             <targetReference>lp_AccountTeamMembers</targetReference>
         </defaultConnector>
@@ -64,6 +197,9 @@
                     <booleanValue>true</booleanValue>
                 </rightValue>
             </conditions>
+            <connector>
+                <targetReference>Warning</targetReference>
+            </connector>
             <label>No</label>
         </rules>
     </decisions>
@@ -79,8 +215,8 @@
     <loops>
         <name>lp_AccountTeamMembers</name>
         <label>Loop Account Team Members</label>
-        <locationX>352</locationX>
-        <locationY>468</locationY>
+        <locationX>402</locationX>
+        <locationY>684</locationY>
         <collectionReference>get_AccountTeamMember</collectionReference>
         <iterationOrder>Asc</iterationOrder>
         <nextValueConnector>
@@ -109,11 +245,11 @@
     <recordLookups>
         <name>get_AccountTeamMember</name>
         <label>Get Account Team Member</label>
-        <locationX>176</locationX>
-        <locationY>252</locationY>
+        <locationX>226</locationX>
+        <locationY>360</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
-            <targetReference>decn_AccountTeamMembers</targetReference>
+            <targetReference>Check_the_account_team_member</targetReference>
         </connector>
         <filterLogic>and</filterLogic>
         <filters>
@@ -130,10 +266,10 @@
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordLookups>
     <start>
-        <locationX>50</locationX>
+        <locationX>100</locationX>
         <locationY>0</locationY>
         <connector>
-            <targetReference>get_AccountTeamMember</targetReference>
+            <targetReference>Contract_send_reminder_check</targetReference>
         </connector>
         <filterLogic>and</filterLogic>
         <filters>

@@ -7,6 +7,9 @@
         <locationY>755</locationY>
         <actionName>FlowLogEntry</actionName>
         <actionType>apex</actionType>
+        <connector>
+            <targetReference>save_log</targetReference>
+        </connector>
         <flowTransactionModel>CurrentTransaction</flowTransactionModel>
         <inputParameters>
             <name>flowName</name>
@@ -17,13 +20,13 @@
         <inputParameters>
             <name>loggingLevelName</name>
             <value>
-                <stringValue>INFO</stringValue>
+                <stringValue>ERROR</stringValue>
             </value>
         </inputParameters>
         <inputParameters>
             <name>message</name>
             <value>
-                <stringValue>Account change notification sent for {!$Record.Name}</stringValue>
+                <stringValue>FLW-SYS-00007-Account change notification sent for {!$Record.Name}</stringValue>
             </value>
         </inputParameters>
         <inputParameters>
@@ -35,11 +38,24 @@
         <inputParameters>
             <name>tagsString</name>
             <value>
-                <stringValue>FLW-SYS-00007</stringValue>
+                <stringValue>FLW-SYS</stringValue>
             </value>
         </inputParameters>
         <nameSegment>FlowLogEntry</nameSegment>
+        <offset>0</offset>
         <storeOutputAutomatically>true</storeOutputAutomatically>
+    </actionCalls>
+    <actionCalls>
+        <description>save the logs</description>
+        <name>save_log</name>
+        <label>save log</label>
+        <locationX>314</locationX>
+        <locationY>863</locationY>
+        <actionName>Logger</actionName>
+        <actionType>apex</actionType>
+        <flowTransactionModel>Automatic</flowTransactionModel>
+        <nameSegment>Logger</nameSegment>
+        <offset>0</offset>
     </actionCalls>
     <actionCalls>
         <name>Send_Mail_Notification_to_SCO</name>
@@ -114,7 +130,7 @@
         <defaultConnectorLabel>Not Relevant</defaultConnectorLabel>
         <rules>
             <name>Changed</name>
-            <conditionLogic>(1 OR 2 OR 3 OR 4 OR 5 OR 6 OR 7 OR 8 OR 9 OR 10 OR 11 OR 12 OR 13 OR 14 ) AND 15 AND 16</conditionLogic>
+            <conditionLogic>(1 OR 2 OR 3 OR 4 OR 5 OR 6 OR 7 OR 8 OR 9 OR 10 OR 11 OR 12 OR 13 ) AND 14 AND 15</conditionLogic>
             <conditions>
                 <leftValueReference>$Record.Name</leftValueReference>
                 <operator>IsChanged</operator>
@@ -187,13 +203,6 @@
             </conditions>
             <conditions>
                 <leftValueReference>$Record.Industry</leftValueReference>
-                <operator>IsChanged</operator>
-                <rightValue>
-                    <booleanValue>true</booleanValue>
-                </rightValue>
-            </conditions>
-            <conditions>
-                <leftValueReference>$Record.pkl_PaymentTerms__c</leftValueReference>
                 <operator>IsChanged</operator>
                 <rightValue>
                     <booleanValue>true</booleanValue>

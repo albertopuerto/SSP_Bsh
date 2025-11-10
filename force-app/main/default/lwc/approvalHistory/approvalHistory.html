@@ -1,0 +1,15 @@
+<template>
+    <lightning-card title="My Approval History">
+        <template if:true={approvals.length}>
+            <lightning-datatable
+                key-field="Id"
+                data={approvals}
+                columns={columns}
+                hide-checkbox-column
+            ></lightning-datatable>
+        </template>
+        <template if:true={error}>
+            <p class="slds-text-color_error">Error loading approvals: {error.message}</p>
+        </template>
+    </lightning-card>
+</template>

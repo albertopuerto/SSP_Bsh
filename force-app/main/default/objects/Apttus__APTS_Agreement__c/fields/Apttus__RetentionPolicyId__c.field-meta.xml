@@ -4,7 +4,6 @@
     <deleteConstraint>SetNull</deleteConstraint>
     <deprecated>false</deprecated>
     <description>The associated retention policy</description>
-    <externalId>false</externalId>
     <label>Retention Policy</label>
     <referenceTo>Apttus__RetentionPolicy__c</referenceTo>
     <relationshipLabel>Agreements</relationshipLabel>
