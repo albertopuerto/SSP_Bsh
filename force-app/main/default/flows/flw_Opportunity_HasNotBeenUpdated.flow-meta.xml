@@ -1,6 +1,66 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
     <actionCalls>
+        <name>Log_Chatter_Reminder_Sent</name>
+        <label>Log_Chatter_Reminder_Sent</label>
+        <locationX>264</locationX>
+        <locationY>576</locationY>
+        <actionName>FlowLogEntry</actionName>
+        <actionType>apex</actionType>
+        <connector>
+            <targetReference>Save_Log</targetReference>
+        </connector>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>flowName</name>
+            <value>
+                <stringValue>flw_Opportunity_HasNotBeenUpdated</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>loggingLevelName</name>
+            <value>
+                <stringValue>INFO</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>message</name>
+            <value>
+                <stringValue>hatter reminder sent for opportunity - has not been updated</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>recordId</name>
+            <value>
+                <elementReference>lp_opp_ToSendAlert.Id</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>tagsString</name>
+            <value>
+                <stringValue>opportunity-reminder,chatter-reminder</stringValue>
+            </value>
+        </inputParameters>
+        <nameSegment>FlowLogEntry</nameSegment>
+        <offset>0</offset>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </actionCalls>
+    <actionCalls>
+        <description>Save the Logs</description>
+        <name>Save_Log</name>
+        <label>Save Log</label>
+        <locationX>264</locationX>
+        <locationY>684</locationY>
+        <actionName>Logger</actionName>
+        <actionType>apex</actionType>
+        <connector>
+            <targetReference>lp_opp_ToSendAlert</targetReference>
+        </connector>
+        <flowTransactionModel>Automatic</flowTransactionModel>
+        <nameSegment>Logger</nameSegment>
+        <offset>0</offset>
+    </actionCalls>
+    <actionCalls>
         <name>SendaChatterReminder</name>
         <label>Send a Chatter Reminder</label>
         <locationX>264</locationX>
@@ -8,7 +68,7 @@
         <actionName>chatterPost</actionName>
         <actionType>chatterPost</actionType>
         <connector>
-            <targetReference>lp_opp_ToSendAlert</targetReference>
+            <targetReference>Log_Chatter_Reminder_Sent</targetReference>
         </connector>
         <flowTransactionModel>CurrentTransaction</flowTransactionModel>
         <inputParameters>
@@ -24,10 +84,11 @@
             </value>
         </inputParameters>
         <nameSegment>chatterPost</nameSegment>
+        <offset>0</offset>
         <storeOutputAutomatically>true</storeOutputAutomatically>
-        <versionSegment>1</versionSegment>
     </actionCalls>
     <apiVersion>60.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
     <environments>Default</environments>
     <interviewLabel>Opportunity_HasNotBeenUpdated {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Opportunity_HasNotBeenUpdated</label>

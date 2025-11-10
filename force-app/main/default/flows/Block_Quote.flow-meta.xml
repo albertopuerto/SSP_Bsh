@@ -79,5 +79,5 @@
         <recordTriggerType>Delete</recordTriggerType>
         <triggerType>RecordBeforeDelete</triggerType>
     </start>
-    <status>Draft</status>
+    <status>Active</status>
 </Flow>

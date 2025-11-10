@@ -3,7 +3,6 @@
     <fullName>Apttus__RetentionDate__c</fullName>
     <deprecated>false</deprecated>
     <description>Date until to retain the record</description>
-    <externalId>false</externalId>
     <label>Retention Date</label>
     <required>false</required>
     <trackFeedHistory>false</trackFeedHistory>
