@@ -472,14 +472,6 @@
         <valueField>Id</valueField>
     </dynamicChoiceSets>
     <dynamicChoiceSets>
-        <name>paymentTermValues</name>
-        <dataType>Picklist</dataType>
-        <displayField xsi:nil="true" />
-        <object xsi:nil="true" />
-        <picklistField>pkl_PaymentTerms__c</picklistField>
-        <picklistObject>Account</picklistObject>
-    </dynamicChoiceSets>
-    <dynamicChoiceSets>
         <name>RoleValues</name>
         <dataType>Picklist</dataType>
         <displayField xsi:nil="true" />
@@ -577,12 +569,6 @@
             <field>pkl_Language__c</field>
             <value>
                 <elementReference>Account.pkl_Language__c</elementReference>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <field>pkl_PaymentTerms__c</field>
-            <value>
-                <elementReference>Payment_Terms</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
@@ -720,15 +706,6 @@
             <choiceReferences>RoleValues</choiceReferences>
             <dataType>String</dataType>
             <fieldText>Role</fieldText>
-            <fieldType>DropdownBox</fieldType>
-            <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
-            <isRequired>true</isRequired>
-        </fields>
-        <fields>
-            <name>Payment_Terms</name>
-            <choiceReferences>paymentTermValues</choiceReferences>
-            <dataType>String</dataType>
-            <fieldText>Payment Terms</fieldText>
             <fieldType>DropdownBox</fieldType>
             <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
             <isRequired>true</isRequired>
