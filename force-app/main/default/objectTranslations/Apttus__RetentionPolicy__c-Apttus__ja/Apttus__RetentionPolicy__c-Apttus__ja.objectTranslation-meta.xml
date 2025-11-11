@@ -4,18 +4,5 @@
         <plural>false</plural>
         <value><!-- Retention Policy --></value>
     </caseValues>
-    
-    
-    
-    
-    
-    
-    <layouts>
-        <layout>Retention Policy Layout</layout>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
     <nameFieldLabel><!-- Policy  Name --></nameFieldLabel>
 </CustomObjectTranslation>

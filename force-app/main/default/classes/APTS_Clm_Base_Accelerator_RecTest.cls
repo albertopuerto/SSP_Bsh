@@ -19,7 +19,6 @@ public class APTS_Clm_Base_Accelerator_RecTest{
         testAcc.Role__c='ETDE Domestic Customer';
     	testAcc.Type='Internal';
         testAcc.pkl_Language__c = 'German';
-        testAcc.pkl_PaymentTerms__c = 'Net 15';
 		insert testAcc;
         
         APTS_integration_Allowed__c obj = new APTS_integration_Allowed__c(Name = 'Integration_Allowed', APTS_Allow_Callout__c = true);
