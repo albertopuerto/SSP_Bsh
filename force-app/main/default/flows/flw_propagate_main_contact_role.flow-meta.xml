@@ -29,21 +29,13 @@
         <label>updatePartnerRolesOnRecord</label>
         <locationX>666</locationX>
         <locationY>352</locationY>
-        <filterLogic>and</filterLogic>
-        <filters>
-            <field>Id</field>
-            <operator>EqualTo</operator>
-            <value>
-                <elementReference>$Record.ContactId</elementReference>
-            </value>
-        </filters>
         <inputAssignments>
-            <field>mpkl_RoleMainAccount__c</field>
+            <field>mpkl_PartnerRoles__c</field>
             <value>
-                <elementReference>$Record.mpkl_PartnerRoles__c</elementReference>
+                <elementReference>$Record.Contact.mpkl_RoleMainAccount__c</elementReference>
             </value>
         </inputAssignments>
-        <object>Contact</object>
+        <inputReference>$Record</inputReference>
     </recordUpdates>
     <start>
         <locationX>540</locationX>
@@ -60,8 +52,8 @@
             </value>
         </filters>
         <object>AccountContactRelation</object>
-        <recordTriggerType>CreateAndUpdate</recordTriggerType>
-        <triggerType>RecordAfterSave</triggerType>
+        <recordTriggerType>Create</recordTriggerType>
+        <triggerType>RecordBeforeSave</triggerType>
     </start>
     <status>Active</status>
 </Flow>
