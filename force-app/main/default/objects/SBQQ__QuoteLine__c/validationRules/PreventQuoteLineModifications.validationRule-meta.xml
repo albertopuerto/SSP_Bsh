@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>PreventQuoteLineModifications</fullName>
+    <active>true</active>
+    <errorConditionFormula>OR(
+  TEXT( SBQQ__Quote__r.SBQQ__Status__c ) = &quot;Rejected&quot;,
+  TEXT( SBQQ__Quote__r.SBQQ__Status__c ) = &quot;Accepted&quot;,
+  TEXT( SBQQ__Quote__r.SBQQ__Status__c ) = &quot;Denied&quot;
+)</errorConditionFormula>
+    <errorMessage>The Quote lines cannot be modified because the parent Quote’s status is Rejected, Accepted, or Denied.</errorMessage>
+</ValidationRule>

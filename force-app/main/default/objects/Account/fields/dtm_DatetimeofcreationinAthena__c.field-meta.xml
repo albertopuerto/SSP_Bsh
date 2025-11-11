@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>dtm_DatetimeofcreationinAthena__c</fullName>
+    <description>to store the data and time when the Account is created in Athena</description>
+    <externalId>false</externalId>
+    <label>Date/time of creation in Athena</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>DateTime</type>
+</CustomField>

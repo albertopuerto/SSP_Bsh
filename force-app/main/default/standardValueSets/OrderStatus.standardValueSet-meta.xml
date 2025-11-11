@@ -26,4 +26,34 @@
         <label>Order Received by SAP</label>
         <groupingString>Activated</groupingString>
     </standardValue>
+    <standardValue>
+        <fullName>Paused</fullName>
+        <default>false</default>
+        <label>Paused</label>
+        <groupingString>Activated</groupingString>
+    </standardValue>
+    <standardValue>
+        <fullName>SAP Fulfillment Execution</fullName>
+        <default>false</default>
+        <label>SAP Fulfillment Execution</label>
+        <groupingString>Activated</groupingString>
+    </standardValue>
+    <standardValue>
+        <fullName>Shipping</fullName>
+        <default>false</default>
+        <label>Shipping</label>
+        <groupingString>Activated</groupingString>
+    </standardValue>
+    <standardValue>
+        <fullName>Canceled (Final – Lost)</fullName>
+        <default>false</default>
+        <label>Canceled (Final – Lost)</label>
+        <groupingString>Activated</groupingString>
+    </standardValue>
+    <standardValue>
+        <fullName>Order Delivered (Final – Won)</fullName>
+        <default>false</default>
+        <label>Order Delivered (Final – Won)</label>
+        <groupingString>Activated</groupingString>
+    </standardValue>
 </StandardValueSet>

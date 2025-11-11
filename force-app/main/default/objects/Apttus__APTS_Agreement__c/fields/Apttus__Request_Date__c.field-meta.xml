@@ -4,6 +4,7 @@
     <deprecated>false</deprecated>
     <description>The date the agreement was requested</description>
     <externalId>false</externalId>
+    <inlineHelpText>The date the agreement was requested</inlineHelpText>
     <label>Request Date</label>
     <required>false</required>
     <trackFeedHistory>false</trackFeedHistory>

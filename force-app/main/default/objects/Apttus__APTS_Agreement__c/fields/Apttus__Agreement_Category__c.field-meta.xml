@@ -3,11 +3,10 @@
     <fullName>Apttus__Agreement_Category__c</fullName>
     <deprecated>false</deprecated>
     <description>Used to categorize agreement types.  When setting up a new agreement type make sure to seect approrpiate values for that agreement type and to set the right default</description>
-    <externalId>false</externalId>
     <label>Agreement Category</label>
     <required>false</required>
     <trackFeedHistory>false</trackFeedHistory>
-    <trackHistory>false</trackHistory>
+    <trackHistory>true</trackHistory>
     <trackTrending>false</trackTrending>
     <type>Picklist</type>
     <valueSet>
@@ -54,24 +53,109 @@
                 <label>ETAS/CDE</label>
             </value>
             <value>
-                <fullName>Sales EU1 BMW</fullName>
+                <fullName>ETAS/CVW</fullName>
                 <default>false</default>
-                <label>ETAS/CEU1 BMW</label>
+                <label>ETAS/CVW</label>
             </value>
             <value>
-                <fullName>Sales EU1 Mercedes</fullName>
+                <fullName>ETAS/CRB</fullName>
                 <default>false</default>
-                <label>ETAS/CEU1 Mercedes</label>
+                <label>ETAS/CRB</label>
             </value>
             <value>
-                <fullName>ETAS/CEU1 Volvo Cars</fullName>
+                <fullName>ETAS/CEU1</fullName>
                 <default>false</default>
-                <label>ETAS/CEU1 Volvo Cars</label>
+                <label>ETAS/CEU1</label>
             </value>
             <value>
-                <fullName>ETAS/SAS</fullName>
+                <fullName>ETAS/CEU2</fullName>
                 <default>false</default>
-                <label>ETAS/SAS</label>
+                <label>ETAS/CEU2</label>
+            </value>
+            <value>
+                <fullName>ETAS/CRN/-CJL</fullName>
+                <default>false</default>
+                <label>ETAS/CRN/-CJL</label>
+            </value>
+            <value>
+                <fullName>ETAS-ECM/PG</fullName>
+                <default>false</default>
+                <label>ETAS-ECM/PG</label>
+            </value>
+            <value>
+                <fullName>ETAS-SID/PG</fullName>
+                <default>false</default>
+                <label>ETAS-SID/PG</label>
+            </value>
+            <value>
+                <fullName>ETAS/NXT</fullName>
+                <default>false</default>
+                <label>ETAS/NXT</label>
+            </value>
+            <value>
+                <fullName>ETAS-ICA/PG</fullName>
+                <default>false</default>
+                <label>ETAS-ICA/PG</label>
+            </value>
+            <value>
+                <fullName>ETAS/HR</fullName>
+                <default>false</default>
+                <label>ETAS/HR</label>
+            </value>
+            <value>
+                <fullName>ETAS/SCC</fullName>
+                <default>false</default>
+                <label>ETAS/SCC</label>
+            </value>
+            <value>
+                <fullName>ETAS/NE-EX</fullName>
+                <default>false</default>
+                <label>ETAS/NE-EX</label>
+            </value>
+            <value>
+                <fullName>ETAS/COM</fullName>
+                <default>false</default>
+                <label>ETAS/COM</label>
+            </value>
+            <value>
+                <fullName>ETAS/CRN</fullName>
+                <default>false</default>
+                <label>ETAS/CRN</label>
+            </value>
+            <value>
+                <fullName>ETAS/ICA-PG</fullName>
+                <default>false</default>
+                <label>ETAS/ICA-PG</label>
+            </value>
+            <value>
+                <fullName>ETAS/ES</fullName>
+                <default>false</default>
+                <label>ETAS/ES</label>
+            </value>
+            <value>
+                <fullName>ETAS/QMM</fullName>
+                <default>false</default>
+                <label>ETAS/QMM</label>
+            </value>
+            <value>
+                <fullName>ETAS/BDO</fullName>
+                <default>false</default>
+                <label>ETAS/BDO</label>
+            </value>
+            <value>
+                <fullName>ETAS/ECI</fullName>
+                <default>false</default>
+                <label>ETAS/ECI</label>
+            </value>
+            <value>
+                <fullName>ETAS/CKR</fullName>
+                <default>false</default>
+                <label>ETAS/CKR</label>
+            </value>
+            <value>
+                <fullName>ETAS/CJP</fullName>
+                <default>false</default>
+                <label>ETAS/CJP</label>
             </value>
         </valueSetDefinition>
     </valueSet>

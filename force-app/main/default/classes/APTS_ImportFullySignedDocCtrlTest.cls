@@ -14,10 +14,7 @@ private class APTS_ImportFullySignedDocCtrlTest{
         testAcc.Name = 'Test Account';
         testAcc.Role__c='ETDE Domestic Customer';
     	testAcc.Type='Internal';
-        testAcc.pkl_INCOTerms1__c = 'DAP – Delivered at Place';
-        testAcc.txt_INCOTerms2__c = 'Wolfsburg';
         testAcc.pkl_Language__c = 'German';
-        testAcc.pkl_PaymentTerms__c = 'Net 15';
         insert testAcc;
         
         APTS_integration_Allowed__c obj = new APTS_integration_Allowed__c(Name = 'Integration_Allowed', APTS_Allow_Callout__c = true);

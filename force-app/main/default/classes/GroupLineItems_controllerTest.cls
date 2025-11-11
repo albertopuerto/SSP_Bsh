@@ -7,14 +7,17 @@ private class GroupLineItems_controllerTest {
         Account testAccount = new Account(
             Name = 'Test Account',
             Role__c='ETDE Domestic Customer',
-            pkl_Language__c='English', 
-            pkl_INCOTerms1__c='DAP – Delivered at Place',  
-            txt_INCOTerms2__c = 'Inco Terms',
-            pkl_PaymentTerms__c = 'Net 15',
+            pkl_Language__c='English',
             pkm_BoschPartnerRole__c = 'BBCUEX'
 
         );
         insert testAccount;
+        SalesArea__c sal = new SalesArea__c(
+            pkl_DistributionChannel__c = 'A1',
+            pkl_Division__c = '01',
+            pkl_SalesOrg__c = 'DEM5'
+        );
+        insert sal;
         
         // Create test opportunity
          Opportunity testOpportunity = new Opportunity(
@@ -24,7 +27,8 @@ private class GroupLineItems_controllerTest {
             CloseDate = Date.today().addDays(30),
             pklTypeOfOpportunity__c = 'LTA',
             pklLeadingSolutionField__c = 'DAP',
-            pklTypeOfOffering__c = 'SW'
+            pklTypeOfOffering__c = 'SW',
+            lkp_SalesOrganization__c = sal.Id
         );
         insert testOpportunity;
         
@@ -121,9 +125,9 @@ private class GroupLineItems_controllerTest {
             EffectiveDate = Date.today(),
             Status = 'Draft',
             Pricebook2Id = standardPricebook.Id,
+            pkl_PaymentTerms__c = 'Net 15',
             pkl_INCOTerms1__c='DAP – Delivered at Place',  
-            txt_INCOTerms2__c = 'Inco Terms',
-            pkl_PaymentTerms__c = 'Net 15'
+            txt_INCOTerms2__c = 'Inco Terms'
         );
         insert testOrder;
         
@@ -137,10 +141,10 @@ private class GroupLineItems_controllerTest {
                 SBQQ__QuoteLine__c = quoteLines[i].Id,
                 Quantity = quoteLines[i].SBQQ__Quantity__c,
                 UnitPrice = 100.00,
-                pkl_INCOTerms1__c='DAP – Delivered at Place',  
-                txt_INCOTerms2__c = 'Inco Terms',
                 pkl_PaymentTerms__c = 'Net 15',
-                pkl_QuantityUnit__c = 'Each'
+                pkl_QuantityUnit__c = 'Each',
+                pkl_INCOTerms1__c='DAP – Delivered at Place',  
+                txt_INCOTerms2__c = 'Inco Terms'
             ));
         }
         insert orderItems;

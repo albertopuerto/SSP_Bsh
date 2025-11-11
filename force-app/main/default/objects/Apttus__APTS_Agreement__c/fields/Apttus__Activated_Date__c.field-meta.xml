@@ -4,6 +4,7 @@
     <deprecated>false</deprecated>
     <description>The date the agreement was activated in the system</description>
     <externalId>false</externalId>
+    <inlineHelpText>The date the agreement was activated in the system</inlineHelpText>
     <label>Activated Date</label>
     <required>false</required>
     <trackFeedHistory>false</trackFeedHistory>

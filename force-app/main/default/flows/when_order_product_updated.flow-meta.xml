@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>64.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <environments>Default</environments>
+    <interviewLabel>when order product updated {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>when order product updated</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <start>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>flw_Order_NotifyQuoteApproversFromOrder</targetReference>
+        </connector>
+        <object>OrderItem</object>
+        <recordTriggerType>CreateAndUpdate</recordTriggerType>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Active</status>
+    <subflows>
+        <name>flw_Order_NotifyQuoteApproversFromOrder</name>
+        <label>OrderNotifyQuoteApproversFromOrder</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <flowName>flw_Order_NotifyQuoteApproversFromOrder</flowName>
+        <inputAssignments>
+            <name>OrderId</name>
+            <value>
+                <elementReference>$Record.OrderId</elementReference>
+            </value>
+        </inputAssignments>
+    </subflows>
+</Flow>

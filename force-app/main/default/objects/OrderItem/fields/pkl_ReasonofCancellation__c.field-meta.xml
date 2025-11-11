@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>pkl_ReasonofCancellation__c</fullName>
+    <externalId>false</externalId>
+    <label>Reason of Cancellation</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>00</fullName>
+                <default>false</default>
+                <label>Assigned by the System (Internal)</label>
+            </value>
+            <value>
+                <fullName>01</fullName>
+                <default>false</default>
+                <label>Delivery date too late</label>
+            </value>
+            <value>
+                <fullName>02</fullName>
+                <default>false</default>
+                <label>Poor quality</label>
+            </value>
+            <value>
+                <fullName>03</fullName>
+                <default>false</default>
+                <label>Too expensive</label>
+            </value>
+            <value>
+                <fullName>04</fullName>
+                <default>false</default>
+                <label>Competitor better</label>
+            </value>
+            <value>
+                <fullName>05</fullName>
+                <default>false</default>
+                <label>Guarantee</label>
+            </value>
+            <value>
+                <fullName>10</fullName>
+                <default>false</default>
+                <label>Unreasonable request</label>
+            </value>
+            <value>
+                <fullName>11</fullName>
+                <default>false</default>
+                <label>Cust to receive replacement</label>
+            </value>
+            <value>
+                <fullName>50</fullName>
+                <default>false</default>
+                <label>Transaction is being checked</label>
+            </value>
+            <value>
+                <fullName>CR</fullName>
+                <default>false</default>
+                <label>Copied and Rejected</label>
+            </value>
+            <value>
+                <fullName>G1</fullName>
+                <default>false</default>
+                <label>SMP-Notification</label>
+            </value>
+            <value>
+                <fullName>G2</fullName>
+                <default>false</default>
+                <label>SMP-Suspended</label>
+            </value>
+            <value>
+                <fullName>G3</fullName>
+                <default>false</default>
+                <label>SMP-Declined</label>
+            </value>
+            <value>
+                <fullName>G4</fullName>
+                <default>false</default>
+                <label>SMP-Flagged (Deleted during Release</label>
+            </value>
+            <value>
+                <fullName>J1</fullName>
+                <default>false</default>
+                <label>DRM Claim Canellation/Rejection</label>
+            </value>
+            <value>
+                <fullName>LV</fullName>
+                <default>false</default>
+                <label>Bill of services completed</label>
+            </value>
+            <value>
+                <fullName>NR</fullName>
+                <default>false</default>
+                <label>Copy Failure: New SA Rejected</label>
+            </value>
+            <value>
+                <fullName>XA</fullName>
+                <default>false</default>
+                <label>Rejected by AFW</label>
+            </value>
+            <value>
+                <fullName>XC</fullName>
+                <default>false</default>
+                <label>Rejected by Credit Manager</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

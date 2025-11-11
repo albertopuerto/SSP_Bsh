@@ -5,6 +5,7 @@
     <deprecated>false</deprecated>
     <description>The user who activated the agreement in the system</description>
     <externalId>false</externalId>
+    <inlineHelpText>The user who activated the agreement in the system</inlineHelpText>
     <label>Activated By</label>
     <referenceTo>User</referenceTo>
     <relationshipName>APTS_Agreement</relationshipName>

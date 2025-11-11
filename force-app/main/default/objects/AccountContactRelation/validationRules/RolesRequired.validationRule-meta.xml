@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>RolesRequired</fullName>
+    <active>true</active>
+    <description>Ensures at least one role is selected for Account Contact Relationship</description>
+    <errorConditionFormula>ISBLANK(mpkl_PartnerRoles__c)</errorConditionFormula>
+    <errorMessage>At least one role needs to be selected</errorMessage>
+</ValidationRule>

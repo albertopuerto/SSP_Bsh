@@ -75,11 +75,10 @@
         <itemInstances>
             <componentInstance>
                 <componentInstanceProperties>
-                    <name>hideUpdateButton</name>
-                    <value>false</value>
+                    <name>recordId</name>
                 </componentInstanceProperties>
-                <componentName>runtime_sales_pathassistant:pathAssistant</componentName>
-                <identifier>runtime_sales_pathassistant_pathAssistant</identifier>
+                <componentName>customPath</componentName>
+                <identifier>c_customPath</identifier>
             </componentInstance>
         </itemInstances>
         <mode>Replace</mode>

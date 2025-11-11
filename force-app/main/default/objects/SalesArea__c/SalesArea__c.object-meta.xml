@@ -157,11 +157,12 @@
     <label>Sales Area</label>
     <nameField>
         <displayFormat>SA-{000}</displayFormat>
-        <label>Sales Area</label>
+        <label>Name</label>
         <type>AutoNumber</type>
     </nameField>
     <pluralLabel>Sales Areas</pluralLabel>
     <searchLayouts />
     <sharingModel>ReadWrite</sharingModel>
+    <startsWith>Vowel</startsWith>
     <visibility>Public</visibility>
 </CustomObject>
