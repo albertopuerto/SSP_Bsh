@@ -409,16 +409,6 @@
                 <identifier>RecordCurrencyIsoCodeField</identifier>
             </fieldInstance>
         </itemInstances>
-        <itemInstances>
-            <fieldInstance>
-                <fieldInstanceProperties>
-                    <name>uiBehavior</name>
-                    <value>required</value>
-                </fieldInstanceProperties>
-                <fieldItem>Record.pkl_PaymentTerms__c</fieldItem>
-                <identifier>Recordpkl_PaymentTerms_cField</identifier>
-            </fieldInstance>
-        </itemInstances>
         <name>Facet-3463eca3-b028-4c26-98cc-523f59914e07</name>
         <type>Facet</type>
     </flexiPageRegions>

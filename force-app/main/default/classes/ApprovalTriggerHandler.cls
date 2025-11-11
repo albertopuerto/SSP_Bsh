@@ -39,7 +39,9 @@ public without sharing class ApprovalTriggerHandler {
  */
  
    public static void handleAfterInsert(List<sbaa__Approval__c> records) {   
+       
         insertSharesForApprovals(records);
+    
     } 
     
     
@@ -75,14 +77,16 @@ public without sharing class ApprovalTriggerHandler {
                 shareRecord.Parentid = approval.Id;
                 shareRecord.AccessLevel = 'Edit';
                 
-                if (approval.sbaa__AssignedTo__c !=null && String.isBlank(approval.sbaa__AssignedGroupId__c)) {
+                if (approval.sbaa__AssignedTo__c !=null && approval.sbaa__AssignedTo__c != UserInfo.getUserId() && String.isBlank(approval.sbaa__AssignedGroupId__c)) {
                    shareRecord.UserOrGroupId = approval.sbaa__AssignedTo__c;
+                   sharesToInsert.add(shareRecord); 
                             
                 } else if(approval.sbaa__AssignedGroupId__c !=null && String.isBlank(approval.sbaa__AssignedTo__c)) {
                   shareRecord.UserOrGroupId = approval.sbaa__AssignedGroupId__c;  
+                  sharesToInsert.add(shareRecord); 
           
               }    
-               sharesToInsert.add(shareRecord);       
+               
         } 
         
       if (!sharesToInsert.isEmpty()){

@@ -72,6 +72,10 @@
     </userPermissions>
     <userPermissions>
         <enabled>true</enabled>
+        <name>UserInteractionInsights</name>
+    </userPermissions>
+    <userPermissions>
+        <enabled>true</enabled>
         <name>ViewHelpLink</name>
     </userPermissions>
     <layoutAssignments>
@@ -399,4 +403,9 @@
         <tab>sbaa__Approval__c</tab>
         <visibility>Hidden</visibility>
     </tabVisibilities>
+    <applicationVisibilities>
+        <application>standard__Chatter</application>
+        <default>true</default>
+        <visible>true</visible>
+    </applicationVisibilities>
 </Profile>

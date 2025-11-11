@@ -30,11 +30,6 @@
                 <field>pkl_Language__c</field>
                 <uiBehavior>Required</uiBehavior>
             </quickActionLayoutItems>
-            <quickActionLayoutItems>
-                <emptySpace>false</emptySpace>
-                <field>pkl_PaymentTerms__c</field>
-                <uiBehavior>Required</uiBehavior>
-            </quickActionLayoutItems>
         </quickActionLayoutColumns>
         <quickActionLayoutColumns>
             <quickActionLayoutItems>

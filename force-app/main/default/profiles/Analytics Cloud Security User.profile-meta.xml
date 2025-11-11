@@ -832,4 +832,19 @@
         <tab>standard-Product2</tab>
         <visibility>Hidden</visibility>
     </tabVisibilities>
+    <applicationVisibilities>
+        <application>Apttus_XApps__XAuthorExcel</application>
+        <default>false</default>
+        <visible>true</visible>
+    </applicationVisibilities>
+    <applicationVisibilities>
+        <application>sbaa__AdvancedApprovals</application>
+        <default>false</default>
+        <visible>true</visible>
+    </applicationVisibilities>
+    <applicationVisibilities>
+        <application>standard__Platform</application>
+        <default>true</default>
+        <visible>true</visible>
+    </applicationVisibilities>
 </Profile>
