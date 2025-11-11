@@ -15,16 +15,13 @@ public class DocuSignWebhook_Test {
         testContactList[0].pkl_AccountGroup__c = 'ETDE Contact ETCN Contact';
 
         insert testContactList;
-        
         ContentVersion[] contentVersionList = (ContentVersion[])TestFactory.createSObjectList(new ContentVersion(), 1);
         contentVersionList[0].IsMajorVersion = true; 
         insert contentVersionList;
         ContentVersion contentVersion = contentVersionList[0];
-        
         // Get the ContentDocumentId - same as original
         contentVersion = [SELECT Id, ContentDocumentId FROM ContentVersion WHERE Id = :contentVersion.Id LIMIT 1];
         Id contentDocumentId = contentVersion.ContentDocumentId;
-        
         // Create ContentDocumentLink using TestFactory
         // This should use ContentDocumentLinkDefaults from your TestFactoryDefaults class
         ContentDocumentLink[] linkList = (ContentDocumentLink[])TestFactory.createSObjectList(new ContentDocumentLink(), 1);
@@ -32,7 +29,6 @@ public class DocuSignWebhook_Test {
         linkList[0].LinkedEntityId = testAccountList[0].Id;
         linkList[0].ShareType = 'V'; // This should come from defaults, but set explicitly
         insert linkList;
-        
         Signature__c signature = new Signature__c(
         Envelope_Id__c = 'xxxxxxxx-xxxx-xxx',
         Document_Id__c= contentDocumentId
@@ -51,7 +47,7 @@ public class DocuSignWebhook_Test {
         
         StaticResource sr2 = [SELECT Body FROM StaticResource WHERE Name = 'documentSignWebhookRequest'];
 		String mockJson = sr2.Body.toString();
-        
+         Assert.areNotEqual(null, sr2.Body, 'The static resource is not null');
         // Step 2: Set up mock RestRequest
         RestRequest req = new RestRequest();
         req.requestBody = Blob.valueOf(mockJson);
@@ -59,11 +55,10 @@ public class DocuSignWebhook_Test {
         req.requestURI = '/services/apexrest/docusignWebhook/*';
  
         RestContext.request = req;
-       // RestContext.response = new RestResponse();
- 
-        // Step 3: Call the method
         Test.startTest();
+        
         DocuSignWebhook.handleWebhook();
+ 
         Test.stopTest();
  
         // Step 4: Assert expected outcomes (e.g., record creation, field values)

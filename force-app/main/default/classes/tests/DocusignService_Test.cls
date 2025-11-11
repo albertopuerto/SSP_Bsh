@@ -1,8 +1,9 @@
 @isTest
-public class DocuSignSigners_Test {
+public class DocusignService_Test {
 
     @testSetup
     public static void initRecords(){
+        
         Account[] testAccountList = (Account[])TestFactory.createSObjectList(new Account(), 1);
         insert testAccountList;
 
@@ -32,29 +33,66 @@ public class DocuSignSigners_Test {
         linkList[0].LinkedEntityId = testAccountList[0].Id;
         linkList[0].ShareType = 'V'; // This should come from defaults, but set explicitly
         insert linkList;
+        
     }
     
     @isTest
-    public static void sendDocumentToSign(){
+    public static void sendEnvelope(){
+        Docusign_Setting__mdt config = [SELECT clientId__c, userId__c, audience__c, certificateName__c,DeveloperName, accountId__c, baseUrl__c FROM Docusign_Setting__mdt WITH USER_MODE LIMIT 1];
+        
         StaticResource sr2 = [SELECT Body FROM StaticResource WHERE Name = 'getAccessTokenBody'];
 		String tokenBody = sr2.Body.toString();
 
         HTTPMockGenerator res2 = new HTTPMockGenerator(200, tokenBody);
 
         Test.setMock(HttpCalloutMock.class, res2);
-        List<DocuSignSigners.InputVariables> variables = new List<DocuSignSigners.InputVariables>(); 
+        DocusignService docusignService= new DocuSignService(config.DeveloperName);
+        
         ContentVersion cv = [SELECT Id,VersionData from ContentVersion LIMIT 1];
         ContentDocument cd = [Select Id,Title from ContentDocument LIMIT 1];
         Contact cont = [Select Id,Email from Contact LIMIT 1];
 
-        DocuSignSigners.InputVariables variable= new DocusignSigners.InputVariables();
-        variable.document=cd;
-        variable.signer= cont.Email;
-        
-        variables.add(variable);
-      
+        Assert.areNotEqual(null, cd, 'The document is not null');
+        Blob myPdfBlob = cv.VersionData;
+        String base64Doc = EncodingUtil.base64Encode(myPdfBlob);
         Test.startTest();
-        DocuSignSigners.sendToSign(variables);
+        String result = docusignService.sendEnvelope(
+            cont.Email,
+            cont.Email,
+            base64Doc,
+            cd.Title
+        );
+        Test.stopTest();
+    }
+    
+    @isTest
+    public static void getSignedDocument(){
+        
+        StaticResource sr2 = [SELECT Body FROM StaticResource WHERE Name = 'getAccessTokenBody'];
+		String tokenBody = sr2.Body.toString();
+
+        HTTPMockGenerator res2 = new HTTPMockGenerator(200, tokenBody);
+
+        Test.setMock(HttpCalloutMock.class, res2);
+        DocuSignService service = new DocuSignService('APC_Test');
+     	ContentDocument cd = [Select Id,Title from ContentDocument LIMIT 1];
+        Test.startTest();
+        Blob document = service.getSignedDocument('2131232312434546', 'combined');
+        Assert.areNotEqual(null, document, 'The document is not null');
+        Test.stopTest();
+    }
+    
+    @isTest
+    public static void getDocumentsById(){
+        List<Id> listDocumentIds= new List<Id>();
+        //DocuSignService service = new DocuSignService('APC_Test');
+        ContentDocument cd = [Select Id,Title from ContentDocument LIMIT 1];
+     	ContentVersion cv = [SELECT Id,VersionData,ContentDocumentId from ContentVersion LIMIT 1];
+        ContentDocumentLink cdl = [SELECT Id,ContentDocumentId,LinkedEntityId,ShareType from ContentDocumentLink WHERE ContentDocumentId=: cd.Id LIMIT 1];
+        listDocumentIds.add(cdl.Id);
+        Assert.areNotEqual(null, listDocumentIds, 'The list of documents is not null');
+        Test.startTest();
+        DocuSignService.getDocumentsbyId(listDocumentIds);
         Test.stopTest();
     }
 }

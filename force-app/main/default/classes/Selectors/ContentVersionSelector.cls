@@ -36,6 +36,26 @@ public with sharing class ContentVersionSelector extends fflib_SObjectSelector {
 
     /**
 	* @author       APB
+	* @description  contentVersion selectContentVersion method
+    * @param		idSet Set<ID>
+	* @return		List<ContentVersion>
+	*/
+    public List<ContentVersion> selectLastContentVersion(Set<Id> idSet) {
+    List<ContentVersion> contentVersions = new List<ContentVersion>();
+    for(ContentVersion contentVersion : Database.query(
+        newQueryFactory(false)
+        .selectField(ContentVersion.VersionData)
+        .setCondition('ContentDocumentId in :idSet')
+        .setCondition('IsLatest = true')
+        .toSOQL()))
+    {
+        contentVersions.add(contentVersion);
+    }
+        return contentVersions;
+    }
+
+    /**
+	* @author       APB
 	* @description  contentVersion getSObjectType method
 	* @return		Schema.SObjectType
 	*/
