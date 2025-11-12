@@ -369,4 +369,8 @@
         <viewAllFields>false</viewAllFields>
         <viewAllRecords>false</viewAllRecords>
     </objectPermissions>
+    <tabSettings>
+        <tab>TaxNumber__c</tab>
+        <visibility>Visible</visibility>
+    </tabSettings>
 </PermissionSet>

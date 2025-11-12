@@ -3,8 +3,8 @@
     <apiVersion>65.0</apiVersion>
     <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
     <environments>Default</environments>
-    <interviewLabel>flw_propagate_main_to_contact_role {!$Flow.CurrentDateTime}</interviewLabel>
-    <label>flw_propagate_main_to_contact_role</label>
+    <interviewLabel>propagate main to contact role {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>propagate main to contact role</label>
     <processMetadataValues>
         <name>BuilderType</name>
         <value>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>lkp_Account__c</fullName>
+    <deleteConstraint>Restrict</deleteConstraint>
+    <description>Foreign Key for Account ID</description>
+    <inlineHelpText>This field links the record to a specific Account in Salesforce.</inlineHelpText>
+    <label>Account</label>
+    <referenceTo>Account</referenceTo>
+    <relationshipLabel>Duplicate Account Relations</relationshipLabel>
+    <relationshipName>Duplicate_Account_Relations</relationshipName>
+    <required>true</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

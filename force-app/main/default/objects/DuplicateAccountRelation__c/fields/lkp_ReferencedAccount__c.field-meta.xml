@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>lkp_ReferencedAccount__c</fullName>
+    <deleteConstraint>Restrict</deleteConstraint>
+    <description>Foreign Key of Referenced Account</description>
+    <inlineHelpText>This field links to another Account that is related to the first Account.</inlineHelpText>
+    <label>Referenced Account</label>
+    <referenceTo>Account</referenceTo>
+    <relationshipLabel>Duplicate Account Relations (Referenced Account)</relationshipLabel>
+    <relationshipName>Duplicate_Account_Relations1</relationshipName>
+    <required>true</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>
