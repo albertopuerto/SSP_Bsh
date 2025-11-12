@@ -8,13 +8,8 @@ public class DocuSignWebhook_Test {
 
         Contact[] testContactList = (Contact[])TestFactory.createSObjectList(new Contact(), 1);
         testContactList[0].AccountId = testAccountList[0].Id;
-        testContactList[0].mpkl_RoleMainAccount__c = '0001';
-        testContactList[0].pkl_Language__c = 'English';
-        testContactList[0].pkl_Status__c = 'Active';
-        testContactList[0].Email = 'testEmail@invalid.com';
-        testContactList[0].pkl_AccountGroup__c = 'ETDE Contact ETCN Contact';
-
         insert testContactList;
+
         ContentVersion[] contentVersionList = (ContentVersion[])TestFactory.createSObjectList(new ContentVersion(), 1);
         contentVersionList[0].IsMajorVersion = true; 
         insert contentVersionList;
@@ -36,7 +31,7 @@ public class DocuSignWebhook_Test {
         insert signature;
     }
     @IsTest
-    static void testReceiveData() {
+    static void testReceivesentData() {
         Docusign_Setting__mdt config = [SELECT clientId__c, userId__c, audience__c, certificateName__c,DeveloperName, accountId__c, baseUrl__c FROM Docusign_Setting__mdt WITH USER_MODE LIMIT 1];
         // Step 1: Create mock JSON payload
         StaticResource sr = [SELECT Body FROM StaticResource WHERE Name = 'getAccessTokenBody'];
@@ -61,10 +56,61 @@ public class DocuSignWebhook_Test {
         DocuSignWebhook.handleWebhook();
  
         Test.stopTest();
+    }
+
+    @IsTest
+    static void testReceiveDeliveredData() {
+        Docusign_Setting__mdt config = [SELECT clientId__c, userId__c, audience__c, certificateName__c,DeveloperName, accountId__c, baseUrl__c FROM Docusign_Setting__mdt WITH USER_MODE LIMIT 1];
+        // Step 1: Create mock JSON payload
+        StaticResource sr = [SELECT Body FROM StaticResource WHERE Name = 'getAccessTokenBody'];
+		String tokenBody = sr.Body.toString();
+
+        HTTPMockGenerator res2 = new HTTPMockGenerator(200, tokenBody);
+
+        Test.setMock(HttpCalloutMock.class, res2);
+        
+        StaticResource sr2 = [SELECT Body FROM StaticResource WHERE Name = 'documentSignWebhookRequestDelivered'];
+		String mockJson = sr2.Body.toString();
+         Assert.areNotEqual(null, sr2.Body, 'The static resource is not null');
+        // Step 2: Set up mock RestRequest
+        RestRequest req = new RestRequest();
+        req.requestBody = Blob.valueOf(mockJson);
+        req.httpMethod = 'POST';
+        req.requestURI = '/services/apexrest/docusignWebhook/*';
  
-        // Step 4: Assert expected outcomes (e.g., record creation, field values)
-        // Example: check if a record was created
-        // List<Account> accounts = [SELECT Name FROM Account WHERE Name = 'Test Name'];
-        // System.assertEquals(1, accounts.size());
+        RestContext.request = req;
+        Test.startTest();
+        
+        DocuSignWebhook.handleWebhook();
+ 
+        Test.stopTest();
+    }
+
+    @IsTest
+    static void testReceiveData() {
+        Docusign_Setting__mdt config = [SELECT clientId__c, userId__c, audience__c, certificateName__c,DeveloperName, accountId__c, baseUrl__c FROM Docusign_Setting__mdt WITH USER_MODE LIMIT 1];
+        // Step 1: Create mock JSON payload
+        StaticResource sr = [SELECT Body FROM StaticResource WHERE Name = 'getAccessTokenBody'];
+		String tokenBody = sr.Body.toString();
+
+        HTTPMockGenerator res2 = new HTTPMockGenerator(200, tokenBody);
+
+        Test.setMock(HttpCalloutMock.class, res2);
+        
+        StaticResource sr2 = [SELECT Body FROM StaticResource WHERE Name = 'documentSignWebhookRequestCompleted'];
+		String mockJson = sr2.Body.toString();
+         Assert.areNotEqual(null, sr2.Body, 'The static resource is not null');
+        // Step 2: Set up mock RestRequest
+        RestRequest req = new RestRequest();
+        req.requestBody = Blob.valueOf(mockJson);
+        req.httpMethod = 'POST';
+        req.requestURI = '/services/apexrest/docusignWebhook/*';
+ 
+        RestContext.request = req;
+        Test.startTest();
+        
+        DocuSignWebhook.handleWebhook();
+ 
+        Test.stopTest();
     }
 }

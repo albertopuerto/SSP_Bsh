@@ -131,7 +131,12 @@ public with sharing class TestFactoryDefaults{
 		public Map<Schema.SObjectField, Object> getFieldDefaults() {
 			return new Map<Schema.SObjectField, Object> {
 					Contact.FirstName => 'First',
-					Contact.LastName => 'Last'
+					Contact.LastName => 'Last',
+					Contact.mpkl_RoleMainAccount__c => '0001',
+					Contact.pkl_Language__c => 'English',
+					Contact.Email => 'testEmail@invalid.com',
+					Contact.pkl_AccountGroup__c=> 'ETDE Contact ETCN Contact',
+					Contact.pkl_Status__c => 'Active'
 			};
 		}
 	}
