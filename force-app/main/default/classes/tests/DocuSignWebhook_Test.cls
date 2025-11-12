@@ -37,6 +37,7 @@ public class DocuSignWebhook_Test {
     }
     @IsTest
     static void testReceiveData() {
+        Docusign_Setting__mdt config = [SELECT clientId__c, userId__c, audience__c, certificateName__c,DeveloperName, accountId__c, baseUrl__c FROM Docusign_Setting__mdt WITH USER_MODE LIMIT 1];
         // Step 1: Create mock JSON payload
         StaticResource sr = [SELECT Body FROM StaticResource WHERE Name = 'getAccessTokenBody'];
 		String tokenBody = sr.Body.toString();
