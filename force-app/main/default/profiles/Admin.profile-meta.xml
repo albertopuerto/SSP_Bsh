@@ -9888,8 +9888,8 @@
         <field>Product2.Family</field>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <readable>false</readable>
+        <editable>true</editable>
+        <readable>true</readable>
         <field>Product2.GearsetExternalId__c</field>
     </fieldPermissions>
     <fieldPermissions>
