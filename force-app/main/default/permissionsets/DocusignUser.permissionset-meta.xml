@@ -12,10 +12,6 @@
         <apexClass>DocuSignWebhook</apexClass>
         <enabled>true</enabled>
     </classAccesses>
-    <classAccesses>
-        <apexClass>DocumentForDocusign</apexClass>
-        <enabled>true</enabled>
-    </classAccesses>
     <customMetadataTypeAccesses>
         <enabled>true</enabled>
         <name>Docusign_Setting__mdt</name>
