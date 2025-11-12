@@ -15,7 +15,6 @@ private class APTS_AutoRenewExpiryScheduleBatchTest{
     testAcc.Role__c='ETDE Domestic Customer';
     testAcc.Type='Internal';
     testAcc.pkl_Language__c = 'German';
-    testAcc.pkl_PaymentTerms__c = 'Net 15';
     insert testAcc;
     SalesArea__c sal = new SalesArea__c(
             pkl_DistributionChannel__c = 'A1',

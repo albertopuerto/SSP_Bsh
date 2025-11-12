@@ -8563,11 +8563,6 @@
         <field>BoschPartner_PartnerFunction__c.chk_DefaultPartner__c</field>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
-        <readable>true</readable>
-        <field>BoschPartner_PartnerFunction__c.lkp_BoschPartnerFunction__c</field>
-    </fieldPermissions>
-    <fieldPermissions>
         <editable>false</editable>
         <readable>false</readable>
         <field>BoschPartner_PartnerFunction__c.lkp_SalesDataCustomer__c</field>
@@ -9817,7 +9812,7 @@
         <field>OrderItem.pkl_OverallProcessedStatus__c</field>
         <readable>true</readable>
     </fieldPermissions>
-        <fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>OrderItem.pkl_ReasonofCancellation__c</field>
         <readable>true</readable>
@@ -17542,7 +17537,7 @@
         <field>SalesAreaLink__c.ftxt_SalesArea__c</field>
         <readable>true</readable>
     </fieldPermissions>
-        <fieldPermissions>
+    <fieldPermissions>
         <editable>false</editable>
         <field>SalesAreaLink__c.ftxt_SalesOrg__c</field>
         <readable>true</readable>
@@ -19313,32 +19308,33 @@
     <recordTypeVisibilities>
         <default>false</default>
         <recordType>Account.Competitor</recordType>
-        <visible>false</visible>
+        <visible>true</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
-        <default>false</default>
+        <default>true</default>
+        <personAccountDefault>true</personAccountDefault>
         <recordType>Account.Customer</recordType>
-        <visible>false</visible>
+        <visible>true</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <default>false</default>
         <recordType>Account.Intercompany</recordType>
-        <visible>false</visible>
+        <visible>true</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <default>false</default>
         <recordType>Account.Partner</recordType>
-        <visible>false</visible>
+        <visible>true</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <default>false</default>
         <recordType>Account.Reseller</recordType>
-        <visible>false</visible>
+        <visible>true</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <default>false</default>
         <recordType>Account.Supplier</recordType>
-        <visible>false</visible>
+        <visible>true</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <default>true</default>
@@ -19624,6 +19620,14 @@
     </classAccesses>
     <classAccesses>
         <apexClass>APTS_ListViewIdGeneric</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>ApprovalController</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>ApprovalControllerTest</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
@@ -20226,6 +20230,10 @@
         <apexPage>SubmitQuote</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
+    <tabVisibilities>
+        <tab>Approval_History</tab>
+        <visibility>DefaultOn</visibility>
+    </tabVisibilities>
     <tabVisibilities>
         <tab>Apttus__RetentionPolicy__c</tab>
         <visibility>DefaultOn</visibility>

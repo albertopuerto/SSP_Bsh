@@ -13,7 +13,6 @@ public class APTS_CreateJSONBodyControllerTest {
         testAcc.Role__c='ETDE Domestic Customer';
     	testAcc.Type='Internal';
         testAcc.pkl_Language__c = 'German';
-        testAcc.pkl_PaymentTerms__c = 'Net 15';
         insert testAcc;
         
         Apttus__APTS_Agreement__c newAg = new Apttus__APTS_Agreement__c();
