@@ -60,7 +60,7 @@ public with sharing class DocuSignService {
         String claimsEncoded = encodeBase64Url(JSON.serialize(claims));
         String unsignedJWT = headerEncoded + '.' + claimsEncoded;
 
-        Blob signature = Crypto.signWithCertificate('RSA-SHA256', Blob.valueOf(unsignedJWT), certName);
+        Blob signature;
 
         if (!Test.isRunningTest()) {
             signature = Crypto.signWithCertificate('RSA-SHA256', Blob.valueOf(unsignedJWT), certName);
