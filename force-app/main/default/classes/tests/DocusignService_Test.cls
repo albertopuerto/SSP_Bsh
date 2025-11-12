@@ -74,7 +74,7 @@ public class DocusignService_Test {
         HTTPMockGenerator res2 = new HTTPMockGenerator(200, tokenBody);
 
         Test.setMock(HttpCalloutMock.class, res2);
-        DocuSignService service = new DocuSignService('APC_Test');
+        DocuSignService service = new DocuSignService('Docusign_Service');
      	ContentDocument cd = [Select Id,Title from ContentDocument LIMIT 1];
         Test.startTest();
         Blob document = service.getSignedDocument('2131232312434546', 'combined');
@@ -85,7 +85,6 @@ public class DocusignService_Test {
     @isTest
     public static void getDocumentsById(){
         List<Id> listDocumentIds= new List<Id>();
-        //DocuSignService service = new DocuSignService('APC_Test');
         ContentDocument cd = [Select Id,Title from ContentDocument LIMIT 1];
      	ContentVersion cv = [SELECT Id,VersionData,ContentDocumentId from ContentVersion LIMIT 1];
         ContentDocumentLink cdl = [SELECT Id,ContentDocumentId,LinkedEntityId,ShareType from ContentDocumentLink WHERE ContentDocumentId=: cd.Id LIMIT 1];

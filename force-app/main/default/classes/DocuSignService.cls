@@ -61,6 +61,13 @@ public with sharing class DocuSignService {
         String unsignedJWT = headerEncoded + '.' + claimsEncoded;
 
         Blob signature = Crypto.signWithCertificate('RSA-SHA256', Blob.valueOf(unsignedJWT), certName);
+
+        if (!Test.isRunningTest()) {
+            signature = Crypto.signWithCertificate('RSA-SHA256', Blob.valueOf(unsignedJWT), certName);
+        } else {
+            signature = Blob.valueOf('mock-signature');
+        }
+        
         String signedJWT = unsignedJWT + '.' + encodeBase64Url(signature);
 
         HttpRequest req = new HttpRequest();
@@ -84,37 +91,6 @@ public with sharing class DocuSignService {
 
         return cachedAccessToken;
     }
-
-    /**
-	* @author       APB
-	* @description  Method that get the email JSON
-	* @param		daysBack Integer
-	* @return		String
-	*/
-   /* public String getRecentEnvelopesJson(Integer daysBack) {
-        
-        String accessToken = getAccessToken();
-
-        Datetime fromDateDT = Datetime.newInstance(Date.today().addDays(-daysBack), Time.newInstance(0, 0, 0, 0));
-        String fromDate = fromDateDT.formatGmt('yyyy-MM-dd\'T\'HH:mm:ss\'Z\'');
-        String endpoint = baseUrl + '/accounts/' + accountId + '/envelopes?from_date=' + fromDate;
-
-        HttpRequest req = new HttpRequest();
-        req.setEndpoint(endpoint);
-        req.setMethod('GET');
-        req.setHeader('Authorization', 'Bearer ' + accessToken);
-        req.setHeader('Accept', 'application/json');
-
-        Http http = new Http();
-        HttpResponse res = http.send(req);
-
-        if (res.getStatusCode() != 200) {
-            Logger.error('APX-INT-00007 - Failed when trying to get the envelopes - '+ res.getStatusCode() +'-'+res.getBody()).addTag('APX-INT');
-            throw new CalloutException('Failed to retrieve envelopes: ' + res.getBody());
-        }
-
-        return res.getBody();
-    }*/
 
     /**
 	* @author       APB

@@ -44,10 +44,7 @@ global with sharing class DocuSignWebhook {
                     update sig; 
                 }
             } catch (Exception e) {
-                /*Task a2 = new Task();
-                a2.Subject = 'DocuSign Webhook Error';
-                a2.Description = 'Error processing webhook: ' + e.getMessage();
-                insert a2;*/
+                Logger.error('APX-INT-000010 - Error processing the docusign webhook - '+ res.getStatusCode() +'-'+res.getBody()).addTag('APX-INT');
             }
         }
     }
@@ -61,7 +58,7 @@ global with sharing class DocuSignWebhook {
     @future(callout=true)
     global static void processWebhookAsync(String envelopeId, String documentId,String status) {
 
-        DocuSignService service = new DocuSignService('APC_Test');
+        DocuSignService service = new DocuSignService('Docusign_Service');
         Set<Id> docIds = new Set<Id>();
         docIds.add(documentId);
         fflib_SObjectUnitOfWork uow = new fflib_SObjectUnitOfWork( new List<SObjectType> { ContentVersion.SObjectType});
@@ -81,33 +78,6 @@ global with sharing class DocuSignWebhook {
             uow.registerNew(cv);
             uow.commitWork();
         }
-
-            /*if (res.getStatusCode() == 200) {
-                Blob pdfBlob = res.getBodyAsBlob();
-
-                ContentVersion content = new ContentVersion();
-                content.Title = 'DocuSign firmado';
-                content.PathOnClient = 'documento_firmado.pdf';
-                content.VersionData = pdfBlob;
-                insert content;
-
-                Task a4 = new Task();
-                a4.Subject = 'DocuSign Document Created';
-                a4.Description = 'DocuSign Document Created: ' + content.Id;
-                insert a4;
-
-                // Si el recordId viene en el webhook (como campo personalizado):
-                // String recordId = (String) envelopeStatus.get('customField');
-
-                // ContentDocumentLink cdl = new ContentDocumentLink();
-                // cdl.ContentDocumentId = [SELECT ContentDocumentId FROM ContentVersion WHERE Id = :content.Id LIMIT 1].ContentDocumentId;
-                // cdl.LinkedEntityId = recordId;
-                // cdl.ShareType = 'V';
-                // cdl.Visibility = 'AllUsers';
-                // insert cdl;
-            } else {
-                System.debug('Error al obtener documento: ' + res.getBody());
-            }*/
 
     }
 }

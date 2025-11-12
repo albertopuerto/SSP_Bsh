@@ -16,7 +16,7 @@ public with sharing class DocuSignSigners {
         Set<Id> contentVersionIds = new Set<Id>();
         contentVersionIds.add(input.document.Id);
 
-        DocuSignService service = new DocuSignService('APC_Test');
+        DocuSignService service = new DocuSignService('Docusign_Service');
 
         system.debug('input.document.Id ' + input.document.Id);
         ContentVersion cv = new ContentVersionSelector().selectContentVersion(contentVersionIds)[0];
