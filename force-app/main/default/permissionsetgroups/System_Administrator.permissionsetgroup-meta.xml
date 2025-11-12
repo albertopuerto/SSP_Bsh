@@ -5,7 +5,6 @@
     <label>System Administrator</label>
     <permissionSets>Avoid_Mail_Notifications</permissionSets>
     <permissionSets>BoschPartnerFunctionAdmin</permissionSets>
-    <permissionSets>BusinessPartnerAPI</permissionSets>
     <permissionSets>MaterialsManagement</permissionSets>
     <permissionSets>ps_LockedAccountUpdate</permissionSets>
     <status>Updated</status>
