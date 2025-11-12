@@ -44,7 +44,7 @@ global with sharing class DocuSignWebhook {
                     update sig; 
                 }
             } catch (Exception e) {
-                Logger.error('APX-INT-000010 - Error processing the docusign webhook - '+ res.getStatusCode() +'-'+res.getBody()).addTag('APX-INT');
+                Logger.error('APX-EXC-00003 - Error processing the docusign webhook - - '+ e.getMessage()).addTag('APX-EXC');
             }
         }
     }
