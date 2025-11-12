@@ -684,11 +684,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>BoschPartner_PartnerFunction__c.lkp_BoschPartnerFunction__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
         <field>BoschPartner_PartnerFunction__c.lkp_SalesDataCustomer__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -3112,6 +3107,10 @@
         <tab>SalesArea__c</tab>
         <visibility>Visible</visibility>
     </tabSettings>
+    <classAccesses>
+        <apexClass>ApprovalController</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
     <classAccesses>
         <apexClass>CustomPath</apexClass>
         <enabled>true</enabled>
