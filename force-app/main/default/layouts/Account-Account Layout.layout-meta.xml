@@ -105,6 +105,41 @@
         <customLabel>true</customLabel>
         <detailHeading>true</detailHeading>
         <editHeading>true</editHeading>
+        <label>Sanction Party List</label>
+        <layoutColumns>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>txt_AlertId__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>txt_AlertLifecycle__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>dtm_CreatedOn__c</field>
+            </layoutItems>
+        </layoutColumns>
+        <layoutColumns>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>txt_Finding__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>txt_InvestigationReason__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>txt_ReasonForClosingAlert__c</field>
+            </layoutItems>
+        </layoutColumns>
+        <style>TwoColumnsLeftToRight</style>
+    </layoutSections>
+    <layoutSections>
+        <customLabel>true</customLabel>
+        <detailHeading>true</detailHeading>
+        <editHeading>true</editHeading>
         <label>Id Information</label>
         <layoutColumns>
             <layoutItems>
@@ -157,6 +192,7 @@
                 <field>CurrencyIsoCode</field>
             </layoutItems>
         </layoutColumns>
+        <layoutColumns />
         <style>TwoColumnsLeftToRight</style>
     </layoutSections>
     <layoutSections>
@@ -425,6 +461,23 @@
     </relatedLists>
     <relatedLists>
         <relatedList>RelatedEntityHistoryList</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <fields>lkp_ReferencedAccount__c</fields>
+        <fields>pkl_ReasonCategory__c</fields>
+        <fields>txt_ReasonDescription__c</fields>
+        <relatedList>DuplicateAccountRelation__c.lkp_Account__c</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <fields>lkp_Account__c</fields>
+        <fields>pkl_ReasonCategory__c</fields>
+        <fields>txt_ReasonDescription__c</fields>
+        <relatedList>DuplicateAccountRelation__c.lkp_ReferencedAccount__c</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <fields>txt_TaxNumber__c</fields>
+        <fields>txt_TaxCategory__c</fields>
+        <relatedList>TaxNumber__c.mdr_AccountId__c</relatedList>
     </relatedLists>
     <relatedObjects>ParentId</relatedObjects>
     <showEmailCheckbox>false</showEmailCheckbox>
