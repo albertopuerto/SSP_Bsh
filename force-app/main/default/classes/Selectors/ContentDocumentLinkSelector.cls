@@ -46,14 +46,4 @@ public with sharing class ContentDocumentLinkSelector extends fflib_SObjectSelec
     public Schema.SObjectType getSObjectType() {
         return ContentDocumentLink.sObjectType;
     }
-
-    /**
-	* @author       APB
-	* @description  contentDocumentLink selectById method
-    * @param		idSet Set<ID>
-	* @return		List<ContentDocumentLink>
-	*/
-    public List<ContentDocumentLink> selectById(Set<ID> idSet) {
-        return (List<ContentDocumentLink>) selectSObjectsById(idSet);
-    }
 }
