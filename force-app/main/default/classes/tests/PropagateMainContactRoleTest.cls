@@ -25,7 +25,7 @@ public class PropagateMainContactRoleTest {
 
             insert testContactList;
         }catch(Exception e){
-            System.debug('Error: ' + e.getMessage());
+            System.assert(false, 'Unexpected exception when creating a contact: ' + e.getMessage());
         }
     }
 
@@ -45,7 +45,7 @@ public class PropagateMainContactRoleTest {
                 Test.stopTest();
             }
         }catch(Exception e){
-            System.debug('Error: ' + e.getMessage());
+            System.assert(false, 'Unexpected exception : ' + e.getMessage());
         }
     }
 }

@@ -26,7 +26,7 @@ public class ContactBeforeUpdateTest {
             insert testContactList;
         }
         catch(Exception e){
-            System.debug('Error: ' + e.getMessage());
+            System.assert(false, 'Unexpected exception when creating a contact: ' + e.getMessage());
         }
     }
 
@@ -48,10 +48,9 @@ public class ContactBeforeUpdateTest {
 
                 AccountContactRelation acrModified = [Select Id,mpkl_PartnerRoles__c from AccountContactRelation WHERE ContactId =: testContact.Id AND AccountId =: testAccount.Id LIMIT 1];
                 Assert.areEqual('0001;0003', acrModified.mpkl_PartnerRoles__c, 'Role should be 0001;0003');
-            
             }
         }catch(Exception e){
-            System.debug('Error: ' + e.getMessage());
+            System.assert(false, 'Unexpected exception : ' + e.getMessage());
         }
     }
 
@@ -74,7 +73,7 @@ public class ContactBeforeUpdateTest {
                 Assert.areNotEqual('0001', acrModified.mpkl_PartnerRoles__c, 'Incorrect data, the role should be 0001;0003');
         }
         }catch(Exception e){
-            System.debug('Error: ' + e.getMessage());
+            System.assert(false, 'Unexpected exception : ' + e.getMessage());
         }
     }
 
