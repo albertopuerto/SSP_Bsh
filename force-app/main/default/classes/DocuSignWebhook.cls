@@ -26,7 +26,7 @@ global with sharing class DocuSignWebhook {
         if (event == 'recipient-sent' || event == 'recipient-delivered' || status == 'completed' || status == 'declined') {
             try {
                 fflib_SObjectUnitOfWork uow = new fflib_SObjectUnitOfWork( new List<SObjectType> { Signature__c.SObjectType});
-                Signature__c sig = [SELECT Id, Name, Docusign_Status__c, Document_Id__c FROM Signature__c WHERE Envelope_Id__c = :envelopeId WITH USER_MODE LIMIT 1];
+                Signature__c sig = [SELECT Id, Name, Docusign_Status__c, Document_Id__c FROM Signature__c WHERE Envelope_Id__c = :envelopeId LIMIT 1];
                 if (sig != null) {
                     processWebhookAsync(envelopeId, sig.Document_Id__c,status);
                     sig.Docusign_Status__c = status;
