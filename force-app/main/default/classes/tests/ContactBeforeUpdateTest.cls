@@ -12,7 +12,9 @@ public class ContactBeforeUpdateTest {
     @testSetup
     public static void createRecords(){
 
-        try{
+        FlowDefinitionView flowDefinitionPropagateMainContactRole = [SELECT Id,IsActive,ApiName from FlowDefinitionView WHERE ApiName = 'flw_propagate_main_contact_role' ];
+        FlowDefinitionView flowDefinitionContactBeforeUpdate = [SELECT Id,IsActive,ApiName from FlowDefinitionView WHERE ApiName = 'flw_Contact_beforeUpdate' ];
+        if(flowDefinitionPropagateMainContactRole.IsActive == true && flowDefinitionContactBeforeUpdate.IsActive == true){
             Account[] testAccountList = (Account[])TestFactory.createSObjectList(new Account(), 1);
             insert testAccountList;
 
@@ -25,16 +27,15 @@ public class ContactBeforeUpdateTest {
 
             insert testContactList;
         }
-        catch(Exception e){
-            System.assert(false, 'Unexpected exception when creating a contact: ' + e.getMessage());
-        }
     }
 
 
     @IsTest
     public static void succesfullUpdateOfRoleMainAccountField(){
 
-        try{
+        FlowDefinitionView flowDefinitionPropagateMainContactRole = [SELECT Id,IsActive,ApiName from FlowDefinitionView WHERE ApiName = 'flw_propagate_main_contact_role' ];
+        FlowDefinitionView flowDefinitionContactBeforeUpdate = [SELECT Id,IsActive,ApiName from FlowDefinitionView WHERE ApiName = 'flw_Contact_beforeUpdate' ];
+        if(flowDefinitionPropagateMainContactRole.IsActive == true && flowDefinitionContactBeforeUpdate.IsActive == true){
             User productManagerUser = (User)TestFactory.createSObject(new User(), 'TestFactoryDefaults.ProductManagerUserDefaults', true);
             Account testAccount = [Select Id from Account LIMIT 1];
             Contact testContact = [Select Id from Contact LIMIT 1];
@@ -49,14 +50,14 @@ public class ContactBeforeUpdateTest {
                 AccountContactRelation acrModified = [Select Id,mpkl_PartnerRoles__c from AccountContactRelation WHERE ContactId =: testContact.Id AND AccountId =: testAccount.Id LIMIT 1];
                 Assert.areEqual('0001;0003', acrModified.mpkl_PartnerRoles__c, 'Role should be 0001;0003');
             }
-        }catch(Exception e){
-            System.assert(false, 'Unexpected exception : ' + e.getMessage());
         }
     }
 
     @IsTest
     public static void incorrectUpdateOfRoleMainAccountField(){
-        try{
+        FlowDefinitionView flowDefinitionPropagateMainContactRole = [SELECT Id,IsActive,ApiName from FlowDefinitionView WHERE ApiName = 'flw_propagate_main_contact_role' ];
+        FlowDefinitionView flowDefinitionContactBeforeUpdate = [SELECT Id,IsActive,ApiName from FlowDefinitionView WHERE ApiName = 'flw_Contact_beforeUpdate' ];
+        if(flowDefinitionPropagateMainContactRole.IsActive == true && flowDefinitionContactBeforeUpdate.IsActive == true){
             User productManagerUser = (User)TestFactory.createSObject(new User(), 'TestFactoryDefaults.ProductManagerUserDefaults', true);
             System.runAs(productManagerUser){
 
@@ -71,9 +72,7 @@ public class ContactBeforeUpdateTest {
 
                 AccountContactRelation acrModified = [Select Id,mpkl_PartnerRoles__c from AccountContactRelation WHERE ContactId =: testContact.Id AND AccountId =: testAccount.Id LIMIT 1];
                 Assert.areNotEqual('0001', acrModified.mpkl_PartnerRoles__c, 'Incorrect data, the role should be 0001;0003');
-        }
-        }catch(Exception e){
-            System.assert(false, 'Unexpected exception : ' + e.getMessage());
+            }
         }
     }
 

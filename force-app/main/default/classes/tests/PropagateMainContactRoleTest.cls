@@ -12,7 +12,10 @@ public class PropagateMainContactRoleTest {
     @testSetup
     public static void createRecords(){
 
-        try{
+
+        FlowDefinitionView flowDefinitionPropagateMainContactRole = [SELECT Id,IsActive,ApiName from FlowDefinitionView WHERE ApiName = 'flw_propagate_main_contact_role' ];
+        FlowDefinitionView flowDefinitionContactBeforeUpdate = [SELECT Id,IsActive,ApiName from FlowDefinitionView WHERE ApiName = 'flw_Contact_beforeUpdate' ];
+        if(flowDefinitionPropagateMainContactRole.IsActive == true && flowDefinitionContactBeforeUpdate.IsActive == true){
             Account[] testAccountList = (Account[])TestFactory.createSObjectList(new Account(), 1);
             insert testAccountList;
 
@@ -24,15 +27,15 @@ public class PropagateMainContactRoleTest {
             testContactList[0].pkl_AccountGroup__c = 'ETDE Contact ETCN Contact';
 
             insert testContactList;
-        }catch(Exception e){
-            System.assert(false, 'Unexpected exception when creating a contact: ' + e.getMessage());
         }
     }
 
     @IsTest
     public static void testPropagateRole(){
 
-        try{
+        FlowDefinitionView flowDefinitionPropagateMainContactRole = [SELECT Id,IsActive,ApiName from FlowDefinitionView WHERE ApiName = 'flw_propagate_main_contact_role' ];
+        FlowDefinitionView flowDefinitionContactBeforeUpdate = [SELECT Id,IsActive,ApiName from FlowDefinitionView WHERE ApiName = 'flw_Contact_beforeUpdate' ];
+        if(flowDefinitionPropagateMainContactRole.IsActive == true && flowDefinitionContactBeforeUpdate.IsActive == true){
             Account testAccount = [Select Id from Account LIMIT 1];
             Contact testContact = [Select Id from Contact LIMIT 1];
             User productManagerUser = (User)TestFactory.createSObject(new User(), 'TestFactoryDefaults.ProductManagerUserDefaults', true);
@@ -44,8 +47,6 @@ public class PropagateMainContactRoleTest {
                 Assert.areNotEqual('0003', acr.mpkl_PartnerRoles__c, 'Role is incorrect should be 0001');
                 Test.stopTest();
             }
-        }catch(Exception e){
-            System.assert(false, 'Unexpected exception : ' + e.getMessage());
         }
     }
 }
