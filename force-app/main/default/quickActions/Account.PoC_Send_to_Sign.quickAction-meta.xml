@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<QuickAction xmlns="http://soap.sforce.com/2006/04/metadata">
-    <flowDefinition>Send_document_to_Sign</flowDefinition>
-    <label>PoC Send to Sign</label>
-    <optionsCreateFeedItem>false</optionsCreateFeedItem>
-    <type>Flow</type>
-</QuickAction>
-
-<!-- //manual step for PoC and testing -> add in the layout/flexipage. After the development will be done this quickaction can be deleted as the real one will be in place-->

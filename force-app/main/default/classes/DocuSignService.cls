@@ -67,7 +67,6 @@ public with sharing class DocuSignService {
         } else {
             signature = Blob.valueOf('mock-signature');
         }
-        
         String signedJWT = unsignedJWT + '.' + encodeBase64Url(signature);
 
         HttpRequest req = new HttpRequest();
@@ -84,7 +83,6 @@ public with sharing class DocuSignService {
             throw new CalloutException('Failed when trying to get the access token: ' + res.getBody());
         }
 
-        System.debug(res.getBody());
         Map<String, Object> jsonRes = (Map<String, Object>) JSON.deserializeUntyped(res.getBody());
         cachedAccessToken = (String) jsonRes.get('access_token');
         tokenExpirationEpoch = now + ((Integer) jsonRes.get('expires_in'));
@@ -150,7 +148,6 @@ public with sharing class DocuSignService {
 
         Map<String, Object> resMap = (Map<String, Object>) JSON.deserializeUntyped(res.getBody());
         String envelopeId = (String) resMap.get('envelopeId');
-        system.debug('Response: ' + res.getBody());
 
         if (res.getStatusCode() != 201 && res.getStatusCode() != 200 ) {
             Logger.error('APX-INT-00008 - Failed when sending the envelope - '+ res.getStatusCode() +'-'+res.getBody()).addTag('APX-INT');

@@ -18,7 +18,6 @@ public with sharing class DocuSignSigners {
 
         DocuSignService service = new DocuSignService('Docusign_Service');
 
-        system.debug('input.document.Id ' + input.document.Id);
         ContentVersion cv = new ContentVersionSelector().selectContentVersion(contentVersionIds)[0];
 
         Blob myPdfBlob = cv.VersionData;
@@ -32,14 +31,12 @@ public with sharing class DocuSignSigners {
         );
 
         processDocuSignAsync(input.document.Id);
-        system.debug('Result: ' + result);
         return new List<String>{result};
     }
 
     /**
 	* @author       APB
 	* @description  processDocuSignAsync method
-    * @param        envelopeId String
     * @param        documentId String
 	*/
     @future(callout=true)
