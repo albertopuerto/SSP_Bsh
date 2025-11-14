@@ -16,6 +16,10 @@
         <enabled>true</enabled>
         <name>Docusign_Setting__mdt</name>
     </customMetadataTypeAccesses>
+    <customPermissions>
+        <enabled>true</enabled>
+        <name>Can_view_Quote_Send_for_Signature_button</name>
+    </customPermissions>
     <fieldPermissions>
         <editable>true</editable>
         <field>Signature__c.Account__c</field>
