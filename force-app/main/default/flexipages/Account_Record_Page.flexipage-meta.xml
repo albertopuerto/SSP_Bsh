@@ -387,6 +387,16 @@
                 <identifier>Recordtxt_VATID_cField</identifier>
             </fieldInstance>
         </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>readonly</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.txt_AccountIDC4C__c</fieldItem>
+                <identifier>Recordtxt_AccountIDC4C_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
         <name>Facet-3aeb2e98-c1c8-4ccf-ac41-d0ce43bd7bdc</name>
         <type>Facet</type>
     </flexiPageRegions>
@@ -925,6 +935,10 @@
         <itemInstances>
             <componentInstance>
                 <componentInstanceProperties>
+                    <name>label</name>
+                    <value>Tabs</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
                     <name>tabs</name>
                     <value>maintabs</value>
                 </componentInstanceProperties>
@@ -1018,6 +1032,10 @@
         </itemInstances>
         <itemInstances>
             <componentInstance>
+                <componentInstanceProperties>
+                    <name>label</name>
+                    <value>Tabs</value>
+                </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>tabs</name>
                     <value>sidebartabs</value>
