@@ -18039,6 +18039,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>sbaa__Approver__c.GearsetExternalId__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>sbaa__Approver__c.sbaa__DelegatedApprover__c</field>
         <readable>true</readable>
     </fieldPermissions>
