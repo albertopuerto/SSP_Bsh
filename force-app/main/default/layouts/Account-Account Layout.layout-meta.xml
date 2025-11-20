@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Layout xmlns="http://soap.sforce.com/2006/04/metadata">
-    <excludeButtons>DataDotComCompanyHierarchy</excludeButtons>
+    <excludeButtons>DataDotComAccountInsights</excludeButtons>
+    <excludeButtons>DataDotComClean</excludeButtons>
     <excludeButtons>DisableCustomerPortalAccount</excludeButtons>
     <excludeButtons>DisablePartnerPortalAccount</excludeButtons>
     <excludeButtons>IncludeOffline</excludeButtons>
-    <excludeButtons>OpenSlackRecordChannel</excludeButtons>
     <excludeButtons>Share</excludeButtons>
     <layoutSections>
         <customLabel>false</customLabel>
@@ -42,7 +42,7 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>pkl_CustomerBlock__c</field>
+                <field>chk_CustomerBlock__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
@@ -451,9 +451,9 @@
         <customButtons>New</customButtons>
         <excludeButtons>New</excludeButtons>
         <fields>ftxt_SalesArea__c</fields>
-        <fields>ftxt_SalesOrg__c</fields>
-        <fields>ftxt_DistributionChannel__c</fields>
-        <fields>ftxt_Division__c</fields>
+        <fields>SalesArea__c.pkl_SalesOrg__c</fields>
+        <fields>SalesArea__c.pkl_DistributionChannel__c</fields>
+        <fields>SalesArea__c.pkl_Division__c</fields>
         <relatedList>SalesAreaLink__c.mdr_Account__c</relatedList>
     </relatedLists>
     <relatedLists>

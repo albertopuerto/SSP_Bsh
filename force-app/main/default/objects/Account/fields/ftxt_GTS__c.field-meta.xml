@@ -3,14 +3,9 @@
     <fullName>ftxt_GTS__c</fullName>
     <description>Indicate if the Customer Block is set. Field is updated by integration with an external system.</description>
     <externalId>false</externalId>
-    <formula>CASE(pkl_CustomerBlock__c, 
-&quot;Released&quot;, IMAGE(&quot;/img/samples/color_green.gif&quot;, &quot;green&quot;, 20, 20),
-&quot;Pending&quot;, IMAGE(&quot;/img/samples/color_yellow.gif&quot;, &quot;yellow&quot;, 20, 20),
-&quot;Blocked&quot;, IMAGE(&quot;/img/samples/color_red.gif&quot;, &quot;red&quot;, 20, 20), 
-&quot;&quot;)</formula>
+    <formula>IF(chk_CustomerBlock__c, IMAGE(&quot;/img/samples/color_red.gif&quot;, &quot;red&quot;, 20, 20), IMAGE(&quot;/img/samples/color_green.gif&quot;, &quot;green&quot;, 20, 20))</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
     <inlineHelpText>Green = Released
-Yellow = Pending
 Red = Blocked</inlineHelpText>
     <label>GTS</label>
     <required>false</required>
