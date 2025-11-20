@@ -11,6 +11,12 @@ public class DocusignService_Test {
         testContactList[0].AccountId = testAccountList[0].Id;
         insert testContactList;
         
+         SBQQ__Quote__c[] quoteList = (SBQQ__Quote__c [])TestFactory.createSObjectList(new SBQQ__Quote__c(),1);
+        quoteList[0].SBQQ__Status__c = 'Draft';
+        quoteList[0].SBQQ__Account__r = testAccountList[0];
+        quoteList[0].lkp_BillToAccount__c= testAccountList[0].Id;
+        insert quoteList;
+        
         ContentVersion[] contentVersionList = (ContentVersion[])TestFactory.createSObjectList(new ContentVersion(), 1);
         contentVersionList[0].IsMajorVersion = true; 
         insert contentVersionList;
@@ -24,7 +30,7 @@ public class DocusignService_Test {
         // This should use ContentDocumentLinkDefaults from your TestFactoryDefaults class
         ContentDocumentLink[] linkList = (ContentDocumentLink[])TestFactory.createSObjectList(new ContentDocumentLink(), 1);
         linkList[0].ContentDocumentId = contentDocumentId; // Set the dynamic fields
-        linkList[0].LinkedEntityId = testAccountList[0].Id;
+        linkList[0].LinkedEntityId = quoteList[0].Id;
         linkList[0].ShareType = 'V'; // This should come from defaults, but set explicitly
         insert linkList;
         
@@ -33,13 +39,20 @@ public class DocusignService_Test {
     @isTest
     public static void sendEnvelope(){
         Docusign_Setting__mdt config = [SELECT clientId__c, userId__c, audience__c, certificateName__c,DeveloperName, accountId__c, baseUrl__c FROM Docusign_Setting__mdt WITH USER_MODE LIMIT 1];
-        
-        StaticResource sr2 = [SELECT Body FROM StaticResource WHERE Name = 'getAccessTokenBody'];
+       StaticResource sr2 = [SELECT Body FROM StaticResource WHERE Name = 'getAccessTokenBody'];
 		String tokenBody = sr2.Body.toString();
+        
+        StaticResource sr = [SELECT Body FROM StaticResource WHERE Name = 'getSignedDocument'];
+		String signedDocument = sr.Body.toString();
 
+        HTTPMockGenerator res1 = new HTTPMockGenerator(200, signedDocument);
         HTTPMockGenerator res2 = new HTTPMockGenerator(200, tokenBody);
 
-        Test.setMock(HttpCalloutMock.class, res2);
+        HttpMultiRequestMockGenerator multiMock = new HttpMultiRequestMockGenerator();
+        multiMock.putMock('https://account-d.docusign.com/oauth/token',res2);
+		multiMock.putMock('https://demo.docusign.net/restapi/v2.1/accounts/ec94da4e-5b4e-4e5d-a3ac-35dac0b0f786/envelopes',res1);
+        
+        Test.setMock(HttpCalloutMock.class, multiMock);
         DocusignService docusignService= new DocuSignService(config.DeveloperName);
         
         ContentVersion cv = [SELECT Id,VersionData from ContentVersion LIMIT 1];
@@ -56,6 +69,8 @@ public class DocusignService_Test {
             base64Doc,
             cd.Title
         );
+        System.assertEquals('1f2713d9-af87-8885-8159-a69d30b51125', result);
+        System.debug(result);
         Test.stopTest();
     }
     
@@ -65,15 +80,18 @@ public class DocusignService_Test {
         Docusign_Setting__mdt config = [SELECT clientId__c, userId__c, audience__c, certificateName__c,DeveloperName, accountId__c, baseUrl__c FROM Docusign_Setting__mdt WITH USER_MODE LIMIT 1];
         StaticResource sr2 = [SELECT Body FROM StaticResource WHERE Name = 'getAccessTokenBody'];
 		String tokenBody = sr2.Body.toString();
-
+       
         HTTPMockGenerator res2 = new HTTPMockGenerator(200, tokenBody);
-
         Test.setMock(HttpCalloutMock.class, res2);
         DocuSignService service = new DocuSignService('Docusign_Service');
      	ContentDocument cd = [Select Id,Title from ContentDocument LIMIT 1];
         Test.startTest();
         Blob document = service.getSignedDocument('2131232312434546', 'combined');
+        System.debug(document);
         Assert.areNotEqual(null, document, 'The document is not null');
+        Blob expectedBlob = Blob.valueOf('PDFDATA');
+    	System.assert(document.size() > 0, 'The document should contain data');
+        
         Test.stopTest();
     }
     
@@ -81,12 +99,16 @@ public class DocusignService_Test {
     public static void getDocumentsById(){
         List<Id> listDocumentIds= new List<Id>();
         ContentDocument cd = [Select Id,Title from ContentDocument LIMIT 1];
+        SBQQ__Quote__c quote= [Select id from SBQQ__Quote__c LIMIT 1];
      	ContentVersion cv = [SELECT Id,VersionData,ContentDocumentId from ContentVersion LIMIT 1];
         ContentDocumentLink cdl = [SELECT Id,ContentDocumentId,LinkedEntityId,ShareType from ContentDocumentLink WHERE ContentDocumentId=: cd.Id LIMIT 1];
-        listDocumentIds.add(cdl.Id);
+        listDocumentIds.add(quote.Id);
         Assert.areNotEqual(null, listDocumentIds, 'The list of documents is not null');
         Test.startTest();
-        DocuSignService.getDocumentsbyId(listDocumentIds);
+        List<DocusignService.OutputVariables> documentsRetrieved= DocuSignService.getDocumentsbyId(listDocumentIds);
+        System.assertEquals(1, documentsRetrieved[0].files.size());
+        System.assertEquals('Test Document 0', documentsRetrieved[0].files[0].Title);
+        System.debug(documentsRetrieved);
         Test.stopTest();
     }
 }

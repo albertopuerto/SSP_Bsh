@@ -26,6 +26,12 @@ public class DocuSignSigners_Test {
         linkList[0].LinkedEntityId = testAccountList[0].Id;
         linkList[0].ShareType = 'V'; // This should come from defaults, but set explicitly
         insert linkList;
+        
+        Signature__c signature = new Signature__c(
+        Envelope_Id__c = 'xxxxxxxx-xxxx-xxx',
+        Document_Id__c= contentDocumentId
+        );
+        insert signature;
     }
     
     @isTest
@@ -34,9 +40,17 @@ public class DocuSignSigners_Test {
         StaticResource sr2 = [SELECT Body FROM StaticResource WHERE Name = 'getAccessTokenBody'];
 		String tokenBody = sr2.Body.toString();
 
+        StaticResource sr = [SELECT Body FROM StaticResource WHERE Name = 'getSignedDocument'];
+		String signedDocument = sr.Body.toString();
+
+        HTTPMockGenerator res1 = new HTTPMockGenerator(200, signedDocument);
         HTTPMockGenerator res2 = new HTTPMockGenerator(200, tokenBody);
 
-        Test.setMock(HttpCalloutMock.class, res2);
+        HttpMultiRequestMockGenerator multiMock = new HttpMultiRequestMockGenerator();
+        multiMock.putMock('https://account-d.docusign.com/oauth/token',res2);
+		multiMock.putMock('https://demo.docusign.net/restapi/v2.1/accounts/ec94da4e-5b4e-4e5d-a3ac-35dac0b0f786/envelopes',res1);
+        
+        Test.setMock(HttpCalloutMock.class, multiMock);
         List<DocuSignSigners.InputVariables> variables = new List<DocuSignSigners.InputVariables>(); 
         ContentVersion cv = [SELECT Id,VersionData from ContentVersion LIMIT 1];
         ContentDocument cd = [Select Id,Title from ContentDocument LIMIT 1];
@@ -49,7 +63,9 @@ public class DocuSignSigners_Test {
         variables.add(variable);
       	Assert.areNotEqual(null,variable.document, 'The document is not null');
         Test.startTest();
-        DocuSignSigners.sendToSign(variables);
+        List<String> listDocuments = DocuSignSigners.sendToSign(variables);
+        System.debug(listDocuments);
+        System.assertEquals('1f2713d9-af87-8885-8159-a69d30b51125', listDocuments[0]);
         Test.stopTest();
     }
 }

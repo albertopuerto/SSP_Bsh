@@ -25,7 +25,7 @@ public class DocuSignWebhook_Test {
         linkList[0].ShareType = 'V'; // This should come from defaults, but set explicitly
         insert linkList;
         Signature__c signature = new Signature__c(
-        Envelope_Id__c = 'xxxxxxxx-xxxx-xxx',
+        Envelope_Id__c = '517967bf-a80a-42e6-ba59-b01e37d8b54a',
         Document_Id__c= contentDocumentId
         );
         insert signature;
@@ -54,8 +54,11 @@ public class DocuSignWebhook_Test {
         Test.startTest();
         
         DocuSignWebhook.handleWebhook();
- 
         Test.stopTest();
+        List<ContentVersion> versions = [SELECT Title, ContentDocumentId, pkl_Status__c FROM ContentVersion];
+		
+        System.assertEquals(2, versions.size());
+        System.assertEquals('sent', versions[0].pkl_Status__c);
     }
 
     @IsTest
@@ -82,8 +85,11 @@ public class DocuSignWebhook_Test {
         Test.startTest();
         
         DocuSignWebhook.handleWebhook();
- 
         Test.stopTest();
+        List<ContentVersion> versions = [SELECT Title, ContentDocumentId, pkl_Status__c FROM ContentVersion];
+		
+        System.assertEquals(2, versions.size());
+        System.assertEquals('delivered', versions[0].pkl_Status__c);
     }
 
     @IsTest
@@ -108,9 +114,11 @@ public class DocuSignWebhook_Test {
  
         RestContext.request = req;
         Test.startTest();
-        
         DocuSignWebhook.handleWebhook();
- 
         Test.stopTest();
+        List<ContentVersion> versions = [SELECT Title, ContentDocumentId, pkl_Status__c FROM ContentVersion];
+		
+        System.assertEquals(2, versions.size());
+        System.assertEquals('completed', versions[0].pkl_Status__c);
     }
 }
