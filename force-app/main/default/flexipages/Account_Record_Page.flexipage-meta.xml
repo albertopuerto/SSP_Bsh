@@ -149,16 +149,6 @@
                     <name>uiBehavior</name>
                     <value>none</value>
                 </fieldInstanceProperties>
-                <fieldItem>Record.pkm_BoschPartnerRole__c</fieldItem>
-                <identifier>Recordpkm_BoschPartnerRole_cField</identifier>
-            </fieldInstance>
-        </itemInstances>
-        <itemInstances>
-            <fieldInstance>
-                <fieldInstanceProperties>
-                    <name>uiBehavior</name>
-                    <value>none</value>
-                </fieldInstanceProperties>
                 <fieldItem>Record.txt_AthenaUUID__c</fieldItem>
                 <identifier>Recordtxt_AthenaUUID__cField</identifier>
             </fieldInstance>
