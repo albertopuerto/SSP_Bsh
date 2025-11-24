@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <PermissionSet xmlns="http://soap.sforce.com/2006/04/metadata">
     <description>Grant CPI integration user permissions over product2 object and related fields. License SalesforceAPIIntegrationPsl</description>
+    <hasActivationRequired>false</hasActivationRequired>
+    <label>MaterialsManagementAPI</label>
+    <license>SalesforceAPIIntegrationPsl</license>
     <fieldPermissions>
         <editable>true</editable>
         <field>Product2.Description</field>
@@ -66,9 +69,11 @@
         <field>Product2.txt_OldMaterialId__c</field>
         <readable>true</readable>
     </fieldPermissions>
-    <hasActivationRequired>false</hasActivationRequired>
-    <label>MaterialsManagementAPI</label>
-    <license>SalesforceAPIIntegrationPsl</license>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>SBQQ__QuoteLine__c.pkl_SolutionField__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
     <objectPermissions>
         <allowCreate>true</allowCreate>
         <allowDelete>false</allowDelete>
