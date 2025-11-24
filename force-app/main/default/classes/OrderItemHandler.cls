@@ -31,7 +31,11 @@ public with sharing class OrderItemHandler extends fflib_SObjectDomain {
          }
             uow.commitWork();
         } catch (Exception ex) {
-                System.debug('⚠️ ❌ Failed to insert PriceElements: ' + ex.getMessage());
+               Logger.error('APX-EXC-00004: Error while inserting PriceElements.', + ex.getMessage(), ex)
+                  .addTags(new List<String>{'APX-EXC'});
+            throw ex;
+        } finally {
+            Logger.saveLog();
             }
  
     }
