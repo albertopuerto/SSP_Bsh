@@ -30,68 +30,6 @@ public with sharing class DocuSignService {
 
     /**
 	* @author       APB
-	* @description  Method that gets the access token
-	* @return		String
-	*/
-    public String getAccessToken() {
-        Long now = DateTime.now().getTime() / 1000;
-
-        if (cachedAccessToken != null && tokenExpirationEpoch != null && now < tokenExpirationEpoch - 60) {
-            return cachedAccessToken;
-        }
-
-        Long exp = now + 3600;
-
-        Map<String, Object> header = new Map<String, Object>{
-            'alg' => 'RS256',
-            'typ' => 'JWT'
-        };
-
-        Map<String, Object> claims = new Map<String, Object>{
-            'iss' => clientId,
-            'sub' => userId,
-            'aud' => audience,
-            'iat' => now,
-            'exp' => exp,
-            'scope' => 'signature impersonation'
-        };
-
-        String headerEncoded = encodeBase64Url(JSON.serialize(header));
-        String claimsEncoded = encodeBase64Url(JSON.serialize(claims));
-        String unsignedJWT = headerEncoded + '.' + claimsEncoded;
-
-        Blob signature;
-
-        if (!Test.isRunningTest()) {
-            signature = Crypto.signWithCertificate('RSA-SHA256', Blob.valueOf(unsignedJWT), certName);
-        } else {
-            signature = Blob.valueOf('mock-signature');
-        }
-        String signedJWT = unsignedJWT + '.' + encodeBase64Url(signature);
-
-        HttpRequest req = new HttpRequest();
-        req.setEndpoint('https://account-d.docusign.com/oauth/token');
-        req.setMethod('POST');
-        req.setHeader('Content-Type', 'application/x-www-form-urlencoded');
-        req.setBody('grant_type=urn:ietf:params:oauth:grant-type:jwt-bearer&assertion=' + signedJWT);
-
-        Http http = new Http();
-        HttpResponse res = http.send(req);
-
-        if (res.getStatusCode() != 200) {
-            Logger.error('APX-INT-00006 - Failed when trying to get the access token - '+ res.getStatusCode() +'-'+res.getBody()).addTag('APX-INT');
-            throw new CalloutException('Failed when trying to get the access token: ' + res.getBody());
-        }
-
-        Map<String, Object> jsonRes = (Map<String, Object>) JSON.deserializeUntyped(res.getBody());
-        cachedAccessToken = (String) jsonRes.get('access_token');
-        tokenExpirationEpoch = now + ((Integer) jsonRes.get('expires_in'));
-
-        return cachedAccessToken;
-    }
-
-    /**
-	* @author       APB
 	* @description  Method that send the email
 	* @param		recipientEmail String
     * @param		recipientName String

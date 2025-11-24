@@ -48,7 +48,7 @@ public class DocuSignSigners_Test {
 
         HttpMultiRequestMockGenerator multiMock = new HttpMultiRequestMockGenerator();
         multiMock.putMock('https://account-d.docusign.com/oauth/token',res2);
-		multiMock.putMock('https://demo.docusign.net/restapi/v2.1/accounts/ec94da4e-5b4e-4e5d-a3ac-35dac0b0f786/envelopes',res1);
+		multiMock.putMock('callout:docusignCredential/restapi/v2.1/accounts/ec94da4e-5b4e-4e5d-a3ac-35dac0b0f786/envelopes',res1);
         
         Test.setMock(HttpCalloutMock.class, multiMock);
         List<DocuSignSigners.InputVariables> variables = new List<DocuSignSigners.InputVariables>(); 
