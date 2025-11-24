@@ -473,16 +473,6 @@
                 <identifier>flexipage_column5</identifier>
             </componentInstance>
         </itemInstances>
-        <itemInstances>
-            <componentInstance>
-                <componentInstanceProperties>
-                    <name>body</name>
-                    <value>Facet-ef4f2a2c-d1f7-47ec-8295-f97f0471ff7a</value>
-                </componentInstanceProperties>
-                <componentName>flexipage:column</componentName>
-                <identifier>flexipage_column6</identifier>
-            </componentInstance>
-        </itemInstances>
         <name>Facet-49240e10-6cf3-4842-9dc3-0ba419ef7b2e</name>
         <type>Facet</type>
     </flexiPageRegions>
