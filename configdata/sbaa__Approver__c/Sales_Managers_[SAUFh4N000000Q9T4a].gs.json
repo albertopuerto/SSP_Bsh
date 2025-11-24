@@ -21,7 +21,7 @@
       "Name": "sbaa__GroupId__c",
       "ReferencedObject": "Group",
       "ReferencedFields": {
-        "DeveloperName": "Sales_Managers",
+        "DeveloperName": "CDE_SalesManagers",
         "Type": "Regular"
       }
     },
