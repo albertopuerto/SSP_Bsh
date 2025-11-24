@@ -58,7 +58,7 @@
                             <value>SBQQ__Quote__c.Send_for_Signature</value>
                             <visibilityRule>
                                 <criteria>
-                                    <leftValue>{!$Permission.CustomPermission.Can_view_Quote_Send_for_Signature_button}</leftValue>
+                                    <leftValue>{!$Permission.CustomPermission.canViewQuoteSendForSignatureButton}</leftValue>
                                     <operator>EQUAL</operator>
                                     <rightValue>true</rightValue>
                                 </criteria>
