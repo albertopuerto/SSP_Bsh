@@ -4,20 +4,34 @@
 */
 public with sharing class FlowsMetadataUtil {
 
+    private static Map<String,Boolean> mapFlowStatus = new Map<String,Boolean>();
     /**
 	* @author       APB
-	* @description  getStatusFlows method
+	* @description  getMapFlowStatusFiltered method
 	* @return		Map<String,Boolean>
 	*/
-    public static Map<String,Boolean> getStatusFlows(){
+    public static Map<String,Boolean> getMapFlowStatusFiltered(String apiClause){
 
-        Map<String,Boolean> statusFlowsMap = new Map<String,Boolean>();
-        List<FlowDefinitionView> listFlows = [SELECT Id,IsActive,ApiName from FlowDefinitionView LIMIT 400];
+        if(mapFlowStatus.isEmpty()){
+            List<FlowDefinitionView> listFlows = [SELECT Id,IsActive,ApiName from FlowDefinitionView WHERE ApiName =:apiClause WITH SYSTEM_MODE];
 
-        for(FlowDefinitionView flow : listFlows){
-            statusFlowsMap.put(flow.ApiName,flow.IsActive);
+            if(!listFlows.isEmpty()){
+                for(FlowDefinitionView flow : listFlows){
+                    mapFlowStatus.put(flow.ApiName,flow.IsActive);
+                }
+            }
         }
 
-        return statusFlowsMap;
+        return mapFlowStatus;
     }
+
+    public static Boolean isFlowActive(String apiName){
+        if(mapFlowStatus.isEmpty()) {
+            getMapFlowStatusFiltered(apiName);
+        }
+
+        return mapFlowStatus.get(apiName);
+    }
+
+
 }

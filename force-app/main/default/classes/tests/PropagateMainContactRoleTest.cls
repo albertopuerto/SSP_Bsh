@@ -5,7 +5,6 @@
 @IsTest
 public class PropagateMainContactRoleTest {
 
-    public static Map<String,Boolean> mapStatusFlows = FlowsMetadataUtil.getStatusFlows();
     /**
     * @author       APB
     * @description  Method used to create the records
@@ -13,7 +12,7 @@ public class PropagateMainContactRoleTest {
     @testSetup
     public static void createRecords(){
 
-		if(mapStatusFlows.get('flw_propagate_main_contact_role') == true && mapStatusFlows.get('flw_Contact_beforeUpdate') == true){
+		if(FlowsMetadataUtil.isFlowActive('flw_propagate_main_contact_role') == true && FlowsMetadataUtil.isFlowActive('flw_Contact_beforeUpdate') == true){
             Account[] testAccountList = (Account[])TestFactory.createSObjectList(new Account(), 1);
             insert testAccountList;
 
@@ -31,7 +30,7 @@ public class PropagateMainContactRoleTest {
     @IsTest
     public static void testPropagateRole(){
 
-        if(mapStatusFlows.get('flw_propagate_main_contact_role') == true && mapStatusFlows.get('flw_Contact_beforeUpdate') == true){
+        if(FlowsMetadataUtil.isFlowActive('flw_propagate_main_contact_role') == true && FlowsMetadataUtil.isFlowActive('flw_Contact_beforeUpdate') == true){
             Account testAccount = [Select Id from Account LIMIT 1];
             Contact testContact = [Select Id from Contact LIMIT 1];
             User productManagerUser = (User)TestFactory.createSObject(new User(), 'TestFactoryDefaults.ProductManagerUserDefaults', true);
