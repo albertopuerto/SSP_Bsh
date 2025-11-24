@@ -100,8 +100,8 @@ public with sharing class DocuSignService {
 	* @return		String
 	*/
     public String sendEnvelope(String recipientEmail, String recipientName, String documentBase64, String documentName) {
-        String accessToken = getAccessToken();
-        String endpoint = baseUrl + '/accounts/' + accountId + '/envelopes';
+
+        String endpoint = 'callout:docusignSendEnvelope/restapi/v2.1/accounts/ec94da4e-5b4e-4e5d-a3ac-35dac0b0f786/envelopes';
 
         Map<String, Object> envelopeDefinition = new Map<String, Object>{
             'emailSubject' => 'Por favor firme el documento adjunto',
@@ -139,13 +139,13 @@ public with sharing class DocuSignService {
         HttpRequest req = new HttpRequest();
         req.setEndpoint(endpoint);
         req.setMethod('POST');
-        req.setHeader('Authorization', 'Bearer ' + accessToken);
+		req.setTimeout(120000);
         req.setHeader('Content-Type', 'application/json');
         req.setBody(JSON.serialize(envelopeDefinition));
-
+        
         Http http = new Http();
         HttpResponse res = http.send(req);
-
+      
         Map<String, Object> resMap = (Map<String, Object>) JSON.deserializeUntyped(res.getBody());
         String envelopeId = (String) resMap.get('envelopeId');
 
@@ -165,13 +165,12 @@ public with sharing class DocuSignService {
 	* @return		Blob
 	*/
     public Blob getSignedDocument(String envelopeId, String documentId) {
-        String accessToken = getAccessToken();
-        String endpoint = baseUrl + '/accounts/' + accountId + '/envelopes/' + envelopeId + '/documents/' + documentId;
+        String endpoint = 'callout:docusignSendEnvelope/restapi/v2.1/accounts/ec94da4e-5b4e-4e5d-a3ac-35dac0b0f786/envelopes/'+ envelopeId + '/documents/' + documentId;
 
         HttpRequest req = new HttpRequest();
         req.setEndpoint(endpoint);
         req.setMethod('GET');
-        req.setHeader('Authorization', 'Bearer ' + accessToken);
+
         req.setHeader('Accept', 'application/pdf');
 
         Http http = new Http();
