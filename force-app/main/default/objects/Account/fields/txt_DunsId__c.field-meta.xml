@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>txt_DunsId__c</fullName>
+    <description>DUNS number, provided by Dun &amp; Bradstreet, is a unique nine-digit identifier for a single business entity</description>
+    <externalId>false</externalId>
+    <inlineHelpText>DUNS number, provided by Dun &amp; Bradstreet</inlineHelpText>
+    <label>DUNS</label>
+    <length>60</length>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

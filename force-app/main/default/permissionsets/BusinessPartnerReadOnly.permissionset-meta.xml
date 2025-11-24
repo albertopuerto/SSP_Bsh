@@ -80,6 +80,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Account.txt_DunsId__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Account.txt_Finding__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -91,6 +96,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Account.txt_Name4__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Account.txt_R3Id__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
