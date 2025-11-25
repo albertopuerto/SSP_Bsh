@@ -119,6 +119,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Account.chk_CustomerBlock__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Account.dtm_DatetimeofcreationinAthena__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -135,11 +140,6 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Account.pkl_CivilianCustomer__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>Account.pkl_CustomerBlock__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>

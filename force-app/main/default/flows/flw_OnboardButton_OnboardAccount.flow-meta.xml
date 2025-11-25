@@ -371,6 +371,14 @@
         </value>
     </choices>
     <choices>
+        <name>BBCUPR</name>
+        <choiceText>&lt;span style=&quot;font-size: 16px;&quot;&gt;Operational Prospect B2B - external entity before operational business&lt;/span&gt;</choiceText>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>BBCUPR</stringValue>
+        </value>
+    </choices>
+    <choices>
         <name>BBCUSH</name>
         <choiceText>&lt;span style=&quot;font-size: 16px;&quot;&gt;Operational Customer B2B - Pure Ship-to&lt;/span&gt;</choiceText>
         <dataType>String</dataType>
@@ -821,10 +829,12 @@
         </connector>
         <fields>
             <name>Select_Bosch_Partner_Role</name>
+            <choiceReferences>BBCUPR</choiceReferences>
             <choiceReferences>BBCUEX</choiceReferences>
             <choiceReferences>BBCUSH</choiceReferences>
             <choiceReferences>BBCUBP</choiceReferences>
             <dataType>String</dataType>
+            <defaultSelectedChoiceReference>BBCUPR</defaultSelectedChoiceReference>
             <fieldText>Select Bosch Partner Role</fieldText>
             <fieldType>RadioButtons</fieldType>
             <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>

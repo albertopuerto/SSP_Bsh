@@ -117,6 +117,11 @@
         <isRequired>false</isRequired>
     </availableFields>
     <availableFields>
+        <field>SBQQ__PartnerDiscount__c</field>
+        <isFieldManaged>false</isFieldManaged>
+        <isRequired>false</isRequired>
+    </availableFields>
+    <availableFields>
         <field>SBQQ__ProductCode__c</field>
         <isFieldManaged>false</isFieldManaged>
         <isRequired>false</isRequired>
@@ -214,11 +219,6 @@
     </displayedFields>
     <displayedFields>
         <field>fcur_AccountBasedDiscountAmount__c</field>
-        <isFieldManaged>false</isFieldManaged>
-        <isRequired>false</isRequired>
-    </displayedFields>
-    <displayedFields>
-        <field>SBQQ__PartnerDiscount__c</field>
         <isFieldManaged>false</isFieldManaged>
         <isRequired>false</isRequired>
     </displayedFields>
