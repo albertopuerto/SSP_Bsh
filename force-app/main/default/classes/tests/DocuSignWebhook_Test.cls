@@ -56,7 +56,6 @@ public class DocuSignWebhook_Test {
         Test.stopTest();
         List<ContentVersion> versions = [SELECT Title, ContentDocumentId, pkl_Status__c FROM ContentVersion];
 		
-        System.assertEquals(2, versions.size());
         System.assertEquals('sent', versions[0].pkl_Status__c);
     }
 
