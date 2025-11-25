@@ -528,31 +528,31 @@
         <inputAssignments>
             <field>BillingCity</field>
             <value>
-                <elementReference>Account.BillingCity</elementReference>
+                <elementReference>Address.city</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
             <field>BillingCountry</field>
             <value>
-                <elementReference>Account.BillingCountry</elementReference>
+                <elementReference>Address.country</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
             <field>BillingPostalCode</field>
             <value>
-                <elementReference>Account.BillingPostalCode</elementReference>
+                <elementReference>Address.postalCode</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
             <field>BillingState</field>
             <value>
-                <elementReference>Account.BillingState</elementReference>
+                <elementReference>Address.province</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
             <field>BillingStreet</field>
             <value>
-                <elementReference>Account.BillingStreet</elementReference>
+                <elementReference>Address.street</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
@@ -719,10 +719,36 @@
             <isRequired>true</isRequired>
         </fields>
         <fields>
-            <fieldType>ObjectProvided</fieldType>
+            <name>Address</name>
+            <extensionName>flowruntime:address</extensionName>
+            <fieldType>ComponentInstance</fieldType>
+            <inputParameters>
+                <name>addressLabel</name>
+                <value>
+                    <stringValue>Address</stringValue>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>showAddressLookup</name>
+                <value>
+                    <booleanValue>true</booleanValue>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>addressLookupLabel</name>
+                <value>
+                    <stringValue>Address Search</stringValue>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>required</name>
+                <value>
+                    <booleanValue>true</booleanValue>
+                </value>
+            </inputParameters>
             <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
-            <isRequired>false</isRequired>
-            <objectFieldReference>Account.BillingAddress</objectFieldReference>
+            <isRequired>true</isRequired>
+            <storeOutputAutomatically>true</storeOutputAutomatically>
         </fields>
         <nextOrFinishButtonLabel>Validate Address</nextOrFinishButtonLabel>
         <showFooter>true</showFooter>
@@ -875,7 +901,7 @@
             <targetReference>RecordTypeSelection</targetReference>
         </connector>
     </start>
-    <status>Active</status>
+    <status>Draft</status>
     <textTemplates>
         <name>tmpl_LogMessageDML</name>
         <isViewedAsPlainText>true</isViewedAsPlainText>
