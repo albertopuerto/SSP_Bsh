@@ -4,7 +4,7 @@
  * @author            : APC
 **/
 @RestResource(urlMapping='/docusignWebhook/*')
-global with sharing class DocuSignWebhook {
+global without sharing class DocuSignWebhook {
 
     /**
 	* @author       APB

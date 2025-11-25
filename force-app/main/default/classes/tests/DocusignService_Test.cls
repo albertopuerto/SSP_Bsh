@@ -39,7 +39,8 @@ public class DocusignService_Test {
     @isTest
     public static void sendEnvelope(){
         Docusign_Setting__mdt config = [SELECT clientId__c, userId__c, audience__c, certificateName__c,DeveloperName, accountId__c, baseUrl__c FROM Docusign_Setting__mdt WITH USER_MODE LIMIT 1];
-       StaticResource sr2 = [SELECT Body FROM StaticResource WHERE Name = 'getAccessTokenBody'];
+        User productManagerUser = createUser();
+        StaticResource sr2 = [SELECT Body FROM StaticResource WHERE Name = 'getAccessTokenBody'];
 		String tokenBody = sr2.Body.toString();
         
         StaticResource sr = [SELECT Body FROM StaticResource WHERE Name = 'getSignedDocument'];
@@ -63,20 +64,22 @@ public class DocusignService_Test {
         Blob myPdfBlob = cv.VersionData;
         String base64Doc = EncodingUtil.base64Encode(myPdfBlob);
         Test.startTest();
-        String result = docusignService.sendEnvelope(
-            cont.Email,
-            cont.Email,
-            base64Doc,
-            cd.Title
-        );
-        System.assertEquals('1f2713d9-af87-8885-8159-a69d30b51125', result);
-        System.debug(result);
+        System.runAs(productManagerUser){
+            String result = docusignService.sendEnvelope(
+                cont.Email,
+                cont.Email,
+                base64Doc,
+                cd.Title
+            );
+            System.assertEquals('1f2713d9-af87-8885-8159-a69d30b51125', result);
+            System.debug(result);
+        }
         Test.stopTest();
     }
     
     @isTest
     public static void getSignedDocument(){
-        
+        User productManagerUser = createUser();
         Docusign_Setting__mdt config = [SELECT clientId__c, userId__c, audience__c, certificateName__c,DeveloperName, accountId__c, baseUrl__c FROM Docusign_Setting__mdt WITH USER_MODE LIMIT 1];
         StaticResource sr2 = [SELECT Body FROM StaticResource WHERE Name = 'getAccessTokenBody'];
 		String tokenBody = sr2.Body.toString();
@@ -86,17 +89,19 @@ public class DocusignService_Test {
         DocuSignService service = new DocuSignService('Docusign_Service');
      	ContentDocument cd = [Select Id,Title from ContentDocument LIMIT 1];
         Test.startTest();
-        Blob document = service.getSignedDocument('2131232312434546', 'combined');
-        System.debug(document);
-        Assert.areNotEqual(null, document, 'The document is not null');
-        Blob expectedBlob = Blob.valueOf('PDFDATA');
-    	System.assert(document.size() > 0, 'The document should contain data');
-        
+        System.runAs(productManagerUser){
+            Blob document = service.getSignedDocument('2131232312434546', 'combined');
+            System.debug(document);
+            Assert.areNotEqual(null, document, 'The document is not null');
+            Blob expectedBlob = Blob.valueOf('PDFDATA');
+    	    System.assert(document.size() > 0, 'The document should contain data');
+        }
         Test.stopTest();
     }
     
     @isTest
     public static void getDocumentsById(){
+        User productManagerUser = createUser();
         List<Id> listDocumentIds= new List<Id>();
         ContentDocument cd = [Select Id,Title from ContentDocument LIMIT 1];
         SBQQ__Quote__c quote= [Select id from SBQQ__Quote__c LIMIT 1];
@@ -105,10 +110,39 @@ public class DocusignService_Test {
         listDocumentIds.add(quote.Id);
         Assert.areNotEqual(null, listDocumentIds, 'The list of documents is not null');
         Test.startTest();
-        List<DocusignService.OutputVariables> documentsRetrieved= DocuSignService.getDocumentsbyId(listDocumentIds);
-        System.assertEquals(1, documentsRetrieved[0].files.size());
-        System.assertEquals('Test Document 0', documentsRetrieved[0].files[0].Title);
-        System.debug(documentsRetrieved);
+        System.runAs(productManagerUser){
+            List<DocusignService.OutputVariables> documentsRetrieved= DocuSignService.getDocumentsbyId(listDocumentIds);
+            System.assertEquals(1, documentsRetrieved[0].files.size());
+            System.assertEquals('Test Document 0', documentsRetrieved[0].files[0].Title);
+            System.debug(documentsRetrieved);
+        }
         Test.stopTest();
+    }
+
+    static User createUser(){
+        User productManagerUser = (User)TestFactory.createSObject(new User(), 'TestFactoryDefaults.ProductManagerUserDefaults', true);
+        PermissionSet ps = [SELECT Id FROM PermissionSet WHERE Name = 'SalesBasic' LIMIT 1];
+        PermissionSet ps2 = [SELECT Id FROM PermissionSet WHERE Name = 'DocusignUser' LIMIT 1];
+        PermissionSetLicense psl = [SELECT Id from PermissionSetLicense WHERE DeveloperName = 'SalesforceCPQ_CPQStandardPerm' ];
+
+        PermissionSetLicenseAssign pslassignment = new PermissionSetLicenseAssign(
+            PermissionSetLicenseId = psl.Id,
+            AssigneeId = productManagerUser.Id
+        );
+        insert pslassignment;
+
+        // Assign the Permission Set to the test user
+        PermissionSetAssignment psa = new PermissionSetAssignment(
+            AssigneeId = productManagerUser.Id,
+            PermissionSetId = ps.Id
+        );
+        insert psa;
+
+         PermissionSetAssignment psa2 = new PermissionSetAssignment(
+            AssigneeId = productManagerUser.Id,
+            PermissionSetId = ps2.Id
+        );
+        insert psa2;
+        return productManagerUser;
     }
 }

@@ -2,7 +2,7 @@
 	* @author       APB
 	* @description  DocuSignService class
 	*/
-public with sharing class DocuSignService {
+public without sharing class DocuSignService {
     private String clientId;
     private String userId;
     private String audience;
