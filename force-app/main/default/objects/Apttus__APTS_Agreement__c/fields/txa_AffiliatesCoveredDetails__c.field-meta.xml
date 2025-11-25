@@ -4,9 +4,10 @@
     <description>Please, describe which affiliates are included</description>
     <inlineHelpText>Please, describe which affiliates are included</inlineHelpText>
     <label>Affiliates covered details</label>
-    <required>false</required>
+    <length>600</length>
     <trackFeedHistory>false</trackFeedHistory>
     <trackHistory>false</trackHistory>
     <trackTrending>false</trackTrending>
-    <type>TextArea</type>
+    <type>LongTextArea</type>
+    <visibleLines>2</visibleLines>
 </CustomField>

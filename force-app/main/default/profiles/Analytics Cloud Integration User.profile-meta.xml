@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <Profile xmlns="http://soap.sforce.com/2006/04/metadata">
     <custom>false</custom>
     <userLicense>Analytics Cloud Integration User</userLicense>
@@ -328,14 +328,14 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
+        <editable>false</editable>
+        <readable>false</readable>
         <field>Product2.txa_ShortDescription__c</field>
-        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
+        <editable>false</editable>
+        <readable>false</readable>
         <field>Product2.txr_AdditionaInformation__c</field>
-        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -479,6 +479,10 @@
     <userPermissions>
         <enabled>true</enabled>
         <name>AddDirectMessageMembers</name>
+    </userPermissions>
+    <userPermissions>
+        <enabled>true</enabled>
+        <name>AllowViewKnowledge</name>
     </userPermissions>
     <userPermissions>
         <enabled>true</enabled>
@@ -680,6 +684,9 @@
         <recordType>Apttus__APTS_Agreement__c.X2nd_Processor_EPA_GPA</recordType>
     </layoutAssignments>
     <layoutAssignments>
+        <layout>Apttus__RetentionPolicy__c-Apttus__Retention Policy Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
         <layout>ExportControlSheet__c-Export Control Sheet Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
@@ -708,6 +715,9 @@
     </layoutAssignments>
     <layoutAssignments>
         <layout>SalesAreaLink__c-Sales Area Link Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>TaxNumber__c-Tax Number Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
         <layout>sbaa__Approval__c-sbaa__Approval Layout</layout>
@@ -843,6 +853,14 @@
         <visible>false</visible>
     </recordTypeVisibilities>
     <tabVisibilities>
+        <tab>Approval_History</tab>
+        <visibility>DefaultOff</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>Apttus__RetentionPolicy__c</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
         <tab>BoschPartnerFunction__c</tab>
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
@@ -851,7 +869,30 @@
         <visibility>Hidden</visibility>
     </tabVisibilities>
     <tabVisibilities>
+        <tab>TaxNumber__c</tab>
+        <visibility>DefaultOn</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
         <tab>sbaa__Approval__c</tab>
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
+    <tabVisibilities>
+        <tab>standard-Product2</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <applicationVisibilities>
+        <application>Apttus_XApps__XAuthorExcel</application>
+        <default>false</default>
+        <visible>true</visible>
+    </applicationVisibilities>
+    <applicationVisibilities>
+        <application>sbaa__AdvancedApprovals</application>
+        <default>false</default>
+        <visible>true</visible>
+    </applicationVisibilities>
+    <applicationVisibilities>
+        <application>standard__Platform</application>
+        <default>true</default>
+        <visible>true</visible>
+    </applicationVisibilities>
 </Profile>

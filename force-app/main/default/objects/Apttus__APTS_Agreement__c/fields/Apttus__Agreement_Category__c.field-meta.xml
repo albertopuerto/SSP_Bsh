@@ -157,6 +157,11 @@
                 <default>false</default>
                 <label>ETAS/CJP</label>
             </value>
+            <value>
+                <fullName>ETAS/CRB-XA</fullName>
+                <default>false</default>
+                <label>ETAS/CRB-XA</label>
+            </value>
         </valueSetDefinition>
     </valueSet>
 </CustomField>

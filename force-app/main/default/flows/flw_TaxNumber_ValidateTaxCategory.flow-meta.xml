@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>65.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <customErrors>
+        <description>Notify the user that a tax number with the same category already exists.</description>
+        <name>err_Message</name>
+        <label>Error Message</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <customErrorMessages>
+            <errorMessage>Duplicate Category Tax Number for this account</errorMessage>
+            <isFieldError>false</isFieldError>
+        </customErrorMessages>
+    </customErrors>
+    <decisions>
+        <name>decn_IsTaxCategoryExist</name>
+        <label>Is Tax Category Exist?</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnectorLabel>No</defaultConnectorLabel>
+        <rules>
+            <name>IsTaxCategoryExist_Yes</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>get_obj_TaxNumber</leftValueReference>
+                <operator>IsBlank</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>err_Message</targetReference>
+            </connector>
+            <label>Yes</label>
+        </rules>
+    </decisions>
+    <description>Validate Tax Category on the Tax Number record</description>
+    <environments>Default</environments>
+    <interviewLabel>TaxNumber_ValidateTaxCategory {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>TaxNumber_ValidateTaxCategory</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordLookups>
+        <name>get_obj_TaxNumber</name>
+        <label>Get Tax Number</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>decn_IsTaxCategoryExist</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>mdr_AccountId__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.mdr_AccountId__c</elementReference>
+            </value>
+        </filters>
+        <filters>
+            <field>txt_TaxCategory__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.txt_TaxCategory__c</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>TaxNumber__c</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <start>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>get_obj_TaxNumber</targetReference>
+        </connector>
+        <filterFormula>OR ( ISNEW(), ISCHANGED({!$Record.txt_TaxCategory__c}) )</filterFormula>
+        <object>TaxNumber__c</object>
+        <recordTriggerType>CreateAndUpdate</recordTriggerType>
+        <triggerType>RecordBeforeSave</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>
