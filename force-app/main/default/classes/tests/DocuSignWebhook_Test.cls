@@ -30,7 +30,6 @@ public class DocuSignWebhook_Test {
     }
     @IsTest
     static void testReceivesentData() {
-        Docusign_Setting__mdt config = [SELECT clientId__c, userId__c, audience__c, certificateName__c,DeveloperName, accountId__c, baseUrl__c FROM Docusign_Setting__mdt WITH USER_MODE LIMIT 1];
         User productManagerUser = createUser();
         StaticResource sr = [SELECT Body FROM StaticResource WHERE Name = 'getAccessTokenBody'];
 		String tokenBody = sr.Body.toString();
@@ -62,7 +61,6 @@ public class DocuSignWebhook_Test {
 
     @IsTest
     static void testReceiveDeliveredData() {
-        Docusign_Setting__mdt config = [SELECT clientId__c, userId__c, audience__c, certificateName__c,DeveloperName, accountId__c, baseUrl__c FROM Docusign_Setting__mdt WITH USER_MODE LIMIT 1];
         User productManagerUser = createUser();
         StaticResource sr = [SELECT Body FROM StaticResource WHERE Name = 'getAccessTokenBody'];
 		String tokenBody = sr.Body.toString();
@@ -95,8 +93,7 @@ public class DocuSignWebhook_Test {
     static void testReceiveData() {
 
         User productManagerUser = createUser();
-        Docusign_Setting__mdt config = [SELECT clientId__c, userId__c, audience__c, certificateName__c,DeveloperName, accountId__c, baseUrl__c FROM Docusign_Setting__mdt WITH USER_MODE LIMIT 1];
-        // Step 1: Create mock JSON payload
+        
         StaticResource sr = [SELECT Body FROM StaticResource WHERE Name = 'getAccessTokenBody'];
 		String tokenBody = sr.Body.toString();
 
@@ -106,8 +103,7 @@ public class DocuSignWebhook_Test {
         
         StaticResource sr2 = [SELECT Body FROM StaticResource WHERE Name = 'documentSignWebhookRequestCompleted'];
 		String mockJson = sr2.Body.toString();
-         Assert.areNotEqual(null, sr2.Body, 'The static resource is not null');
-        // Step 2: Set up mock RestRequest
+        Assert.areNotEqual(null, sr2.Body, 'The static resource is not null');
         RestRequest req = new RestRequest();
         req.requestBody = Blob.valueOf(mockJson);
         req.httpMethod = 'POST';
