@@ -14,9 +14,10 @@ global without sharing class DocuSignWebhook {
     global static void handleWebhook() {
         RestRequest req = RestContext.request;
         RestResponse response = RestContext.response;
-        System.debug(response);
+        ResponseWrapper responseWrap = new ResponseWrapper();
+		responseWrap.responseCode= 200;
+        responseWrap.responseBody= 'OK - succesful processing of the docusign webhook';
         String body = req.requestBody.toString();
-        System.debug(body);
 
         Map<String, Object> payload = (Map<String, Object>) JSON.deserializeUntyped(body);
         String event = (String) payload.get('event');
@@ -35,10 +36,24 @@ global without sharing class DocuSignWebhook {
                     sig.Docusign_Status__c = status;
                     uow.registerDirty(sig);
                     uow.commitWork();
+                }else{
+                    responseWrap.responseBody= 'Signature not found';
+                    responseWrap.responseCode= 404;
                 }
             } catch (Exception e) {
                 Logger.error('APX-EXC-00003 - Error processing the docusign webhook - - '+ e.getMessage()).addTag('APX-EXC');
+                responseWrap.responseBody= 'INTERNAL_SERVER_ERROR - Error processing the docusign webhook'+ e.getMessage();
+                responseWrap.responseCode= 500;
+            }finally{
+            	response.statusCode = responseWrap.responseCode;
+            	response.responseBody = responseWrap.responseBody != null ? blob.valueOf(responseWrap.responseBody) : null;
             }
+        }else{
+            responseWrap.responseBody= 'BAD_REQUEST';
+            responseWrap.responseCode= 400;
+            
+            response.statusCode = responseWrap.responseCode;
+            response.responseBody = responseWrap.responseBody != null ? blob.valueOf(responseWrap.responseBody) : null;
         }
     }
 
@@ -73,5 +88,10 @@ global without sharing class DocuSignWebhook {
             uow.commitWork();
         }
 
+    }
+    
+    public class ResponseWrapper {
+        public String responseBody;
+        public Integer responseCode;
     }
 }
