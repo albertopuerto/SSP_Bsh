@@ -130,12 +130,19 @@ public class DocuSignWebhook_Test {
         PermissionSet ps2 = [SELECT Id FROM PermissionSet WHERE Name = 'DocusignUser' LIMIT 1];
         PermissionSet ps3 = [SELECT Id FROM PermissionSet WHERE Name = 'CPQAdvancedApprovalsAdmin' LIMIT 1];
         PermissionSetLicense psl = [SELECT Id from PermissionSetLicense WHERE DeveloperName = 'SalesforceCPQ_CPQStandardPerm' ];
+        PermissionSetLicense pslAdmin = [SELECT Id from PermissionSetLicense WHERE DeveloperName = 'SalesforceCPQ_CPQAAPerm' ];
 
         PermissionSetLicenseAssign pslassignment = new PermissionSetLicenseAssign(
             PermissionSetLicenseId = psl.Id,
             AssigneeId = productManagerUser.Id
         );
         insert pslassignment;
+
+        PermissionSetLicenseAssign pslassignment2 = new PermissionSetLicenseAssign(
+            PermissionSetLicenseId = pslAdmin.Id,
+            AssigneeId = productManagerUser.Id
+        );
+        insert pslassignment2;
 
         // Assign the Permission Set to the test user
         PermissionSetAssignment psa = new PermissionSetAssignment(
