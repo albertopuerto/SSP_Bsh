@@ -54,7 +54,7 @@ public class DocuSignWebhook_Test {
                 DocuSignWebhook.handleWebhook();
             }
         Test.stopTest();
-        List<ContentVersion> versions = [SELECT Title, ContentDocumentId, pkl_Status__c FROM ContentVersion];
+        List<ContentVersion> versions = [SELECT Title, ContentDocumentId, pkl_Status__c,CreatedDate FROM ContentVersion Order by CreatedDate desc];
 		
         System.assertEquals('sent', versions[0].pkl_Status__c);
     }
@@ -84,7 +84,7 @@ public class DocuSignWebhook_Test {
                 DocuSignWebhook.handleWebhook();
             }
         Test.stopTest();
-        List<ContentVersion> versions = [SELECT Title, ContentDocumentId, pkl_Status__c FROM ContentVersion];
+        List<ContentVersion> versions = [SELECT Title, ContentDocumentId, pkl_Status__c ,CreatedDate FROM ContentVersion Order by CreatedDate desc];
 		
         System.assertEquals(2, versions.size());
         System.assertEquals('delivered', versions[0].pkl_Status__c);
@@ -118,7 +118,7 @@ public class DocuSignWebhook_Test {
                 DocuSignWebhook.handleWebhook();
             }
         Test.stopTest();
-        List<ContentVersion> versions = [SELECT Title, ContentDocumentId, pkl_Status__c FROM ContentVersion];
+        List<ContentVersion> versions = [SELECT Title, ContentDocumentId, pkl_Status__c,CreatedDate FROM ContentVersion Order by CreatedDate desc];
 		
         System.assertEquals(2, versions.size());
         System.assertEquals('completed', versions[0].pkl_Status__c);
@@ -128,6 +128,7 @@ public class DocuSignWebhook_Test {
         User productManagerUser = (User)TestFactory.createSObject(new User(), 'TestFactoryDefaults.ProductManagerUserDefaults', true);
         PermissionSet ps = [SELECT Id FROM PermissionSet WHERE Name = 'SalesBasic' LIMIT 1];
         PermissionSet ps2 = [SELECT Id FROM PermissionSet WHERE Name = 'DocusignUser' LIMIT 1];
+        PermissionSet ps3 = [SELECT Id FROM PermissionSet WHERE Name = 'CPQAdvancedApprovalsAdmin' LIMIT 1];
         PermissionSetLicense psl = [SELECT Id from PermissionSetLicense WHERE DeveloperName = 'SalesforceCPQ_CPQStandardPerm' ];
 
         PermissionSetLicenseAssign pslassignment = new PermissionSetLicenseAssign(
@@ -148,6 +149,11 @@ public class DocuSignWebhook_Test {
             PermissionSetId = ps2.Id
         );
         insert psa2;
+         PermissionSetAssignment psa3 = new PermissionSetAssignment(
+            AssigneeId = productManagerUser.Id,
+            PermissionSetId = ps3.Id
+        );
+        insert psa3;
         return productManagerUser;
     }
 }
