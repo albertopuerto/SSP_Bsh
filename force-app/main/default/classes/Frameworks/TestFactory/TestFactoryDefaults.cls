@@ -221,6 +221,34 @@ public with sharing class TestFactoryDefaults{
 		}
 	}
 
+	/**
+	 * @author       APB
+	 * @description  AdminUserDefaults constructor
+	 */
+	public class AdminUserDefaults implements TestFactory.FieldDefaults {
+		/**
+		 * @author       APB
+		 * @description  define user getFieldDefaults()
+		 * @return		Map<Schema.SObjectField, Object>
+		 */
+		public Map<Schema.SObjectField, Object> getFieldDefaults() {
+			return new Map<Schema.SObjectField, Object>{
+				User.Alias => 'Admin',
+				User.Email => 'testusuario1@example.com',
+				User.Emailencodingkey => 'UTF-8',
+				User.Languagelocalekey => 'en_US',
+				User.Localesidkey => 'en_US',
+				User.Profileid => TestFactoryConstants.MAP_PROFILE_IDS.get('SystemAdministrator'),
+				User.LastName => 'Test Back Office User',
+				User.Country => 'United States',
+				User.Timezonesidkey => 'America/Los_Angeles',
+				User.FederationIdentifier => 'userPM@etasbosch.com' + system.currentTimeMillis(),
+				User.Username => 'userPM@etasbosch.com' + system.currentTimeMillis(),
+				User.IsActive  => true
+			};
+		}
+	}
+
     public class QuoteDefaults implements TestFactory.FieldDefaults{
         /**
 		 * @author       TLQ1KOR

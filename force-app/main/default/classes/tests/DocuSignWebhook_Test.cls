@@ -125,7 +125,7 @@ public class DocuSignWebhook_Test {
     }
 
     static User createUser(){
-        User productManagerUser = (User)TestFactory.createSObject(new User(), 'TestFactoryDefaults.ProductManagerUserDefaults', true);
+        User productManagerUser = (User)TestFactory.createSObject(new User(), 'TestFactoryDefaults.AdminUserDefaults', true);
         PermissionSet ps = [SELECT Id FROM PermissionSet WHERE Name = 'SalesBasic' LIMIT 1];
         PermissionSet ps2 = [SELECT Id FROM PermissionSet WHERE Name = 'DocusignUser' LIMIT 1];
         PermissionSet ps3 = [SELECT Id FROM PermissionSet WHERE Name = 'CPQAdvancedApprovalsAdmin' LIMIT 1];
