@@ -4,7 +4,7 @@
  * @author            : APC
 **/
 @RestResource(urlMapping='/docusignWebhook/*')
-global with sharing class DocuSignWebhook {
+global without sharing class DocuSignWebhook {
 
     /**
 	* @author       APB
@@ -13,7 +13,10 @@ global with sharing class DocuSignWebhook {
     @HttpPost
     global static void handleWebhook() {
         RestRequest req = RestContext.request;
+        RestResponse response = RestContext.response;
+        System.debug(response);
         String body = req.requestBody.toString();
+        System.debug(body);
 
         Map<String, Object> payload = (Map<String, Object>) JSON.deserializeUntyped(body);
         String event = (String) payload.get('event');

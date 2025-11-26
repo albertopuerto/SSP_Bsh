@@ -38,7 +38,7 @@ public class DocuSignWebhook_Test {
 
         Test.setMock(HttpCalloutMock.class, res2);
         
-        StaticResource sr2 = [SELECT Body FROM StaticResource WHERE Name = 'documentSignWebhookRequest'];
+        StaticResource sr2 = [SELECT Body FROM StaticResource WHERE Name = 'documentSignWebhookRequestSent'];
 		String mockJson = sr2.Body.toString();
          Assert.areNotEqual(null, sr2.Body, 'The static resource is not null');
         
