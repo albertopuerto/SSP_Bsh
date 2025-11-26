@@ -99,7 +99,7 @@ public without sharing class ApprovalTriggerHandler {
 */
               Database.insert( new List<sbaa__Approval__Share>(sharesToInsert), true);
             } catch (DmlException e){
-                Logger.error('APX-EXC-00003-Error inserting share records:', e);
+                Logger.error('APX-EXC-00003-Error inserting share records:', e).addTag('APX-EXC');
                 throw(e);
             } finally {
                 Logger.saveLog();
