@@ -10,8 +10,9 @@ public without sharing class ApprovalTriggerHandler {
  /**
    *Before Insert and Before Update: Validate approver
  */ 
- public static void handleBeforeInsert(List<sbaa__Approval__c> newRecords){
-              
+ 
+    public static void handleBeforeInsert(List<sbaa__Approval__c> newRecords){
+      
                 for (sbaa__Approval__c approval: newRecords){
 
                     if (approval.sbaa__ApprovedBy__c != null && approval.sbaa__ApprovedBy__c == UserInfo.getUserId()){
@@ -21,8 +22,8 @@ public without sharing class ApprovalTriggerHandler {
  } 
   
    
-  public static void handleBeforeUpdate(List<sbaa__Approval__c> newRecords, Map<Id, sbaa__Approval__c> oldMaps){
-        
+     public static void handleBeforeUpdate(List<sbaa__Approval__c> newRecords, Map<Id, sbaa__Approval__c> oldMaps){
+
                 for (sbaa__Approval__c approval: newRecords){
                 
                 if (approval.Id !=null) {
@@ -38,19 +39,18 @@ public without sharing class ApprovalTriggerHandler {
    *After Insert: Add share record for approver
  */
  
-   public static void handleAfterInsert(List<sbaa__Approval__c> records) {   
-       
+  public static void handleAfterInsert(List<sbaa__Approval__c> records) { 
         insertSharesForApprovals(records);
     
     } 
     
     
-    public static void handleAfterUpdate(List<sbaa__Approval__c>  records, Map<Id, sbaa__Approval__c> oldMap){
-        List<sbaa__Approval__c> changedRecords = new List<sbaa__Approval__c>();
-        
+       public static void handleAfterUpdate(List<sbaa__Approval__c>  records, Map<Id, sbaa__Approval__c> oldMap){
+       List<sbaa__Approval__c> changedRecords = new List<sbaa__Approval__c>();
+
         for (sbaa__Approval__c appr: records){
             sbaa__Approval__c oldRecord = oldMap.get(appr.Id);
-            if(oldRecord != null && oldRecord.OwnerId != appr.OwnerId){
+            if(oldRecord != null && oldRecord.OwnerId != appr.OwnerId && appr.OwnerId != appr.sbaa__AssignedTo__c){
                 changedRecords.add(appr);   
             }  
 
@@ -67,14 +67,16 @@ public without sharing class ApprovalTriggerHandler {
    *After Update: Add share record for approver
  */
     
-     private static void insertSharesForApprovals(List<sbaa__Approval__c> records) {
-          
-        List<sbaa__Approval__Share> sharesToInsert = new List<sbaa__Approval__Share>();
+    private static void insertSharesForApprovals(List<sbaa__Approval__c> records)    { 
+   
+        Set<sbaa__Approval__Share> sharesToInsert = new Set<sbaa__Approval__Share>();
+        
         for (sbaa__Approval__c approval : records){
               
             if (approval.Id != null) {
+                
                sbaa__Approval__Share shareRecord = new sbaa__Approval__Share();
-                shareRecord.Parentid = approval.Id;
+                shareRecord.ParentId = approval.Id;
                 shareRecord.AccessLevel = 'Edit';
                 
                 if (approval.sbaa__AssignedTo__c !=null && approval.sbaa__AssignedTo__c != UserInfo.getUserId() && String.isBlank(approval.sbaa__AssignedGroupId__c)) {
@@ -88,19 +90,22 @@ public without sharing class ApprovalTriggerHandler {
               }    
                
         } 
+     }        
         
       if (!sharesToInsert.isEmpty()){
             try{
-                insert sharesToInsert;
+/**              
+ *Convert Set to List
+*/
+              Database.insert( new List<sbaa__Approval__Share>(sharesToInsert), true);
             } catch (DmlException e){
-                Logger.error('Error inserting share records:', e);
+                Logger.error('APX-EXC-00003-Error inserting share records:', e);
                 throw(e);
             } finally {
                 Logger.saveLog();
             }
          } 
-                 
-     }
+
   }
     
 }
