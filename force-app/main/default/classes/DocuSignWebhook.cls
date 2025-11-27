@@ -16,7 +16,7 @@ global without sharing class DocuSignWebhook {
         RestResponse response = RestContext.response;
         ResponseWrapper responseWrap = new ResponseWrapper();
 		responseWrap.responseCode= 200;
-        responseWrap.responseBody= 'OK - succesful processing of the docusign webhook';
+		responseWrap.responseBody= 'OK - succesful processing of the docusign webhook';
         String body = req.requestBody.toString();
 
         Map<String, Object> payload = (Map<String, Object>) JSON.deserializeUntyped(body);
@@ -51,7 +51,7 @@ global without sharing class DocuSignWebhook {
         }else{
             responseWrap.responseBody= 'BAD_REQUEST';
             responseWrap.responseCode= 400;
-            
+         
             response.statusCode = responseWrap.responseCode;
             response.responseBody = responseWrap.responseBody != null ? blob.valueOf(responseWrap.responseBody) : null;
         }

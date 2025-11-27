@@ -27,6 +27,10 @@ public class DocuSignWebhook_Test {
         Document_Id__c= contentDocumentId
         );
         insert signature;
+        
+        DocusignWebhook.ResponseWrapper responseWrap = new DocusignWebhook.ResponseWrapper();
+        responseWrap.responseBody = 'OK - succesful processing of the docusign webhook';
+        responseWrap.responseCode = 200;
     }
     @IsTest
     static void testReceivesentData() {
@@ -43,11 +47,13 @@ public class DocuSignWebhook_Test {
          Assert.areNotEqual(null, sr2.Body, 'The static resource is not null');
         
         RestRequest req = new RestRequest();
+        RestResponse res = new RestResponse();
         req.requestBody = Blob.valueOf(mockJson);
         req.httpMethod = 'POST';
         req.requestURI = '/services/apexrest/docusignWebhook/*';
  
         RestContext.request = req;
+		RestContext.response= res;
         Test.startTest();
             System.runAs(productManagerUser){
                 DocuSignWebhook.handleWebhook();
@@ -73,11 +79,13 @@ public class DocuSignWebhook_Test {
          Assert.areNotEqual(null, sr2.Body, 'The static resource is not null');
         
         RestRequest req = new RestRequest();
+        RestResponse res = new RestResponse();
         req.requestBody = Blob.valueOf(mockJson);
         req.httpMethod = 'POST';
         req.requestURI = '/services/apexrest/docusignWebhook/*';
  
         RestContext.request = req;
+        RestContext.response= res;
         Test.startTest();
             System.runAs(productManagerUser){
                 DocuSignWebhook.handleWebhook();
@@ -105,11 +113,13 @@ public class DocuSignWebhook_Test {
 		String mockJson = sr2.Body.toString();
         Assert.areNotEqual(null, sr2.Body, 'The static resource is not null');
         RestRequest req = new RestRequest();
+        RestResponse res = new RestResponse();
         req.requestBody = Blob.valueOf(mockJson);
         req.httpMethod = 'POST';
         req.requestURI = '/services/apexrest/docusignWebhook/*';
  
         RestContext.request = req;
+      	RestContext.response= res;
         Test.startTest();
             System.runAs(productManagerUser){
                 DocuSignWebhook.handleWebhook();
