@@ -372,20 +372,6 @@
     </flexiPageRegions>
     <flexiPageRegions>
         <itemInstances>
-            <fieldInstance>
-                <fieldInstanceProperties>
-                    <name>uiBehavior</name>
-                    <value>none</value>
-                </fieldInstanceProperties>
-                <fieldItem>Record.txt_DuplicateDescription__c</fieldItem>
-                <identifier>Recordtxt_DuplicateDescription_cField</identifier>
-            </fieldInstance>
-        </itemInstances>
-        <name>Facet-ef4f2a2c-d1f7-47ec-8295-f97f0471ff7a</name>
-        <type>Facet</type>
-    </flexiPageRegions>
-    <flexiPageRegions>
-        <itemInstances>
             <componentInstance>
                 <componentInstanceProperties>
                     <name>body</name>
