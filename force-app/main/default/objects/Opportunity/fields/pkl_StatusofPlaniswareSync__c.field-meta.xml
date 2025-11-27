@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>pkl_StatusofPlaniswareSync__c</fullName>
+    <label>Status of Planisware Sync</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Not sent“(initial value)</fullName>
+                <default>false</default>
+                <label>Not sent“(initial value)</label>
+            </value>
+            <value>
+                <fullName>Successfully sent to Planisware</fullName>
+                <default>false</default>
+                <label>Successfully sent to Planisware</label>
+            </value>
+            <value>
+                <fullName>Sending to Planisware failed</fullName>
+                <default>false</default>
+                <label>Sending to Planisware failed</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

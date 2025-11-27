@@ -26,6 +26,29 @@
                 <default>false</default>
                 <label>BBCUBP</label>
             </value>
+            <value>
+                <fullName>BBCUPR</fullName>
+                <default>false</default>
+                <label>BBCUPR</label>
+            </value>
+            <value>
+                <fullName>Bill-to</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Bill-to</label>
+            </value>
+            <value>
+                <fullName>Ship-to</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Ship-to</label>
+            </value>
+            <value>
+                <fullName>Sold-to</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Sold-to</label>
+            </value>
         </valueSetDefinition>
     </valueSet>
     <visibleLines>4</visibleLines>

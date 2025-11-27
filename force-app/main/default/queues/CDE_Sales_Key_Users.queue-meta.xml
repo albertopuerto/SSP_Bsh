@@ -3,6 +3,12 @@
     <doesSendEmailToMembers>false</doesSendEmailToMembers>
     <email>orders.sde@etas.com</email>
     <name>CDE Sales Key Users</name>
+    <queueMembers>
+        <roles>
+            <role>Sales_coordinator_CDE</role>
+            <role>Sales_Manager_CDE</role>
+        </roles>
+    </queueMembers>
     <queueSobject>
         <sobjectType>Apttus__APTS_Agreement__c</sobjectType>
     </queueSobject>

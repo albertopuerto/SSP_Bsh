@@ -36,6 +36,7 @@
             </value>
         </inputParameters>
         <nameSegment>FlowLogEntry</nameSegment>
+        <offset>0</offset>
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </actionCalls>
     <actionCalls>
@@ -48,6 +49,7 @@
         <actionType>apex</actionType>
         <flowTransactionModel>Automatic</flowTransactionModel>
         <nameSegment>Logger</nameSegment>
+        <offset>0</offset>
     </actionCalls>
     <actionCalls>
         <name>Copy_1_of_Navigate_to_the_Record</name>
@@ -64,6 +66,7 @@
             </value>
         </inputParameters>
         <nameSegment>c:NavigateToTheRecord</nameSegment>
+        <offset>0</offset>
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </actionCalls>
     <actionCalls>
@@ -81,6 +84,46 @@
             </value>
         </inputParameters>
         <nameSegment>c:NavigateToTheRecord</nameSegment>
+        <offset>0</offset>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </actionCalls>
+    <actionCalls>
+        <name>Log_Update_acc</name>
+        <label>Log Update acc</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <actionName>FlowLogEntry</actionName>
+        <actionType>apex</actionType>
+        <connector>
+            <targetReference>save_log</targetReference>
+        </connector>
+        <flowTransactionModel>Automatic</flowTransactionModel>
+        <inputParameters>
+            <name>flowName</name>
+            <value>
+                <stringValue>flw_OnboardButton_OnboardAccount</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>loggingLevelName</name>
+            <value>
+                <stringValue>Error</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>message</name>
+            <value>
+                <stringValue>Error while updating accounts</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>recordId</name>
+            <value>
+                <elementReference>Update_Account</elementReference>
+            </value>
+        </inputParameters>
+        <nameSegment>FlowLogEntry</nameSegment>
+        <offset>0</offset>
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </actionCalls>
     <actionCalls>
@@ -98,7 +141,20 @@
             </value>
         </inputParameters>
         <nameSegment>c:NavigateToTheRecord</nameSegment>
+        <offset>0</offset>
         <storeOutputAutomatically>true</storeOutputAutomatically>
+    </actionCalls>
+    <actionCalls>
+        <description>Save the logs</description>
+        <name>save_log</name>
+        <label>save log</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <actionName>Logger</actionName>
+        <actionType>apex</actionType>
+        <flowTransactionModel>Automatic</flowTransactionModel>
+        <nameSegment>Logger</nameSegment>
+        <offset>0</offset>
     </actionCalls>
     <actionCalls>
         <name>send_Account_to_Athena</name>
@@ -121,6 +177,7 @@
             </value>
         </inputParameters>
         <nameSegment>IF002SAPCPISendAccount.createBusinessPartner</nameSegment>
+        <offset>0</offset>
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </actionCalls>
     <actionCalls>
@@ -147,6 +204,7 @@
             </value>
         </inputParameters>
         <nameSegment>chatterPost</nameSegment>
+        <offset>0</offset>
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </actionCalls>
     <actionCalls>
@@ -173,6 +231,7 @@
             </value>
         </inputParameters>
         <nameSegment>chatterPost</nameSegment>
+        <offset>0</offset>
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </actionCalls>
     <actionCalls>
@@ -236,8 +295,10 @@
             </value>
         </inputParameters>
         <nameSegment>LogCalloutInformation</nameSegment>
+        <offset>0</offset>
     </actionCalls>
     <apiVersion>64.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
     <assignments>
         <name>Assign_request_Body</name>
         <label>Assign request Body</label>
@@ -307,6 +368,14 @@
         <dataType>String</dataType>
         <value>
             <stringValue>BBCUEX</stringValue>
+        </value>
+    </choices>
+    <choices>
+        <name>BBCUPR</name>
+        <choiceText>&lt;span style=&quot;font-size: 16px;&quot;&gt;Operational Prospect B2B - external entity before operational business&lt;/span&gt;</choiceText>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>BBCUPR</stringValue>
         </value>
     </choices>
     <choices>
@@ -411,14 +480,6 @@
         <valueField>Id</valueField>
     </dynamicChoiceSets>
     <dynamicChoiceSets>
-        <name>paymentTermValues</name>
-        <dataType>Picklist</dataType>
-        <displayField xsi:nil="true" />
-        <object xsi:nil="true" />
-        <picklistField>pkl_PaymentTerms__c</picklistField>
-        <picklistObject>Account</picklistObject>
-    </dynamicChoiceSets>
-    <dynamicChoiceSets>
         <name>RoleValues</name>
         <dataType>Picklist</dataType>
         <displayField xsi:nil="true" />
@@ -467,31 +528,31 @@
         <inputAssignments>
             <field>BillingCity</field>
             <value>
-                <elementReference>City</elementReference>
+                <elementReference>Address.city</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
             <field>BillingCountry</field>
             <value>
-                <elementReference>Country</elementReference>
+                <elementReference>Address.country</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
             <field>BillingPostalCode</field>
             <value>
-                <elementReference>Zip_Postal_Code</elementReference>
+                <elementReference>Address.postalCode</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
             <field>BillingState</field>
             <value>
-                <elementReference>State</elementReference>
+                <elementReference>Address.province</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
             <field>BillingStreet</field>
             <value>
-                <elementReference>Street</elementReference>
+                <elementReference>Address.street</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
@@ -516,12 +577,6 @@
             <field>pkl_Language__c</field>
             <value>
                 <elementReference>Account.pkl_Language__c</elementReference>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <field>pkl_PaymentTerms__c</field>
-            <value>
-                <elementReference>Payment_Terms</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
@@ -571,6 +626,9 @@
         <connector>
             <targetReference>Athena_Success_Message</targetReference>
         </connector>
+        <faultConnector>
+            <targetReference>Log_Update_acc</targetReference>
+        </faultConnector>
         <filterLogic>and</filterLogic>
         <filters>
             <field>Id</field>
@@ -661,53 +719,36 @@
             <isRequired>true</isRequired>
         </fields>
         <fields>
-            <name>Payment_Terms</name>
-            <choiceReferences>paymentTermValues</choiceReferences>
-            <dataType>String</dataType>
-            <fieldText>Payment Terms</fieldText>
-            <fieldType>DropdownBox</fieldType>
+            <name>Address</name>
+            <extensionName>flowruntime:address</extensionName>
+            <fieldType>ComponentInstance</fieldType>
+            <inputParameters>
+                <name>addressLabel</name>
+                <value>
+                    <stringValue>Address</stringValue>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>showAddressLookup</name>
+                <value>
+                    <booleanValue>true</booleanValue>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>addressLookupLabel</name>
+                <value>
+                    <stringValue>Address Search</stringValue>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>required</name>
+                <value>
+                    <booleanValue>true</booleanValue>
+                </value>
+            </inputParameters>
             <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
             <isRequired>true</isRequired>
-        </fields>
-        <fields>
-            <name>Street</name>
-            <dataType>String</dataType>
-            <fieldText>Street</fieldText>
-            <fieldType>InputField</fieldType>
-            <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
-            <isRequired>true</isRequired>
-        </fields>
-        <fields>
-            <name>City</name>
-            <dataType>String</dataType>
-            <fieldText>City</fieldText>
-            <fieldType>InputField</fieldType>
-            <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
-            <isRequired>true</isRequired>
-        </fields>
-        <fields>
-            <name>State</name>
-            <dataType>String</dataType>
-            <fieldText>State</fieldText>
-            <fieldType>InputField</fieldType>
-            <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
-            <isRequired>true</isRequired>
-        </fields>
-        <fields>
-            <name>Country</name>
-            <dataType>String</dataType>
-            <fieldText>Country</fieldText>
-            <fieldType>InputField</fieldType>
-            <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
-            <isRequired>true</isRequired>
-        </fields>
-        <fields>
-            <name>Zip_Postal_Code</name>
-            <dataType>String</dataType>
-            <fieldText>Zip/Postal Code</fieldText>
-            <fieldType>InputField</fieldType>
-            <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
-            <isRequired>true</isRequired>
+            <storeOutputAutomatically>true</storeOutputAutomatically>
         </fields>
         <nextOrFinishButtonLabel>Validate Address</nextOrFinishButtonLabel>
         <showFooter>true</showFooter>
@@ -814,10 +855,12 @@
         </connector>
         <fields>
             <name>Select_Bosch_Partner_Role</name>
+            <choiceReferences>BBCUPR</choiceReferences>
             <choiceReferences>BBCUEX</choiceReferences>
             <choiceReferences>BBCUSH</choiceReferences>
             <choiceReferences>BBCUBP</choiceReferences>
             <dataType>String</dataType>
+            <defaultSelectedChoiceReference>BBCUPR</defaultSelectedChoiceReference>
             <fieldText>Select Bosch Partner Role</fieldText>
             <fieldType>RadioButtons</fieldType>
             <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
@@ -858,7 +901,7 @@
             <targetReference>RecordTypeSelection</targetReference>
         </connector>
     </start>
-    <status>Active</status>
+    <status>Draft</status>
     <textTemplates>
         <name>tmpl_LogMessageDML</name>
         <isViewedAsPlainText>true</isViewedAsPlainText>

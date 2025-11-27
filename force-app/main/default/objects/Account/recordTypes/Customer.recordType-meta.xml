@@ -51,7 +51,7 @@
         </values>
     </picklistValues>
     <picklistValues>
-        <picklist>C4C_Territory_Name__c</picklist>
+        <picklist>pkl_C4C_Territory_Name__c</picklist>
         <values>
             <fullName>APTIV</fullName>
             <default>false</default>
@@ -1427,25 +1427,6 @@
         </values>
     </picklistValues>
     <picklistValues>
-        <picklist>pkl_INCOTerms1__c</picklist>
-        <values>
-            <fullName>CPT - Carriage Paid To</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>DAP %E2%80%93 Delivered at Place</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>DDP - Delivered Duty Paid</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>FCA - Free Carrier</fullName>
-            <default>false</default>
-        </values>
-    </picklistValues>
-    <picklistValues>
         <picklist>pkl_IsTradingPartnerNoRequired__c</picklist>
         <values>
             <fullName>No</fullName>
@@ -1584,6 +1565,25 @@
         </values>
         <values>
             <fullName>Sent to Athena</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>pkm_BoschPartnerRole__c</picklist>
+        <values>
+            <fullName>BBCUBP</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>BBCUEX</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>BBCUPR</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>BBCUSH</fullName>
             <default>false</default>
         </values>
     </picklistValues>

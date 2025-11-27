@@ -3,7 +3,6 @@
     <fullName>Apttus__PolicySpec__c</fullName>
     <deprecated>false</deprecated>
     <description>The policy specification</description>
-    <externalId>false</externalId>
     <label>Policy Spec</label>
     <length>32000</length>
     <trackHistory>false</trackHistory>
