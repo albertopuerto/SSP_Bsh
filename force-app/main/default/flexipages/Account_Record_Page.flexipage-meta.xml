@@ -377,16 +377,6 @@
                     <name>uiBehavior</name>
                     <value>none</value>
                 </fieldInstanceProperties>
-                <fieldItem>Record.pkl_DuplicateReason__c</fieldItem>
-                <identifier>Recordpkl_DuplicateReason_cField</identifier>
-            </fieldInstance>
-        </itemInstances>
-        <itemInstances>
-            <fieldInstance>
-                <fieldInstanceProperties>
-                    <name>uiBehavior</name>
-                    <value>none</value>
-                </fieldInstanceProperties>
                 <fieldItem>Record.txt_DuplicateDescription__c</fieldItem>
                 <identifier>Recordtxt_DuplicateDescription_cField</identifier>
             </fieldInstance>

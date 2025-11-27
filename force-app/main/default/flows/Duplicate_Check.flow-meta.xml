@@ -83,20 +83,6 @@
                 <elementReference>GuranteedDuplicateRecordsTable.firstSelectedRow.boschPartnerNumber__c</elementReference>
             </value>
         </assignmentItems>
-        <assignmentItems>
-            <assignToReference>Dup_reason</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>Account.pkl_DuplicateReason__c</elementReference>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>Dup_Desc</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>Account.txt_DuplicateDescription__c</elementReference>
-            </value>
-        </assignmentItems>
     </assignments>
     <assignments>
         <name>Assign_values_to_requestbody</name>
@@ -527,7 +513,7 @@
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>Duplicate_Reason_Screen</targetReference>
+                <targetReference>Copy_1_of_Assign_value_to_BP_Number</targetReference>
             </connector>
             <label>selected</label>
         </rules>
@@ -613,58 +599,6 @@
     </processMetadataValues>
     <processType>Flow</processType>
     <screens>
-        <name>Copy_1_of_Duplicate_Reason_Screen</name>
-        <label>Copy 1 of Duplicate Reason Screen</label>
-        <locationX>0</locationX>
-        <locationY>0</locationY>
-        <allowBack>true</allowBack>
-        <allowFinish>true</allowFinish>
-        <allowPause>false</allowPause>
-        <connector>
-            <targetReference>Assign_value_to_BP_Number</targetReference>
-        </connector>
-        <fields>
-            <fieldType>ObjectProvided</fieldType>
-            <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
-            <isRequired>false</isRequired>
-            <objectFieldReference>Account.pkl_DuplicateReason__c</objectFieldReference>
-        </fields>
-        <fields>
-            <fieldType>ObjectProvided</fieldType>
-            <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
-            <isRequired>false</isRequired>
-            <objectFieldReference>Account.txt_DuplicateDescription__c</objectFieldReference>
-        </fields>
-        <showFooter>true</showFooter>
-        <showHeader>true</showHeader>
-    </screens>
-    <screens>
-        <name>Duplicate_Reason_Screen</name>
-        <label>Duplicate Reason Screen</label>
-        <locationX>0</locationX>
-        <locationY>0</locationY>
-        <allowBack>true</allowBack>
-        <allowFinish>true</allowFinish>
-        <allowPause>false</allowPause>
-        <connector>
-            <targetReference>Copy_1_of_Assign_value_to_BP_Number</targetReference>
-        </connector>
-        <fields>
-            <fieldType>ObjectProvided</fieldType>
-            <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
-            <isRequired>false</isRequired>
-            <objectFieldReference>Account.pkl_DuplicateReason__c</objectFieldReference>
-        </fields>
-        <fields>
-            <fieldType>ObjectProvided</fieldType>
-            <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
-            <isRequired>false</isRequired>
-            <objectFieldReference>Account.txt_DuplicateDescription__c</objectFieldReference>
-        </fields>
-        <showFooter>true</showFooter>
-        <showHeader>true</showHeader>
-    </screens>
-    <screens>
         <name>No_Duplicates_Screen</name>
         <label>No Duplicates Screen</label>
         <locationX>0</locationX>
@@ -689,7 +623,7 @@
         <allowFinish>true</allowFinish>
         <allowPause>false</allowPause>
         <connector>
-            <targetReference>Copy_1_of_Duplicate_Reason_Screen</targetReference>
+            <targetReference>Assign_value_to_BP_Number</targetReference>
         </connector>
         <fields>
             <name>GuranteedDuplicateRecordsTable</name>
@@ -916,20 +850,6 @@
         <isInput>false</isInput>
         <isOutput>false</isOutput>
         <objectType>Duplicate_Record__mdt</objectType>
-    </variables>
-    <variables>
-        <name>Dup_Desc</name>
-        <dataType>String</dataType>
-        <isCollection>false</isCollection>
-        <isInput>false</isInput>
-        <isOutput>true</isOutput>
-    </variables>
-    <variables>
-        <name>Dup_reason</name>
-        <dataType>String</dataType>
-        <isCollection>false</isCollection>
-        <isInput>false</isInput>
-        <isOutput>true</isOutput>
     </variables>
     <variables>
         <name>GuranteedCollection</name>
