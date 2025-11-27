@@ -15,21 +15,6 @@ public without sharing class DocuSignService {
 
     /**
 	* @author       APB
-	* @description  DocuSignService constructor
-	* @param		configName String
-	*/
-    public DocuSignService(String configName) {
-        Docusign_Setting__mdt config = [SELECT clientId__c, userId__c, audience__c, certificateName__c, accountId__c, baseUrl__c FROM Docusign_Setting__mdt WHERE DeveloperName = :configName WITH USER_MODE LIMIT 1];
-        this.clientId = config.clientId__c;
-        this.userId = config.userId__c;
-        this.audience = config.audience__c;
-        this.certName = config.certificateName__c;
-        this.accountId = config.accountId__c;
-        this.baseUrl = config.baseUrl__c;
-    }
-
-    /**
-	* @author       APB
 	* @description  Method that send the email
 	* @param		recipientEmail String
     * @param		recipientName String

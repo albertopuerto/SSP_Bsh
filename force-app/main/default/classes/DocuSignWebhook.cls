@@ -15,7 +15,10 @@ global without sharing class DocuSignWebhook {
         RestRequest req = RestContext.request;
         RestResponse response = RestContext.response;
         ResponseWrapper responseWrap = new ResponseWrapper();
+		responseWrap.responseCode= 200;
+		responseWrap.responseBody= 'OK - succesful processing of the docusign webhook';
         String body = req.requestBody.toString();
+        System.debug(body);
 
         Map<String, Object> payload = (Map<String, Object>) JSON.deserializeUntyped(body);
         String event = (String) payload.get('event');
@@ -34,8 +37,6 @@ global without sharing class DocuSignWebhook {
                     sig.Docusign_Status__c = status;
                     uow.registerDirty(sig);
                     uow.commitWork();
-                    responseWrap.responseCode= 200;
-		            responseWrap.responseBody= 'Docusing event succesfully processed';
                 }else{
                     responseWrap.responseBody= 'Signature not found';
                     responseWrap.responseCode= 404;
@@ -45,11 +46,13 @@ global without sharing class DocuSignWebhook {
                 responseWrap.responseBody= 'INTERNAL_SERVER_ERROR - Error processing the docusign webhook'+ e.getMessage();
                 responseWrap.responseCode= 500;
             }finally{
-            	response.statusCode = responseWrap.responseCode;
+                System.debug(responseWrap.responseCode);
+                System.debug(responseWrap.responseBody);
+            	//response.statusCode = responseWrap.responseCode;
             	response.responseBody = responseWrap.responseBody != null ? blob.valueOf(responseWrap.responseBody) : null;
             }
         }else{
-            responseWrap.responseBody= 'BAD_REQUEST - Event not allowed';
+            responseWrap.responseBody= 'BAD_REQUEST';
             responseWrap.responseCode= 400;
          
             response.statusCode = responseWrap.responseCode;
@@ -67,7 +70,7 @@ global without sharing class DocuSignWebhook {
     @future(callout=true)
     global static void processWebhookAsync(String envelopeId, String documentId,String status) {
 
-        DocuSignService service = new DocuSignService('Docusign_Service');
+        DocuSignService service = new DocuSignService();
         Set<Id> docIds = new Set<Id>();
         docIds.add(documentId);
         fflib_SObjectUnitOfWork uow = new fflib_SObjectUnitOfWork( new List<SObjectType> { ContentVersion.SObjectType});

@@ -2,7 +2,7 @@
  * @description       : Methods to send documents to be signed via DocuSign. PoC implementation.
  * @author            : APC
 **/
-public with sharing class DocuSignSigners {
+public without sharing class DocuSignSigners {
     /**
 	* @author       APB
 	* @description  Method that send the documents to sign
@@ -16,7 +16,7 @@ public with sharing class DocuSignSigners {
         Set<Id> contentVersionIds = new Set<Id>();
         contentVersionIds.add(input.document.Id);
 
-        DocuSignService service = new DocuSignService('Docusign_Service');
+        DocuSignService service = new DocuSignService();
 
         ContentVersion cv = new ContentVersionSelector().selectContentVersion(contentVersionIds)[0];
 
