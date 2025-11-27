@@ -25,7 +25,7 @@ public with sharing class OrderItemHandler extends fflib_SObjectDomain {
                 pe.lkp_OrderItem__c = oi.Id;
                 pe.num_ConditionRateValue__c = oi.TotalPrice;
                 pe.pkl_ConditionCurrency__c = oi.CurrencyIsoCode;
-                pe.pkl_ConditionType__c = 'Manual Discount';
+                pe.pkl_ConditionType__c = 'List Price';
                 uow.registerNew(pe);
             
          }
