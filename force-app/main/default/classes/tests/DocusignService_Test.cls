@@ -38,7 +38,7 @@ public class DocusignService_Test {
     
     @isTest
     public static void sendEnvelope(){
-        Docusign_Setting__mdt config = [SELECT clientId__c, userId__c, audience__c, certificateName__c,DeveloperName, accountId__c, baseUrl__c FROM Docusign_Setting__mdt WITH USER_MODE LIMIT 1];
+       
         User productManagerUser = createUser();
         StaticResource sr2 = [SELECT Body FROM StaticResource WHERE Name = 'getAccessTokenBody'];
 		String tokenBody = sr2.Body.toString();
@@ -54,7 +54,7 @@ public class DocusignService_Test {
 		multiMock.putMock('callout:docusignCredential/restapi/v2.1/accounts/ec94da4e-5b4e-4e5d-a3ac-35dac0b0f786/envelopes',res1);
         
         Test.setMock(HttpCalloutMock.class, multiMock);
-        DocusignService docusignService= new DocuSignService(config.DeveloperName);
+        DocusignService docusignService= new DocuSignService();
         
         ContentVersion cv = [SELECT Id,VersionData from ContentVersion LIMIT 1];
         ContentDocument cd = [Select Id,Title from ContentDocument LIMIT 1];
@@ -80,13 +80,12 @@ public class DocusignService_Test {
     @isTest
     public static void getSignedDocument(){
         User productManagerUser = createUser();
-        Docusign_Setting__mdt config = [SELECT clientId__c, userId__c, audience__c, certificateName__c,DeveloperName, accountId__c, baseUrl__c FROM Docusign_Setting__mdt WITH USER_MODE LIMIT 1];
         StaticResource sr2 = [SELECT Body FROM StaticResource WHERE Name = 'getAccessTokenBody'];
 		String tokenBody = sr2.Body.toString();
        
         HTTPMockGenerator res2 = new HTTPMockGenerator(200, tokenBody);
         Test.setMock(HttpCalloutMock.class, res2);
-        DocuSignService service = new DocuSignService('Docusign_Service');
+        DocuSignService service = new DocuSignService();
      	ContentDocument cd = [Select Id,Title from ContentDocument LIMIT 1];
         Test.startTest();
         System.runAs(productManagerUser){
