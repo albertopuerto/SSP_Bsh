@@ -15,8 +15,6 @@ global without sharing class DocuSignWebhook {
         RestRequest req = RestContext.request;
         RestResponse response = RestContext.response;
         ResponseWrapper responseWrap = new ResponseWrapper();
-		responseWrap.responseCode= 200;
-		responseWrap.responseBody= 'OK - succesful processing of the docusign webhook';
         String body = req.requestBody.toString();
 
         Map<String, Object> payload = (Map<String, Object>) JSON.deserializeUntyped(body);
@@ -36,6 +34,8 @@ global without sharing class DocuSignWebhook {
                     sig.Docusign_Status__c = status;
                     uow.registerDirty(sig);
                     uow.commitWork();
+                    responseWrap.responseCode= 200;
+		            responseWrap.responseBody= 'Docusing event succesfully processed';
                 }else{
                     responseWrap.responseBody= 'Signature not found';
                     responseWrap.responseCode= 404;
@@ -49,7 +49,7 @@ global without sharing class DocuSignWebhook {
             	response.responseBody = responseWrap.responseBody != null ? blob.valueOf(responseWrap.responseBody) : null;
             }
         }else{
-            responseWrap.responseBody= 'BAD_REQUEST';
+            responseWrap.responseBody= 'BAD_REQUEST - Event not allowed';
             responseWrap.responseCode= 400;
          
             response.statusCode = responseWrap.responseCode;
