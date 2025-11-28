@@ -3,5 +3,5 @@
     <fullName>Alert_on_blocked_Accounts</fullName>
     <active>true</active>
     <errorConditionFormula>SBQQ__Account__r.chk_CustomerBlock__c  = true</errorConditionFormula>
-    <errorMessage>Due to blocked account you cannot create the quote</errorMessage>
+    <errorMessage>Due to blocked account you cannot create/update the quote.</errorMessage>
 </ValidationRule>
