@@ -33,7 +33,7 @@ private class AthenaBusinessPartnerService_Test {
     @IsTest
     static void testProcessCreateNew() {
 
-        String testJson = AthenaTestDataFactory.getValidPayload();
+        String testJson = AthenaTestDataFactory.loadJson('AthenaBPValidPayload');
         User testUser = getIntegrationUser();
         setupReferenceData();
 
@@ -58,12 +58,12 @@ private class AthenaBusinessPartnerService_Test {
     }
 
     /**
-     * @description Existing Account is updated (not created again).
+     * @description Existing  updated (not created again).
      */
     @IsTest
     static void testProcessUpdateExisting() {
 
-        String testJson = AthenaTestDataFactory.getValidPayload();
+        String testJson = AthenaTestDataFactory.loadJson('AthenaBPValidPayload');
         User testUser = getIntegrationUser();
         setupReferenceData();
 
@@ -88,6 +88,130 @@ private class AthenaBusinessPartnerService_Test {
             Account accAfter = [SELECT Name FROM Account WHERE Id = :accId];
             Assert.areEqual('Updated Org Name', accAfter.Name, 'Org should be updated.');
         }
+    }
+
+    /**
+     * @description Validation test - invalid Category passed
+     */
+    @IsTest
+    static void testInvalidCategoryValidation() {
+
+        String testJson = AthenaTestDataFactory.loadJson('AthenaBPInvalidCategory');
+        User testUser = getIntegrationUser();
+        setupReferenceData();
+
+        Boolean exceptionThrown = false;
+
+        AthenaBusinessPartnerService.SvcResult res;
+        AthenaBusinessPartnerDTO dto = AthenaBusinessPartnerDTO.fromJson(testJson);
+
+        System.runAs(testUser){
+            Test.startTest();
+
+            try{
+                res = AthenaBusinessPartnerService.process(dto);
+            }catch (AthenaBusinessPartnerService.ValidationException e){
+                exceptionThrown = true;
+            }
+
+            Test.stopTest();
+
+            Assert.areEqual(true, exceptionThrown, 'Exceptpion must be thrown');
+
+         }
+    }
+
+    /**
+     * @description Validation test - invalid Sales Area
+     */
+    @IsTest
+    static void testInvalidSalesAreaValidation() {
+
+        String testJson = AthenaTestDataFactory.loadJson('AthenaBPInvalidSalesArea');
+        User testUser = getIntegrationUser();
+        setupReferenceData();
+
+        Boolean exceptionThrown = false;
+
+        AthenaBusinessPartnerService.SvcResult res;
+        AthenaBusinessPartnerDTO dto = AthenaBusinessPartnerDTO.fromJson(testJson);
+
+        System.runAs(testUser){
+            Test.startTest();
+
+            try{
+                res = AthenaBusinessPartnerService.process(dto);
+            }catch (AthenaBusinessPartnerService.ValidationException e){
+                exceptionThrown = true;
+            }
+
+            Test.stopTest();
+
+            Assert.areEqual(true, exceptionThrown, 'Exceptpion must be thrown');
+
+         }
+    }
+
+    /**
+     * @description Validation test - invalid Bosch Partner
+     */
+    @IsTest
+    static void testInvalidBoschPartnerValidation() {
+
+        String testJson = AthenaTestDataFactory.loadJson('AthenaBPInvalidBoschPartner');
+        User testUser = getIntegrationUser();
+        setupReferenceData();
+
+        Boolean exceptionThrown = false;
+
+        AthenaBusinessPartnerService.SvcResult res;
+        AthenaBusinessPartnerDTO dto = AthenaBusinessPartnerDTO.fromJson(testJson);
+
+        System.runAs(testUser){
+            Test.startTest();
+
+            try{
+                res = AthenaBusinessPartnerService.process(dto);
+            }catch (AthenaBusinessPartnerService.ValidationException e){
+                exceptionThrown = true;
+            }
+
+            Test.stopTest();
+
+            Assert.areEqual(true, exceptionThrown, 'Exceptpion must be thrown');
+
+         }
+    }
+
+    /**
+     * @description Validation test - invalid refferenced Account
+     */
+    @IsTest
+    static void testInvalidRefferencedAccountValidation() {
+
+        String testJson = AthenaTestDataFactory.loadJson('AthenaBPInvalidRefferencedAccount');
+        User testUser = getIntegrationUser();
+        setupReferenceData();
+
+        Boolean exceptionThrown = false;
+
+        AthenaBusinessPartnerService.SvcResult res;
+        AthenaBusinessPartnerDTO dto = AthenaBusinessPartnerDTO.fromJson(testJson);
+
+        System.runAs(testUser){
+            Test.startTest();
+
+            try{
+                res = AthenaBusinessPartnerService.process(dto);
+            }catch (AthenaBusinessPartnerService.ValidationException e){
+                exceptionThrown = true;
+            }
+
+            Test.stopTest();
+
+            Assert.areEqual(true, exceptionThrown, 'Exceptpion must be thrown');
+
+         }
     }
 
 }

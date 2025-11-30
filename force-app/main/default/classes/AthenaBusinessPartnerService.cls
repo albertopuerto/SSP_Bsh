@@ -38,24 +38,24 @@ public with sharing class AthenaBusinessPartnerService {
         Account findAccount = findAccountByExternal(dto.boschPartnerNumber);
         Boolean isNew = findAccount == null ? true : false;
 
-        // Upsert Account by txt_AthenaUUID__c
-        Account acc = upsertAccount(dto);
+            // Upsert Account by txt_AthenaUUID__c
+            Account acc = upsertAccount(dto);
 
-        // Upsert SalesAreaLink__c
-        Id salesAreaId = getSalesAreaId(dto);
-        SalesAreaLink__c link = upsertSalesAreaLink(acc.Id, salesAreaId, dto);
+            // Upsert SalesAreaLink__c
+            Id salesAreaId = getSalesAreaId(dto);
+            SalesAreaLink__c link = upsertSalesAreaLink(acc.Id, salesAreaId, dto);
 
-        //  Upsert BoschPartner_PartnerFunction__c
-        Id partnerFuncId = getPartnerFunctionId(dto);
-        Id refAccountId = getReferencedAccountId(dto);
-        BoschPartner_PartnerFunction__c pf = upsertPartnerFunction(refAccountId, partnerFuncId, dto);
+            //  Upsert BoschPartner_PartnerFunction__c
+            Id partnerFuncId = getPartnerFunctionId(dto);
+            Id refAccountId = getReferencedAccountId(dto);
+            BoschPartner_PartnerFunction__c pf = upsertPartnerFunction(refAccountId, partnerFuncId, dto);
 
-        SvcResult res = new SvcResult();
-        res.isCreated = isNew;
-        res.accountId = acc.Id;
-        res.salesAreaLinkId = link != null ? link.Id : null;
-        res.partnerFunctionId = pf != null ? pf.Id : null;
-        return res;
+            SvcResult res = new SvcResult();
+            res.isCreated = isNew;
+            res.accountId = acc.Id;
+            res.salesAreaLinkId = link != null ? link.Id : null;
+            res.partnerFunctionId = pf != null ? pf.Id : null;
+            return res;
 
     }
 
@@ -65,7 +65,10 @@ public with sharing class AthenaBusinessPartnerService {
      * @return Bosch Partner Category passed from the payload
      */
     private static String getCategory(AthenaBusinessPartnerDTO dto) {
-        if (dto == null || String.isBlank(dto.boschPartnerCategory)) {
+
+        String ctg = dto?.boschPartnerCategory;
+
+        if (String.isBlank(ctg)) {
             return null;
         }
         return dto.boschPartnerCategory.trim();
@@ -138,7 +141,7 @@ public with sharing class AthenaBusinessPartnerService {
         }
 
             acc.Name = dto.organizationName;
-            acc.txt_AdditionalName2__c = dto.organizationName2;
+            acc.txt_AdditionalName__c = dto.organizationName2;
             acc.Type = 'Customer';
             acc.Role__c = 'ETDE Domestic Customer'; // temporary defaulted
             acc.pkl_Language__c = 'English';// temporary defaulted

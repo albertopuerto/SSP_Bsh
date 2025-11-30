@@ -16,10 +16,11 @@ public with sharing class AthenaBusinessPartnerDTO_Test {
 
         System.runAs(testUser){
 
-            String testValidJson = AthenaTestDataFactory.getValidPayload();
+            String testValidJson = AthenaTestDataFactory.loadJson('AthenaBPValidPayload');
 
             Test.startTest();
             AthenaBusinessPartnerDTO dto = AthenaBusinessPartnerDTO.fromJson(testValidJson);
+            AthenaBusinessPartnerDTO dtoEmpty = AthenaBusinessPartnerDTO.fromJson('');
             Test.stopTest();
 
             Assert.areNotEqual(null, dto, 'DTO must not be null.');

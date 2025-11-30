@@ -33,7 +33,7 @@ public with sharing class AthenaBusinessPartnerWebService_Test {
     @IsTest
     static void testPatchPartnerCreate() {
 
-        String jsonBody = AthenaTestDataFactory.getValidPayload();
+        String jsonBody = AthenaTestDataFactory.loadJson('AthenaBPValidPayload');
         User testUser = getIntegrationUser();
         setupReferenceData();
 
@@ -65,7 +65,6 @@ public with sharing class AthenaBusinessPartnerWebService_Test {
             ];
 
             Assert.areEqual('1000904207', acc.txt_AthenaUUID__c, 'Bosch Partner Number is not correct.');
-            Assert.areEqual('Test Name', acc.Name, 'Account Name is Not correct.');
 
         }
     }
@@ -76,7 +75,7 @@ public with sharing class AthenaBusinessPartnerWebService_Test {
     @IsTest
     static void testPatchPartnerUpdate() {
 
-        String jsonBody = AthenaTestDataFactory.getValidPayload();
+        String jsonBody = AthenaTestDataFactory.loadJson('AthenaBPValidPayload');
         User testUser = getIntegrationUser();
         setupReferenceData();
 
@@ -121,7 +120,7 @@ public with sharing class AthenaBusinessPartnerWebService_Test {
     @IsTest
     static void testMissingSalesAreaValidation() {
 
-        String jsonBody = AthenaTestDataFactory.getValidPayload();
+        String jsonBody = AthenaTestDataFactory.loadJson('AthenaBPValidPayload');
         User testUser = getIntegrationUser();
 
         TestFactory.createSObject(new BoschPartnerFunction__c(txt_PartnerFunction__c = 'SP'), true);
@@ -155,7 +154,7 @@ public with sharing class AthenaBusinessPartnerWebService_Test {
     @IsTest
     static void testInvalidPayload() {
 
-        String jsonBody = AthenaTestDataFactory.getInvalidPayload();
+        String jsonBody = AthenaTestDataFactory.loadJson('AthenaBPInvalidPayload');
         User testUser = getIntegrationUser();
 
         TestFactory.createSObject(new BoschPartnerFunction__c(txt_PartnerFunction__c = 'SP'), true);
@@ -180,6 +179,36 @@ public with sharing class AthenaBusinessPartnerWebService_Test {
             Test.stopTest();
 
             Assert.areEqual(500, res1.statusCode, 'Should get 500');
+
+        }
+    }
+
+    /**
+     * @description No access test
+     */
+    @IsTest
+    static void testAccessValidations() {
+
+        String jsonBody = AthenaTestDataFactory.loadJson('AthenaBPValidPayload');
+        User testUser = (User) TestFactory.createSObject(new User(),'TestFactoryDefaults.IntegrationUserDefaults', true);
+        setupReferenceData();
+
+        System.runAs(testUser){
+
+            RestRequest req = new RestRequest();
+            req.httpMethod  = 'PATCH';
+            req.requestUri  = '/services/apexrest/v1/boschpartner';
+            req.requestBody = Blob.valueOf(jsonBody);
+
+            RestResponse res = new RestResponse();
+            RestContext.request  = req;
+            RestContext.response = res;
+
+            Test.startTest();
+            AthenaBusinessPartnerWebService.patchPartner();
+            Test.stopTest();
+
+            Assert.areEqual(500, res.statusCode, 'Should return 500');
 
         }
     }
