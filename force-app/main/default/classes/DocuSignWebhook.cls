@@ -1,6 +1,6 @@
 /**
- * @description       : PoC restResource to be notified once the event is fired in docusign app
- *                          complete webservice and clean code and update description
+ * @description       : restResource to be notified once the event is fired in docusign app
+ *                        
  * @author            : APC
 **/
 @RestResource(urlMapping='/docusignWebhook/*')
