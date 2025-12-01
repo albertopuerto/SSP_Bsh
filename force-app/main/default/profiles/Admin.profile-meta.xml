@@ -149,11 +149,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Account.pkl_DuplicateReason__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
         <field>Account.pkl_MaxNoofPartialDeliveries__c</field>
         <readable>true</readable>
     </fieldPermissions>
