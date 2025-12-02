@@ -25,7 +25,6 @@ public class DocuSignUtils_Test {
         );
         insert pslassignment;
 
-        // Assign the Permission Set to the test user
         PermissionSetAssignment psa = new PermissionSetAssignment(
             AssigneeId = productManagerUser.Id,
             PermissionSetId = ps.Id
