@@ -13,7 +13,8 @@ public with sharing class TestFactoryConstants {
     private static final Map<String, String> MAP_PROFILES_NAMES = new Map<String, String> {
         'SalesRead' => 'Sales Read',
         'ProductManager' => 'Product Manager',
-        'SystemAdministrator' => 'System Administrator'
+        'SystemAdministrator' => 'System Administrator',
+        'SalesforceAPIOnlySystemIntegrations' => 'Salesforce API Only System Integrations'
     };
 
     /**
@@ -26,7 +27,7 @@ public with sharing class TestFactoryConstants {
         return new Map<String, Map<String, Id>> {
             'Account' => new Map<String, Id> {
                 'Competitor' => mapAccountRTypes.get('Competitor').getRecordTypeId(),
-                'Customer' => mapAccountRTypes.get('Customer').getRecordTypeId(),
+                'Customer' => mapAccountRTypes.get('Customer_B2B').getRecordTypeId(),
                 'Reseller' => mapAccountRTypes.get('Reseller').getRecordTypeId(),
                 'Partner' => mapAccountRTypes.get('Partner').getRecordTypeId(),
                 'Supplier' => mapAccountRTypes.get('Supplier').getRecordTypeId()
