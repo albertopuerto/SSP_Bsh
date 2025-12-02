@@ -4,6 +4,7 @@
 */
 public with sharing class UserSelector extends fflib_SObjectSelector {
 
+    public static final String SIGNERS = 'Signers';
     /**
 	* @author       APB
 	* @description  user getSObjectFieldList method
@@ -27,8 +28,7 @@ public with sharing class UserSelector extends fflib_SObjectSelector {
         newQueryFactory(false)
         .selectField(User.Name)
         .selectField(User.Email)
-        .setCondition('Id IN ( SELECT UserOrGroupId FROM GroupMember WHERE Group.Name = Signers)')
-        .setCondition('IsActive = TRUE')
+        .setCondition('Id IN ( SELECT UserOrGroupId FROM GroupMember WHERE Group.Name =: SIGNERS) AND IsActive = TRUE')
         .toSOQL()))
     {
         users.add(user);
