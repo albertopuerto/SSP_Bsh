@@ -125,19 +125,13 @@
                 <elementReference>envelopeId</elementReference>
             </value>
         </inputAssignments>
-        <inputAssignments>
-            <field>Quote__c</field>
-            <value>
-                <elementReference>getQuoteAssociated.Id</elementReference>
-            </value>
-        </inputAssignments>
         <object>Signature__c</object>
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordCreates>
     <recordLookups>
         <name>getQuoteAssociated</name>
         <label>getQuoteAssociated</label>
-        <locationX>848</locationX>
+        <locationX>840</locationX>
         <locationY>182</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
@@ -220,7 +214,7 @@
     <screens>
         <name>Select_Signers</name>
         <label>Select Signers</label>
-        <locationX>669</locationX>
+        <locationX>671</locationX>
         <locationY>505</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
