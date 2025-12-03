@@ -23,7 +23,7 @@
         <actionName>DocuSignService</actionName>
         <actionType>apex</actionType>
         <connector>
-            <targetReference>getQuoteAssociated</targetReference>
+            <targetReference>Select_Files</targetReference>
         </connector>
         <flowTransactionModel>Automatic</flowTransactionModel>
         <inputParameters>
@@ -40,7 +40,7 @@
         <name>Send_document_to_sign</name>
         <label>Send document to sign</label>
         <locationX>669</locationX>
-        <locationY>614</locationY>
+        <locationY>553</locationY>
         <actionName>DocuSignSigners</actionName>
         <actionType>apex</actionType>
         <connector>
@@ -102,12 +102,6 @@
         <locationX>669</locationX>
         <locationY>722</locationY>
         <inputAssignments>
-            <field>Account__c</field>
-            <value>
-                <elementReference>Select_Mails.firstSelectedRow.AccountId</elementReference>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
             <field>Document_Id__c</field>
             <value>
                 <elementReference>Selection_Table.firstSelectedRow.Id</elementReference>
@@ -125,35 +119,26 @@
                 <elementReference>envelopeId</elementReference>
             </value>
         </inputAssignments>
-        <object>Signature__c</object>
-        <storeOutputAutomatically>true</storeOutputAutomatically>
-    </recordCreates>
-    <recordLookups>
-        <name>getQuoteAssociated</name>
-        <label>getQuoteAssociated</label>
-        <locationX>840</locationX>
-        <locationY>182</locationY>
-        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
-        <connector>
-            <targetReference>Select_Files</targetReference>
-        </connector>
-        <filterLogic>and</filterLogic>
-        <filters>
-            <field>Id</field>
-            <operator>EqualTo</operator>
+        <inputAssignments>
+            <field>Quote__c</field>
             <value>
                 <elementReference>recordId</elementReference>
             </value>
-        </filters>
-        <getFirstRecordOnly>true</getFirstRecordOnly>
-        <object>SBQQ__Quote__c</object>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Signer__c</field>
+            <value>
+                <elementReference>Select_Mails.firstSelectedRow.Id</elementReference>
+            </value>
+        </inputAssignments>
+        <object>Signature__c</object>
         <storeOutputAutomatically>true</storeOutputAutomatically>
-    </recordLookups>
+    </recordCreates>
     <screens>
         <name>Select_Files</name>
         <label>Select Files</label>
-        <locationX>1011</locationX>
-        <locationY>190</locationY>
+        <locationX>787</locationX>
+        <locationY>229</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>true</allowPause>
@@ -214,8 +199,8 @@
     <screens>
         <name>Select_Signers</name>
         <label>Select Signers</label>
-        <locationX>671</locationX>
-        <locationY>505</locationY>
+        <locationX>669</locationX>
+        <locationY>403</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>true</allowPause>
