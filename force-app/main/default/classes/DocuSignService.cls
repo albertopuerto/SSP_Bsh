@@ -140,7 +140,9 @@ public without sharing class DocuSignService {
         List<ContentDocument> docs = new ContentDocumentSelector().selectById(docIds);
         map<Id, ContentDocument> mapDocs = new map<Id, ContentDocument>();
         for (ContentDocument cd : docs) {
-            mapDocs.put(cd.Id, cd);
+            if(cd.FileExtension == 'pdf'){
+                mapDocs.put(cd.Id, cd);
+            }
         }
 
         List<OutputVariables> retList = new List<OutputVariables>();

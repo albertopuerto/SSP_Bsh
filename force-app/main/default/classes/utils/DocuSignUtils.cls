@@ -19,10 +19,10 @@ public static List<EmailWrapper> getGroupMemberEmails() {
 
     List<EmailWrapper> results = new List<EmailWrapper>();
     EmailWrapper ew = new EmailWrapper();
-    ew.emails = new List<String>();
+    ew.users = new List<User>();
         // Your logic to fetch emails
         for (User us : lstUsers) {
-            ew.emails.add(us.Email);
+            ew.users.add(us);
             results.add(ew);
         }
         return results;
@@ -33,8 +33,9 @@ public static List<EmailWrapper> getGroupMemberEmails() {
 	* @description  OutputVariables class has the list of files to be signed
 	*/
     public class EmailWrapper {
-        @InvocableVariable(label='emails' description='list of emails')
-        public List<String> emails;
+        @InvocableVariable(label='users' description='list of users')
+        public List<User> users;
+
     }
 
 }

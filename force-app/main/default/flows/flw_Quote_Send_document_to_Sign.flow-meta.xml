@@ -8,7 +8,7 @@
         <actionName>DocuSignUtils</actionName>
         <actionType>apex</actionType>
         <connector>
-            <targetReference>Get_mails</targetReference>
+            <targetReference>Select_Signers</targetReference>
         </connector>
         <flowTransactionModel>Automatic</flowTransactionModel>
         <nameSegment>DocuSignUtils</nameSegment>
@@ -23,7 +23,7 @@
         <actionName>DocuSignService</actionName>
         <actionType>apex</actionType>
         <connector>
-            <targetReference>Select_Files</targetReference>
+            <targetReference>getQuoteAssociated</targetReference>
         </connector>
         <flowTransactionModel>Automatic</flowTransactionModel>
         <inputParameters>
@@ -125,35 +125,41 @@
                 <elementReference>envelopeId</elementReference>
             </value>
         </inputAssignments>
+        <inputAssignments>
+            <field>Quote__c</field>
+            <value>
+                <elementReference>getQuoteAssociated.Id</elementReference>
+            </value>
+        </inputAssignments>
         <object>Signature__c</object>
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordCreates>
     <recordLookups>
-        <name>Get_mails</name>
-        <label>Get mails</label>
-        <locationX>597</locationX>
-        <locationY>429</locationY>
+        <name>getQuoteAssociated</name>
+        <label>getQuoteAssociated</label>
+        <locationX>848</locationX>
+        <locationY>182</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
-            <targetReference>Select_Signers</targetReference>
+            <targetReference>Select_Files</targetReference>
         </connector>
         <filterLogic>and</filterLogic>
         <filters>
-            <field>Email</field>
-            <operator>In</operator>
+            <field>Id</field>
+            <operator>EqualTo</operator>
             <value>
-                <elementReference>get_emails_from_signers_group.emails</elementReference>
+                <elementReference>recordId</elementReference>
             </value>
         </filters>
-        <getFirstRecordOnly>false</getFirstRecordOnly>
-        <object>Contact</object>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>SBQQ__Quote__c</object>
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordLookups>
     <screens>
         <name>Select_Files</name>
         <label>Select Files</label>
-        <locationX>669</locationX>
-        <locationY>290</locationY>
+        <locationX>1011</locationX>
+        <locationY>190</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>true</allowPause>
@@ -226,7 +232,7 @@
             <name>Select_Mails</name>
             <dataTypeMappings>
                 <typeName>T</typeName>
-                <typeValue>Contact</typeValue>
+                <typeValue>User</typeValue>
             </dataTypeMappings>
             <extensionName>flowruntime:datatable</extensionName>
             <fieldType>ComponentInstance</fieldType>
@@ -251,13 +257,13 @@
             <inputParameters>
                 <name>tableData</name>
                 <value>
-                    <elementReference>Get_mails</elementReference>
+                    <elementReference>get_emails_from_signers_group.users</elementReference>
                 </value>
             </inputParameters>
             <inputParameters>
                 <name>columns</name>
                 <value>
-                    <stringValue>[{&quot;apiName&quot;:&quot;Email&quot;,&quot;guid&quot;:&quot;column-94be&quot;,&quot;editable&quot;:false,&quot;hasCustomHeaderLabel&quot;:false,&quot;customHeaderLabel&quot;:&quot;&quot;,&quot;wrapText&quot;:true,&quot;order&quot;:0,&quot;label&quot;:&quot;Email&quot;,&quot;type&quot;:&quot;email&quot;},{&quot;apiName&quot;:&quot;LastName&quot;,&quot;guid&quot;:&quot;column-fe73&quot;,&quot;editable&quot;:false,&quot;hasCustomHeaderLabel&quot;:false,&quot;customHeaderLabel&quot;:&quot;&quot;,&quot;wrapText&quot;:true,&quot;order&quot;:1,&quot;label&quot;:&quot;Last Name&quot;,&quot;type&quot;:&quot;text&quot;},{&quot;apiName&quot;:&quot;pkl_AccountGroup__c&quot;,&quot;guid&quot;:&quot;column-d06a&quot;,&quot;editable&quot;:false,&quot;hasCustomHeaderLabel&quot;:false,&quot;customHeaderLabel&quot;:&quot;&quot;,&quot;wrapText&quot;:true,&quot;order&quot;:2,&quot;label&quot;:&quot;Account Group&quot;,&quot;type&quot;:&quot;text&quot;}]</stringValue>
+                    <stringValue>[{&quot;apiName&quot;:&quot;Name&quot;,&quot;guid&quot;:&quot;column-ab32&quot;,&quot;editable&quot;:false,&quot;hasCustomHeaderLabel&quot;:false,&quot;customHeaderLabel&quot;:&quot;&quot;,&quot;wrapText&quot;:true,&quot;order&quot;:0,&quot;label&quot;:&quot;Full Name&quot;,&quot;type&quot;:&quot;text&quot;},{&quot;apiName&quot;:&quot;Email&quot;,&quot;guid&quot;:&quot;column-49f0&quot;,&quot;editable&quot;:false,&quot;hasCustomHeaderLabel&quot;:false,&quot;customHeaderLabel&quot;:&quot;&quot;,&quot;wrapText&quot;:true,&quot;order&quot;:1,&quot;label&quot;:&quot;Email&quot;,&quot;type&quot;:&quot;email&quot;}]</stringValue>
                 </value>
             </inputParameters>
             <inputParameters>

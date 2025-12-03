@@ -12,6 +12,7 @@ public with sharing class ContentDocumentSelector extends fflib_SObjectSelector 
      public List<Schema.SObjectField> getSObjectFieldList() {
         return new List<Schema.SObjectField> {
             ContentDocument.Title,
+            ContentDocument.FileExtension,
             ContentDocument.Id
         };
     }
