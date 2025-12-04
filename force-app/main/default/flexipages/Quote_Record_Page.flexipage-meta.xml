@@ -1489,10 +1489,6 @@
         <itemInstances>
             <componentInstance>
                 <componentInstanceProperties>
-                    <name>body</name>
-                    <value>Facet-2e6343dd-afa0-45c8-b84c-b86382ae6ede</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
                     <name>title</name>
                     <value>DocuSignEnvelopeStatus</value>
                 </componentInstanceProperties>
