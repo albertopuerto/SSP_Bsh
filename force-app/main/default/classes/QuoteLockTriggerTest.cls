@@ -168,7 +168,7 @@ static void testValidateQuoteModificationsBlocked() {
     Test.startTest();
     System.runAs(productManagerUser){
         // Call the test-visible wrapper method
-        domain.testValidateQuoteModifications(newQuote, oldQuote, exemptFields, 'The Quote cannot be modified because the status is Rejected, Accepted, or Denied');
+        domain.testValidateQuoteModifications(newQuote, oldQuote, exemptFields);
         Assert.isTrue(newQuote.hasErrors(), 'Quote should have validation errors');
         List<Database.Error> errors = newQuote.getErrors();
         Assert.isTrue(errors.size() > 0, 'Should have at least one error');
@@ -213,7 +213,7 @@ static void testValidateQuoteModificationsAllowed() {
             // Call the test-visible wrapper method
             List<Database.Error> errors = newQuote.getErrors();
             Assert.areEqual(errors.size() , 0, 'There are no errors');
-            domain.testValidateQuoteModifications(newQuote, oldQuote, exemptFields, 'The Quote cannot be modified because the status is Rejected, Accepted, or Denied');
+            domain.testValidateQuoteModifications(newQuote, oldQuote, exemptFields);
         }
     Test.stopTest();
 
@@ -253,7 +253,7 @@ static void testValidateQuoteModificationsNoChanges() {
         // Call the test-visible wrapper method
         List<Database.Error> errors = newQuote.getErrors();
         Assert.areEqual(errors.size() , 0, 'There is not error');
-        domain.testValidateQuoteModifications(newQuote, oldQuote, exemptFields, 'The Quote cannot be modified because the status is Rejected, Accepted, or Denied');
+        domain.testValidateQuoteModifications(newQuote, oldQuote, exemptFields);
     }
 
     Test.stopTest();
