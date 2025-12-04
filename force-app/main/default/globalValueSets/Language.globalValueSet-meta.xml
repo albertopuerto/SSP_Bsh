@@ -21,24 +21,19 @@
         <label>Catalan</label>
     </customValue>
     <customValue>
-        <fullName>Chinese</fullName>
+        <fullName>zh</fullName>
         <default>false</default>
-        <label>Chinese</label>
+        <label>zh</label>
     </customValue>
     <customValue>
-        <fullName>Chinese trad.</fullName>
+        <fullName>zh-Hant</fullName>
         <default>false</default>
-        <label>Chinese trad.</label>
+        <label>zh-Hant</label>
     </customValue>
     <customValue>
         <fullName>Croatian</fullName>
         <default>false</default>
         <label>Croatian</label>
-    </customValue>
-    <customValue>
-        <fullName>Customer reserve</fullName>
-        <default>false</default>
-        <label>Customer reserve</label>
     </customValue>
     <customValue>
         <fullName>Czech</fullName>
@@ -181,9 +176,9 @@
         <label>Serbian</label>
     </customValue>
     <customValue>
-        <fullName>Serbian (Latin)</fullName>
+        <fullName>sr-Latn</fullName>
         <default>false</default>
-        <label>Serbian (Latin)</label>
+        <label>sr-Latn</label>
     </customValue>
     <customValue>
         <fullName>Slovak</fullName>
