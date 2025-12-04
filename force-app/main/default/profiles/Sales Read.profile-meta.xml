@@ -244,7 +244,7 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
+        <editable>false</editable>
         <field>Account.BillingAddress</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -274,12 +274,12 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
+        <editable>false</editable>
         <field>Account.Phone</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
+        <editable>false</editable>
         <field>Account.ShippingAddress</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -289,7 +289,7 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
+        <editable>false</editable>
         <field>Account.Type</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -324,7 +324,7 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
+        <editable>false</editable>
         <field>Account.pkl_IsTradingPartnerNoRequired__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -334,14 +334,14 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
+        <editable>false</editable>
         <field>Account.pkl_Status__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <readable>false</readable>
         <field>Account.pkm_BoschPartnerRole__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -354,7 +354,7 @@
         <field>Account.txt_AdditionalName__c</field>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
+        <editable>false</editable>
         <field>Account.txt_AthenaUUID__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -374,7 +374,7 @@
         <field>Account.txt_Name4__c</field>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
+        <editable>false</editable>
         <field>Account.txt_TradingParnerNo__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -1059,6 +1059,16 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>false</editable>
+        <field>DuplicateAccountRelation__c.pkl_ReasonCategory__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>DuplicateAccountRelation__c.txt_ReasonDescription__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>ExportControlSheet__c.chk_IsActive__c</field>
         <readable>true</readable>
@@ -1276,6 +1286,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Opportunity.ftxtOpportunityTitle__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Opportunity.pkl_StatusofPlaniswareSync__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -2524,6 +2539,10 @@
         <readable>true</readable>
     </fieldPermissions>
     <tabVisibilities>
+        <tab>Approval_History</tab>
+        <visibility>DefaultOn</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
         <tab>Apttus__RetentionPolicy__c</tab>
         <visibility>Hidden</visibility>
     </tabVisibilities>
@@ -2554,6 +2573,10 @@
     <tabVisibilities>
         <tab>Competitor__c</tab>
         <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>DuplicateAccountRelation__c</tab>
+        <visibility>DefaultOn</visibility>
     </tabVisibilities>
     <tabVisibilities>
         <tab>Legal_Home_Page</tab>
@@ -2621,6 +2644,10 @@
     </tabVisibilities>
     <tabVisibilities>
         <tab>SalesArea__c</tab>
+        <visibility>DefaultOn</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>TaxNumber__c</tab>
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
     <tabVisibilities>
@@ -3593,6 +3620,9 @@
         <layout>Task-Task Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
+        <layout>TaxNumber__c-Tax Number Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
         <layout>User-User Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
@@ -3631,6 +3661,37 @@
     <layoutAssignments>
         <layout>sbaa__Approval__c-sbaa__Approval Layout</layout>
     </layoutAssignments>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>Account.Competitor</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>true</default>
+        <personAccountDefault>true</personAccountDefault>
+        <recordType>Account.Customer</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>Account.Intercompany</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>Account.Partner</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>Account.Reseller</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>Account.Supplier</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
     <recordTypeVisibilities>
         <default>true</default>
         <recordType>Apttus_Approval__Approval_Process__c.Apttus_Approval__ApprovalProcess</recordType>
@@ -3902,6 +3963,11 @@
     </applicationVisibilities>
     <applicationVisibilities>
         <application>standard__AppLauncher</application>
+        <default>false</default>
+        <visible>true</visible>
+    </applicationVisibilities>
+    <applicationVisibilities>
+        <application>standard__Approvals</application>
         <default>false</default>
         <visible>true</visible>
     </applicationVisibilities>

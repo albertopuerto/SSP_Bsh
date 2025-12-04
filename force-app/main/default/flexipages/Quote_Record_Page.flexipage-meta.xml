@@ -72,6 +72,19 @@
                         </valueListItems>
                         <valueListItems>
                             <value>Delete</value>
+                            <visibilityRule>
+                                <booleanFilter>1 AND 2</booleanFilter>
+                                <criteria>
+                                    <leftValue>{!Record.SBQQ__Status__c}</leftValue>
+                                    <operator>NE</operator>
+                                    <rightValue>Presented</rightValue>
+                                </criteria>
+                                <criteria>
+                                    <leftValue>{!Record.SBQQ__Status__c}</leftValue>
+                                    <operator>NE</operator>
+                                    <rightValue>Accepted</rightValue>
+                                </criteria>
+                            </visibilityRule>
                         </valueListItems>
                         <valueListItems>
                             <value>ChangeOwnerOne</value>

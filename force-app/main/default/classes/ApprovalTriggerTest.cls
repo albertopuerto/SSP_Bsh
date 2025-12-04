@@ -131,7 +131,7 @@ private class ApprovalTriggerTest {
      
        System.runAs(creator){
 
-          //Create approval record 
+          // Create approval record 
           sbaa__Approval__c appr = new sbaa__Approval__c();
           appr.sbaa__Status__c = 'Requested';
           appr.Quote__c = quote.Id;
@@ -146,7 +146,7 @@ private class ApprovalTriggerTest {
            
           Assert.areEqual(true, result.isSuccess(), 'Insert should succeed');
 
-          //Get Share record 
+          // Get Share record 
           List<sbaa__Approval__Share> sharedRecs = [SELECT ParentId, AccessLevel, UserOrGroupId FROM sbaa__Approval__Share WHERE ParentId =:appr.Id AND AccessLevel = 'Edit'];
          
           Assert.areEqual(1, sharedRecs.size(), 'Exactly one share record should be created for approver');     
@@ -154,7 +154,42 @@ private class ApprovalTriggerTest {
           Assert.areEqual(appr.sbaa__AssignedTo__c, sharedRecs[0].UserOrGroupId, 'User Id should match');                  
 
     }
+        
+    }
   
+ @isTest
+    static void validateSharingRecordAfterInsertAsCreator() {
+        
+       // Get test data from setup
+       Account acc = [SELECT Id FROM Account LIMIT 1];
+       Opportunity opp = [SELECT Id FROM Opportunity LIMIT 1];
+       SBQQ__Quote__c quote = [SELECT Id FROM SBQQ__Quote__c LIMIT 1]; 
+       User creator = [SELECT Id FROM User WHERE Alias = 'creator' LIMIT 1];
+     
+       System.runAs(creator){
+
+          // Create approval record 
+          sbaa__Approval__c appr = new sbaa__Approval__c();
+          appr.sbaa__Status__c = 'Requested';
+          appr.Quote__c = quote.Id;
+          appr.OwnerId = creator.Id;
+          appr.sbaa__RecordField__c = 'Quote__c';
+          appr.sbaa__ApprovalStep__c = 1;     
+          appr.sbaa__AssignedTo__c = creator.Id; 
+                               
+          Test.startTest();     
+               Database.SaveResult result = Database.insert(appr, false);
+          Test.stopTest();
+           
+          Assert.areEqual(true, result.isSuccess(), 'Insert should succeed');
+
+          // Get Share record 
+          List<sbaa__Approval__Share> sharedRecs = [SELECT ParentId, AccessLevel, UserOrGroupId FROM sbaa__Approval__Share WHERE ParentId =:appr.Id];
+         
+          Assert.areEqual(1, sharedRecs.size(), 'Only one Share record should exist for the creator');                   
+
+    }            
+        
   } 
    
 @isTest
@@ -182,7 +217,8 @@ private class ApprovalTriggerTest {
            Test.stopTest();
            
            Assert.areEqual(true, result.isSuccess(), 'Insert should succeed');
-           // Get Share record for Approver group   
+           
+          // Get Share record for Approver group   
            List<sbaa__Approval__Share> sharedRecs = [SELECT ParentId, AccessLevel, UserOrGroupId FROM sbaa__Approval__Share WHERE ParentId =:appr.Id AND AccessLevel = 'Edit'];
 
            Assert.areEqual(1, sharedRecs.size(), 'Exactly one share record should be created for group');

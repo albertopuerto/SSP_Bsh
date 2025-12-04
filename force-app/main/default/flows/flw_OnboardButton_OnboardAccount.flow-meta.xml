@@ -371,6 +371,14 @@
         </value>
     </choices>
     <choices>
+        <name>BBCUPR</name>
+        <choiceText>&lt;span style=&quot;font-size: 16px;&quot;&gt;Operational Prospect B2B - external entity before operational business&lt;/span&gt;</choiceText>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>BBCUPR</stringValue>
+        </value>
+    </choices>
+    <choices>
         <name>BBCUSH</name>
         <choiceText>&lt;span style=&quot;font-size: 16px;&quot;&gt;Operational Customer B2B - Pure Ship-to&lt;/span&gt;</choiceText>
         <dataType>String</dataType>
@@ -472,14 +480,6 @@
         <valueField>Id</valueField>
     </dynamicChoiceSets>
     <dynamicChoiceSets>
-        <name>paymentTermValues</name>
-        <dataType>Picklist</dataType>
-        <displayField xsi:nil="true" />
-        <object xsi:nil="true" />
-        <picklistField>pkl_PaymentTerms__c</picklistField>
-        <picklistObject>Account</picklistObject>
-    </dynamicChoiceSets>
-    <dynamicChoiceSets>
         <name>RoleValues</name>
         <dataType>Picklist</dataType>
         <displayField xsi:nil="true" />
@@ -528,31 +528,31 @@
         <inputAssignments>
             <field>BillingCity</field>
             <value>
-                <elementReference>Account.BillingCity</elementReference>
+                <elementReference>Address.city</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
             <field>BillingCountry</field>
             <value>
-                <elementReference>Account.BillingCountry</elementReference>
+                <elementReference>Address.country</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
             <field>BillingPostalCode</field>
             <value>
-                <elementReference>Account.BillingPostalCode</elementReference>
+                <elementReference>Address.postalCode</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
             <field>BillingState</field>
             <value>
-                <elementReference>Account.BillingState</elementReference>
+                <elementReference>Address.province</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
             <field>BillingStreet</field>
             <value>
-                <elementReference>Account.BillingStreet</elementReference>
+                <elementReference>Address.street</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
@@ -577,12 +577,6 @@
             <field>pkl_Language__c</field>
             <value>
                 <elementReference>Account.pkl_Language__c</elementReference>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <field>pkl_PaymentTerms__c</field>
-            <value>
-                <elementReference>Payment_Terms</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
@@ -725,19 +719,36 @@
             <isRequired>true</isRequired>
         </fields>
         <fields>
-            <name>Payment_Terms</name>
-            <choiceReferences>paymentTermValues</choiceReferences>
-            <dataType>String</dataType>
-            <fieldText>Payment Terms</fieldText>
-            <fieldType>DropdownBox</fieldType>
+            <name>Address</name>
+            <extensionName>flowruntime:address</extensionName>
+            <fieldType>ComponentInstance</fieldType>
+            <inputParameters>
+                <name>addressLabel</name>
+                <value>
+                    <stringValue>Address</stringValue>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>showAddressLookup</name>
+                <value>
+                    <booleanValue>true</booleanValue>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>addressLookupLabel</name>
+                <value>
+                    <stringValue>Address Search</stringValue>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>required</name>
+                <value>
+                    <booleanValue>true</booleanValue>
+                </value>
+            </inputParameters>
             <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
             <isRequired>true</isRequired>
-        </fields>
-        <fields>
-            <fieldType>ObjectProvided</fieldType>
-            <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
-            <isRequired>false</isRequired>
-            <objectFieldReference>Account.BillingAddress</objectFieldReference>
+            <storeOutputAutomatically>true</storeOutputAutomatically>
         </fields>
         <nextOrFinishButtonLabel>Validate Address</nextOrFinishButtonLabel>
         <showFooter>true</showFooter>
@@ -844,10 +855,12 @@
         </connector>
         <fields>
             <name>Select_Bosch_Partner_Role</name>
+            <choiceReferences>BBCUPR</choiceReferences>
             <choiceReferences>BBCUEX</choiceReferences>
             <choiceReferences>BBCUSH</choiceReferences>
             <choiceReferences>BBCUBP</choiceReferences>
             <dataType>String</dataType>
+            <defaultSelectedChoiceReference>BBCUPR</defaultSelectedChoiceReference>
             <fieldText>Select Bosch Partner Role</fieldText>
             <fieldType>RadioButtons</fieldType>
             <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
@@ -888,7 +901,7 @@
             <targetReference>RecordTypeSelection</targetReference>
         </connector>
     </start>
-    <status>Active</status>
+    <status>Draft</status>
     <textTemplates>
         <name>tmpl_LogMessageDML</name>
         <isViewedAsPlainText>true</isViewedAsPlainText>

@@ -2136,6 +2136,9 @@
         <layout>SBQQ__QuoteTerm__c-SBQQ__Quote Term Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
+        <layout>TaxNumber__c-Tax Number Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
         <layout>sbaa__Approval__c-sbaa__Approval Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
@@ -2692,6 +2695,10 @@
         <visible>false</visible>
     </recordTypeVisibilities>
     <tabVisibilities>
+        <tab>Approval_History</tab>
+        <visibility>DefaultOff</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
         <tab>Apttus__RetentionPolicy__c</tab>
         <visibility>Hidden</visibility>
     </tabVisibilities>
@@ -2722,6 +2729,10 @@
     <tabVisibilities>
         <tab>SalesArea__c</tab>
         <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>TaxNumber__c</tab>
+        <visibility>DefaultOn</visibility>
     </tabVisibilities>
     <tabVisibilities>
         <tab>standard-Account</tab>

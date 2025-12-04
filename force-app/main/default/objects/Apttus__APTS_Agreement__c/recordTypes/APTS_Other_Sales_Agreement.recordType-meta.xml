@@ -1308,6 +1308,10 @@
             <default>false</default>
         </values>
         <values>
+            <fullName>ETAS%2FCRB-XA</fullName>
+            <default>false</default>
+        </values>
+        <values>
             <fullName>ETAS%2FCRN</fullName>
             <default>false</default>
         </values>

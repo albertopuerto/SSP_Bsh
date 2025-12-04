@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <Profile xmlns="http://soap.sforce.com/2006/04/metadata">
     <custom>false</custom>
     <userLicense>Salesforce</userLicense>
@@ -960,6 +960,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Opportunity.ftxtOpportunityTitle__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Opportunity.pkl_StatusofPlaniswareSync__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -2789,6 +2794,9 @@
         <layout>Task-Task Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
+        <layout>TaxNumber__c-Tax Number Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
         <layout>User-User Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
@@ -3028,6 +3036,10 @@
         <visible>true</visible>
     </recordTypeVisibilities>
     <tabVisibilities>
+        <tab>Approval_History</tab>
+        <visibility>DefaultOn</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
         <tab>Apttus__RetentionPolicy__c</tab>
         <visibility>Hidden</visibility>
     </tabVisibilities>
@@ -3126,6 +3138,10 @@
     <tabVisibilities>
         <tab>SalesArea__c</tab>
         <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>TaxNumber__c</tab>
+        <visibility>DefaultOn</visibility>
     </tabVisibilities>
     <tabVisibilities>
         <tab>cnga__ApprovalCenter</tab>
@@ -3438,6 +3454,11 @@
     </applicationVisibilities>
     <applicationVisibilities>
         <application>standard__AppLauncher</application>
+        <default>false</default>
+        <visible>true</visible>
+    </applicationVisibilities>
+    <applicationVisibilities>
+        <application>standard__Approvals</application>
         <default>false</default>
         <visible>true</visible>
     </applicationVisibilities>

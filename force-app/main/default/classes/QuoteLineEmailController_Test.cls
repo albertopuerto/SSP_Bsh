@@ -7,8 +7,7 @@ public class QuoteLineEmailController_Test {
         Account testAccount = new Account(
             Name = 'Test Account',
             Role__c='ETDE Domestic Customer',
-            pkl_Language__c='English',
-            pkl_PaymentTerms__c = 'Net 15'
+            pkl_Language__c='English'
         );
         insert testAccount;
         

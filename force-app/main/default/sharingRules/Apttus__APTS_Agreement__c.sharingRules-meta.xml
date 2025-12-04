@@ -31,6 +31,65 @@
         <includeRecordsOwnedByAll>false</includeRecordsOwnedByAll>
     </sharingCriteriaRules>
     <sharingCriteriaRules>
+        <fullName>CRB_XA_SC_Read_and_Edit</fullName>
+        <accessLevel>Edit</accessLevel>
+        <description>CRB-XA Sales Coordinator can read and edit agreements from the category CRB and CRB-XA</description>
+        <label>CRB-XA_SC_Read and Edit</label>
+        <sharedTo>
+            <group>CRB_XA_SalesCoordinators</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>Apttus__Agreement_Category__c</field>
+            <operation>equals</operation>
+            <value>ETAS/CRB-XA,ETAS/CRB</value>
+        </criteriaItems>
+        <includeRecordsOwnedByAll>true</includeRecordsOwnedByAll>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>CRB_XA_SC_Read_only</fullName>
+        <accessLevel>Read</accessLevel>
+        <description>Sales coordinators from CRB-XA can only see other agreement categories</description>
+        <label>CRB-XA_SC_Read only</label>
+        <sharedTo>
+            <group>CRB_XA_SalesCoordinators</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>Apttus__Agreement_Category__c</field>
+            <operation>equals</operation>
+            <value>Intercompany</value>
+        </criteriaItems>
+        <includeRecordsOwnedByAll>false</includeRecordsOwnedByAll>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>CRB_XA_SM_Read</fullName>
+        <accessLevel>Read</accessLevel>
+        <description>Sales Managers from CRB-XA read access to different than CRB-XA categories. Read only access</description>
+        <label>CRB-XA_SM_Read</label>
+        <sharedTo>
+            <group>CRB_XA_SalesManagers</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>Apttus__Agreement_Category__c</field>
+            <operation>equals</operation>
+            <value>Intercompany</value>
+        </criteriaItems>
+        <includeRecordsOwnedByAll>true</includeRecordsOwnedByAll>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>CRB_XA_SM_Read_and_Edit</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>CRB-XA_SM_Read and Edit</label>
+        <sharedTo>
+            <group>CRB_XA_SalesManagers</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>Apttus__Agreement_Category__c</field>
+            <operation>equals</operation>
+            <value>ETAS/CRB-XA,ETAS/CRB</value>
+        </criteriaItems>
+        <includeRecordsOwnedByAll>true</includeRecordsOwnedByAll>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
         <fullName>Controlling_view</fullName>
         <accessLevel>Edit</accessLevel>
         <description>IC Technology Transfer,Other IC,IC SaaS,IC NDA,IC Agent Sales Support,IC Software License,IC Services,IC Reseller Framework,IC Development and Application,IC Limited Sales Support</description>

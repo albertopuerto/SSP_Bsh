@@ -25,14 +25,14 @@
                 <field>lkp_SalesDataCustomer__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Edit</behavior>
-                <field>lkp_BoschPartnerFunction__c</field>
+                <behavior>Required</behavior>
+                <field>mdr_BoschPartnerFunction__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>OwnerId</field>
+                <field>CurrencyIsoCode</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsTopToBottom</style>

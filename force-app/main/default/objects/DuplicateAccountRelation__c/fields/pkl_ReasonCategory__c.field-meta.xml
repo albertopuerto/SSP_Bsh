@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>pkl_ReasonCategory__c</fullName>
+    <description>Categorizes the reason for the Duplicate</description>
+    <inlineHelpText>Provide the reason for the duplicate</inlineHelpText>
+    <label>Reason Category</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>0017 | AG (SP) - Customer Discounts</fullName>
+                <default>false</default>
+                <label>0017 | AG (SP) - Customer Discounts</label>
+            </value>
+            <value>
+                <fullName>0018 | AG (SP) - Different GLN</fullName>
+                <default>false</default>
+                <label>0018 | AG (SP) - Different GLN</label>
+            </value>
+            <value>
+                <fullName>0030 | AG (SP) - Reseller is defined for every business end user (service contract partner)</fullName>
+                <default>false</default>
+                <label>0030 | AG (SP) - Reseller is defined for every business end user (service contract partner)</label>
+            </value>
+            <value>
+                <fullName>0031 | WE (SH) - Delivery to customer with MLB process (MLB sub-supplier, cross-company, direct)</fullName>
+                <default>false</default>
+                <label>0031 | WE (SH) - Delivery to customer with MLB process (MLB sub-supplier, cross-company, direct)</label>
+            </value>
+            <value>
+                <fullName>0032 | WE (SH) - Different invoice dispatch types for the same customer</fullName>
+                <default>false</default>
+                <label>0032 | WE (SH) - Different invoice dispatch types for the same customer</label>
+            </value>
+            <value>
+                <fullName>0033 | WE (SH) - Distributor Model</fullName>
+                <default>false</default>
+                <label>0033 | WE (SH) - Distributor Model</label>
+            </value>
+            <value>
+                <fullName>0034 | WE (SH) - Customer operates several business units under the same address with different partner descriptions (e.g. plant codes)</fullName>
+                <default>false</default>
+                <label>0034 | WE (SH) - Customer operates several business units under the same address with different partner descriptions (e.g. plant codes)</label>
+            </value>
+            <value>
+                <fullName>0035 | WE (SH) - Different delivery times</fullName>
+                <default>false</default>
+                <label>0035 | WE (SH) - Different delivery times</label>
+            </value>
+            <value>
+                <fullName>0036 | WE (SH) - Different Shipping conditions</fullName>
+                <default>false</default>
+                <label>0036 | WE (SH) - Different Shipping conditions</label>
+            </value>
+            <value>
+                <fullName>0037 | WE (SH) - Cross Docking - same Hub Address but shop address coded in name</fullName>
+                <default>false</default>
+                <label>0037 | WE (SH) - Cross Docking - same Hub Address but shop address coded in name</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

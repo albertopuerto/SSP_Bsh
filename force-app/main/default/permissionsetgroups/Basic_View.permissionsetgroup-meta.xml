@@ -3,6 +3,7 @@
     <description>used to grant basic read only access to the users</description>
     <hasActivationRequired>false</hasActivationRequired>
     <label>BasicView</label>
+    <permissionSets>BusinessPartnerReadOnly</permissionSets>
     <permissionSets>DocusignUser</permissionSets>
     <permissionSets>ProductReadOnly</permissionSets>
     <status>Updated</status>

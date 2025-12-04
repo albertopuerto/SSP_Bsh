@@ -380,7 +380,7 @@
             <targetReference>Get_Orders</targetReference>
         </connector>
     </start>
-    <status>Active</status>
+    <status>Obsolete</status>
     <variables>
         <name>currentQuoteLineItem</name>
         <dataType>SObject</dataType>
