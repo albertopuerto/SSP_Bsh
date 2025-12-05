@@ -489,33 +489,6 @@
         </values>
     </picklistValues>
     <picklistValues>
-        <picklist>pkl_PaymentTerms__c</picklist>
-        <values>
-            <fullName>Due on receipt</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>Net 15</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>Net 30</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>Net 45</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>Net 60</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>Net 90</fullName>
-            <default>false</default>
-        </values>
-    </picklistValues>
-    <picklistValues>
         <picklist>pkl_Status__c</picklist>
         <values>
             <fullName>Draft</fullName>
