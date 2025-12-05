@@ -1401,21 +1401,6 @@
         </values>
     </picklistValues>
     <picklistValues>
-        <picklist>pkl_CustomerBlock__c</picklist>
-        <values>
-            <fullName>Blocked</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>Pending</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>Released</fullName>
-            <default>false</default>
-        </values>
-    </picklistValues>
-    <picklistValues>
         <picklist>pkl_DeliveryControlHead__c</picklist>
         <values>
             <fullName>Complete Delivery</fullName>
