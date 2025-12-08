@@ -70,6 +70,10 @@
                 <behavior>Edit</behavior>
                 <field>txt_INCOTerms2__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>lkp_SalesArea__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
