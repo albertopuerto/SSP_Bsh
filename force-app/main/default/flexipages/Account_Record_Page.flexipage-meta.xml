@@ -16,6 +16,22 @@
                                 </criteria>
                             </visibilityRule>
                         </valueListItems>
+                      <valueListItems>
+						<value>Account.Conversion_to_Customer</value>
+						<visibilityRule>
+							<booleanFilter>1 AND 2</booleanFilter>
+							<criteria>
+								<leftValue>{!Record.IsProspect__c}</leftValue>
+								<operator>EQUAL</operator>
+								<rightValue>true</rightValue>
+							</criteria>
+							<criteria>
+								<leftValue>{!$Permission.CustomPermission.CanProspectConversionToCustomer}</leftValue>
+								<operator>EQUAL</operator>
+								<rightValue>true</rightValue>
+							</criteria>
+						</visibilityRule>
+					</valueListItems>
                     </valueList>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
