@@ -26,7 +26,6 @@ public with sharing class TestFactoryDefaults{
 					Account.BillingCountry => 'bTest',
 					Account.ShippingCountry => 'sTest',
 					Account.txt_AthenaUUID__c => '1111',
-					Account.Role__c => 'ETDE Domestic Customer',
 					Account.pkl_Language__c => 'English',
 					Account.pkm_BoschPartnerRole__c => 'BBCUSH'
 			};
@@ -128,7 +127,6 @@ public with sharing class TestFactoryDefaults{
 		public Map<Schema.SObjectField, Object> getFieldDefaults() {
 			return new Map<Schema.SObjectField, Object> {
 					Contact.FirstName => 'First',
-					Contact.LastName => 'Last'
 			};
 		}
 	}
