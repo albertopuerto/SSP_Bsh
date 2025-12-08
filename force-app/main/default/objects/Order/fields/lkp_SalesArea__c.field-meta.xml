@@ -6,20 +6,19 @@
     <label>Sales Area</label>
     <lookupFilter>
         <active>true</active>
-        <errorMessage>Sales Area Value does not exist in Account</errorMessage>
+        <errorMessage>sales area Value does not exist in account</errorMessage>
         <filterItems>
             <field>SalesAreaLink__c.mdr_Account__c</field>
             <operation>equals</operation>
-            <valueField>$Source.SBQQ__Account__c</valueField>
+            <valueField>$Source.AccountId</valueField>
         </filterItems>
         <isOptional>false</isOptional>
     </lookupFilter>
     <referenceTo>SalesAreaLink__c</referenceTo>
-    <relationshipLabel>Quotes</relationshipLabel>
-    <relationshipName>Quotes</relationshipName>
+    <relationshipLabel>Orders</relationshipLabel>
+    <relationshipName>Orders</relationshipName>
     <required>false</required>
     <trackFeedHistory>false</trackFeedHistory>
     <trackHistory>false</trackHistory>
-    <trackTrending>false</trackTrending>
     <type>Lookup</type>
 </CustomField>
