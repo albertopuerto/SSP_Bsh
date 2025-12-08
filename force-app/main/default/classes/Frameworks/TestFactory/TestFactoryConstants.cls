@@ -13,6 +13,7 @@ public with sharing class TestFactoryConstants {
     private static final Map<String, String> MAP_PROFILES_NAMES = new Map<String, String> {
         'SalesRead' => 'Sales Read',
         'ProductManager' => 'Product Manager',
+        'SystemAdministrator' => 'System Administrator',
         'SalesforceAPIOnlySystemIntegrations' => 'Salesforce API Only System Integrations'
     };
 

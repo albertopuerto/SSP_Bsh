@@ -6,7 +6,6 @@ private class GroupLineItems_controllerTest {
         // Create test account
         Account testAccount = new Account(
             Name = 'Test Account',
-            Role__c='ETDE Domestic Customer',
             pkl_Language__c='English',
             pkm_BoschPartnerRole__c = 'BBCUEX'
 
