@@ -28,7 +28,15 @@ private class ApprovalTriggerTest {
         approver.LastName = 'Approver';
         approver.FederationIdentifier = 'approver@etasbosch.com' + system.currentTimeMillis();
         approver.Username = 'approver@etasbosch.com' + system.currentTimeMillis();
-        insert approver;
+        insert approver;        
+        
+        User approver2 = (User)TestFactory.CreateSobject(new User(), 'TestFactoryDefaults.SalesReadUserDefaults', false);
+        approver2.Alias = 'approv2';
+        approver2.Email = 'approver2@example.com';
+        approver2.LastName = 'Approver2';
+        approver2.FederationIdentifier = 'approver2@etasbosch.com' + system.currentTimeMillis();
+        approver2.Username = 'approver2@etasbosch.com' + system.currentTimeMillis();
+        insert approver2;
        
         // Create New Owner user
         User newOwner = (User)TestFactory.CreateSobject(new User(), 'TestFactoryDefaults.SalesReadUserDefaults', false);
@@ -192,6 +200,62 @@ private class ApprovalTriggerTest {
         
   } 
    
+    
+@isTest
+   static void validateSharingRecordsAfterInsertMultipleApprovals() {
+        
+       // Get test data from setup
+       Account acc = [SELECT Id FROM Account LIMIT 1];
+       Opportunity opp = [SELECT Id FROM Opportunity LIMIT 1];
+       SBQQ__Quote__c quote = [SELECT Id FROM SBQQ__Quote__c LIMIT 1];     
+       User approver = [SELECT Id FROM User WHERE Alias = 'approver' LIMIT 1];
+       User approver2 = [SELECT Id FROM User WHERE Alias = 'approv2' LIMIT 1];
+       User creator = [SELECT Id FROM User WHERE Alias = 'creator' LIMIT 1];
+     
+       System.runAs(creator){
+           
+          // Create approval records 
+          List<sbaa__Approval__c> listApprovals = new List<sbaa__Approval__c>();
+          sbaa__Approval__c appr = new sbaa__Approval__c();
+          appr.sbaa__Status__c = 'Requested';
+          appr.Quote__c = quote.Id;
+          appr.OwnerId = creator.Id;
+          appr.sbaa__RecordField__c = 'Quote__c';
+          appr.sbaa__ApprovalStep__c = 1;     
+          appr.sbaa__AssignedTo__c = approver.Id; 
+          listApprovals.add(appr);
+           
+          sbaa__Approval__c appr2 = new sbaa__Approval__c();
+          appr2.sbaa__Status__c = 'Requested';
+          appr2.Quote__c = quote.Id;
+          appr2.OwnerId = creator.Id;
+          appr2.sbaa__RecordField__c = 'Quote__c';
+          appr2.sbaa__ApprovalStep__c = 1;     
+          appr2.sbaa__AssignedTo__c = approver2.Id;  
+          listApprovals.add(appr2); 
+                               
+          Test.startTest();     
+               List<Database.SaveResult> results = Database.insert(listApprovals, false);  
+          Test.stopTest();
+           
+          Assert.areEqual(2, results.size(), 'Two approval records should be inserted');
+
+          // Get Share records
+          List<sbaa__Approval__Share> sharedRecs = [SELECT ParentId, AccessLevel, UserOrGroupId FROM sbaa__Approval__Share WHERE ParentId IN (:appr.Id, :appr2.Id) AND AccessLevel = 'Edit'];
+         
+          Assert.areEqual(2, sharedRecs.size(), 'Exactly two share records should be created - one per each approver');     
+          Assert.areEqual('Edit', sharedRecs[0].AccessLevel, 'Approver should have Edit access');
+          Assert.areEqual('Edit', sharedRecs[1].AccessLevel, 'Approver2 should have Edit access');
+          Assert.areEqual(appr.sbaa__AssignedTo__c, sharedRecs[0].UserOrGroupId, 'User Id should match');    
+          Assert.areEqual(appr2.sbaa__AssignedTo__c, sharedRecs[1].UserOrGroupId, 'User Id should match');
+          Assert.areNotEqual(sharedRecs[0].UserOrGroupId, sharedRecs[1].UserOrGroupId, 'User Ids should be different'); 
+
+    }
+        
+ }
+    
+   
+   
 @isTest
    static void validateSharingRecordAfterInsertGroupApprover() {
 
@@ -213,7 +277,7 @@ private class ApprovalTriggerTest {
              
 
            Test.startTest();   
-             Database.SaveResult result = Database.insert(appr, false);
+                Database.SaveResult result = Database.insert(appr, false);
            Test.stopTest();
            
            Assert.areEqual(true, result.isSuccess(), 'Insert should succeed');
@@ -228,6 +292,59 @@ private class ApprovalTriggerTest {
        }                            
             
   } 
+    
+@isTest
+    static void validateSharingRecordsAfterInsertMixedApprovals() {
+        
+       // Get test data from setup
+       Account acc = [SELECT Id FROM Account LIMIT 1];
+       Opportunity opp = [SELECT Id FROM Opportunity LIMIT 1];
+       SBQQ__Quote__c quote = [SELECT Id FROM SBQQ__Quote__c LIMIT 1];     
+       User approver = [SELECT Id FROM User WHERE Alias = 'approver' LIMIT 1];
+       Group grpApprover = [SELECT Id FROM Group WHERE DeveloperName = 'ApproversGroup' LIMIT 1 ];
+       User creator = [SELECT Id FROM User WHERE Alias = 'creator' LIMIT 1];
+     
+        System.runAs(creator){
+            
+          // Create approval records
+          List<sbaa__Approval__c> listApprovals = new List<sbaa__Approval__c>();
+          sbaa__Approval__c appr = new sbaa__Approval__c();
+          appr.sbaa__Status__c = 'Requested';
+          appr.Quote__c = quote.Id;
+          appr.OwnerId = creator.Id;
+          appr.sbaa__RecordField__c = 'Quote__c';
+          appr.sbaa__ApprovalStep__c = 1;     
+          appr.sbaa__AssignedTo__c = approver.Id; 
+          listApprovals.add(appr);
+          
+          sbaa__Approval__c appr2 = new sbaa__Approval__c();
+          appr2.sbaa__Status__c = 'Requested';
+          appr2.Quote__c = quote.Id;
+          appr2.OwnerId = creator.Id;
+          appr2.sbaa__RecordField__c = 'Quote__c';
+          appr2.sbaa__ApprovalStep__c = 1;     
+          appr2.sbaa__AssignedGroupId__c = grpApprover.Id;
+          listApprovals.add(appr2); 
+                              
+          Test.startTest();     
+               List<Database.SaveResult> results = Database.insert(listApprovals, false);
+          Test.stopTest();
+           
+          Assert.areEqual(2, results.size(), 'Two approval records should be inserted');
+
+          // Get Share records
+          List<sbaa__Approval__Share> sharedRecs = [SELECT ParentId, AccessLevel, UserOrGroupId FROM sbaa__Approval__Share WHERE ParentId IN (:appr.Id, :appr2.Id) AND AccessLevel = 'Edit'];
+         
+          Assert.areEqual(2, sharedRecs.size(), 'Exactly two share records should be created - one per approver and one per approver group');     
+          Assert.areEqual('Edit', sharedRecs[0].AccessLevel, 'Approver should have Edit access');
+          Assert.areEqual('Edit', sharedRecs[1].AccessLevel, 'Approver group should have Edit access');
+          Assert.areEqual(appr.sbaa__AssignedTo__c, sharedRecs[0].UserOrGroupId, 'User Id should match');    
+          Assert.areEqual(appr2.sbaa__AssignedGroupId__c, sharedRecs[1].UserOrGroupId, 'Group Id should match');
+          Assert.areNotEqual(sharedRecs[0].UserOrGroupId, sharedRecs[1].UserOrGroupId, 'Ids should be different'); 
+
+    }
+        
+    }    
         
 @isTest
   static void validateSharingRecordAfterUpdate(){
@@ -249,7 +366,7 @@ private class ApprovalTriggerTest {
       appr.sbaa__ApprovalStep__c = 1;     
       appr.sbaa__AssignedTo__c = approver.Id; 
     
-     Test.startTest();
+      Test.startTest();
          Database.SaveResult result = Database.insert(appr, false);
          Assert.areEqual(true, result.isSuccess(), 'Insert should succeed');
 
@@ -293,10 +410,11 @@ private class ApprovalTriggerTest {
           Assert.areEqual(appr.sbaa__AssignedTo__c, latestShare.UserOrGroupId, 'User Id should match');     
       }
       
-     Test.stopTest();
+      Test.stopTest();
 
   }  
-  
+     
+    
 @isTest
   static void validateSharingRecordAfterUpdateGroupApprover(){
       
@@ -352,9 +470,7 @@ private class ApprovalTriggerTest {
   
         Database.SaveResult insResult = Database.insert(newShare, false);    
         Assert.areEqual(true, result.isSuccess(), 'Insert should succeed');
-        
-      System.debug('insResult=' + insResult);
-        
+               
         // Get new Share record for Approver Group
         sbaa__Approval__Share latestShare = [SELECT Id, ParentId, AccessLevel, UserOrGroupId FROM sbaa__Approval__Share 
                                             WHERE ParentId = :appr.Id AND AccessLevel = 'Edit' LIMIT 1];
