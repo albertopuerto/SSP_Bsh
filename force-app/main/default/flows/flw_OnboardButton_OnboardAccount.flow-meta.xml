@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Flow xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
     <actionCalls>
         <name>Acc_Creation_Failed</name>
         <label>Creation Failed</label>
@@ -476,16 +476,15 @@
                 <stringValue>Account</stringValue>
             </value>
         </filters>
+        <filters>
+            <field>IsActive</field>
+            <operator>EqualTo</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
         <object>RecordType</object>
         <valueField>Id</valueField>
-    </dynamicChoiceSets>
-    <dynamicChoiceSets>
-        <name>RoleValues</name>
-        <dataType>Picklist</dataType>
-        <displayField xsi:nil="true" />
-        <object xsi:nil="true" />
-        <picklistField>Role__c</picklistField>
-        <picklistObject>Account</picklistObject>
     </dynamicChoiceSets>
     <environments>Default</environments>
     <formulas>
@@ -565,12 +564,6 @@
             <field>RecordTypeId</field>
             <value>
                 <elementReference>SelectRecordType</elementReference>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <field>Role__c</field>
-            <value>
-                <elementReference>Role</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
@@ -708,15 +701,6 @@
             <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
             <isRequired>false</isRequired>
             <objectFieldReference>Account.pkl_Language__c</objectFieldReference>
-        </fields>
-        <fields>
-            <name>Role</name>
-            <choiceReferences>RoleValues</choiceReferences>
-            <dataType>String</dataType>
-            <fieldText>Role</fieldText>
-            <fieldType>DropdownBox</fieldType>
-            <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
-            <isRequired>true</isRequired>
         </fields>
         <fields>
             <name>Address</name>
@@ -901,7 +885,7 @@
             <targetReference>RecordTypeSelection</targetReference>
         </connector>
     </start>
-    <status>Draft</status>
+    <status>Active</status>
     <textTemplates>
         <name>tmpl_LogMessageDML</name>
         <isViewedAsPlainText>true</isViewedAsPlainText>
