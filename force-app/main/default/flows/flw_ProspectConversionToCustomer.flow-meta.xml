@@ -67,7 +67,7 @@
         <inputAssignments>
             <field>pkm_BoschPartnerRole__c</field>
             <value>
-                <stringValue>BBCUBP</stringValue>
+                <stringValue>BBCUEX</stringValue>
             </value>
         </inputAssignments>
         <object>Account</object>
@@ -95,7 +95,7 @@
         </fields>
         <fields>
             <name>new_role</name>
-            <fieldText>&lt;p style=&quot;text-align: center;&quot;&gt;New Bosch Partner Role: BBCUBP&lt;/p&gt;</fieldText>
+            <fieldText>&lt;p style=&quot;text-align: center;&quot;&gt;New Bosch Partner Role: BBCUEX&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
         </fields>
         <fields>
