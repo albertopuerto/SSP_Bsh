@@ -1417,10 +1417,6 @@
     <picklistValues>
         <picklist>pkl_Language__c</picklist>
         <values>
-            <fullName>Chinese</fullName>
-            <default>false</default>
-        </values>
-        <values>
             <fullName>English</fullName>
             <default>false</default>
         </values>
