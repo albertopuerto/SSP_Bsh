@@ -30,6 +30,21 @@
                 <field>pkl_Language__c</field>
                 <uiBehavior>Required</uiBehavior>
             </quickActionLayoutItems>
+            <quickActionLayoutItems>
+                <emptySpace>false</emptySpace>
+                <field>pkl_INCOTerms1__c</field>
+                <uiBehavior>Required</uiBehavior>
+            </quickActionLayoutItems>
+            <quickActionLayoutItems>
+                <emptySpace>false</emptySpace>
+                <field>pkl_PaymentTerms__c</field>
+                <uiBehavior>Required</uiBehavior>
+            </quickActionLayoutItems>
+            <quickActionLayoutItems>
+                <emptySpace>false</emptySpace>
+                <field>txt_INCOTerms2__c</field>
+                <uiBehavior>Required</uiBehavior>
+            </quickActionLayoutItems>
         </quickActionLayoutColumns>
         <quickActionLayoutColumns>
             <quickActionLayoutItems>
@@ -46,6 +61,6 @@
     </quickActionLayout>
     <standardLabel>NewRecordType</standardLabel>
     <targetObject>Account</targetObject>
-    <targetRecordType>Account.Customer</targetRecordType>
+    <targetRecordType>Account.Customer_B2B</targetRecordType>
     <type>Create</type>
 </QuickAction>
