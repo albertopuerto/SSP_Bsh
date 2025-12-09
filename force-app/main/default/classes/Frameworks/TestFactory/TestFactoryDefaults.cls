@@ -127,6 +127,7 @@ public with sharing class TestFactoryDefaults{
 		public Map<Schema.SObjectField, Object> getFieldDefaults() {
 			return new Map<Schema.SObjectField, Object> {
 					Contact.FirstName => 'First',
+					Contact.LastName => 'Last'
 			};
 		}
 	}
