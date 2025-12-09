@@ -52,6 +52,9 @@
                             </visibilityRule>
                         </valueListItems>
                         <valueListItems>
+                            <value>SBQQ__Quote__c.Remind_for_Approval</value>
+                        </valueListItems>
+                        <valueListItems>
                             <value>CustomButton.SBQQ__Quote__c.SBQQ__GenerateDocument</value>
                         </valueListItems>
                         <valueListItems>
