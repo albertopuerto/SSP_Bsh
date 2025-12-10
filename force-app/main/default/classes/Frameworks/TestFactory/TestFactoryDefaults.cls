@@ -20,8 +20,8 @@ public with sharing class TestFactoryDefaults{
 		*/
 		public Map<Schema.SObjectField, Object> getFieldDefaults() {
 			return new Map<Schema.SObjectField, Object> {
-					Account.Name => 'Customer Account',
-					Account.RecordTypeID => TestFactoryConstants.MAP_OBJ_RECORD_TYPE_IDS.get('Account').get('Customer'),
+					Account.Name => 'Customer_B2B Account',
+					Account.RecordTypeID => TestFactoryConstants.MAP_OBJ_RECORD_TYPE_IDS.get('Account').get('Customer_B2B'),
 					Account.Phone => '0123456',
 					Account.BillingCountry => 'bTest',
 					Account.ShippingCountry => 'sTest',
@@ -45,7 +45,6 @@ public with sharing class TestFactoryDefaults{
 					Account.RecordTypeID => TestFactoryConstants.MAP_OBJ_RECORD_TYPE_IDS.get('Account').get('Supplier'),
 					Account.Phone => '0123456',
 					Account.txt_AthenaUUID__c => '2222',
-					Account.Role__c => 'ETDE Domestic Customer',
 					Account.pkl_Language__c => 'English',
 					Account.pkm_BoschPartnerRole__c => 'BBCUEX'
 			};

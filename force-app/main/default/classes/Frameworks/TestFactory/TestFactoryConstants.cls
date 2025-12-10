@@ -26,7 +26,7 @@ public with sharing class TestFactoryConstants {
         return new Map<String, Map<String, Id>> {
             'Account' => new Map<String, Id> {
                 'Competitor' => mapAccountRTypes.get('Competitor').getRecordTypeId(),
-                'Customer' => mapAccountRTypes.get('Customer').getRecordTypeId(),
+                'Customer_B2B' => mapAccountRTypes.get('Customer_B2B').getRecordTypeId(),
                 'Reseller' => mapAccountRTypes.get('Reseller').getRecordTypeId(),
                 'Partner' => mapAccountRTypes.get('Partner').getRecordTypeId(),
                 'Supplier' => mapAccountRTypes.get('Supplier').getRecordTypeId()
