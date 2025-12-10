@@ -10,13 +10,10 @@ public without sharing class RecallOldApprovals {
     @InvocableMethod(label='Recall approvals' description='Method used to recall the approvals sending an email to the user')
     public static void sendEmailToApprovers(List<InputVariables> listApprovals) {
 
-        // Collect approval IDs
         Set<Id> approvalIds = new Set<Id>(listApprovals[0].approvalIds);
 
-        // Get approvals with approvers
         List<sbaa__Approval__c> approvals = new ApprovalSelector().getApprovalApprovers(approvalIds);
 
-        // Collect user and group IDs in one pass
         Set<Id> approverUserIds = new Set<Id>();
         Set<Id> approverGroupIds = new Set<Id>();
         for (sbaa__Approval__c approval : approvals) {
@@ -27,12 +24,10 @@ public without sharing class RecallOldApprovals {
             }
         }
 
-        // Query users directly into a map
         Map<Id, User> mapUsers = new Map<Id, User>(
             [SELECT Id, Email FROM User WHERE isActive = true AND Id IN :approverUserIds]
         );
 
-        // Query group members and build group → users map
         Map<Id, List<User>> mapGroupUsers = new Map<Id, List<User>>();
         for (GroupMember gm : [
             SELECT GroupId, UserOrGroupId, UserOrGroup.Email 
@@ -45,7 +40,6 @@ public without sharing class RecallOldApprovals {
             mapGroupUsers.get(gm.GroupId).add((User)gm.UserOrGroup);
         }
 
-        // Build emails in one pass
         List<Messaging.SingleEmailMessage> listEmails = new List<Messaging.SingleEmailMessage>();
         for (sbaa__Approval__c approval : approvals) {
             if (approval.sbaa__Approver__r.sbaa__User__c != null) {
@@ -60,7 +54,6 @@ public without sharing class RecallOldApprovals {
         Messaging.sendEmail(listEmails);
     }
 
-    // Helper method to avoid duplication
     private static Messaging.SingleEmailMessage buildEmail(Id userId, Id approvalId) {
         Messaging.SingleEmailMessage mail = Messaging.renderStoredEmailTemplate(
             String.valueOf(TEMPLATE.Id),
