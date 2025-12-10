@@ -1,62 +1,58 @@
-/**
- * @description       : Methods that sends an email to the user or group
- * @author            : APB
-**/
 public without sharing class RecallOldApprovals {
 
-    public static final EmailTemplate TEMPLATE = [SELECT Id, Name, DeveloperName, Markup FROM EmailTemplate where DeveloperName ='eml_ApprovalRequestTemplate'];
-    /**
-	* @author       APB
-	* @description  Method that send the email to the users
-	* @param		listApprovals List<InputVariables>
-	*/
+    public static final EmailTemplate TEMPLATE = [
+        SELECT Id 
+        FROM EmailTemplate 
+        WHERE DeveloperName ='eml_ApprovalRequestTemplate'
+        LIMIT 1
+    ];
+
     @InvocableMethod(label='Recall approvals' description='Method used to recall the approvals sending an email to the user')
     public static void sendEmailToApprovers(List<InputVariables> listApprovals) {
 
-        Map<Id,User> mapUsers = new Map<Id,User>();
-        Map<sbaa__Approval__c,String> mapApprovalGroups = new Map<sbaa__Approval__c,String>();
-        Map<String,List<User> > mapGroupUsers = new Map<String,List<User>>();
+        // Collect approval IDs
+        Set<Id> approvalIds = new Set<Id>(listApprovals[0].approvalIds);
+
+        // Get approvals with approvers
+        List<sbaa__Approval__c> approvals = new ApprovalSelector().getApprovalApprovers(approvalIds);
+
+        // Collect user and group IDs in one pass
         Set<Id> approverUserIds = new Set<Id>();
-
-        List<Messaging.SingleEmailMessage> listEmails= new List<Messaging.SingleEmailMessage>();
-
-        Set<Id>approvalIds= new Set<Id>();
-        approvalIds.addAll(listApprovals[0].approvalIds);
-
-        List<sbaa__Approval__c> approvals =new ApprovalSelector().getApprovalApprovers(approvalIds);
-
-        for(sbaa__Approval__c approval : approvals){
-            approverUserIds.add(approval.sbaa__Approver__r.sbaa__User__c);
-        }
-        List<User> listUsers = [SELECT Id,Email FROM User where isActive=true AND Id IN: approverUserIds ];
-        for(User user : listUsers){
-            mapUsers.put(user.Id,user);
-        }
-
-        List<GroupMember> listGroupMembers = [SELECT Id, GroupId, UserOrGroupId,UserOrGroup.Email,  SystemModstamp FROM GroupMember where UserOrGroup.Email != null];
-        for(GroupMember groupMember : listGroupMembers){
-            if (!mapGroupUsers.containsKey(groupMember.GroupId)) {
-                mapGroupUsers.put(groupMember.GroupId, new List<User>());
+        Set<Id> approverGroupIds = new Set<Id>();
+        for (sbaa__Approval__c approval : approvals) {
+            if (approval.sbaa__Approver__r.sbaa__User__c != null) {
+                approverUserIds.add(approval.sbaa__Approver__r.sbaa__User__c);
+            } else if (approval.sbaa__Approver__r.sbaa__GroupId__c != null) {
+                approverGroupIds.add(approval.sbaa__Approver__r.sbaa__GroupId__c);
             }
-            mapGroupUsers.get(groupMember.GroupId).add(groupMember.UserOrGroup);
         }
 
-        for(sbaa__Approval__c approval : approvals){
+        // Query users directly into a map
+        Map<Id, User> mapUsers = new Map<Id, User>(
+            [SELECT Id, Email FROM User WHERE isActive = true AND Id IN :approverUserIds]
+        );
 
-            if(approval.sbaa__Approver__r.sbaa__User__c != null){
-                Messaging.SingleEmailMessage mail = Messaging.renderStoredEmailTemplate(String.valueOf(TEMPLATE.Id), String.valueOf(approval.sbaa__Approver__r.sbaa__User__c), String.valueOf(approval.Id));
-                mail.setSaveAsActivity(false);
-                listEmails.add(mail);
-            }else if(approval.sbaa__Approver__r.sbaa__GroupId__c != null){
-                mapApprovalGroups.put(approval,approval.sbaa__Approver__r.sbaa__GroupId__c);
+        // Query group members and build group → users map
+        Map<Id, List<User>> mapGroupUsers = new Map<Id, List<User>>();
+        for (GroupMember gm : [
+            SELECT GroupId, UserOrGroupId, UserOrGroup.Email 
+            FROM GroupMember 
+            WHERE UserOrGroup.Email != null AND GroupId IN :approverGroupIds
+        ]) {
+            if (!mapGroupUsers.containsKey(gm.GroupId)) {
+                mapGroupUsers.put(gm.GroupId, new List<User>());
+            }
+            mapGroupUsers.get(gm.GroupId).add((User)gm.UserOrGroup);
+        }
 
-                List<User> listUserApproval =mapGroupUsers.get(mapApprovalGroups.get(approval));
-                if(listUserApproval != null){
-                    for(User user : listUserApproval){
-                        Messaging.SingleEmailMessage mail = Messaging.renderStoredEmailTemplate(String.valueOf(TEMPLATE.Id), String.valueOf(user.Id), String.valueOf(approval.Id));
-                        mail.setSaveAsActivity(false);
-                        listEmails.add(mail);
-                    }
+        // Build emails in one pass
+        List<Messaging.SingleEmailMessage> listEmails = new List<Messaging.SingleEmailMessage>();
+        for (sbaa__Approval__c approval : approvals) {
+            if (approval.sbaa__Approver__r.sbaa__User__c != null) {
+                listEmails.add(buildEmail(mapUsers.get(approval.sbaa__Approver__r.sbaa__User__c).Id, approval.Id));
+            } else if (approval.sbaa__Approver__r.sbaa__GroupId__c != null) {
+                for (User u : mapGroupUsers.get(approval.sbaa__Approver__r.sbaa__GroupId__c)) {
+                    listEmails.add(buildEmail(u.Id, approval.Id));
                 }
             }
         }
@@ -64,10 +60,17 @@ public without sharing class RecallOldApprovals {
         Messaging.sendEmail(listEmails);
     }
 
-    /**
-	* @author       APB
-	* @description  InputVariables class has the approvals
-	*/
+    // Helper method to avoid duplication
+    private static Messaging.SingleEmailMessage buildEmail(Id userId, Id approvalId) {
+        Messaging.SingleEmailMessage mail = Messaging.renderStoredEmailTemplate(
+            String.valueOf(TEMPLATE.Id),
+            String.valueOf(userId),
+            String.valueOf(approvalId)
+        );
+        mail.setSaveAsActivity(false);
+        return mail;
+    }
+
     public class InputVariables {
         @InvocableVariable(label='Approvals' description='List of approvals')
         public List<Id> approvalIds;
