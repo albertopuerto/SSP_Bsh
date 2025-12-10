@@ -143,7 +143,6 @@ public with sharing class AthenaBusinessPartnerService {
             acc.Name = dto.organizationName;
             acc.txt_AdditionalName__c = dto.organizationName2;
             acc.Type = 'Customer';
-            acc.Role__c = 'ETDE Domestic Customer'; // temporary defaulted
             acc.pkl_Language__c = 'English';// temporary defaulted
             acc.CurrencyIsoCode = dto.salesData[0].order.currencyCode;
             acc.txt_SearchTerm1__c = dto.searchTerm1;

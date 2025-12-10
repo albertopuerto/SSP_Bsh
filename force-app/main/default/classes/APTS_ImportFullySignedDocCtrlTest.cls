@@ -12,8 +12,8 @@ private class APTS_ImportFullySignedDocCtrlTest{
         //Create a new Account
         Account testAcc = new Account();
         testAcc.Name = 'Test Account';
-        testAcc.Role__c='ETDE Domestic Customer';
-    	testAcc.Type='Internal';
+        testAcc.pkm_BoschPartnerRole__c='BBCUEX';
+        testAcc.Type='Internal';
         testAcc.pkl_Language__c = 'German';
         insert testAcc;
         

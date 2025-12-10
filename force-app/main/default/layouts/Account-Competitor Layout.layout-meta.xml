@@ -19,10 +19,6 @@
                 <field>ParentId</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Required</behavior>
-                <field>Role__c</field>
-            </layoutItems>
-            <layoutItems>
                 <behavior>Edit</behavior>
                 <field>pkl_IsTradingPartnerNoRequired__c</field>
             </layoutItems>
