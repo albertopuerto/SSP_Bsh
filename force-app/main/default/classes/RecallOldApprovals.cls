@@ -51,7 +51,7 @@ public without sharing class RecallOldApprovals {
             }
         }
 
-        Messaging.sendEmail(listEmails);
+        Messaging.sendEmail(listEmails,false);
     }
 
     private static Messaging.SingleEmailMessage buildEmail(Id userId, Id approvalId) {
