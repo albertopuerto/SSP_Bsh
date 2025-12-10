@@ -3,11 +3,12 @@
  * @author            : APB
 **/
 public without sharing class RecallOldApprovals {
+
+    public static final EmailTemplate TEMPLATE = [SELECT Id, Name, DeveloperName, Markup FROM EmailTemplate where DeveloperName ='eml_ApprovalRequestTemplate'];
     /**
 	* @author       APB
 	* @description  Method that send the email to the users
-	* @param		signatures List<InputVariables>
-	* @return		List<String>
+	* @param		listApprovals List<InputVariables>
 	*/
     @InvocableMethod(label='Recall approvals' description='Method used to recall the approvals sending an email to the user')
     public static void sendEmailToApprovers(List<InputVariables> listApprovals) {
@@ -17,30 +18,19 @@ public without sharing class RecallOldApprovals {
         Map<String,List<User> > mapGroupUsers = new Map<String,List<User>>();
         Set<Id> approverUserIds = new Set<Id>();
 
+        List<Messaging.SingleEmailMessage> listEmails= new List<Messaging.SingleEmailMessage>();
+
         Set<Id>approvalIds= new Set<Id>();
-        for(Id approvalId: listApprovals[0].approvalIds){
-            approvalIds.add(approvalId);
-        }
+        approvalIds.addAll(listApprovals[0].approvalIds);
 
         List<sbaa__Approval__c> approvals =new ApprovalSelector().getApprovalApprovers(approvalIds);
-        
+
         for(sbaa__Approval__c approval : approvals){
             approverUserIds.add(approval.sbaa__Approver__r.sbaa__User__c);
         }
         List<User> listUsers = [SELECT Id,Email FROM User where isActive=true AND Id IN: approverUserIds ];
         for(User user : listUsers){
             mapUsers.put(user.Id,user);
-        }
-
-        for(sbaa__Approval__c approval : approvals){
-            System.debug(approval.sbaa__Approver__r.sbaa__User__c);
-            System.debug(approval.sbaa__Approver__c);
-            System.debug(approval);
-            if(approval.sbaa__Approver__r.sbaa__User__c != null){
-                sendEmail(mapUsers.get(approval.sbaa__Approver__r.sbaa__User__c),approval);
-            }else if(approval.sbaa__Approver__r.sbaa__GroupId__c != null){
-                mapApprovalGroups.put(approval,approval.sbaa__Approver__r.sbaa__GroupId__c);
-            }
         }
 
         List<GroupMember> listGroupMembers = [SELECT Id, GroupId, UserOrGroupId,UserOrGroup.Email,  SystemModstamp FROM GroupMember where UserOrGroup.Email != null];
@@ -52,22 +42,26 @@ public without sharing class RecallOldApprovals {
         }
 
         for(sbaa__Approval__c approval : approvals){
-            List<User> listUserApproval =mapGroupUsers.get(mapApprovalGroups.get(approval));
-            if(listUserApproval != null){
-                for(User user : listUserApproval){
-                    sendEmail(user,approval);
+
+            if(approval.sbaa__Approver__r.sbaa__User__c != null){
+                Messaging.SingleEmailMessage mail = Messaging.renderStoredEmailTemplate(String.valueOf(TEMPLATE.Id), String.valueOf(approval.sbaa__Approver__r.sbaa__User__c), String.valueOf(approval.Id));
+                mail.setSaveAsActivity(false);
+                listEmails.add(mail);
+            }else if(approval.sbaa__Approver__r.sbaa__GroupId__c != null){
+                mapApprovalGroups.put(approval,approval.sbaa__Approver__r.sbaa__GroupId__c);
+
+                List<User> listUserApproval =mapGroupUsers.get(mapApprovalGroups.get(approval));
+                if(listUserApproval != null){
+                    for(User user : listUserApproval){
+                        Messaging.SingleEmailMessage mail = Messaging.renderStoredEmailTemplate(String.valueOf(TEMPLATE.Id), String.valueOf(user.Id), String.valueOf(approval.Id));
+                        mail.setSaveAsActivity(false);
+                        listEmails.add(mail);
+                    }
                 }
             }
         }
-    }
 
-    public static void sendEmail(User user,sbaa__Approval__c approval){
-        EmailTemplate template = [SELECT Id, Name, DeveloperName, Markup FROM EmailTemplate where DeveloperName ='eml_ApprovalRequestTemplate'];
-
-        
-        Messaging.SingleEmailMessage mail = Messaging.renderStoredEmailTemplate(String.valueOf(template.Id), String.valueOf(user.Id), String.valueOf(approval.Id));
-        mail.setSaveAsActivity(false);
-        Messaging.sendEmail(new Messaging.SingleEmailMessage[] { mail });
+        Messaging.sendEmail(listEmails);
     }
 
     /**
