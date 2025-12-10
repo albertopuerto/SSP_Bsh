@@ -3,7 +3,7 @@
     <fullName>lkp_SalesArea__c</fullName>
     <deleteConstraint>SetNull</deleteConstraint>
     <description>Structure sales based on a regional division of the market.</description>
-    <label>Sales Area</label>
+    <label>Sales Data Customer</label>
     <lookupFilter>
         <active>true</active>
         <errorMessage>Sales Area Value does not exist in Account</errorMessage>
