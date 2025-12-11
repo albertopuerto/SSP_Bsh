@@ -3,7 +3,6 @@
     <fullName>Apttus__Owner_Expiration_Notice__c</fullName>
     <deprecated>false</deprecated>
     <description>To indicate the number of days prior to expiration date that a notification needs to be sent to the owner</description>
-    <externalId>false</externalId>
     <inlineHelpText>To indicate the number of days prior to expiration date that a notification needs to be sent to the owner</inlineHelpText>
     <label>Owner Expiration Notice</label>
     <required>false</required>
@@ -43,6 +42,16 @@
                 <fullName>120 Days</fullName>
                 <default>false</default>
                 <label>120 Days</label>
+            </value>
+            <value>
+                <fullName>182 Days</fullName>
+                <default>false</default>
+                <label>182 Days</label>
+            </value>
+            <value>
+                <fullName>365 Days</fullName>
+                <default>false</default>
+                <label>365 Days</label>
             </value>
         </valueSetDefinition>
     </valueSet>

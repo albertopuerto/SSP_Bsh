@@ -21,10 +21,9 @@ private class APTS_IntegrationController_Test {
         
         Account testAcc = new Account();
         testAcc.Name = 'test';
-        testAcc.Role__c='ETDE Domestic Customer';
+        testAcc.pkm_BoschPartnerRole__c='BBCUEX';
         testAcc.Type='Internal';
         testAcc.pkl_Language__c = 'German';
-        testAcc.pkl_PaymentTerms__c = 'Net 15';
         insert testAcc;
         
         Apttus__APTS_Agreement__c newAg = new Apttus__APTS_Agreement__c();

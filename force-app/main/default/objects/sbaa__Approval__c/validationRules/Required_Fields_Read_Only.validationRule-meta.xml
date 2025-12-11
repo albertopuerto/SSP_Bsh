@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Required_Fields_Read_Only</fullName>
+    <active>true</active>
+    <description>Prevent users to update the fields Approval Step and Record Field manually. These fields are populated by the system when the approvals are generated.</description>
+    <errorConditionFormula>AND (NOT($Permission.BypassValidations), 
+     OR (ISCHANGED(sbaa__ApprovalStep__c),
+         ISCHANGED(sbaa__RecordField__c))
+     )</errorConditionFormula>
+    <errorMessage>You are not allowed to change the Approval Step and Record Field manually!</errorMessage>
+</ValidationRule>

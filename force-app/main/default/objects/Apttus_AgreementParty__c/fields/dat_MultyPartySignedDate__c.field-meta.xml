@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>dat_MultyPartySignedDate__c</fullName>
+    <description>The date and the time when the agreement was signed by the contact which represents the contractual party</description>
+    <inlineHelpText>The date and the time when the agreement was signed by the contact which represents the contractual party</inlineHelpText>
+    <label>Multy Party Signed Date</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Date</type>
+</CustomField>

@@ -11,7 +11,7 @@
     
     
     <layouts>
-        <layout>Retention Policy Layout</layout>
+        <layout>Apttus__Retention Policy Layout</layout>
         <sections>
             <label>カスタムリンクス</label>
             <section>Custom Links</section>

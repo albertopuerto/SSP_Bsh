@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ExternalServiceRegistration xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Send Opportunity information to CPI and from CPI to Planisware</description>
+    <label>IF104OpportunityPlanisware</label>
+    <namedCredentialReference>SAPPLWNamedCredentials</namedCredentialReference>
+    <operations>
+        <active>true</active>
+        <name>sendopptdatatopjmtool</name>
+    </operations>
+    <registrationProviderType>Custom</registrationProviderType>
+    <schema>{
+  &quot;openapi&quot;: &quot;3.0.3&quot;,
+  &quot;info&quot;: { &quot;title&quot;: &quot;SSP&quot;, &quot;version&quot;: &quot;1.0.0&quot;, &quot;contact&quot;: {} },
+  &quot;servers&quot;: [
+    { &quot;url&quot;: &quot;https://rb-cpi-central-q.it-cpi018-rt.cfapps.eu10-003.hana.ondemand.com&quot; }
+  ],
+  &quot;paths&quot;: {
+    &quot;/http/rb.bbm.ssp.opportunity.customevent.sf&quot;: {
+      &quot;post&quot;: {
+        &quot;operationId&quot;: &quot;sendOpptDataToPJMTool&quot;,
+        &quot;summary&quot;: &quot;Send Opportunity Data to Project Management Tool&quot;,
+        &quot;description&quot;: &quot;Send Opportunity Data to Project Management Tool&quot;,
+        &quot;requestBody&quot;: {
+          &quot;content&quot;: {
+            &quot;application/json&quot;: {
+              &quot;schema&quot;: {
+                &quot;type&quot;: &quot;object&quot;,
+                &quot;properties&quot;: {
+                  &quot;opportunityCreate&quot;: {
+                    &quot;type&quot;: &quot;object&quot;,
+                    &quot;properties&quot;: {
+                      &quot;SF_Opportunity_Id__c&quot;: { &quot;type&quot;: &quot;string&quot; },
+                      &quot;CorrelationId&quot;: { &quot;type&quot;: &quot;string&quot; }
+                    },
+                    &quot;required&quot;: [&quot;SF_Opportunity_Id__c&quot;, &quot;CorrelationId&quot;]
+                  }
+                }
+              }
+            }
+          }
+        },
+        &quot;responses&quot;: {
+          &quot;200&quot;: {
+            &quot;description&quot;: &quot;Success message&quot;,
+            &quot;content&quot;: {
+              &quot;application/json&quot;: {
+                &quot;schema&quot;: {
+                  &quot;type&quot;: &quot;object&quot;,
+                  &quot;properties&quot;: {
+                    &quot;accountCreateResponse&quot;: {
+                      &quot;type&quot;: &quot;object&quot;,
+                      &quot;properties&quot;: {
+                        &quot;Status Code&quot;: { &quot;type&quot;: &quot;string&quot; },
+                        &quot;Status Text&quot;: { &quot;type&quot;: &quot;string&quot; },
+                        &quot;CorrelationId&quot;: { &quot;type&quot;: &quot;string&quot; }
+                      },
+                      &quot;required&quot;: [
+                        &quot;Status Code&quot;,
+                        &quot;Status Text&quot;,
+                        &quot;CorrelationId&quot;
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          &quot;500&quot;: {
+            &quot;description&quot;: &quot;Error message&quot;,
+            &quot;content&quot;: {
+              &quot;application/json&quot;: {
+                &quot;schema&quot;: {
+                  &quot;type&quot;: &quot;object&quot;,
+                  &quot;properties&quot;: {
+                    &quot;accountCreateResponse&quot;: {
+                      &quot;type&quot;: &quot;object&quot;,
+                      &quot;properties&quot;: {
+                        &quot;Status Code&quot;: { &quot;type&quot;: &quot;string&quot; },
+                        &quot;Status Text&quot;: { &quot;type&quot;: &quot;string&quot; },
+                        &quot;CorrelationId&quot;: { &quot;type&quot;: &quot;string&quot; }
+                      },
+                      &quot;required&quot;: [
+                        &quot;Status Code&quot;,
+                        &quot;Status Text&quot;,
+                        &quot;CorrelationId&quot;
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          &quot;404&quot;: {
+            &quot;description&quot;: &quot;Not found&quot;,
+            &quot;content&quot;: {
+              &quot;text/html&quot;: {
+                &quot;schema&quot;: {
+                  &quot;type&quot;: &quot;string&quot;
+                  
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+</schema>
+    <schemaType>OpenApi3</schemaType>
+    <schemaUploadFileExtension>json</schemaUploadFileExtension>
+    <schemaUploadFileName>OpportunitySendOpenAPI3.0_definition</schemaUploadFileName>
+    <serviceBinding>{&quot;host&quot;:&quot;rb-cpi-central-q.it-cpi018-rt.cfapps.eu10-003.hana.ondemand.com&quot;,&quot;basePath&quot;:&quot;&quot;,&quot;allowedSchemes&quot;:[&quot;HTTPS&quot;],&quot;requestMediaTypes&quot;:[],&quot;responseMediaTypes&quot;:[],&quot;compatibleMediaTypes&quot;:{&quot;text/html&quot;:&quot;text/plain&quot;},&quot;extensions&quot;:{}}</serviceBinding>
+    <status>Complete</status>
+    <systemVersion>7</systemVersion>
+</ExternalServiceRegistration>
