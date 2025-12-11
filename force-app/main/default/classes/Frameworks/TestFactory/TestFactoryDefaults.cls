@@ -3,7 +3,7 @@
 * @date         08/04/2025
 * @description  TestFactory framework: TestFactoryDefaults implements TestFactory
 					To specify defaults for objects, use the naming convention [ObjectName]Defaults.
-					For custom objects, omit the __c from the Object Name
+					 For custom objects, omit the __c from the Object Name
 */
 @IsTest
 public with sharing class TestFactoryDefaults{
