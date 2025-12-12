@@ -35,7 +35,7 @@ public with sharing class TestFactoryDefaults{
 	/**
 	* @author       APC
 	* @description  SupplierAccountDefault specific default set to be used in the future, be careful,
-						once this class will be changed, the test should be properly changed as well
+					once this class will be changed, the test should be properly changed as well
 	*/
 	public class SupplierAccountDefault implements TestFactory.FieldDefaults {
 		public Map<Schema.SObjectField, Object> getFieldDefaults() {
