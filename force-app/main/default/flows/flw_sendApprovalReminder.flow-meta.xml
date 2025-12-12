@@ -22,8 +22,8 @@
     <assignments>
         <name>assignIds</name>
         <label>assignIds</label>
-        <locationX>816</locationX>
-        <locationY>156</locationY>
+        <locationX>813</locationX>
+        <locationY>161</locationY>
         <assignmentItems>
             <assignToReference>approvalIds</assignToReference>
             <operator>Add</operator>
@@ -41,6 +41,31 @@
             <stringValue>{&quot;location&quot;:&quot;top&quot;,&quot;type&quot;:&quot;simple&quot;}</stringValue>
         </value>
     </customProperties>
+    <decisions>
+        <name>approvalNotNull</name>
+        <label>approvalNotNull</label>
+        <locationX>731</locationX>
+        <locationY>474</locationY>
+        <defaultConnector>
+            <targetReference>emptyApprovals</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>thereIsNoApproval</defaultConnectorLabel>
+        <rules>
+            <name>isNotNull</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>getApprovals</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>approvalLoop</targetReference>
+            </connector>
+            <label>isNotNull</label>
+        </rules>
+    </decisions>
     <environments>Default</environments>
     <interviewLabel>sendApprovalReminder {!$Flow.CurrentDateTime}</interviewLabel>
     <label>sendApprovalReminder</label>
@@ -84,7 +109,7 @@
         <locationY>363</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
-            <targetReference>approvalLoop</targetReference>
+            <targetReference>approvalNotNull</targetReference>
         </connector>
         <filterLogic>and</filterLogic>
         <filters>
@@ -105,6 +130,22 @@
         <object>sbaa__Approval__c</object>
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordLookups>
+    <screens>
+        <name>emptyApprovals</name>
+        <label>emptyApprovals</label>
+        <locationX>879</locationX>
+        <locationY>602</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>true</allowPause>
+        <fields>
+            <name>approvalsEmpty</name>
+            <fieldText>&lt;p&gt;There are no requested approvals pending to be approved&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
     <start>
         <locationX>455</locationX>
         <locationY>225</locationY>
