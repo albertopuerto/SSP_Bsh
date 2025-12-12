@@ -7,6 +7,9 @@
         <locationY>458</locationY>
         <actionName>chatterPost</actionName>
         <actionType>chatterPost</actionType>
+        <connector>
+            <targetReference>Log_Chatter_Owner_Posted</targetReference>
+        </connector>
         <flowTransactionModel>CurrentTransaction</flowTransactionModel>
         <inputParameters>
             <name>text</name>
@@ -21,8 +24,8 @@
             </value>
         </inputParameters>
         <nameSegment>chatterPost</nameSegment>
+        <offset>0</offset>
         <storeOutputAutomatically>true</storeOutputAutomatically>
-        <versionSegment>1</versionSegment>
     </actionCalls>
     <actionCalls>
         <name>act_PostToChatterOpportunityTeam</name>
@@ -31,6 +34,9 @@
         <locationY>758</locationY>
         <actionName>chatterPost</actionName>
         <actionType>chatterPost</actionType>
+        <connector>
+            <targetReference>Log_Chatter_Team_Posted</targetReference>
+        </connector>
         <flowTransactionModel>CurrentTransaction</flowTransactionModel>
         <inputParameters>
             <name>text</name>
@@ -45,9 +51,124 @@
             </value>
         </inputParameters>
         <nameSegment>chatterPost</nameSegment>
-        <versionSegment>1</versionSegment>
+        <offset>0</offset>
+    </actionCalls>
+    <actionCalls>
+        <name>Log_Chatter_Owner_Posted</name>
+        <label>Log_Chatter_Owner_Posted</label>
+        <locationX>50</locationX>
+        <locationY>566</locationY>
+        <actionName>FlowLogEntry</actionName>
+        <actionType>apex</actionType>
+        <connector>
+            <targetReference>Save_Logs</targetReference>
+        </connector>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>flowName</name>
+            <value>
+                <stringValue>flw_Quote_AfterUpdate_UpdateOppy</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>loggingLevelName</name>
+            <value>
+                <stringValue>INFO</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>message</name>
+            <value>
+                <stringValue>Chatter post sent to opportunity owner for quote </stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>recordId</name>
+            <value>
+                <elementReference>obj_ParentOpportunity.Id</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>tagsString</name>
+            <value>
+                <stringValue>quote-update,chatter-post</stringValue>
+            </value>
+        </inputParameters>
+        <nameSegment>FlowLogEntry</nameSegment>
+        <offset>0</offset>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </actionCalls>
+    <actionCalls>
+        <name>Log_Chatter_Team_Posted</name>
+        <label>Log_Chatter_Team_Posted</label>
+        <locationX>402</locationX>
+        <locationY>866</locationY>
+        <actionName>FlowLogEntry</actionName>
+        <actionType>apex</actionType>
+        <connector>
+            <targetReference>Save_Logs2</targetReference>
+        </connector>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>flowName</name>
+            <value>
+                <stringValue>flw_Quote_AfterUpdate_UpdateOppy</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>loggingLevelName</name>
+            <value>
+                <stringValue>INFO</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>message</name>
+            <value>
+                <stringValue>Chatter post sent to opportunity team for quote</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>recordId</name>
+            <value>
+                <elementReference>obj_ParentOpportunity.Id</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>tagsString</name>
+            <value>
+                <stringValue>quote-update</stringValue>
+            </value>
+        </inputParameters>
+        <nameSegment>FlowLogEntry</nameSegment>
+        <offset>0</offset>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </actionCalls>
+    <actionCalls>
+        <description>Save the Logs</description>
+        <name>Save_Logs</name>
+        <label>Save Logs</label>
+        <locationX>50</locationX>
+        <locationY>674</locationY>
+        <actionName>Logger</actionName>
+        <actionType>apex</actionType>
+        <flowTransactionModel>Automatic</flowTransactionModel>
+        <nameSegment>Logger</nameSegment>
+        <offset>0</offset>
+    </actionCalls>
+    <actionCalls>
+        <description>Save the Logs</description>
+        <name>Save_Logs2</name>
+        <label>Save Logs</label>
+        <locationX>402</locationX>
+        <locationY>974</locationY>
+        <actionName>Logger</actionName>
+        <actionType>apex</actionType>
+        <flowTransactionModel>Automatic</flowTransactionModel>
+        <nameSegment>Logger</nameSegment>
+        <offset>0</offset>
     </actionCalls>
     <apiVersion>60.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
     <assignments>
         <name>asgn_UserIdToChatterMessage</name>
         <label>Assign UserId to Chatter Message</label>

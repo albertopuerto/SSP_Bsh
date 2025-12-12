@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Layout xmlns="http://soap.sforce.com/2006/04/metadata">
-    <excludeButtons>DataDotComAccountInsights</excludeButtons>
-    <excludeButtons>DataDotComClean</excludeButtons>
+    <excludeButtons>DataDotComCompanyHierarchy</excludeButtons>
     <excludeButtons>DisableCustomerPortalAccount</excludeButtons>
     <excludeButtons>DisablePartnerPortalAccount</excludeButtons>
     <excludeButtons>IncludeOffline</excludeButtons>
+    <excludeButtons>OpenSlackRecordChannel</excludeButtons>
     <excludeButtons>Share</excludeButtons>
     <feedLayout>
         <autocollapsePublisher>true</autocollapsePublisher>
@@ -60,10 +60,6 @@
                 <field>Type</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Required</behavior>
-                <field>Role__c</field>
-            </layoutItems>
-            <layoutItems>
                 <behavior>Edit</behavior>
                 <field>txt_SearchTerm1__c</field>
             </layoutItems>
@@ -73,7 +69,7 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>pkl_CustomerBlock__c</field>
+                <field>chk_CustomerBlock__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
@@ -174,10 +170,6 @@
             <layoutItems>
                 <behavior>Required</behavior>
                 <field>CurrencyIsoCode</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Required</behavior>
-                <field>pkl_PaymentTerms__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns />
@@ -422,6 +414,18 @@
     </relatedLists>
     <relatedLists>
         <relatedList>RelatedFileList</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <fields>lkp_ReferencedAccount__c</fields>
+        <fields>pkl_ReasonCategory__c</fields>
+        <fields>txt_ReasonDescription__c</fields>
+        <relatedList>DuplicateAccountRelation__c.lkp_Account__c</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <fields>lkp_Account__c</fields>
+        <fields>pkl_ReasonCategory__c</fields>
+        <fields>txt_ReasonDescription__c</fields>
+        <relatedList>DuplicateAccountRelation__c.lkp_ReferencedAccount__c</relatedList>
     </relatedLists>
     <relatedObjects>ParentId</relatedObjects>
     <showEmailCheckbox>false</showEmailCheckbox>

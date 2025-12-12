@@ -1,14 +1,13 @@
 @isTest
-public class QuoteLineEmailController_Test {	
+public class QuoteLineEmailController_Test {    
     
     @isTest
     static void testQuoteLineEmailController() {
         // Create a test Account
         Account testAccount = new Account(
             Name = 'Test Account',
-            Role__c='ETDE Domestic Customer',
-            pkl_Language__c='English',
-            pkl_PaymentTerms__c = 'Net 15'
+            pkm_BoschPartnerRole__c='BBCUEX',
+            pkl_Language__c='English'
         );
         insert testAccount;
         

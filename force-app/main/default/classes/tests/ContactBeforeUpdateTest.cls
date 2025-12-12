@@ -12,7 +12,8 @@ public class ContactBeforeUpdateTest {
     @testSetup
     public static void createRecords(){
 
-        Account[] testAccountList = (Account[])TestFactory.createSObjectList(new Account(), 1);
+        if(FlowsMetadataUtil.isFlowActive('flw_propagate_main_contact_role') == true && FlowsMetadataUtil.isFlowActive('flw_Contact_beforeUpdate') == true){
+            Account[] testAccountList = (Account[])TestFactory.createSObjectList(new Account(), 1);
             insert testAccountList;
 
             Contact[] testContactList = (Contact[])TestFactory.createSObjectList(new Contact(), 1);
@@ -23,43 +24,50 @@ public class ContactBeforeUpdateTest {
             testContactList[0].pkl_AccountGroup__c = 'ETDE Contact ETCN Contact';
 
             insert testContactList;
+        }
     }
 
 
     @IsTest
     public static void succesfullUpdateOfRoleMainAccountField(){
-        User productManagerUser = (User)TestFactory.createSObject(new User(), 'TestFactoryDefaults.ProductManagerUserDefaults', true);
-        Account testAccount = [Select Id from Account LIMIT 1];
-        Contact testContact = [Select Id from Contact LIMIT 1];
-        System.runAs(productManagerUser){
 
-            AccountContactRelation acr = [Select Id,mpkl_PartnerRoles__c from AccountContactRelation WHERE ContactId =: testContact.Id AND AccountId =: testAccount.Id LIMIT 1];
-            Assert.areEqual('0001', acr.mpkl_PartnerRoles__c, 'Role should be 0001');
+        if(FlowsMetadataUtil.isFlowActive('flw_propagate_main_contact_role') == true && FlowsMetadataUtil.isFlowActive('flw_Contact_beforeUpdate') == true){
+            User productManagerUser = (User)TestFactory.createSObject(new User(), 'TestFactoryDefaults.ProductManagerUserDefaults', true);
+            Account testAccount = [Select Id from Account LIMIT 1];
+            Contact testContact = [Select Id from Contact LIMIT 1];
+            System.runAs(productManagerUser){
 
-            testContact.mpkl_RoleMainAccount__c = '0003;0001;';
-            update testContact;
+                AccountContactRelation acr = [Select Id,mpkl_PartnerRoles__c from AccountContactRelation WHERE ContactId =: testContact.Id AND AccountId =: testAccount.Id LIMIT 1];
+                Assert.areEqual('0001', acr.mpkl_PartnerRoles__c, 'Role should be 0001');
 
-            AccountContactRelation acrModified = [Select Id,mpkl_PartnerRoles__c from AccountContactRelation WHERE ContactId =: testContact.Id AND AccountId =: testAccount.Id LIMIT 1];
-            Assert.areEqual('0001;0003', acrModified.mpkl_PartnerRoles__c, 'Role should be 0001;0003');
+                testContact.mpkl_RoleMainAccount__c = '0003;0001;';
+                update testContact;
+
+                AccountContactRelation acrModified = [Select Id,mpkl_PartnerRoles__c from AccountContactRelation WHERE ContactId =: testContact.Id AND AccountId =: testAccount.Id LIMIT 1];
+                Assert.areEqual('0001;0003', acrModified.mpkl_PartnerRoles__c, 'Role should be 0001;0003');
+            }
         }
     }
 
     @IsTest
     public static void incorrectUpdateOfRoleMainAccountField(){
-        User productManagerUser = (User)TestFactory.createSObject(new User(), 'TestFactoryDefaults.ProductManagerUserDefaults', true);
-        System.runAs(productManagerUser){
+        
+       if(FlowsMetadataUtil.isFlowActive('flw_propagate_main_contact_role') == true && FlowsMetadataUtil.isFlowActive('flw_Contact_beforeUpdate') == true){
+            User productManagerUser = (User)TestFactory.createSObject(new User(), 'TestFactoryDefaults.ProductManagerUserDefaults', true);
+            System.runAs(productManagerUser){
 
-            Account testAccount = [Select Id from Account LIMIT 1];
-            Contact testContact = [Select Id from Contact LIMIT 1];
+                Account testAccount = [Select Id from Account LIMIT 1];
+                Contact testContact = [Select Id from Contact LIMIT 1];
 
-            AccountContactRelation acr = [Select Id,mpkl_PartnerRoles__c from AccountContactRelation WHERE ContactId =: testContact.Id AND AccountId =: testAccount.Id LIMIT 1];
-            Assert.areEqual('0001', acr.mpkl_PartnerRoles__c, 'Role should be 0001');
+                AccountContactRelation acr = [Select Id,mpkl_PartnerRoles__c from AccountContactRelation WHERE ContactId =: testContact.Id AND AccountId =: testAccount.Id LIMIT 1];
+                Assert.areEqual('0001', acr.mpkl_PartnerRoles__c, 'Role should be 0001');
 
-            testContact.mpkl_RoleMainAccount__c = '0003;0001;';
-            update testContact;
+                testContact.mpkl_RoleMainAccount__c = '0003;0001;';
+                update testContact;
 
-            AccountContactRelation acrModified = [Select Id,mpkl_PartnerRoles__c from AccountContactRelation WHERE ContactId =: testContact.Id AND AccountId =: testAccount.Id LIMIT 1];
-            Assert.areNotEqual('0001', acrModified.mpkl_PartnerRoles__c, 'Incorrect data, the role should be 0001;0003');
+                AccountContactRelation acrModified = [Select Id,mpkl_PartnerRoles__c from AccountContactRelation WHERE ContactId =: testContact.Id AND AccountId =: testAccount.Id LIMIT 1];
+                Assert.areNotEqual('0001', acrModified.mpkl_PartnerRoles__c, 'Incorrect data, the role should be 0001;0003');
+            }
         }
     }
 

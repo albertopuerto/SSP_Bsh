@@ -20,14 +20,12 @@ public with sharing class TestFactoryDefaults{
 		*/
 		public Map<Schema.SObjectField, Object> getFieldDefaults() {
 			return new Map<Schema.SObjectField, Object> {
-					Account.Name => 'Customer Account',
-					Account.RecordTypeID => TestFactoryConstants.MAP_OBJ_RECORD_TYPE_IDS.get('Account').get('Customer'),
+					Account.Name => 'Customer_B2B Account',
+					Account.RecordTypeID => TestFactoryConstants.MAP_OBJ_RECORD_TYPE_IDS.get('Account').get('Customer_B2B'),
 					Account.Phone => '0123456',
 					Account.BillingCountry => 'bTest',
 					Account.ShippingCountry => 'sTest',
 					Account.txt_AthenaUUID__c => '1111',
-					Account.Role__c => 'ETDE Domestic Customer',
-					Account.pkl_PaymentTerms__c => 'Due on receipt',
 					Account.pkl_Language__c => 'English',
 					Account.pkm_BoschPartnerRole__c => 'BBCUSH'
 			};
@@ -36,7 +34,7 @@ public with sharing class TestFactoryDefaults{
 
 	/**
 	* @author       APC
-	* @description  SupplierAccountDefault specific default set to be used in the future, be careful, 
+	* @description  SupplierAccountDefault specific default set to be used in the future, be careful,
 						once this class will be changed, the test should be properly changed as well
 	*/
 	public class SupplierAccountDefault implements TestFactory.FieldDefaults {
@@ -46,8 +44,6 @@ public with sharing class TestFactoryDefaults{
 					Account.RecordTypeID => TestFactoryConstants.MAP_OBJ_RECORD_TYPE_IDS.get('Account').get('Supplier'),
 					Account.Phone => '0123456',
 					Account.txt_AthenaUUID__c => '2222',
-					Account.Role__c => 'ETDE Domestic Customer',
-					Account.pkl_PaymentTerms__c => 'Due on receipt',
 					Account.pkl_Language__c => 'English',
 					Account.pkm_BoschPartnerRole__c => 'BBCUEX'
 			};
@@ -173,7 +169,7 @@ public with sharing class TestFactoryDefaults{
 		 */
 		public Map<Schema.SObjectField, Object> getFieldDefaults() {
 			return new Map<Schema.SObjectField, Object>{
-				User.Alias => 'userSalesRead',
+				User.Alias => 'userSR',
 				User.Email => 'testusuario1@example.com',
 				User.Emailencodingkey => 'UTF-8',
 				User.Languagelocalekey => 'en_US',
@@ -215,6 +211,35 @@ public with sharing class TestFactoryDefaults{
 			};
 		}
 	}
+
+	/**
+	 * @author       Iliana Dimitrova
+	 * @description  IntegrationUserDefaults constructor
+	 */
+	public class IntegrationUserDefaults implements TestFactory.FieldDefaults {
+		/**
+		 * @author       Iliana Dimitrova
+		 * @description  define user getFieldDefaults()
+		 * @return		Map<Schema.SObjectField, Object>
+		 */
+		public Map<Schema.SObjectField, Object> getFieldDefaults() {
+			return new Map<Schema.SObjectField, Object>{
+				User.Alias => 'userInt',
+				User.Email => 'testusuario1@example.com',
+				User.Emailencodingkey => 'UTF-8',
+				User.Languagelocalekey => 'en_US',
+				User.Localesidkey => 'en_US',
+				User.Profileid => TestFactoryConstants.MAP_PROFILE_IDS.get('SalesforceAPIOnlySystemIntegrations'),
+				User.LastName => 'Test Integration User',
+				User.Country => 'United States',
+				User.Timezonesidkey => 'America/Los_Angeles',
+				User.FederationIdentifier => 'userInt@etasbosch.com' + system.currentTimeMillis(),
+				User.Username => 'userInt@etasbosch.com' + system.currentTimeMillis(),
+				User.IsActive  => true
+			};
+		}
+	}
+
     public class QuoteDefaults implements TestFactory.FieldDefaults{
         /**
 		 * @author       TLQ1KOR
@@ -224,7 +249,11 @@ public with sharing class TestFactoryDefaults{
 		public Map<Schema.SObjectField, Object> getFieldDefaults() {
             return new Map<Schema.SObjectField, Object>{
                 SBQQ__Quote__c.SBQQ__Type__c	 => 'Quote'
+
+
+
             };
+
         }
     }
     public class ContentVersionDefaults implements TestFactory.FieldDefaults{
@@ -237,8 +266,9 @@ public with sharing class TestFactoryDefaults{
             return new Map<Schema.SObjectField, Object>{
               ContentVersion.Title => 'Test Document',
               ContentVersion.PathOnClient => 'TestDocument.pdf',
-              ContentVersion.VersionData => Blob.valueOf('Test Content Data') 
+              ContentVersion.VersionData => Blob.valueOf('Test Content Data')
             };
+
         }
     }
     public class ContentDocumentLinkDefaults implements TestFactory.FieldDefaults{
@@ -251,8 +281,10 @@ public with sharing class TestFactoryDefaults{
             return new Map<Schema.SObjectField, Object>{
             ContentDocumentLink.ShareType => 'V'
             };
+
         }
     }
+
 
     public class QuoteLineDefaults implements TestFactory.FieldDefaults{
         /**
@@ -264,7 +296,9 @@ public with sharing class TestFactoryDefaults{
             return new Map<Schema.SObjectField, Object>{
                             SBQQ__QuoteLine__c.SBQQ__Quantity__c => 1,
             SBQQ__QuoteLine__c.SBQQ__ListPrice__c => 100.00
+
             };
+
         }
     }
     public class Product2Defaults implements TestFactory.FieldDefaults{
@@ -276,11 +310,14 @@ public with sharing class TestFactoryDefaults{
 		public Map<Schema.SObjectField, Object> getFieldDefaults() {
             return new Map<Schema.SObjectField, Object>{
                 Product2.Name => 'Test Product'
+
             };
+
         }
+
     }
 
-	public class SalesAreaDefaults implements TestFactory.FieldDefaults{
+    public class SalesAreaDefaults implements TestFactory.FieldDefaults{
 		/**
 		 * @author       FSJ
 		 * @description  define SalesArea__c getFieldDefaults()
@@ -291,10 +328,9 @@ public with sharing class TestFactoryDefaults{
 				SalesArea__c.pkl_SalesOrg__c => 'DEM5',
 				SalesArea__c.pkl_DistributionChannel__c => 'A1',
 				SalesArea__c.pkl_Division__c => '01'
-				
 			};
-		
+
 		}
 	}
-   
+
 }

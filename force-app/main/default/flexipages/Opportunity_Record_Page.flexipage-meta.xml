@@ -45,6 +45,9 @@
                         <valueListItems>
                             <value>CustomButton.Opportunity.SBQQ__Include_Document</value>
                         </valueListItems>
+                        <valueListItems>
+                            <value>Opportunity.Send_to_PLW</value>
+                        </valueListItems>
                     </valueList>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
@@ -75,10 +78,11 @@
         <itemInstances>
             <componentInstance>
                 <componentInstanceProperties>
-                    <name>recordId</name>
+                    <name>hideUpdateButton</name>
+                    <value>false</value>
                 </componentInstanceProperties>
-                <componentName>customPath</componentName>
-                <identifier>c_customPath</identifier>
+                <componentName>runtime_sales_pathassistant:pathAssistant</componentName>
+                <identifier>runtime_sales_pathassistant_pathAssistant</identifier>
             </componentInstance>
         </itemInstances>
         <mode>Replace</mode>
@@ -158,6 +162,10 @@
     <flexiPageRegions>
         <itemInstances>
             <componentInstance>
+                <componentInstanceProperties>
+                    <name>label</name>
+                    <value>Tabs</value>
+                </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>tabs</name>
                     <value>tabs</value>
@@ -259,6 +267,10 @@
         </itemInstances>
         <itemInstances>
             <componentInstance>
+                <componentInstanceProperties>
+                    <name>label</name>
+                    <value>Tabs</value>
+                </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>tabs</name>
                     <value>Facet-7bb5c5ce-befd-4287-a79c-7db81ef7eb9e</value>

@@ -166,6 +166,9 @@
         <recordType>Apttus__APTS_Agreement__c.X2nd_Processor_EPA_GPA</recordType>
     </layoutAssignments>
     <layoutAssignments>
+        <layout>Apttus__RetentionPolicy__c-Apttus__Retention Policy Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
         <layout>ExportControlSheet__c-Export Control Sheet Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
@@ -194,6 +197,9 @@
     </layoutAssignments>
     <layoutAssignments>
         <layout>SalesAreaLink__c-Sales Area Link Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>TaxNumber__c-Tax Number Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
         <layout>sbaa__Approval__c-sbaa__Approval Layout</layout>
@@ -339,6 +345,14 @@
         <readable>true</readable>
     </fieldPermissions>
     <tabVisibilities>
+        <tab>Approval_History</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>Apttus__RetentionPolicy__c</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
         <tab>BoschPartnerFunction__c</tab>
         <visibility>Hidden</visibility>
     </tabVisibilities>
@@ -347,7 +361,16 @@
         <visibility>Hidden</visibility>
     </tabVisibilities>
     <tabVisibilities>
+        <tab>TaxNumber__c</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
         <tab>sbaa__Approval__c</tab>
         <visibility>Hidden</visibility>
     </tabVisibilities>
+    <applicationVisibilities>
+        <application>standard__Chatter</application>
+        <default>true</default>
+        <visible>true</visible>
+    </applicationVisibilities>
 </Profile>

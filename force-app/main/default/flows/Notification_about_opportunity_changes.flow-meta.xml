@@ -45,7 +45,6 @@
             </value>
         </inputParameters>
         <nameSegment>customNotificationAction</nameSegment>
-        <offset>0</offset>
     </actionCalls>
     <actionCalls>
         <name>Log_Acc_Team_Notif_Error</name>
@@ -227,7 +226,6 @@
             </value>
         </inputParameters>
         <nameSegment>customNotificationAction</nameSegment>
-        <offset>0</offset>
     </actionCalls>
     <actionCalls>
         <name>Opp_notification</name>
@@ -325,7 +323,6 @@
             </value>
         </inputParameters>
         <nameSegment>customNotificationAction</nameSegment>
-        <offset>0</offset>
     </actionCalls>
     <actionCalls>
         <name>Opportunity_Notification</name>
@@ -372,7 +369,6 @@
             </value>
         </inputParameters>
         <nameSegment>customNotificationAction</nameSegment>
-        <offset>0</offset>
     </actionCalls>
     <actionCalls>
         <description>Save the logs</description>
@@ -422,7 +418,6 @@
         <offset>0</offset>
     </actionCalls>
     <apiVersion>63.0</apiVersion>
-    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
     <assignments>
         <name>Add_Last_Modified_User_to_Notified_List</name>
         <label>Add Last Modified User to Notified List</label>

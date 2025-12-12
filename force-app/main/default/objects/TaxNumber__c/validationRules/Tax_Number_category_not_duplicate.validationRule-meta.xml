@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Tax_Number_category_not_duplicate</fullName>
+    <active>false</active>
+    <errorConditionFormula>OR (ISNEW(), ISCHANGED( txt_TaxCategory__c ))</errorConditionFormula>
+    <errorMessage>Duplicate Tax Category</errorMessage>
+</ValidationRule>

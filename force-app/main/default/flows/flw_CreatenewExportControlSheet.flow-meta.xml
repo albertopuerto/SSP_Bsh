@@ -1,10 +1,68 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <actionCalls>
+        <name>Log_Account_Civilian_Updated_Yes</name>
+        <label>Log_Account_Civilian_Updated_Yes</label>
+        <locationX>314</locationX>
+        <locationY>998</locationY>
+        <actionName>FlowLogEntry</actionName>
+        <actionType>apex</actionType>
+        <connector>
+            <targetReference>save_log</targetReference>
+        </connector>
+        <flowTransactionModel>Automatic</flowTransactionModel>
+        <inputParameters>
+            <name>flowName</name>
+            <value>
+                <stringValue>flw_CreatenewExportControlSheet</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>loggingLevelName</name>
+            <value>
+                <stringValue>ERROR</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>message</name>
+            <value>
+                <stringValue>Account civilian customer field updated to Yes for export control sheet</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>recordId</name>
+            <value>
+                <elementReference>recordId</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>tagsString</name>
+            <value>
+                <stringValue>FLW-DML-00008</stringValue>
+            </value>
+        </inputParameters>
+        <nameSegment>FlowLogEntry</nameSegment>
+        <offset>0</offset>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </actionCalls>
+    <actionCalls>
+        <description>save the logs</description>
+        <name>save_log</name>
+        <label>save log</label>
+        <locationX>314</locationX>
+        <locationY>1106</locationY>
+        <actionName>Logger</actionName>
+        <actionType>apex</actionType>
+        <flowTransactionModel>Automatic</flowTransactionModel>
+        <nameSegment>Logger</nameSegment>
+        <offset>0</offset>
+    </actionCalls>
     <apiVersion>62.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
     <decisions>
         <name>Check_Civilian</name>
         <label>Check Civilian</label>
-        <locationX>182</locationX>
+        <locationX>314</locationX>
         <locationY>782</locationY>
         <defaultConnector>
             <targetReference>Update_Account_No</targetReference>
@@ -137,7 +195,7 @@
     <recordCreates>
         <name>Create_Civilian_Usage_Check</name>
         <label>Create Civilian Usage Check</label>
-        <locationX>182</locationX>
+        <locationX>314</locationX>
         <locationY>674</locationY>
         <connector>
             <targetReference>Check_Civilian</targetReference>
@@ -226,7 +284,7 @@
     <recordLookups>
         <name>GetExportcontrolsheetRecords</name>
         <label>GetExportcontrolsheetRecords</label>
-        <locationX>182</locationX>
+        <locationX>314</locationX>
         <locationY>134</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
@@ -251,7 +309,7 @@
     <recordUpdates>
         <name>Update_Account_No</name>
         <label>Update Account No</label>
-        <locationX>314</locationX>
+        <locationX>578</locationX>
         <locationY>890</locationY>
         <filterLogic>and</filterLogic>
         <filters>
@@ -274,6 +332,9 @@
         <label>Update Account Yes</label>
         <locationX>50</locationX>
         <locationY>890</locationY>
+        <faultConnector>
+            <targetReference>Log_Account_Civilian_Updated_Yes</targetReference>
+        </faultConnector>
         <filterLogic>and</filterLogic>
         <filters>
             <field>Id</field>
@@ -293,7 +354,7 @@
     <recordUpdates>
         <name>update_old_Export_sheet_records</name>
         <label>update old Export sheet records</label>
-        <locationX>182</locationX>
+        <locationX>314</locationX>
         <locationY>566</locationY>
         <connector>
             <targetReference>Create_Civilian_Usage_Check</targetReference>
@@ -319,7 +380,7 @@
         <description>Screen that contains the three initial questions about the customer for ESC classification.</description>
         <name>scrn_GeneralKnowledge</name>
         <label>General Knowledge Screen</label>
-        <locationX>182</locationX>
+        <locationX>314</locationX>
         <locationY>242</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
@@ -369,7 +430,7 @@
     <screens>
         <name>scrn_Google_Search</name>
         <label>Google Search Screen</label>
-        <locationX>182</locationX>
+        <locationX>314</locationX>
         <locationY>458</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
@@ -403,7 +464,7 @@
         <description>Screen that contains Customer items, service etc</description>
         <name>scrnCustomer_Website</name>
         <label>Customer Website Screen</label>
-        <locationX>182</locationX>
+        <locationX>314</locationX>
         <locationY>350</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
@@ -460,7 +521,7 @@
         <showHeader>true</showHeader>
     </screens>
     <start>
-        <locationX>56</locationX>
+        <locationX>188</locationX>
         <locationY>0</locationY>
         <connector>
             <targetReference>GetExportcontrolsheetRecords</targetReference>

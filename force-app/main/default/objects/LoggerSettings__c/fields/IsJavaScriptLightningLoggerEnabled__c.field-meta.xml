@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>IsJavaScriptLightningLoggerEnabled__c</fullName>
+    <businessStatus>Active</businessStatus>
+    <complianceGroup>PII;GDPR;CCPA</complianceGroup>
+    <defaultValue>false</defaultValue>
+    <deprecated>false</deprecated>
+    <inlineHelpText>When enabled, Nebula Logger will automatically call Salesforce&#39;s lightning-logger LWC when logging via lightning components. This then creates a &#39;Lightning Logger&#39; event in Event Monitoring.</inlineHelpText>
+    <label>Enable JavaScript lightning-logger</label>
+    <securityClassification>Confidential</securityClassification>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

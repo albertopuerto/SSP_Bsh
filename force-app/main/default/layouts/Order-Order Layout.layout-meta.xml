@@ -52,6 +52,10 @@
                 <behavior>Readonly</behavior>
                 <field>txt_SAPExternalSolutionQuotationId__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>lkp_SalesArea__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>

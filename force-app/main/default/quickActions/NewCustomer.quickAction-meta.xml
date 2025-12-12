@@ -22,17 +22,7 @@
             </quickActionLayoutItems>
             <quickActionLayoutItems>
                 <emptySpace>false</emptySpace>
-                <field>Role__c</field>
-                <uiBehavior>Required</uiBehavior>
-            </quickActionLayoutItems>
-            <quickActionLayoutItems>
-                <emptySpace>false</emptySpace>
                 <field>pkl_Language__c</field>
-                <uiBehavior>Required</uiBehavior>
-            </quickActionLayoutItems>
-            <quickActionLayoutItems>
-                <emptySpace>false</emptySpace>
-                <field>pkl_PaymentTerms__c</field>
                 <uiBehavior>Required</uiBehavior>
             </quickActionLayoutItems>
         </quickActionLayoutColumns>
@@ -51,6 +41,6 @@
     </quickActionLayout>
     <standardLabel>NewRecordType</standardLabel>
     <targetObject>Account</targetObject>
-    <targetRecordType>Account.Customer</targetRecordType>
+    <targetRecordType>Account.Customer_B2B</targetRecordType>
     <type>Create</type>
 </QuickAction>

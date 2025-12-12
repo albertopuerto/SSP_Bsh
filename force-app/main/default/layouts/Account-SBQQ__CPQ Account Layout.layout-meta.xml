@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <Layout xmlns="http://soap.sforce.com/2006/04/metadata">
     <customButtons>SBQQ__Amend_Assets</customButtons>
     <customButtons>SBQQ__Renew_Assets</customButtons>
@@ -15,10 +15,6 @@
         <label>Account Information</label>
         <layoutColumns>
             <layoutItems>
-                <behavior>Required</behavior>
-                <field>pkl_PaymentTerms__c</field>
-            </layoutItems>
-            <layoutItems>
                 <behavior>Edit</behavior>
                 <field>OwnerId</field>
             </layoutItems>
@@ -29,10 +25,6 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>ParentId</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Required</behavior>
-                <field>Role__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
@@ -197,9 +189,6 @@
         <layoutColumns />
         <style>CustomLinks</style>
     </layoutSections>
-    <miniLayout>
-        <fields>pkl_PaymentTerms__c</fields>
-    </miniLayout>
     <relatedLists>
         <fields>FULL_NAME</fields>
         <fields>CONTACT.TITLE</fields>
@@ -288,6 +277,18 @@
         <fields>ftxt_DistributionChannel__c</fields>
         <fields>ftxt_Division__c</fields>
         <relatedList>SalesAreaLink__c.mdr_Account__c</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <fields>lkp_ReferencedAccount__c</fields>
+        <fields>pkl_ReasonCategory__c</fields>
+        <fields>txt_ReasonDescription__c</fields>
+        <relatedList>DuplicateAccountRelation__c.lkp_Account__c</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <fields>lkp_Account__c</fields>
+        <fields>pkl_ReasonCategory__c</fields>
+        <fields>txt_ReasonDescription__c</fields>
+        <relatedList>DuplicateAccountRelation__c.lkp_ReferencedAccount__c</relatedList>
     </relatedLists>
     <relatedObjects>ParentId</relatedObjects>
     <showEmailCheckbox>false</showEmailCheckbox>
