@@ -5,7 +5,8 @@
     <description>If Tax is set to &#39;Non-Standard&#39;, &#39;Non-Standard Tax Details&#39; field is required</description>
     <errorConditionFormula>AND(
 ISPICKVAL(APTS_Tax__c,&#39;Non-Standard&#39;),
-ISBLANK(APTS_Non_Standard_Tax_Details__c)
+ISBLANK(APTS_Non_Standard_Tax_Details__c),
+ NOT( $Permission.BypassValidations ) 
 )</errorConditionFormula>
     <errorDisplayField>APTS_Non_Standard_Tax_Details__c</errorDisplayField>
     <errorMessage>Please enter &#39;Non-Standard Tax Details&#39;</errorMessage>

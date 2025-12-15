@@ -591,14 +591,15 @@
         <inputReference>$Record</inputReference>
     </recordUpdates>
     <start>
-        <locationX>490</locationX>
-        <locationY>48</locationY>
+        <locationX>491</locationX>
+        <locationY>46</locationY>
         <connector>
             <targetReference>Decision_Check_to_Send_Email_Alerts</targetReference>
         </connector>
+        <filterFormula>NOT({!$Permission.BypassFlows})</filterFormula>
         <object>Apttus__APTS_Agreement__c</object>
         <recordTriggerType>CreateAndUpdate</recordTriggerType>
         <triggerType>RecordAfterSave</triggerType>
     </start>
-    <status>Active</status>
+    <status>Draft</status>
 </Flow>

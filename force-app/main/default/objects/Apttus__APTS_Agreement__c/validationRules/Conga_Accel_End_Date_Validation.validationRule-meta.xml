@@ -4,7 +4,7 @@
     <active>true</active>
     <description>Agreement End Date cannot be prior to the Agreement Start Date</description>
     <errorConditionFormula>NOT(ISBLANK(Apttus__Contract_End_Date__c)) &amp;&amp;
-Apttus__Contract_End_Date__c &lt;=  Apttus__Contract_Start_Date__c</errorConditionFormula>
+Apttus__Contract_End_Date__c &lt;=  Apttus__Contract_Start_Date__c &amp;&amp; NOT( $Permission.BypassValidations )</errorConditionFormula>
     <errorDisplayField>Apttus__Contract_End_Date__c</errorDisplayField>
     <errorMessage>Agreement End Date cannot be prior to the Agreement Start Date</errorMessage>
 </ValidationRule>

@@ -355,11 +355,12 @@
         <connector>
             <targetReference>Check_for_relevant_Changes</targetReference>
         </connector>
+        <filterFormula>NOT({!$Permission.BypassFlows})</filterFormula>
         <object>Account</object>
         <recordTriggerType>Update</recordTriggerType>
         <triggerType>RecordAfterSave</triggerType>
     </start>
-    <status>Active</status>
+    <status>Draft</status>
     <textTemplates>
         <name>emailBody</name>
         <isViewedAsPlainText>true</isViewedAsPlainText>

@@ -21,9 +21,11 @@
             </value>
         </inputParameters>
         <nameSegment>chatterPost</nameSegment>
+        <offset>0</offset>
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </actionCalls>
     <apiVersion>64.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
     <decisions>
         <description>It checks the status is Created in Athena</description>
         <name>Check_if_Status_is_Created_in_Athena</name>
@@ -97,6 +99,7 @@
         <connector>
             <targetReference>Check_if_Status_is_Created_in_Athena</targetReference>
         </connector>
+        <filterFormula>NOT({!$Permission.BypassFlows})</filterFormula>
         <object>Account</object>
         <recordTriggerType>Update</recordTriggerType>
         <triggerType>RecordAfterSave</triggerType>

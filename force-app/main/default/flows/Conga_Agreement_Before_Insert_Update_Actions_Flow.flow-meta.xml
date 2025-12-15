@@ -413,14 +413,15 @@
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordLookups>
     <start>
-        <locationX>211</locationX>
+        <locationX>212</locationX>
         <locationY>23</locationY>
         <connector>
             <targetReference>New_or_Existing_Agreement</targetReference>
         </connector>
+        <filterFormula>NOT({!$Permission.BypassFlows})</filterFormula>
         <object>Apttus__APTS_Agreement__c</object>
         <recordTriggerType>CreateAndUpdate</recordTriggerType>
         <triggerType>RecordBeforeSave</triggerType>
     </start>
-    <status>Obsolete</status>
+    <status>Active</status>
 </Flow>

@@ -2,6 +2,7 @@
 <ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Lock_Account_Update</fullName>
     <active>true</active>
-    <errorConditionFormula>AND(ISPICKVAL(pkl_Status__c, &quot;Received in Athena for BP creation&quot;),   NOT($Permission.LockedAccountUpdate) )</errorConditionFormula>
+    <errorConditionFormula>AND(ISPICKVAL(pkl_Status__c, &quot;Received in Athena for BP creation&quot;),   NOT($Permission.LockedAccountUpdate), 
+NOT( $Permission.BypassValidations))</errorConditionFormula>
     <errorMessage>This Account has been locked until the BP received from Athena</errorMessage>
 </ValidationRule>

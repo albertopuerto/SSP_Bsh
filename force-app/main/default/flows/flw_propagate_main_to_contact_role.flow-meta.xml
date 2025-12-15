@@ -27,8 +27,8 @@
     <recordUpdates>
         <name>upd_updatePartnerRolesOnRecord</name>
         <label>updatePartnerRolesOnRecord</label>
-        <locationX>666</locationX>
-        <locationY>352</locationY>
+        <locationX>758</locationX>
+        <locationY>405</locationY>
         <filterLogic>and</filterLogic>
         <filters>
             <field>Id</field>
@@ -46,19 +46,12 @@
         <object>Contact</object>
     </recordUpdates>
     <start>
-        <locationX>540</locationX>
-        <locationY>47</locationY>
+        <locationX>630</locationX>
+        <locationY>51</locationY>
         <connector>
             <targetReference>upd_updatePartnerRolesOnRecord</targetReference>
         </connector>
-        <filterLogic>and</filterLogic>
-        <filters>
-            <field>IsDirect</field>
-            <operator>EqualTo</operator>
-            <value>
-                <booleanValue>true</booleanValue>
-            </value>
-        </filters>
+        <filterFormula>NOT({!$Permission.BypassFlows}) &amp;&amp; {!$Record.IsDirect}</filterFormula>
         <object>AccountContactRelation</object>
         <recordTriggerType>Update</recordTriggerType>
         <triggerType>RecordAfterSave</triggerType>

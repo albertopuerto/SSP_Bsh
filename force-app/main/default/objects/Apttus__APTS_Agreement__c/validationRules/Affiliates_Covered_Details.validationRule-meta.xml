@@ -5,7 +5,8 @@
     <description>If Customer affiliates covered is confirmed, please describe which are the legal entities included</description>
     <errorConditionFormula>AND(
 ISPICKVAL(pkl_CustomerAffiliatesCovered__c,&#39;Yes&#39;),
-ISBLANK(txa_AffiliatesCoveredDetails__c)
+ISBLANK(txa_AffiliatesCoveredDetails__c), 
+NOT($Permission.BypassValidations) 
 )</errorConditionFormula>
     <errorDisplayField>txa_AffiliatesCoveredDetails__c</errorDisplayField>
     <errorMessage>Please describe which customer affiliates are included</errorMessage>
