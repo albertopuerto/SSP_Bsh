@@ -1,0 +1,173 @@
+@IsTest
+public class DocuSignWebhook_Test {
+
+    @testSetup
+    public static void initRecords(){
+        Account[] testAccountList = (Account[])TestFactory.createSObjectList(new Account(), 1);
+        insert testAccountList;
+
+        Contact[] testContactList = (Contact[])TestFactory.createSObjectList(new Contact(), 1);
+        testContactList[0].AccountId = testAccountList[0].Id;
+        insert testContactList;
+
+        ContentVersion[] contentVersionList = (ContentVersion[])TestFactory.createSObjectList(new ContentVersion(), 1);
+        contentVersionList[0].IsMajorVersion = true; 
+        insert contentVersionList;
+        ContentVersion contentVersion = contentVersionList[0];
+        contentVersion = [SELECT Id, ContentDocumentId FROM ContentVersion WHERE Id = :contentVersion.Id LIMIT 1];
+        Id contentDocumentId = contentVersion.ContentDocumentId;
+        
+        ContentDocumentLink[] linkList = (ContentDocumentLink[])TestFactory.createSObjectList(new ContentDocumentLink(), 1);
+        linkList[0].ContentDocumentId = contentDocumentId; 
+        linkList[0].LinkedEntityId = testAccountList[0].Id;
+        linkList[0].ShareType = 'V'; 
+        insert linkList;
+        Signature__c signature = new Signature__c(
+        Envelope_Id__c = '517967bf-a80a-42e6-ba59-b01e37d8b54a',
+        Document_Id__c= contentDocumentId
+        );
+        insert signature;
+        
+        DocusignWebhook.ResponseWrapper responseWrap = new DocusignWebhook.ResponseWrapper();
+        responseWrap.responseBody = 'OK - succesful processing of the docusign webhook';
+        responseWrap.responseCode = 200;
+    }
+    @IsTest
+    static void testReceivesentData() {
+        User productManagerUser = createUser();
+        StaticResource sr = [SELECT Body FROM StaticResource WHERE Name = 'getAccessTokenBody'];
+		String tokenBody = sr.Body.toString();
+
+        HTTPMockGenerator res2 = new HTTPMockGenerator(200, tokenBody);
+
+        Test.setMock(HttpCalloutMock.class, res2);
+        
+        StaticResource sr2 = [SELECT Body FROM StaticResource WHERE Name = 'documentSignWebhookRequestSent'];
+		String mockJson = sr2.Body.toString();
+         Assert.areNotEqual(null, sr2.Body, 'The static resource is not null');
+        
+        RestRequest req = new RestRequest();
+        RestResponse res = new RestResponse();
+        req.requestBody = Blob.valueOf(mockJson);
+        req.httpMethod = 'POST';
+        req.requestURI = '/services/apexrest/docusignWebhook/*';
+ 
+        RestContext.request = req;
+		RestContext.response= res;
+        Test.startTest();
+            System.runAs(productManagerUser){
+                DocuSignWebhook.handleWebhook();
+            }
+        Test.stopTest();
+        List<ContentVersion> versions = [SELECT Title, ContentDocumentId, pkl_Status__c,CreatedDate FROM ContentVersion Order by CreatedDate desc];
+		
+        System.assertEquals(2, versions.size());
+        System.assertEquals('sent', versions[0].pkl_Status__c);
+    }
+
+    @IsTest
+    static void testReceiveDeliveredData() {
+        User productManagerUser = createUser();
+        StaticResource sr = [SELECT Body FROM StaticResource WHERE Name = 'getAccessTokenBody'];
+		String tokenBody = sr.Body.toString();
+
+        HTTPMockGenerator res2 = new HTTPMockGenerator(200, tokenBody);
+
+        Test.setMock(HttpCalloutMock.class, res2);
+        StaticResource sr2 = [SELECT Body FROM StaticResource WHERE Name = 'documentSignWebhookRequestDelivered'];
+		String mockJson = sr2.Body.toString();
+         Assert.areNotEqual(null, sr2.Body, 'The static resource is not null');
+        
+        RestRequest req = new RestRequest();
+        RestResponse res = new RestResponse();
+        req.requestBody = Blob.valueOf(mockJson);
+        req.httpMethod = 'POST';
+        req.requestURI = '/services/apexrest/docusignWebhook/*';
+ 
+        RestContext.request = req;
+        RestContext.response= res;
+        Test.startTest();
+            System.runAs(productManagerUser){
+                DocuSignWebhook.handleWebhook();
+            }
+        Test.stopTest();
+        List<ContentVersion> versions = [SELECT Title, ContentDocumentId, pkl_Status__c ,CreatedDate FROM ContentVersion Order by CreatedDate desc];
+		
+        System.assertEquals(2, versions.size());
+        System.assertEquals('delivered', versions[0].pkl_Status__c);
+    }
+
+    @IsTest
+    static void testReceiveData() {
+
+        User productManagerUser = createUser();
+        
+        StaticResource sr = [SELECT Body FROM StaticResource WHERE Name = 'getAccessTokenBody'];
+		String tokenBody = sr.Body.toString();
+
+        HTTPMockGenerator res2 = new HTTPMockGenerator(200, tokenBody);
+
+        Test.setMock(HttpCalloutMock.class, res2);
+        
+        StaticResource sr2 = [SELECT Body FROM StaticResource WHERE Name = 'documentSignWebhookRequestCompleted'];
+		String mockJson = sr2.Body.toString();
+        Assert.areNotEqual(null, sr2.Body, 'The static resource is not null');
+        RestRequest req = new RestRequest();
+        RestResponse res = new RestResponse();
+        req.requestBody = Blob.valueOf(mockJson);
+        req.httpMethod = 'POST';
+        req.requestURI = '/services/apexrest/docusignWebhook/*';
+ 
+        RestContext.request = req;
+      	RestContext.response= res;
+        Test.startTest();
+            System.runAs(productManagerUser){
+                DocuSignWebhook.handleWebhook();
+            }
+        Test.stopTest();
+        List<ContentVersion> versions = [SELECT Title, ContentDocumentId, pkl_Status__c,CreatedDate FROM ContentVersion Order by CreatedDate desc];
+		
+        System.assertEquals(2, versions.size());
+        System.assertEquals('completed', versions[0].pkl_Status__c);
+    }
+
+    static User createUser(){
+        User productManagerUser = (User)TestFactory.createSObject(new User(), 'TestFactoryDefaults.AdminUserDefaults', true);
+        PermissionSet ps = [SELECT Id FROM PermissionSet WHERE Name = 'SalesBasic' LIMIT 1];
+        PermissionSet ps2 = [SELECT Id FROM PermissionSet WHERE Name = 'DocusignUser' LIMIT 1];
+        PermissionSet ps3 = [SELECT Id FROM PermissionSet WHERE Name = 'CPQAdvancedApprovalsAdmin' LIMIT 1];
+        PermissionSetLicense psl = [SELECT Id from PermissionSetLicense WHERE DeveloperName = 'SalesforceCPQ_CPQStandardPerm' ];
+        PermissionSetLicense pslAdmin = [SELECT Id from PermissionSetLicense WHERE DeveloperName = 'SalesforceCPQ_CPQAAPerm' ];
+
+        PermissionSetLicenseAssign pslassignment = new PermissionSetLicenseAssign(
+            PermissionSetLicenseId = psl.Id,
+            AssigneeId = productManagerUser.Id
+        );
+        insert pslassignment;
+
+        PermissionSetLicenseAssign pslassignment2 = new PermissionSetLicenseAssign(
+            PermissionSetLicenseId = pslAdmin.Id,
+            AssigneeId = productManagerUser.Id
+        );
+        insert pslassignment2;
+
+        // Assign the Permission Set to the test user
+        PermissionSetAssignment psa = new PermissionSetAssignment(
+            AssigneeId = productManagerUser.Id,
+            PermissionSetId = ps.Id
+        );
+        insert psa;
+
+         PermissionSetAssignment psa2 = new PermissionSetAssignment(
+            AssigneeId = productManagerUser.Id,
+            PermissionSetId = ps2.Id
+        );
+        insert psa2;
+         PermissionSetAssignment psa3 = new PermissionSetAssignment(
+            AssigneeId = productManagerUser.Id,
+            PermissionSetId = ps3.Id
+        );
+        insert psa3;
+        return productManagerUser;
+    }
+}

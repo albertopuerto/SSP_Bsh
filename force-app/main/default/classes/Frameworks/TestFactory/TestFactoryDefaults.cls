@@ -2,8 +2,8 @@
 * @author       APC
 * @date         08/04/2025
 * @description  TestFactory framework: TestFactoryDefaults implements TestFactory
-					To specify defaults for objects, use the naming convention [ObjectName]Defaults.
-					For custom objects, omit the __c from the Object Name
+				To specify defaults for objects, use the naming convention [ObjectName]Defaults.
+				For custom objects, omit the __c from the Object Name
 */
 @IsTest
 public with sharing class TestFactoryDefaults{
@@ -35,7 +35,7 @@ public with sharing class TestFactoryDefaults{
 	/**
 	* @author       APC
 	* @description  SupplierAccountDefault specific default set to be used in the future, be careful,
-						once this class will be changed, the test should be properly changed as well
+					once this class will be changed, the test should be properly changed as well
 	*/
 	public class SupplierAccountDefault implements TestFactory.FieldDefaults {
 		public Map<Schema.SObjectField, Object> getFieldDefaults() {
@@ -127,7 +127,12 @@ public with sharing class TestFactoryDefaults{
 		public Map<Schema.SObjectField, Object> getFieldDefaults() {
 			return new Map<Schema.SObjectField, Object> {
 					Contact.FirstName => 'First',
-					Contact.LastName => 'Last'
+					Contact.LastName => 'Last',
+					Contact.mpkl_RoleMainAccount__c => '0001',
+					Contact.pkl_Language__c => 'English',
+					Contact.Email => 'testEmail@invalid.com',
+					Contact.pkl_AccountGroup__c=> 'ETDE Contact ETCN Contact',
+					Contact.pkl_Status__c => 'Active'
 			};
 		}
 	}
@@ -202,6 +207,7 @@ public with sharing class TestFactoryDefaults{
 				User.Languagelocalekey => 'en_US',
 				User.Localesidkey => 'en_US',
 				User.Profileid => TestFactoryConstants.MAP_PROFILE_IDS.get('ProductManager'),
+				User.FirstName => 'Test',
 				User.LastName => 'Test Back Office User',
 				User.Country => 'United States',
 				User.Timezonesidkey => 'America/Los_Angeles',
@@ -235,6 +241,34 @@ public with sharing class TestFactoryDefaults{
 				User.Timezonesidkey => 'America/Los_Angeles',
 				User.FederationIdentifier => 'userInt@etasbosch.com' + system.currentTimeMillis(),
 				User.Username => 'userInt@etasbosch.com' + system.currentTimeMillis(),
+				User.IsActive  => true
+			};
+		}
+	}
+  
+  /**
+	 * @author       APB
+	 * @description  AdminUserDefaults constructor
+	 */
+	public class AdminUserDefaults implements TestFactory.FieldDefaults {
+		/**
+		 * @author       APB
+		 * @description  define user getFieldDefaults()
+		 * @return		Map<Schema.SObjectField, Object>
+		 */
+		public Map<Schema.SObjectField, Object> getFieldDefaults() {
+			return new Map<Schema.SObjectField, Object>{
+				User.Alias => 'Admin',
+				User.Email => 'testusuario1@example.com',
+				User.Emailencodingkey => 'UTF-8',
+				User.Languagelocalekey => 'en_US',
+				User.Localesidkey => 'en_US',
+				User.Profileid => TestFactoryConstants.MAP_PROFILE_IDS.get('SystemAdministrator'),
+				User.LastName => 'Test Back Office User',
+				User.Country => 'United States',
+				User.Timezonesidkey => 'America/Los_Angeles',
+				User.FederationIdentifier => 'userPM@etasbosch.com' + system.currentTimeMillis(),
+				User.Username => 'userPM@etasbosch.com' + system.currentTimeMillis(),
 				User.IsActive  => true
 			};
 		}

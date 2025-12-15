@@ -4,6 +4,7 @@
     <hasActivationRequired>false</hasActivationRequired>
     <label>BasicView</label>
     <permissionSets>BusinessPartnerReadOnly</permissionSets>
+    <permissionSets>DocusignUser</permissionSets>
     <permissionSets>ProductReadOnly</permissionSets>
     <status>Updated</status>
 </PermissionSetGroup>

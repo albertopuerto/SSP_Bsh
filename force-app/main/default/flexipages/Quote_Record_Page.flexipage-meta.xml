@@ -55,6 +55,16 @@
                             <value>CustomButton.SBQQ__Quote__c.SBQQ__GenerateDocument</value>
                         </valueListItems>
                         <valueListItems>
+                            <value>SBQQ__Quote__c.Send_for_Signature</value>
+                            <visibilityRule>
+                                <criteria>
+                                    <leftValue>{!$Permission.CustomPermission.canViewQuoteSendForSignatureButton}</leftValue>
+                                    <operator>EQUAL</operator>
+                                    <rightValue>true</rightValue>
+                                </criteria>
+                            </visibilityRule>
+                        </valueListItems>
+                        <valueListItems>
                             <value>Clone</value>
                         </valueListItems>
                         <valueListItems>
