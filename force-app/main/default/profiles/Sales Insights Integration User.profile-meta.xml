@@ -255,6 +255,21 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Apttus_AgreementParty__c.chk_PrimaryParty__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Apttus_AgreementParty__c.lkp_AgreementParty__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Apttus_AgreementParty__c.pkl_PartyRole__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Apttus_Approval__Approval_Exception_Log__c.Apttus_Approval__Error_Message__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -341,6 +356,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Apttus__APTS_Agreement__c.pkl_ETAS_affiliates_covered__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Apttus__APTS_Agreement__c.pkl_Parties_Involved__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -2269,7 +2289,7 @@
     </layoutAssignments>
     <layoutAssignments>
         <layout>Account-Account Layout</layout>
-        <recordType>Account.Customer</recordType>
+        <recordType>Account.Customer_B2B</recordType>
     </layoutAssignments>
     <layoutAssignments>
         <layout>Account-Account Layout</layout>
@@ -3179,7 +3199,7 @@
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <default>false</default>
-        <recordType>Account.Customer</recordType>
+        <recordType>Account.Customer_B2B</recordType>
         <visible>false</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>

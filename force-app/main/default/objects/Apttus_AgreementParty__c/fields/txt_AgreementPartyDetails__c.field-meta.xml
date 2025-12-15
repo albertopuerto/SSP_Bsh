@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>txt_AgreementPartyDetails__c</fullName>
+    <description>In case the Account/ETAS entity is missing,the user should enter details with name and adress or any other useful information which will lead to the right legal entiry mantioned into the agreement</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Please, add the entity information if the right account is missing</inlineHelpText>
+    <label>Agreement Party Details</label>
+    <length>255</length>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

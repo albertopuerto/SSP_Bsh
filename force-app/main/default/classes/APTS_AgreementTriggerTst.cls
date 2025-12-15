@@ -12,7 +12,7 @@ private class APTS_AgreementTriggerTst {
 @isTest static void autoActivateAgreementTest() {
     Account testAcc = new Account();
     testAcc.Name = 'testAccountforTestClass';
-    testAcc.Role__c='ETDE Domestic Customer';
+    testAcc.pkm_BoschPartnerRole__c='BBCUEX';
     testAcc.Type='Internal';
     testAcc.pkl_Language__c = 'German';
     insert testAcc;

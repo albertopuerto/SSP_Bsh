@@ -2,8 +2,8 @@
 * @author       APC
 * @date         08/04/2025
 * @description  TestFactory framework: TestFactoryDefaults implements TestFactory
-					To specify defaults for objects, use the naming convention [ObjectName]Defaults.
-					For custom objects, omit the __c from the Object Name
+				To specify defaults for objects, use the naming convention [ObjectName]Defaults.
+				For custom objects, omit the __c from the Object Name
 */
 @IsTest
 public with sharing class TestFactoryDefaults{
@@ -20,13 +20,12 @@ public with sharing class TestFactoryDefaults{
 		*/
 		public Map<Schema.SObjectField, Object> getFieldDefaults() {
 			return new Map<Schema.SObjectField, Object> {
-					Account.Name => 'Customer Account',
-					Account.RecordTypeID => TestFactoryConstants.MAP_OBJ_RECORD_TYPE_IDS.get('Account').get('Customer'),
+					Account.Name => 'Customer_B2B Account',
+					Account.RecordTypeID => TestFactoryConstants.MAP_OBJ_RECORD_TYPE_IDS.get('Account').get('Customer_B2B'),
 					Account.Phone => '0123456',
 					Account.BillingCountry => 'bTest',
 					Account.ShippingCountry => 'sTest',
 					Account.txt_AthenaUUID__c => '1111',
-					Account.Role__c => 'ETDE Domestic Customer',
 					Account.pkl_Language__c => 'English',
 					Account.pkm_BoschPartnerRole__c => 'BBCUSH'
 			};
@@ -36,7 +35,7 @@ public with sharing class TestFactoryDefaults{
 	/**
 	* @author       APC
 	* @description  SupplierAccountDefault specific default set to be used in the future, be careful,
-						once this class will be changed, the test should be properly changed as well
+					once this class will be changed, the test should be properly changed as well
 	*/
 	public class SupplierAccountDefault implements TestFactory.FieldDefaults {
 		public Map<Schema.SObjectField, Object> getFieldDefaults() {
@@ -45,7 +44,6 @@ public with sharing class TestFactoryDefaults{
 					Account.RecordTypeID => TestFactoryConstants.MAP_OBJ_RECORD_TYPE_IDS.get('Account').get('Supplier'),
 					Account.Phone => '0123456',
 					Account.txt_AthenaUUID__c => '2222',
-					Account.Role__c => 'ETDE Domestic Customer',
 					Account.pkl_Language__c => 'English',
 					Account.pkm_BoschPartnerRole__c => 'BBCUEX'
 			};
@@ -209,6 +207,7 @@ public with sharing class TestFactoryDefaults{
 				User.Languagelocalekey => 'en_US',
 				User.Localesidkey => 'en_US',
 				User.Profileid => TestFactoryConstants.MAP_PROFILE_IDS.get('ProductManager'),
+				User.FirstName => 'Test',
 				User.LastName => 'Test Back Office User',
 				User.Country => 'United States',
 				User.Timezonesidkey => 'America/Los_Angeles',
@@ -220,6 +219,34 @@ public with sharing class TestFactoryDefaults{
 	}
 
 	/**
+	 * @author       Iliana Dimitrova
+	 * @description  IntegrationUserDefaults constructor
+	 */
+	public class IntegrationUserDefaults implements TestFactory.FieldDefaults {
+		/**
+		 * @author       Iliana Dimitrova
+		 * @description  define user getFieldDefaults()
+		 * @return		Map<Schema.SObjectField, Object>
+		 */
+		public Map<Schema.SObjectField, Object> getFieldDefaults() {
+			return new Map<Schema.SObjectField, Object>{
+				User.Alias => 'userInt',
+				User.Email => 'testusuario1@example.com',
+				User.Emailencodingkey => 'UTF-8',
+				User.Languagelocalekey => 'en_US',
+				User.Localesidkey => 'en_US',
+				User.Profileid => TestFactoryConstants.MAP_PROFILE_IDS.get('SalesforceAPIOnlySystemIntegrations'),
+				User.LastName => 'Test Integration User',
+				User.Country => 'United States',
+				User.Timezonesidkey => 'America/Los_Angeles',
+				User.FederationIdentifier => 'userInt@etasbosch.com' + system.currentTimeMillis(),
+				User.Username => 'userInt@etasbosch.com' + system.currentTimeMillis(),
+				User.IsActive  => true
+			};
+		}
+	}
+  
+  /**
 	 * @author       APB
 	 * @description  AdminUserDefaults constructor
 	 */

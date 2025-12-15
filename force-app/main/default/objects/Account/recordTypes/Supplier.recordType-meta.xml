@@ -394,21 +394,6 @@
         </values>
     </picklistValues>
     <picklistValues>
-        <picklist>pkl_CustomerBlock__c</picklist>
-        <values>
-            <fullName>Blocked</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>Pending</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>Released</fullName>
-            <default>false</default>
-        </values>
-    </picklistValues>
-    <picklistValues>
         <picklist>pkl_DeliveryControlHead__c</picklist>
         <values>
             <fullName>Complete Delivery</fullName>
@@ -443,10 +428,6 @@
     </picklistValues>
     <picklistValues>
         <picklist>pkl_Language__c</picklist>
-        <values>
-            <fullName>Chinese</fullName>
-            <default>false</default>
-        </values>
         <values>
             <fullName>English</fullName>
             <default>false</default>
@@ -504,33 +485,6 @@
         </values>
         <values>
             <fullName>9</fullName>
-            <default>false</default>
-        </values>
-    </picklistValues>
-    <picklistValues>
-        <picklist>pkl_PaymentTerms__c</picklist>
-        <values>
-            <fullName>Due on receipt</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>Net 15</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>Net 30</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>Net 45</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>Net 60</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>Net 90</fullName>
             <default>false</default>
         </values>
     </picklistValues>
