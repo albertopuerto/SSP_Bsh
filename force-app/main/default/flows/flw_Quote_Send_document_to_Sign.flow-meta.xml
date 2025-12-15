@@ -1,10 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
     <actionCalls>
+        <name>Copy_1_of_Send_document_to_sign</name>
+        <label>Copy 1 of Send document to sign</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <actionName>DocuSignSigners</actionName>
+        <actionType>apex</actionType>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>document</name>
+            <value>
+                <elementReference>Selection_Table.firstSelectedRow</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>signer</name>
+            <value>
+                <elementReference>Select_Mails.firstSelectedRow.Email</elementReference>
+            </value>
+        </inputParameters>
+        <nameSegment>DocuSignSigners</nameSegment>
+        <offset>0</offset>
+        <outputParameters>
+            <assignToReference>envelopeId</assignToReference>
+            <name>output</name>
+        </outputParameters>
+    </actionCalls>
+    <actionCalls>
         <name>get_emails_from_signers_group</name>
         <label>get emails from signers group</label>
-        <locationX>882</locationX>
-        <locationY>298</locationY>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
         <actionName>DocuSignUtils</actionName>
         <actionType>apex</actionType>
         <connector>
@@ -18,12 +45,12 @@
     <actionCalls>
         <name>Get_Fiels_by_parent_record_id</name>
         <label>Get Fiels by parent record id</label>
-        <locationX>669</locationX>
-        <locationY>182</locationY>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
         <actionName>DocuSignService</actionName>
         <actionType>apex</actionType>
         <connector>
-            <targetReference>getQuoteAssociated</targetReference>
+            <targetReference>Select_Files</targetReference>
         </connector>
         <flowTransactionModel>Automatic</flowTransactionModel>
         <inputParameters>
@@ -39,13 +66,16 @@
     <actionCalls>
         <name>Send_document_to_sign</name>
         <label>Send document to sign</label>
-        <locationX>669</locationX>
-        <locationY>614</locationY>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
         <actionName>DocuSignSigners</actionName>
         <actionType>apex</actionType>
         <connector>
             <targetReference>Create_Signature</targetReference>
         </connector>
+        <faultConnector>
+            <targetReference>Error_Document_Send_Failed</targetReference>
+        </faultConnector>
         <flowTransactionModel>CurrentTransaction</flowTransactionModel>
         <inputParameters>
             <name>document</name>
@@ -74,6 +104,46 @@
             <stringValue>{&quot;location&quot;:&quot;top&quot;,&quot;type&quot;:&quot;simple&quot;}</stringValue>
         </value>
     </customProperties>
+    <decisions>
+        <name>Check_quote_expiration</name>
+        <label>Check quote expiration</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>Get_Fiels_by_parent_record_id</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Expired</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Get_records.SBQQ__ExpirationDate__c</leftValueReference>
+                <operator>LessThan</operator>
+                <rightValue>
+                    <elementReference>$Flow.CurrentDate</elementReference>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Quote_Expired_Message</targetReference>
+            </connector>
+            <label>Expired</label>
+        </rules>
+        <rules>
+            <name>Vaild</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Get_records.SBQQ__ExpirationDate__c</leftValueReference>
+                <operator>GreaterThanOrEqualTo</operator>
+                <rightValue>
+                    <elementReference>$Flow.CurrentDate</elementReference>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Get_Fiels_by_parent_record_id</targetReference>
+            </connector>
+            <label>Vaild</label>
+        </rules>
+    </decisions>
     <environments>Default</environments>
     <interviewLabel>Quote Send document to Sign {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Quote Send document to Sign</label>
@@ -86,7 +156,7 @@
     <processMetadataValues>
         <name>CanvasMode</name>
         <value>
-            <stringValue>FREE_FORM_CANVAS</stringValue>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
         </value>
     </processMetadataValues>
     <processMetadataValues>
@@ -99,14 +169,8 @@
     <recordCreates>
         <name>Create_Signature</name>
         <label>Create Signature</label>
-        <locationX>669</locationX>
-        <locationY>722</locationY>
-        <inputAssignments>
-            <field>Account__c</field>
-            <value>
-                <elementReference>Select_Mails.firstSelectedRow.AccountId</elementReference>
-            </value>
-        </inputAssignments>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
         <inputAssignments>
             <field>Document_Id__c</field>
             <value>
@@ -125,17 +189,29 @@
                 <elementReference>envelopeId</elementReference>
             </value>
         </inputAssignments>
+        <inputAssignments>
+            <field>Quote__c</field>
+            <value>
+                <elementReference>recordId</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Signer__c</field>
+            <value>
+                <elementReference>Select_Mails.firstSelectedRow.Id</elementReference>
+            </value>
+        </inputAssignments>
         <object>Signature__c</object>
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordCreates>
     <recordLookups>
-        <name>getQuoteAssociated</name>
-        <label>getQuoteAssociated</label>
-        <locationX>840</locationX>
-        <locationY>182</locationY>
+        <name>Get_records</name>
+        <label>Get records</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
-            <targetReference>Select_Files</targetReference>
+            <targetReference>Check_quote_expiration</targetReference>
         </connector>
         <filterLogic>and</filterLogic>
         <filters>
@@ -150,10 +226,58 @@
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordLookups>
     <screens>
+        <name>Error_Document_Send_Failed</name>
+        <label>Error - Document Send Failed</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <allowBack>false</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>true</allowPause>
+        <connector>
+            <targetReference>Copy_1_of_Send_document_to_sign</targetReference>
+        </connector>
+        <fields>
+            <name>ErrorHeading</name>
+            <fieldText>&lt;p style=&quot;text-align: center;&quot;&gt;&lt;strong style=&quot;font-size: 14px;&quot;&gt;The envelope could not be sent&lt;/strong&gt;&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <fields>
+            <name>ErrorDetails</name>
+            <fieldText>&lt;p style=&quot;text-align: center;&quot;&gt;{!$Flow.FaultMessage}&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <fields>
+            <name>Instructions</name>
+            <fieldText>&lt;p style=&quot;text-align: center;&quot;&gt;Click Retry to attempt sending again.&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <nextOrFinishButtonLabel>Retry</nextOrFinishButtonLabel>
+        <pauseButtonLabel>Cancel</pauseButtonLabel>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
+    <screens>
+        <name>Quote_Expired_Message</name>
+        <label>Quote Expired Message</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>true</allowPause>
+        <fields>
+            <name>Expired_Warning</name>
+            <fieldText>&lt;p&gt;Quote has expired. Please update the validity before sending or contact your administrator.&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <nextOrFinishButtonLabel>Ok</nextOrFinishButtonLabel>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
+    <screens>
         <name>Select_Files</name>
         <label>Select Files</label>
-        <locationX>1011</locationX>
-        <locationY>190</locationY>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>true</allowPause>
@@ -214,8 +338,8 @@
     <screens>
         <name>Select_Signers</name>
         <label>Select Signers</label>
-        <locationX>671</locationX>
-        <locationY>505</locationY>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>true</allowPause>
@@ -274,10 +398,10 @@
         <showHeader>true</showHeader>
     </screens>
     <start>
-        <locationX>543</locationX>
-        <locationY>48</locationY>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
         <connector>
-            <targetReference>Get_Fiels_by_parent_record_id</targetReference>
+            <targetReference>Get_records</targetReference>
         </connector>
     </start>
     <status>Active</status>
