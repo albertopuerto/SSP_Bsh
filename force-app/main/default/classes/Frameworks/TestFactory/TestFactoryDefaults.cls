@@ -274,34 +274,6 @@ public with sharing class TestFactoryDefaults{
 		}
 	}
 
-	/**
-	 * @author       Iliana Dimitrova
-	 * @description  IntegrationUserDefaults constructor
-	 */
-	public class IntegrationUserDefaults implements TestFactory.FieldDefaults {
-		/**
-		 * @author       Iliana Dimitrova
-		 * @description  define user getFieldDefaults()
-		 * @return		Map<Schema.SObjectField, Object>
-		 */
-		public Map<Schema.SObjectField, Object> getFieldDefaults() {
-			return new Map<Schema.SObjectField, Object>{
-				User.Alias => 'userInt',
-				User.Email => 'testusuario1@example.com',
-				User.Emailencodingkey => 'UTF-8',
-				User.Languagelocalekey => 'en_US',
-				User.Localesidkey => 'en_US',
-				User.Profileid => TestFactoryConstants.MAP_PROFILE_IDS.get('SalesforceAPIOnlySystemIntegrations'),
-				User.LastName => 'Test Integration User',
-				User.Country => 'United States',
-				User.Timezonesidkey => 'America/Los_Angeles',
-				User.FederationIdentifier => 'userInt@etasbosch.com' + system.currentTimeMillis(),
-				User.Username => 'userInt@etasbosch.com' + system.currentTimeMillis(),
-				User.IsActive  => true
-			};
-		}
-	}
-
     public class QuoteDefaults implements TestFactory.FieldDefaults{
         /**
 		 * @author       TLQ1KOR
