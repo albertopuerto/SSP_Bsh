@@ -364,7 +364,7 @@
     </choices>
     <choices>
         <name>BBCUEX</name>
-        <choiceText>&lt;span style=&quot;font-size: 16px;&quot;&gt;﻿Operational Customer - B2B - external entity for operational business&lt;/span&gt;</choiceText>
+        <choiceText>&lt;span style=&quot;font-size: 16px;&quot;&gt;﻿Operational Customer B2B - external entity for operational business&lt;/span&gt;</choiceText>
         <dataType>String</dataType>
         <value>
             <stringValue>BBCUEX</stringValue>
@@ -474,13 +474,6 @@
             <operator>EqualTo</operator>
             <value>
                 <stringValue>Account</stringValue>
-            </value>
-        </filters>
-        <filters>
-            <field>IsActive</field>
-            <operator>EqualTo</operator>
-            <value>
-                <booleanValue>true</booleanValue>
             </value>
         </filters>
         <object>RecordType</object>
