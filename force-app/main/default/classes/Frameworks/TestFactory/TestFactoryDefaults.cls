@@ -63,7 +63,7 @@ public with sharing class TestFactoryDefaults{
 			return new Map<Schema.SObjectField, Object> {
 					Order.Status => 'Draft',
 					Order.EffectiveDate => Date.today(),
-                    Order.pkl_INCOTerms1__c => 'CPT - Carriage Paid To',
+                    Order.pkl_INCOTerms1__c => 'CPT',
                     Order.pkl_PaymentTerms__c=> 'Due on receipt',
                     Order.CurrencyIsoCode=> 'EUR',
 					Order.Pricebook2Id => Test.getStandardPricebookId()
@@ -85,7 +85,7 @@ public with sharing class TestFactoryDefaults{
 			return new Map<Schema.SObjectField, Object> {
 					OrderItem.txt_SAPExternalLineItemId__c => '123124124',
 					OrderItem.UnitPrice => 20,
-                    OrderItem.pkl_INCOTerms1__c => 'CPT - Carriage Paid To',
+                    OrderItem.pkl_INCOTerms1__c => 'CPT',
                     OrderItem.pkl_PaymentTerms__c=> 'Due on receipt',
 					OrderItem.pkl_QuantityUnit__c=> 'Each',
 					OrderItem.txt_INCOTerms2__c=> 'Due on receipt test',
