@@ -27,7 +27,7 @@ public class SalesAreaLinkTriggerHandler_Test {
             mdr_SalesArea__c = testSalesArea.Id,
             pkl_Currency__c = 'EUR',
             pkl_CustPricProcedure__c = '01',
-            pkl_INCOTerms1__c = 'CPT - Carriage Paid To',
+            pkl_INCOTerms1__c = 'CPT',
             pkl_PaymentTerms__c = 'Net 15',
             pkl_ShippingConditions__c = '0A',
             txt_INCOTerms2__c = 'test'
@@ -54,7 +54,7 @@ public class SalesAreaLinkTriggerHandler_Test {
             mdr_SalesArea__c = testSalesArea.Id,
             pkl_Currency__c = 'EUR',
             pkl_CustPricProcedure__c = '01',
-            pkl_INCOTerms1__c = 'CPT - Carriage Paid To',
+            pkl_INCOTerms1__c = 'CPT',
             pkl_PaymentTerms__c = 'Net 15',
             pkl_ShippingConditions__c = '0A',
             txt_INCOTerms2__c = 'test'
@@ -69,7 +69,7 @@ public class SalesAreaLinkTriggerHandler_Test {
             mdr_SalesArea__c = testSalesArea.Id,
             pkl_Currency__c = 'EUR',
             pkl_CustPricProcedure__c = '01',
-            pkl_INCOTerms1__c = 'CPT - Carriage Paid To',
+            pkl_INCOTerms1__c = 'CPT',
             pkl_PaymentTerms__c = 'Net 15',
             pkl_ShippingConditions__c = '0A',
             txt_INCOTerms2__c = 'test'
