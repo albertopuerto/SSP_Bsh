@@ -83,18 +83,6 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>lkp_ETASLegalEntity2__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>lkp_ETASLegalEntity3__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>lkp_ETASLegalEntity4__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
                 <field>txa_OtherPartySignedByUnlistedTitle__c</field>
             </layoutItems>
             <layoutItems>
