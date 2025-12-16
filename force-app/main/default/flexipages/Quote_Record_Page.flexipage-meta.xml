@@ -52,6 +52,16 @@
                             </visibilityRule>
                         </valueListItems>
                         <valueListItems>
+                            <value>SBQQ__Quote__c.Remind_for_Approval</value>
+                            <visibilityRule>
+                                <criteria>
+                                    <leftValue>{!Record.SBQQ__Status__c}</leftValue>
+                                    <operator>EQUAL</operator>
+                                    <rightValue>Approval Pending</rightValue>
+                                </criteria>
+                            </visibilityRule>
+                        </valueListItems>
+                        <valueListItems>
                             <value>CustomButton.SBQQ__Quote__c.SBQQ__GenerateDocument</value>
                         </valueListItems>
                         <valueListItems>
