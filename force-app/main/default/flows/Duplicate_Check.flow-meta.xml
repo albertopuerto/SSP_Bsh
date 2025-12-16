@@ -52,7 +52,7 @@
             </value>
         </assignmentItems>
         <connector>
-            <targetReference>Iterate_Potential_Duplicate_Collection</targetReference>
+            <targetReference>Sorting_based_on_Score</targetReference>
         </connector>
     </assignments>
     <assignments>
@@ -93,7 +93,7 @@
             <assignToReference>RequestBody.Accountx20Recordx20Type</assignToReference>
             <operator>Assign</operator>
             <value>
-                <elementReference>AccountRecordTypeId</elementReference>
+                <elementReference>GetRecordTypeDetails.DeveloperName</elementReference>
             </value>
         </assignmentItems>
         <assignmentItems>
@@ -392,6 +392,23 @@
             <targetReference>Iterate_Guarantee_Duplicates</targetReference>
         </connector>
     </collectionProcessors>
+    <collectionProcessors>
+        <name>Sorting_based_on_Score</name>
+        <elementSubtype>SortCollectionProcessor</elementSubtype>
+        <label>Sorting based on Score</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <collectionProcessorType>SortCollectionProcessor</collectionProcessorType>
+        <collectionReference>PotentialCollection</collectionReference>
+        <connector>
+            <targetReference>Iterate_Potential_Duplicate_Collection</targetReference>
+        </connector>
+        <sortOptions>
+            <doesPutEmptyStringAndNullFirst>false</doesPutEmptyStringAndNullFirst>
+            <sortField>matchingScore__c</sortField>
+            <sortOrder>Desc</sortOrder>
+        </sortOptions>
+    </collectionProcessors>
     <customProperties>
         <name>ScreenProgressIndicator</name>
         <value>
@@ -426,7 +443,7 @@
                 <leftValueReference>Check_for_Duplicates_in_Athena.200.noDuplicate</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
-                    <booleanValue>true</booleanValue>
+                    <stringValue>No duplicate found</stringValue>
                 </rightValue>
             </conditions>
             <connector>
@@ -598,6 +615,29 @@
         </value>
     </processMetadataValues>
     <processType>Flow</processType>
+    <recordLookups>
+        <name>GetRecordTypeDetails</name>
+        <label>GetRecordTypeDetails</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Assign_values_to_requestbody</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>AccountRecordTypeId</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>RecordType</object>
+        <queriedFields>Id</queriedFields>
+        <queriedFields>DeveloperName</queriedFields>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
     <screens>
         <name>No_Duplicates_Screen</name>
         <label>No Duplicates Screen</label>
@@ -763,7 +803,7 @@
         <locationX>0</locationX>
         <locationY>0</locationY>
         <connector>
-            <targetReference>Assign_values_to_requestbody</targetReference>
+            <targetReference>GetRecordTypeDetails</targetReference>
         </connector>
     </start>
     <status>Active</status>
@@ -837,6 +877,14 @@
     </variables>
     <variables>
         <name>currentItem_HighScoreDuplicates</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>Duplicate_Record__mdt</objectType>
+    </variables>
+    <variables>
+        <name>currentItemFromSourceCollection</name>
         <dataType>SObject</dataType>
         <isCollection>false</isCollection>
         <isInput>false</isInput>
