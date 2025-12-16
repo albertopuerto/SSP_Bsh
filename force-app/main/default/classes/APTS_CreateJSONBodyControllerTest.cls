@@ -10,8 +10,8 @@ public class APTS_CreateJSONBodyControllerTest {
         
         Account testAcc = new Account();
         testAcc.Name = 'test';
-        testAcc.Role__c='ETDE Domestic Customer';
-    	testAcc.Type='Internal';
+        testAcc.pkm_BoschPartnerRole__c='BBCUEX';
+        testAcc.Type='Internal';
         testAcc.pkl_Language__c = 'German';
         insert testAcc;
         

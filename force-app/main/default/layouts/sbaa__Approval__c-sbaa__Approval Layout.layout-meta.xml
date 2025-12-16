@@ -21,7 +21,7 @@
                 <field>Name</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Required</behavior>
+                <behavior>Readonly</behavior>
                 <field>sbaa__Status__c</field>
             </layoutItems>
             <layoutItems>
@@ -33,7 +33,7 @@
                 <field>sbaa__AssignedTo__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Edit</behavior>
+                <behavior>Readonly</behavior>
                 <field>Quote__c</field>
             </layoutItems>
             <layoutItems>
@@ -47,15 +47,15 @@
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
-                <behavior>Edit</behavior>
+                <behavior>Readonly</behavior>
                 <field>OwnerId</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Edit</behavior>
+                <behavior>Readonly</behavior>
                 <field>sbaa__Rule__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Edit</behavior>
+                <behavior>Readonly</behavior>
                 <field>sbaa__ApprovalChain__c</field>
             </layoutItems>
             <layoutItems>
@@ -67,11 +67,15 @@
                 <field>sbaa__RecordField__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Edit</behavior>
+                <behavior>Readonly</behavior>
                 <field>sbaa__ApprovedBy__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Edit</behavior>
+                <behavior>Readonly</behavior>
+                <field>sbaa__RejectedBy__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
                 <field>sbaa__CommentsLong__c</field>
             </layoutItems>
         </layoutColumns>

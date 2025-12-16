@@ -160,7 +160,7 @@
                 </rightValue>
             </conditions>
             <conditions>
-                <leftValueReference>$Record.Role__c</leftValueReference>
+                <leftValueReference>$Record.pkm_BoschPartnerRole__c</leftValueReference>
                 <operator>IsChanged</operator>
                 <rightValue>
                     <booleanValue>true</booleanValue>

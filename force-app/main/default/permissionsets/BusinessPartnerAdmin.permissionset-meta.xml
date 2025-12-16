@@ -421,6 +421,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>SalesAreaLink__c.pkl_CustomerBillingBlock__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>SalesAreaLink__c.pkl_CustomerDeliveryBlock__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -578,4 +583,8 @@
         <tab>TaxNumber__c</tab>
         <visibility>Visible</visibility>
     </tabSettings>
+    <customPermissions>
+        <enabled>true</enabled>
+        <name>CanProspectConversionToCustomer</name>
+    </customPermissions>
 </PermissionSet>

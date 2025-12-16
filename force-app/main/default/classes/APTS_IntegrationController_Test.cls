@@ -21,7 +21,7 @@ private class APTS_IntegrationController_Test {
         
         Account testAcc = new Account();
         testAcc.Name = 'test';
-        testAcc.Role__c='ETDE Domestic Customer';
+        testAcc.pkm_BoschPartnerRole__c='BBCUEX';
         testAcc.Type='Internal';
         testAcc.pkl_Language__c = 'German';
         insert testAcc;
