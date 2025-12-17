@@ -143,7 +143,6 @@ public with sharing class AthenaBusinessPartnerService {
             acc.Name = dto.organizationName;
             acc.txt_AdditionalName__c = dto.organizationName2;
             acc.Type = 'Customer';
-            acc.Role__c = 'ETDE Domestic Customer'; // temporary defaulted
             acc.pkl_Language__c = 'English';// temporary defaulted
             acc.CurrencyIsoCode = dto.salesData[0].order.currencyCode;
             acc.txt_SearchTerm1__c = dto.searchTerm1;
@@ -200,7 +199,7 @@ public with sharing class AthenaBusinessPartnerService {
             link.mdr_SalesArea__c = salesAreaId;
         }
 
-            link.pkl_INCOTerms1__c = 'CIF - Cost, Insurance, and Freight'; // temporary defaulted
+            link.pkl_INCOTerms1__c = dto.salesData[0].shipping.incoterms;
             link.pkl_ShippingConditions__c = dto.salesData[0].shipping.shippingConditions;
             link.txt_INCOTerms2__c = dto.salesData[0].shipping.incotermsPart2;
             link.pkl_PaymentTerms__c = 'Other'; //temporary defaulted

@@ -94,18 +94,6 @@
                 <behavior>Required</behavior>
                 <field>pkl_ETAS_affiliates_covered__c</field>
             </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>lkp_ETASLegalEntity2__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>lkp_ETASLegalEntity3__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>lkp_ETASLegalEntity4__c</field>
-            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>

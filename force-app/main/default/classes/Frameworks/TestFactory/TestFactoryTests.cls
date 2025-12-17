@@ -14,7 +14,7 @@ private with sharing class TestFactoryTests {
         Account acc = (Account)TestFactory.createSObject(new Account());
         
         Test.startTest();
-        System.assertEquals('Customer Account', acc.Name, 'Default field value is not set correctly');
+        System.assertEquals('Customer_B2B Account', acc.Name, 'Default field value is not set correctly');
         Test.stopTest();
     }
 
@@ -27,7 +27,7 @@ private with sharing class TestFactoryTests {
         
         Test.startTest();
         acc = [SELECT Name FROM Account WHERE Id = :acc.Id];
-        System.assertEquals('Customer Account', acc.Name, 'Default field value is not set correctly');
+        System.assertEquals('Customer_B2B Account', acc.Name, 'Default field value is not set correctly');
         Test.stopTest();
     }
 
@@ -65,7 +65,7 @@ private with sharing class TestFactoryTests {
         
         Test.startTest();
         for (Account acc : aList) {
-            System.assert(acc.Name.startsWith('Customer Account'), 'Default field value is not set correctly');
+            System.assert(acc.Name.startsWith('Customer_B2B Account'), 'Default field value is not set correctly');
         }
         Test.stopTest();
     }
@@ -80,7 +80,7 @@ private with sharing class TestFactoryTests {
         Test.startTest();
         aList = [SELECT Name FROM Account WHERE Id IN :aList ORDER BY Name];
         for (Account acc : aList) {
-            System.assert(acc.Name.startsWith('Customer Account'), 'Default field value is not set correctly');
+            System.assert(acc.Name.startsWith('Customer_B2B Account'), 'Default field value is not set correctly');
         }
         Test.stopTest();
     }
@@ -164,7 +164,7 @@ private with sharing class TestFactoryTests {
         System.assertNotEquals(null, mapRecordTypeIds, 'MAP_OBJ_RECORD_TYPE_IDS should not be null');
 
         System.assertNotEquals(null, mapRecordTypeIds.get('Account'), 'RecordType IDs for Account should not be null');
-        System.assertNotEquals(null, mapRecordTypeIds.get('Account').get('Customer'), 'Customer RecordType ID for Account should not be null');
+        System.assertNotEquals(null, mapRecordTypeIds.get('Account').get('Customer_B2B'), 'Customer RecordType ID for Account should not be null');
         System.assertNotEquals(null, mapRecordTypeIds.get('Account').get('Competitor'), 'Competitor RecordType ID for Account should not be null');
 
         System.assertNotEquals(null, mapRecordTypeIds.get('Opportunity'), 'RecordType IDs for Opportunity should not be null');
@@ -182,7 +182,7 @@ private with sharing class TestFactoryTests {
         System.runAs(productManagerUser) {
             Test.startTest();
             Account acc = (Account)TestFactory.createSObject(new Account(), true);
-            System.assertEquals('Customer Account', acc.Name, 'Default field value is not set correctly for Product Manager user');
+            System.assertEquals('Customer_B2B Account', acc.Name, 'Default field value is not set correctly for Product Manager user');
             Test.stopTest();
         }
     }

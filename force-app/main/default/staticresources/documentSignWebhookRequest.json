@@ -1,0 +1,50 @@
+{
+    "event": "recipient-sent",
+    "uri": "/restapi/{apiVersion}/accounts/{accountId}/envelopes/{envelopeId}",
+    "retryCount": "0",
+    "configurationId": "xxxxxxx",
+    "apiVersion": "v2.1",
+    "generatedDateTime": "",
+    "data": {
+        "accountId": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+        "recipientId": "1",
+        "envelopeId": "xxxxxxxx-xxxx-xxx",
+        "envelopeSummary": {
+            "status": "sent",
+            "emailSubject": "API Demo subject",
+            "emailBlurb": "Please sign this Demo Envelope",
+            "signingLocation": "online",
+            "enableWetSign": "true",
+            "allowMarkup": "false",
+            "allowReassign": "true",
+            "createdDateTime": "2019-12-12T18:23:36.6800000Z",
+            "lastModifiedDateTime": "2019-12-12T18:23:36.6970000Z",
+            "statusChangedDateTime": "2019-12-12T18:23:36.6800000Z",
+            "useDisclosure": "false",
+            "sender": {
+                "userName": "John Smith",
+                "userId": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+                "accountId": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+                "email": "johnsmith@docusign.com"
+            },
+            "recipients": {
+
+			},
+            "envelopeDocuments": [
+                {
+                    "documentId": "1",
+                    "documentIdGuid": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+                    "name": "BlankDoc.txt",
+                    "type": "content",
+                    "order": "1",
+                    "display": "inline",
+                    "includeInDownload": "true",
+                    "signerMustAcknowledge": "no_interaction",
+                    "templateRequired": "false",
+                    "authoritative": "false",
+                    "PDFBytes": ""
+                }
+            ]
+        }
+    }
+}

@@ -6,7 +6,6 @@ private class GroupLineItems_controllerTest {
         // Create test account
         Account testAccount = new Account(
             Name = 'Test Account',
-            Role__c='ETDE Domestic Customer',
             pkl_Language__c='English',
             pkm_BoschPartnerRole__c = 'BBCUEX'
 
@@ -126,7 +125,7 @@ private class GroupLineItems_controllerTest {
             Status = 'Draft',
             Pricebook2Id = standardPricebook.Id,
             pkl_PaymentTerms__c = 'Net 15',
-            pkl_INCOTerms1__c='DAP – Delivered at Place',  
+            pkl_INCOTerms1__c='DAP',  
             txt_INCOTerms2__c = 'Inco Terms'
         );
         insert testOrder;
@@ -143,7 +142,7 @@ private class GroupLineItems_controllerTest {
                 UnitPrice = 100.00,
                 pkl_PaymentTerms__c = 'Net 15',
                 pkl_QuantityUnit__c = 'Each',
-                pkl_INCOTerms1__c='DAP – Delivered at Place',  
+                pkl_INCOTerms1__c='DAP',  
                 txt_INCOTerms2__c = 'Inco Terms'
             ));
         }

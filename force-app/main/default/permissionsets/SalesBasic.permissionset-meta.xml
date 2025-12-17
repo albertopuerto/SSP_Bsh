@@ -7,6 +7,14 @@
         <application>ETAS_SALES_Cockpit</application>
         <visible>true</visible>
     </applicationVisibilities>
+    <classAccesses>
+        <apexClass>RecallOldApprovals</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>RecallOldApprovals_Test</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
     <fieldPermissions>
         <editable>true</editable>
         <field>Account.AccountNumber</field>
@@ -173,7 +181,7 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Account.pkm_BoschPartnerRole__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -1325,6 +1333,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Order.ftxt_PONo__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Order.lkp_SalesArea__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>

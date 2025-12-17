@@ -40,7 +40,7 @@
         "currency": "EUR",
         "priceGroup": "01",
         "deletionFlagForCustomer": false,
-        "customerOrderBlock": "Y1",
+        "customerOrderBlock": "YA",
         "salesBlockForCustomer": "01"
       },
       "shipping": {
