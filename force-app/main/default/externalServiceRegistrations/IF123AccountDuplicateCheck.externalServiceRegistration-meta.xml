@@ -17,11 +17,11 @@
     },
     &quot;servers&quot;: [
         {
-            &quot;url&quot;: &quot;https://rb-cpi-central-d.it-cpi018-rt.cfapps.eu10-003.hana.ondemand.com&quot;
+            &quot;url&quot;: &quot;https://rb-cpi-central-q.it-cpi018-rt.cfapps.eu10-003.hana.ondemand.com&quot;
         }
     ],
     &quot;paths&quot;: {
-        &quot;/http/rb.bbm.ssp.mdm.bp.CustomEvent.SF.DuplicateCheck&quot;: {
+        &quot;/http/rb.bbm.ssp.mdm.bp.CustomEvent.DuplicateCheck.SF&quot;: {
             &quot;post&quot;: {
                 &quot;operationId&quot;: &quot;check duplicate account&quot;,
                 &quot;summary&quot;: &quot;check duplicate account in Athena&quot;,
@@ -228,7 +228,7 @@
     <schemaType>OpenApi3</schemaType>
     <schemaUploadFileExtension>json</schemaUploadFileExtension>
     <schemaUploadFileName>DupliCheckOpenAPI3.0_definition</schemaUploadFileName>
-    <serviceBinding>{&quot;host&quot;:&quot;rb-cpi-central-d.it-cpi018-rt.cfapps.eu10-003.hana.ondemand.com&quot;,&quot;basePath&quot;:&quot;&quot;,&quot;allowedSchemes&quot;:[&quot;HTTPS&quot;],&quot;requestMediaTypes&quot;:[],&quot;responseMediaTypes&quot;:[],&quot;compatibleMediaTypes&quot;:{&quot;text/html&quot;:&quot;text/plain&quot;},&quot;extensions&quot;:{}}</serviceBinding>
+    <serviceBinding>{&quot;host&quot;:&quot;rb-cpi-central-q.it-cpi018-rt.cfapps.eu10-003.hana.ondemand.com&quot;,&quot;basePath&quot;:&quot;&quot;,&quot;allowedSchemes&quot;:[&quot;HTTPS&quot;],&quot;requestMediaTypes&quot;:[],&quot;responseMediaTypes&quot;:[],&quot;compatibleMediaTypes&quot;:{&quot;text/html&quot;:&quot;text/plain&quot;},&quot;extensions&quot;:{}}</serviceBinding>
     <status>Complete</status>
     <systemVersion>7</systemVersion>
 </ExternalServiceRegistration>
