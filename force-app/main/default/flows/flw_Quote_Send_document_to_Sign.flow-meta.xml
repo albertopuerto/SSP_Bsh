@@ -104,6 +104,46 @@
             <stringValue>{&quot;location&quot;:&quot;top&quot;,&quot;type&quot;:&quot;simple&quot;}</stringValue>
         </value>
     </customProperties>
+    <decisions>
+        <name>Check_quote_expiration</name>
+        <label>Check quote expiration</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>Get_Fiels_by_parent_record_id</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Expired</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Get_records.SBQQ__ExpirationDate__c</leftValueReference>
+                <operator>LessThan</operator>
+                <rightValue>
+                    <elementReference>$Flow.CurrentDate</elementReference>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Quote_Expired_Message</targetReference>
+            </connector>
+            <label>Expired</label>
+        </rules>
+        <rules>
+            <name>Vaild</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Get_records.SBQQ__ExpirationDate__c</leftValueReference>
+                <operator>GreaterThanOrEqualTo</operator>
+                <rightValue>
+                    <elementReference>$Flow.CurrentDate</elementReference>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Get_Fiels_by_parent_record_id</targetReference>
+            </connector>
+            <label>Vaild</label>
+        </rules>
+    </decisions>
     <environments>Default</environments>
     <interviewLabel>Quote Send document to Sign {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Quote Send document to Sign</label>
@@ -164,9 +204,30 @@
         <object>Signature__c</object>
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordCreates>
-    <screens>
+    <recordLookups>
+        <name>Get_records</name>
+        <label>Get records</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Check_quote_expiration</targetReference>
+        </connector>
+       <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>recordId</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>SBQQ__Quote__c</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+      <screens>
         <name>Error_Document_Send_Failed</name>
-        <label>Error - Document Send Failed</label>
+        <label>Error - Document Send Failed</label>   
         <locationX>0</locationX>
         <locationY>0</locationY>
         <allowBack>false</allowBack>
@@ -192,6 +253,23 @@
         </fields>
         <nextOrFinishButtonLabel>Retry</nextOrFinishButtonLabel>
         <pauseButtonLabel>Cancel</pauseButtonLabel>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
+    <screens>
+        <name>Quote_Expired_Message</name>
+        <label>Quote Expired Message</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>true</allowPause>
+        <fields>
+            <name>Expired_Warning</name>
+            <fieldText>&lt;p&gt;Quote has expired. Please update the validity before sending or contact your administrator.&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <nextOrFinishButtonLabel>Ok</nextOrFinishButtonLabel>
         <showFooter>true</showFooter>
         <showHeader>true</showHeader>
     </screens>
@@ -323,7 +401,7 @@
         <locationX>0</locationX>
         <locationY>0</locationY>
         <connector>
-            <targetReference>Get_Fiels_by_parent_record_id</targetReference>
+            <targetReference>Get_records</targetReference>
         </connector>
     </start>
     <status>Active</status>
