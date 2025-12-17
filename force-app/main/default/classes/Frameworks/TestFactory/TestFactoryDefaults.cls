@@ -129,6 +129,7 @@ public with sharing class TestFactoryDefaults{
 					Contact.FirstName => 'First',
 					Contact.LastName => 'Last',
 					Contact.pkl_Language__c => 'English',
+					Contact.mpkl_RoleMainAccount__c => '0001',
 					Contact.Email => 'testEmail@invalid.com',
 					Contact.pkl_AccountGroup__c=> 'ETDE Contact ETCN Contact',
 					Contact.pkl_Status__c => 'Active'
