@@ -213,7 +213,7 @@
         <connector>
             <targetReference>Check_quote_expiration</targetReference>
         </connector>
-       <filterLogic>and</filterLogic>
+        <filterLogic>and</filterLogic>
         <filters>
             <field>Id</field>
             <operator>EqualTo</operator>
@@ -225,9 +225,9 @@
         <object>SBQQ__Quote__c</object>
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordLookups>
-      <screens>
+    <screens>
         <name>Error_Document_Send_Failed</name>
-        <label>Error - Document Send Failed</label>   
+        <label>Error - Document Send Failed</label>
         <locationX>0</locationX>
         <locationY>0</locationY>
         <allowBack>false</allowBack>
