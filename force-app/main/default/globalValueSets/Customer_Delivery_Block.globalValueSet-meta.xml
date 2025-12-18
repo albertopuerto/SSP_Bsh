@@ -3,82 +3,108 @@
     <customValue>
         <fullName>01</fullName>
         <default>false</default>
-        <label>01</label>
+        <label>Credit limit</label>
     </customValue>
     <customValue>
         <fullName>02</fullName>
         <default>false</default>
-        <label>02</label>
+        <label>Political reasons</label>
     </customValue>
     <customValue>
         <fullName>03</fullName>
         <default>false</default>
-        <label>03</label>
+        <label>Bottleneck material</label>
     </customValue>
     <customValue>
         <fullName>04</fullName>
         <default>false</default>
-        <label>04</label>
+        <label>Export papers missng</label>
     </customValue>
     <customValue>
         <fullName>05</fullName>
         <default>false</default>
-        <label>05</label>
+        <label>Check free of ch.dlv</label>
     </customValue>
     <customValue>
         <fullName>06</fullName>
         <default>false</default>
-        <label>06</label>
+        <label>No printing</label>
     </customValue>
     <customValue>
         <fullName>07</fullName>
         <default>false</default>
-        <label>07</label>
+        <label>Change in quantity</label>
     </customValue>
     <customValue>
         <fullName>08</fullName>
         <default>false</default>
-        <label>08</label>
+        <label>Kanban Delivery</label>
     </customValue>
     <customValue>
         <fullName>09</fullName>
         <default>false</default>
-        <label>09</label>
+        <label>JIT delivery (PDS)</label>
     </customValue>
     <customValue>
         <fullName>30</fullName>
         <default>false</default>
-        <label>30</label>
+        <label>Price Chg. Approval</label>
     </customValue>
     <customValue>
-        <fullName>31</fullName>
+        <fullName>Y9</fullName>
         <default>false</default>
-        <label>31</label>
+        <label>Customer inactive</label>
     </customValue>
     <customValue>
-        <fullName>50</fullName>
+        <fullName>YH</fullName>
         <default>false</default>
-        <label>50</label>
+        <label>Only Forecast</label>
     </customValue>
     <customValue>
-        <fullName>51</fullName>
+        <fullName>YI</fullName>
         <default>false</default>
-        <label>51</label>
+        <label>Internal Acceptance</label>
     </customValue>
     <customValue>
-        <fullName>52</fullName>
+        <fullName>YL</fullName>
         <default>false</default>
-        <label>52</label>
-    </customValue>
-    <customValue>
-        <fullName>53</fullName>
-        <default>false</default>
-        <label>53</label>
+        <label>Order in clarificat.</label>
     </customValue>
     <customValue>
         <fullName>Z1</fullName>
         <default>false</default>
+        <isActive>false</isActive>
         <label>Z1</label>
+    </customValue>
+    <customValue>
+        <fullName>53</fullName>
+        <default>false</default>
+        <isActive>false</isActive>
+        <label>53</label>
+    </customValue>
+    <customValue>
+        <fullName>52</fullName>
+        <default>false</default>
+        <isActive>false</isActive>
+        <label>52</label>
+    </customValue>
+    <customValue>
+        <fullName>51</fullName>
+        <default>false</default>
+        <isActive>false</isActive>
+        <label>51</label>
+    </customValue>
+    <customValue>
+        <fullName>50</fullName>
+        <default>false</default>
+        <isActive>false</isActive>
+        <label>50</label>
+    </customValue>
+    <customValue>
+        <fullName>31</fullName>
+        <default>false</default>
+        <isActive>false</isActive>
+        <label>31</label>
     </customValue>
     <masterLabel>Customer Delivery Block</masterLabel>
     <sorted>false</sorted>

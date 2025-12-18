@@ -2,12 +2,13 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>lkp_SalesArea__c</fullName>
     <deleteConstraint>SetNull</deleteConstraint>
-    <externalId>false</externalId>
-    <label>Sales Area</label>
+    <description>Structure sales based on a regional division of the market.</description>
+    <label>Sales Data Customer</label>
     <lookupFilter>
         <active>true</active>
+        <errorMessage>Sales Area Value does not exist in Account</errorMessage>
         <filterItems>
-            <field>SalesAreaLink__c.mdr_Account__r.Id</field>
+            <field>SalesAreaLink__c.mdr_Account__c</field>
             <operation>equals</operation>
             <valueField>$Source.SBQQ__Account__c</valueField>
         </filterItems>

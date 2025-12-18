@@ -1309,6 +1309,10 @@
             <default>false</default>
         </values>
         <values>
+            <fullName>ETAS%2FCRB-XA</fullName>
+            <default>false</default>
+        </values>
+        <values>
             <fullName>ETAS%2FCRN</fullName>
             <default>false</default>
         </values>
@@ -1425,7 +1429,15 @@
             <default>false</default>
         </values>
         <values>
+            <fullName>182 Days</fullName>
+            <default>false</default>
+        </values>
+        <values>
             <fullName>30 Days</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>365 Days</fullName>
             <default>false</default>
         </values>
         <values>
@@ -1652,6 +1664,17 @@
         <values>
             <fullName>Yes</fullName>
             <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>pkl_Parties_Involved__c</picklist>
+        <values>
+            <fullName>Multy-Party</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Two-Party</fullName>
+            <default>true</default>
         </values>
     </picklistValues>
 </RecordType>

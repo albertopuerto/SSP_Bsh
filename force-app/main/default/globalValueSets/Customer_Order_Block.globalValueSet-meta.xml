@@ -1,44 +1,77 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <GlobalValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
     <customValue>
+        <fullName>YA</fullName>
+        <default>false</default>
+        <label>Overall block sales</label>
+    </customValue>
+    <customValue>
+        <fullName>YB</fullName>
+        <default>false</default>
+        <label>Overall block temp</label>
+    </customValue>
+    <customValue>
+        <fullName>YC</fullName>
+        <default>false</default>
+        <label>Overall block legal</label>
+    </customValue>
+    <customValue>
+        <fullName>YD</fullName>
+        <default>false</default>
+        <label>No quotation allowed</label>
+    </customValue>
+    <customValue>
+        <fullName>YE</fullName>
+        <default>false</default>
+        <label>Only quotation allowed</label>
+    </customValue>
+    <customValue>
+        <fullName>99</fullName>
+        <default>false</default>
+        <isActive>false</isActive>
+        <label>99</label>
+    </customValue>
+    <customValue>
         <fullName>01</fullName>
         <default>false</default>
+        <isActive>false</isActive>
         <label>01</label>
+    </customValue>
+    <customValue>
+        <fullName>Y3</fullName>
+        <default>false</default>
+        <isActive>false</isActive>
+        <label>Y3</label>
+    </customValue>
+    <customValue>
+        <fullName>Y1</fullName>
+        <default>false</default>
+        <isActive>false</isActive>
+        <label>Y1</label>
     </customValue>
     <customValue>
         <fullName>02</fullName>
         <default>false</default>
+        <isActive>false</isActive>
         <label>02</label>
     </customValue>
     <customValue>
         <fullName>03</fullName>
         <default>false</default>
+        <isActive>false</isActive>
         <label>03</label>
     </customValue>
     <customValue>
         <fullName>08</fullName>
         <default>false</default>
+        <isActive>false</isActive>
         <label>08</label>
     </customValue>
     <customValue>
         <fullName>09</fullName>
         <default>false</default>
+        <isActive>false</isActive>
         <label>09</label>
-    </customValue>
-    <customValue>
-        <fullName>99</fullName>
-        <default>false</default>
-        <label>99</label>
-    </customValue>
-    <customValue>
-        <fullName>Y1</fullName>
-        <default>false</default>
-        <label>Y1</label>
-    </customValue>
-    <customValue>
-        <fullName>Y3</fullName>
-        <default>false</default>
-        <label>Y3</label>
     </customValue>
     <masterLabel>Customer Order Block</masterLabel>
     <sorted>false</sorted>

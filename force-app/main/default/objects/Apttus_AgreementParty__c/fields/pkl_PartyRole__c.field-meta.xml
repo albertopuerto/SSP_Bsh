@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>pkl_PartyRole__c</fullName>
+    <description>Agreement Party Role- including in a contract</description>
+    <inlineHelpText>Agreement Party Role- including in a contract</inlineHelpText>
+    <label>Party Role</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>ETAS Legal Entity</fullName>
+                <default>true</default>
+                <label>ETAS Legal Entity</label>
+            </value>
+            <value>
+                <fullName>Customer</fullName>
+                <default>false</default>
+                <label>Customer</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

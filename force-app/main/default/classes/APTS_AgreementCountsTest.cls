@@ -1,14 +1,13 @@
 @isTest
 private class APTS_AgreementCountsTest {
     @isTest static void myUnitTest() {
-		
+        
         //Create a new Account
         Account testacc = new Account();
         testacc.Name = 'Test Account';
-        testAcc.Role__c='ETDE Domestic Customer';
-    	testAcc.Type='Internal';
+        testAcc.Type='Internal';
         testAcc.pkl_Language__c = 'German';
-        testAcc.pkl_PaymentTerms__c = 'Net 15';
+        testAcc.pkm_BoschPartnerRole__c='BBCUEX';
         insert testacc;
         
         APTS_integration_Allowed__c obj = new APTS_integration_Allowed__c(Name = 'Integration_Allowed', APTS_Allow_Callout__c = true);

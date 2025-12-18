@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Queue xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Effective November 1st, 2025, the SXA-EU and CRB accounts will be combined. The newly formed devision is ETAS/CRB-XA</description>
+    <doesSendEmailToMembers>false</doesSendEmailToMembers>
+    <email>etas.salesrb2@etas.com</email>
+    <name>ETAS/CRB-XA</name>
+    <queueMembers>
+        <roles>
+            <role>Sales_coordinator_CRB_XA</role>
+            <role>Sales_Director_CRB_XA</role>
+            <role>Sales_manager_CRB_XA</role>
+        </roles>
+    </queueMembers>
+    <queueSobject>
+        <sobjectType>Apttus__APTS_Agreement__c</sobjectType>
+    </queueSobject>
+</Queue>

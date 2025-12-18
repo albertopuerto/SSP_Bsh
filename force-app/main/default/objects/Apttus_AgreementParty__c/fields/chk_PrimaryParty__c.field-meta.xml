@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>chk_PrimaryParty__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>The main customer or main ETAS entity for reporting or integration purposes, which can be very useful</description>
+    <inlineHelpText>Please, mark the the main ETAS entity/customer/supplier/partner</inlineHelpText>
+    <label>Primary Party</label>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

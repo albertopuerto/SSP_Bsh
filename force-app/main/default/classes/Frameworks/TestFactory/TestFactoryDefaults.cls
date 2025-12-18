@@ -23,8 +23,8 @@ public with sharing class TestFactoryDefaults{
 					Account.Name => 'Customer_B2B Account',
 					Account.RecordTypeID => TestFactoryConstants.MAP_OBJ_RECORD_TYPE_IDS.get('Account').get('Customer_B2B'),
 					Account.Phone => '0123456',
-					Account.BillingCountry => 'bTest',
-					Account.ShippingCountry => 'sTest',
+					Account.BillingCountryCode => 'GB',
+					Account.ShippingCountryCode => 'GB',
 					Account.txt_AthenaUUID__c => '1111',
 					Account.pkl_Language__c => 'English',
 					Account.pkm_BoschPartnerRole__c => 'BBCUSH'
@@ -63,7 +63,7 @@ public with sharing class TestFactoryDefaults{
 			return new Map<Schema.SObjectField, Object> {
 					Order.Status => 'Draft',
 					Order.EffectiveDate => Date.today(),
-                    Order.pkl_INCOTerms1__c => 'CPT - Carriage Paid To',
+                    Order.pkl_INCOTerms1__c => 'CPT',
                     Order.pkl_PaymentTerms__c=> 'Due on receipt',
                     Order.CurrencyIsoCode=> 'EUR',
 					Order.Pricebook2Id => Test.getStandardPricebookId()
@@ -85,7 +85,7 @@ public with sharing class TestFactoryDefaults{
 			return new Map<Schema.SObjectField, Object> {
 					OrderItem.txt_SAPExternalLineItemId__c => '123124124',
 					OrderItem.UnitPrice => 20,
-                    OrderItem.pkl_INCOTerms1__c => 'CPT - Carriage Paid To',
+                    OrderItem.pkl_INCOTerms1__c => 'CPT',
                     OrderItem.pkl_PaymentTerms__c=> 'Due on receipt',
 					OrderItem.pkl_QuantityUnit__c=> 'Each',
 					OrderItem.txt_INCOTerms2__c=> 'Due on receipt test',
@@ -129,7 +129,7 @@ public with sharing class TestFactoryDefaults{
 					Contact.FirstName => 'First',
 					Contact.LastName => 'Last',
 					Contact.mpkl_RoleMainAccount__c => '0001',
-					Contact.pkl_Language__c => 'English',
+					Contact.pkl_Language__c => 'English',					
 					Contact.Email => 'testEmail@invalid.com',
 					Contact.pkl_AccountGroup__c=> 'ETDE Contact ETCN Contact',
 					Contact.pkl_Status__c => 'Active'

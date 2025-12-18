@@ -1,14 +1,13 @@
 @isTest
-public class QuoteLineEmailController_Test {	
+public class QuoteLineEmailController_Test {    
     
     @isTest
     static void testQuoteLineEmailController() {
         // Create a test Account
         Account testAccount = new Account(
             Name = 'Test Account',
-            Role__c='ETDE Domestic Customer',
-            pkl_Language__c='English',
-            pkl_PaymentTerms__c = 'Net 15'
+            pkm_BoschPartnerRole__c='BBCUEX',
+            pkl_Language__c='English'
         );
         insert testAccount;
         
@@ -49,7 +48,7 @@ public class QuoteLineEmailController_Test {
                 pkl_SolutionField__c = 'DEV',
                 SBQQ__ListPrice__c = 100.0,
                 pkl_QuantityUnit__c = 'Each',
-                pkl_INCOTerms1__c='DAP – Delivered at Place',  
+                pkl_INCOTerms1__c='DAP',  
                 txt_INCOTerms2__c = 'Inco Terms',
                 pkl_PaymentTerms__c = 'Net 15'
             ));

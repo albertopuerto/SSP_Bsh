@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ExternalServiceRegistration xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>to check the potential duplicates of the Account/Business Partner</description>
+    <label>IF123AccountDuplicateCheck</label>
+    <namedCredentialReference>SAPCPINamedCredential</namedCredentialReference>
+    <operations>
+        <active>true</active>
+        <name>checkx20duplicatex20account</name>
+    </operations>
+    <registrationProviderType>Custom</registrationProviderType>
+    <schema>{
+    &quot;openapi&quot;: &quot;3.0.3&quot;,
+    &quot;info&quot;: {
+        &quot;title&quot;: &quot;SSP&quot;,
+        &quot;version&quot;: &quot;1.0.0&quot;,
+        &quot;contact&quot;: {}
+    },
+    &quot;servers&quot;: [
+        {
+            &quot;url&quot;: &quot;https://rb-cpi-central-q.it-cpi018-rt.cfapps.eu10-003.hana.ondemand.com&quot;
+        }
+    ],
+    &quot;paths&quot;: {
+        &quot;/http/rb.bbm.ssp.mdm.bp.CustomEvent.DuplicateCheck.SF&quot;: {
+            &quot;post&quot;: {
+                &quot;operationId&quot;: &quot;check duplicate account&quot;,
+                &quot;summary&quot;: &quot;check duplicate account in Athena&quot;,
+                &quot;description&quot;: &quot;Check Duplicate Account in Athena&quot;,
+                &quot;requestBody&quot;: {
+                    &quot;content&quot;: {
+                        &quot;application/json&quot;: {
+                            &quot;schema&quot;: {
+                                &quot;type&quot;: &quot;object&quot;,
+                                &quot;properties&quot;: {
+                                    &quot;Account Record Type&quot;: {
+                                        &quot;type&quot;: &quot;string&quot;
+                                    },
+                                    &quot;Name&quot;: {
+                                        &quot;type&quot;: &quot;string&quot;
+                                    },
+                                    &quot;txt_AdditionalName__c&quot;: {
+                                        &quot;type&quot;: &quot;string&quot;
+                                    },
+                                    &quot;txt_AdditionalName2__c&quot;: {
+                                        &quot;type&quot;: &quot;string&quot;
+                                    },
+                                    &quot;BillingStreet&quot;: {
+                                        &quot;type&quot;: &quot;string&quot;
+                                    },
+                                    &quot;BillingPostalCode&quot;: {
+                                        &quot;type&quot;: &quot;string&quot;
+                                    },
+                                    &quot;BillingCity&quot;: {
+                                        &quot;type&quot;: &quot;string&quot;
+                                    },
+                                    &quot;BillingCountry&quot;: {
+                                        &quot;type&quot;: &quot;string&quot;
+                                    },
+                                    &quot;CorrelationId&quot;: {
+                                        &quot;type&quot;: &quot;string&quot;
+                                    }
+                                },
+                                &quot;required&quot;: [
+                                    &quot;Account Record Type&quot;,
+                                    &quot;Name&quot;,
+                                    &quot;txt_AdditionalName__c&quot;,
+                                    &quot;txt_AdditionalName2__c&quot;,
+                                    &quot;BillingStreet&quot;,
+                                    &quot;BillingPostalCode&quot;,
+                                    &quot;BillingCity&quot;,
+                                    &quot;BillingCountry&quot;,
+                                    &quot;CorrelationId&quot;
+                                ]
+                            }
+                        }
+                    }
+                },
+                &quot;responses&quot;: {
+                    &quot;200&quot;: {
+                        &quot;description&quot;: &quot;Success message&quot;,
+                        &quot;content&quot;: {
+                            &quot;application/json&quot;: {
+                                &quot;schema&quot;: {
+                                    &quot;type&quot;: &quot;object&quot;,
+                                    &quot;properties&quot;: {
+                                        &quot;guaranteedDuplicates&quot;: {
+                                            &quot;type&quot;: &quot;array&quot;,
+                                            &quot;items&quot;: {
+                                                &quot;type&quot;: &quot;object&quot;,
+                                                &quot;properties&quot;: {
+                                                    &quot;matchingScore&quot;: {
+                                                        &quot;type&quot;: &quot;string&quot;
+                                                    },
+                                                    &quot;boschPartnerNumber&quot;: {
+                                                        &quot;type&quot;: &quot;string&quot;
+                                                    },
+                                                    &quot;boschPartnerRole&quot;: {
+                                                        &quot;type&quot;: &quot;string&quot;
+                                                    },
+                                                    &quot;houseNumber&quot;: {
+                                                        &quot;type&quot;: &quot;string&quot;
+                                                    },
+                                                    &quot;organizationName&quot;: {
+                                                        &quot;type&quot;: &quot;string&quot;
+                                                    },
+                                                    &quot;organizationName2&quot;: {
+                                                        &quot;type&quot;: &quot;string&quot;
+                                                    },
+                                                    &quot;organizationName3&quot;: {
+                                                        &quot;type&quot;: &quot;string&quot;
+                                                    },
+                                                    &quot;organizationName4&quot;: {
+                                                        &quot;type&quot;: &quot;string&quot;
+                                                    },
+                                                    &quot;street&quot;: {
+                                                        &quot;type&quot;: &quot;string&quot;
+                                                    },
+                                                    &quot;postalCode&quot;: {
+                                                        &quot;type&quot;: &quot;string&quot;
+                                                    },
+                                                    &quot;city&quot;: {
+                                                        &quot;type&quot;: &quot;string&quot;
+                                                    },
+                                                    &quot;countryCode&quot;: {
+                                                        &quot;type&quot;: &quot;string&quot;
+                                                    }
+                                                }
+                                            }
+                                        },
+                                        &quot;potentialDuplicates&quot;: {
+                                            &quot;type&quot;: &quot;array&quot;,
+                                            &quot;items&quot;: {
+                                                &quot;type&quot;: &quot;object&quot;,
+                                                &quot;properties&quot;: {
+                                                    &quot;matchingScore&quot;: {
+                                                        &quot;type&quot;: &quot;string&quot;
+                                                    },
+                                                    &quot;boschPartnerNumber&quot;: {
+                                                        &quot;type&quot;: &quot;string&quot;
+                                                    },
+                                                    &quot;boschPartnerRole&quot;: {
+                                                        &quot;type&quot;: &quot;string&quot;
+                                                    },
+                                                    &quot;houseNumber&quot;: {
+                                                        &quot;type&quot;: &quot;string&quot;
+                                                    },
+                                                    &quot;organizationName&quot;: {
+                                                        &quot;type&quot;: &quot;string&quot;
+                                                    },
+                                                    &quot;organizationName2&quot;: {
+                                                        &quot;type&quot;: &quot;string&quot;
+                                                    },
+                                                    &quot;organizationName3&quot;: {
+                                                        &quot;type&quot;: &quot;string&quot;
+                                                    },
+                                                    &quot;organizationName4&quot;: {
+                                                        &quot;type&quot;: &quot;string&quot;
+                                                    },
+                                                    &quot;street&quot;: {
+                                                        &quot;type&quot;: &quot;string&quot;
+                                                    },
+                                                    &quot;postalCode&quot;: {
+                                                        &quot;type&quot;: &quot;string&quot;
+                                                    },
+                                                    &quot;city&quot;: {
+                                                        &quot;type&quot;: &quot;string&quot;
+                                                    },
+                                                    &quot;countryCode&quot;: {
+                                                        &quot;type&quot;: &quot;string&quot;
+                                                    }
+                                                }
+                                            }
+                                        },
+                                        &quot;noDuplicate&quot;: {
+                                            &quot;type&quot;: &quot;string&quot;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    &quot;500&quot;: {
+                        &quot;description&quot;: &quot;Error message&quot;,
+                        &quot;content&quot;: {
+                            &quot;application/json&quot;: {
+                                &quot;schema&quot;: {
+                                    &quot;type&quot;: &quot;object&quot;,
+                                    &quot;properties&quot;: {
+                                        &quot;duplicateCheckResponse&quot;: {
+                                            &quot;type&quot;: &quot;object&quot;,
+                                            &quot;properties&quot;: {
+                                                &quot;Status Code&quot;: {
+                                                    &quot;type&quot;: &quot;string&quot;
+                                                },
+                                                &quot;Status Text&quot;: {
+                                                    &quot;type&quot;: &quot;string&quot;
+                                                },
+                                                &quot;CorrelationId&quot;: {
+                                                    &quot;type&quot;: &quot;string&quot;
+                                                }
+                                            },
+                                            &quot;required&quot;: [
+                                                &quot;Status Code&quot;,
+                                                &quot;Status Text&quot;,
+                                                &quot;CorrelationId&quot;
+                                            ]
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    &quot;404&quot;: {
+                        &quot;description&quot;: &quot;Not found&quot;,
+                        &quot;content&quot;: {
+                            &quot;text/html&quot;: {
+                                &quot;schema&quot;: {
+                                    &quot;type&quot;: &quot;string&quot;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}</schema>
+    <schemaType>OpenApi3</schemaType>
+    <schemaUploadFileExtension>json</schemaUploadFileExtension>
+    <schemaUploadFileName>DupliCheckOpenAPI3.0_definition</schemaUploadFileName>
+    <serviceBinding>{&quot;host&quot;:&quot;rb-cpi-central-q.it-cpi018-rt.cfapps.eu10-003.hana.ondemand.com&quot;,&quot;basePath&quot;:&quot;&quot;,&quot;allowedSchemes&quot;:[&quot;HTTPS&quot;],&quot;requestMediaTypes&quot;:[],&quot;responseMediaTypes&quot;:[],&quot;compatibleMediaTypes&quot;:{&quot;text/html&quot;:&quot;text/plain&quot;},&quot;extensions&quot;:{}}</serviceBinding>
+    <status>Complete</status>
+    <systemVersion>7</systemVersion>
+</ExternalServiceRegistration>

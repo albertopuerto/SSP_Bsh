@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>txa_AccountSearchDetails__c</fullName>
+    <description>If the account is missing in Salesforce, then the user can fill as a free text Entity details</description>
+    <inlineHelpText>In case you are unable to find the proper account, fill in the Entity details</inlineHelpText>
+    <label>Account Search Details</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>TextArea</type>
+</CustomField>

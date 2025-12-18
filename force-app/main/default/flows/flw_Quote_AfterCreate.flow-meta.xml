@@ -3,7 +3,7 @@
     <actionCalls>
         <name>Retrieved_Account_Fields</name>
         <label>Retrieved Account Fields</label>
-        <locationX>704</locationX>
+        <locationX>440</locationX>
         <locationY>431</locationY>
         <actionName>FlowLogEntry</actionName>
         <actionType>apex</actionType>
@@ -29,54 +29,15 @@
     </actionCalls>
     <actionCalls>
         <description>Save the Logs</description>
-        <name>Save_Logs</name>
-        <label>Save Logs</label>
-        <locationX>440</locationX>
-        <locationY>647</locationY>
-        <actionName>Logger</actionName>
-        <actionType>apex</actionType>
-        <flowTransactionModel>Automatic</flowTransactionModel>
-        <nameSegment>Logger</nameSegment>
-        <offset>0</offset>
-    </actionCalls>
-    <actionCalls>
-        <description>Save the Logs</description>
         <name>Save_Logs1</name>
         <label>Save Logs</label>
-        <locationX>704</locationX>
+        <locationX>440</locationX>
         <locationY>539</locationY>
         <actionName>Logger</actionName>
         <actionType>apex</actionType>
         <flowTransactionModel>Automatic</flowTransactionModel>
         <nameSegment>Logger</nameSegment>
         <offset>0</offset>
-    </actionCalls>
-    <actionCalls>
-        <name>Updated_Quote</name>
-        <label>Updated Quote</label>
-        <locationX>440</locationX>
-        <locationY>539</locationY>
-        <actionName>FlowLogEntry</actionName>
-        <actionType>apex</actionType>
-        <connector>
-            <targetReference>Save_Logs</targetReference>
-        </connector>
-        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
-        <inputParameters>
-            <name>flowName</name>
-            <value>
-                <stringValue>flw_Quote_AfterCreate</stringValue>
-            </value>
-        </inputParameters>
-        <inputParameters>
-            <name>message</name>
-            <value>
-                <stringValue>Updated Quote fields based on Account values for Quote: {!$Record.Id}</stringValue>
-            </value>
-        </inputParameters>
-        <nameSegment>FlowLogEntry</nameSegment>
-        <offset>0</offset>
-        <storeOutputAutomatically>true</storeOutputAutomatically>
     </actionCalls>
     <apiVersion>60.0</apiVersion>
     <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
@@ -109,9 +70,6 @@
         <locationX>176</locationX>
         <locationY>323</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
-        <connector>
-            <targetReference>upd_Quote_Fields</targetReference>
-        </connector>
         <faultConnector>
             <targetReference>Retrieved_Account_Fields</targetReference>
         </faultConnector>
@@ -128,22 +86,6 @@
         <queriedFields>Id</queriedFields>
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordLookups>
-    <recordUpdates>
-        <name>upd_Quote_Fields</name>
-        <label>Update Quote Fields</label>
-        <locationX>176</locationX>
-        <locationY>431</locationY>
-        <faultConnector>
-            <targetReference>Updated_Quote</targetReference>
-        </faultConnector>
-        <inputAssignments>
-            <field>pkl_PaymentTerms__c</field>
-            <value>
-                <elementReference>Get_AccountFieldValues.pkl_PaymentTerms__c</elementReference>
-            </value>
-        </inputAssignments>
-        <inputReference>$Record</inputReference>
-    </recordUpdates>
     <start>
         <locationX>50</locationX>
         <locationY>0</locationY>
