@@ -151,6 +151,22 @@
     <apiVersion>65.0</apiVersion>
     <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
     <assignments>
+        <name>asn_SalesArea</name>
+        <label>Assign Sales Area</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>varSalesAreaLink.mdr_SalesArea__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>varSelectedSalesArea.Id</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Create_Sales_Data_Customer</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
         <name>Set_Default_Account</name>
         <label>Set Default Account</label>
         <locationX>0</locationX>
@@ -163,7 +179,7 @@
             </value>
         </assignmentItems>
         <connector>
-            <targetReference>NewSalesDataCustomer</targetReference>
+            <targetReference>get_SalesAreas</targetReference>
         </connector>
     </assignments>
     <assignments>
@@ -195,6 +211,31 @@
             <stringValue>{&quot;location&quot;:&quot;top&quot;,&quot;type&quot;:&quot;simple&quot;}</stringValue>
         </value>
     </customProperties>
+    <decisions>
+        <name>decn_FoundSalesAreas</name>
+        <label>Found Sales Areas?</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>NoSalesArea</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>No</defaultConnectorLabel>
+        <rules>
+            <name>decn_FoundSalesAreas_Yes</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>get_SalesAreas</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>SalesArea</targetReference>
+            </connector>
+            <label>Yes</label>
+        </rules>
+    </decisions>
     <decisions>
         <name>error_check</name>
         <label>error check</label>
@@ -269,6 +310,22 @@
         </faultConnector>
         <inputReference>varSalesAreaLink</inputReference>
     </recordCreates>
+    <recordLookups>
+        <name>get_SalesAreas</name>
+        <label>Get Sales Areas</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>decn_FoundSalesAreas</targetReference>
+        </connector>
+        <object>SalesArea__c</object>
+        <outputReference>varList_SalesArea</outputReference>
+        <queriedFields>Id</queriedFields>
+        <queriedFields>pkl_SalesOrg__c</queriedFields>
+        <queriedFields>pkl_DistributionChannel__c</queriedFields>
+        <queriedFields>pkl_Division__c</queriedFields>
+    </recordLookups>
     <screens>
         <name>Error</name>
         <label>Error</label>
@@ -341,7 +398,7 @@
         <allowFinish>true</allowFinish>
         <allowPause>true</allowPause>
         <connector>
-            <targetReference>Create_Sales_Data_Customer</targetReference>
+            <targetReference>asn_SalesArea</targetReference>
         </connector>
         <fields>
             <fieldType>ObjectProvided</fieldType>
@@ -350,10 +407,60 @@
             <objectFieldReference>varSalesAreaLink.mdr_Account__c</objectFieldReference>
         </fields>
         <fields>
+            <name>SalesAreaLookup</name>
+            <extensionName>flowruntime:lookup</extensionName>
+            <fieldType>ComponentInstance</fieldType>
+            <inputParameters>
+                <name>fieldApiName</name>
+                <value>
+                    <stringValue>mdr_SalesArea__c</stringValue>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>objectApiName</name>
+                <value>
+                    <stringValue>SalesAreaLink__c</stringValue>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>label</name>
+                <value>
+                    <stringValue>Sales Area</stringValue>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>disabled</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>recordId</name>
+                <value>
+                    <elementReference>varSelectedSalesArea.Id</elementReference>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>required</name>
+                <value>
+                    <booleanValue>true</booleanValue>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>maxValues</name>
+                <value>
+                    <numberValue>1.0</numberValue>
+                </value>
+            </inputParameters>
+            <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+            <isRequired>true</isRequired>
+            <storeOutputAutomatically>true</storeOutputAutomatically>
+        </fields>
+        <fields>
             <fieldType>ObjectProvided</fieldType>
             <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
             <isRequired>false</isRequired>
-            <objectFieldReference>varSalesAreaLink.mdr_SalesArea__c</objectFieldReference>
+            <objectFieldReference>varSalesAreaLink.pkl_Currency__c</objectFieldReference>
         </fields>
         <fields>
             <fieldType>ObjectProvided</fieldType>
@@ -484,6 +591,106 @@
         <showFooter>true</showFooter>
         <showHeader>true</showHeader>
     </screens>
+    <screens>
+        <name>NoSalesArea</name>
+        <label>No Sales Areas</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <allowBack>false</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>false</allowPause>
+        <fields>
+            <name>SalesAreaNotFound</name>
+            <fieldText>&lt;p style=&quot;text-align: center;&quot;&gt;&lt;br&gt;&lt;/p&gt;&lt;p style=&quot;text-align: center;&quot;&gt;&lt;strong&gt;No Sales Areas have been found!&lt;/strong&gt;&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
+    <screens>
+        <name>SalesArea</name>
+        <label>Select Sales Area</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>false</allowPause>
+        <connector>
+            <targetReference>NewSalesDataCustomer</targetReference>
+        </connector>
+        <fields>
+            <name>AddSalesArea</name>
+            <fieldText>&lt;p style=&quot;text-align: center;&quot;&gt;&lt;strong style=&quot;font-size: 13px;&quot;&gt;Add Sales Area&lt;/strong&gt;&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <fields>
+            <name>ListSalesAreas</name>
+            <dataTypeMappings>
+                <typeName>T</typeName>
+                <typeValue>SalesArea__c</typeValue>
+            </dataTypeMappings>
+            <extensionName>flowruntime:datatable</extensionName>
+            <fieldType>ComponentInstance</fieldType>
+            <inputParameters>
+                <name>label</name>
+                <value>
+                    <stringValue>Add Sales Area</stringValue>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>selectionMode</name>
+                <value>
+                    <stringValue>SINGLE_SELECT</stringValue>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>minRowSelection</name>
+                <value>
+                    <numberValue>1.0</numberValue>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>tableData</name>
+                <value>
+                    <elementReference>varList_SalesArea</elementReference>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>keyField</name>
+                <value>
+                    <complexValue>{&quot;dataType&quot;:&quot;SObject&quot;,&quot;objectType&quot;:&quot;SalesArea__c&quot;,&quot;fieldReferences&quot;:[&quot;Id&quot;],&quot;elementReference&quot;:&quot;varList_SalesArea&quot;}</complexValue>
+                    <complexValueType>ComplexObjectFieldDetails</complexValueType>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>columns</name>
+                <value>
+                    <stringValue>[{&quot;apiName&quot;:&quot;pkl_SalesOrg__c&quot;,&quot;guid&quot;:&quot;column-6e48&quot;,&quot;editable&quot;:false,&quot;hasCustomHeaderLabel&quot;:true,&quot;customHeaderLabel&quot;:&quot;Sales Organization&quot;,&quot;wrapText&quot;:true,&quot;order&quot;:0,&quot;label&quot;:&quot;Sales Organization&quot;,&quot;type&quot;:&quot;text&quot;},{&quot;apiName&quot;:&quot;pkl_DistributionChannel__c&quot;,&quot;guid&quot;:&quot;column-2bd6&quot;,&quot;editable&quot;:false,&quot;hasCustomHeaderLabel&quot;:true,&quot;customHeaderLabel&quot;:&quot;Distribution Channel&quot;,&quot;wrapText&quot;:true,&quot;order&quot;:1,&quot;label&quot;:&quot;Distribution Channel&quot;,&quot;type&quot;:&quot;text&quot;},{&quot;apiName&quot;:&quot;pkl_Division__c&quot;,&quot;guid&quot;:&quot;column-e663&quot;,&quot;editable&quot;:false,&quot;hasCustomHeaderLabel&quot;:true,&quot;customHeaderLabel&quot;:&quot;Division&quot;,&quot;wrapText&quot;:true,&quot;order&quot;:2,&quot;label&quot;:&quot;Division&quot;,&quot;type&quot;:&quot;text&quot;}]</stringValue>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>columnReferences</name>
+                <value>
+                    <complexValue>{&quot;dataType&quot;:&quot;SObject&quot;,&quot;objectType&quot;:&quot;SalesArea__c&quot;,&quot;fieldReferences&quot;:[&quot;pkl_SalesOrg__c&quot;,&quot;pkl_DistributionChannel__c&quot;,&quot;pkl_Division__c&quot;],&quot;elementReference&quot;:&quot;varList_SalesArea&quot;}</complexValue>
+                    <complexValueType>ComplexObjectFieldDetails</complexValueType>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>maxRowSelection</name>
+                <value>
+                    <numberValue>1.0</numberValue>
+                </value>
+            </inputParameters>
+            <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+            <isRequired>true</isRequired>
+            <outputParameters>
+                <assignToReference>varSelectedSalesArea</assignToReference>
+                <name>firstSelectedRow</name>
+            </outputParameters>
+        </fields>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
     <start>
         <locationX>0</locationX>
         <locationY>0</locationY>
@@ -508,6 +715,14 @@
         <objectType>BoschPartner_PartnerFunction__c</objectType>
     </variables>
     <variables>
+        <name>varList_SalesArea</name>
+        <dataType>SObject</dataType>
+        <isCollection>true</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>SalesArea__c</objectType>
+    </variables>
+    <variables>
         <name>varSalesAreaLink</name>
         <dataType>SObject</dataType>
         <isCollection>false</isCollection>
@@ -521,5 +736,13 @@
         <isCollection>false</isCollection>
         <isInput>false</isInput>
         <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>varSelectedSalesArea</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+        <objectType>SalesArea__c</objectType>
     </variables>
 </Flow>
