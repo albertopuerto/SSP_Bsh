@@ -220,7 +220,7 @@
         <locationX>0</locationX>
         <locationY>0</locationY>
         <defaultConnector>
-            <targetReference>Update_Opp_with_Error_Status</targetReference>
+            <targetReference>Copy_1_of_Error_Screen_sending_Opp_to_PLW</targetReference>
         </defaultConnector>
         <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
         <rules>
@@ -234,7 +234,7 @@
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>Update_Opp_with_Error_Status</targetReference>
+                <targetReference>Error_Screen_sending_Opp_to_PLW</targetReference>
             </connector>
             <label>Error 404</label>
         </rules>
@@ -249,7 +249,7 @@
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>Update_Opp_with_Error_Status</targetReference>
+                <targetReference>Error_Screen_sending_Opp_to_PLW_500</targetReference>
             </connector>
             <label>Error 500</label>
         </rules>
@@ -285,6 +285,13 @@
                 <operator>IsNull</operator>
                 <rightValue>
                     <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>Get_Opp_Record_Info.HasOpportunityLineItem</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
                 </rightValue>
             </conditions>
             <connector>
@@ -350,7 +357,7 @@
         <locationX>0</locationX>
         <locationY>0</locationY>
         <connector>
-            <targetReference>Error_Screen_sending_Opp_to_PLW</targetReference>
+            <targetReference>Sending_Opp_to_PLW_failed</targetReference>
         </connector>
         <filterLogic>and</filterLogic>
         <filters>
@@ -393,6 +400,25 @@
         <object>Opportunity</object>
     </recordUpdates>
     <screens>
+        <name>Copy_1_of_Error_Screen_sending_Opp_to_PLW</name>
+        <label>Copy 1 of Error Screen sending Opp to PLW</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <allowBack>false</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>false</allowPause>
+        <connector>
+            <targetReference>Update_Opp_with_Error_Status</targetReference>
+        </connector>
+        <fields>
+            <name>Copy_1_of_Send_to_PLW_failed</name>
+            <fieldText>&lt;p&gt;Sending Opportunity information to Planisware was failed. Please contact support and provide following information:&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Opportunity Id:&lt;/strong&gt;&amp;nbsp;{!recordId}&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;strong&gt;CorrelationId:&amp;nbsp;&lt;/strong&gt;{!CorrelationId}&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
+    <screens>
         <name>Error_Screen_sending_Opp_to_PLW</name>
         <label>Error Screen sending Opp to PLW</label>
         <locationX>0</locationX>
@@ -401,11 +427,30 @@
         <allowFinish>true</allowFinish>
         <allowPause>false</allowPause>
         <connector>
-            <targetReference>Sending_Opp_to_PLW_failed</targetReference>
+            <targetReference>Update_Opp_with_Error_Status</targetReference>
         </connector>
         <fields>
             <name>Send_to_PLW_failed</name>
             <fieldText>&lt;p&gt;Sending Opportunity information to Planisware was failed. Please contact support and provide following information:&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Opportunity Id:&lt;/strong&gt;&amp;nbsp;{!recordId}&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;strong&gt;CorrelationId:&amp;nbsp;&lt;/strong&gt;{!CorrelationId}&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
+    <screens>
+        <name>Error_Screen_sending_Opp_to_PLW_500</name>
+        <label>Error Screen sending Opp to PLW_500</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <allowBack>false</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>false</allowPause>
+        <connector>
+            <targetReference>Update_Opp_with_Error_Status</targetReference>
+        </connector>
+        <fields>
+            <name>Copy_2_of_Send_to_PLW_failed</name>
+            <fieldText>&lt;p&gt;Sending Opportunity information to Planisware was failed. Please contact support and provide following information:&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Opportunity Id:&lt;/strong&gt;&amp;nbsp;{!recordId}&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;strong&gt;CorrelationId:&amp;nbsp;&lt;/strong&gt;{!CorrelationId}&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Error Message: &lt;/strong&gt;{!Send_Opp_data_to_PLW.500Exc.accountCreateResponse.Statusx20Text}&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
         </fields>
         <showFooter>true</showFooter>
@@ -421,7 +466,7 @@
         <allowPause>true</allowPause>
         <fields>
             <name>values_missed_message</name>
-            <fieldText>&lt;p&gt;&lt;strong style=&quot;font-size: 14px;&quot;&gt;Please check below before sending Opportunity to Planisware:&lt;/strong&gt;&lt;/p&gt;&lt;ol&gt;&lt;li&gt;Opportunity should have Sales Organization linked to it.&lt;/li&gt;&lt;li&gt;Opportunity id number field shouldn&#39;t be blank.&lt;/li&gt;&lt;li&gt;Linked Account should contain &quot;Bosch Partner Number&quot; value.&lt;/li&gt;&lt;/ol&gt;</fieldText>
+            <fieldText>&lt;p&gt;&lt;strong style=&quot;font-size: 14px;&quot;&gt;Please check below before sending Opportunity to Planisware:&lt;/strong&gt;&lt;/p&gt;&lt;ol&gt;&lt;li&gt;Opportunity should have Sales Organization linked to it.&lt;/li&gt;&lt;li&gt;Opportunity id number field shouldn&#39;t be blank.&lt;/li&gt;&lt;li&gt;Linked Account should contain &quot;Bosch Partner Number&quot; value.&lt;/li&gt;&lt;li&gt;Opportunity should have one Product linked to it.&lt;/li&gt;&lt;/ol&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
         </fields>
         <showFooter>true</showFooter>
@@ -453,7 +498,7 @@
             <targetReference>Get_Opp_Record_Info</targetReference>
         </connector>
     </start>
-    <status>Active</status>
+    <status>Draft</status>
     <textTemplates>
         <name>tmpl_RequestBodyTXT</name>
         <isViewedAsPlainText>false</isViewedAsPlainText>
