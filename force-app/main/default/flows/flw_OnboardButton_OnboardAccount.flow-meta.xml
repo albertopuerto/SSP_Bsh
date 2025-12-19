@@ -476,6 +476,13 @@
                 <stringValue>Account</stringValue>
             </value>
         </filters>
+        <filters>
+            <field>IsActive</field>
+            <operator>EqualTo</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
         <object>RecordType</object>
         <valueField>Id</valueField>
     </dynamicChoiceSets>
