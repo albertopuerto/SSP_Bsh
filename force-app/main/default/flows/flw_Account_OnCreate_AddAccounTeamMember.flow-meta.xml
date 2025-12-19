@@ -158,6 +158,7 @@
         <connector>
             <targetReference>decn_IsSCOUser</targetReference>
         </connector>
+        <filterFormula>NOT({!$Permission.BypassFlows})</filterFormula>
         <object>Account</object>
         <recordTriggerType>Create</recordTriggerType>
         <triggerType>RecordAfterSave</triggerType>

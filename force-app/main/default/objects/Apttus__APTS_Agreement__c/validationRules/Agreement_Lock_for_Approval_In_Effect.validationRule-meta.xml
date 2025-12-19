@@ -4,6 +4,7 @@
     <active>true</active>
     <description>Lock Agreement record from being edited while agreement is in Pending Approvals, Activated, In Signature, Expired or Terminated</description>
     <errorConditionFormula>IF(AND(
+NOT($Permission.BypassValidations ),
 NOT(ISPICKVAL(PRIORVALUE(Apttus__Status_Category__c),&#39;In Filing&#39;)),
 OR(
   TEXT(Apttus_Approval__Approval_Status__c) = &#39;Pending Approval&#39;,

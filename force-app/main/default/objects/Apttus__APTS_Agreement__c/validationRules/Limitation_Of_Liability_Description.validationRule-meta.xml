@@ -5,7 +5,8 @@
     <description>If Limitation of Liability (Direct Supercap) is set to &#39;Yes&#39;, &#39;Limitation of Liability Description.&#39; field is required</description>
     <errorConditionFormula>AND(
 ISPICKVAL(APTS_Limitation_of_Liability__c , &#39;Yes&#39;),
-ISBLANK(APTS_Limitation_of_Liability_Description__c)
+ISBLANK(APTS_Limitation_of_Liability_Description__c), 
+NOT( $Permission.BypassValidations )
 )</errorConditionFormula>
     <errorDisplayField>APTS_Limitation_of_Liability_Description__c</errorDisplayField>
     <errorMessage>Please describe the &#39;Limitation of Liability&#39;</errorMessage>

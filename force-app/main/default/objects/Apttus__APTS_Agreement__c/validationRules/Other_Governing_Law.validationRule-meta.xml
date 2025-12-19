@@ -5,7 +5,8 @@
     <description>If Governing Law is set to &#39;Other&#39;, &#39;Other Governing Law&#39; field is required</description>
     <errorConditionFormula>AND(
 ISPICKVAL(APTS_Governing_Law__c,&#39;Other&#39;),
-ISBLANK(APTS_Other_Governing_Law__c)
+ISBLANK(APTS_Other_Governing_Law__c),
+NOT( $Permission.BypassValidations ) 
 )</errorConditionFormula>
     <errorDisplayField>APTS_Other_Governing_Law__c</errorDisplayField>
     <errorMessage>Please enter &#39;Other Governing Law&#39;</errorMessage>

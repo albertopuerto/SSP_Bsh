@@ -5,7 +5,8 @@
     <description>If Indemnification Category includes Non-Standard, Non-Standard Indemnification Categories field is required</description>
     <errorConditionFormula>AND(
 ISPICKVAL(APTS_Indemnification_Categories__c, &#39;Non-Standard&#39;),
-ISBLANK(APTS_Other_Indemnification__c)
+ISBLANK(APTS_Other_Indemnification__c),  
+NOT( $Permission.BypassValidations ) 
 )</errorConditionFormula>
     <errorDisplayField>APTS_Other_Indemnification__c</errorDisplayField>
     <errorMessage>Please describe the &#39;Non-Standard Indemnification Categories&#39;</errorMessage>

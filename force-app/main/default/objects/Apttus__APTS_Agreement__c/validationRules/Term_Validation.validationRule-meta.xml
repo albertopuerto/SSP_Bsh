@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>Apttus__Term_Validation</fullName>
-    <active>false</active>
+    <fullName>Term_Validation</fullName>
+    <active>true</active>
     <description>Validate that Term is entered correctly</description>
-    <errorConditionFormula>AND( ( Apttus__Perpetual__c ),  (  Apttus__Term_Months__c  ) &gt; 0 )</errorConditionFormula>
+    <errorConditionFormula>AND( (Apttus__Perpetual__c), 
+     (Apttus__Term_Months__c) &gt; 0, 
+     NOT($Permission.BypassValidations)
+)</errorConditionFormula>
     <errorDisplayField>Apttus__Term_Months__c</errorDisplayField>
     <errorMessage>Cannot enter both Perpetual and Term.  Please enter only one of the values</errorMessage>
 </ValidationRule>
