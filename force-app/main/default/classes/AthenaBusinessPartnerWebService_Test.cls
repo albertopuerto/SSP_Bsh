@@ -115,12 +115,12 @@ public with sharing class AthenaBusinessPartnerWebService_Test {
     }
 
     /**
-     * @description Missing Sales Area validation
+     * @description Invalid Category validation
      */
     @IsTest
-    static void testMissingSalesAreaValidation() {
+    static void testInvalidCategoryValidation() {
 
-        String jsonBody = AthenaTestDataFactory.loadJson('AthenaBPValidPayload');
+        String jsonBody = AthenaTestDataFactory.loadJson('AthenaBPInvalidCategory');
         User testUser = getIntegrationUser();
 
         TestFactory.createSObject(new BoschPartnerFunction__c(txt_PartnerFunction__c = 'SP'), true);

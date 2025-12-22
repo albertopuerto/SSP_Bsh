@@ -84,12 +84,7 @@ public with sharing class AthenaBusinessPartnerService {
                                  WITH SYSTEM_MODE LIMIT 1
                                  ];
 
-        // Nebula Logger handling in AthenaBusinessPartnerWebService class
-        if(sa.isEmpty()){
-            throw new ValidationException('No Sales Area found meeting the criteria.');
-        }else{
-            return sa[0].Id;
-        }
+        return sa.isEmpty() ? null : sa[0].Id;
     }
 
     private static Id getPartnerFunctionId(AthenaBusinessPartnerDTO dto) {
@@ -100,12 +95,7 @@ public with sharing class AthenaBusinessPartnerService {
                                             WITH SYSTEM_MODE LIMIT 1
                                             ];
 
-        // Nebula Logger handling in AthenaBusinessPartnerWebService class
-        if(pf.isEmpty()){
-            throw new ValidationException('No Partner Function found meeting the criteria.');
-        }else{
-            return pf[0].Id;
-        }
+        return pf.isEmpty() ? null : pf[0].Id;
 
     }
 
@@ -117,12 +107,7 @@ public with sharing class AthenaBusinessPartnerService {
                                     WITH SYSTEM_MODE LIMIT 1
                                     ];
 
-        // Nebula Logger handling in AthenaBusinessPartnerWebService class
-        if(refAccount.isEmpty()){
-            throw new ValidationException('Refferenced Account does not exist in the database.');
-        }else{
-            return refAccount[0].Id;
-        }
+        return refAccount.isEmpty() ? null : refAccount[0].Id;
 
     }
 
@@ -149,9 +134,9 @@ public with sharing class AthenaBusinessPartnerService {
             acc.txt_SearchTerm2__c = dto.searchTerm2;
             acc.BillingStreet = dto.billingAddress.street;
             acc.BillingCity = dto.billingAddress.city;
-            acc.BillingState = dto.billingAddress.region;
+            acc.BillingStateCode = dto.billingAddress.region;
             acc.BillingPostalCode = dto.billingAddress.postalCode;
-            acc.BillingCountry = dto.billingAddress.countryCode;
+            acc.BillingCountryCode = dto.billingAddress.countryCode;
             acc.BillingLatitude = dto.billingAddress.latitude;
             acc.BillingLongitude = dto.billingAddress.longitude;
             acc.Phone = dto.phone;
@@ -189,6 +174,10 @@ public with sharing class AthenaBusinessPartnerService {
      * @return upserted SalesAreaLink__c record
      */
     private static SalesAreaLink__c upsertSalesAreaLink(Id accountId, Id salesAreaId, AthenaBusinessPartnerDTO dto) {
+
+        if (accountId == null || salesAreaId == null || dto == null) {
+            return null;
+        }
 
         SalesAreaLink__c link = findSalesAreaLink(accountId, salesAreaId);
 
@@ -255,6 +244,11 @@ public with sharing class AthenaBusinessPartnerService {
         Id partnerFunctionDefId,
         AthenaBusinessPartnerDTO dto
     ){
+
+        if (accountId == null || partnerFunctionDefId == null || dto == null) {
+            return null;
+        }
+
         BoschPartner_PartnerFunction__c pf = findPartnerFunction(accountId, partnerFunctionDefId);
 
         if (pf == null) {
