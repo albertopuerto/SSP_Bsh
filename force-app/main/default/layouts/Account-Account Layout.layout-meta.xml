@@ -41,6 +41,10 @@
                 <field>chk_CustomerBlock__c</field>
             </layoutItems>
             <layoutItems>
+                <behavior>Edit</behavior>
+                <field>chk_CentralPostingBlock__c</field>
+            </layoutItems>
+            <layoutItems>
                 <behavior>Readonly</behavior>
                 <field>ftxt_GTS__c</field>
             </layoutItems>
