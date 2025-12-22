@@ -323,22 +323,6 @@
         </connector>
     </assignments>
     <assignments>
-        <name>MapRecordtypeIds</name>
-        <label>MapRecordtypeIds</label>
-        <locationX>0</locationX>
-        <locationY>0</locationY>
-        <assignmentItems>
-            <assignToReference>Account.RecordTypeId</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>SelectRecordType</elementReference>
-            </value>
-        </assignmentItems>
-        <connector>
-            <targetReference>Customer_Role_Selection</targetReference>
-        </connector>
-    </assignments>
-    <assignments>
         <name>Store_Selected_Role</name>
         <label>Store Selected Role</label>
         <locationX>0</locationX>
@@ -464,6 +448,7 @@
             <label>Accepted</label>
         </rules>
     </decisions>
+    <description>Removes the option to choose Record Type for the Account and defaults it to Customer_B2B.</description>
     <dynamicChoiceSets>
         <name>AccountRecordTypes</name>
         <dataType>String</dataType>
@@ -563,7 +548,7 @@
         <inputAssignments>
             <field>RecordTypeId</field>
             <value>
-                <elementReference>SelectRecordType</elementReference>
+                <elementReference>GetCustomerB2BRecordTypeId.Id</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
@@ -587,6 +572,35 @@
         <object>Account</object>
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordCreates>
+    <recordLookups>
+        <name>GetCustomerB2BRecordTypeId</name>
+        <label>GetCustomerB2BRecordTypeId</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Create_Account</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>SobjectType</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Account</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>DeveloperName</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Customer_B2B</stringValue>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>RecordType</object>
+        <queriedFields>Id</queriedFields>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
     <recordUpdates>
         <name>Update_Acc_Error</name>
         <label>Update Acc Error</label>
@@ -666,7 +680,7 @@
         <allowFinish>true</allowFinish>
         <allowPause>false</allowPause>
         <connector>
-            <targetReference>Create_Account</targetReference>
+            <targetReference>GetCustomerB2BRecordTypeId</targetReference>
         </connector>
         <fields>
             <name>DuplicationMessage</name>
@@ -854,35 +868,11 @@
         <showFooter>true</showFooter>
         <showHeader>false</showHeader>
     </screens>
-    <screens>
-        <name>RecordTypeSelection</name>
-        <label>RecordTypeSelection</label>
-        <locationX>0</locationX>
-        <locationY>0</locationY>
-        <allowBack>false</allowBack>
-        <allowFinish>true</allowFinish>
-        <allowPause>false</allowPause>
-        <connector>
-            <targetReference>MapRecordtypeIds</targetReference>
-        </connector>
-        <fields>
-            <name>SelectRecordType</name>
-            <choiceReferences>AccountRecordTypes</choiceReferences>
-            <dataType>String</dataType>
-            <fieldText>Select Record Type</fieldText>
-            <fieldType>RadioButtons</fieldType>
-            <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
-            <isRequired>true</isRequired>
-        </fields>
-        <nextOrFinishButtonLabel>Next</nextOrFinishButtonLabel>
-        <showFooter>true</showFooter>
-        <showHeader>false</showHeader>
-    </screens>
     <start>
         <locationX>0</locationX>
         <locationY>0</locationY>
         <connector>
-            <targetReference>RecordTypeSelection</targetReference>
+            <targetReference>Customer_Role_Selection</targetReference>
         </connector>
     </start>
     <status>Active</status>
