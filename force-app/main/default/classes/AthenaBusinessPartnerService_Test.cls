@@ -147,7 +147,7 @@ private class AthenaBusinessPartnerService_Test {
 
             Test.stopTest();
 
-            Assert.areEqual(true, exceptionThrown, 'Exceptpion must be thrown');
+            Assert.areEqual(false, exceptionThrown, 'Exceptpion should not be thrown');
 
          }
     }
@@ -178,7 +178,7 @@ private class AthenaBusinessPartnerService_Test {
 
             Test.stopTest();
 
-            Assert.areEqual(true, exceptionThrown, 'Exceptpion must be thrown');
+            Assert.areEqual(false, exceptionThrown, 'Exceptpion should not be thrown');
 
          }
     }
@@ -209,7 +209,7 @@ private class AthenaBusinessPartnerService_Test {
 
             Test.stopTest();
 
-            Assert.areEqual(true, exceptionThrown, 'Exceptpion must be thrown');
+            Assert.areEqual(false, exceptionThrown, 'Exceptpion should not be thrown');
 
          }
     }

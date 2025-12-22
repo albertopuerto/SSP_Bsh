@@ -18,8 +18,6 @@ global with sharing class AthenaBusinessPartnerWebService {
         RestResponse res = RestContext.response;
         res.addHeader('Content-Type', 'application/json; charset=UTF-8');
 
-        Savepoint sp = Database.setSavepoint();
-
         try {
             String body = req.requestBody != null ? req.requestBody.toString() : null;
 
@@ -55,8 +53,6 @@ global with sharing class AthenaBusinessPartnerWebService {
                     : 'Bad Request'
             }));
 
-            Database.rollback(sp);
-
         } catch (System.NoAccessException e) {
             Logger.error('APX-INT-00005: Forbidden in PATCH: ' + e.getMessage(), e)
                   .addTags(new List<String>{'APX-INT'});
@@ -65,8 +61,6 @@ global with sharing class AthenaBusinessPartnerWebService {
                 'status' => 'ERROR',
                 'message' => 'Forbidden, insufficient permissions'
             }));
-
-            Database.rollback(sp);
 
         } catch (Exception e) {
             Logger.error('APX-INT-00005: Unexpected error in PATCH: ' + e.getMessage(), e)
@@ -77,8 +71,6 @@ global with sharing class AthenaBusinessPartnerWebService {
                 'status' => 'ERROR',
                 'message' => 'Internal Server Error'
             }));
-
-            Database.rollback(sp);
 
         } finally {
             Logger.saveLog();
