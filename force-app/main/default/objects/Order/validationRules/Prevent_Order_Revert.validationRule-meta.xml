@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Prevent_Order_Revert</fullName>
+    <active>true</active>
+    <description>Prevents business users to change order status to any prior status in the predefined order process.</description>
+    <errorConditionFormula>AND(
+
+    ISCHANGED(Status),  NOT( $Permission.BypassValidations ) ,
+
+    NOT( CONTAINS(
+
+            CASE( PRIORVALUE(Status), 
+                &quot;Draft&quot;, &quot;Activated;SentToSAP;OrderReceivedBySAP;Paused;SAP Fulfillment Execution;Shipping;Canceled (Final – Lost);Order Delivered (Final – Won)&quot;,
+
+                &quot;Activated&quot;, &quot;SentToSAP;OrderReceivedBySAP;Paused;SAP Fulfillment Execution;Shipping;Canceled (Final – Lost);Order Delivered (Final – Won)&quot;,
+
+                &quot;SentToSAP&quot;, &quot;OrderReceivedBySAP;Paused;SAP Fulfillment Execution;Shipping;Canceled (Final – Lost);Order Delivered (Final – Won)&quot;,
+
+                &quot;OrderReceivedBySAP&quot;, &quot;Paused;SAP Fulfillment Execution;Shipping;Canceled (Final – Lost);Order Delivered (Final – Won)&quot;,
+
+                &quot;Paused&quot;, &quot;SAP Fulfillment Execution;Shipping;Canceled (Final – Lost);Order Delivered (Final – Won)&quot;,
+
+                &quot;SAP Fulfillment Execution&quot;, &quot;Shipping;Canceled (Final – Lost);Order Delivered (Final – Won)&quot;,
+
+                &quot;Shipping&quot;, &quot;Canceled (Final – Lost);Order Delivered (Final – Won)&quot;,
+
+                &quot;Canceled (Final – Lost)&quot;, &quot;Order Delivered (Final – Won)&quot;,
+
+                &quot;Order Delivered (Final – Won)&quot;
+
+            ),  TEXT(Status)
+
+        )
+
+    )
+
+)</errorConditionFormula>
+    <errorMessage>The Status of the order cannot be reverted to a previous status.</errorMessage>
+</ValidationRule>
