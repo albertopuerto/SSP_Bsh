@@ -434,6 +434,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Apttus__APTS_Agreement__c.pkl_TypeOfOtherPartySignature__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Apttus__APTS_Agreement__c.txa_AffiliatesCoveredDetails__c</field>
         <readable>true</readable>
     </fieldPermissions>
