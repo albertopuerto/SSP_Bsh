@@ -3,20 +3,14 @@
     <fullName>Cannot_Set_Order_Status_Manually</fullName>
     <active>true</active>
     <description>Prevents users to set order status related to the integration with SAP manually</description>
-    <errorConditionFormula>OR (AND(         
-OR (ISPICKVAL(Status, &quot;SentToSAP&quot;),ISPICKVAL(Status, &quot;Activated&quot;)),   
-NOT(chk_BypassValidation__c),      
-ISCHANGED(Status),         
-OR(ISPICKVAL(PRIORVALUE(Status), &quot;Activated&quot;), ISPICKVAL( PRIORVALUE(Status), &quot;OrderReceivedBySAP&quot;))
-)
-,
-AND(
-OR (ISPICKVAL(Status, &quot;OrderReceivedBySAP&quot;),ISPICKVAL(Status, &quot;Activated&quot;)),  
-NOT(chk_BypassValidation__c),          
-ISCHANGED(Status),  
-OR (ISPICKVAL(PRIORVALUE(Status), &quot;Activated&quot;),   
-ISPICKVAL(PRIORVALUE(Status), &quot;SentToSAP&quot; ))
-)
-)</errorConditionFormula>
+    <errorConditionFormula>AND( ISCHANGED(Status), NOT(chk_BypassValidation__c), NOT( $Permission.BypassValidations ),
+     OR ( AND(ISPICKVAL(Status, &quot;SentToSAP&quot;), 
+               OR (ISPICKVAL(PRIORVALUE(Status), &quot;Activated&quot;), ISPICKVAL(PRIORVALUE(Status), &quot;Draft&quot;))),
+          AND(ISPICKVAL(Status, &quot;OrderReceivedBySAP&quot;), 
+               OR (ISPICKVAL(PRIORVALUE(Status), &quot;Activated&quot;), ISPICKVAL(PRIORVALUE(Status), &quot;SentToSAP&quot; ),   
+                   ISPICKVAL(PRIORVALUE(Status), &quot;Draft&quot;)))
+
+        )
+    )</errorConditionFormula>
     <errorMessage>You cannot set this status manually</errorMessage>
 </ValidationRule>

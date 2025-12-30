@@ -5,6 +5,7 @@
     <label>System Administrator</label>
     <permissionSets>Avoid_Mail_Notifications</permissionSets>
     <permissionSets>BoschPartnerFunctionAdmin</permissionSets>
+    <permissionSets>BypassValidations</permissionSets>
     <permissionSets>DocusignUser</permissionSets>
     <permissionSets>MaterialsManagement</permissionSets>
     <permissionSets>ps_LockedAccountUpdate</permissionSets>
