@@ -53,8 +53,8 @@ public with sharing class GroupService {
             if (Test.isRunningTest() && approvals_for_testing != null) {
                 approvals = approvals_for_testing;
             } else {
-                approvals = [SELECT Id, sbaa__ApproverField__c, sbaa__Approver__c FROM sbaa__Approval__c 
-                             WHERE Quote__c = :quoteId AND sbaa__Status__c IN ('Requested', 'Assigned')];
+                approvals = [SELECT Id, sbaa__ApproverField__c, sbaa__Approver__c,CreatedById FROM sbaa__Approval__c 
+                             WHERE Quote__c = :quoteId AND sbaa__Status__c IN ('Requested', 'Assigned','Recalled')];
             }
             
             if (approvals.isEmpty()) {
@@ -71,10 +71,15 @@ public with sharing class GroupService {
                 }
                 
             }
-            
             for (sbaa__Approval__c approval : approvals) {
                 if (approval.sbaa__ApproverField__c != null && quote.get(approval.sbaa__ApproverField__c) == userId) {
                     Logger.debug('User is the approver specified in the ApproverField: ' + approval.sbaa__ApproverField__c);
+                    return true;
+                }
+            }
+             for (sbaa__Approval__c approval : approvals) {
+                if (approval.sbaa__Status__c == 'Recalled' && approval.CreatedById == userId) {
+                    Logger.debug('User created this recalled approval and can edit. UserId: ' + userId);
                     return true;
                 }
             }
