@@ -149,7 +149,7 @@
         <connector>
             <targetReference>Quote_Validator</targetReference>
         </connector>
-        <filterLogic>(1 AND 2 AND 5 AND 6) OR (3 AND 4 AND 5 AND 6)</filterLogic>
+        <filterLogic>(1 AND 2 AND 5 AND 6 AND 7) OR (3 AND 4 AND 5 AND 6 AND 7)</filterLogic>
         <filters>
             <field>SBQQ__Status__c</field>
             <operator>EqualTo</operator>
@@ -190,6 +190,13 @@
             <operator>NotEqualTo</operator>
             <value>
                 <stringValue>Approved</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>SBQQ__Status__c</field>
+            <operator>NotEqualTo</operator>
+            <value>
+                <stringValue>In Review</stringValue>
             </value>
         </filters>
         <object>SBQQ__Quote__c</object>

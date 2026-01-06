@@ -78,7 +78,7 @@ public with sharing class GroupService {
                 }
             }
              for (sbaa__Approval__c approval : approvals) {
-                if (approval.sbaa__Status__c == 'Recalled' && approval.CreatedById == userId) {
+                if (approval.CreatedById == userId) {
                     Logger.debug('User created this recalled approval and can edit. UserId: ' + userId);
                     return true;
                 }
