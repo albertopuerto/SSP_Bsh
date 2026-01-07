@@ -6,7 +6,7 @@
  * @author Iliana Dimitrova
  * @date 2025-11-05
  */
-public with sharing class AthenaBusinessPartnerService {
+public with sharing class AthenaBusinessPartnerService { // NOPMD
 
     private static final String EXT_ID_FIELD = 'txt_AthenaUUID__c';
 
@@ -40,6 +40,9 @@ public with sharing class AthenaBusinessPartnerService {
 
             // Upsert Account by txt_AthenaUUID__c
             Account acc = upsertAccount(dto);
+
+            // Sync Tax Numbers
+            syncTaxNumbers(acc.Id, dto);
 
             // Upsert SalesAreaLink__c
             Id salesAreaId = getSalesAreaId(dto);
@@ -285,6 +288,126 @@ public with sharing class AthenaBusinessPartnerService {
             LIMIT 1
         ];
         return pf.isEmpty() ? null : pf[0];
+    }
+
+    /**
+     * @description Tax Number sync
+     * @param accountId refferenced Account
+     * @param dto Parsed AthenaBusinessPartnerDTO payload
+     * @return the final tax numbers
+     */
+    private static void syncTaxNumbers(Id accountId, AthenaBusinessPartnerDTO dto) {
+
+        if (accountId == null || dto == null) {
+            return;
+        }
+
+        Map<String, String> incomingByCategory = normalizeIncomingTaxNumbers(dto.taxNumbers);
+        Map<String, TaxNumber__c> existingByCategory = loadExistingTaxNumbers(accountId);
+
+        List<TaxNumber__c> toUpsert =
+            buildTaxNumbersToUpsert(accountId, incomingByCategory, existingByCategory);
+
+        List<TaxNumber__c> toDelete =
+            buildTaxNumbersToDelete(incomingByCategory, existingByCategory);
+
+        if (!toUpsert.isEmpty()) {
+            upsert as system toUpsert;
+        }
+
+        if (!toDelete.isEmpty()) {
+            delete as system toDelete;
+        }
+    }
+
+    private static Map<String, String> normalizeIncomingTaxNumbers(
+        List<AthenaBusinessPartnerDTO.TaxNumberDTO> taxNumbers
+    ) {
+        Map<String, String> result = new Map<String, String>();
+
+        if (taxNumbers == null) {
+            return result;
+        }
+
+        for (AthenaBusinessPartnerDTO.TaxNumberDTO t : taxNumbers) {
+            if (t == null) {
+                continue;
+            }
+
+            if (String.isBlank(t.taxNumberCategory)) {
+                continue;
+            }
+
+            result.put(
+                t.taxNumberCategory.trim(),
+                String.isBlank(t.taxNumber) ? null : t.taxNumber.trim()
+            );
+        }
+
+        return result;
+    }
+
+    private static Map<String, TaxNumber__c> loadExistingTaxNumbers(Id accountId) {
+
+        Map<String, TaxNumber__c> result = new Map<String, TaxNumber__c>();
+
+        List<TaxNumber__c> existing = [
+            SELECT Id,
+                   txt_TaxCategory__c,
+                   txt_TaxNumber__c
+            FROM TaxNumber__c
+            WHERE mdr_AccountId__c = :accountId
+            WITH SYSTEM_MODE
+        ];
+
+        for (TaxNumber__c rec : existing) {
+            if (String.isBlank(rec.txt_TaxCategory__c)) {
+                continue;
+            }
+            result.put(rec.txt_TaxCategory__c, rec);
+        }
+
+        return result;
+    }
+
+    private static List<TaxNumber__c> buildTaxNumbersToUpsert(
+        Id accountId,
+        Map<String, String> incoming,
+        Map<String, TaxNumber__c> existing
+    ) {
+        List<TaxNumber__c> result = new List<TaxNumber__c>();
+
+        for (String category : incoming.keySet()) {
+            TaxNumber__c rec = existing.get(category);
+
+            if (rec == null) {
+                rec = new TaxNumber__c();
+                rec.mdr_AccountId__c = accountId;
+                rec.txt_TaxCategory__c = category;
+            }
+
+            // overwrite number for same category
+            rec.txt_TaxNumber__c = incoming.get(category);
+
+            result.add(rec);
+        }
+
+        return result;
+    }
+
+    private static List<TaxNumber__c> buildTaxNumbersToDelete(
+        Map<String, String> incoming,
+        Map<String, TaxNumber__c> existing
+    ) {
+        List<TaxNumber__c> result = new List<TaxNumber__c>();
+
+        for (String category : existing.keySet()) {
+            if (!incoming.containsKey(category)) {
+                result.add(existing.get(category));
+            }
+        }
+
+        return result;
     }
 
     /**

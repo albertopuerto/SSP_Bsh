@@ -22,6 +22,7 @@ public class AthenaBusinessPartnerDTO {
     public String  phone;
 
     public BillingAddressDTO billingAddress;
+    public List<TaxNumberDTO> taxNumbers;
     public List<SalesDataDTO> salesData;
 
     /**
@@ -35,6 +36,14 @@ public class AthenaBusinessPartnerDTO {
         public String countryCode;
         public Double latitude;
         public Double longitude;
+    }
+
+    /**
+     * @description nested DTO - Tax Number
+     */
+    public class TaxNumberDTO {
+        public String taxNumberCategory;
+        public String taxNumber;
     }
 
     /**

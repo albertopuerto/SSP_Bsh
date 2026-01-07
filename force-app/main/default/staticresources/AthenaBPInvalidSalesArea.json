@@ -20,6 +20,20 @@
     "latitude": 40.416775,
     "longitude": -3.70379
   },
+    "taxNumbers": [
+    {
+      "taxNumberCategory": "IN3",
+      "taxNumber": "5470284380"
+    },
+    {
+      "taxNumberCategory": "ES0",
+      "taxNumber": "H57039398"
+    },
+    {
+      "taxNumberCategory": "ES1",
+      "taxNumber": "00276293V"
+    }
+  ],
   "salesData": [
     {
       "salesArea": "DEHH_IU_PZ",
