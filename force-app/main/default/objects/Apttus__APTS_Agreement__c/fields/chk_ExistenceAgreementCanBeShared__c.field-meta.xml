@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>chk_ExistenceAgreementCanBeShared__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>Please mark this field if existence is only permitted within one&#39;s own legal entity</description>
+    <inlineHelpText>Please mark this field if existence is only permitted within one&#39;s own legal entity. If this field is blank, no users out of your team will be aware of the existance of this record.</inlineHelpText>
+    <label>Existence of agreement can be shared</label>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

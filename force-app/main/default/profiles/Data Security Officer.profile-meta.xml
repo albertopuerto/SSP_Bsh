@@ -501,6 +501,11 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>true</editable>
+        <field>Apttus__APTS_Agreement__c.chk_ExistenceAgreementCanBeShared__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>false</editable>
         <field>Apttus__APTS_Agreement__c.ftxt_CompanySignedbyTitle__c</field>
         <readable>true</readable>
@@ -513,6 +518,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Apttus__APTS_Agreement__c.pkl_Parties_Involved__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Apttus__APTS_Agreement__c.pkl_TypeOfOtherPartySignature__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
