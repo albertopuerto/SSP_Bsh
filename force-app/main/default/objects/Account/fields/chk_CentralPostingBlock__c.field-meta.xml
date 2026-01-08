@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>chk_CustomerBlock__c</fullName>
+    <fullName>chk_CentralPostingBlock__c</fullName>
     <defaultValue>false</defaultValue>
-    <description>Corporate Central Block of the customer. Managed in Athena</description>
-    <label>Central Block</label>
+    <description>Operational Central Block, stops the billing processes, also affects all sales areas. Managed in Athena</description>
+    <label>CentralPostingBlock</label>
     <trackFeedHistory>false</trackFeedHistory>
     <trackHistory>false</trackHistory>
     <type>Checkbox</type>

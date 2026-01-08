@@ -236,11 +236,29 @@
         <itemInstances>
             <fieldInstance>
                 <fieldInstanceProperties>
+                    <name>conditionalFormatRuleset</name>
+                    <value>Central_Block_rule_set</value>
+                </fieldInstanceProperties>
+                <fieldInstanceProperties>
                     <name>uiBehavior</name>
                     <value>none</value>
                 </fieldInstanceProperties>
                 <fieldItem>Record.chk_CustomerBlock__c</fieldItem>
                 <identifier>Recordchk_CustomerBlock_cField2</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>conditionalFormatRuleset</name>
+                    <value>Central_Posting_block</value>
+                </fieldInstanceProperties>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.chk_CentralPostingBlock__c</fieldItem>
+                <identifier>Recordchk_CentralPostingBlock_cField</identifier>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
@@ -928,14 +946,14 @@
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>richTextValue</name>
-                    <value>&lt;p style=&quot;text-align: center;&quot;&gt;&lt;strong style=&quot;color: rgb(215, 16, 16); font-size: 16px;&quot;&gt;&lt;em&gt;This Account is blocked&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;</value>
+                    <value>&lt;p style=&quot;text-align: center;&quot;&gt;&lt;strong style=&quot;font-size: 16px; color: rgb(215, 16, 16);&quot;&gt;&lt;em&gt;This Account is blocked for Posting&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;</value>
                 </componentInstanceProperties>
                 <componentName>flexipage:richText</componentName>
                 <identifier>flexipage_richText</identifier>
                 <visibilityRule>
                     <booleanFilter>1 AND (2 OR 3 OR 4)</booleanFilter>
                     <criteria>
-                        <leftValue>{!Record.chk_CustomerBlock__c}</leftValue>
+                        <leftValue>{!Record.chk_CentralPostingBlock__c}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>true</rightValue>
                     </criteria>
