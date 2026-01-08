@@ -7,6 +7,10 @@
         <application>ETAS_SALES_Cockpit</application>
         <visible>true</visible>
     </applicationVisibilities>
+    <pageAccesses>
+        <apexPage>RecallQuote</apexPage>
+        <enabled>true</enabled>
+    </pageAccesses>
     <classAccesses>
         <apexClass>RecallOldApprovals</apexClass>
         <enabled>true</enabled>
