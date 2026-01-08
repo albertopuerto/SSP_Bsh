@@ -1,0 +1,91 @@
+<template>
+    <lightning-card title="Add Agreement Parties">
+        <div class="slds-p-around_medium">
+
+            <template if:true={showBanner}>
+                <div class="slds-notify slds-notify_alert slds-theme_error" role="alert">
+                    <span class="slds-assistive-text">Error</span>
+                    <h2>Please create at least one Agreement Party before saving.</h2>
+                </div>
+            </template>
+
+            <template for:each={rows} for:item="row">
+                <div key={row.id} class="slds-grid slds-gutters slds-m-bottom_small">
+                    
+                    <!-- Role picklist -->
+                    <div class="slds-col slds-size_1-of-6">
+                        <lightning-combobox
+                            label="Role"
+                            value={row.pkl_PartyRole__c}
+                            options={roleOptions}
+                            data-id={row.id}
+                            onchange={handleRoleChange}
+                            required>
+                        </lightning-combobox>
+                    </div>
+
+                    <!-- Account lookup -->
+                    <div class="slds-col slds-size_1-of-6">
+                        <c-account-lookup
+                            label="Account"
+                            index={row.id}
+                            onaccountchange={handleAccountChange}
+                            required>
+                        </c-account-lookup>
+                    </div>
+
+                    <!-- Contact lookup -->
+                    <div class="slds-col slds-size_1-of-6">
+                        <c-contact-lookup
+                            label="Contact"
+                            index={row.id}
+                            oncontactchange={handleContactChange}
+                            required>
+                        </c-contact-lookup>
+                    </div>    
+
+                    <!-- Type picklist -->
+                    <div class="slds-col slds-size_1-of-6">
+                        <lightning-combobox
+                            label="Type"
+                            value={row.pkl_MultyPartySignatureType__c}
+                            options={typeOptions}
+                            data-id={row.id}
+                            onchange={handleTypeChange}
+                            required>
+                        </lightning-combobox>
+                    </div>
+
+                    <!-- Signature Date -->
+                    <div class="slds-col slds-size_1-of-6">    
+                        <lightning-input
+                            type="date"
+                            label="signatureDate"
+                            value={row.dat_MultyPartySignedDate__c}
+                            data-id={row.id}
+                            onchange={handleDateChange}>
+                        </lightning-input>
+                    </div>                   
+
+                    <!-- Remove row button -->
+                    <div class="slds-col slds-size_1-of-6 slds-align-bottom">
+                        <lightning-button-icon
+                            icon-name="utility:close"
+                            alternative-text="Remove"
+                            data-id={row.id}
+                            onclick={removeRow}
+                            variant="bare"
+                            class="slds-m-left_x-small">
+                        </lightning-button-icon>
+                    </div>
+                </div>
+            </template>
+
+            <!-- Action buttons -->
+            <div class="slds-m-top_medium">
+                <lightning-button label="➕ Add Party" onclick={addRow}></lightning-button>
+                <lightning-button label="Save" variant="brand" onclick={handleSave} class="slds-m-left_small"></lightning-button>
+            </div>
+        </div>
+    </lightning-card>
+</template>
