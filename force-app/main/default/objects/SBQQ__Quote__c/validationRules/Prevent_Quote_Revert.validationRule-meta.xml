@@ -28,6 +28,12 @@
     &quot;Accepted&quot;, 8,
     0
   ),
+  NOT(
+    AND(
+      TEXT(PRIORVALUE(SBQQ__Status__c)) = "Approval Pending",
+      TEXT(SBQQ__Status__c) = "In Review"
+    )
+  ),
   NOT($Permission.BypassValidations)
 )</errorConditionFormula>
     <errorMessage>“The Status of the quote cannot be reverted to a previous stage”</errorMessage>
