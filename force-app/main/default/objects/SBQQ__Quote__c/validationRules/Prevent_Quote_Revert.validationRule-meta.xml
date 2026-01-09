@@ -30,8 +30,8 @@
   ),
   NOT(
     AND(
-      TEXT(PRIORVALUE(SBQQ__Status__c)) = "Approval Pending",
-      TEXT(SBQQ__Status__c) = "In Review"
+      TEXT(PRIORVALUE(SBQQ__Status__c)) = &quot;Approval Pending&quot;,
+      TEXT(SBQQ__Status__c) = &quot;In Review&quot;
     )
   ),
   NOT($Permission.BypassValidations)

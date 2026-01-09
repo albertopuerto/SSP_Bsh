@@ -2,14 +2,34 @@
 <ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Prevent_Quote_Modifications</fullName>
     <active>true</active>
-    <description>Validates the quote is locked and cannot be modified by its status is Rejected, Accepted, or Denied.</description>
     <errorConditionFormula>AND(
-    OR(
-        TEXT(PRIORVALUE(SBQQ__Status__c)) = &quot;Rejected&quot;,
-        TEXT(PRIORVALUE(SBQQ__Status__c)) = &quot;Accepted&quot;,
-        TEXT(PRIORVALUE(SBQQ__Status__c)) = &quot;Denied&quot;
-    ),
-    ISCHANGED(SBQQ__Status__c)
+  NOT(ISNEW()),
+	OR(
+    TEXT(PRIORVALUE(SBQQ__Status__c)) = &quot;Approval Pending&quot;,
+    TEXT(PRIORVALUE(SBQQ__Status__c)) = &quot;Approved&quot;,
+    TEXT(PRIORVALUE(SBQQ__Status__c)) = &quot;Rejected&quot;,
+    TEXT(PRIORVALUE(SBQQ__Status__c)) = &quot;Denied&quot;,
+    TEXT(PRIORVALUE(SBQQ__Status__c)) = &quot;Accepted&quot;
+  ),
+  NOT(
+    AND(
+      ISCHANGED(SBQQ__Status__c),
+      OR(
+        AND(
+          TEXT(PRIORVALUE(SBQQ__Status__c)) = &quot;Approved&quot;,
+          TEXT(SBQQ__Status__c) = &quot;Presented&quot;
+        ),
+        AND(
+          TEXT(PRIORVALUE(SBQQ__Status__c)) = &quot;Presented&quot;,
+          TEXT(SBQQ__Status__c) = &quot;Denied&quot;
+        ),
+        AND(
+          TEXT(PRIORVALUE(SBQQ__Status__c)) = &quot;Presented&quot;,
+          TEXT(SBQQ__Status__c) = &quot;Accepted&quot;
+        )
+      )
+    )
+  )
 )</errorConditionFormula>
-    <errorMessage>This Quote is locked and cannot be modified because its status is Rejected, Accepted, or Denied.</errorMessage>
+    <errorMessage>This Quote cannot be modified in its current status. Only specific status changes are allowed (Approved→Presented, Presented→Denied, Presented→Accepted).</errorMessage>
 </ValidationRule>

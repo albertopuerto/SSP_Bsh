@@ -4,53 +4,53 @@
     <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
     <customErrors>
         <name>Custom_Error_Message</name>
-        <label>Custom Error Messae</label>
+        <label>Custom Error Message</label>
         <locationX>0</locationX>
         <locationY>0</locationY>
         <customErrorMessages>
-            <errorMessage>The Quote cannot be deleted because the parent Quote’s status is Approval Pending, Approved, Rejected, Accepted, or Denied.</errorMessage>
+            <errorMessage>The Quote line Group items cannot be deleted because the parent Quote’s status is Approval Pending,Approved,Rejected, Accepted, or Denied.</errorMessage>
             <isFieldError>false</isFieldError>
         </customErrorMessages>
     </customErrors>
     <decisions>
-        <name>Is_Quote_Locked</name>
-        <label>Is Quote Locked</label>
+        <name>is_Quote_Locked</name>
+        <label>is Quote Locked</label>
         <locationX>0</locationX>
         <locationY>0</locationY>
         <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
         <rules>
-            <name>Locked</name>
-            <conditionLogic>and</conditionLogic>
+            <name>Yes</name>
+            <conditionLogic>or</conditionLogic>
             <conditions>
-                <leftValueReference>$Record.SBQQ__Status__c</leftValueReference>
+                <leftValueReference>$Record.SBQQ__Quote__r.SBQQ__Status__c</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
                     <stringValue>Approval Pending</stringValue>
                 </rightValue>
             </conditions>
             <conditions>
-                <leftValueReference>$Record.SBQQ__Status__c</leftValueReference>
+                <leftValueReference>$Record.SBQQ__Quote__r.SBQQ__Status__c</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
                     <stringValue>Approved</stringValue>
                 </rightValue>
             </conditions>
             <conditions>
-                <leftValueReference>$Record.SBQQ__Status__c</leftValueReference>
+                <leftValueReference>$Record.SBQQ__Quote__r.SBQQ__Status__c</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
                     <stringValue>Accepted</stringValue>
                 </rightValue>
             </conditions>
             <conditions>
-                <leftValueReference>$Record.SBQQ__Status__c</leftValueReference>
+                <leftValueReference>$Record.SBQQ__Quote__r.SBQQ__Status__c</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
                     <stringValue>Rejected</stringValue>
                 </rightValue>
             </conditions>
             <conditions>
-                <leftValueReference>$Record.SBQQ__Status__c</leftValueReference>
+                <leftValueReference>$Record.SBQQ__Quote__r.SBQQ__Status__c</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
                     <stringValue>Denied</stringValue>
@@ -59,12 +59,12 @@
             <connector>
                 <targetReference>Custom_Error_Message</targetReference>
             </connector>
-            <label>Locked</label>
+            <label>Yes</label>
         </rules>
     </decisions>
     <environments>Default</environments>
-    <interviewLabel>QuoteBeforeDelete {!$Flow.CurrentDateTime}</interviewLabel>
-    <label>QuoteBeforeDelete</label>
+    <interviewLabel>Block Quote Line Group Deletion {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Block Quote Line Group Deletion</label>
     <processMetadataValues>
         <name>BuilderType</name>
         <value>
@@ -88,18 +88,11 @@
         <locationX>0</locationX>
         <locationY>0</locationY>
         <connector>
-            <targetReference>Is_Quote_Locked</targetReference>
+            <targetReference>is_Quote_Locked</targetReference>
         </connector>
-        <object>SBQQ__Quote__c</object>
+        <object>SBQQ__QuoteLineGroup__c</object>
         <recordTriggerType>Delete</recordTriggerType>
         <triggerType>RecordBeforeDelete</triggerType>
     </start>
     <status>Active</status>
-    <variables>
-        <name>ApprovalList</name>
-        <dataType>String</dataType>
-        <isCollection>true</isCollection>
-        <isInput>true</isInput>
-        <isOutput>true</isOutput>
-    </variables>
 </Flow>
