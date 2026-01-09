@@ -3,9 +3,11 @@
     <fullName>PreventQuoteLineModifications</fullName>
     <active>true</active>
     <errorConditionFormula>OR(
+  TEXT( SBQQ__Quote__r.SBQQ__Status__c ) = &quot;Approval Pending&quot;,
+  TEXT( SBQQ__Quote__r.SBQQ__Status__c ) = &quot;Approved&quot;,
   TEXT( SBQQ__Quote__r.SBQQ__Status__c ) = &quot;Rejected&quot;,
-  TEXT( SBQQ__Quote__r.SBQQ__Status__c ) = &quot;Accepted&quot;,
-  TEXT( SBQQ__Quote__r.SBQQ__Status__c ) = &quot;Denied&quot;
+  TEXT( SBQQ__Quote__r.SBQQ__Status__c ) = &quot;Denied&quot;,
+  TEXT( SBQQ__Quote__r.SBQQ__Status__c ) = &quot;Accepted&quot;
 )</errorConditionFormula>
-    <errorMessage>The Quote lines cannot be modified because the parent Quote’s status is Rejected, Accepted, or Denied.</errorMessage>
+    <errorMessage>The Quote line Group items cannot be modified because the parent Quote’s status is Approval Pending,Approved,Rejected, Accepted, or Denied.</errorMessage>
 </ValidationRule>
