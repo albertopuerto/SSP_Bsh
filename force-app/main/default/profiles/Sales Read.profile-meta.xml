@@ -1444,6 +1444,11 @@
         <field>Order.lkp_BillToAccount__c</field>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>true</editable>
+        <field>Order.lkp_SalesArea__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>false</editable>
         <readable>false</readable>
         <field>Order.lkp_ShipToAccount__c</field>
