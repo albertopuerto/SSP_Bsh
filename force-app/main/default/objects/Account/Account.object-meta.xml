@@ -241,7 +241,6 @@
         <customTabListAdditionalFields>ACCOUNT.NAME</customTabListAdditionalFields>
         <customTabListAdditionalFields>ACCOUNT.ADDRESS1_CITY</customTabListAdditionalFields>
         <customTabListAdditionalFields>ACCOUNT.PHONE1</customTabListAdditionalFields>
-        <listViewButtons>OnboardNewAccount</listViewButtons>
         <lookupDialogsAdditionalFields>ACCOUNT.NAME</lookupDialogsAdditionalFields>
         <lookupDialogsAdditionalFields>CORE.USERS.ALIAS</lookupDialogsAdditionalFields>
         <lookupDialogsAdditionalFields>ACCOUNT.TYPE</lookupDialogsAdditionalFields>
@@ -252,7 +251,6 @@
         <searchResultsAdditionalFields>ACCOUNT.NAME</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>ACCOUNT.PHONE1</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>CORE.USERS.ALIAS</searchResultsAdditionalFields>
-        <searchResultsCustomButtons>OnboardNewAccount</searchResultsCustomButtons>
     </searchLayouts>
     <sharingModel>ReadWrite</sharingModel>
 </CustomObject>
