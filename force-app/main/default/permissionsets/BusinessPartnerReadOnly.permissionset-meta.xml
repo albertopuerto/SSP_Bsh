@@ -379,7 +379,27 @@
         <viewAllRecords>false</viewAllRecords>
     </objectPermissions>
     <recordTypeVisibilities>
+        <recordType>Account.Competitor</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
         <recordType>Account.Customer_B2B</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <recordType>Account.Intercompany</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <recordType>Account.Partner</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <recordType>Account.Reseller</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <recordType>Account.Supplier</recordType>
         <visible>true</visible>
     </recordTypeVisibilities>
     <tabSettings>
@@ -402,8 +422,4 @@
         <enabled>true</enabled>
         <name>CanProspectConversionToCustomer</name>
     </customPermissions>
-    <classAccesses>
-        <apexClass>QuoteLineEmailController</apexClass>
-        <enabled>true</enabled>
-    </classAccesses>
 </PermissionSet>
