@@ -422,4 +422,8 @@
         <enabled>true</enabled>
         <name>CanProspectConversionToCustomer</name>
     </customPermissions>
+    <classAccesses>
+        <apexClass>QuoteLineEmailController</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
 </PermissionSet>
