@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>APTS_Type_of_Signature__c</fullName>
-    <externalId>false</externalId>
-    <label>Type of Signature</label>
+    <label>Type of Company Signature</label>
     <required>false</required>
     <trackFeedHistory>false</trackFeedHistory>
     <trackHistory>false</trackHistory>
@@ -18,9 +17,9 @@
                 <label>Wet Ink Signature</label>
             </value>
             <value>
-                <fullName>Esignature</fullName>
+                <fullName>eSignature</fullName>
                 <default>true</default>
-                <label>Esignature</label>
+                <label>eSignature</label>
             </value>
         </valueSetDefinition>
     </valueSet>

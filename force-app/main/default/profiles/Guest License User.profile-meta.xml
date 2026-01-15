@@ -15,6 +15,10 @@
     </layoutAssignments>
     <layoutAssignments>
         <layout>Apttus__APTS_Agreement__c-Apttus__Agreement Layout</layout>
+        <recordType>Apttus__APTS_Agreement__c.APTS_Other_Sales_Agreement</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Apttus__APTS_Agreement__c-Apttus__Agreement Layout</layout>
         <recordType>Apttus__APTS_Agreement__c.AVV_BDSG</recordType>
     </layoutAssignments>
     <layoutAssignments>
@@ -51,6 +55,10 @@
     </layoutAssignments>
     <layoutAssignments>
         <layout>Apttus__APTS_Agreement__c-Apttus__Agreement Layout</layout>
+        <recordType>Apttus__APTS_Agreement__c.IC_NDA</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Apttus__APTS_Agreement__c-Apttus__Agreement Layout</layout>
         <recordType>Apttus__APTS_Agreement__c.IC_Reseller_Framework</recordType>
     </layoutAssignments>
     <layoutAssignments>
@@ -72,6 +80,10 @@
     <layoutAssignments>
         <layout>Apttus__APTS_Agreement__c-Apttus__Agreement Layout</layout>
         <recordType>Apttus__APTS_Agreement__c.Joint_Controllers</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Apttus__APTS_Agreement__c-Apttus__Agreement Layout</layout>
+        <recordType>Apttus__APTS_Agreement__c.Loan_and_License</recordType>
     </layoutAssignments>
     <layoutAssignments>
         <layout>Apttus__APTS_Agreement__c-Apttus__Agreement Layout</layout>

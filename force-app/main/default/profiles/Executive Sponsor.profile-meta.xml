@@ -824,6 +824,10 @@
         <recordType>Apttus__APTS_Agreement__c.APTS_IC_Limited_Sales_Support</recordType>
     </layoutAssignments>
     <layoutAssignments>
+        <layout>Apttus__APTS_Agreement__c-Apttus__Agreement Layout</layout>
+        <recordType>Apttus__APTS_Agreement__c.APTS_Other_Sales_Agreement</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
         <layout>Apttus__APTS_Agreement__c-APTS_DSO_All_excl_BPA</layout>
         <recordType>Apttus__APTS_Agreement__c.AVV_BDSG</recordType>
     </layoutAssignments>
@@ -886,6 +890,10 @@
     <layoutAssignments>
         <layout>Apttus__APTS_Agreement__c-APTS_DSO_All_excl_BPA</layout>
         <recordType>Apttus__APTS_Agreement__c.Joint_Controllers</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Apttus__APTS_Agreement__c-Apttus__Agreement Layout</layout>
+        <recordType>Apttus__APTS_Agreement__c.Loan_and_License</recordType>
     </layoutAssignments>
     <layoutAssignments>
         <layout>Apttus__APTS_Agreement__c-Apttus__Agreement Layout</layout>

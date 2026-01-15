@@ -3,6 +3,7 @@
     <customButtons>Apttus__AgreementHierarchy</customButtons>
     <excludeButtons>ChangeOwnerOne</excludeButtons>
     <excludeButtons>ChangeRecordType</excludeButtons>
+    <excludeButtons>OpenSlackRecordChannel</excludeButtons>
     <excludeButtons>PrintableView</excludeButtons>
     <excludeButtons>Share</excludeButtons>
     <excludeButtons>Submit</excludeButtons>
@@ -13,8 +14,16 @@
         <label>Information</label>
         <layoutColumns>
             <layoutItems>
+                <behavior>Edit</behavior>
+                <field>pkl_Parties_Involved__c</field>
+            </layoutItems>
+            <layoutItems>
                 <behavior>Readonly</behavior>
                 <field>APTS_Record_Type_Name__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>chk_ExistenceAgreementCanBeShared__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns />
@@ -52,15 +61,11 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Apttus__Account_Search_Field__c</field>
+                <field>txa_AccountSearchDetails__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Required</behavior>
                 <field>APTS_Internal_Legal_Entity__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Required</behavior>
-                <field>pkl_ETAS_affiliates_covered__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
@@ -252,6 +257,10 @@
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>pkl_TypeOfOtherPartySignature__c</field>
+            </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>Apttus__Other_Party_Signed_By__c</field>
@@ -540,6 +549,16 @@
     </relatedLists>
     <relatedLists>
         <relatedList>RelatedFileList</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <fields>NAME</fields>
+        <fields>chk_PrimaryParty__c</fields>
+        <fields>pkl_PartyRole__c</fields>
+        <fields>lkp_AgreementParty__c</fields>
+        <fields>lkp_MultiPartySignedBy__c</fields>
+        <fields>pkl_MultyPartySignatureType__c</fields>
+        <fields>LAST_UPDATE</fields>
+        <relatedList>Apttus_AgreementParty__c.mdr_Agreement__c</relatedList>
     </relatedLists>
     <relatedLists>
         <customButtons>Apttus__SubmitForClauseApproval</customButtons>
