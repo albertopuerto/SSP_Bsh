@@ -4,6 +4,7 @@ public class DocuSignWebhook_Test {
     @testSetup
     public static void initRecords(){
         Account[] testAccountList = (Account[])TestFactory.createSObjectList(new Account(), 1);
+        testAccountList[0].pkl_PaymentTerms__c= 'Due on receipt';
         insert testAccountList;
 
         Contact[] testContactList = (Contact[])TestFactory.createSObjectList(new Contact(), 1);
@@ -62,7 +63,7 @@ public class DocuSignWebhook_Test {
         List<ContentVersion> versions = [SELECT Title, ContentDocumentId, pkl_Status__c,CreatedDate FROM ContentVersion Order by CreatedDate desc];
 		
         System.assertEquals(2, versions.size());
-        System.assertEquals('sent', versions[0].pkl_Status__c);
+        System.assertEquals('Sent', versions[0].pkl_Status__c);
     }
 
     @IsTest
@@ -94,7 +95,7 @@ public class DocuSignWebhook_Test {
         List<ContentVersion> versions = [SELECT Title, ContentDocumentId, pkl_Status__c ,CreatedDate FROM ContentVersion Order by CreatedDate desc];
 		
         System.assertEquals(2, versions.size());
-        System.assertEquals('delivered', versions[0].pkl_Status__c);
+        System.assertEquals('Delivered', versions[0].pkl_Status__c);
     }
 
     @IsTest
@@ -128,7 +129,39 @@ public class DocuSignWebhook_Test {
         List<ContentVersion> versions = [SELECT Title, ContentDocumentId, pkl_Status__c,CreatedDate FROM ContentVersion Order by CreatedDate desc];
 		
         System.assertEquals(2, versions.size());
-        System.assertEquals('completed', versions[0].pkl_Status__c);
+        System.assertEquals('Completed', versions[0].pkl_Status__c);
+    }
+    
+    @IsTest
+    static void testReceiveOtherData() {
+        User productManagerUser = createUser();
+        StaticResource sr = [SELECT Body FROM StaticResource WHERE Name = 'getAccessTokenBody'];
+		String tokenBody = sr.Body.toString();
+
+        HTTPMockGenerator res2 = new HTTPMockGenerator(200, tokenBody);
+
+        Test.setMock(HttpCalloutMock.class, res2);
+        StaticResource sr2 = [SELECT Body FROM StaticResource WHERE Name = 'documentSignWebhookRequestOther'];
+		String mockJson = sr2.Body.toString();
+         Assert.areNotEqual(null, sr2.Body, 'The static resource is not null');
+        
+        RestRequest req = new RestRequest();
+        RestResponse res = new RestResponse();
+        req.requestBody = Blob.valueOf(mockJson);
+        req.httpMethod = 'POST';
+        req.requestURI = '/services/apexrest/docusignWebhook/*';
+ 
+        RestContext.request = req;
+        RestContext.response= res;
+        Test.startTest();
+            System.runAs(productManagerUser){
+                DocuSignWebhook.handleWebhook();
+            }
+        Test.stopTest();
+        List<ContentVersion> versions = [SELECT Title, ContentDocumentId, pkl_Status__c ,CreatedDate FROM ContentVersion Order by CreatedDate desc];
+		
+        System.assertEquals(1, versions.size());
+        System.assertEquals('Draft', versions[0].pkl_Status__c);
     }
 
     static User createUser(){

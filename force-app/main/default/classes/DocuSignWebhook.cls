@@ -6,6 +6,8 @@
 @RestResource(urlMapping='/docusignWebhook/*')
 global without sharing class DocuSignWebhook {
 
+    public static final String prefixAttach = '00P';
+
     /**
 	* @author       APB
 	* @description  handleWebhook method
@@ -24,8 +26,9 @@ global without sharing class DocuSignWebhook {
         String envelopeId = (String) data.get('envelopeId');
         Map<String, Object> envelopeSummary = (Map<String, Object>) data.get('envelopeSummary');
         String status = (String) envelopeSummary.get('status');
+        status = status.capitalize();
 
-        if (event == 'recipient-sent' || event == 'recipient-delivered' || status == 'completed' || status == 'declined') {
+        if (event == 'recipient-sent' || event == 'recipient-delivered' || status == 'Completed' || status == 'declined') {
             try {
                 fflib_SObjectUnitOfWork uow = new fflib_SObjectUnitOfWork( new List<SObjectType> { Signature__c.SObjectType});
                 Signature__c sig = [SELECT Id, Name, Docusign_Status__c, Document_Id__c FROM Signature__c WHERE Envelope_Id__c = :envelopeId WITH USER_MODE LIMIT 1];
@@ -74,9 +77,10 @@ global without sharing class DocuSignWebhook {
         // String accessToken = service.getAccessToken();
 
         Blob signedDocument = service.getSignedDocument(envelopeId, 'combined');
-
-        ContentDocument cd = new ContentDocumentSelector().selectById(docIds)[0];
-        if (cd != null) {
+        String prefixRecord = documentId.left(3);
+    
+        if (prefixRecord != prefixAttach) {
+            ContentDocument cd = new ContentDocumentSelector().selectById(docIds)[0];
             ContentVersion cv = new ContentVersion();
             cv.Title =  cd.Title;
             cv.PathOnClient = cd.Title + '.pdf';
@@ -85,6 +89,17 @@ global without sharing class DocuSignWebhook {
             cv.pkl_Status__c= status;
             uow.registerNew(cv);
             uow.commitWork();
+        }else if(prefixRecord == prefixAttach && status == 'completed'){
+
+                Attachment oldAttachment= [SELECT Id, Name, Body, ContentType, ParentId FROM Attachment WHERE Id =:documentId];
+                Attachment att = new Attachment();
+                if (att != null) {
+                    att.Body = signedDocument;
+                    att.ParentId= oldAttachment.ParentId;
+                    att.Name= oldAttachment.Name.substringBefore('.') +'_signed.pdf';
+                }
+
+                insert att;
         }
 
     }

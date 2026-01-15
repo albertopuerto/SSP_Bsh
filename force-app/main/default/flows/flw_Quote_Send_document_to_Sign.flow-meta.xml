@@ -1,52 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
     <actionCalls>
-        <name>Copy_1_of_Send_document_to_sign</name>
-        <label>Copy 1 of Send document to sign</label>
-        <locationX>0</locationX>
-        <locationY>0</locationY>
-        <actionName>DocuSignSigners</actionName>
-        <actionType>apex</actionType>
-        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
-        <inputParameters>
-            <name>document</name>
-            <value>
-                <elementReference>Selection_Table.firstSelectedRow</elementReference>
-            </value>
-        </inputParameters>
-        <inputParameters>
-            <name>signer</name>
-            <value>
-                <elementReference>Select_Mails.firstSelectedRow.Email</elementReference>
-            </value>
-        </inputParameters>
-        <nameSegment>DocuSignSigners</nameSegment>
-        <offset>0</offset>
-        <outputParameters>
-            <assignToReference>envelopeId</assignToReference>
-            <name>output</name>
-        </outputParameters>
-    </actionCalls>
-    <actionCalls>
         <name>get_emails_from_signers_group</name>
         <label>get emails from signers group</label>
-        <locationX>0</locationX>
-        <locationY>0</locationY>
+        <locationX>882</locationX>
+        <locationY>298</locationY>
         <actionName>DocuSignUtils</actionName>
         <actionType>apex</actionType>
         <connector>
-            <targetReference>Select_Signers</targetReference>
+            <targetReference>assignfiles</targetReference>
         </connector>
         <flowTransactionModel>Automatic</flowTransactionModel>
         <nameSegment>DocuSignUtils</nameSegment>
-        <offset>0</offset>
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </actionCalls>
     <actionCalls>
         <name>Get_Fiels_by_parent_record_id</name>
         <label>Get Fiels by parent record id</label>
-        <locationX>0</locationX>
-        <locationY>0</locationY>
+        <locationX>669</locationX>
+        <locationY>182</locationY>
         <actionName>DocuSignService</actionName>
         <actionType>apex</actionType>
         <connector>
@@ -60,27 +32,29 @@
             </value>
         </inputParameters>
         <nameSegment>DocuSignService</nameSegment>
-        <offset>0</offset>
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </actionCalls>
     <actionCalls>
         <name>Send_document_to_sign</name>
         <label>Send document to sign</label>
-        <locationX>0</locationX>
-        <locationY>0</locationY>
+        <locationX>669</locationX>
+        <locationY>553</locationY>
         <actionName>DocuSignSigners</actionName>
         <actionType>apex</actionType>
         <connector>
-            <targetReference>Create_Signature</targetReference>
+            <targetReference>isAfile</targetReference>
         </connector>
-        <faultConnector>
-            <targetReference>Error_Document_Send_Failed</targetReference>
-        </faultConnector>
         <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>attachment</name>
+            <value>
+                <elementReference>selectedAttachment</elementReference>
+            </value>
+        </inputParameters>
         <inputParameters>
             <name>document</name>
             <value>
-                <elementReference>Selection_Table.firstSelectedRow</elementReference>
+                <elementReference>selectedDocument</elementReference>
             </value>
         </inputParameters>
         <inputParameters>
@@ -90,58 +64,80 @@
             </value>
         </inputParameters>
         <nameSegment>DocuSignSigners</nameSegment>
-        <offset>0</offset>
         <outputParameters>
             <assignToReference>envelopeId</assignToReference>
             <name>output</name>
         </outputParameters>
     </actionCalls>
     <apiVersion>64.0</apiVersion>
-    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
-    <customProperties>
-        <name>ScreenProgressIndicator</name>
-        <value>
-            <stringValue>{&quot;location&quot;:&quot;top&quot;,&quot;type&quot;:&quot;simple&quot;}</stringValue>
-        </value>
-    </customProperties>
+    <assignments>
+        <name>assignfiles</name>
+        <label>assignfiles</label>
+        <locationX>783</locationX>
+        <locationY>403</locationY>
+        <assignmentItems>
+            <assignToReference>selectedDocument</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Selection_Table.firstSelectedRow</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>selectedAttachment</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>selection_table2.firstSelectedRow</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Select_Signers</targetReference>
+        </connector>
+    </assignments>
     <decisions>
-        <name>Check_quote_expiration</name>
-        <label>Check quote expiration</label>
-        <locationX>0</locationX>
-        <locationY>0</locationY>
+        <name>isAfile</name>
+        <label>isAfile</label>
+        <locationX>455</locationX>
+        <locationY>578</locationY>
         <defaultConnector>
-            <targetReference>Get_Fiels_by_parent_record_id</targetReference>
+            <targetReference>isAnAttachment</targetReference>
         </defaultConnector>
+        <defaultConnectorLabel>Is not a file</defaultConnectorLabel>
+        <rules>
+            <name>YesIsAFile</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>selectedDocument</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Create_Signature</targetReference>
+            </connector>
+            <label>YesIsAFile</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>isAnAttachment</name>
+        <label>isAnAttachment</label>
+        <locationX>548</locationX>
+        <locationY>713</locationY>
         <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
         <rules>
-            <name>Expired</name>
+            <name>yesIsAnAttachment</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
-                <leftValueReference>Get_records.SBQQ__ExpirationDate__c</leftValueReference>
-                <operator>LessThan</operator>
+                <leftValueReference>selectedAttachment</leftValueReference>
+                <operator>IsNull</operator>
                 <rightValue>
-                    <elementReference>$Flow.CurrentDate</elementReference>
+                    <booleanValue>false</booleanValue>
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>Quote_Expired_Message</targetReference>
+                <targetReference>Create_Signature_0</targetReference>
             </connector>
-            <label>Expired</label>
-        </rules>
-        <rules>
-            <name>Vaild</name>
-            <conditionLogic>and</conditionLogic>
-            <conditions>
-                <leftValueReference>Get_records.SBQQ__ExpirationDate__c</leftValueReference>
-                <operator>GreaterThanOrEqualTo</operator>
-                <rightValue>
-                    <elementReference>$Flow.CurrentDate</elementReference>
-                </rightValue>
-            </conditions>
-            <connector>
-                <targetReference>Get_Fiels_by_parent_record_id</targetReference>
-            </connector>
-            <label>Vaild</label>
+            <label>yesIsAnAttachment</label>
         </rules>
     </decisions>
     <environments>Default</environments>
@@ -156,7 +152,7 @@
     <processMetadataValues>
         <name>CanvasMode</name>
         <value>
-            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+            <stringValue>FREE_FORM_CANVAS</stringValue>
         </value>
     </processMetadataValues>
     <processMetadataValues>
@@ -169,8 +165,8 @@
     <recordCreates>
         <name>Create_Signature</name>
         <label>Create Signature</label>
-        <locationX>0</locationX>
-        <locationY>0</locationY>
+        <locationX>300</locationX>
+        <locationY>709</locationY>
         <inputAssignments>
             <field>Document_Id__c</field>
             <value>
@@ -180,7 +176,7 @@
         <inputAssignments>
             <field>Docusign_Status__c</field>
             <value>
-                <stringValue>sent</stringValue>
+                <stringValue>Sent</stringValue>
             </value>
         </inputAssignments>
         <inputAssignments>
@@ -204,86 +200,70 @@
         <object>Signature__c</object>
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordCreates>
-    <recordLookups>
-        <name>Get_records</name>
-        <label>Get records</label>
-        <locationX>0</locationX>
-        <locationY>0</locationY>
-        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
-        <connector>
-            <targetReference>Check_quote_expiration</targetReference>
-        </connector>
-        <filterLogic>and</filterLogic>
-        <filters>
-            <field>Id</field>
-            <operator>EqualTo</operator>
+    <recordCreates>
+        <name>Create_Signature_0</name>
+        <label>Create Signature</label>
+        <locationX>557</locationX>
+        <locationY>860</locationY>
+        <inputAssignments>
+            <field>Document_Id__c</field>
+            <value>
+                <elementReference>selection_table2.firstSelectedRow.Id</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Docusign_Status__c</field>
+            <value>
+                <stringValue>Sent</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Envelope_Id__c</field>
+            <value>
+                <elementReference>envelopeId</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Quote__c</field>
             <value>
                 <elementReference>recordId</elementReference>
             </value>
-        </filters>
-        <getFirstRecordOnly>true</getFirstRecordOnly>
-        <object>SBQQ__Quote__c</object>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Signer__c</field>
+            <value>
+                <elementReference>Select_Mails.firstSelectedRow.Id</elementReference>
+            </value>
+        </inputAssignments>
+        <object>Signature__c</object>
         <storeOutputAutomatically>true</storeOutputAutomatically>
-    </recordLookups>
-    <screens>
-        <name>Error_Document_Send_Failed</name>
-        <label>Error - Document Send Failed</label>
-        <locationX>0</locationX>
-        <locationY>0</locationY>
-        <allowBack>false</allowBack>
-        <allowFinish>true</allowFinish>
-        <allowPause>true</allowPause>
-        <connector>
-            <targetReference>Copy_1_of_Send_document_to_sign</targetReference>
-        </connector>
-        <fields>
-            <name>ErrorHeading</name>
-            <fieldText>&lt;p style=&quot;text-align: center;&quot;&gt;&lt;strong style=&quot;font-size: 14px;&quot;&gt;The envelope could not be sent&lt;/strong&gt;&lt;/p&gt;</fieldText>
-            <fieldType>DisplayText</fieldType>
-        </fields>
-        <fields>
-            <name>ErrorDetails</name>
-            <fieldText>&lt;p style=&quot;text-align: center;&quot;&gt;{!$Flow.FaultMessage}&lt;/p&gt;</fieldText>
-            <fieldType>DisplayText</fieldType>
-        </fields>
-        <fields>
-            <name>Instructions</name>
-            <fieldText>&lt;p style=&quot;text-align: center;&quot;&gt;Click Retry to attempt sending again.&lt;/p&gt;</fieldText>
-            <fieldType>DisplayText</fieldType>
-        </fields>
-        <nextOrFinishButtonLabel>Retry</nextOrFinishButtonLabel>
-        <pauseButtonLabel>Cancel</pauseButtonLabel>
-        <showFooter>true</showFooter>
-        <showHeader>true</showHeader>
-    </screens>
-    <screens>
-        <name>Quote_Expired_Message</name>
-        <label>Quote Expired Message</label>
-        <locationX>0</locationX>
-        <locationY>0</locationY>
-        <allowBack>true</allowBack>
-        <allowFinish>true</allowFinish>
-        <allowPause>true</allowPause>
-        <fields>
-            <name>Expired_Warning</name>
-            <fieldText>&lt;p&gt;Quote has expired. Please update the validity before sending or contact your administrator.&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;</fieldText>
-            <fieldType>DisplayText</fieldType>
-        </fields>
-        <nextOrFinishButtonLabel>Ok</nextOrFinishButtonLabel>
-        <showFooter>true</showFooter>
-        <showHeader>true</showHeader>
-    </screens>
+    </recordCreates>
     <screens>
         <name>Select_Files</name>
         <label>Select Files</label>
-        <locationX>0</locationX>
-        <locationY>0</locationY>
+        <locationX>787</locationX>
+        <locationY>229</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>true</allowPause>
         <connector>
             <targetReference>get_emails_from_signers_group</targetReference>
         </connector>
+        <fields>
+            <name>fileText</name>
+            <fieldText>&lt;p&gt;&lt;strong style=&quot;font-size: 16px;&quot;&gt;Files List&lt;/strong&gt;&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+            <visibilityRule>
+                <conditionLogic>and</conditionLogic>
+                <conditions>
+                    <leftValueReference>selection_table2.firstSelectedRow.Id</leftValueReference>
+                    <operator>IsNull</operator>
+                    <rightValue>
+                        <booleanValue>true</booleanValue>
+                    </rightValue>
+                </conditions>
+            </visibilityRule>
+        </fields>
         <fields>
             <name>Selection_Table</name>
             <dataTypeMappings>
@@ -331,6 +311,89 @@
             <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
             <isRequired>true</isRequired>
             <storeOutputAutomatically>true</storeOutputAutomatically>
+            <visibilityRule>
+                <conditionLogic>and</conditionLogic>
+                <conditions>
+                    <leftValueReference>selection_table2.firstSelectedRow.Id</leftValueReference>
+                    <operator>IsNull</operator>
+                    <rightValue>
+                        <booleanValue>true</booleanValue>
+                    </rightValue>
+                </conditions>
+            </visibilityRule>
+        </fields>
+        <fields>
+            <name>AttachmentText</name>
+            <fieldText>&lt;p&gt;&lt;strong style=&quot;font-size: 16px;&quot;&gt;Attachment list&lt;/strong&gt;&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+            <visibilityRule>
+                <conditionLogic>and</conditionLogic>
+                <conditions>
+                    <leftValueReference>Selection_Table.firstSelectedRow.Id</leftValueReference>
+                    <operator>IsNull</operator>
+                    <rightValue>
+                        <booleanValue>true</booleanValue>
+                    </rightValue>
+                </conditions>
+            </visibilityRule>
+        </fields>
+        <fields>
+            <name>selection_table2</name>
+            <dataTypeMappings>
+                <typeName>T</typeName>
+                <typeValue>Attachment</typeValue>
+            </dataTypeMappings>
+            <extensionName>flowruntime:datatable</extensionName>
+            <fieldType>ComponentInstance</fieldType>
+            <inputParameters>
+                <name>label</name>
+                <value>
+                    <stringValue>Data Table</stringValue>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>selectionMode</name>
+                <value>
+                    <stringValue>SINGLE_SELECT</stringValue>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>minRowSelection</name>
+                <value>
+                    <numberValue>0.0</numberValue>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>tableData</name>
+                <value>
+                    <elementReference>Get_Fiels_by_parent_record_id.attachments</elementReference>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>maxRowSelection</name>
+                <value>
+                    <numberValue>1.0</numberValue>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>columns</name>
+                <value>
+                    <stringValue>[{&quot;apiName&quot;:&quot;Name&quot;,&quot;guid&quot;:&quot;column-00fa&quot;,&quot;editable&quot;:false,&quot;hasCustomHeaderLabel&quot;:false,&quot;customHeaderLabel&quot;:&quot;Title&quot;,&quot;wrapText&quot;:true,&quot;order&quot;:0,&quot;sortable&quot;:false,&quot;label&quot;:&quot;File Name&quot;,&quot;type&quot;:&quot;text&quot;}]</stringValue>
+                </value>
+            </inputParameters>
+            <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+            <isRequired>true</isRequired>
+            <storeOutputAutomatically>true</storeOutputAutomatically>
+            <visibilityRule>
+                <conditionLogic>and</conditionLogic>
+                <conditions>
+                    <leftValueReference>Selection_Table.firstSelectedRow.Id</leftValueReference>
+                    <operator>IsNull</operator>
+                    <rightValue>
+                        <booleanValue>true</booleanValue>
+                    </rightValue>
+                </conditions>
+            </visibilityRule>
         </fields>
         <showFooter>true</showFooter>
         <showHeader>true</showHeader>
@@ -338,8 +401,8 @@
     <screens>
         <name>Select_Signers</name>
         <label>Select Signers</label>
-        <locationX>0</locationX>
-        <locationY>0</locationY>
+        <locationX>669</locationX>
+        <locationY>403</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>true</allowPause>
@@ -398,10 +461,10 @@
         <showHeader>true</showHeader>
     </screens>
     <start>
-        <locationX>0</locationX>
-        <locationY>0</locationY>
+        <locationX>543</locationX>
+        <locationY>48</locationY>
         <connector>
-            <targetReference>Get_records</targetReference>
+            <targetReference>Get_Fiels_by_parent_record_id</targetReference>
         </connector>
     </start>
     <status>Active</status>
@@ -418,6 +481,22 @@
         <isCollection>false</isCollection>
         <isInput>true</isInput>
         <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>selectedAttachment</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+        <objectType>Attachment</objectType>
+    </variables>
+    <variables>
+        <name>selectedDocument</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>ContentDocument</objectType>
     </variables>
     <variables>
         <name>userEmails</name>

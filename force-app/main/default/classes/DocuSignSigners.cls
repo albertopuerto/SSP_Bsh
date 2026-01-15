@@ -11,26 +11,45 @@ public without sharing class DocuSignSigners {
 	*/
     @InvocableMethod(label='Send documents' description='Send Documents related to the sign')
     public static List<String> sendToSign(List<InputVariables> signatures) {
+        
         InputVariables input = signatures[0];
 
         Set<Id> contentVersionIds = new Set<Id>();
-        contentVersionIds.add(input.document.Id);
 
         DocuSignService service = new DocuSignService();
+        String result;
 
-        ContentVersion cv = new ContentVersionSelector().selectContentVersion(contentVersionIds)[0];
+        if(input.document != null){
+            contentVersionIds.add(input.document.Id);
+            ContentVersion cv = new ContentVersionSelector().selectContentVersion(contentVersionIds)[0];
 
-        Blob myPdfBlob = cv.VersionData;
-        String base64Doc = EncodingUtil.base64Encode(myPdfBlob);
+            Blob myPdfBlob = cv.VersionData;
+            String base64Doc = EncodingUtil.base64Encode(myPdfBlob);
 
-        String result = service.sendEnvelope(
-            input.Signer,
-            input.Signer,
-            base64Doc,
-            input.document.Title
-        );
+            result = service.sendEnvelope(
+                input.Signer,
+                input.Signer,
+                base64Doc,
+                input.document.Title
+            );
 
-        processDocuSignAsync(input.document.Id);
+            processDocuSignAsync(input.document.Id);
+        }
+        if( input.attachment != null){
+
+            Attachment attachment= [SELECT Id, Name, Body, ContentType, ParentId FROM Attachment WHERE Id =:input.attachment.Id];
+           // Blob myPdfBlob = EncodingUtil.base64Decode(attachment.body.ToString());
+            Blob myPdfBlob = attachment.body;
+           
+            String base64Doc = EncodingUtil.base64Encode(myPdfBlob);
+
+            result = service.sendEnvelope(
+                input.Signer,
+                input.Signer,
+                base64Doc,
+                attachment.Name
+            );
+        }
         return new List<String>{result};
     }
 
@@ -54,7 +73,7 @@ public without sharing class DocuSignSigners {
             cv.PathOnClient = cd.Title + '.pdf';
             cv.VersionData = lastCv.VersionData;
             cv.ContentDocumentId = cd.Id;
-            cv.pkl_Status__c= 'init';
+            cv.pkl_Status__c= 'Init';
             uow.registerNew(cv);
             uow.commitWork();
         }
@@ -68,6 +87,8 @@ public without sharing class DocuSignSigners {
     public class InputVariables {
         @InvocableVariable(label='Document' description='Document to be signed')
         public ContentDocument document;
+        @InvocableVariable(label='Attachment' description='Attachment to be signed')
+        public Attachment attachment;
         @InvocableVariable(label='signer' description='leMail of the signer')
         public String signer;
     }
