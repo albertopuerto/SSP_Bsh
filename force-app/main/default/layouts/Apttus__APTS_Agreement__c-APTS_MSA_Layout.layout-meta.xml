@@ -14,6 +14,10 @@
         <label>Agreement Details</label>
         <layoutColumns>
             <layoutItems>
+                <behavior>Edit</behavior>
+                <field>APTS_Party_Details__c</field>
+            </layoutItems>
+            <layoutItems>
                 <behavior>Readonly</behavior>
                 <field>Apttus__FF_Agreement_Number__c</field>
             </layoutItems>
@@ -28,6 +32,10 @@
             <layoutItems>
                 <behavior>Required</behavior>
                 <field>Apttus__Account__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>txa_AccountSearchDetails__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Required</behavior>
@@ -52,10 +60,6 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>CurrencyIsoCode</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>APTS_Related_Quote__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
@@ -91,11 +95,11 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>txa_AffiliatesCoveredDetails__c</field>
+                <field>dat_OtherPartySignedByDateUnlisted__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>dat_OtherPartySignedByDateUnlisted__c</field>
+                <field>chk_ExistenceAgreementCanBeShared__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
@@ -138,6 +142,18 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>APTS_Non_Standard_Tax_Details__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>APTS_Related_Quote__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Apttus__Related_Opportunity__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>txa_AffiliatesCoveredDetails__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsLeftToRight</style>

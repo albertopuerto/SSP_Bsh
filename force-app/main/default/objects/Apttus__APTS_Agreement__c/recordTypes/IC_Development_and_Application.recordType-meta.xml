@@ -1180,12 +1180,12 @@
     <picklistValues>
         <picklist>APTS_Type_of_Signature__c</picklist>
         <values>
-            <fullName>Esignature</fullName>
-            <default>true</default>
-        </values>
-        <values>
             <fullName>Wet Ink Signature</fullName>
             <default>false</default>
+        </values>
+        <values>
+            <fullName>eSignature</fullName>
+            <default>true</default>
         </values>
     </picklistValues>
     <picklistValues>
@@ -1575,6 +1575,28 @@
         <values>
             <fullName>Yes</fullName>
             <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>pkl_Parties_Involved__c</picklist>
+        <values>
+            <fullName>Multy-Party</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Two-Party</fullName>
+            <default>true</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>pkl_TypeOfOtherPartySignature__c</picklist>
+        <values>
+            <fullName>Wet Ink Signature</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>eSignature</fullName>
+            <default>true</default>
         </values>
     </picklistValues>
 </RecordType>

@@ -1,0 +1,428 @@
+<!-- 
+    Apttus Contract Management
+    LightningAgreementActions
+     
+    @2017-2024 Apttus Inc. All rights reserved.
+
+ -->
+<apex:page standardController="Apttus__APTS_Agreement__c"
+           extensions="Apttus.LightningAgreementActionsController" docType="html-5.0">
+    <html xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+        <apex:includeLightning />
+        <apex:slds />        
+        <head>
+            <apex:stylesheet value="{!URLFOR($Resource.Apttus__LightningResource,'css/editpage-styling.css')}"/>
+            <style>
+                .actionbox{
+                    width:100px;
+                }
+                .actionTitle{
+                    white-space: wrap;
+                }
+                a:hover {
+                    text-decoration:none!important;
+                }
+                html{
+                    background:white!important;
+                }                
+                html body.sfdcBody{
+                    padding: 0px 0px 0px 0px!important; 
+                    background: white!important; 
+                }
+                .flexipageCard {
+                    padding-top: 0px; 
+                    padding-bottom: 0px; 
+                }
+                .slds-scope .slds-col, .slds-scope [class*=slds-col_padded], .slds-scope [class*=slds-col--padded]{
+                    flex:0 1 auto;
+                }
+                .actionPanel {
+                background:#F3F2F2;height: 26px;padding-left: 20px;padding-top: 4px;font-family: Salesforce Sans;color: #080707;
+                }
+                
+            </style>
+            
+        </head>
+        <body>
+            <apex:form >
+                <!-- Required fields for Action buttons from Agreement -->
+               
+                <apex:outputText value="{!Apttus__APTS_Agreement__c.Apttus__FF_Amend__c}" rendered="false"/>
+                <apex:outputText value="{!Apttus__APTS_Agreement__c.Apttus__FF_Renew__c}" rendered="false"/>
+                <apex:outputText value="{!Apttus__APTS_Agreement__c.Apttus__FF_Execute__c}" rendered="false"/>
+                <apex:outputText value="{!Apttus__APTS_Agreement__c.Apttus__FF_Expire__c}" rendered="false"/>
+                <apex:outputText value="{!Apttus__APTS_Agreement__c.Apttus__FF_Terminate__c}" rendered="false"/>
+                
+                <apex:outputText value="{!Apttus__APTS_Agreement__c.Apttus__FF_View_Final_Contract__c}" rendered="false"/>
+                <apex:outputText value="{!Apttus__APTS_Agreement__c.Apttus__FF_Generate_Supporting_Document__c}" rendered="false"/>
+                <apex:outputText value="{!Apttus__APTS_Agreement__c.Apttus__FF_Regenerate_Agreement__c}" rendered="false"/>
+                <apex:outputText value="{!Apttus__APTS_Agreement__c.Apttus__FF_View_Draft_Contract__c}" rendered="false"/>
+                
+                
+                <apex:outputText value="{!Apttus__APTS_Agreement__c.Apttus__FF_Send_To_Other_Party_For_Review__c}" rendered="false"/>
+                <apex:outputText value="{!Apttus__APTS_Agreement__c.Apttus__SendToTeamReview__c}" rendered="false"/>
+                <apex:outputText value="{!Apttus__APTS_Agreement__c.Apttus__FF_Send_To_Other_Party_For_Signatures__c}" rendered="false"/>
+                <apex:outputText value="{!Apttus__APTS_Agreement__c.Apttus__Import_Offline_Document__c}" rendered="false"/>
+                 <apex:outputText value="{!Apttus__APTS_Agreement__c.Apttus__ImportSupportingDocument__c}" rendered="false" />
+
+                <apex:outputText value="{!Apttus__APTS_Agreement__c.Apttus__UploadSignedDocument__c}" rendered="false"/>
+                
+                <apex:outputText value="{!Apttus__APTS_Agreement__c.Apttus__FF_Cancel_Request__c}" rendered="false"/>
+                <apex:outputText value="{!Apttus__APTS_Agreement__c.Apttus__FF_Submit_Request__c}" rendered="false"/>
+                
+                <apex:outputText value="{!Apttus__APTS_Agreement__c.Apttus__FF_Generate_Protected_Agreement__c}" rendered="false"/>
+                <apex:outputText value="{!Apttus__APTS_Agreement__c.Apttus__FF_Generate_Unprotected_Agreement__c}" rendered="false"/>
+                <apex:outputText value="{!Apttus__APTS_Agreement__c.Apttus__FF_Send_To_Third_Party__c}" rendered="false"/>
+                <apex:outputText value="{!Apttus__APTS_Agreement__c.Apttus__FF_Submit_For_Changes__c}" rendered="false"/>
+                <apex:outputText value="{!Apttus__APTS_Agreement__c.Apttus__FF_Return_To_Requestor__c}" rendered="false"/>
+                
+                <apex:outputText value="{!Apttus__APTS_Agreement__c.Apttus__Status_Category__c}" rendered="false" />
+                <apex:outputText value="{!Apttus__APTS_Agreement__c.Apttus__Status__c}" rendered="false" />
+                <apex:outputText value="{!Apttus__APTS_Agreement__c.Apttus__VersionAware__c}" rendered="false"/>
+                <apex:outputText value="{!Apttus__APTS_Agreement__c.Apttus__GoogleDriveEnabled__c}" rendered="false" />
+                <div style="solid lightgray; padding: 0px; margin-bottom: 0px; border-radius: 0px;">
+                <div class="actionPanel" style="{!IF((canCancelRequest == true || canSubmitRequest == true || canSendForSignature == true ||canSendforDocusign == true || canSendForCongasign == true || canCheckDocusignStatus == true || canSendForEchosign == true || canSendForReview == true || canSendForOffice365InternalReview == true || canSendForOffice365ExternalReview == true  || canSendForOffice365Review == true || canSendForTeamReview == true || canActivate == true || canExpire == true || canRenew == true || canAmend == true || canTerminate == true ) ,'display:block', 'display:none')}" >   {!$Label.AgreementLifeCycleActions}  </div>        
+                    <div class="slds-grid slds-wrap  slds-has-inline-block-links_space "  >                                                
+                         <c:AgreementActionLink id="id-CancelRequest" 
+                                               name="CancelRequest"
+                                               styleClass="slds-col actionbox slds-text-align--center"
+                                               displayname="{!$Label.Apttus__Cancel}" 
+                                               image="images/actions/cancelrequest.svg"
+                                               onaction="{!onCancelRequest}" 
+                                               visible="{!canCancelRequest}"
+                                               ParamID="{!agreementSO.id}"
+                                               redirectPage="{!redirectURL}">
+                        </c:AgreementActionLink>                           
+                        <c:AgreementActionLink id="id-SubmitRequest" 
+                                               name="SubmitRequest"
+                                               styleClass="slds-col actionbox slds-text-align--center"
+                                               displayname="{!$Label.Apttus__SubmitRequest}" 
+                                               image="images/actions/submitrequest.svg"
+                                               onaction="{!onSubmitRequest}" 
+                                               visible="{!canSubmitRequest}"
+                                               ParamID="{!agreementSO.id}"
+                                               redirectPage="{!redirectURL}">
+                        </c:AgreementActionLink>                           
+                        <c:AgreementActionLink id="id-SendforEsignature" 
+                                               name="SendforEsignature"
+                                               styleClass="slds-col actionbox slds-text-align--center"
+                                               displayname="{!$Label.Apttus__SendForSignatures}" 
+                                               image="images/actions/sendforesignature.svg"
+                                               onaction="{!onSendforsignature}" 
+                                               visible="{!canSendForSignature}"
+                                               ParamID="{!agreementSO.id}"
+                                               redirectPage="{!redirectURL}">
+                        </c:AgreementActionLink>                            
+                        <c:AgreementActionLink id="id-sendfordocusign" 
+                                               name="sendfordocusign"
+                                               styleClass="slds-col actionbox slds-text-align--center"
+                                               displayname="{!$Label.Apttus__SendForDocusign}" 
+                                               image="images/actions/sendfordocusign.svg"
+                                               onaction="{!onSendforDocusign}" 
+                                               visible="{!canSendforDocusign}"
+                                               ParamID="{!agreementSO.id}"
+                                               redirectPage="{!redirectURL}">
+                        </c:AgreementActionLink>
+						<c:AgreementActionLink id="id-sendforcongasign" 
+                                               name="sendforcongasign"
+                                               styleClass="slds-col actionbox slds-text-align--center"
+                                               displayname="{!$Label.Apttus__sendforcongasign}" 
+                                               image="images/actions/sendforcongasign.svg"
+                                               onaction="{!onSendForCongasign}" 
+                                               visible="{!canSendForCongasign}"
+                                               ParamID="{!agreementSO.id}"
+                                               redirectPage="{!redirectURL}">
+                        </c:AgreementActionLink>
+                        <c:AgreementActionLink id="id-checkdocusignstatus" 
+                                               name="checkdocusignstatus"
+                                               styleClass="slds-col actionbox slds-text-align--center"
+                                               displayname="{!$Label.Apttus__CheckDocusignstatus}" 
+                                               image="images/actions/docusigncheckstatus.svg"
+                                               onaction="{!onCheckDocusignStatus}" 
+                                               visible="{!canCheckDocusignStatus}"
+                                               ParamID="{!agreementSO.id}"
+                                               redirectPage="{!redirectURL}">
+                        </c:AgreementActionLink>
+                        <c:AgreementActionLink id="id-sendforechosign" 
+                                               name="sendforechosign"
+                                               styleClass="slds-col actionbox slds-text-align--center"
+                                               displayname="{!$Label.Apttus__SendForEchoSign}" 
+                                               image="images/actions/sendforechosign.svg"
+                                               onaction="{!onSendForEchosign}" 
+                                               visible="{!canSendForEchosign}"
+                                               ParamID="{!agreementSO.id}"
+                                               redirectPage="{!redirectURL}">
+                        </c:AgreementActionLink>
+                        <c:AgreementActionLink id="id-SendForReview" 
+                                               name="SendForReview"
+                                               styleClass="slds-col actionbox slds-text-align--center"
+                                               displayname="{!$Label.Apttus__SendForReview}" 
+                                               image="images/actions/sendforreview.svg"
+                                               onaction="{!onSendforReview}" 
+                                               visible="{!canSendForReview}"
+                                               ParamID="{!agreementSO.id}"
+                                               redirectPage="{!redirectURL}">
+                        </c:AgreementActionLink>
+                        <c:AgreementActionLink id="id-Office365InternalReview" 
+                                               name="Office365InternalReview"
+                                               styleClass="slds-col actionbox slds-text-align--center"
+                                               displayname="{!$Label.Apttus__Office365InternalReview}" 
+                                               image="images/actions/sendforoffice365.svg"
+                                               onaction="{!onsendForOffice365InternalReview}" 
+                                               visible="{!canSendForOffice365InternalReview}"
+                                               ParamID="{!agreementSO.id}"
+                                               redirectPage="{!redirectURL}"
+                                               isExternalUrl="true">
+                        </c:AgreementActionLink>
+                        <c:AgreementActionLink id="id-Office365ExternalReview" 
+                                               name="Office365InternalReview"
+                                               styleClass="slds-col actionbox slds-text-align--center"
+                                               displayname="{!$Label.Apttus__Office365ExternalReview}" 
+                                               image="images/actions/sendforoffice365.svg"
+                                               onaction="{!onSendforOffice365ExternalReview}" 
+                                               visible="{!canSendForOffice365ExternalReview}"
+                                               ParamID="{!agreementSO.id}"
+                                               redirectPage="{!redirectURL}"
+                                               isExternalUrl="true">
+                        </c:AgreementActionLink>
+                        <c:AgreementActionLink id="id-Office365Review" 
+                                               name="Office365 Review"
+                                               styleClass="slds-col actionbox slds-text-align--center"
+                                               displayname="{!$Label.Apttus__Office365Review}" 
+                                               image="images/actions/sendforoffice365.svg"
+                                               onaction="{!onsendForOffice365Review}" 
+                                               visible="{!canSendForOffice365Review}"
+                                               ParamID="{!agreementSO.id}"
+                                               redirectPage="{!redirectURL}"
+                                               isExternalUrl="true">
+                        </c:AgreementActionLink>
+                        <c:AgreementActionLink id="id-SendForTeamReview" 
+                                               name="SendForTeamReview"
+                                               styleClass="slds-col actionbox slds-text-align--center"
+                                               displayname="{!$Label.Apttus__SendToTeamReview}" 
+                                               image="images/actions/MSTeams.svg"
+                                               onaction="{!onSendforTeamReview}" 
+                                               visible="{!canSendForTeamReview}"
+                                               ParamID="{!agreementSO.id}"
+                                               redirectPage="{!redirectURL}">
+                        </c:AgreementActionLink>
+                        <c:AgreementActionLink id="id-GoogleDocsReview" 
+                                               name="Google Docs Review"
+                                               styleClass="slds-col actionbox slds-text-align--center"
+                                               displayname="{!$Label.Apttus__GoogleDocsReview}"
+                                               image="images/actions/sendForGdocsReview.svg"
+                                               onaction="{!onsendForGoogleDocsReview}" 
+                                               visible="{!CanSendForGoogleDocsReview}"
+                                               ParamID="{!agreementSO.id}"
+                                               redirectPage="{!redirectURL}">
+                        </c:AgreementActionLink>						
+                        <c:AgreementActionLink id="id-Activate" 
+                                               name="Activate"
+                                               styleClass="slds-col actionbox slds-text-align--center"
+                                               displayname="{!$Label.Apttus__Activate}" 
+                                               image="images/actions/activate.svg"
+                                               onaction="{!onActivate}" 
+                                               visible="{!canActivate}"
+                                               ParamID="{!agreementSO.id}"
+                                               redirectPage="{!redirectURL}">
+                        </c:AgreementActionLink>                           
+                       <c:AgreementActionLink id="id-Expire" 
+                                               name="Expire"
+                                               styleClass="slds-col actionbox slds-text-align--center"
+                                               displayname="{!$Label.Apttus__Expire}" 
+                                               image="images/actions/expire.svg"
+                                               onaction="{!onExpire}" 
+                                               visible="{!canExpire}"
+                                               ParamID="{!agreementSO.id}"
+                                               redirectPage="{!redirectURL}">
+                        </c:AgreementActionLink>
+                        <c:AgreementActionLink id="id-Renew" 
+                                               name="Renew"
+                                               styleClass="slds-col actionbox slds-text-align--center"
+                                               displayname="{!$Label.Apttus__Renew}" 
+                                               image="images/actions/renew.svg"
+                                               onaction="{!onRenew}" 
+                                               visible="{!canRenew}"
+                                               ParamID="{!agreementSO.id}"
+                                               redirectPage="{!redirectURL}">
+                        </c:AgreementActionLink>
+                        <c:AgreementActionLink id="id-Amend" 
+                                               name="Amend"
+                                               styleClass="slds-col actionbox slds-text-align--center"
+                                               displayname="{!$Label.Apttus__Amend}" 
+                                               image="images/actions/amend.svg"
+                                               onaction="{!onAmend}" 
+                                               visible="{!canAmend}"
+                                               ParamID="{!agreementSO.id}"
+                                               redirectPage="{!redirectURL}">
+                        </c:AgreementActionLink>
+                           
+                        <c:AgreementActionLink id="id-Terminate" 
+                                               name="Terminate"
+                                               styleClass="slds-col actionbox slds-text-align--center"
+                                               displayname="{!$Label.Apttus__Terminate}" 
+                                               image="images/actions/terminate.svg"
+                                               onaction="{!onTerminate}" 
+                                               visible="{!canTerminate}"
+                                               ParamID="{!agreementSO.id}"
+                                               redirectPage="{!redirectURL}">
+                        </c:AgreementActionLink>   
+                        </div>
+                        </div>
+                <div style="solid lightgray; padding: 0px; margin-bottom: 0px; border-radius: 0px;">
+                           <div class="actionPanel" style="{!IF((canGenerate == true || canPreview == true || canReviewOfflineDocument == true || canGenerateSupportingDocument == true || canRegenerate == true || canImportOfflineDocument == true || canImportSupportingDocument == true || canMergeDocuments == true || canUploadSignedDocument == true || canUploadReviewedDocument == true ) ,'display:block', 'display:none')}" >   {!$Label.DocumentActions}  </div>        
+                    <div class="slds-grid slds-wrap  slds-has-inline-block-links_space "  >
+                        <c:AgreementActionLink id="id-generate" 
+                                               name="Test"
+                                               styleClass="slds-col actionbox slds-text-align--center"
+                                               displayname="{!$Label.Apttus__Generate}" 
+                                               image="images/actions/generate.svg"
+                                               onaction="{!onGenerateDocument}" 
+                                               ParamID="{!agreementSO.id}"
+                                               visible="{!canGenerate}"
+                                               redirectPage="{!redirectURL}">
+                        </c:AgreementActionLink>
+                        <c:AgreementActionLink id="id-Preview" 
+                                               name="Preview"
+                                               styleClass="slds-col actionbox slds-text-align--center"
+                                               displayname="{!$Label.Apttus__Preview}" 
+                                               image="images/actions/preview.svg"
+                                               onaction="{!onPreviewDocument}" 
+                                               visible="{!canPreview}"
+                                               ParamID="{!agreementSO.id}"
+                                               redirectPage="{!redirectURL}">
+                        </c:AgreementActionLink>
+                        <c:AgreementActionLink id="id-ReviewOfflineDocument" 
+                                               name="ReviewOfflineDocument"
+                                               styleClass="slds-col actionbox slds-text-align--center"
+                                               displayname="{!$Label.Apttus__ReviewOfflineDocument}" 
+                                               image="images/actions/reviewofflinedocument.svg"
+                                               onaction="{!onReviewOfflineDocument}" 
+                                               visible="{!canReviewOfflineDocument}"
+                                               ParamID="{!agreementSO.id}"
+                                               redirectPage="{!redirectURL}">
+                        </c:AgreementActionLink>
+						<c:AgreementActionLink id="id-generatesupporting" 
+                                               name="generatesupporting"
+                                               styleClass="slds-col actionbox slds-text-align--center"
+                                               displayname="{!$Label.Apttus__GenerateSupportingDocument}" 
+                                               image="images/actions/generatesupporting.svg"
+                                               onaction="{!onGenerateSupportingDocument}" 
+                                               visible="{!canGenerateSupportingDocument}"
+                                               ParamID="{!agreementSO.id}"
+                                               redirectPage="{!redirectURL}">
+                        </c:AgreementActionLink>
+                        <c:AgreementActionLink id="id-Regenerate" 
+                                               name="Regenerate"
+                                               styleClass="slds-col actionbox slds-text-align--center"
+                                               displayname="{!$Label.Apttus__Regenerate}" 
+                                               image="images/actions/regenerate.svg"
+                                               onaction="{!onReGenerateDocument}" 
+                                               visible="{!canRegenerate}"
+                                               ParamID="{!agreementSO.id}"
+                                               redirectPage="{!redirectURL}">
+                        </c:AgreementActionLink>
+                        <c:AgreementActionLink id="id-importofflinedocument" 
+                                               name="importofflinedocument"
+                                               styleClass="slds-col actionbox slds-text-align--center"
+                                               displayname="{!$Label.Apttus__ImportOfflineDocument}" 
+                                               image="images/actions/importofflinedocument.svg"
+                                               onaction="{!onImportOfflineDocument}" 
+                                               visible="{!canImportOfflineDocument}"
+                                               ParamID="{!agreementSO.id}"
+                                               redirectPage="{!redirectURL}">
+                        </c:AgreementActionLink>
+                        <c:AgreementActionLink id="id-importSupportingdocument" 
+                                                name="importSupportingdocument" 
+                                                styleClass="slds-col actionbox slds-text-align--center"
+                                                displayname="{!$Label.Apttus__ImportSupportingDocument}" 
+                                                image="images/actions/importofflinedocument.svg" 
+                                                onaction="{!onImportSupportingDocument}"
+                                                visible="{!canImportSupportingDocument}" 
+                                                ParamID="{!agreementSO.id}" 
+                                                redirectPage="{!redirectURL}">
+                        </c:AgreementActionLink>
+                        <c:AgreementActionLink id="id-mergedocuments" 
+                                               name="mergedocuments"
+                                               styleClass="slds-col actionbox slds-text-align--center"
+                                               displayname="{!$Label.Apttus__MergeDocuments}" 
+                                               image="images/actions/Merge.svg"
+                                               onaction="{!onMergeDocuments}" 
+                                               visible="{!canMergeDocuments}"
+                                               ParamID="{!agreementSO.id}"
+                                               redirectPage="{!redirectURL}">
+                        </c:AgreementActionLink>
+                        <c:AgreementActionLink id="id-UploadSignedDocument" 
+                                               name="UploadSignedDocument"
+                                               styleClass="slds-col actionbox slds-text-align--center"
+                                               displayname="{!$Label.Apttus__UploadSignedDocument}" 
+                                               image="images/actions/markassigned.svg"
+                                               onaction="{!onUploadSignedDocument}" 
+                                               visible="{!canUploadSignedDocument}"
+                                               ParamID="{!agreementSO.id}"
+                                               redirectPage="{!redirectURL}">
+                        </c:AgreementActionLink>                          
+                        <c:AgreementActionLink id="id-UploadReviewedDocument" 
+                                               name="uploadReviewedDocument"
+                                               styleClass="slds-col actionbox slds-text-align--center"
+                                               displayname="{!$Label.Apttus__UploadReviewedDocument}" 
+                                               image="images/actions/uploadrevieweddocument.svg"
+                                               onaction="{!onUploadReviewedDocument}" 
+                                               ParamID="{!agreementSO.id}"
+                                               visible="{!canUploadReviewedDocument}"
+                                               redirectPage="{!redirectURL}">
+                        </c:AgreementActionLink>
+                        </div>
+                        </div>
+                <div style="solid lightgray; padding: 0px; margin-bottom: 0px; border-radius: 0px;">
+                           <div class="actionPanel" style="{!IF((canViewHeirarchy == true || canInEffectView == true || canImportLargeFiles == true || lstAgreementCustom.size > 0 ) ,'display:block', 'display:none')}">   {!$Label.AdditionalActions}  </div>        
+                    <div class="slds-grid slds-wrap  slds-has-inline-block-links_space "  >   
+                        <c:AgreementActionLink id="id-ViewHeirarchy" 
+                                               name="Test"
+                                               styleClass="slds-col actionbox slds-text-align--center"
+                                               displayname="{!$Label.Apttus__ViewAgreementHierarchy}" 
+                                               image="images/actions/ViewHierarchy.svg"
+                                               onaction="{!onViewHeirarchy}" 
+                                               ParamID="{!agreementSO.id}"
+                                               visible="{!canViewHeirarchy}"
+                                               redirectPage="{!redirectURL}">
+                        </c:AgreementActionLink>
+                        <c:AgreementActionLink id="id-InEffectView" 
+                                               name="Test"
+                                               styleClass="slds-col actionbox slds-text-align--center"
+                                               displayname="{!$Label.Apttus__InEffectView}" 
+                                               image="images/actions/Ineffect.svg"
+                                               onaction="{!onInEffectView}" 
+						 visible="{!canInEffectView}"
+                                               ParamID="{!agreementSO.id}"
+                                              
+                                               redirectPage="{!redirectURL}">
+                        </c:AgreementActionLink>                    
+                        <c:AgreementActionLink id="id-importlargefiles" 
+                                               name="importlargefiles"
+                                               styleClass="slds-col actionbox slds-text-align--center"
+                                               displayname="{!$Label.Apttus__ImportLargeFiles}" 
+                                               image="images/actions/importofflinedocument.svg"
+                                               onaction="{!onImportLargeFiles}" 
+                                               visible="{!canImportLargeFiles}"
+                                               ParamID="{!agreementSO.id}"
+                                               redirectPage="{!redirectURL}">
+                        </c:AgreementActionLink>                                                                                                 
+                        <!-- iterate the wrapper list to display custom Formala Fields -->
+                        <apex:repeat value="{!lstAgreementCustom}" var="AgreementCustom" rendered="{!lstAgreementCustom.size > 0}">                          
+                            <c:AgreementActionLink id="id-custom" 
+                                               name="custom_{!AgreementCustom.fieldValue}"
+                                               styleClass="slds-col actionbox slds-text-align--center"
+                                               displayname="{!AgreementCustom.displayValue}" 
+                                               image="{!IF(OR(AgreementCustom.imagesrc == '', AgreementCustom.imagesrc == null), URLFOR($Resource.Apttus__LightningResource, 'images/actions/default.png'), $Site.prefix + AgreementCustom.imagesrc)}"
+                                               ParamID="{!agreementSO.id}"
+                                               redirectPage="{!$Site.prefix}{!AgreementCustom.urlValue}">                                               
+                           </c:AgreementActionLink>
+                        </apex:repeat>     
+                    </div>
+                    
+                </div>
+            </apex:form>
+        </body>
+    </html>
+</apex:page>
