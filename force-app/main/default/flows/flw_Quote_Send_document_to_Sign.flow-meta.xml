@@ -107,8 +107,8 @@
     <assignments>
         <name>assignfiles</name>
         <label>assignfiles</label>
-        <locationX>809</locationX>
-        <locationY>1021</locationY>
+        <locationX>822</locationX>
+        <locationY>1022</locationY>
         <assignmentItems>
             <assignToReference>selectedDocument</assignToReference>
             <operator>Assign</operator>
