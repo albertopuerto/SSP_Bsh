@@ -3,7 +3,6 @@
     <fullName>sbaa__DelegationEnd__c</fullName>
     <deprecated>false</deprecated>
     <description>Approval delegations end at the end of this date</description>
-    <externalId>false</externalId>
     <inlineHelpText>Approval delegations end at the end of this date</inlineHelpText>
     <label>Delegation End</label>
     <required>false</required>

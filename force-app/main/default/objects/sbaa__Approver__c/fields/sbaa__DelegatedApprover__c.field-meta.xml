@@ -4,7 +4,6 @@
     <deleteConstraint>SetNull</deleteConstraint>
     <deprecated>false</deprecated>
     <description>Used with Delegated Approvals, lookup to the Approver who is the delegate for this Approver</description>
-    <externalId>false</externalId>
     <inlineHelpText>Used with Delegated Approvals, lookup to the Approver who is the delegate for this Approver</inlineHelpText>
     <label>Delegated Approver</label>
     <referenceTo>sbaa__Approver__c</referenceTo>

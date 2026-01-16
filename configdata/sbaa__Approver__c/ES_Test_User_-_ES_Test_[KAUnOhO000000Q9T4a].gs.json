@@ -37,7 +37,7 @@
       "ReferencedObject": "User",
       "ReferencedFields": {
         "Email": "s.brunda@in.bosch.com",
-        "Profile.Name": "System Administrator"
+        "Profile.Name": "Sales Read"
       }
     }
   ]
