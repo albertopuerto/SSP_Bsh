@@ -801,6 +801,13 @@
                 </fieldInstanceProperties>
                 <fieldItem>Record.lkp_CompanySignedBySecondContact__c</fieldItem>
                 <identifier>Recordlkp_CompanySignedBySecondContact_cField</identifier>
+                <visibilityRule>
+                    <criteria>
+                        <leftValue>{!Record.pkl_Parties_Involved__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>Two-Party</rightValue>
+                    </criteria>
+                </visibilityRule>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
@@ -811,6 +818,13 @@
                 </fieldInstanceProperties>
                 <fieldItem>Record.ftxt_CompanySignedByTitle2__c</fieldItem>
                 <identifier>Recordftxt_CompanySignedByTitle2_cField</identifier>
+                <visibilityRule>
+                    <criteria>
+                        <leftValue>{!Record.pkl_Parties_Involved__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>Two-Party</rightValue>
+                    </criteria>
+                </visibilityRule>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
@@ -821,6 +835,13 @@
                 </fieldInstanceProperties>
                 <fieldItem>Record.dat_CompanySignedDate2__c</fieldItem>
                 <identifier>Recorddat_CompanySignedDate2_cField</identifier>
+                <visibilityRule>
+                    <criteria>
+                        <leftValue>{!Record.pkl_Parties_Involved__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>Two-Party</rightValue>
+                    </criteria>
+                </visibilityRule>
             </fieldInstance>
         </itemInstances>
         <name>Facet-644986fd-df8f-40a1-9fbb-0db4b6bef66a</name>
@@ -875,6 +896,13 @@
                 </fieldInstanceProperties>
                 <fieldItem>Record.Apttus__Other_Party_Signed_By_Unlisted__c</fieldItem>
                 <identifier>RecordApttus_Other_Party_Signed_By_Unlisted_cField</identifier>
+                <visibilityRule>
+                    <criteria>
+                        <leftValue>{!Record.pkl_Parties_Involved__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>Two-Party</rightValue>
+                    </criteria>
+                </visibilityRule>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
@@ -885,6 +913,13 @@
                 </fieldInstanceProperties>
                 <fieldItem>Record.txa_OtherPartySignedByUnlistedTitle__c</fieldItem>
                 <identifier>Recordtxa_OtherPartySignedByUnlistedTitle_cField</identifier>
+                <visibilityRule>
+                    <criteria>
+                        <leftValue>{!Record.pkl_Parties_Involved__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>Two-Party</rightValue>
+                    </criteria>
+                </visibilityRule>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
@@ -895,6 +930,13 @@
                 </fieldInstanceProperties>
                 <fieldItem>Record.dat_OtherPartySignedByDateUnlisted__c</fieldItem>
                 <identifier>Recorddat_OtherPartySignedByDateUnlisted_cField</identifier>
+                <visibilityRule>
+                    <criteria>
+                        <leftValue>{!Record.pkl_Parties_Involved__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>Two-Party</rightValue>
+                    </criteria>
+                </visibilityRule>
             </fieldInstance>
         </itemInstances>
         <name>Facet-01981f4f-46fc-4cdd-9977-413c59e579db</name>
