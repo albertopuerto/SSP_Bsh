@@ -3,7 +3,6 @@
     <fullName>sbaa__DelegationStart__c</fullName>
     <deprecated>false</deprecated>
     <description>Approval delegations start on the beginning of this date</description>
-    <externalId>false</externalId>
     <inlineHelpText>Approval delegations start on the beginning of this date</inlineHelpText>
     <label>Delegation Start</label>
     <required>false</required>

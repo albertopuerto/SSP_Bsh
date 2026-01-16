@@ -4,7 +4,6 @@
     <deleteConstraint>SetNull</deleteConstraint>
     <deprecated>false</deprecated>
     <description>If Approver is a single User, lookup to that User</description>
-    <externalId>false</externalId>
     <inlineHelpText>If Approver is a single User, lookup to that User</inlineHelpText>
     <label>User</label>
     <referenceTo>User</referenceTo>

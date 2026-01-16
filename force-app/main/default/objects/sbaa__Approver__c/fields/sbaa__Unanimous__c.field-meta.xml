@@ -4,7 +4,6 @@
     <defaultValue>false</defaultValue>
     <deprecated>false</deprecated>
     <description>If Approver is a Group, checked if all members need to Approve in order to consider the Approval approved</description>
-    <externalId>false</externalId>
     <inlineHelpText>If Approver is a Group, checked if all members need to Approve in order to consider the Approval approved</inlineHelpText>
     <label>Unanimous</label>
     <trackTrending>false</trackTrending>

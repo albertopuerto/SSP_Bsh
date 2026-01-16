@@ -4,7 +4,6 @@
     <deleteConstraint>SetNull</deleteConstraint>
     <deprecated>false</deprecated>
     <description>Approver that needs to approve after this Approver approves</description>
-    <externalId>false</externalId>
     <inlineHelpText>Approver that needs to approve after this Approver approves</inlineHelpText>
     <label>Next Approver</label>
     <referenceTo>sbaa__Approver__c</referenceTo>
