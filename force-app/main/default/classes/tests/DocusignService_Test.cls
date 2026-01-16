@@ -9,7 +9,6 @@ public class DocusignService_Test {
         insert settings;
         
         Account[] testAccountList = (Account[])TestFactory.createSObjectList(new Account(), 1);
-        testAccountList[0].pkl_PaymentTerms__c= 'Due on receipt';
         insert testAccountList;
 
         Contact[] testContactList = (Contact[])TestFactory.createSObjectList(new Contact(), 1);
