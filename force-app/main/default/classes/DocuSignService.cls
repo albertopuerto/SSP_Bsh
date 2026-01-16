@@ -87,7 +87,8 @@ public without sharing class DocuSignService {
 	* @return		Blob
 	*/
     public Blob getSignedDocument(String envelopeId, String documentId) {
-        String endpoint = 'callout:docusignCredential/restapi/v2.1/accounts/ec94da4e-5b4e-4e5d-a3ac-35dac0b0f786/envelopes/'+ envelopeId + '/documents/' + documentId;
+        DocusignSettings__c	settings = [Select account_id__c from DocusignSettings__c Limit 1];
+        String endpoint = 'callout:docusignCredential/restapi/v2.1/accounts/'+settings.account_id__c+'/envelopes/'+ envelopeId + '/documents/' + documentId;
 
         HttpRequest req = new HttpRequest();
         req.setEndpoint(endpoint);
@@ -160,14 +161,16 @@ public without sharing class DocuSignService {
 
 
         List<OutputVariables> retList = new List<OutputVariables>();
-        for (Id recId : mapIdDocs.keySet()) {
+        for(String recId : recordIds){
             OutputVariables ov = new OutputVariables();
             ov.files = new List<ContentDocument>();
             ov.attachments= new List<Attachment>();
 
-            for (Id docId : mapIdDocs.get(recId)) {
-                if (mapDocs.containsKey(docId)) {
-                    ov.files.add(mapDocs.get(docId));
+            if(!mapIdDocs.isEmpty()){
+                for (Id docId : mapIdDocs.get(recId)) {
+                    if (mapDocs.containsKey(docId)) {
+                        ov.files.add(mapDocs.get(docId));
+                    }
                 }
             }
             if(!mapAttachments.isEmpty()){
