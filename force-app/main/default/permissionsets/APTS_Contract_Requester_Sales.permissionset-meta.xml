@@ -5284,6 +5284,10 @@
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
+        <apexPage>Apttus__LightningAgreementActions</apexPage>
+        <enabled>true</enabled>
+    </pageAccesses>
+    <pageAccesses>
         <apexPage>Apttus__RetentionPolicyEdit</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
