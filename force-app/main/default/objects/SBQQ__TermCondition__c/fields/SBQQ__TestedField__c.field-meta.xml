@@ -42,6 +42,11 @@
                 <default>false</default>
                 <label>Account Role</label>
             </value>
+            <value>
+                <fullName>ftxt_SalesOrg__c</fullName>
+                <default>false</default>
+                <label>Sales Org</label>
+            </value>
         </valueSetDefinition>
     </valueSet>
 </CustomField>
