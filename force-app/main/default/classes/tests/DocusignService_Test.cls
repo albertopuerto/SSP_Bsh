@@ -4,6 +4,10 @@ public class DocusignService_Test {
     @testSetup
     public static void initRecords(){
         
+        DocusignSettings__c settings = new DocusignSettings__c();
+        settings.account_id__c= 'ec94da4e-5b4e-4e5d-a3ac-35dac0b0f786';
+        insert settings;
+        
         Account[] testAccountList = (Account[])TestFactory.createSObjectList(new Account(), 1);
         insert testAccountList;
 

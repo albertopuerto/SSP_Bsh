@@ -1,44 +1,51 @@
 @isTest
 public class DocuSignSigners_Test {
 
+   
     @testSetup
     public static void initRecords(){
-         Account[] testAccountList = (Account[])TestFactory.createSObjectList(new Account(), 1);
+        
+        DocusignSettings__c settings = new DocusignSettings__c();
+        settings.account_id__c= 'ec94da4e-5b4e-4e5d-a3ac-35dac0b0f786';
+        insert settings;
+            
+        Account[] testAccountList = (Account[])TestFactory.createSObjectList(new Account(), 1);
         insert testAccountList;
 
         Contact[] testContactList = (Contact[])TestFactory.createSObjectList(new Contact(), 1);
         testContactList[0].AccountId = testAccountList[0].Id;
         insert testContactList;
-        SBQQ__Quote__c[] quoteList = (SBQQ__Quote__c [])TestFactory.createSObjectList(new SBQQ__Quote__c(),1);
+        
+         SBQQ__Quote__c[] quoteList = (SBQQ__Quote__c [])TestFactory.createSObjectList(new SBQQ__Quote__c(),1);
         quoteList[0].SBQQ__Status__c = 'Draft';
         quoteList[0].SBQQ__Account__r = testAccountList[0];
         quoteList[0].lkp_BillToAccount__c= testAccountList[0].Id;
         insert quoteList;
-        ContentVersion[] contentVersionList = (ContentVersion[])TestFactory.createSObjectList(new ContentVersion(), 1);
-        contentVersionList[0].IsMajorVersion = true;
-        insert contentVersionList;
-        ContentVersion contentVersion = contentVersionList[0];
-
-        // Get the ContentDocumentId - same as original
-        contentVersion = [SELECT Id, ContentDocumentId FROM ContentVersion WHERE Id = :contentVersion.Id LIMIT 1];
-        Id contentDocumentId = contentVersion.ContentDocumentId;
-
-        // Create ContentDocumentLink using TestFactory
-        // This should use ContentDocumentLinkDefaults from your TestFactoryDefaults class
-        ContentDocumentLink[] linkList = (ContentDocumentLink[])TestFactory.createSObjectList(new ContentDocumentLink(), 1);
-        linkList[0].ContentDocumentId = contentDocumentId; // Set the dynamic fields
-        linkList[0].LinkedEntityId = quoteList[0].Id;
-        linkList[0].ShareType = 'V'; // This should come from defaults, but set explicitly
-        insert linkList;
-
-        Signature__c signature = new Signature__c(
-        Envelope_Id__c = 'xxxxxxxx-xxxx-xxx',
-        Document_Id__c= contentDocumentId
-        );
-        insert signature;
-
+        	ContentVersion[] contentVersionList = (ContentVersion[])TestFactory.createSObjectList(new ContentVersion(), 1);
+        	contentVersionList[0].IsMajorVersion = true;
+        	insert contentVersionList;
+        	ContentVersion contentVersion = contentVersionList[0];
+        
+        	// Get the ContentDocumentId - same as original
+        	contentVersion = [SELECT Id, ContentDocumentId FROM ContentVersion WHERE Id = :contentVersion.Id LIMIT 1];
+        	Id contentDocumentId = contentVersion.ContentDocumentId;
+        
+        	// Create ContentDocumentLink using TestFactory
+        	// This should use ContentDocumentLinkDefaults from your TestFactoryDefaults class
+        	ContentDocumentLink[] linkList = (ContentDocumentLink[])TestFactory.createSObjectList(new ContentDocumentLink(), 1);
+        	linkList[0].ContentDocumentId = contentDocumentId; // Set the dynamic fields
+        	linkList[0].LinkedEntityId = quoteList[0].Id;
+        	linkList[0].ShareType = 'V'; // This should come from defaults, but set explicitly
+        	insert linkList;
+        
+        	Signature__c signature = new Signature__c(
+        	Envelope_Id__c = 'xxxxxxxx-xxxx-xxx',
+        	Document_Id__c= contentDocumentId
+        	);
+        	insert signature;
+        
     }
-
+    
     @isTest
     public static void sendDocumentToSign(){
         User productManagerUser = createUser();

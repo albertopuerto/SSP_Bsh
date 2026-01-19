@@ -24,10 +24,11 @@ public without sharing class DocuSignService {
 	*/
     public String sendEnvelope(String recipientEmail, String recipientName, String documentBase64, String documentName) {
 
-        String endpoint = 'callout:docusignCredential/restapi/v2.1/accounts/ec94da4e-5b4e-4e5d-a3ac-35dac0b0f786/envelopes';
+        DocusignSettings__c	settings = [Select account_id__c from DocusignSettings__c Limit 1];
+        String endpoint = 'callout:docusignCredential/restapi/v2.1/accounts/'+settings.account_id__c+'/envelopes';
 
         Map<String, Object> envelopeDefinition = new Map<String, Object>{
-            'emailSubject' => 'Por favor firme el documento adjunto',
+            'emailSubject' => 'Please sign the attached document',
             'documents' => new List<Object>{
                 new Map<String, Object>{
                     'documentBase64' => documentBase64,
@@ -86,7 +87,8 @@ public without sharing class DocuSignService {
 	* @return		Blob
 	*/
     public Blob getSignedDocument(String envelopeId, String documentId) {
-        String endpoint = 'callout:docusignCredential/restapi/v2.1/accounts/ec94da4e-5b4e-4e5d-a3ac-35dac0b0f786/envelopes/'+ envelopeId + '/documents/' + documentId;
+        DocusignSettings__c	settings = [Select account_id__c from DocusignSettings__c Limit 1];
+        String endpoint = 'callout:docusignCredential/restapi/v2.1/accounts/'+settings.account_id__c+'/envelopes/'+ envelopeId + '/documents/' + documentId;
 
         HttpRequest req = new HttpRequest();
         req.setEndpoint(endpoint);
@@ -127,8 +129,20 @@ public without sharing class DocuSignService {
         }
         List<ContentDocumentLink> contentVersions = new ContentDocumentLinkSelector().selectContentDocumentLink(contentVersionIds);
 
+        List<Attachment> attachments= [SELECT Id, Name,ContentType, ParentId FROM Attachment WHERE ParentId IN :recordIds];
+
         map <Id, list<Id>> mapIdDocs = new map<Id, list<Id>>();
+        map<Id, List<Attachment>> mapAttachments = new map<Id, List<Attachment>>();
+        
         Set<Id> docIds = new Set<Id>();
+
+        for (Attachment attachment : attachments) {
+            if (!mapAttachments.containsKey(attachment.ParentId)) {
+                mapAttachments.put(attachment.ParentId, new List<Attachment>());
+            }
+            mapAttachments.get(attachment.ParentId).add(attachment);
+        }
+
         for (ContentDocumentLink cdl : contentVersions) {
             if (!mapIdDocs.containsKey(cdl.LinkedEntityId)) {
                 mapIdDocs.put(cdl.LinkedEntityId, new List<Id>());
@@ -145,14 +159,25 @@ public without sharing class DocuSignService {
             }
         }
 
+
         List<OutputVariables> retList = new List<OutputVariables>();
-        for (Id recId : mapIdDocs.keySet()) {
+        for(String recId : recordIds){
             OutputVariables ov = new OutputVariables();
             ov.files = new List<ContentDocument>();
-            for (Id docId : mapIdDocs.get(recId)) {
-                if (mapDocs.containsKey(docId)) {
-                    ov.files.add(mapDocs.get(docId));
+            ov.attachments= new List<Attachment>();
+
+            if(!mapIdDocs.isEmpty()){
+                for (Id docId : mapIdDocs.get(recId)) {
+                    if (mapDocs.containsKey(docId)) {
+                        ov.files.add(mapDocs.get(docId));
+                    }
                 }
+            }
+            if(!mapAttachments.isEmpty()){
+            for (Attachment attch : mapAttachments.get(recId)) {
+
+                ov.attachments.add(attch);
+            }
             }
             retList.add(ov);
         }
@@ -167,5 +192,7 @@ public without sharing class DocuSignService {
     public class OutputVariables {
         @InvocableVariable(label='files' description='list of files')
         public List<ContentDocument> files;
+        @InvocableVariable(label='attachments' description='list of attachments')
+        public List<Attachment> attachments;
     }
 }
