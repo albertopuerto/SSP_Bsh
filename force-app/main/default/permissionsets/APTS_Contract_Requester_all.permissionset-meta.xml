@@ -80,6 +80,10 @@
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>AgreementPartyController</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>Apttus_Approval__AP</apexClass>
         <enabled>true</enabled>
     </classAccesses>
@@ -6292,37 +6296,37 @@
         <name>Agreement_Process_Flow_Setting__mdt</name>
     </customMetadataTypeAccesses>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Apttus_AgreementParty__c.chk_PrimaryParty__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Apttus_AgreementParty__c.dat_MultyPartySignedDate__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Apttus_AgreementParty__c.lkp_AgreementParty__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Apttus_AgreementParty__c.lkp_MultiPartySignedBy__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Apttus_AgreementParty__c.pkl_MultyPartySignatureType__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Apttus_AgreementParty__c.pkl_PartyRole__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Apttus_AgreementParty__c.txt_AgreementPartyDetails__c</field>
         <readable>true</readable>
     </fieldPermissions>
