@@ -4,7 +4,6 @@
     <defaultValue>false</defaultValue>
     <deprecated>false</deprecated>
     <description>If checked, all approvals at the step happen in parallel. This setting only has an effect when using Advanced Approvals with native approvals.</description>
-    <externalId>false</externalId>
     <inlineHelpText>If checked, all approvals at the step happen in parallel. This setting only has an effect when using Advanced Approvals with native approvals.</inlineHelpText>
     <label>Parallel</label>
     <trackTrending>false</trackTrending>

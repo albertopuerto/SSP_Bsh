@@ -4,7 +4,6 @@
     <deleteConstraint>SetNull</deleteConstraint>
     <deprecated>false</deprecated>
     <description>Approver associated with this Approval Rule.</description>
-    <externalId>false</externalId>
     <inlineHelpText>Approver associated with this Approval Rule.</inlineHelpText>
     <label>Approver</label>
     <referenceTo>sbaa__Approver__c</referenceTo>

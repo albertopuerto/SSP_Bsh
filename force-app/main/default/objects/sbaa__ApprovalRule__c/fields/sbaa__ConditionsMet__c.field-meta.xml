@@ -3,7 +3,6 @@
     <fullName>sbaa__ConditionsMet__c</fullName>
     <deprecated>false</deprecated>
     <description>Choose the behavior for your conditions: All is AND; Any is OR.</description>
-    <externalId>false</externalId>
     <inlineHelpText>Choose the behavior for your conditions: All is AND; Any is OR.</inlineHelpText>
     <label>Conditions Met</label>
     <required>false</required>

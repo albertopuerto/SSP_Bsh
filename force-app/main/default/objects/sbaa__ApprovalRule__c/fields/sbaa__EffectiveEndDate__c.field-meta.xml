@@ -3,7 +3,6 @@
     <fullName>sbaa__EffectiveEndDate__c</fullName>
     <deprecated>false</deprecated>
     <description>The end date range for when this rule will be in effect (inclusive)</description>
-    <externalId>false</externalId>
     <inlineHelpText>The end date range for when this rule will be in effect (inclusive)</inlineHelpText>
     <label>Effective End Date</label>
     <required>false</required>
