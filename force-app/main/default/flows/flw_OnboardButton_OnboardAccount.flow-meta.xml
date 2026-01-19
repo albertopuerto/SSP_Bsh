@@ -52,6 +52,17 @@
         <offset>0</offset>
     </actionCalls>
     <actionCalls>
+        <name>apx_save_Log</name>
+        <label>save Log</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <actionName>Logger</actionName>
+        <actionType>apex</actionType>
+        <flowTransactionModel>Automatic</flowTransactionModel>
+        <nameSegment>Logger</nameSegment>
+        <offset>0</offset>
+    </actionCalls>
+    <actionCalls>
         <name>Copy_1_of_Navigate_to_the_Record</name>
         <label>Copy 1 of Navigate to the Record</label>
         <locationX>0</locationX>
@@ -66,6 +77,45 @@
             </value>
         </inputParameters>
         <nameSegment>c:NavigateToTheRecord</nameSegment>
+        <offset>0</offset>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </actionCalls>
+    <actionCalls>
+        <name>Copy_2_of_Creation_Failed</name>
+        <label>Copy 2 of Creation Failed</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <actionName>FlowLogEntry</actionName>
+        <actionType>apex</actionType>
+        <connector>
+            <targetReference>apx_save_Log</targetReference>
+        </connector>
+        <flowTransactionModel>Automatic</flowTransactionModel>
+        <inputParameters>
+            <name>flowName</name>
+            <value>
+                <stringValue>flw_OnboardButton_OnboardAccount</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>loggingLevelName</name>
+            <value>
+                <stringValue>ERROR</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>message</name>
+            <value>
+                <elementReference>tmpl_LogMessageDML</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>tagsString</name>
+            <value>
+                <stringValue>FLW-DML</stringValue>
+            </value>
+        </inputParameters>
+        <nameSegment>FlowLogEntry</nameSegment>
         <offset>0</offset>
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </actionCalls>
@@ -448,6 +498,38 @@
             <label>Accepted</label>
         </rules>
     </decisions>
+    <decisions>
+        <name>Duplicate_Found</name>
+        <label>Duplicate Found</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>Create_Account</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Not Found</defaultConnectorLabel>
+        <rules>
+            <name>Found</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>BoschPartnerNumber</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>BoschPartnerNumber</leftValueReference>
+                <operator>IsBlank</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Create_Account_with_BP_number</targetReference>
+            </connector>
+            <label>Found</label>
+        </rules>
+    </decisions>
     <description>Removes the option to choose Record Type for the Account and defaults it to Customer_B2B.</description>
     <dynamicChoiceSets>
         <name>AccountRecordTypes</name>
@@ -572,6 +654,83 @@
         <object>Account</object>
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordCreates>
+    <recordCreates>
+        <name>Create_Account_with_BP_number</name>
+        <label>Create Account with BP number</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <faultConnector>
+            <targetReference>Account_Creation_Failed_with_BP</targetReference>
+        </faultConnector>
+        <inputAssignments>
+            <field>BillingCity</field>
+            <value>
+                <elementReference>Address.city</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>BillingCountry</field>
+            <value>
+                <elementReference>Address.country</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>BillingPostalCode</field>
+            <value>
+                <elementReference>Address.postalCode</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>BillingState</field>
+            <value>
+                <elementReference>Address.province</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>BillingStreet</field>
+            <value>
+                <elementReference>Address.street</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Name</field>
+            <value>
+                <elementReference>Name</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>RecordTypeId</field>
+            <value>
+                <elementReference>GetCustomerB2BRecordTypeId.Id</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>pkl_Language__c</field>
+            <value>
+                <elementReference>Account.pkl_Language__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>pkl_Status__c</field>
+            <value>
+                <stringValue>Draft</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>pkm_BoschPartnerRole__c</field>
+            <value>
+                <elementReference>selectedRoleCode</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>txt_AthenaUUID__c</field>
+            <value>
+                <elementReference>BoschPartnerNumber</elementReference>
+            </value>
+        </inputAssignments>
+        <object>Account</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordCreates>
     <recordLookups>
         <name>GetCustomerB2BRecordTypeId</name>
         <label>GetCustomerB2BRecordTypeId</label>
@@ -579,7 +738,7 @@
         <locationY>0</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
-            <targetReference>Create_Account</targetReference>
+            <targetReference>Customer_Role_Selection</targetReference>
         </connector>
         <filterLogic>and</filterLogic>
         <filters>
@@ -672,22 +831,21 @@
         <showHeader>false</showHeader>
     </screens>
     <screens>
-        <name>Account_Duplication_Check</name>
-        <label>Account Duplication Check</label>
+        <name>Account_Creation_Failed_with_BP</name>
+        <label>Account Creation Failed with BP</label>
         <locationX>0</locationX>
         <locationY>0</locationY>
-        <allowBack>true</allowBack>
+        <allowBack>false</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>false</allowPause>
         <connector>
-            <targetReference>GetCustomerB2BRecordTypeId</targetReference>
+            <targetReference>Copy_2_of_Creation_Failed</targetReference>
         </connector>
         <fields>
-            <name>DuplicationMessage</name>
-            <fieldText>&lt;p style=&quot;text-align: center;&quot;&gt;&lt;strong style=&quot;font-size: 14px; color: rgb(240, 69, 17);&quot;&gt;The Duplication Check will be implemented later, click next to continue.&lt;/strong&gt;&lt;/p&gt;</fieldText>
+            <name>Copy_1_of_creation_failed</name>
+            <fieldText>&lt;p&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;Creation of Account is failed, please contact your System Administrator for the support.&lt;/span&gt;&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
         </fields>
-        <nextOrFinishButtonLabel>Next</nextOrFinishButtonLabel>
         <showFooter>true</showFooter>
         <showHeader>false</showHeader>
     </screens>
@@ -761,7 +919,7 @@
         <allowFinish>true</allowFinish>
         <allowPause>false</allowPause>
         <connector>
-            <targetReference>Account_Duplication_Check</targetReference>
+            <targetReference>Check_Duplicate_Customer</targetReference>
         </connector>
         <fields>
             <name>AddressValidationMessage</name>
@@ -872,10 +1030,60 @@
         <locationX>0</locationX>
         <locationY>0</locationY>
         <connector>
-            <targetReference>Customer_Role_Selection</targetReference>
+            <targetReference>GetCustomerB2BRecordTypeId</targetReference>
         </connector>
     </start>
     <status>Active</status>
+    <subflows>
+        <name>Check_Duplicate_Customer</name>
+        <label>Check Duplicate Customer</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Duplicate_Found</targetReference>
+        </connector>
+        <flowName>Duplicate_Check</flowName>
+        <inputAssignments>
+            <name>AccountRecordTypeId</name>
+            <value>
+                <elementReference>GetCustomerB2BRecordTypeId.Id</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>BillingCity</name>
+            <value>
+                <elementReference>Address.city</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>BillingCountry</name>
+            <value>
+                <elementReference>Address.countryCode</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>BillingStreet</name>
+            <value>
+                <elementReference>Address.street</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>Name</name>
+            <value>
+                <elementReference>Name</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>PostalCode</name>
+            <value>
+                <elementReference>Address.postalCode</elementReference>
+            </value>
+        </inputAssignments>
+        <outputAssignments>
+            <assignToReference>BoschPartnerNumber</assignToReference>
+            <name>BoschPartnerNumber</name>
+        </outputAssignments>
+    </subflows>
     <textTemplates>
         <name>tmpl_LogMessageDML</name>
         <isViewedAsPlainText>true</isViewedAsPlainText>
@@ -893,6 +1101,13 @@
         <isInput>false</isInput>
         <isOutput>false</isOutput>
         <objectType>Account</objectType>
+    </variables>
+    <variables>
+        <name>BoschPartnerNumber</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
     </variables>
     <variables>
         <name>requestBody</name>
