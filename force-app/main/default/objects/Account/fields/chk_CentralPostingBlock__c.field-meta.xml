@@ -3,7 +3,7 @@
     <fullName>chk_CentralPostingBlock__c</fullName>
     <defaultValue>false</defaultValue>
     <description>Operational Central Block, stops the billing processes, also affects all sales areas. Managed in Athena</description>
-    <label>CentralPostingBlock</label>
+    <label>Central Posting Block</label>
     <trackFeedHistory>false</trackFeedHistory>
     <trackHistory>false</trackHistory>
     <type>Checkbox</type>
