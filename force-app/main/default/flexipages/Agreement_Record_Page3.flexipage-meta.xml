@@ -349,7 +349,7 @@
             <fieldInstance>
                 <fieldInstanceProperties>
                     <name>uiBehavior</name>
-                    <value>readonly</value>
+                    <value>none</value>
                 </fieldInstanceProperties>
                 <fieldItem>Record.Apttus__Status_Category__c</fieldItem>
                 <identifier>RecordApttus_Status_Category_cField</identifier>
