@@ -1,10 +1,11 @@
 {
   "Object": "SBQQ__QuoteTerm__c",
   "Fields": {
+    "chk_AddtoTCs__c": "false",
     "CurrencyIsoCode": "EUR",
     "GearsetDisplayName": "10.0 - Draft",
     "GearsetExternalId__c": "AAQn0ox000000Q9u3a",
-    "SBQQ__Active__c": "true",
+    "SBQQ__Active__c": "false",
     "SBQQ__AdvancedCondition__c": "",
     "SBQQ__Body__c": [
       "<p>Please be informed that the above mentioned delivery time is subject to ETAS being supplied in time by its own suppliers. Therefore the indicated delivery times are non binding.</p>",
