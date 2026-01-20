@@ -3,7 +3,6 @@
     <fullName>sbaa__EffectiveStartDate__c</fullName>
     <deprecated>false</deprecated>
     <description>The start date for when this rule will be in effect (inclusive)</description>
-    <externalId>false</externalId>
     <inlineHelpText>The start date for when this rule will be in effect (inclusive)</inlineHelpText>
     <label>Effective Start Date</label>
     <required>false</required>

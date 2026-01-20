@@ -4,7 +4,6 @@
     <deleteConstraint>SetNull</deleteConstraint>
     <deprecated>false</deprecated>
     <description>Lookup to the Email Template associated with approval requests for this Rule</description>
-    <externalId>false</externalId>
     <inlineHelpText>Lookup to the Email Template associated with approval requests for this Rule</inlineHelpText>
     <label>Request Template</label>
     <referenceTo>sbaa__EmailTemplate__c</referenceTo>

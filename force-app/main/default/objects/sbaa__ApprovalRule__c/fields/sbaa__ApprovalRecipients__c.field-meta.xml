@@ -3,7 +3,6 @@
     <fullName>sbaa__ApprovalRecipients__c</fullName>
     <deprecated>false</deprecated>
     <description>Choose one or more recipients for the approval email notification.</description>
-    <externalId>false</externalId>
     <inlineHelpText>Choose one or more recipients for the approval email notification.</inlineHelpText>
     <label>Approval Recipients</label>
     <required>false</required>

@@ -3,7 +3,6 @@
     <fullName>sbaa__AdvancedCondition__c</fullName>
     <deprecated>false</deprecated>
     <description>Can only be entered if the Conditions Met is Custom. Enter a combination of the Approval Condition Index #s, AND, OR, and parenthesis (e.g. (123 AND 124) AND 125).</description>
-    <externalId>false</externalId>
     <inlineHelpText>Can only be entered if the Conditions Met is Custom. Enter a combination of the Approval Condition Index #s, AND, OR, and parenthesis (e.g. (123 AND 124) AND 125).</inlineHelpText>
     <label>Advanced Condition</label>
     <required>false</required>

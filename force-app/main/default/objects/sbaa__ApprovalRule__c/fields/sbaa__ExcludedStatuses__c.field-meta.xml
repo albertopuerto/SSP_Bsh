@@ -3,7 +3,6 @@
     <fullName>sbaa__ExcludedStatuses__c</fullName>
     <deprecated>false</deprecated>
     <description>Statuses that this Approval Rule should not be applied to</description>
-    <externalId>false</externalId>
     <inlineHelpText>Statuses that this Approval Rule should not be applied to</inlineHelpText>
     <label>Excluded Statuses</label>
     <required>false</required>

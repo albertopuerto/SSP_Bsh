@@ -4,7 +4,6 @@
     <deleteConstraint>SetNull</deleteConstraint>
     <deprecated>false</deprecated>
     <description>Approval chain to which this rule belongs.</description>
-    <externalId>false</externalId>
     <inlineHelpText>Approval chain to which this rule belongs.</inlineHelpText>
     <label>Approval Chain</label>
     <referenceTo>sbaa__ApprovalChain__c</referenceTo>

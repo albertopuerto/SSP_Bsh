@@ -3,7 +3,6 @@
     <fullName>sbaa__RejectionRecipients__c</fullName>
     <deprecated>false</deprecated>
     <description>Choose one or more recipients for the rejection email notification.</description>
-    <externalId>false</externalId>
     <inlineHelpText>Choose one or more recipients for the rejection email notification.</inlineHelpText>
     <label>Rejection Recipients</label>
     <required>false</required>

@@ -4,7 +4,6 @@
     <defaultValue>false</defaultValue>
     <deprecated>false</deprecated>
     <description>Checked if Rule should be evaluated when submitting for approval</description>
-    <externalId>false</externalId>
     <inlineHelpText>Checked if Rule should be evaluated when submitting for approval</inlineHelpText>
     <label>Active</label>
     <trackTrending>false</trackTrending>

@@ -3,7 +3,6 @@
     <fullName>sbaa__TargetObject__c</fullName>
     <deprecated>false</deprecated>
     <description>API Name of the object to which this Rule applies</description>
-    <externalId>false</externalId>
     <inlineHelpText>API Name of the object to which this Rule applies</inlineHelpText>
     <label>Target Object</label>
     <required>false</required>
