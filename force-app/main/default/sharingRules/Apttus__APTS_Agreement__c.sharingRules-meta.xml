@@ -105,6 +105,21 @@
         <includeRecordsOwnedByAll>true</includeRecordsOwnedByAll>
     </sharingCriteriaRules>
     <sharingCriteriaRules>
+        <fullName>DSO_Read_ETASgmbh</fullName>
+        <accessLevel>Read</accessLevel>
+        <description>ISP officers can read all agreements from ETAS GmbH</description>
+        <label>DSO_Read_ETASgmbh</label>
+        <sharedTo>
+            <group>DSO_User_Group</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>Apttus__Agreement_Category__c</field>
+            <operation>equals</operation>
+            <value>ETAS/CDE,ETAS/CEU1,ETAS/CVW,ETAS/CEU2,ETAS/CRB-XA,ETAS/CRB</value>
+        </criteriaItems>
+        <includeRecordsOwnedByAll>true</includeRecordsOwnedByAll>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
         <fullName>DSO_View</fullName>
         <accessLevel>Edit</accessLevel>
         <label>DSO View</label>
