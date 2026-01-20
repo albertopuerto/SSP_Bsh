@@ -373,6 +373,22 @@
         </connector>
     </assignments>
     <assignments>
+        <name>MapRecordtypeIds</name>
+        <label>MapRecordtypeIds</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>Account.RecordTypeId</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>GetCustomerB2BRecordTypeId.Id</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Customer_Role_Selection</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
         <name>Store_Selected_Role</name>
         <label>Store Selected Role</label>
         <locationX>0</locationX>
@@ -738,7 +754,7 @@
         <locationY>0</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
-            <targetReference>Customer_Role_Selection</targetReference>
+            <targetReference>MapRecordtypeIds</targetReference>
         </connector>
         <filterLogic>and</filterLogic>
         <filters>
