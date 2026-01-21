@@ -46,11 +46,11 @@
         <name>Get_Fiels_by_parent_record_id</name>
         <label>Get Fiels by parent record id</label>
         <locationX>669</locationX>
-        <locationY>698</locationY>
+        <locationY>678</locationY>
         <actionName>DocuSignService</actionName>
         <actionType>apex</actionType>
         <connector>
-            <targetReference>Select_Files</targetReference>
+            <targetReference>assignIncomingLists</targetReference>
         </connector>
         <flowTransactionModel>Automatic</flowTransactionModel>
         <inputParameters>
@@ -127,12 +127,67 @@
             <targetReference>Select_Signers</targetReference>
         </connector>
     </assignments>
+    <assignments>
+        <name>assignIncomingLists</name>
+        <label>assignIncomingLists</label>
+        <locationX>540</locationX>
+        <locationY>806</locationY>
+        <assignmentItems>
+            <assignToReference>incomingAttachmentNumber</assignToReference>
+            <operator>AssignCount</operator>
+            <value>
+                <elementReference>Get_Fiels_by_parent_record_id.attachments</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>incomingFilesNumber</assignToReference>
+            <operator>AssignCount</operator>
+            <value>
+                <elementReference>Get_Fiels_by_parent_record_id.files</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>areListsEmpty</targetReference>
+        </connector>
+    </assignments>
     <customProperties>
         <name>ScreenProgressIndicator</name>
         <value>
             <stringValue>{&quot;location&quot;:&quot;top&quot;,&quot;type&quot;:&quot;simple&quot;}</stringValue>
         </value>
     </customProperties>
+    <decisions>
+        <name>areListsEmpty</name>
+        <label>areListsEmpty</label>
+        <locationX>528</locationX>
+        <locationY>922</locationY>
+        <defaultConnector>
+            <targetReference>Select_Files</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>List not empty</defaultConnectorLabel>
+        <rules>
+            <name>listEmpty</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>incomingAttachmentNumber</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <numberValue>0.0</numberValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>incomingFilesNumber</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <numberValue>0.0</numberValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>NoFilesScreen</targetReference>
+            </connector>
+            <label>listEmpty</label>
+        </rules>
+    </decisions>
     <decisions>
         <name>Check_quote_expiration</name>
         <label>Check quote expiration</label>
@@ -371,6 +426,23 @@
         <showHeader>true</showHeader>
     </screens>
     <screens>
+        <name>NoFilesScreen</name>
+        <label>NoFilesScreen</label>
+        <locationX>405</locationX>
+        <locationY>927</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>true</allowPause>
+        <fields>
+            <name>noFilesAndAttachmentText</name>
+            <fieldText>&lt;p&gt;&lt;strong style=&quot;font-size: 16px;&quot;&gt;There are not files related to the quote&lt;/strong&gt;&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <nextOrFinishButtonLabel>Close</nextOrFinishButtonLabel>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
+    <screens>
         <name>Quote_Expired_Message</name>
         <label>Quote Expired Message</label>
         <locationX>449</locationX>
@@ -390,7 +462,7 @@
     <screens>
         <name>Select_Files</name>
         <label>Select Files</label>
-        <locationX>669</locationX>
+        <locationX>668</locationX>
         <locationY>806</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
@@ -409,6 +481,13 @@
                     <operator>IsNull</operator>
                     <rightValue>
                         <booleanValue>true</booleanValue>
+                    </rightValue>
+                </conditions>
+                <conditions>
+                    <leftValueReference>incomingFilesNumber</leftValueReference>
+                    <operator>GreaterThan</operator>
+                    <rightValue>
+                        <numberValue>0.0</numberValue>
                     </rightValue>
                 </conditions>
             </visibilityRule>
@@ -469,6 +548,13 @@
                         <booleanValue>true</booleanValue>
                     </rightValue>
                 </conditions>
+                <conditions>
+                    <leftValueReference>incomingFilesNumber</leftValueReference>
+                    <operator>GreaterThan</operator>
+                    <rightValue>
+                        <numberValue>0.0</numberValue>
+                    </rightValue>
+                </conditions>
             </visibilityRule>
         </fields>
         <fields>
@@ -482,6 +568,13 @@
                     <operator>IsNull</operator>
                     <rightValue>
                         <booleanValue>true</booleanValue>
+                    </rightValue>
+                </conditions>
+                <conditions>
+                    <leftValueReference>incomingAttachmentNumber</leftValueReference>
+                    <operator>GreaterThan</operator>
+                    <rightValue>
+                        <numberValue>0.0</numberValue>
                     </rightValue>
                 </conditions>
             </visibilityRule>
@@ -540,6 +633,13 @@
                     <operator>IsNull</operator>
                     <rightValue>
                         <booleanValue>true</booleanValue>
+                    </rightValue>
+                </conditions>
+                <conditions>
+                    <leftValueReference>incomingAttachmentNumber</leftValueReference>
+                    <operator>GreaterThan</operator>
+                    <rightValue>
+                        <numberValue>0.0</numberValue>
                     </rightValue>
                 </conditions>
             </visibilityRule>
@@ -623,6 +723,22 @@
         <isCollection>false</isCollection>
         <isInput>false</isInput>
         <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>incomingAttachmentNumber</name>
+        <dataType>Number</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <scale>2</scale>
+    </variables>
+    <variables>
+        <name>incomingFilesNumber</name>
+        <dataType>Number</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <scale>2</scale>
     </variables>
     <variables>
         <name>recordId</name>
