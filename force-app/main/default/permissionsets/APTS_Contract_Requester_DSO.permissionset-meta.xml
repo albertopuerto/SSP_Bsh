@@ -84,6 +84,10 @@
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>AgreementPartyControllerTest</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>Apttus_Approval__AP</apexClass>
         <enabled>true</enabled>
     </classAccesses>
