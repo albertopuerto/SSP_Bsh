@@ -23,8 +23,8 @@ public with sharing class TestFactoryDefaults{
 					Account.Name => 'Customer_B2B Account',
 					Account.RecordTypeID => TestFactoryConstants.MAP_OBJ_RECORD_TYPE_IDS.get('Account').get('Customer_B2B'),
 					Account.Phone => '0123456',
-					Account.BillingCountryCode => 'GB',
-					Account.ShippingCountryCode => 'GB',
+					Account.BillingCountryCode => 'DE',
+					Account.ShippingCountryCode => 'DE',
 					Account.txt_AthenaUUID__c => '1111',
 					Account.pkl_Language__c => 'English',
 					Account.pkm_BoschPartnerRole__c => 'BBCUSH'
