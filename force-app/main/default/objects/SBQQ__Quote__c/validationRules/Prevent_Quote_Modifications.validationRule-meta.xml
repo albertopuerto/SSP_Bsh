@@ -27,6 +27,10 @@ TEXT(SBQQ__Status__c) = &quot;Denied&quot;
 AND(
 TEXT(PRIORVALUE(SBQQ__Status__c)) = &quot;Presented&quot;,
 TEXT(SBQQ__Status__c) = &quot;Accepted&quot;
+),
+AND(
+TEXT(PRIORVALUE(SBQQ__Status__c)) = &quot;Approval Pending&quot;,
+TEXT(SBQQ__Status__c) = &quot;In Review&quot;
 )
 )
 )
