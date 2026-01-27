@@ -735,8 +735,9 @@
     <relatedLists>
         <fields>NAME</fields>
         <fields>Docusign_Status__c</fields>
-        <fields>Document_Link__c</fields>
+        <fields>Sent_Date__c</fields>
         <fields>Signer__c</fields>
+        <fields>Document_Link__c</fields>
         <fields>Envelope_Id__c</fields>
         <relatedList>Signature__c.Quote__c</relatedList>
     </relatedLists>

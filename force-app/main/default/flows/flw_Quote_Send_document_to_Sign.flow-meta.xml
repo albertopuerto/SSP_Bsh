@@ -21,7 +21,6 @@
             </value>
         </inputParameters>
         <nameSegment>DocuSignSigners</nameSegment>
-        <offset>0</offset>
         <outputParameters>
             <assignToReference>envelopeId</assignToReference>
             <name>output</name>
@@ -39,7 +38,6 @@
         </connector>
         <flowTransactionModel>Automatic</flowTransactionModel>
         <nameSegment>DocuSignUtils</nameSegment>
-        <offset>0</offset>
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </actionCalls>
     <actionCalls>
@@ -60,7 +58,6 @@
             </value>
         </inputParameters>
         <nameSegment>DocuSignService</nameSegment>
-        <offset>0</offset>
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </actionCalls>
     <actionCalls>
@@ -96,14 +93,12 @@
             </value>
         </inputParameters>
         <nameSegment>DocuSignSigners</nameSegment>
-        <offset>0</offset>
         <outputParameters>
             <assignToReference>envelopeId</assignToReference>
             <name>output</name>
         </outputParameters>
     </actionCalls>
     <apiVersion>64.0</apiVersion>
-    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
     <assignments>
         <name>assignfiles</name>
         <label>assignfiles</label>
@@ -150,12 +145,6 @@
             <targetReference>areListsEmpty</targetReference>
         </connector>
     </assignments>
-    <customProperties>
-        <name>ScreenProgressIndicator</name>
-        <value>
-            <stringValue>{&quot;location&quot;:&quot;top&quot;,&quot;type&quot;:&quot;simple&quot;}</stringValue>
-        </value>
-    </customProperties>
     <decisions>
         <name>areListsEmpty</name>
         <label>areListsEmpty</label>
@@ -327,6 +316,12 @@
             </value>
         </inputAssignments>
         <inputAssignments>
+            <field>Sent_Date__c</field>
+            <value>
+                <elementReference>$Flow.CurrentDateTime</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
             <field>Signer__c</field>
             <value>
                 <elementReference>Select_Mails.firstSelectedRow.Id</elementReference>
@@ -362,6 +357,12 @@
             <field>Quote__c</field>
             <value>
                 <elementReference>recordId</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Sent_Date__c</field>
+            <value>
+                <elementReference>$Flow.CurrentDateTime</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
