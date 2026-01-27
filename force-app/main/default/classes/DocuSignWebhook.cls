@@ -34,6 +34,9 @@ global without sharing class DocuSignWebhook {
                 Signature__c sig = [SELECT Id, Name, Docusign_Status__c, Document_Id__c FROM Signature__c WHERE Envelope_Id__c = :envelopeId WITH USER_MODE LIMIT 1];
                 if (sig != null && sig.Docusign_Status__c != 'Completed') {
                     processWebhookAsync(envelopeId, sig.Document_Id__c,status);
+                    if(status == 'Completed'){
+                        sig.Completed_Date__c = datetime.now();
+                    }
                     sig.Docusign_Status__c = status;
                     uow.registerDirty(sig);
                     uow.commitWork();
