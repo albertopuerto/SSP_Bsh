@@ -2,7 +2,7 @@
 <ExternalServiceRegistration xmlns="http://soap.sforce.com/2006/04/metadata">
     <description>SAP Order Service</description>
     <label>IF001SAPCPICreateOrder</label>
-    <namedCredentialReference>SAPCPINamedCredential</namedCredentialReference>
+    <namedCredentialReference>IF001SAPCPI</namedCredentialReference>
     <operations>
         <active>true</active>
         <name>createsolutionquotation</name>
