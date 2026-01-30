@@ -225,7 +225,7 @@
         <locationX>1062</locationX>
         <locationY>1979</locationY>
         <customErrorMessages>
-            <errorMessage>To complete the purchase order validation, please ensure all required information from the corresponding quote is provided first. The following information is currently missing:
+            <errorMessage>To complete the purchase order validation, please ensure all required information from the corresponding quote is provided first. The following information is currently missing in line items:
 INCOTERM</errorMessage>
             <isFieldError>false</isFieldError>
         </customErrorMessages>
@@ -237,8 +237,8 @@ INCOTERM</errorMessage>
         <locationY>1163</locationY>
         <customErrorMessages>
             <errorMessage>To complete the purchase order validation, please ensure all required information from the corresponding quote is provided first. Please check that the following fields are filled for quote:
-INCOTERM
-INCOTERM Location
+INCOTERM,
+INCOTERM Location and
 Payment Terms</errorMessage>
             <isFieldError>false</isFieldError>
         </customErrorMessages>
@@ -249,12 +249,7 @@ Payment Terms</errorMessage>
         <locationX>1326</locationX>
         <locationY>1979</locationY>
         <customErrorMessages>
-            <errorMessage>To complete the purchase order validation, please ensure all required information from the corresponding quote is provided first. Please check that the following fields are filled for all line items:
-
-INCOTERM
-INCOTERM Location
-Quantity Unit
-Payment Terms</errorMessage>
+            <errorMessage>Please check that the following fields are filled for all line items: INCOTERM, INCOTERM Location, Quantity Unit and Payment Terms</errorMessage>
             <isFieldError>false</isFieldError>
         </customErrorMessages>
     </customErrors>
