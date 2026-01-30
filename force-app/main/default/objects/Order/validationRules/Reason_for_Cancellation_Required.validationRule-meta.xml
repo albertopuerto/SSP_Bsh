@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Reason_for_Cancellation_Required</fullName>
+    <active>true</active>
+    <description>The reason for cancellation is mandatory when the order is moved to status Canceled(Final - Lost)</description>
+    <errorConditionFormula>AND( ISCHANGED(Status),  ISPICKVAL( Status , &#39;Canceled (Final – Lost)&#39;), ISBLANK( TEXT(pkl_ReasonOfCancellation__c)))</errorConditionFormula>
+    <errorMessage>The Reason of Cancellation is required!</errorMessage>
+</ValidationRule>
