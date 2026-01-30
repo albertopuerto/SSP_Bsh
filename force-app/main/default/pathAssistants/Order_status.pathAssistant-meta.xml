@@ -18,7 +18,7 @@
         <fieldNames>OpportunityId</fieldNames>
         <fieldNames>OrderNumber</fieldNames>
         <fieldNames>ShippingAddress</fieldNames>
-        <fieldNames>pkl_ReasonOfCancellation__c</fieldNames>
+        <fieldNames>Status</fieldNames>
         <info>&lt;p&gt;&lt;span style=&quot;font-size: 14px;&quot;&gt;The order was canceled, and the reason should had been provided&lt;/span&gt;&lt;/p&gt;</info>
         <picklistValueName>Canceled (Final – Lost)</picklistValueName>
     </pathAssistantSteps>
