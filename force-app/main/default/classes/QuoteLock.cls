@@ -41,10 +41,15 @@ public class QuoteLock extends fflib_SObjectDomain {
             for (SBQQ__Quote__c newQuote : getQuotes()) {
                 SBQQ__Quote__c oldQuote = (SBQQ__Quote__c) existingRecords.get(newQuote.Id);
                 
+                if (ValidationBypass.skip) {
+            			continue;
+        		}
+                isQuoteLockedValidation(oldQuote,newQuote);
+                
                 if (isQuoteLocked(oldQuote)) {
                     Logger.debug('Processing locked quote: ' + newQuote.Id + ' with status: ' + newQuote.SBQQ__Status__c);
                     validateQuoteModifications(newQuote, oldQuote, exemptFields);
-                } else {
+                }else {
                     Logger.debug('Quote modification allowed. QuoteId: ' + newQuote.Id + ', Status: ' + newQuote.SBQQ__Status__c);
                 }
             }
@@ -68,6 +73,50 @@ public class QuoteLock extends fflib_SObjectDomain {
                quote.SBQQ__Status__c == 'Accepted';
     }
     
+    private void isQuoteLockedValidation(SBQQ__Quote__c oldQuote,SBQQ__Quote__c newQuote){
+        
+        Boolean approvalNotApproved =
+            newQuote.ApprovalStatus__c != 'Approved';
+
+        Boolean notNew = true;
+
+        Set<String> blockedPriorStatuses = new Set<String>{
+            'Approval Pending',
+            'Approved',
+            'Rejected',
+            'Denied',
+            'Accepted'
+        };
+
+        Boolean priorStatusMatches =
+            blockedPriorStatuses.contains(oldQuote.SBQQ__Status__c);
+
+        Boolean isStatusChanged =
+            newQuote.SBQQ__Status__c != oldQuote.SBQQ__Status__c;
+        
+        Boolean isPrimaryChanged =
+            newQuote.SBQQ__Primary__c != oldQuote.SBQQ__Primary__c;
+
+        Boolean allowedTransition =
+            (
+                (oldQuote.SBQQ__Status__c == 'Approved'  && newQuote.SBQQ__Status__c == 'Presented') ||
+                (oldQuote.SBQQ__Status__c == 'Presented' && newQuote.SBQQ__Status__c == 'Denied')     ||
+                (oldQuote.SBQQ__Status__c == 'Presented' && newQuote.SBQQ__Status__c == 'Accepted')
+            );
+
+        Boolean disallowedChange =
+            !(isStatusChanged && allowedTransition);
+
+        if (approvalNotApproved &&
+            notNew &&
+            priorStatusMatches &&
+            !isPrimaryChanged &&
+            disallowedChange) {
+
+            newQuote.addError('This Quote cannot be modified in its current status. Only specific status changes are allowed (Approved→Presented, Presented→Denied, Presented→Accepted).');
+        }
+    }
+    
     /**
      * @description Validates that only exempt fields are being modified
      */
@@ -77,12 +126,19 @@ public class QuoteLock extends fflib_SObjectDomain {
      }
     private void validateQuoteModifications(SBQQ__Quote__c newQuote, SBQQ__Quote__c oldQuote, Set<String> exemptFields) {
         for (String fieldName : newQuote.getSObjectType().getDescribe().fields.getMap().keySet()) {
+            if (fieldName == 'sbqq__lastcalculatedon__c' || 
+                fieldName == 'sbqq__lastsavedon__c' ||
+                fieldName == 'sbqq__lastsaveddate__c' ||
+                fieldName == 'cur_current_credit_limit_including_vat__c'||
+               	fieldName == 'SBQQ__Primary__c') {
+                    continue;
+                }
             if (!exemptFields.contains(fieldName) && newQuote.get(fieldName) != oldQuote.get(fieldName)) {
                 Logger.debug('Quote modification blocked. QuoteId: ' + newQuote.Id + 
-                           ', Status: ' + newQuote.SBQQ__Status__c + 
-                           ', ModifiedField: ' + fieldName + 
-                           ', OldValue: ' + String.valueOf(oldQuote.get(fieldName)) + 
-                           ', NewValue: ' + String.valueOf(newQuote.get(fieldName)));
+                             ', Status: ' + newQuote.SBQQ__Status__c + 
+                             ', ModifiedField: ' + fieldName + 
+                             ', OldValue: ' + String.valueOf(oldQuote.get(fieldName)) + 
+                             ', NewValue: ' + String.valueOf(newQuote.get(fieldName)));
                 
                 newQuote.addError('The Quote cannot be modified because the status is Rejected, Accepted, or Denied.');
                 break;
