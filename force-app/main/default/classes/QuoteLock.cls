@@ -101,7 +101,8 @@ public class QuoteLock extends fflib_SObjectDomain {
             (
                 (oldQuote.SBQQ__Status__c == 'Approved'  && newQuote.SBQQ__Status__c == 'Presented') ||
                 (oldQuote.SBQQ__Status__c == 'Presented' && newQuote.SBQQ__Status__c == 'Denied')     ||
-                (oldQuote.SBQQ__Status__c == 'Presented' && newQuote.SBQQ__Status__c == 'Accepted')
+                (oldQuote.SBQQ__Status__c == 'Presented' && newQuote.SBQQ__Status__c == 'Accepted') ||
+                (oldQuote.SBQQ__Status__c == 'Approval Pending' && newQuote.SBQQ__Status__c == 'Rejected')
             );
 
         Boolean disallowedChange =
