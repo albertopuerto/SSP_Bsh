@@ -139,6 +139,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Order.pkl_ReasonOfCancellation__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Order.txt_SAPExternalSolutionQuotationId__c</field>
         <readable>true</readable>
     </fieldPermissions>

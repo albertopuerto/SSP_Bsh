@@ -332,23 +332,6 @@
                 <identifier>Recordcur_Current_Credit_Limit_including_VAT_cField2</identifier>
             </fieldInstance>
         </itemInstances>
-        <itemInstances>
-            <fieldInstance>
-                <fieldInstanceProperties>
-                    <name>uiBehavior</name>
-                    <value>none</value>
-                </fieldInstanceProperties>
-                <fieldItem>Record.pkl_ReasonOfCancellation__c</fieldItem>
-                <identifier>Recordpkl_ReasonOfCancellation_cField</identifier>
-                <visibilityRule>
-                    <criteria>
-                        <leftValue>{!Record.Status}</leftValue>
-                        <operator>EQUAL</operator>
-                        <rightValue>Canceled (Final – Lost)</rightValue>
-                    </criteria>
-                </visibilityRule>
-            </fieldInstance>
-        </itemInstances>
         <name>Facet-417751f7-df92-471c-b424-9114dd899bdc</name>
         <type>Facet</type>
     </flexiPageRegions>
