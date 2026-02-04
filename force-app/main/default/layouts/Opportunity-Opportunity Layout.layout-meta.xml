@@ -284,6 +284,7 @@
         <relatedList>RelatedContactRoleList</relatedList>
     </relatedLists>
     <relatedLists>
+        <excludeButtons>New</excludeButtons>
         <fields>NAME</fields>
         <fields>num_QuoteVersion__c</fields>
         <fields>SBQQ__Primary__c</fields>
