@@ -75,6 +75,21 @@
         <includeRecordsOwnedByAll>true</includeRecordsOwnedByAll>
     </sharingCriteriaRules>
     <sharingCriteriaRules>
+        <fullName>CTG_Read_CRB_XA</fullName>
+        <accessLevel>Read</accessLevel>
+        <description>CTG gets read access to all CRB-XA agreements</description>
+        <label>CTG_Read_CRB_XA</label>
+        <sharedTo>
+            <group>Finance_Controlling_Users</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>Apttus__Agreement_Category__c</field>
+            <operation>equals</operation>
+            <value>ETAS/CRB-XA,ETAS/CRB</value>
+        </criteriaItems>
+        <includeRecordsOwnedByAll>true</includeRecordsOwnedByAll>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
         <fullName>Controlling_view</fullName>
         <accessLevel>Edit</accessLevel>
         <description>IC Technology Transfer,Other IC,IC SaaS,IC NDA,IC Agent Sales Support,IC Software License,IC Services,IC Reseller Framework,IC Development and Application,IC Limited Sales Support</description>
