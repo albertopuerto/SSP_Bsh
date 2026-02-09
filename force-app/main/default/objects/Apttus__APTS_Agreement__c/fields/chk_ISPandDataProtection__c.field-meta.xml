@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>chk_ISPandDataProtection__c</fullName>
+    <defaultValue>false</defaultValue>
+    <inlineHelpText>By ticking the &quot;Information Security and Data Protection&quot; checkbox, you are helping ETAS stay compliant and ETAS ISP division will be informed</inlineHelpText>
+    <label>Info Security and Data Protection</label>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

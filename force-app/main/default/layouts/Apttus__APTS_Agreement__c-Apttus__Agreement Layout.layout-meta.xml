@@ -120,6 +120,10 @@
                 <behavior>Edit</behavior>
                 <field>pkl_TypeOfOtherPartySignature__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>chk_ISPandDataProtection__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
