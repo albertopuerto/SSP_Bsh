@@ -11,11 +11,8 @@ public class CreditLimitManager_Test {
         Account[] testAccountList = (Account[])TestFactory.createSObjectList(new Account(), 1);
         testAccountList[0].CurrencyIsoCode = 'EUR';
         testAccountList[0].txt_AthenaUUID__c= '3123213';
-<<<<<<< gs-pipeline/feature/BSSP-17864-modificationOfValidationRuleInApex_-_uat
         testAccountList[0].BillingCountry= 'Germany';
-=======
         testAccountList[0].BillingCountryCode= 'DE';
->>>>>>> uat
         insert testAccountList;
 
         SBQQ__Quote__c[] quoteList = (SBQQ__Quote__c [])TestFactory.createSObjectList(new SBQQ__Quote__c(),1);
