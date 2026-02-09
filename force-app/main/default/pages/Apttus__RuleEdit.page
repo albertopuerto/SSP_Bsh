@@ -27,38 +27,38 @@
     <apex:sectionHeader title="{!$ObjectType.Apttus__Agreement_Rule__c.Label}" />
 	
 	<apex:form >
-		<apex:pageBlock title="{!$ObjectType.Apttus__Agreement_Rule__c.Label & ' ' & $Label.apttus__Edit}">
+		<apex:pageBlock title="{!$ObjectType.Apttus__Agreement_Rule__c.Label & ' ' & $Label.Apttus__Edit}">
 		
 			<apex:pageBlockButtons >
 				<apex:commandButton id="cmdButtonDoSave"  
 									action="{!save}" 
-									value="{!$Label.apttus__Save}" />
+									value="{!$Label.Apttus__Save}" />
 				<apex:commandButton id="cmdButtonDoCancel" 
 									action="{!cancel}" 
-									value="{!$Label.apttus__Cancel}" />
+									value="{!$Label.Apttus__Cancel}" />
 			</apex:pageBlockButtons>
 			
 			<apex:pageMessages />
 
-			<apex:pageBlockSection title="{!$Label.apttus__Information}" 
+			<apex:pageBlockSection title="{!$Label.Apttus__Information}" 
 								   columns="1"
 								   collapsible="false">
 				<apex:pageBlockTable value="{!selected}" 
 									 var="agmtRule"
 									 width="100%">
-					<apex:column headerValue="{!$Label.apttus__Active}">
+					<apex:column headerValue="{!$Label.Apttus__Active}">
 						<apex:inputField value="{!agmtRule.Apttus__Active__c}"/>
 					</apex:column>
-					<apex:column headerValue="{!$Label.apttus__Seq}">
+					<apex:column headerValue="{!$Label.Apttus__Seq}">
 						<apex:inputField value="{!agmtRule.Apttus__Order__c}" styleClass="seq_w"/>
 					</apex:column>
-					<apex:column headerValue="{!$Label.apttus__Type}">
+					<apex:column headerValue="{!$Label.Apttus__Type}">
 						<apex:inputField value="{!agmtRule.Apttus__Rule_Type__c}"/>
 					</apex:column>
-					<apex:column headerValue="{!$Label.apttus__Object}">
+					<apex:column headerValue="{!$Label.Apttus__Object}">
 						<apex:inputField value="{!agmtRule.Apttus__Rule_Object__c}"/>
 					</apex:column>
-					<apex:column headerValue="{!$Label.apttus__Field}">
+					<apex:column headerValue="{!$Label.Apttus__Field}">
 						<apex:inputField value="{!agmtRule.Apttus__Rule_Field__c}" styleClass="name_w"/>
 					</apex:column>
 					<apex:column headerValue="[!$Label.Value}">
