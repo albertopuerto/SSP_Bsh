@@ -1,3 +1,32 @@
-.getButton{
-    margin-left: 330px;
+.alignCenter{
+    align-items:center;
+    text-align:center;
+    justify-content:center;
+}
+.smallMarginLeft{
+    margin-left:7px;
+}
+.smallMarginRight{
+    margin-right:12px;
+}
+.statusSuccess{
+    color:green;
+}
+
+.errorStatus{
+    color:#ba0517;
+}
+.statusWarning{
+    color:orange;
+}
+
+.smallPaddingTop{
+    padding-top:25px;
+}
+
+.pointer{
+    cursor:pointer;
+}
+.smallPadding{
+    padding:12px;
 }

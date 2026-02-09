@@ -4,6 +4,8 @@
 */
 public with sharing class CreditLimitCallouts {
 
+    public static final String REMAININGURL = '/sap-tax-service/tax/v1/quote';
+
     /**
 	* @author       APB
 	* @description  getVertexInformation method
@@ -19,9 +21,7 @@ public with sharing class CreditLimitCallouts {
 
         DateTime todayDateTime = DateTime.now();
 
-        String remainingUrl = '/sap-tax-service/tax/v1/quote';
-
-        vertexRequest.setEndpoint('callout:vertex_usernamePass'+ remainingUrl);
+        vertexRequest.setEndpoint('callout:vertex_usernamePass'+ REMAININGURL);
         vertexRequest.setHeader('Content-Type','application/json');
 
         vertexRequest.setMethod('POST');
@@ -30,8 +30,6 @@ public with sharing class CreditLimitCallouts {
 
         if(quoteToCalculate != null && quoteToCalculate.SBQQ__Status__c == 'Accepted'){
 
-            // Si no es accepted bloquearlo por js y ponerle un tooltip
-            //  dto = new VertexBodyDTO(DateTime.now(), quoteToCalculate.Bill_To_Country__c);
             String bodyWrapper = JSON.serialize(VertexIntManager.createRequest(todayDateTime,quoteToCalculate.SBQQ__Account__r.BillingCountry));
             finalVertexBody = CreditLimitUtilMethods.formatRequest(bodyWrapper);
 

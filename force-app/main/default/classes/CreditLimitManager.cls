@@ -68,10 +68,12 @@ public with sharing class CreditLimitManager {
             }
 
         }catch(Exception ex){
-            lastInfoWrapper.message= ex.getMessage() + ex.getLineNumber();
+            lastInfoWrapper.message= ex.getMessage() + ' ' + ex.getLineNumber();
             lastInfoWrapper.success= false;
 
-        	Logger.error('We found an error during the process - '+ ex.getMessage()).setRecordId(objectRecordId);
+        	Logger.error('APX-EXC-00002 - We found an error during the Credit Limit process - '+ ex.getMessage())
+            .addTag('APX-EXC')
+            .setRecordId(objectRecordId);
         }finally{
         	saveLog();
         }
@@ -92,7 +94,6 @@ public with sharing class CreditLimitManager {
         CreditLimitWrappers.creditLimitInfoWrapper lastInfoWrapper = new CreditLimitWrappers.creditLimitInfoWrapper();
 
         CreditLimitWrappers.wrapperResponse responseBody;
-        String finalBodyresponse;
 
         CreditLimitWrappers.CreditWorthiness creditWorthiness= new CreditLimitWrappers.CreditWorthiness();
 
@@ -100,33 +101,37 @@ public with sharing class CreditLimitManager {
 
         creditLimitresponse = creditLimitCallouts.startCreditLimitCallouts(quoteToCalculate,orderToCalculate,null);
 
-        if(creditLimitresponse != null ){
-            if(creditLimitresponse.getStatusCode()== 200){
-                finalBodyresponse =creditLimitresponse.getBody().replace ('"$"','"dollar"').replace ('"@languageCode"','"languageCode"').replace ('"@schemeID"','"schemeID"').replace ('"@schemeAgencyID"','"schemeAgencyID"').replace ('"@currencyCode"','"currencyCode"');
-                responseBody= (CreditLimitWrappers.wrapperResponse)JSON.deserialize(finalBodyresponse, CreditLimitWrappers.wrapperResponse.class);
-                creditWorthiness= responseBody.Envelope.Body.CreditWorthinessResponse.CreditWorthiness;
-            }else{
-                String objectRecordId = quoteToCalculate != null ? quoteToCalculate.Id : orderToCalculate.Id;
+        if(creditLimitresponse != null  && creditLimitresponse.getStatusCode()== 200){
 
-                lastInfoWrapper.message= creditLimitresponse.getBody();
-                lastInfoWrapper.status= creditLimitresponse.getStatusCode();
-                lastInfoWrapper.success= false;
-                Logger.error('Error while doing the credit limit callout for the object - '+ objectApiName+'-'+ creditLimitresponse.getStatusCode() +'-'+creditLimitresponse.getStatus())
-                .addTags(('API,TEST').split(','))
-                .setRecordId(objectRecordId);
-            }
+            responseBody= (CreditLimitWrappers.wrapperResponse)JSON.deserialize(CreditLimitUtilMethods.formatResponse(creditLimitresponse.getBody()), CreditLimitWrappers.wrapperResponse.class);
+            creditWorthiness= responseBody.Envelope.Body.CreditWorthinessResponse.CreditWorthiness;
+
+        }else{
+
+            String objectRecordId = quoteToCalculate != null ? quoteToCalculate.Id : orderToCalculate.Id;
+
+            lastInfoWrapper.message= creditLimitresponse.getBody();
+            lastInfoWrapper.status= creditLimitresponse.getStatusCode();
+            lastInfoWrapper.success= false;
+            Logger.error('APX-INT-00004 - Error while doing the credit limit callout for the object - '+ objectApiName+'-'+ creditLimitresponse.getStatusCode() +'-'+creditLimitresponse.getBody())
+            .addTag('APX-INT')
+            .setRecordId(objectRecordId);
         }
 
         if(creditWorthiness != null){
+
+                lastInfoWrapper.message= creditWorthiness.CreditLimit == null ? 'The account has not a correct bosch partner id' : ' ';
+                lastInfoWrapper.status= creditLimitresponse.getStatusCode();
+                lastInfoWrapper.success= creditWorthiness.CreditLimit == null ? false : true;
             for(CreditLimitWrappers.CheckingDescs description :creditWorthiness.CheckingDescription){
-                    if(description.dollar.contains('Credit limit')){
+                if(description.dollar.contains('Credit limit')){
 
-                        lastInfoWrapper.message= description.dollar;
-                    	lastInfoWrapper.status= creditLimitresponse.getStatusCode();
-                    	lastInfoWrapper.success= false;
+                    lastInfoWrapper.message= description.dollar;
+                    lastInfoWrapper.status= creditLimitresponse.getStatusCode();
+                    lastInfoWrapper.success= false;
 
-                    }
                 }
+            }
         }
 
         return lastInfoWrapper;
@@ -156,9 +161,7 @@ public with sharing class CreditLimitManager {
 
         if(vertexResponse != null && vertexResponse.getStatusCode()== 200){
 
-            String finalBodyresponse =vertexResponse.getBody().replace ('"id"','"auxId"').replace ('"date"','"actualDate"').replace ('"number"','"taxNumber"');
-
-            vertexResponseBody= (VertexMethods.wrapperResponse)JSON.deserialize(finalBodyresponse, VertexMethods.wrapperResponse.class);
+            vertexResponseBody= (VertexMethods.wrapperResponse)JSON.deserialize(CreditLimitUtilMethods.formatResponse(vertexResponse.getBody()), VertexMethods.wrapperResponse.class);
 
             for(VertexMethods.responseItem taxItem: vertexResponseBody.items){
                 for(VertexMethods.responseTaxes tax: taxItem.taxes){
@@ -173,8 +176,8 @@ public with sharing class CreditLimitManager {
             uow.commitWork();
 
         }else{
-            Logger.error('Error while doing the quote vertex callout - '+ vertexResponse.getStatusCode() +'-'+vertexResponse.getStatus())
-            .addTags(('API,TEST').split(','))
+            Logger.error('APX-INT-00003 - Error while retrieving the quote vertex callout - '+ vertexResponse.getStatusCode() +'-'+vertexResponse.getBody())
+            .addTag('APX-INT')
             .setRecordId(objectRecordId);
         }
 
@@ -206,9 +209,7 @@ public with sharing class CreditLimitManager {
 
         if(vertexResponse != null && vertexResponse.getStatusCode()== 200){
 
-            String finalBodyresponse =vertexResponse.getBody().replace ('"id"','"auxId"').replace ('"date"','"actualDate"').replace ('"number"','"taxNumber"');
-
-            vertexResponseBody= (VertexMethods.wrapperResponse)JSON.deserialize(finalBodyresponse, VertexMethods.wrapperResponse.class);
+            vertexResponseBody= (VertexMethods.wrapperResponse)JSON.deserialize(CreditLimitUtilMethods.formatResponse(vertexResponse.getBody()), VertexMethods.wrapperResponse.class);
 
             for(VertexMethods.responseItem taxItem: vertexResponseBody.items){
                 for(VertexMethods.responseTaxes tax: taxItem.taxes){
@@ -225,8 +226,8 @@ public with sharing class CreditLimitManager {
             uow.commitWork();
 
         }else{
-            Logger.error('Error while doing the order vertex callout - '+ vertexResponse.getStatusCode() +'-'+vertexResponse.getStatus())
-            .addTags(('API,TEST').split(','))
+            Logger.error('APX-INT-00002 - Error while retrieving the order vertex callout - '+ vertexResponse.getStatusCode() +'-'+vertexResponse.getBody())
+            .addTag('APX-INT')
             .setRecordId(objectRecordId);
         }
 
@@ -261,7 +262,7 @@ public with sharing class CreditLimitManager {
 
             if(creditLimitresponse != null && creditLimitresponse.getStatusCode()== 200){
 
-                finalBodyresponse =creditLimitresponse.getBody().replace ('"$"','"dollar"').replace ('"@languageCode"','"languageCode"').replace ('"@schemeID"','"schemeID"').replace ('"@schemeAgencyID"','"schemeAgencyID"').replace ('"@currencyCode"','"currencyCode"').replace('"CreditsegmentInternalID"', '"creditsegmentInternalID"').replace('"DebtorPartyInternalID"', '"debtorPartyInternalID"');
+                finalBodyResponse = CreditLimitUtilMethods.formatResponse(creditLimitresponse.getBody());
                 accountResponseBody= (CreditLimitWrappers.accountWrapperResponse)JSON.deserialize(finalBodyresponse, CreditLimitWrappers.accountWrapperResponse.class);
                 lastInfoWrapper.message= '0';
                 lastInfoWrapper.success= true;
@@ -283,8 +284,8 @@ public with sharing class CreditLimitManager {
                 lastInfoWrapper.message= creditLimitresponse.getBody();
                 lastInfoWrapper.status= creditLimitresponse.getStatusCode();
                 lastInfoWrapper.success= false;
-                Logger.error('Error while doing the account credit limit callout - '+ creditLimitresponse.getStatusCode() +'-'+creditLimitresponse.getStatus())
-                .addTags(('API,TEST').split(','))
+                Logger.error('APX-INT-00001 - Error while fetching the account credit limit callout - '+ creditLimitresponse.getStatusCode() +'-'+creditLimitresponse.getBody())
+                .addTag('APX-INT')
                 .setRecordId(objectRecordId);
             }
         }
