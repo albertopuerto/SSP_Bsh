@@ -74,7 +74,7 @@ public class QuoteLock extends fflib_SObjectDomain {
     }
     
     private void isQuoteLockedValidation(SBQQ__Quote__c oldQuote,SBQQ__Quote__c newQuote){
-    
+        
         Boolean approvalNotApproved =
             newQuote.ApprovalStatus__c != 'Approved';
 
@@ -93,12 +93,16 @@ public class QuoteLock extends fflib_SObjectDomain {
 
         Boolean isStatusChanged =
             newQuote.SBQQ__Status__c != oldQuote.SBQQ__Status__c;
+        
+        Boolean isPrimaryChanged =
+            newQuote.SBQQ__Primary__c != oldQuote.SBQQ__Primary__c;
 
         Boolean allowedTransition =
             (
                 (oldQuote.SBQQ__Status__c == 'Approved'  && newQuote.SBQQ__Status__c == 'Presented') ||
                 (oldQuote.SBQQ__Status__c == 'Presented' && newQuote.SBQQ__Status__c == 'Denied')     ||
-                (oldQuote.SBQQ__Status__c == 'Presented' && newQuote.SBQQ__Status__c == 'Accepted')
+                (oldQuote.SBQQ__Status__c == 'Presented' && newQuote.SBQQ__Status__c == 'Accepted') ||
+                (oldQuote.SBQQ__Status__c == 'Approval Pending' && newQuote.SBQQ__Status__c == 'Rejected')
             );
 
         Boolean disallowedChange =
@@ -107,6 +111,7 @@ public class QuoteLock extends fflib_SObjectDomain {
         if (approvalNotApproved &&
             notNew &&
             priorStatusMatches &&
+            !isPrimaryChanged &&
             disallowedChange) {
 
             newQuote.addError('This Quote cannot be modified in its current status. Only specific status changes are allowed (Approved→Presented, Presented→Denied, Presented→Accepted).');
@@ -125,7 +130,8 @@ public class QuoteLock extends fflib_SObjectDomain {
             if (fieldName == 'sbqq__lastcalculatedon__c' || 
                 fieldName == 'sbqq__lastsavedon__c' ||
                 fieldName == 'sbqq__lastsaveddate__c' ||
-                fieldName == 'cur_current_credit_limit_including_vat__c') {
+                fieldName == 'cur_current_credit_limit_including_vat__c'||
+               	fieldName == 'SBQQ__Primary__c') {
                     continue;
                 }
             if (!exemptFields.contains(fieldName) && newQuote.get(fieldName) != oldQuote.get(fieldName)) {
