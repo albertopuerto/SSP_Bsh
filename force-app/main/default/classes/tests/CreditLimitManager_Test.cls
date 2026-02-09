@@ -11,6 +11,7 @@ public class CreditLimitManager_Test {
         Account[] testAccountList = (Account[])TestFactory.createSObjectList(new Account(), 1);
         testAccountList[0].CurrencyIsoCode = 'EUR';
         testAccountList[0].txt_AthenaUUID__c= '3123213';
+        testAccountList[0].BillingCountry= 'Germany';
         testAccountList[0].BillingCountryCode= 'DE';
         insert testAccountList;
 

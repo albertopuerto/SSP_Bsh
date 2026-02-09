@@ -148,6 +148,8 @@ public with sharing class CreditLimitManager {
     public static CreditLimitWrappers.creditLimitInfoWrapper getquoteLimit(String objectRecordId,String objectApiName) {
         Set<Id> quoteIds = new Set<Id>();
         quoteIds.add(objectRecordId);
+        
+        ValidationBypass.skip = true;
 
         SBQQ__Quote__c quotetoCalculate = new QuoteSelector().selectQuoteInfo(quoteIds)[0];
 
@@ -166,8 +168,13 @@ public with sharing class CreditLimitManager {
             for(VertexMethods.responseItem taxItem: vertexResponseBody.items){
                 for(VertexMethods.responseTaxes tax: taxItem.taxes){
 
-                    quoteToCalculate.cur_Current_Credit_Limit_including_VAT__c = (quoteToCalculate.SBQQ__NetAmount__c * tax.taxRate)/100 + quoteToCalculate.SBQQ__NetAmount__c;
-                    uow.registerDirty(quoteToCalculate);
+                    Decimal currentLimitIncludingVat = (quoteToCalculate.SBQQ__NetAmount__c * tax.taxRate)/100 + quoteToCalculate.SBQQ__NetAmount__c;
+                    
+                    if(quoteToCalculate.cur_Current_Credit_Limit_including_VAT__c != currentLimitIncludingVat){
+                        quotetoCalculate.cur_Current_Credit_Limit_including_VAT__c= currentLimitIncludingVat;
+                        uow.registerDirty(quoteToCalculate);
+                    }
+                    
                 }
             }
             // method used to call credit limit

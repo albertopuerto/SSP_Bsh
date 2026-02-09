@@ -10,6 +10,7 @@ public class CreditLimitCallouts_Test {
         Account[] testAccountList = (Account[])TestFactory.createSObjectList(new Account(), 1);
         testAccountList[0].CurrencyIsoCode = 'EUR';
         testAccountList[0].txt_AthenaUUID__c='123213123';
+        testAccountList[0].BillingCountry= 'Germany';
         testAccountList[0].BillingCountryCode= 'DE';
         insert testAccountList;
 

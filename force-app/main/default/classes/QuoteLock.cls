@@ -41,10 +41,15 @@ public class QuoteLock extends fflib_SObjectDomain {
             for (SBQQ__Quote__c newQuote : getQuotes()) {
                 SBQQ__Quote__c oldQuote = (SBQQ__Quote__c) existingRecords.get(newQuote.Id);
                 
+                if (ValidationBypass.skip) {
+            			continue;
+        		}
+                isQuoteLockedValidation(oldQuote,newQuote);
+                
                 if (isQuoteLocked(oldQuote)) {
                     Logger.debug('Processing locked quote: ' + newQuote.Id + ' with status: ' + newQuote.SBQQ__Status__c);
                     validateQuoteModifications(newQuote, oldQuote, exemptFields);
-                } else {
+                }else {
                     Logger.debug('Quote modification allowed. QuoteId: ' + newQuote.Id + ', Status: ' + newQuote.SBQQ__Status__c);
                 }
             }
@@ -66,6 +71,46 @@ public class QuoteLock extends fflib_SObjectDomain {
         return quote.SBQQ__Status__c == 'Rejected' || 
             quote.SBQQ__Status__c == 'Denied' || 
             quote.SBQQ__Status__c == 'Accepted';
+    }
+    
+    private void isQuoteLockedValidation(SBQQ__Quote__c oldQuote,SBQQ__Quote__c newQuote){
+    
+        Boolean approvalNotApproved =
+            newQuote.ApprovalStatus__c != 'Approved';
+
+        Boolean notNew = true;
+
+        Set<String> blockedPriorStatuses = new Set<String>{
+            'Approval Pending',
+            'Approved',
+            'Rejected',
+            'Denied',
+            'Accepted'
+        };
+
+        Boolean priorStatusMatches =
+            blockedPriorStatuses.contains(oldQuote.SBQQ__Status__c);
+
+        Boolean isStatusChanged =
+            newQuote.SBQQ__Status__c != oldQuote.SBQQ__Status__c;
+
+        Boolean allowedTransition =
+            (
+                (oldQuote.SBQQ__Status__c == 'Approved'  && newQuote.SBQQ__Status__c == 'Presented') ||
+                (oldQuote.SBQQ__Status__c == 'Presented' && newQuote.SBQQ__Status__c == 'Denied')     ||
+                (oldQuote.SBQQ__Status__c == 'Presented' && newQuote.SBQQ__Status__c == 'Accepted')
+            );
+
+        Boolean disallowedChange =
+            !(isStatusChanged && allowedTransition);
+
+        if (approvalNotApproved &&
+            notNew &&
+            priorStatusMatches &&
+            disallowedChange) {
+
+            newQuote.addError('This Quote cannot be modified in its current status. Only specific status changes are allowed (Approved→Presented, Presented→Denied, Presented→Accepted).');
+        }
     }
     
     /**
