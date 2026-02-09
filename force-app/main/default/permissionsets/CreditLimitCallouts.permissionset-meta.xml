@@ -1,5 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <PermissionSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <classAccesses>
+        <apexClass>CreditLimitCallouts</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>CreditLimitManager</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>CreditLimitUtilMethods</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>CreditLimitWrapperManager</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>CreditLimitWrappers</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>VertexIntManager</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>VertexMethods</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
     <customPermissions>
         <enabled>true</enabled>
         <name>CanViewVertexButton</name>
@@ -7,7 +35,7 @@
     <description>Grants access to view and execute the Vertex calculation button, which performs an external API call to the Vertex tax service and updates the Amount field based on the response.</description>
     <externalCredentialPrincipalAccesses>
         <enabled>true</enabled>
-        <externalCredentialPrincipal>creditLimitAuthentication-username_password</externalCredentialPrincipal>
+        <externalCredentialPrincipal>creditLimitOauthAuthentication-admin</externalCredentialPrincipal>
     </externalCredentialPrincipalAccesses>
     <externalCredentialPrincipalAccesses>
         <enabled>true</enabled>
@@ -15,12 +43,12 @@
     </externalCredentialPrincipalAccesses>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Order.Current_Credit_Limit_including_VAT__c</field>
+        <field>Order.cur_Current_Credit_Limit_including_VAT__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>SBQQ__Quote__c.Current_Credit_Limit_including_VAT__c</field>
+        <field>SBQQ__Quote__c.cur_Current_Credit_Limit_including_VAT__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <hasActivationRequired>false</hasActivationRequired>

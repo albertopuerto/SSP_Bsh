@@ -10,16 +10,22 @@
     <registrationProviderType>Custom</registrationProviderType>
     <schema>{
   &quot;openapi&quot;: &quot;3.0.3&quot;,
-  &quot;info&quot;: { &quot;title&quot;: &quot;SSP&quot;, &quot;version&quot;: &quot;1.0.0&quot;, &quot;contact&quot;: {} },
+  &quot;info&quot;: {
+    &quot;title&quot;: &quot;SSP Business Partner Integration&quot;,
+    &quot;version&quot;: &quot;2.0.0&quot;,
+    &quot;contact&quot;: {}
+  },
   &quot;servers&quot;: [
-    { &quot;url&quot;: &quot;https://rb-cpi-central-q.it-cpi018-rt.cfapps.eu10-003.hana.ondemand.com&quot; }
+    {
+      &quot;url&quot;: &quot;https://rb-cpi-central-q.it-cpi018-rt.cfapps.eu10-003.hana.ondemand.com&quot;
+    }
   ],
   &quot;paths&quot;: {
     &quot;/http/rb.bbm.ssp.mdm.bp.customevent.sf&quot;: {
       &quot;post&quot;: {
         &quot;operationId&quot;: &quot;createBusinessPartner&quot;,
         &quot;summary&quot;: &quot;Creates Business Partner in Athena&quot;,
-        &quot;description&quot;: &quot;Creates Business Partner in Athena&quot;,
+        &quot;description&quot;: &quot;Push Business Partner data from Salesforce to Athena via CPI&quot;,
         &quot;requestBody&quot;: {
           &quot;content&quot;: {
             &quot;application/json&quot;: {
@@ -29,10 +35,54 @@
                   &quot;accountCreate&quot;: {
                     &quot;type&quot;: &quot;object&quot;,
                     &quot;properties&quot;: {
-                      &quot;SF_Account_Id__c&quot;: { &quot;type&quot;: &quot;string&quot; },
-                      &quot;CorrelationId&quot;: { &quot;type&quot;: &quot;string&quot; }
+                      &quot;Id&quot;: { &quot;type&quot;: &quot;string&quot;, &quot;description&quot;: &quot;Salesforce Account Id&quot; },
+                      &quot;CorrelationId&quot;: { &quot;type&quot;: &quot;string&quot; },
+                      &quot;Name&quot;: { &quot;type&quot;: &quot;string&quot; },
+                      &quot;Type&quot;: { &quot;type&quot;: &quot;string&quot; },
+                      &quot;RecordTypeId&quot;: { &quot;type&quot;: &quot;string&quot; },
+                      &quot;BillingStreet&quot;: { &quot;type&quot;: &quot;string&quot; },
+                      &quot;BillingCity&quot;: { &quot;type&quot;: &quot;string&quot; },
+                      &quot;BillingState&quot;: { &quot;type&quot;: &quot;string&quot; },
+                      &quot;BillingPostalCode&quot;: { &quot;type&quot;: &quot;string&quot; },
+                      &quot;BillingCountry&quot;: { &quot;type&quot;: &quot;string&quot; },
+                      &quot;BillingLatitude&quot;: { &quot;type&quot;: &quot;number&quot; },
+                      &quot;BillingLongitude&quot;: { &quot;type&quot;: &quot;number&quot; },
+                      &quot;BillingGeocodeAccuracy&quot;: { &quot;type&quot;: &quot;string&quot; },
+                      &quot;ShippingStreet&quot;: { &quot;type&quot;: &quot;string&quot; },
+                      &quot;ShippingCity&quot;: { &quot;type&quot;: &quot;string&quot; },
+                      &quot;ShippingState&quot;: { &quot;type&quot;: &quot;string&quot; },
+                      &quot;ShippingPostalCode&quot;: { &quot;type&quot;: &quot;string&quot; },
+                      &quot;ShippingCountry&quot;: { &quot;type&quot;: &quot;string&quot; },
+                      &quot;ShippingLatitude&quot;: { &quot;type&quot;: &quot;number&quot; },
+                      &quot;ShippingLongitude&quot;: { &quot;type&quot;: &quot;number&quot; },
+                      &quot;ShippingGeocodeAccuracy&quot;: { &quot;type&quot;: &quot;string&quot; },
+                      &quot;PhotoUrl&quot;: { &quot;type&quot;: &quot;string&quot; },
+                      &quot;CurrencyIsoCode&quot;: { &quot;type&quot;: &quot;string&quot; },
+                      &quot;OwnerId&quot;: { &quot;type&quot;: &quot;string&quot; },
+                      &quot;CreatedDate&quot;: { &quot;type&quot;: &quot;string&quot;, &quot;format&quot;: &quot;date-time&quot; },
+                      &quot;CreatedById&quot;: { &quot;type&quot;: &quot;string&quot; },
+                      &quot;LastModifiedDate&quot;: { &quot;type&quot;: &quot;string&quot;, &quot;format&quot;: &quot;date-time&quot; },
+                      &quot;LastModifiedById&quot;: { &quot;type&quot;: &quot;string&quot; },
+                      &quot;txt_AdditionalName__c&quot;: { &quot;type&quot;: &quot;string&quot; },
+                      &quot;pkl_IsTradingPartnerNoRequired__c&quot;: { &quot;type&quot;: &quot;string&quot; },
+                      &quot;pkl_Language__c&quot;: { &quot;type&quot;: &quot;string&quot; },
+                      &quot;txt_TradingParnerNo__c&quot;: { &quot;type&quot;: &quot;string&quot; },
+                      &quot;pkl_CivilianCustomer__c&quot;: { &quot;type&quot;: &quot;string&quot; },
+                      &quot;ftxt_GTS__c&quot;: { &quot;type&quot;: &quot;string&quot; },
+                      &quot;pkm_BoschPartnerRole__c&quot;: { &quot;type&quot;: &quot;string&quot; },
+                      &quot;pkl_Status__c&quot;: { &quot;type&quot;: &quot;string&quot; }
                     },
-                    &quot;required&quot;: [&quot;SF_Account_Id__c&quot;, &quot;CorrelationId&quot;]
+                    &quot;required&quot;: [
+                      &quot;Id&quot;,
+                      &quot;CorrelationId&quot;,
+                      &quot;pkm_BoschPartnerRole__c&quot;,
+                      &quot;Name&quot;,
+                      &quot;BillingStreet&quot;,
+                      &quot;BillingCity&quot;,
+                      &quot;BillingState&quot;,
+                      &quot;BillingPostalCode&quot;,
+                      &quot;BillingCountry&quot;
+                    ]
                   }
                 }
               }
@@ -65,6 +115,16 @@
               }
             }
           },
+          &quot;404&quot;: {
+            &quot;description&quot;: &quot;Not found&quot;,
+            &quot;content&quot;: {
+              &quot;text/html&quot;: {
+                &quot;schema&quot;: {
+                  &quot;type&quot;: &quot;string&quot;
+                }
+              }
+            }
+          },
           &quot;500&quot;: {
             &quot;description&quot;: &quot;Error message&quot;,
             &quot;content&quot;: {
@@ -89,17 +149,6 @@
                 }
               }
             }
-          },
-          &quot;404&quot;: {
-            &quot;description&quot;: &quot;Not found&quot;,
-            &quot;content&quot;: {
-              &quot;text/html&quot;: {
-                &quot;schema&quot;: {
-                  &quot;type&quot;: &quot;string&quot;
-                  
-                }
-              }
-            }
           }
         }
       }
@@ -109,7 +158,7 @@
 </schema>
     <schemaType>OpenApi3</schemaType>
     <schemaUploadFileExtension>json</schemaUploadFileExtension>
-    <schemaUploadFileName>AccountSendOpenAPI3.0_definition</schemaUploadFileName>
+    <schemaUploadFileName>AccountSendOpenAPI3.0_definition_V2</schemaUploadFileName>
     <serviceBinding>{&quot;host&quot;:&quot;rb-cpi-central-q.it-cpi018-rt.cfapps.eu10-003.hana.ondemand.com&quot;,&quot;basePath&quot;:&quot;&quot;,&quot;allowedSchemes&quot;:[&quot;HTTPS&quot;],&quot;requestMediaTypes&quot;:[],&quot;responseMediaTypes&quot;:[],&quot;compatibleMediaTypes&quot;:{&quot;text/html&quot;:&quot;text/plain&quot;},&quot;extensions&quot;:{}}</serviceBinding>
     <status>Complete</status>
     <systemVersion>7</systemVersion>
