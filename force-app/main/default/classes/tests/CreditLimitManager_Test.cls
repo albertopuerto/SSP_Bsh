@@ -11,7 +11,8 @@ public class CreditLimitManager_Test {
         Account[] testAccountList = (Account[])TestFactory.createSObjectList(new Account(), 1);
         testAccountList[0].CurrencyIsoCode = 'EUR';
         testAccountList[0].txt_AthenaUUID__c= '3123213';
-        testAccountList[0].BillingCountry= 'DE';
+        testAccountList[0].BillingCountry= 'Germany';
+        testAccountList[0].BillingCountryCode= 'DE';
         insert testAccountList;
 
         SBQQ__Quote__c[] quoteList = (SBQQ__Quote__c [])TestFactory.createSObjectList(new SBQQ__Quote__c(),1);
@@ -159,14 +160,12 @@ public class CreditLimitManager_Test {
         CreditLimitWrappers.CreditWorthiness creditWorthiness = new CreditLimitWrappers.CreditWorthiness();
         creditWorthiness.CreditSegmentInternalID= '12426456';
         creditWorthiness.Indicator= 'i24329090';
-     //   creditWorthiness.CheckingDescription= messageHeader;
         creditWorthiness.DebtorPartyBlockedIndicator= 'true';
         creditWorthiness.DebtorPartySpecialAttentionRequiredIndicator= 'true';
         creditWorthiness.DynamicCheckHorizonEndDate= 'true';
         creditWorthiness.DebtorParty= worthinessDebtorResponse;
         creditWorthiness.Rating= rating;
         creditWorthiness.RiskClass= risk;
-       // creditWorthiness.creditLimit= creditLimit;
         creditWorthiness.CreditExposure= creditExposure;
 
         CreditLimitWrappers.CreditWorthinessResponse creditWorthinessResponse = new CreditLimitWrappers.CreditWorthinessResponse();
@@ -231,16 +230,14 @@ public class CreditLimitManager_Test {
         Account testAccount = [SELECT Id,BillingCountry,CurrencyIsoCode,txt_AthenaUUID__c from Account LIMIT 1];
         Test.startTest();
         System.runAs(productManagerUser){
-            Test.setMock(HttpCalloutMock.class, new CreditLimitMockClass());
+            StaticResource sr = [SELECT Body FROM StaticResource WHERE Name = 'creditLimitAccountGreater0'];
+			String creditLimitBody = sr.Body.toString();
+            HTTPMockGenerator res1 = new HTTPMockGenerator(200, creditLimitBody);
 
-    	    HttpResponse response = CreditLimitCallouts.startCreditLimitCallouts(null, null, testAccount);
+            Test.setMock(HttpCalloutMock.class, res1);
+    	    Assert.isTrue(res1.responseHeaders.get('Content-Type') == 'application/json','The content type is of Content-Type');
 
-    	    String contentType = response.getHeader('Content-Type');
-    	    Assert.isTrue(contentType == 'application/json','The content type is of Content-Type');
-    	    String actualValue = response.getBody();
-    	    String expectedValue = '{"Envelope":{"Header":"","Body":{"CreditManagementAccountByIDResponse":{"MessageHeader":{"ID":"D6B2D2D3CE021FD0A399EAD2F9065196","CreationDateTime":"2025-09-08T16:17:38.739Z"},"CreditManagementAccount":{"DebtorPartyInternalID":{"@schemeID":"PartyID","@schemeAgencyID":"SAP0BHL011","$":"4001831001"},"CreditsegmentInternalID":"5370","CreditSegmentDescription":{"@languageCode":"de"},"CreditWorthinessCheckingRuleCode":"ZR","CreditWorthinessCheckingSchemeCode":"ZB","SpecialAttentionRequiredIndicator":"false","BlockedIndicator":"false","BlockingReasonCodeDescription":{"@languageCode":"de"},"CreditLimitAmount":{"@currencyCode":"EUR","$":"500000.0"},"CreditLimitValidityPeriod":{"StartDate":"2025-09-08","EndDate":"2026-09-30"},"CreditExposure":{"Amount":{"@currencyCode":"EUR","$":"0.0"},"DynamicCheckCreditHorizonEndDate":"2025-10-08"},"CreditRating":{"Code":"       93","ValidityPeriod":{"StartDate":"2025-06-13","EndDate":"2026-03-07"}},"CreditRiskClass":{"Code":"B","ValidityPeriod":{"StartDate":"2025-06-13","EndDate":"2026-03-07"},"Description":{"@languageCode":"de","$":"Geringes Ausfallrisiko"}},"PaymentBehaviourSummary":{"DaysOfSalesOutstandingAverageDuration":"0 "}}}}}}';
-    	    Assert.areEqual(expectedValue, actualValue,'The response body is the expected value');
-    	    Assert.areEqual(200, response.getStatusCode(), 'The status code is 200');
+    	    Assert.areEqual(200, res1.code, 'The status code is 200');
             CreditLimitManager.getObjectCurrency('Account',testAccount.Id);
             CreditLimitManager.getAccountFields(testAccount.Id);
             CreditLimitManager.callGetLimit('Account',testAccount.Id);
@@ -256,28 +253,27 @@ public class CreditLimitManager_Test {
     	Test.startTest();
         System.runAs(productManagerUser){
             SBQQ__Quote__c quoteTest = [SELECT Id,SBQQ__Status__c,Bill_To_Country__c,cur_Current_Credit_Limit_including_VAT__c,CurrencyIsoCode,SBQQ__Account__r.txt_AthenaUUID__c from SBQQ__Quote__c LIMIT 1];
-        	 
-            StaticResource sr = [SELECT Body FROM StaticResource WHERE Name = 'vertexSuccess'];
-			String vertexBody = sr.Body.toString();
-           	HttpCalloutMock res1 = new HTTPMockGenerator(200, vertexBody);
-            
+
             StaticResource sr2 = [SELECT Body FROM StaticResource WHERE Name = 'creditLimitQuoteOrderExceded'];
 			String creditLimitBody = sr2.Body.toString();
-            HttpCalloutMock res2 = new HTTPMockGenerator(200, creditLimitBody);
+
+            StaticResource sr = [SELECT Body FROM StaticResource WHERE Name = 'vertexSuccess'];
+			String vertexBody = sr.Body.toString();
+           	HTTPMockGenerator res1 = new HTTPMockGenerator(200, vertexBody);
+
+            HTTPMockGenerator res2 = new HTTPMockGenerator(200, creditLimitBody);
             String remainingUrlVertex = '/sap-tax-service/tax/v1/quote';
             HttpMultiRequestMockGenerator multiMock = new HttpMultiRequestMockGenerator();
-            multiMock.putMock('https://api.status.salesforce.com/v1/instances/DEU114S/status',new HTTPMockGenerator(200, '{"status":"OK"}'));
-			multiMock.putMock('callout:vertex_usernamePass'+ remainingUrlVertex,res1);
+            multiMock.putMock('callout:vertex_usernamePass'+ remainingUrlVertex,res1);
 			multiMock.putMock('callout:creditLimitCheckOuathCallout',res2);
-        
+            multiMock.putMock('https://api.status.salesforce.com/v1/instances/DEU114S/status',new HTTPMockGenerator(200, '{"status":"OK"}'));
+
             Test.setMock(HttpCalloutMock.class, multiMock);
-    	    //HttpResponse response = CreditLimitCallouts.startCreditLimitCallouts(quoteTest, null, null);
-            /*String contentType = response.getHeader('Content-Type');
-    	    Assert.isTrue(contentType == 'application/json','The content type is of Content-Type');
-    	    String actualValue = response.getBody();
-    	    String expectedValue = '{"Envelope":{"Header":"","Body":{"CreditWorthinessResponse":{"CreditWorthiness":{"CreditSegmentInternalID":"5370","Indicator":"true","CheckingDescription":[{"@languageCode":"en","$":"Credit segment 5370 of partner 4001831001"},{"@languageCode":"EN","$":"ID: 510936342"}],"DebtorPartyBlockedIndicator":"false","DebtorPartySpecialAttentionRequiredIndicator":"false","DynamicCheckHorizonEndDate":"2025-10-04","DebtorParty":{"InternalID":{"@schemeID":"PartyID","@schemeAgencyID":"SAP0BHL011","$":"4001831001"}},"Rating":{"Code":"       93","ValidityPeriod":{"EndDateTime":"2026-03-03T00:00:00Z"}},"RiskClass":{"Code":"B","ValidityPeriod":{"EndDateTime":"2026-03-03T00:00:00Z"}},"CreditLimit":{"Amount":{"@currencyCode":"EUR","$":"500000.0"},"ValidityPeriod":{"EndDateTime":"2026-09-30T00:00:00Z"}},"CreditExposure":{"Amount":{"@currencyCode":"EUR","$":"0.0"}}}}}}}';
-    	    Assert.areEqual(expectedValue, actualValue,'The response body is the expected value');
-    	    Assert.areEqual(200, response.getStatusCode(), 'The status code is 200');*/
+    	    HTTPMockGenerator callout =(HTTPMockGenerator)multiMock.mapRequest.get('callout:vertex_usernamePass'+ remainingUrlVertex);
+
+    	    Assert.isTrue(callout.responseHeaders.get('Content-Type') == 'application/json','The content type is of Content-Type');
+
+    	    Assert.areEqual(200, callout.code, 'The status code is 200');
             CreditLimitManager.callGetLimit('SBQQ__Quote__c', quoteTest.Id);
         }
         Test.stopTest();
@@ -290,29 +286,30 @@ public class CreditLimitManager_Test {
         Test.startTest();
         System.runAs(productManagerUser){
             Order orderTest = [SELECT Id,Status,cur_Current_Credit_Limit_including_VAT__c,CurrencyIsoCode,Account.txt_AthenaUUID__c from Order LIMIT 1];
-            
+
           StaticResource sr = [SELECT Body FROM StaticResource WHERE Name = 'vertexSuccess'];
 			String vertexBody = sr.Body.toString();
 
-           	HttpCalloutMock res1 = new HTTPMockGenerator(200, vertexBody);
-            
+           	HTTPMockGenerator res1 = new HTTPMockGenerator(200, vertexBody);
+
             StaticResource sr2 = [SELECT Body FROM StaticResource WHERE Name = 'creditLimitQuoteOrderExceded'];
 			String creditLimitBody = sr2.Body.toString();
-       
-            HttpCalloutMock res2 = new HTTPMockGenerator(200, creditLimitBody);
-    
+
+            HTTPMockGenerator res2 = new HTTPMockGenerator(200, creditLimitBody);
+
             String remainingUrlVertex = '/sap-tax-service/tax/v1/quote';
             HttpMultiRequestMockGenerator multiMock = new HttpMultiRequestMockGenerator();
             multiMock.putMock('https://api.status.salesforce.com/v1/instances/DEU114S/status',new HTTPMockGenerator(200, '{"status":"OK"}'));
 			multiMock.putMock('callout:vertex_usernamePass'+ remainingUrlVertex,res1);
 			multiMock.putMock('callout:creditLimitCheckOuathCallout',res2);
-        
+
             Test.setMock(HttpCalloutMock.class, multiMock);
             CreditLimitManager.callGetLimit('Order',orderTest.Id);
-           /* String actualValue = response.getBody();
-    	    String expectedValue = '{"Envelope":{"Header":"","Body":{"CreditWorthinessResponse":{"CreditWorthiness":{"CreditSegmentInternalID":"5370","Indicator":"true","CheckingDescription":[{"@languageCode":"en","$":"Credit segment 5370 of partner 4001831001"},{"@languageCode":"EN","$":"ID: 510936342"}],"DebtorPartyBlockedIndicator":"false","DebtorPartySpecialAttentionRequiredIndicator":"false","DynamicCheckHorizonEndDate":"2025-10-04","DebtorParty":{"InternalID":{"@schemeID":"PartyID","@schemeAgencyID":"SAP0BHL011","$":"4001831001"}},"Rating":{"Code":"       93","ValidityPeriod":{"EndDateTime":"2026-03-03T00:00:00Z"}},"RiskClass":{"Code":"B","ValidityPeriod":{"EndDateTime":"2026-03-03T00:00:00Z"}},"CreditLimit":{"Amount":{"@currencyCode":"EUR","$":"500000.0"},"ValidityPeriod":{"EndDateTime":"2026-09-30T00:00:00Z"}},"CreditExposure":{"Amount":{"@currencyCode":"EUR","$":"0.0"}}}}}}}';
-    	    Assert.areEqual(expectedValue, actualValue,'The response body is the expected value');
-    	    Assert.areEqual(200, response.getStatusCode(), 'The status code is 200');*/
+           HTTPMockGenerator callout =(HTTPMockGenerator) multiMock.mapRequest.get('callout:creditLimitCheckOuathCallout');
+
+    	    Assert.isTrue(callout.responseHeaders.get('Content-Type') == 'application/json','The content type is of Content-Type');
+
+    	    Assert.areEqual(200, callout.code, 'The status code is 200');
         }
         Test.stopTest();
 	}

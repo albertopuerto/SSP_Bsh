@@ -1,20 +1,20 @@
 /**
- * @description Domain class for Quote (SBQQ__Quote__c) - handles quote locking logic
- * @author TLQ1KOR
- * @date 2025
- */
+* @description Domain class for Quote (SBQQ__Quote__c) - handles quote locking logic
+* @author TLQ1KOR
+* @date 2025
+*/
 public class QuoteLock extends fflib_SObjectDomain {
     
     /**
-     * Domain class constructor
-     */
+* Domain class constructor
+*/
     public QuoteLock(List<SBQQ__Quote__c> records) {
         super(records);
     }
     
     /**
-     * Domain class factory method - Required for fflib
-     */
+* Domain class factory method - Required for fflib
+*/
     public class Constructor implements fflib_SObjectDomain.IConstructable {
         public fflib_SObjectDomain construct(List<SObject> sObjectList) {
             return new QuoteLock(sObjectList);
@@ -22,15 +22,15 @@ public class QuoteLock extends fflib_SObjectDomain {
     }
     
     /**
-     * @return List of Quote records cast to proper type
-     */
+* @return List of Quote records cast to proper type
+*/
     public List<SBQQ__Quote__c> getQuotes() {
         return (List<SBQQ__Quote__c>) getRecords();
     }
     
     /**
-     * fflib trigger event - called before records are updated
-     */
+* fflib trigger event - called before records are updated
+*/
     public override void onBeforeUpdate(Map<Id, SObject> existingRecords) {
         try {
             Logger.debug('QuoteLock.onBeforeUpdate started for ' + getQuotes().size() + ' quote(s)');
@@ -65,12 +65,52 @@ public class QuoteLock extends fflib_SObjectDomain {
     }
     
     /**
-     * @description Determines if a quote should be locked from modifications
-     */
+* @description Determines if a quote should be locked from modifications
+*/
     private Boolean isQuoteLocked(SBQQ__Quote__c quote) {
         return quote.SBQQ__Status__c == 'Rejected' || 
-               quote.SBQQ__Status__c == 'Denied' || 
-               quote.SBQQ__Status__c == 'Accepted';
+            quote.SBQQ__Status__c == 'Denied' || 
+            quote.SBQQ__Status__c == 'Accepted';
+    }
+    
+    private void isQuoteLockedValidation(SBQQ__Quote__c oldQuote,SBQQ__Quote__c newQuote){
+    
+        Boolean approvalNotApproved =
+            newQuote.ApprovalStatus__c != 'Approved';
+
+        Boolean notNew = true;
+
+        Set<String> blockedPriorStatuses = new Set<String>{
+            'Approval Pending',
+            'Approved',
+            'Rejected',
+            'Denied',
+            'Accepted'
+        };
+
+        Boolean priorStatusMatches =
+            blockedPriorStatuses.contains(oldQuote.SBQQ__Status__c);
+
+        Boolean isStatusChanged =
+            newQuote.SBQQ__Status__c != oldQuote.SBQQ__Status__c;
+
+        Boolean allowedTransition =
+            (
+                (oldQuote.SBQQ__Status__c == 'Approved'  && newQuote.SBQQ__Status__c == 'Presented') ||
+                (oldQuote.SBQQ__Status__c == 'Presented' && newQuote.SBQQ__Status__c == 'Denied')     ||
+                (oldQuote.SBQQ__Status__c == 'Presented' && newQuote.SBQQ__Status__c == 'Accepted')
+            );
+
+        Boolean disallowedChange =
+            !(isStatusChanged && allowedTransition);
+
+        if (approvalNotApproved &&
+            notNew &&
+            priorStatusMatches &&
+            disallowedChange) {
+
+            newQuote.addError('This Quote cannot be modified in its current status. Only specific status changes are allowed (Approved→Presented, Presented→Denied, Presented→Accepted).');
+        }
     }
     
     private void isQuoteLockedValidation(SBQQ__Quote__c oldQuote,SBQQ__Quote__c newQuote){
@@ -119,12 +159,12 @@ public class QuoteLock extends fflib_SObjectDomain {
     }
     
     /**
-     * @description Validates that only exempt fields are being modified
-     */
+* @description Validates that only exempt fields are being modified
+*/
     @TestVisible
     private void testValidateQuoteModifications(SBQQ__Quote__c newQuote, SBQQ__Quote__c oldQuote, Set<String> exemptFields) {
-    validateQuoteModifications(newQuote, oldQuote, exemptFields);
-     }
+        validateQuoteModifications(newQuote, oldQuote, exemptFields);
+    }
     private void validateQuoteModifications(SBQQ__Quote__c newQuote, SBQQ__Quote__c oldQuote, Set<String> exemptFields) {
         for (String fieldName : newQuote.getSObjectType().getDescribe().fields.getMap().keySet()) {
             if (fieldName == 'sbqq__lastcalculatedon__c' || 
@@ -148,8 +188,8 @@ public class QuoteLock extends fflib_SObjectDomain {
     }
     
     /**
-     * @description Gets exempt fields from custom setting
-     */
+* @description Gets exempt fields from custom setting
+*/
     private Set<String> getExemptFields() {
         Set<String> exemptFields = new Set<String>();
         

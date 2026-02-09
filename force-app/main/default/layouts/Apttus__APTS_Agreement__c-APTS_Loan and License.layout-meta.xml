@@ -55,6 +55,10 @@
                 <behavior>Edit</behavior>
                 <field>chk_ExistenceAgreementCanBeShared__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>chk_ISPandDataProtection__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns />
         <style>TwoColumnsTopToBottom</style>
@@ -104,7 +108,7 @@
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
-                <behavior>Readonly</behavior>
+                <behavior>Edit</behavior>
                 <field>Apttus__Status_Category__c</field>
             </layoutItems>
             <layoutItems>

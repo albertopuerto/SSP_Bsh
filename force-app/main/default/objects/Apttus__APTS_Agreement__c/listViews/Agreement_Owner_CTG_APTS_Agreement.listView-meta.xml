@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Agreement_Owner_CTG_APTS_Agreement</fullName>
+    <columns>NAME</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>APTS_Record_Type_Name__c</field>
+        <operation>equals</operation>
+        <value>IC Technology Transfer,IC Development and Application,IC SaaS,IC NDA,IC Services,Other IC,IC Agent Sales Support,IC Limited Sales Support,IC Reseller Framework,IC Software License</value>
+    </filters>
+    <label>Intercoampny</label>
+    <sharedTo>
+        <allInternalUsers />
+    </sharedTo>
+</ListView>

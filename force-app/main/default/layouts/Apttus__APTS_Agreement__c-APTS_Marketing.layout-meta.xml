@@ -74,6 +74,14 @@
                 <behavior>Edit</behavior>
                 <field>chk_ExistenceAgreementCanBeShared__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>ftxt_CompanySignedbyTitle__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>chk_ISPandDataProtection__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>

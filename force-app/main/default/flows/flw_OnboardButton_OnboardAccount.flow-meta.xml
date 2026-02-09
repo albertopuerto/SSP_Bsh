@@ -120,24 +120,6 @@
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </actionCalls>
     <actionCalls>
-        <name>Copy_2_of_Navigate_to_the_Record</name>
-        <label>Copy 2 of Navigate to the Record</label>
-        <locationX>0</locationX>
-        <locationY>0</locationY>
-        <actionName>c:NavigateToTheRecord</actionName>
-        <actionType>component</actionType>
-        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
-        <inputParameters>
-            <name>recordId</name>
-            <value>
-                <elementReference>Create_Account</elementReference>
-            </value>
-        </inputParameters>
-        <nameSegment>c:NavigateToTheRecord</nameSegment>
-        <offset>0</offset>
-        <storeOutputAutomatically>true</storeOutputAutomatically>
-    </actionCalls>
-    <actionCalls>
         <name>Log_Update_acc</name>
         <label>Log Update acc</label>
         <locationX>0</locationX>
@@ -285,16 +267,12 @@
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </actionCalls>
     <actionCalls>
-        <description>Logs details about the request sent to SAP</description>
         <name>Sending_to_Athena_failed</name>
         <label>Sending to Athena failed</label>
         <locationX>0</locationX>
         <locationY>0</locationY>
         <actionName>LogCalloutInformation</actionName>
         <actionType>apex</actionType>
-        <connector>
-            <targetReference>Copy_2_of_Navigate_to_the_Record</targetReference>
-        </connector>
         <flowTransactionModel>Automatic</flowTransactionModel>
         <inputParameters>
             <name>flowName</name>
@@ -305,7 +283,7 @@
         <inputParameters>
             <name>httpEndpoint</name>
             <value>
-                <stringValue>https://rb-cpi-central-d.it-cpi018-rt.cfapps.eu10-003.hana.ondemand.com</stringValue>
+                <stringValue>https://rb-cpi-central-q.it-cpi018-rt.cfapps.eu10-003.hana.ondemand.com</stringValue>
             </value>
         </inputParameters>
         <inputParameters>
@@ -355,10 +333,87 @@
         <locationX>0</locationX>
         <locationY>0</locationY>
         <assignmentItems>
-            <assignToReference>requestBody.accountCreate.SFx5fAccountx5fIdx5fx5fc</assignToReference>
+            <assignToReference>requestBody.accountCreate.CreatedDate</assignToReference>
             <operator>Assign</operator>
             <value>
-                <elementReference>Create_Account</elementReference>
+                <elementReference>Get_Account_Info.CreatedDate</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>requestBody.accountCreate.LastModifiedDate</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Get_Account_Info.LastModifiedDate</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>requestBody.accountCreate.BillingLatitude</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Get_Account_Info.BillingLatitude</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>requestBody.accountCreate.BillingLongitude</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Get_Account_Info.BillingLongitude</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>requestBody.accountCreate.ShippingLatitude</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Get_Account_Info.ShippingLatitude</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>requestBody.accountCreate.ShippingLongitude</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Get_Account_Info.ShippingLongitude</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>requestBody.accountCreate.BillingCity</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Get_Account_Info.BillingCity</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>requestBody.accountCreate.BillingCountry</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Get_Account_Info.BillingCountry</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>requestBody.accountCreate.BillingGeocodeAccuracy</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Get_Account_Info.BillingGeocodeAccuracy</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>requestBody.accountCreate.BillingPostalCode</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Get_Account_Info.BillingPostalCode</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>requestBody.accountCreate.BillingState</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Get_Account_Info.BillingState</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>requestBody.accountCreate.BillingStreet</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Get_Account_Info.BillingStreet</elementReference>
             </value>
         </assignmentItems>
         <assignmentItems>
@@ -366,6 +421,167 @@
             <operator>Assign</operator>
             <value>
                 <elementReference>timestampAsText</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>requestBody.accountCreate.CurrencyIsoCode</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Get_Account_Info.CurrencyIsoCode</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>requestBody.accountCreate.ftxtx5fGTSx5fx5fc</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Get_Account_Info.ftxt_GTS__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>requestBody.accountCreate.Id</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Get_Account_Info.Id</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>requestBody.accountCreate.Name</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Get_Account_Info.Name</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>requestBody.accountCreate.OwnerId</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Get_Account_Info.OwnerId</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>requestBody.accountCreate.pklx5fCivilianCustomerx5fx5fc</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Get_Account_Info.pkl_CivilianCustomer__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>requestBody.accountCreate.pklx5fIsTradingPartnerNoRequiredx5fx5fc</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Get_Account_Info.pkl_IsTradingPartnerNoRequired__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>requestBody.accountCreate.pklx5fLanguagex5fx5fc</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Get_Account_Info.pkl_Language__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>requestBody.accountCreate.pklx5fStatusx5fx5fc</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Get_Account_Info.pkl_Status__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>requestBody.accountCreate.pkmx5fBoschPartnerRolex5fx5fc</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Get_Account_Info.pkm_BoschPartnerRole__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>requestBody.accountCreate.RecordTypeId</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Get_Account_Info.RecordType.Name</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>requestBody.accountCreate.ShippingCity</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Get_Account_Info.ShippingCity</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>requestBody.accountCreate.ShippingCountry</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Get_Account_Info.ShippingCountry</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>requestBody.accountCreate.ShippingGeocodeAccuracy</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Get_Account_Info.ShippingGeocodeAccuracy</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>requestBody.accountCreate.ShippingPostalCode</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Get_Account_Info.ShippingPostalCode</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>requestBody.accountCreate.ShippingState</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Get_Account_Info.ShippingState</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>requestBody.accountCreate.ShippingStreet</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Get_Account_Info.ShippingStreet</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>requestBody.accountCreate.txtx5fAdditionalNamex5fx5fc</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Get_Account_Info.txt_AdditionalName__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>requestBody.accountCreate.txtx5fTradingParnerNox5fx5fc</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Get_Account_Info.txt_TradingParnerNo__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>requestBody.accountCreate.z0Type</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Get_Account_Info.Type</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>requestBody.accountCreate.CreatedById</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Get_Account_Info.CreatedById</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>requestBody.accountCreate.LastModifiedById</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Get_Account_Info.LastModifiedById</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>requestBody.accountCreate.PhotoUrl</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Get_Account_Info.PhotoUrl</elementReference>
             </value>
         </assignmentItems>
         <connector>
@@ -509,7 +725,7 @@
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>Assign_request_Body</targetReference>
+                <targetReference>Get_Account_Info</targetReference>
             </connector>
             <label>Accepted</label>
         </rules>
@@ -748,6 +964,27 @@
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordCreates>
     <recordLookups>
+        <name>Get_Account_Info</name>
+        <label>Get Account Info</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Assign_request_Body</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>Create_Account</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>Account</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordLookups>
         <name>GetCustomerB2BRecordTypeId</name>
         <label>GetCustomerB2BRecordTypeId</label>
         <locationX>0</locationX>
@@ -953,17 +1190,17 @@
         <locationY>0</locationY>
         <allowBack>false</allowBack>
         <allowFinish>true</allowFinish>
-        <allowPause>false</allowPause>
+        <allowPause>true</allowPause>
         <connector>
             <targetReference>Sending_to_Athena_failed</targetReference>
         </connector>
         <fields>
             <name>failure</name>
-            <fieldText>&lt;p style=&quot;text-align: center;&quot;&gt;&lt;strong style=&quot;color: rgb(183, 24, 16);&quot;&gt;Account creation in the Athena is failed, please check chatter messaged  for more details.&lt;/strong&gt;&lt;/p&gt;</fieldText>
+            <fieldText>&lt;p style=&quot;text-align: center;&quot;&gt;&lt;strong style=&quot;color: rgb(183, 24, 16); background-color: rgb(255, 255, 255);&quot;&gt;Account creation in the Athena is failed, please check chatter messaged  for more details.&lt;/strong&gt;&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
         </fields>
         <showFooter>true</showFooter>
-        <showHeader>false</showHeader>
+        <showHeader>true</showHeader>
     </screens>
     <screens>
         <name>Athena_Success_Message</name>
@@ -1131,7 +1368,7 @@
         <dataType>Apex</dataType>
         <isCollection>false</isCollection>
         <isInput>false</isInput>
-        <isOutput>true</isOutput>
+        <isOutput>false</isOutput>
     </variables>
     <variables>
         <name>selectedRoleCode</name>

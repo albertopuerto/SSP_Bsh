@@ -2,7 +2,7 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Apttus__ObligationName__c</fullName>
     <deprecated>false</deprecated>
-    <description>A user friendly name for the obligation</description>
+    <description>Brief description of the obligation.</description>
     <externalId>false</externalId>
     <inlineHelpText>A user friendly name for the obligation</inlineHelpText>
     <label>Obligation Name</label>

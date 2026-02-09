@@ -506,6 +506,11 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>true</editable>
+        <field>Apttus__APTS_Agreement__c.chk_ISPandDataProtection__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>false</editable>
         <field>Apttus__APTS_Agreement__c.ftxt_CompanySignedbyTitle__c</field>
         <readable>true</readable>
@@ -2767,6 +2772,10 @@
     </recordTypeVisibilities>
     <tabVisibilities>
         <tab>Approval_History</tab>
+        <visibility>DefaultOff</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>Apttus_AgreementParty__c</tab>
         <visibility>DefaultOff</visibility>
     </tabVisibilities>
     <tabVisibilities>
