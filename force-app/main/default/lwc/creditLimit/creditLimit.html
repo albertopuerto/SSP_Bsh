@@ -1,45 +1,37 @@
 <template>
     <lightning-card title="Credit Limit">
        
-            <lightning-icon size="small" style="cursor:pointer;" onclick={refreshCallMethodWorthiness} icon-name="utility:refresh" slot="actions" alternative-text="refresh"></lightning-icon>
-        
+        <template if:false ={accountRecord}>
+            <lightning-icon size="small" class="pointer" onclick={refreshCallMethodWorthiness} icon-name="utility:refresh" slot="actions" alternative-text="refresh"></lightning-icon>
+        </template>
         <template if:true={accountRecord}>
             <template if:true={disableButton}>
-                <span slot="actions" style=" margin-right:11px;color:orange;"> <lightning-icon class="slds-current-color" icon-name="utility:warning" size="small" alternative-text="Warning" title="Warning"></lightning-icon></span>
+                <span slot="actions" class="smallMarginLeft statusWarning"> <lightning-icon class="slds-current-color" icon-name="utility:warning" size="small" alternative-text="Warning" title="Warning"></lightning-icon></span>
             </template>    
         </template>
         
-        <div style="align-items:center;">
-            <template if:false ={quoteRecord}>
-            <!--<h2 style="text-align:center; margin-bottom: 15px;">Click in the button to get the credit amount</h2>-->
-            </template>
-             <template if:true ={quoteRecord}>
-           <!--  <p style="margin-left:500px; padding-bottom:20px;"> Quote credit limit </p>-->
-             </template>
+        <div class="alignCenter">
     
             <template if:true ={accountRecord}>
         
-                <div>
+                <div class="alignCenter">
                     
-                    <lightning-button style="margin-left: 160px;" class="getButton" label="Get account credit limit" aria-label="test" title="test" disabled={disableButton} onclick={getAccountCreditLimit} ></lightning-button>
+                    <lightning-button label={accountCredtiLimitLabel} aria-label="test" title="test" disabled={disableButton} onclick={getAccountCreditLimit} ></lightning-button>
                     <template if:true={disableButton}>
-                        <lightning-helptext style="margin-left:5px;" icon-name="utility:info_alt" content={buttonTitle}></lightning-helptext>
+                        <lightning-helptext class="smallMarginLeft" icon-name="utility:info_alt" content={buttonTitle}></lightning-helptext>
                     </template>
                 </div>
 
                 <template if:true={showAccountLimit}>
-                <p data-id="messageText" style="padding-top:20px;text-align:center;"> The limit for this account is <lightning-formatted-number value={accountLimit} format-style="currency" currency-code={objectCurrency} minimum-fraction-digits="2"></lightning-formatted-number></p>
+                <p data-id="messageText" class="alignCenter smallPaddingTop"> {label.limitAccountMessage} <lightning-formatted-number value={accountLimit} format-style="currency" currency-code={objectCurrency} minimum-fraction-digits="2"></lightning-formatted-number></p>
                 </template>
                 <template if:true={showError}>
                     <div>
-                        <p data-id="errorText" style="padding-top:20px;text-align:center;"> <span style=" margin-right:11px;color:#ba0517;"> <lightning-icon class="slds-current-color" display={showError} icon-name="utility:error" size="small" alternative-text="Error" title="Error"></lightning-icon></span> {errorMessage}</p>
+                        <p data-id="errorText" class="alignCenter smallPaddingTop"> <span class="errorStatus"> <lightning-icon class="slds-current-color" display={showError} icon-name="utility:error" size="small" alternative-text="Error" title="Error"></lightning-icon></span> {errorMessage}</p>
                     </div>
                 
                 </template>
             </template>
-            
-
-          
             
             <template if:true ={quoteRecord}>
                   <template if:true ={isLoading}>
@@ -48,28 +40,24 @@
                
                 <template if:false ={isLoading}>
             
-                    <table style="padding:10px;">
+                    <table class="smallPadding">
 
                         <tr>
                             <template if:true={quoteLimitSuccess}>
-                            <td style="padding:12px;">
-                                <span style="margin-left: 10px;"> <span style="color:green; margin-right:8px;"> <lightning-icon class="slds-current-color" display={quoteLimitSuccess} icon-name="utility:success" size="small" alternative-text="Success" title="Success"></lightning-icon></span>{quoteLimitMessage}</span>
+                            <td class="smallPadding">
+                                <span class="smallMarginLeft"> <span class="statusSuccess smallMarginRight"> <lightning-icon class="slds-current-color" display={quoteLimitSuccess} icon-name="utility:success" size="small" alternative-text="Success" title="Success"></lightning-icon></span>{quoteLimitMessage}</span>
                             </td>
                             </template>
                             <template if:true={quoteLimitError}> 
                                 
-                            <td style="padding:12px;">
-                                <span style="margin-left: 10px;"> <span style="color:#ba0517; margin-right:8px;"> <lightning-icon class="slds-current-color" display={quoteLimitError} icon-name="utility:error" size="small" alternative-text="Error" title="Error"></lightning-icon></span>{quoteLimitMessage}</span>
+                            <td class="smallPadding">
+                                <span class="smallMarginLeft"> <span class="errorStatus smallMarginRight"> <lightning-icon class="slds-current-color" display={quoteLimitError} icon-name="utility:error" size="small" alternative-text="Error" title="Error"></lightning-icon></span>{quoteLimitMessage}</span>
                             </td>
                             
                             </template>
                             
                         </tr>
-                        <tr><!--
-                            <td><lightning-icon class="slds-icon_small" onclick={refreshCallMethodWorthiness} icon-name="utility:refresh" alternative-text="refresh"></lightning-icon></td>
-                            <td>
-                                
-                            </td>-->
+                        <tr>
                             
                         </tr>
                     </table>
@@ -80,43 +68,23 @@
                 <template if:true ={isLoading}>
                 <lightning-spinner alternative-text="Loading"></lightning-spinner>
             </template>
-                    <table style="padding:10px;">
-                       <!-- <tr>
-                             <template if:true={orderLimitSuccess}>
-                                <td style="color:green;">
-                                    <p style="margin-left: 200px;padding-top:15px; padding-left:20px;color:green;">Success</p>
-                                </td>
-                            </template>
-                            <template if:true={orderLimitError}>
-                                <td style="color:#ba0517;">
-                                    <p style="margin-left: 200px;padding-top:15px; padding-left:20px;color:#ba0517;">Error</p>
-                                </td>
-                            </template>
-                        </tr>-->
+                    <table class="smallPadding">
+                    
                         <tr>
                             <template if:true={orderLimitSuccess}>
-                            <td style="padding:12px;">
-                                <span style="margin-left: 10px;"> <span style="color:green; margin-right:8px;"> <lightning-icon class="slds-current-color" display={orderLimitSuccess} icon-name="utility:success" size="small" alternative-text="Success" title="Success"></lightning-icon></span>{orderLimitMessage}</span>
+                            <td class="smallPadding">
+                                <span class="smallMarginLeft"> <span class="smallMarginRight statusSuccess"> <lightning-icon class="slds-current-color" display={orderLimitSuccess} icon-name="utility:success" size="small" alternative-text="Success" title="Success"></lightning-icon></span>{orderLimitMessage}</span>
                             </td>
                             </template>
                             <template if:true={orderLimitError}>    
-                            <td style="padding:12px;">
-                                <span style="margin-left: 10px;"> <span style="color:#ba0517; margin-right:8px;"> <lightning-icon class="slds-current-color" display={orderLimitError} icon-name="utility:error" size="small" alternative-text="Error" title="Error"></lightning-icon></span>{orderLimitMessage}</span>
+                            <td class="smallPadding">
+                                <span class="smallMarginLeft"> <span class="errorStatus smallMarginRight"> <lightning-icon class="slds-current-color" display={orderLimitError} icon-name="utility:error" size="small" alternative-text="Error" title="Error"></lightning-icon></span>{orderLimitMessage}</span>
                             </td>
                             
                             </template>
                            
                         </tr>
-                        <tr>
-                           <!-- <td>
-                                <p>a</p>
-                                <lightning-icon size="x-small" onclick={refreshCallMethodWorthiness} icon-name="utility:refresh" alternative-text="refresh"></lightning-icon>
-                            </td>
-                            <td>
-                                
-                            </td>-->
-                            
-                        </tr>
+                        
                     </table>
                
             </template>

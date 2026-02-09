@@ -4,7 +4,7 @@
     <deprecated>false</deprecated>
     <description>The hyperlink to the document associated with the object</description>
     <externalId>false</externalId>
-    <formula>IF (LEN(Apttus__DocumentUrl__c) &gt; 0,HYPERLINK(Apttus__DocumentUrl__c, $Label.apttus__View , &quot;_blank&quot;),NULL)</formula>
+    <formula>IF (LEN(Apttus__DocumentUrl__c) &gt; 0,HYPERLINK(Apttus__DocumentUrl__c, $Label.Apttus__View , &quot;_blank&quot;),NULL)</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
     <label>Document Link</label>
     <required>false</required>

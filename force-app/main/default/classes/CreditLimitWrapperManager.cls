@@ -4,7 +4,7 @@
 */
 public with sharing class CreditLimitWrapperManager {
 
-    public static final String CREDITSEGMENTID = '5370'; // Now it is a constant but in the future it will be mapped properly (salesforce/cpi)
+    public static final String CREDITSEGMENTID = '5370';
     /**
 	* @author       APB
 	* @description  createAccountRequest method
@@ -35,10 +35,9 @@ public with sharing class CreditLimitWrapperManager {
     public static CreditLimitWrappers.CreditWorthinessQueryRequest createCreditWorthinessRequest(Decimal objectAmount,String objectCurrency,String boschPartnerId){
 
         String agencyId = [SELECT Id FROM Organization WITH SECURITY_ENFORCED LIMIT 1].Id;
-        //			TO CHECK
         CreditLimitWrappers.CheckingSchedule schedule= new CreditLimitWrappers.CheckingSchedule();
 
-        schedule.ValuationDate= Date.newInstance(2025,02,10); // check if needs to be today or a static date
+        schedule.ValuationDate= Date.newInstance(2025,02,10);
         schedule.CheckedAmount= objectAmount;
         schedule.CreditSegmentInternalID= CREDITSEGMENTID;
         schedule.currencyCode= objectCurrency;

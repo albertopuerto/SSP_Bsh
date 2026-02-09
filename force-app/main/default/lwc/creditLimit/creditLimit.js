@@ -2,14 +2,20 @@ import { LightningElement, track , api ,wire} from 'lwc';
 import callGetLimit from '@salesforce/apex/CreditLimitManager.callGetLimit';
 import getObjectCurrency from '@salesforce/apex/CreditLimitManager.getObjectCurrency';
 import getAccountFields from '@salesforce/apex/CreditLimitManager.getAccountFields';
+import limitAccountMessage from "@salesforce/label/c.limitAccountMessage";
+import creditLimitAccountButton from "@salesforce/label/c.creditLimitAccountButton";
+import creditLimitAccountButtonRetry from "@salesforce/label/c.creditLimitAccountButtonRetry";
 export default class creditLimit extends LightningElement {
+
+    label = {
+        limitAccountMessage,
+    };
    @track accountRecord = false;
    @track quoteRecord = false;
    @track orderRecord = false;
    @track showAccountLimit = false;
    @track showError = false;
    @track accountLimit;
-   @track authToken;
    @api objectApiName;
    @api recordId;
    @track quoteLimitMessage;
@@ -27,9 +33,9 @@ export default class creditLimit extends LightningElement {
 
    @track objectCurrency;
    
-   @track creditInfoWrapper;
+    @track creditInfoWrapper;
+    @track accountCredtiLimitLabel = creditLimitAccountButton;
 
-   @track recordData;
    @track account =[];
 
    @track buttonTitle = '';
@@ -107,7 +113,6 @@ export default class creditLimit extends LightningElement {
         this.errorMessage= '';
         this.quoteLimitMessage= '';
         this.orderLimitMessage= '';
-        this.accountLimit;
         this.showAccountLimit= false;
         this.showError= false;
         this.quoteLimitSuccess = false;
@@ -118,7 +123,6 @@ export default class creditLimit extends LightningElement {
         this.orderLimitMessage= '';
     }
    
-   // call to a class for the three methods one class apart with the three calls to the three endpoints and the respective errors to nebula, If there is any error or failure send a toast
 getAccountCreditLimit(){
     this.emptyVariables();
         
@@ -137,9 +141,11 @@ getAccountCreditLimit(){
                 this.accountLimit= this.creditInfoWrapper.message;
 
                 if(this.creditInfoWrapper.success== true){
+                    this.accountCredtiLimitLabel= creditLimitAccountButton;
                     this.showAccountLimit= true;
                 }else{
-                    this.showError= true;     
+                    this.showError= true;
+                    this.accountCredtiLimitLabel= creditLimitAccountButtonRetry;     
                     this.errorMessage= this.creditInfoWrapper.message;               
                 }
             }

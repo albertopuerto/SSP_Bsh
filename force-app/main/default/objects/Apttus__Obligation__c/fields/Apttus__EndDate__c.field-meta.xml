@@ -3,10 +3,9 @@
     <fullName>Apttus__EndDate__c</fullName>
     <deprecated>false</deprecated>
     <description>The obligation end date.</description>
-    <externalId>false</externalId>
     <inlineHelpText>The obligation end date. Maximum of all related Agreement Line Item contract end date</inlineHelpText>
     <label>End Date</label>
-    <required>true</required>
+    <required>false</required>
     <trackTrending>false</trackTrending>
     <type>Date</type>
 </CustomField>
