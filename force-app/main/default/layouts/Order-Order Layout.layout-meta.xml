@@ -87,6 +87,10 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
+                <field>cur_Current_Credit_Limit_including_VAT__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
                 <field>pkl_ReasonOfCancellation__c</field>
             </layoutItems>
         </layoutColumns>

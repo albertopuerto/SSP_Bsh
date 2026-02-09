@@ -3,12 +3,12 @@
     <actionCalls>
         <name>act_PostToChatter_NotifyOppyTeam</name>
         <label>Post to Chatter to Notify Oppy Team</label>
-        <locationX>182</locationX>
+        <locationX>754</locationX>
         <locationY>947</locationY>
         <actionName>chatterPost</actionName>
         <actionType>chatterPost</actionType>
         <connector>
-            <targetReference>decn_IsQuoteReadyToOrder</targetReference>
+            <targetReference>Check_Any_Fields_are_missing_in_Quote</targetReference>
         </connector>
         <flowTransactionModel>CurrentTransaction</flowTransactionModel>
         <inputParameters>
@@ -30,8 +30,8 @@
     <actionCalls>
         <name>Log_Quote_Missing_Values_Error</name>
         <label>Log Quote Missing Values Error</label>
-        <locationX>314</locationX>
-        <locationY>1271</locationY>
+        <locationX>1854</locationX>
+        <locationY>2087</locationY>
         <actionName>FlowLogEntry</actionName>
         <actionType>apex</actionType>
         <connector>
@@ -70,8 +70,8 @@
         <description>Save the Logs</description>
         <name>Save_Logs</name>
         <label>Save Logs</label>
-        <locationX>314</locationX>
-        <locationY>1379</locationY>
+        <locationX>1854</locationX>
+        <locationY>2195</locationY>
         <actionName>Logger</actionName>
         <actionType>apex</actionType>
         <flowTransactionModel>Automatic</flowTransactionModel>
@@ -81,9 +81,73 @@
     <apiVersion>60.0</apiVersion>
     <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
     <assignments>
+        <name>Adding_the_value_for_Incoterm_Location</name>
+        <label>Adding the value for Incoterm Location</label>
+        <locationX>1810</locationX>
+        <locationY>1487</locationY>
+        <assignmentItems>
+            <assignToReference>flag_MissingIncotermLocation</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Loop_through_Quote_lines</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Adding_the_value_for_missing_fields</name>
+        <label>Adding the value for Incoterm</label>
+        <locationX>1546</locationX>
+        <locationY>1487</locationY>
+        <assignmentItems>
+            <assignToReference>flag_MissingIncoterm</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Loop_through_Quote_lines</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Adding_the_value_for_paymentterms</name>
+        <label>Adding the value for paymentterms</label>
+        <locationX>2074</locationX>
+        <locationY>1487</locationY>
+        <assignmentItems>
+            <assignToReference>flag_MissingPaymentterms</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Loop_through_Quote_lines</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Adding_the_value_for_Quantity_Unit</name>
+        <label>Adding the value for Quantity Unit</label>
+        <locationX>2338</locationX>
+        <locationY>1487</locationY>
+        <assignmentItems>
+            <assignToReference>flag_MissingQuantityUnit</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Loop_through_Quote_lines</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
         <name>asgn_ChatterPostEnd</name>
         <label>Assign Chatter Post End</label>
-        <locationX>182</locationX>
+        <locationX>754</locationX>
         <locationY>839</locationY>
         <assignmentItems>
             <assignToReference>Mentions</assignToReference>
@@ -99,7 +163,7 @@
     <assignments>
         <name>asgn_ChatterPostStart</name>
         <label>Assign Chatter Post Start</label>
-        <locationX>182</locationX>
+        <locationX>754</locationX>
         <locationY>431</locationY>
         <assignmentItems>
             <assignToReference>Mentions</assignToReference>
@@ -115,7 +179,7 @@
     <assignments>
         <name>asgn_UserIdToChatterPost</name>
         <label>Assign UserId to Chatter Post</label>
-        <locationX>270</locationX>
+        <locationX>842</locationX>
         <locationY>647</locationY>
         <assignmentItems>
             <assignToReference>Mentions</assignToReference>
@@ -145,8 +209,8 @@
     <customErrors>
         <name>cem_QuoteMissingValues</name>
         <label>Quote missing values</label>
-        <locationX>314</locationX>
-        <locationY>1163</locationY>
+        <locationX>1854</locationX>
+        <locationY>1979</locationY>
         <connector>
             <targetReference>Log_Quote_Missing_Values_Error</targetReference>
         </connector>
@@ -155,11 +219,200 @@
             <isFieldError>false</isFieldError>
         </customErrorMessages>
     </customErrors>
+    <customErrors>
+        <name>Incoterm_Missing</name>
+        <label>Incoterm Missing</label>
+        <locationX>1062</locationX>
+        <locationY>1979</locationY>
+        <customErrorMessages>
+            <errorMessage>To complete the purchase order validation, please ensure all required information from the corresponding quote is provided first. The following information is currently missing in line items:
+INCOTERM</errorMessage>
+            <isFieldError>false</isFieldError>
+        </customErrorMessages>
+    </customErrors>
+    <customErrors>
+        <name>Missing_fields_in_the_quote</name>
+        <label>Missing fields in the quote</label>
+        <locationX>50</locationX>
+        <locationY>1163</locationY>
+        <customErrorMessages>
+            <errorMessage>To complete the purchase order validation, please ensure all required information from the corresponding quote is provided first. Please check that the following fields are filled for quote:
+INCOTERM,
+INCOTERM Location and
+Payment Terms</errorMessage>
+            <isFieldError>false</isFieldError>
+        </customErrorMessages>
+    </customErrors>
+    <customErrors>
+        <name>Missing_other_fields_in_line_item</name>
+        <label>Missing other fields in line item</label>
+        <locationX>1326</locationX>
+        <locationY>1979</locationY>
+        <customErrorMessages>
+            <errorMessage>Please check that the following fields are filled for all line items: INCOTERM, INCOTERM Location, Quantity Unit and Payment Terms</errorMessage>
+            <isFieldError>false</isFieldError>
+        </customErrorMessages>
+    </customErrors>
+    <decisions>
+        <name>Are_Any_line_fields_missing</name>
+        <label>Are Any line fields missing ?</label>
+        <locationX>1458</locationX>
+        <locationY>1763</locationY>
+        <defaultConnector>
+            <targetReference>decn_IsQuoteReadyToOrder</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Not Missing</defaultConnectorLabel>
+        <rules>
+            <name>Missing</name>
+            <conditionLogic>or</conditionLogic>
+            <conditions>
+                <leftValueReference>flag_MissingIncoterm</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>flag_MissingIncotermLocation</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>flag_MissingPaymentterms</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>flag_MissingQuantityUnit</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Is_only_Incoterm_Missing</targetReference>
+            </connector>
+            <label>Missing</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Check_Any_Fields_are_missing_in_Quote</name>
+        <label>Check Any Fields are missing in Quote</label>
+        <locationX>754</locationX>
+        <locationY>1055</locationY>
+        <defaultConnector>
+            <targetReference>Get_Quote_lines_related_to_Quote</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Missing_fields_in_Quote</name>
+            <conditionLogic>or</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.pkl_INCOTerms1__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.txt_INCOTerms2__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.pkl_PaymentTerms__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Missing_fields_in_the_quote</targetReference>
+            </connector>
+            <label>Missing fields in Quote</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Check_Missing_Line_Fields</name>
+        <label>Check Missing Line Fields</label>
+        <locationX>2074</locationX>
+        <locationY>1379</locationY>
+        <defaultConnector>
+            <targetReference>Loop_through_Quote_lines</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Not Missing</defaultConnectorLabel>
+        <rules>
+            <name>Missing_Incoterm</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Loop_through_Quote_lines.pkl_INCOTerms1__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Adding_the_value_for_missing_fields</targetReference>
+            </connector>
+            <label>Missing Incoterm</label>
+        </rules>
+        <rules>
+            <name>Missing_Incoterm_Location</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Loop_through_Quote_lines.txt_INCOTerms2__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Adding_the_value_for_Incoterm_Location</targetReference>
+            </connector>
+            <label>Missing Incoterm Location</label>
+        </rules>
+        <rules>
+            <name>Missing_Payment_Terms</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Loop_through_Quote_lines.pkl_PaymentTerms__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Adding_the_value_for_paymentterms</targetReference>
+            </connector>
+            <label>Missing Payment Terms</label>
+        </rules>
+        <rules>
+            <name>Missing_Quantity_Unit</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Loop_through_Quote_lines.pkl_QuantityUnit__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Adding_the_value_for_Quantity_Unit</targetReference>
+            </connector>
+            <label>Missing Quantity Unit</label>
+        </rules>
+    </decisions>
     <decisions>
         <name>decn_IsQuoteReadyToOrder</name>
         <label>Is Quote ready to Order</label>
-        <locationX>182</locationX>
-        <locationY>1055</locationY>
+        <locationX>1722</locationX>
+        <locationY>1871</locationY>
         <defaultConnector>
             <targetReference>cem_QuoteMissingValues</targetReference>
         </defaultConnector>
@@ -194,15 +447,54 @@
             <label>Yes</label>
         </rules>
     </decisions>
+    <decisions>
+        <name>Is_only_Incoterm_Missing</name>
+        <label>Is only Incoterm Missing</label>
+        <locationX>1194</locationX>
+        <locationY>1871</locationY>
+        <defaultConnector>
+            <targetReference>Missing_other_fields_in_line_item</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Missing other fields</defaultConnectorLabel>
+        <rules>
+            <name>only_Incoterm_Missing</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>flag_MissingIncoterm</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Incoterm_Missing</targetReference>
+            </connector>
+            <label>only Incoterm Missing</label>
+        </rules>
+    </decisions>
     <description>- Posts a Chatter Message to the Quote about the received PO
 - Checks Ordered checkbox to trigger Order Creation</description>
     <environments>Default</environments>
     <interviewLabel>Quote_AfterUpdate {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Quote_AfterUpdate</label>
     <loops>
+        <name>Loop_through_Quote_lines</name>
+        <label>Loop through Quote lines</label>
+        <locationX>1458</locationX>
+        <locationY>1271</locationY>
+        <collectionReference>Get_Quote_lines_related_to_Quote</collectionReference>
+        <iterationOrder>Asc</iterationOrder>
+        <nextValueConnector>
+            <targetReference>Check_Missing_Line_Fields</targetReference>
+        </nextValueConnector>
+        <noMoreValuesConnector>
+            <targetReference>Are_Any_line_fields_missing</targetReference>
+        </noMoreValuesConnector>
+    </loops>
+    <loops>
         <name>lp_OpportuntityTeamMembers</name>
         <label>Loop Opportuntity Team Members</label>
-        <locationX>182</locationX>
+        <locationX>754</locationX>
         <locationY>539</locationY>
         <collectionReference>get_OpportunityTeam</collectionReference>
         <iterationOrder>Asc</iterationOrder>
@@ -235,7 +527,7 @@
     <recordLookups>
         <name>get_OpportunityTeam</name>
         <label>Get Opportunity Team</label>
-        <locationX>182</locationX>
+        <locationX>754</locationX>
         <locationY>323</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
@@ -256,8 +548,8 @@
     <recordLookups>
         <name>get_ParentOpportunity</name>
         <label>Get Parent Opportunity</label>
-        <locationX>50</locationX>
-        <locationY>1271</locationY>
+        <locationX>1590</locationX>
+        <locationY>2087</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Invoke_Update_Opportunity_Subflow</targetReference>
@@ -274,12 +566,38 @@
         <object>Opportunity</object>
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordLookups>
+    <recordLookups>
+        <name>Get_Quote_lines_related_to_Quote</name>
+        <label>Get Quote lines related to Quote</label>
+        <locationX>1458</locationX>
+        <locationY>1163</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Loop_through_Quote_lines</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>SBQQ__Quote__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>false</getFirstRecordOnly>
+        <object>SBQQ__QuoteLine__c</object>
+        <queriedFields>Id</queriedFields>
+        <queriedFields>pkl_INCOTerms1__c</queriedFields>
+        <queriedFields>txt_INCOTerms2__c</queriedFields>
+        <queriedFields>pkl_PaymentTerms__c</queriedFields>
+        <queriedFields>pkl_QuantityUnit__c</queriedFields>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
     <recordUpdates>
         <description>Trigger creation of order and order line records.</description>
         <name>Copy_1_of_Set_Create_Order</name>
         <label>Create order from quote</label>
-        <locationX>50</locationX>
-        <locationY>1163</locationY>
+        <locationX>1590</locationX>
+        <locationY>1979</locationY>
         <connector>
             <targetReference>get_ParentOpportunity</targetReference>
         </connector>
@@ -298,7 +616,7 @@
         <inputReference>$Record</inputReference>
     </recordUpdates>
     <start>
-        <locationX>56</locationX>
+        <locationX>628</locationX>
         <locationY>0</locationY>
         <connector>
             <targetReference>get_OpportunityTeam</targetReference>
@@ -321,8 +639,8 @@
         <description>Launches Subflow that performs updates on the related parent Opportunity.</description>
         <name>Invoke_Update_Opportunity_Subflow</name>
         <label>Invoke Update Opportunity Subflow</label>
-        <locationX>50</locationX>
-        <locationY>1379</locationY>
+        <locationX>1590</locationX>
+        <locationY>2195</locationY>
         <flowName>flw_Quote_AfterUpdate_UpdateOppy</flowName>
         <inputAssignments>
             <name>obj_ParentOpportunity</name>
@@ -332,6 +650,46 @@
         </inputAssignments>
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </subflows>
+    <variables>
+        <name>flag_MissingIncoterm</name>
+        <dataType>Boolean</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <value>
+            <booleanValue>false</booleanValue>
+        </value>
+    </variables>
+    <variables>
+        <name>flag_MissingIncotermLocation</name>
+        <dataType>Boolean</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <value>
+            <booleanValue>false</booleanValue>
+        </value>
+    </variables>
+    <variables>
+        <name>flag_MissingPaymentterms</name>
+        <dataType>Boolean</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <value>
+            <booleanValue>false</booleanValue>
+        </value>
+    </variables>
+    <variables>
+        <name>flag_MissingQuantityUnit</name>
+        <dataType>Boolean</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <value>
+            <booleanValue>false</booleanValue>
+        </value>
+    </variables>
     <variables>
         <name>Mentions</name>
         <dataType>String</dataType>

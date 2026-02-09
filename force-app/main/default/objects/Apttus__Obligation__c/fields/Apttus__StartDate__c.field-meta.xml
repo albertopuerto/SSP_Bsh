@@ -3,10 +3,9 @@
     <fullName>Apttus__StartDate__c</fullName>
     <deprecated>false</deprecated>
     <description>The obligation start date.</description>
-    <externalId>false</externalId>
     <inlineHelpText>The obligation start date. Minimum of all related Agreement Line Item contract original start date</inlineHelpText>
     <label>Start Date</label>
-    <required>true</required>
+    <required>false</required>
     <trackTrending>false</trackTrending>
     <type>Date</type>
 </CustomField>
