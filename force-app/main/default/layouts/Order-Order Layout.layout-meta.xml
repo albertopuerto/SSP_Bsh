@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Layout xmlns="http://soap.sforce.com/2006/04/metadata">
-    <excludeButtons>OpenSlackRecordChannel</excludeButtons>
+    <excludeButtons>CreateContractFromOrder</excludeButtons>
     <excludeButtons>Submit</excludeButtons>
     <layoutSections>
         <customLabel>false</customLabel>
@@ -88,10 +88,6 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>cur_Current_Credit_Limit_including_VAT__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>pkl_ReasonOfCancellation__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsTopToBottom</style>
@@ -359,6 +355,7 @@
     <relatedLists>
         <fields>Product2</fields>
         <fields>ProductCode</fields>
+        <fields>ftxt_GroupName__c</fields>
         <fields>Quantity</fields>
         <fields>UnitPrice</fields>
         <fields>TotalPrice</fields>
