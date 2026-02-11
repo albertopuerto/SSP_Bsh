@@ -3,7 +3,6 @@
     <description>Grant metadata API access to data squad for logical data model creation in external applications.</description>
     <hasActivationRequired>false</hasActivationRequired>
     <label>DataSquadMetadataAPI</label>
-    <license>SalesforceAPIIntegrationPsl</license>
     <userPermissions>
         <enabled>true</enabled>
         <name>ModifyDataClassification</name>
