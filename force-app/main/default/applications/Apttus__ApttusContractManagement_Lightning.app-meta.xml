@@ -8,11 +8,6 @@
         <type>Flexipage</type>
         <pageOrSobjectType>standard-home</pageOrSobjectType>
     </actionOverrides>
-    <brand>
-        <headerColor>#0070D2</headerColor>
-        <logoVersion>1</logoVersion>
-        <shouldOverrideOrgTheme>false</shouldOverrideOrgTheme>
-    </brand>
     <description>Conga CLM Suite - The Conga CLM Suite gives you complete visibility and control of your contract process. Easy to deploy and use, you gain benefits immediately – process control, risk management and high, immediate ROI.</description>
     <formFactors>Large</formFactors>
     <isNavAutoTempTabsDisabled>false</isNavAutoTempTabsDisabled>

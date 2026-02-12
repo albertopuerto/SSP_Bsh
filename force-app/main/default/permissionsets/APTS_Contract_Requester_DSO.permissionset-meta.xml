@@ -6301,11 +6301,6 @@
     </customMetadataTypeAccesses>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Account.IsExcludedFromRealign</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>Account.ftxt_ShippingCondition__c</field>
         <readable>true</readable>
     </fieldPermissions>
