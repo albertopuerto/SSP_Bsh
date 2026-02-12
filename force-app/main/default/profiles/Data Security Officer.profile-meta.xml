@@ -3,6 +3,11 @@
     <custom>true</custom>
     <userLicense>Salesforce</userLicense>
     <applicationVisibilities>
+        <application>Apttus__ApttusContractManagement_Lightning</application>
+        <default>false</default>
+        <visible>true</visible>
+    </applicationVisibilities>
+    <applicationVisibilities>
         <application>Conga_Approvals_Lightning</application>
         <default>false</default>
         <visible>false</visible>
