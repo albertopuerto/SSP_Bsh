@@ -20703,6 +20703,11 @@
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
     <applicationVisibilities>
+        <application>Apttus__ApttusContractManagement_Lightning</application>
+        <default>false</default>
+        <visible>true</visible>
+    </applicationVisibilities>
+    <applicationVisibilities>
         <application>CRMC_PP__Grid</application>
         <default>false</default>
         <visible>true</visible>

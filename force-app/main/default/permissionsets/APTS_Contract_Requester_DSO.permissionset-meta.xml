@@ -6300,6 +6300,21 @@
         <name>Agreement_Process_Flow_Setting__mdt</name>
     </customMetadataTypeAccesses>
     <fieldPermissions>
+        <editable>false</editable>
+        <field>Account.pkl_IsTradingPartnerNoRequired_c__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Account.txt_AccountID_c__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Account.txt_TradingParnerNo_c__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>Apttus_AgreementParty__c.chk_PrimaryParty__c</field>
         <readable>true</readable>
@@ -8460,6 +8475,11 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>false</editable>
+        <field>Apttus__APTS_Agreement__c.Apttus__GoogleDocsReview__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>Apttus__APTS_Agreement__c.Apttus__GoogleDriveEnabled__c</field>
         <readable>true</readable>
@@ -8517,6 +8537,21 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Apttus__APTS_Agreement__c.Apttus__Non_Standard_Legal_Language__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Apttus__APTS_Agreement__c.Apttus__Office365ExternalReview__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Apttus__APTS_Agreement__c.Apttus__Office365InternalReview__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Apttus__APTS_Agreement__c.Apttus__Office365Review__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -8632,6 +8667,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Apttus__APTS_Agreement__c.Apttus__Risk_Rating__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Apttus__APTS_Agreement__c.Apttus__SendToTeamReview__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -11800,4 +11840,20 @@
         <tab>cnga__ApprovalCenter</tab>
         <visibility>Visible</visibility>
     </tabSettings>
+    <applicationVisibilities>
+        <application>Apttus_Approval__ApttusApprovalsManagement</application>
+        <visible>true</visible>
+    </applicationVisibilities>
+    <applicationVisibilities>
+        <application>Apttus_Base2__CongaSmartSearch</application>
+        <visible>true</visible>
+    </applicationVisibilities>
+    <applicationVisibilities>
+        <application>Apttus__ApttusConfigurableWizard</application>
+        <visible>true</visible>
+    </applicationVisibilities>
+    <applicationVisibilities>
+        <application>Apttus__ApttusContractManagement_Lightning</application>
+        <visible>true</visible>
+    </applicationVisibilities>
 </PermissionSet>
