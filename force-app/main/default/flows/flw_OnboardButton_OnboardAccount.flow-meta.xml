@@ -1059,7 +1059,13 @@
         <inputAssignments>
             <field>pkl_Status__c</field>
             <value>
-                <stringValue>Sent to Athena</stringValue>
+                <elementReference>send_Account_to_Athena.200.accountCreateResponse.Statusx20Text</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>txt_AthenaUUID__c</field>
+            <value>
+                <elementReference>send_Account_to_Athena.200.accountCreateResponse.BPId</elementReference>
             </value>
         </inputAssignments>
         <object>Account</object>
