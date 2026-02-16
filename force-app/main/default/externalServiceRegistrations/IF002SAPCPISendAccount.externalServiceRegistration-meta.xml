@@ -102,11 +102,13 @@
                       &quot;properties&quot;: {
                         &quot;Status Code&quot;: { &quot;type&quot;: &quot;string&quot; },
                         &quot;Status Text&quot;: { &quot;type&quot;: &quot;string&quot; },
+                        &quot;BPId&quot;: { &quot;type&quot;: &quot;string&quot; },
                         &quot;CorrelationId&quot;: { &quot;type&quot;: &quot;string&quot; }
                       },
                       &quot;required&quot;: [
                         &quot;Status Code&quot;,
                         &quot;Status Text&quot;,
+                        &quot;BPId&quot;,
                         &quot;CorrelationId&quot;
                       ]
                     }
