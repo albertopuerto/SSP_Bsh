@@ -44,6 +44,25 @@ public with sharing class QuoteSelector extends fflib_SObjectSelector {
     }
         return quotes;
     }
+    
+    /**
+	* @author       APB
+	* @description  quote selectQuoteToolCoordinator method
+    * @param		idSet Set<ID>
+	* @return		List<SBQQ__Quote__c>
+	*/
+    public List<SBQQ__Quote__c> selectQuoteToolCoordinator(Set<Id> idSet) {
+    List<SBQQ__Quote__c> quotes = new List<SBQQ__Quote__c>();
+    for(SBQQ__Quote__c quote : Database.query(
+            newQueryFactory(false)
+                .selectField(SBQQ__Quote__c.lkp_ToolCoordinator__c)
+                .setCondition('id in :idSet')
+                .toSOQL()))
+    {
+        quotes.add(quote);
+    }
+        return quotes;
+    }
 
     /**
 	* @author       APB
