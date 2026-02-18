@@ -9,6 +9,8 @@
 public with sharing class AthenaBusinessPartnerService { // NOPMD
 
     private static final String EXT_ID_FIELD = 'txt_AthenaUUID__c';
+    
+    private static final String CATEGORY_PERSON = 'Person';
 
     /**
      * @description Result object returned to WebService.
@@ -16,6 +18,7 @@ public with sharing class AthenaBusinessPartnerService { // NOPMD
     public class SvcResult {
         public Boolean isCreated;
         public Id accountId;
+        public Id contactId;
         public Id salesAreaLinkId;
         public Id partnerFunctionId;
     }
@@ -32,6 +35,9 @@ public with sharing class AthenaBusinessPartnerService { // NOPMD
 
         // only supporting Organization category - Nebula Logger handling in AthenaBusinessPartnerWebService class
         if(category != 'Organization'){
+            } else if (category == CATEGORY_PERSON) {
+    return processPerson(dto);
+} else {
             throw new ValidationException('Invalid or missing boschPartnerCategory value.');
         }
 
@@ -61,6 +67,34 @@ public with sharing class AthenaBusinessPartnerService { // NOPMD
             return res;
 
     }
+    
+    private static SvcResult processPerson(AthenaBusinessPartnerDTO dto) {
+    if (String.isBlank(dto.lastName)) {
+        throw new ValidationException('lastName is required for Person category.');
+    }
+
+    Contact con = new Contact();
+    con.FirstName = dto.firstName;
+    con.LastName = dto.lastName;
+    if (String.isNotBlank(dto.gender)) { con.GenderIdentity = dto.gender; }
+    if (String.isNotBlank(dto.academicTitle)) { con.txt_AcademicTitle__c = dto.academicTitle; }
+    con.mpkl_BoschPartnerRole__c = buildBoschPartnerRoles(dto.boschPartnerRoles);
+
+    insert as system con;
+
+    SvcResult res = new SvcResult();
+    res.isCreated = true;
+    res.contactId = con.Id;
+    return res;
+}
+    private static String buildBoschPartnerRoles(List<AthenaBusinessPartnerDTO.BoschPartnerRoleDTO> roles) {
+    if (roles == null || roles.isEmpty()) { return null; }
+    List<String> vals = new List<String>();
+    for (AthenaBusinessPartnerDTO.BoschPartnerRoleDTO r : roles) {
+        if (String.isNotBlank(r.boschPartnerRole)) { vals.add(r.boschPartnerRole.trim()); }
+    }
+    return vals.isEmpty() ? null : String.join(vals, ';');
+}
 
     /**
      * @description Reads the Bosch Partner category (Organization or Person).
@@ -137,13 +171,13 @@ public with sharing class AthenaBusinessPartnerService { // NOPMD
             acc.txt_SearchTerm2__c = dto.searchTerm2;
             acc.BillingStreet = dto.billingAddress.street;
             acc.BillingCity = dto.billingAddress.city;
-            acc.BillingStateCode = dto.billingAddress.region;
+           // acc.BillingStateCode = dto.billingAddress.region;
             acc.BillingPostalCode = dto.billingAddress.postalCode;
-            acc.BillingCountryCode = dto.billingAddress.countryCode;
+           // acc.BillingCountryCode = dto.billingAddress.countryCode;
             acc.BillingLatitude = dto.billingAddress.latitude;
             acc.BillingLongitude = dto.billingAddress.longitude;
             acc.Phone = dto.phone;
-            acc.chk_CustomerBlock__c = dto.centralBlock;
+           // acc.chk_CustomerBlock__c = dto.centralBlock;
 
         if(acc.id == null){
            insert as system acc;
