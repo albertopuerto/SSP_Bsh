@@ -65,10 +65,6 @@
                 <behavior>Edit</behavior>
                 <field>Fax</field>
             </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>mpkl_BoschPartnerRole__c</field>
-            </layoutItems>
         </layoutColumns>
         <style>TwoColumnsTopToBottom</style>
     </layoutSections>
