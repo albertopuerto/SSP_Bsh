@@ -14,7 +14,7 @@ public class CreditLimitApprovalController_Test {
         
         SBQQ__Quote__c[] quoteList = (SBQQ__Quote__c [])TestFactory.createSObjectList(new SBQQ__Quote__c(),1);
         quoteList[0].SBQQ__Status__c = 'Draft';
-        quoteList[0].SBQQ__Account__c = testAccountList[0];
+        quoteList[0].SBQQ__Account__c = testAccountList.Id;
         //quoteList[0].lkp_BillToAccount__c= testAccountList[0].Id;
         insert quoteList;
         
