@@ -24,11 +24,18 @@ private class QuoteLockTriggerTest {
             pkl_SalesOrg__c = 'DEM5'
         );
         insert salesArea;
+        
+        //Create Sales Data Customer
+        SalesAreaLink__c salesAreaLink = (SalesAreaLink__c)TestFactory.createSObject(new SalesAreaLink__c(),'TestFactoryDefaults.SalesAreaLinkDefaults', false);
+        salesAreaLink.mdr_Account__c = account.Id;
+        salesAreaLink.mdr_SalesArea__c = salesArea.Id;
+        insert salesAreaLink;
+        
         // Create Opportunity with required lookup field
         Opportunity opp = (Opportunity)TestFactory.createSObject(new Opportunity(), 'TestFactoryDefaults.OpportunityDefaults', false);
         opp.Name = 'Test Opportunity for Quote Lock';
         opp.AccountId = account.Id;
-        opp.lkp_SalesOrganization__c = salesArea.Id;
+        opp.lkp_SalesDataCustomer__c = salesAreaLink.Id;
         insert opp;
 
         SBQQ__Quote__c[] quoteList = (SBQQ__Quote__c[])TestFactory.createSObjectList(new SBQQ__Quote__c(), 1);

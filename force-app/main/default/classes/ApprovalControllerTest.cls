@@ -45,6 +45,12 @@ private class ApprovalControllerTest {
             sArea.pkl_Division__c = '01';
         insert sArea;
         
+        //Create Sales Data Customer
+        SalesAreaLink__c salesAreaLink = (SalesAreaLink__c)TestFactory.createSObject(new SalesAreaLink__c(),'TestFactoryDefaults.SalesAreaLinkDefaults', false);
+        salesAreaLink.mdr_Account__c = accountList[0].Id;
+        salesAreaLink.mdr_SalesArea__c = sArea.Id;
+        insert salesAreaLink;
+        
         //Create Opportunity (required for Quote)
         Opportunity opp = (Opportunity)TestFactory.createSObject(new Opportunity());
             opp.Name = 'Test Opportunity';
@@ -54,7 +60,7 @@ private class ApprovalControllerTest {
             opp.pklLeadingSolutionField__c = 'DEV';
             opp.pklTypeOfOpportunity__c = 'LTA';
             opp.pklTypeOfOffering__c = 'SW';
-            opp.lkp_SalesOrganization__c = sArea.Id;
+            opp.lkp_SalesDataCustomer__c = salesAreaLink.Id;
             insert opp;
         
         // Create Quote
