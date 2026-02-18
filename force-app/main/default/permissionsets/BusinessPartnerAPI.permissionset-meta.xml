@@ -161,6 +161,16 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Account.chk_CentralPostingBlock__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Account.chk_CustomerBlock__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Account.dtm_CreatedOn__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -192,11 +202,6 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Account.pkl_CivilianCustomer__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>Account.pkl_CustomerBlock__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -280,6 +285,11 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>true</editable>
+        <field>Account.txt_DunsId__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>false</editable>
         <field>Account.txt_ExternalID__c</field>
         <readable>true</readable>
@@ -307,6 +317,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Account.txt_ParentAccountIDC4C__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Account.txt_R3Id__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -386,16 +401,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>DuplicateAccountRelation__c.pkl_ReasonCategory__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>DuplicateAccountRelation__c.txt_ReasonDescription__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
         <field>SalesAreaLink__c.chk_CompleteDelivery__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -437,6 +442,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>SalesAreaLink__c.pkl_BillingBlockforCustomer__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>SalesAreaLink__c.pkl_CustomerBillingBlock__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -525,14 +535,14 @@
         <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
     <objectPermissions>
-        <allowCreate>false</allowCreate>
-        <allowDelete>false</allowDelete>
-        <allowEdit>false</allowEdit>
+        <allowCreate>true</allowCreate>
+        <allowDelete>true</allowDelete>
+        <allowEdit>true</allowEdit>
         <allowRead>true</allowRead>
-        <modifyAllRecords>false</modifyAllRecords>
+        <modifyAllRecords>true</modifyAllRecords>
         <object>BoschPartnerFunction__c</object>
         <viewAllFields>false</viewAllFields>
-        <viewAllRecords>false</viewAllRecords>
+        <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
     <objectPermissions>
         <allowCreate>true</allowCreate>
@@ -553,16 +563,6 @@
         <object>Contact</object>
         <viewAllFields>true</viewAllFields>
         <viewAllRecords>true</viewAllRecords>
-    </objectPermissions>
-    <objectPermissions>
-        <allowCreate>true</allowCreate>
-        <allowDelete>false</allowDelete>
-        <allowEdit>true</allowEdit>
-        <allowRead>true</allowRead>
-        <modifyAllRecords>false</modifyAllRecords>
-        <object>DuplicateAccountRelation__c</object>
-        <viewAllFields>false</viewAllFields>
-        <viewAllRecords>false</viewAllRecords>
     </objectPermissions>
     <objectPermissions>
         <allowCreate>true</allowCreate>
