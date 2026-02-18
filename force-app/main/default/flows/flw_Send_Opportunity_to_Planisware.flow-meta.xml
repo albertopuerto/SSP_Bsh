@@ -274,7 +274,7 @@
                 </rightValue>
             </conditions>
             <conditions>
-                <leftValueReference>Get_Opp_Record_Info.lkp_SalesOrganization__r.pkl_SalesOrg__c</leftValueReference>
+                <leftValueReference>Get_Opp_Record_Info.lkp_SalesDataCustomer__r.mdr_SalesArea__r.pkl_SalesOrg__c</leftValueReference>
                 <operator>IsNull</operator>
                 <rightValue>
                     <booleanValue>false</booleanValue>
@@ -498,7 +498,7 @@
             <targetReference>Get_Opp_Record_Info</targetReference>
         </connector>
     </start>
-    <status>Draft</status>
+    <status>Active</status>
     <textTemplates>
         <name>tmpl_RequestBodyTXT</name>
         <isViewedAsPlainText>false</isViewedAsPlainText>
