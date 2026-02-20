@@ -328,8 +328,12 @@ public with sharing class TestFactoryDefaults{
 		 */
 		public Map<Schema.SObjectField, Object> getFieldDefaults() {
             return new Map<Schema.SObjectField, Object>{
-                            SBQQ__QuoteLine__c.SBQQ__Quantity__c => 1,
-            SBQQ__QuoteLine__c.SBQQ__ListPrice__c => 100.00
+                SBQQ__QuoteLine__c.SBQQ__Quantity__c => 1,
+            	SBQQ__QuoteLine__c.SBQQ__ListPrice__c => 100.00,
+				SBQQ__QuoteLine__c.pkl_INCOTerms1__c=> 'DAT- Delivery at Terminal',
+				SBQQ__QuoteLine__c.txt_INCOTerms2__c=> 'test',
+				SBQQ__QuoteLine__c.pkl_PaymentTerms__c=> 'Net 30',
+				SBQQ__QuoteLine__c.pkl_QuantityUnit__c=> 'Each'
 
             };
 
