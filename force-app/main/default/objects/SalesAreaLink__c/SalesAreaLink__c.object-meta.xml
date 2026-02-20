@@ -157,7 +157,7 @@
     <label>Sales Data Customer</label>
     <nameField>
         <displayFormat>SAL-{000000}</displayFormat>
-        <label>Sales Area Link</label>
+        <label>Sales Data Customer</label>
         <type>AutoNumber</type>
     </nameField>
     <pluralLabel>Sales Data Customers</pluralLabel>
