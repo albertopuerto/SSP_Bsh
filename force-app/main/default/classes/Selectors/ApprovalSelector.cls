@@ -27,6 +27,7 @@ public with sharing class ApprovalSelector extends fflib_SObjectSelector {
             newQueryFactory(false)
                 .selectField('sbaa__Approver__r.sbaa__User__c')
                 .selectField('sbaa__Approver__r.sbaa__GroupId__c')
+        		.selectField('sbaa__ApprovedBy__c')
                 .setCondition('id in :idSet')
                 .toSOQL()))
     {

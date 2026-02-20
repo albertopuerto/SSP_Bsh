@@ -100,7 +100,7 @@
                             <value>ChangeOwnerOne</value>
                         </valueListItems>
                         <valueListItems>
-                            <value>CustomButton.SBQQ__Quote__c.Submit_for_Approval</value>
+                            <value>SBQQ__Quote__c.Submit_for_Approval</value>
                             <visibilityRule>
                                 <criteria>
                                     <leftValue>{!Record.ApprovalStatus__c}</leftValue>
