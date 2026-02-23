@@ -106,6 +106,7 @@ public with sharing class CreditLimitManager {
             responseBody= (CreditLimitWrappers.wrapperResponse)JSON.deserialize(CreditLimitUtilMethods.formatResponse(creditLimitresponse.getBody()), CreditLimitWrappers.wrapperResponse.class);
             creditWorthiness= responseBody.Envelope.Body.CreditWorthinessResponse.CreditWorthiness;
 
+            System.debug(creditWorthiness);
         }else{
 
             String objectRecordId = quoteToCalculate != null ? quoteToCalculate.Id : orderToCalculate.Id;
@@ -120,6 +121,18 @@ public with sharing class CreditLimitManager {
 
         if(creditWorthiness != null){
 
+      
+            if(quoteToCalculate!= null){
+                Set<Id> quoteIds = new Set<Id>();
+                System.debug(quoteToCalculate);
+        		quoteIds.add(quoteToCalculate.Id);
+                SBQQ__Quote__c quotetoUpdate = new QuoteSelector().selectQuoteInfo(quoteIds)[0];
+                fflib_SObjectUnitOfWork uow = new fflib_SObjectUnitOfWork( new List<SObjectType> { SBQQ__Quote__c.SObjectType});
+            	quotetoUpdate.cur_CreditLimit__c= Decimal.valueOf(creditWorthiness.creditLimit.amount.dollar);
+                uow.registerDirty(quoteToUpdate);
+                uow.commitWork();
+            }
+            	
                 lastInfoWrapper.message= creditWorthiness.CreditLimit == null ? 'The account has not a correct bosch partner id' : ' ';
                 lastInfoWrapper.status= creditLimitresponse.getStatusCode();
                 lastInfoWrapper.success= creditWorthiness.CreditLimit == null ? false : true;
@@ -172,6 +185,7 @@ public with sharing class CreditLimitManager {
                     
                     if(quoteToCalculate.cur_Current_Credit_Limit_including_VAT__c != currentLimitIncludingVat){
                         quotetoCalculate.cur_Current_Credit_Limit_including_VAT__c= currentLimitIncludingVat;
+                        quotetoCalculate.dtm_CreditLimitCheckDate__c= DateTime.now();
                         uow.registerDirty(quoteToCalculate);
                     }
                     

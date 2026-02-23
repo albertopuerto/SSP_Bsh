@@ -28,7 +28,7 @@ public with sharing class CreditLimitCallouts {
 
         String finalVertexBody;
 
-        if(quoteToCalculate != null && quoteToCalculate.SBQQ__Status__c == 'Accepted'){
+        if(quoteToCalculate != null && (quoteToCalculate.SBQQ__Status__c == 'Accepted' || quoteToCalculate.SBQQ__Status__c== 'Draft' || quoteToCalculate.SBQQ__Status__c == 'In Review')){
 
             String bodyWrapper = JSON.serialize(VertexIntManager.createRequest(todayDateTime,quoteToCalculate.SBQQ__Account__r.BillingCountry));
             finalVertexBody = CreditLimitUtilMethods.formatRequest(bodyWrapper);
@@ -65,7 +65,7 @@ public with sharing class CreditLimitCallouts {
         request.setMethod('POST');
         String finalCreditLimitBody;
 
-        if(quoteToCalculate != null && quoteToCalculate.SBQQ__Status__c == 'Accepted'){
+        if(quoteToCalculate != null && (quoteToCalculate.SBQQ__Status__c == 'Accepted' || quoteToCalculate.SBQQ__Status__c== 'Draft' || quoteToCalculate.SBQQ__Status__c == 'In Review')){
 
         	request.setEndpoint('callout:creditLimitCheckOuathCallout');
 

@@ -25,4 +25,23 @@ public class CreditLimitApprovalController {
     	return false;
 	}
 
+	@AuraEnabled
+	public static SBQQ__Quote__c callCreditLimit(Id quoteId) {
+
+		SBQQ__Quote__c quote = new SBQQ__Quote__c();
+    
+        CreditLimitManager.callGetLimit('SBQQ__Quote__c', quoteId);
+		quote =  [select id,CurrencyIsoCode,cur_CreditLimit__c,pkl_PaymentTerms__c,cur_Current_Credit_Limit_including_VAT__c,SBQQ__NetAmount__c from SBQQ__Quote__c where id = :quoteId];
+
+		return quote;
+	}
+
+	@AuraEnabled
+	public static SBQQ__Quote__c quoteGetFields (Id quoteId){
+
+		SBQQ__Quote__c quote = new SBQQ__Quote__c();
+		quote =  [select id,pkl_PaymentTerms__c,cur_Current_Credit_Limit_including_VAT__c,SBQQ__NetAmount__c from SBQQ__Quote__c where id = :quoteId];
+		return quote;
+	}
+
 }

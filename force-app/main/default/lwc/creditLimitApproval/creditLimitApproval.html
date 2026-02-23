@@ -15,6 +15,25 @@
                     <p style="margin-top: 10px;">The quote has one or more subscription or Software products. With this products a Tool Coordinator must be added, please review and add the tool coordinator.</p>
                 </div>
             </template>
+
+            <template if:true={showExceeded}>
+                <div>
+                    <p>
+                        Credit limit = {currency} {accountLimit}
+                    </p>
+                    <p style="margin-top:10px;">
+                        VAT = {currency} {vat} <lightning-icon style="margin-left:280px;" icon-name='utility:warning' alternative-text='warning' variant='warning' size='medium' title='warning'></lightning-icon>
+                    </p>
+                    <p style="margin-top:10px;">
+                        Quote Net Amount = {currency} {quoteAmount} 
+                    </p>
+                    <p style="margin-top:10px;">Credit limit is not enough, Send for Approval anyways</p>
+                </div>
+                <div style="margin-top:10px;margin-left:140px;">
+                    <lightning-button variant="brand" label=Submit aria-label="Submit" title="Submit" onclick={getAccountCreditLimit} ></lightning-button>
+                    
+                </div>
+            </template>
         </div>
   
 </template>
