@@ -17193,14 +17193,14 @@
         <field>SBQQ__QuoteTerm__c.chk_AddtoTCs__c</field>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
+        <editable>false</editable>
+        <readable>false</readable>
         <field>SBQQ__QuoteTerm__c.chk_ManuallyOverridden__c</field>
-        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
+        <editable>false</editable>
+        <readable>false</readable>
         <field>SBQQ__QuoteTerm__c.lkp_AccountTerm__c</field>
-        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
