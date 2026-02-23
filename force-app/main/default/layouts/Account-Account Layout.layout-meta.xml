@@ -450,7 +450,7 @@
     <relatedLists>
         <customButtons>New</customButtons>
         <excludeButtons>New</excludeButtons>
-        <fields>ftxt_SalesArea__c</fields>
+        <fields>NAME</fields>
         <fields>SalesArea__c.pkl_SalesOrg__c</fields>
         <fields>SalesArea__c.pkl_DistributionChannel__c</fields>
         <fields>SalesArea__c.pkl_Division__c</fields>

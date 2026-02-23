@@ -272,6 +272,7 @@
         <relatedList>RelatedNoteList</relatedList>
     </relatedLists>
     <relatedLists>
+        <fields>NAME</fields>
         <fields>SalesArea__c.NAME</fields>
         <fields>ftxt_SalesOrg__c</fields>
         <fields>ftxt_DistributionChannel__c</fields>
