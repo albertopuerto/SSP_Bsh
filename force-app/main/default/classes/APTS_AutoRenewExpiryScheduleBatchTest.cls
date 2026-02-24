@@ -23,6 +23,13 @@ private class APTS_AutoRenewExpiryScheduleBatchTest{
         );
         insert sal;
     
+    
+   //Create Sales Data Customer
+     SalesAreaLink__c salesAreaLink = (SalesAreaLink__c)TestFactory.createSObject(new SalesAreaLink__c(),'TestFactoryDefaults.SalesAreaLinkDefaults', false);
+     salesAreaLink.mdr_Account__c = testAcc.Id;
+     salesAreaLink.mdr_SalesArea__c = sal.Id;
+     insert salesAreaLink;
+    
     Opportunity opp = new Opportunity();
     opp.Name ='testOpptyforTestClass';
     opp.CloseDate = system.today()+4;
@@ -31,7 +38,7 @@ private class APTS_AutoRenewExpiryScheduleBatchTest{
     opp.pklTypeOfOpportunity__c = 'LTA';
     opp.pklLeadingSolutionField__c = 'DAP';
     opp.pklTypeOfOffering__c = 'SW';
-    opp.lkp_SalesOrganization__c = sal.Id;
+    opp.lkp_SalesDataCustomer__c = salesAreaLink.Id;
     insert opp;
     
     APTS_integration_Allowed__c obj = new APTS_integration_Allowed__c(Name = 'Integration_Allowed', APTS_Allow_Callout__c = true);

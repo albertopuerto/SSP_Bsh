@@ -157,12 +157,13 @@
     <label>Sales Data Customer</label>
     <nameField>
         <displayFormat>SAL-{000000}</displayFormat>
-        <label>Sales Area Link</label>
+        <label>Sales Data Customer</label>
         <type>AutoNumber</type>
     </nameField>
     <pluralLabel>Sales Data Customers</pluralLabel>
     <searchLayouts>
         <searchResultsAdditionalFields>mdr_SalesArea__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>ftxt_SalesArea__c</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>mdr_Account__c</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>ftxt_DistributionChannel__c</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>ftxt_Division__c</searchResultsAdditionalFields>

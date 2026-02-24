@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>ftxt_SalesArea__c</fullName>
+    <description> Store the sales areas related to account</description>
     <externalId>false</externalId>
     <formula>HYPERLINK(&quot;/&quot; &amp; Id, ftxt_SalesAreaName__c )</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-    <label>SalesArea</label>
+    <label>Sales Data Customer</label>
     <required>false</required>
     <trackTrending>false</trackTrending>
     <type>Text</type>

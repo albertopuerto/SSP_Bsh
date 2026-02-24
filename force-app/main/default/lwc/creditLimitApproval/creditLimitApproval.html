@@ -1,0 +1,20 @@
+<template>
+
+        <div class="slds-p-around_medium">
+            <template if:true={showSpinner}>
+                <lightning-spinner alternative-text="Loading" size="small"></lightning-spinner>
+            </template>
+
+            <template if:true={showError}>
+                <div style="background-color: #ea001e;padding: 15px;color:white;">
+                    <p>
+                        <span>
+                            <lightning-icon icon-name="utility:error" alternative-text="error" size="x-small" class="slds-button__icon slds-button__icon_left" variant="inverse"></lightning-icon>
+                        </span> Error
+                    </p>
+                    <p style="margin-top: 10px;">The quote has one or more subscription or Software products. With this products a Tool Coordinator must be added, please review and add the tool coordinator.</p>
+                </div>
+            </template>
+        </div>
+  
+</template>
