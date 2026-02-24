@@ -5,7 +5,7 @@ public class UpdateCreditLimitOnApproval_Test {
      static void setupTestData() {
         Account testAccountList = (Account)TestFactory.createSObject(new Account(),'TestFactoryDefaults.AccountDefaults', false);
         testAccountList.txt_AthenaUUID__c='4001000001';
-        testAccountList.BillingCountry='DE';
+        testAccountList.BillingCountryCode='DE';
         insert testAccountList;
         
         Contact[] testContactList = (Contact[])TestFactory.createSObjectList(new Contact(), 1);
