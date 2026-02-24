@@ -57,13 +57,21 @@ private class ApprovalTriggerTest {
 
         // Create Account
         Account account = (Account)TestFactory.createSObject(new Account(),'TestFactoryDefaults.AccountDefaults', true);  
+        
+        //Create Sales Area
         SalesArea__c salesArea = (SalesArea__c)TestFactory.createSObject(new SalesArea__c(),'TestFactoryDefaults.SalesAreaDefaults', true);
+        
+        //Create Sales Data Customer
+        SalesAreaLink__c salesAreaLink = (SalesAreaLink__c)TestFactory.createSObject(new SalesAreaLink__c(),'TestFactoryDefaults.SalesAreaLinkDefaults', false);
+        salesAreaLink.mdr_Account__c = account.Id;
+        salesAreaLink.mdr_SalesArea__c = salesArea.Id;
+        insert salesAreaLink;
         
         // Create Opportunity
         Opportunity opp = (Opportunity)TestFactory.createSObject(new Opportunity(),'TestFactoryDefaults.OpportunityDefaults', false);
         opp.Name ='Test Opportunity for quote approval';
         opp.AccountId = account.Id;
-        opp.lkp_SalesOrganization__c = salesArea.Id;
+        opp.lkp_SalesDataCustomer__c = salesAreaLink.Id;
         insert opp;    
 
         // Create Quote

@@ -17,6 +17,13 @@ private class GroupLineItems_controllerTest {
             pkl_SalesOrg__c = 'DEM5'
         );
         insert sal;
+
+        
+        //Create Sales Data Customer
+        SalesAreaLink__c salesAreaLink = (SalesAreaLink__c)TestFactory.createSObject(new SalesAreaLink__c(),'TestFactoryDefaults.SalesAreaLinkDefaults', false);
+        salesAreaLink.mdr_Account__c = testAccount.Id;
+        salesAreaLink.mdr_SalesArea__c = sal.Id;
+        insert salesAreaLink;
         
         // Create test opportunity
          Opportunity testOpportunity = new Opportunity(
@@ -27,7 +34,7 @@ private class GroupLineItems_controllerTest {
             pklTypeOfOpportunity__c = 'LTA',
             pklLeadingSolutionField__c = 'DAP',
             pklTypeOfOffering__c = 'SW',
-            lkp_SalesOrganization__c = sal.Id
+            lkp_SalesDataCustomer__c = salesAreaLink.Id
         );
         insert testOpportunity;
         

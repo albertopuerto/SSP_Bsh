@@ -70,7 +70,7 @@
                       &quot;pkl_CivilianCustomer__c&quot;: { &quot;type&quot;: &quot;string&quot; },
                       &quot;ftxt_GTS__c&quot;: { &quot;type&quot;: &quot;string&quot; },
                       &quot;pkm_BoschPartnerRole__c&quot;: { &quot;type&quot;: &quot;string&quot; },
-                      &quot;pkl_Status__c&quot;: { &quot;type&quot;: &quot;string&quot; }
+                      &quot;pkl_Status__c&quot;: { &quot;type&quot;: &quot;string&quot; }					  
                     },
                     &quot;required&quot;: [
                       &quot;Id&quot;,
@@ -83,7 +83,37 @@
                       &quot;BillingPostalCode&quot;,
                       &quot;BillingCountry&quot;
                     ]
-                  }
+                  },
+				  &quot;SalesAreaData&quot;: {
+                          &quot;type&quot;: &quot;object&quot;,
+                          &quot;properties&quot;: {
+                            &quot;ftxt_SalesAreaName__c&quot;: { &quot;type&quot;: &quot;string&quot; },
+                            &quot;ftxt_DistributionChannel__c&quot;: { &quot;type&quot;: &quot;string&quot; },
+                            &quot;ftxt_SalesOrg__c&quot;: { &quot;type&quot;: &quot;string&quot; },
+                            &quot;ftxt_Division__c&quot;: { &quot;type&quot;: &quot;string&quot; },
+                            &quot;pkl_PaymentTerms__c&quot;: { &quot;type&quot;: &quot;string&quot; },
+                            &quot;pkl_INCOTerms1__c&quot;: { &quot;type&quot;: &quot;string&quot; },
+                            &quot;txt_INCOTerms2__c&quot;: { &quot;type&quot;: &quot;string&quot; },
+                            &quot;txt_Accountatcustomer__c&quot;: { &quot;type&quot;: &quot;string&quot; },
+                            &quot;pkl_BillingBlockforCustomer__c&quot;: { &quot;type&quot;: &quot;string&quot; },
+                            &quot;chk_CompleteDelivery__c&quot;: { &quot;type&quot;: &quot;boolean&quot; },
+                            &quot;pkl_CustPricProcedure__c&quot;: { &quot;type&quot;: &quot;string&quot; },
+                            &quot;pkl_CustomerDeliveryBlock__c&quot;: { &quot;type&quot;: &quot;string&quot; },
+                            &quot;pkl_CustomerOrderBlock__c&quot;: { &quot;type&quot;: &quot;string&quot; },
+                            &quot;pkl_CustomerGroup__c&quot;: { &quot;type&quot;: &quot;string&quot; },
+                            &quot;pkl_CustomerGroup1__c&quot;: { &quot;type&quot;: &quot;string&quot; },
+                            &quot;pkl_CustomerPriceGroup__c&quot;: { &quot;type&quot;: &quot;string&quot; },
+                            &quot;pkl_InvoicingDates__c&quot;: { &quot;type&quot;: &quot;string&quot; },
+                            &quot;pkl_MaxPartDeliveries__c&quot;: { &quot;type&quot;: &quot;string&quot; },
+                            &quot;pkl_Partdlvitem__c&quot;: { &quot;type&quot;: &quot;string&quot; },
+                            &quot;chk_Rebate__c&quot;: { &quot;type&quot;: &quot;boolean&quot; },
+                            &quot;pkl_ShippingConditions__c&quot;: { &quot;type&quot;: &quot;string&quot; },
+                            &quot;pkl_Currency__c&quot;: { &quot;type&quot;: &quot;string&quot; },
+                            &quot;txt_CustomerStatus__c&quot;: { &quot;type&quot;: &quot;string&quot; },
+                            &quot;chk_Deletionflagforcustomer__c&quot;: { &quot;type&quot;: &quot;boolean&quot; },
+                            &quot;pkl_SalesBlockCustomer__c&quot;: { &quot;type&quot;: &quot;string&quot; }                        
+                        }
+                    }
                 }
               }
             }
@@ -102,11 +132,13 @@
                       &quot;properties&quot;: {
                         &quot;Status Code&quot;: { &quot;type&quot;: &quot;string&quot; },
                         &quot;Status Text&quot;: { &quot;type&quot;: &quot;string&quot; },
+                        &quot;BPId&quot;: { &quot;type&quot;: &quot;string&quot; },
                         &quot;CorrelationId&quot;: { &quot;type&quot;: &quot;string&quot; }
                       },
                       &quot;required&quot;: [
                         &quot;Status Code&quot;,
                         &quot;Status Text&quot;,
+                        &quot;BPId&quot;,
                         &quot;CorrelationId&quot;
                       ]
                     }

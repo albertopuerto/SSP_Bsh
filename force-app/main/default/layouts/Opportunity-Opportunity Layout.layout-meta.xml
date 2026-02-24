@@ -18,7 +18,7 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Required</behavior>
-                <field>lkp_SalesOrganization__c</field>
+                <field>lkp_SalesDataCustomer__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
@@ -284,6 +284,7 @@
         <relatedList>RelatedContactRoleList</relatedList>
     </relatedLists>
     <relatedLists>
+        <excludeButtons>New</excludeButtons>
         <fields>NAME</fields>
         <fields>num_QuoteVersion__c</fields>
         <fields>SBQQ__Primary__c</fields>

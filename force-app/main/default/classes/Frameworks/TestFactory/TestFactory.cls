@@ -188,7 +188,8 @@ public with sharing class TestFactory {
         ContentVersion.SObjectType => ContentVersion.Title,
         ContentDocumentLink.SObjectType => ContentDocumentLink.ContentDocumentId,
 		OrderItem.sObjectType => OrderItem.txt_SAPExternalLineItemId__c,
-		PricebookEntry.sObjectType => PricebookEntry.GearsetExternalId__c
+		PricebookEntry.sObjectType => PricebookEntry.GearsetExternalId__c,
+		SBQQ__QuoteLine__c.sObjectType => SBQQ__QuoteLine__c.Name
 	};
      
 

@@ -80,6 +80,40 @@ public without sharing class DocuSignService {
     }
 
     /**
+     * @description Resend an existing envelope email notification.
+     * @param envelopeId DocuSign envelopeId
+     */
+    public void resendEnvelope(String envelopeId) {
+        if (String.isBlank(envelopeId)) {
+            throw new AuraHandledException('Missing envelopeId.');
+        }
+
+        DocusignSettings__c settings = [SELECT account_id__c FROM DocusignSettings__c WITH SYSTEM_MODE LIMIT 1];
+        String endpoint = 'callout:docusignCredential/restapi/v2.1/accounts/'
+            + settings.account_id__c
+            + '/envelopes/'
+            + EncodingUtil.urlEncode(envelopeId, 'UTF-8')
+            + '?resend_envelope=true';
+
+        HttpRequest req = new HttpRequest();
+        req.setEndpoint(endpoint);
+        req.setMethod('PUT');
+        req.setTimeout(120000);
+        req.setHeader('Content-Type', 'application/json');
+
+        req.setBody('{}');
+
+        Http http = new Http();
+        HttpResponse res = http.send(req);
+
+        if (res.getStatusCode() != 200 && res.getStatusCode() != 202) {
+            Logger.error('APX-INT-00010 - Failed to resend envelope - '
+                + res.getStatusCode() + '-' + res.getBody()).addTag('APX-INT');
+            throw new CalloutException('Failed to resend envelope: ' + res.getBody());
+        }
+    }
+
+    /**
 	* @author       APB
 	* @description  Method that download the signed document
 	* @param		envelopeId String

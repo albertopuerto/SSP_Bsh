@@ -189,6 +189,56 @@
         <offset>0</offset>
     </actionCalls>
     <actionCalls>
+        <name>SDC_apex_SaveLog</name>
+        <label>Save Log</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <actionName>Logger</actionName>
+        <actionType>apex</actionType>
+        <flowTransactionModel>Automatic</flowTransactionModel>
+        <nameSegment>Logger</nameSegment>
+        <offset>0</offset>
+    </actionCalls>
+    <actionCalls>
+        <name>SDC_Creation_Failed</name>
+        <label>Creation Failed</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <actionName>FlowLogEntry</actionName>
+        <actionType>apex</actionType>
+        <connector>
+            <targetReference>SDC_apex_SaveLog</targetReference>
+        </connector>
+        <flowTransactionModel>Automatic</flowTransactionModel>
+        <inputParameters>
+            <name>flowName</name>
+            <value>
+                <stringValue>flw_OnboardButton_OnboardAccount</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>loggingLevelName</name>
+            <value>
+                <stringValue>ERROR</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>message</name>
+            <value>
+                <elementReference>tmpl_LogMessageDML</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>tagsString</name>
+            <value>
+                <stringValue>FLW-DML</stringValue>
+            </value>
+        </inputParameters>
+        <nameSegment>FlowLogEntry</nameSegment>
+        <offset>0</offset>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </actionCalls>
+    <actionCalls>
         <name>send_Account_to_Athena</name>
         <label>send Account to Athena</label>
         <locationX>0</locationX>
@@ -327,6 +377,29 @@
     </actionCalls>
     <apiVersion>64.0</apiVersion>
     <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <assignments>
+        <name>Assign_Account_and_SalesArea_to_SDC</name>
+        <label>Assign Account and SalesArea to SDC</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>Sales_Data_Customer.mdr_Account__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Create_Account</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>Sales_Data_Customer.mdr_SalesArea__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>SelectedSalesArea.Id</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Create_SDC_Record</targetReference>
+        </connector>
+    </assignments>
     <assignments>
         <name>Assign_request_Body</name>
         <label>Assign request Body</label>
@@ -584,6 +657,174 @@
                 <elementReference>Get_Account_Info.PhotoUrl</elementReference>
             </value>
         </assignmentItems>
+        <assignmentItems>
+            <assignToReference>requestBody.SalesAreaData.chkx5fCompleteDeliveryx5fx5fc</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Sales_Data_Customer.chk_CompleteDelivery__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>requestBody.SalesAreaData.chkx5fDeletionflagforcustomerx5fx5fc</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Sales_Data_Customer.chk_Deletionflagforcustomer__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>requestBody.SalesAreaData.chkx5fRebatex5fx5fc</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Sales_Data_Customer.chk_Rebate__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>requestBody.SalesAreaData.ftxtx5fDistributionChannelx5fx5fc</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Sales_Data_Customer.mdr_SalesArea__r.pkl_DistributionChannel__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>requestBody.SalesAreaData.ftxtx5fDivisionx5fx5fc</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Sales_Data_Customer.mdr_SalesArea__r.pkl_Division__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>requestBody.SalesAreaData.ftxtx5fSalesOrgx5fx5fc</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Sales_Data_Customer.mdr_SalesArea__r.pkl_SalesOrg__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>requestBody.SalesAreaData.pklx5fBillingBlockforCustomerx5fx5fc</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Sales_Data_Customer.pkl_BillingBlockforCustomer__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>requestBody.SalesAreaData.pklx5fCurrencyx5fx5fc</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Sales_Data_Customer.pkl_Currency__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>requestBody.SalesAreaData.pklx5fCustomerDeliveryBlockx5fx5fc</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Sales_Data_Customer.pkl_CustomerDeliveryBlock__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>requestBody.SalesAreaData.pklx5fCustomerGroupx5fx5fc</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Sales_Data_Customer.pkl_CustomerGroup__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>requestBody.SalesAreaData.pklx5fCustomerGroup1x5fx5fc</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Sales_Data_Customer.pkl_CustomerGroup1__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>requestBody.SalesAreaData.pklx5fCustomerOrderBlockx5fx5fc</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Sales_Data_Customer.pkl_CustomerOrderBlock__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>requestBody.SalesAreaData.pklx5fCustomerPriceGroupx5fx5fc</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Sales_Data_Customer.pkl_CustomerPriceGroup__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>requestBody.SalesAreaData.pklx5fCustPricProcedurex5fx5fc</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Sales_Data_Customer.pkl_CustPricProcedure__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>requestBody.SalesAreaData.pklx5fINCOTerms1x5fx5fc</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Sales_Data_Customer.pkl_INCOTerms1__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>requestBody.SalesAreaData.pklx5fInvoicingDatesx5fx5fc</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Sales_Data_Customer.pkl_InvoicingDates__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>requestBody.SalesAreaData.pklx5fMaxPartDeliveriesx5fx5fc</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Sales_Data_Customer.pkl_MaxPartDeliveries__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>requestBody.SalesAreaData.pklx5fPartdlvitemx5fx5fc</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Sales_Data_Customer.pkl_Partdlvitem__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>requestBody.SalesAreaData.pklx5fPaymentTermsx5fx5fc</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Sales_Data_Customer.pkl_PaymentTerms__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>requestBody.SalesAreaData.pklx5fSalesBlockCustomerx5fx5fc</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Sales_Data_Customer.pkl_SalesBlockCustomer__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>requestBody.SalesAreaData.pklx5fShippingConditionsx5fx5fc</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Sales_Data_Customer.pkl_ShippingConditions__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>requestBody.SalesAreaData.txtx5fAccountatcustomerx5fx5fc</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Sales_Data_Customer.txt_Accountatcustomer__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>requestBody.SalesAreaData.txtx5fCustomerStatusx5fx5fc</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Sales_Data_Customer.txt_CustomerStatus__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>requestBody.SalesAreaData.txtx5fINCOTerms2x5fx5fc</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Sales_Data_Customer.txt_INCOTerms2__c</elementReference>
+            </value>
+        </assignmentItems>
         <connector>
             <targetReference>send_Account_to_Athena</targetReference>
         </connector>
@@ -668,6 +909,31 @@
             <stringValue>true</stringValue>
         </value>
     </choices>
+    <decisions>
+        <name>Check_about_SDC</name>
+        <label>Check about SDC</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>Confirmation_Screen</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>No</defaultConnectorLabel>
+        <rules>
+            <name>Yes_SDC</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Do_you_like_to_Create_Sales_Data_Customer</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Get_Sales_Area_Records</targetReference>
+            </connector>
+            <label>Yes</label>
+        </rules>
+    </decisions>
     <decisions>
         <name>Check_Error_Code</name>
         <label>Check Error Code</label>
@@ -818,7 +1084,7 @@
         <locationX>0</locationX>
         <locationY>0</locationY>
         <connector>
-            <targetReference>Confirmation_Screen</targetReference>
+            <targetReference>Confirmation_for_Sales_Data_Customer</targetReference>
         </connector>
         <faultConnector>
             <targetReference>Account_Creation_Failed</targetReference>
@@ -963,6 +1229,19 @@
         <object>Account</object>
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordCreates>
+    <recordCreates>
+        <name>Create_SDC_Record</name>
+        <label>Create SDC Record</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Confirmation_Screen</targetReference>
+        </connector>
+        <faultConnector>
+            <targetReference>SDC_Record_Creation_Failed</targetReference>
+        </faultConnector>
+        <inputReference>Sales_Data_Customer</inputReference>
+    </recordCreates>
     <recordLookups>
         <name>Get_Account_Info</name>
         <label>Get Account Info</label>
@@ -983,6 +1262,22 @@
         <getFirstRecordOnly>true</getFirstRecordOnly>
         <object>Account</object>
         <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordLookups>
+        <name>Get_Sales_Area_Records</name>
+        <label>Get Sales Area Records</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignNullValuesIfNoRecordsFound>true</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>New_Sales_Data_Customer</targetReference>
+        </connector>
+        <object>SalesArea__c</object>
+        <outputReference>varList_SalesArea</outputReference>
+        <queriedFields>Id</queriedFields>
+        <queriedFields>pkl_SalesOrg__c</queriedFields>
+        <queriedFields>pkl_DistributionChannel__c</queriedFields>
+        <queriedFields>pkl_Division__c</queriedFields>
     </recordLookups>
     <recordLookups>
         <name>GetCustomerB2BRecordTypeId</name>
@@ -1059,7 +1354,13 @@
         <inputAssignments>
             <field>pkl_Status__c</field>
             <value>
-                <stringValue>Sent to Athena</stringValue>
+                <elementReference>send_Account_to_Athena.200.accountCreateResponse.Statusx20Text</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>txt_AthenaUUID__c</field>
+            <value>
+                <elementReference>send_Account_to_Athena.200.accountCreateResponse.BPId</elementReference>
             </value>
         </inputAssignments>
         <object>Account</object>
@@ -1223,6 +1524,30 @@
         <showHeader>false</showHeader>
     </screens>
     <screens>
+        <name>Confirmation_for_Sales_Data_Customer</name>
+        <label>Confirmation for Sales Data Customer</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>false</allowPause>
+        <connector>
+            <targetReference>Check_about_SDC</targetReference>
+        </connector>
+        <fields>
+            <name>Do_you_like_to_Create_Sales_Data_Customer</name>
+            <choiceReferences>Yes</choiceReferences>
+            <choiceReferences>No</choiceReferences>
+            <dataType>String</dataType>
+            <fieldText>Do you like to Create Sales Data Customer ?</fieldText>
+            <fieldType>RadioButtons</fieldType>
+            <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+            <isRequired>false</isRequired>
+        </fields>
+        <showFooter>true</showFooter>
+        <showHeader>false</showHeader>
+    </screens>
+    <screens>
         <name>Confirmation_Screen</name>
         <label>Confirmation Screen</label>
         <locationX>0</locationX>
@@ -1276,6 +1601,222 @@
             <isRequired>true</isRequired>
         </fields>
         <nextOrFinishButtonLabel>Next</nextOrFinishButtonLabel>
+        <showFooter>true</showFooter>
+        <showHeader>false</showHeader>
+    </screens>
+    <screens>
+        <name>New_Sales_Data_Customer</name>
+        <label>New Sales Data Customer</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>true</allowPause>
+        <connector>
+            <targetReference>Assign_Account_and_SalesArea_to_SDC</targetReference>
+        </connector>
+        <fields>
+            <name>SalesAreaDatatable</name>
+            <dataTypeMappings>
+                <typeName>T</typeName>
+                <typeValue>SalesArea__c</typeValue>
+            </dataTypeMappings>
+            <extensionName>flowruntime:datatable</extensionName>
+            <fieldType>ComponentInstance</fieldType>
+            <inputParameters>
+                <name>label</name>
+                <value>
+                    <stringValue>Select Sales Area from below List</stringValue>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>selectionMode</name>
+                <value>
+                    <stringValue>SINGLE_SELECT</stringValue>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>minRowSelection</name>
+                <value>
+                    <numberValue>1.0</numberValue>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>shouldDisplayLabel</name>
+                <value>
+                    <booleanValue>true</booleanValue>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>tableData</name>
+                <value>
+                    <elementReference>varList_SalesArea</elementReference>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>maxRowSelection</name>
+                <value>
+                    <numberValue>1.0</numberValue>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>columns</name>
+                <value>
+                    <stringValue>[{&quot;apiName&quot;:&quot;Name&quot;,&quot;guid&quot;:&quot;column-bab7&quot;,&quot;editable&quot;:false,&quot;hasCustomHeaderLabel&quot;:false,&quot;customHeaderLabel&quot;:&quot;&quot;,&quot;wrapText&quot;:true,&quot;order&quot;:0,&quot;sortable&quot;:false,&quot;label&quot;:&quot;Name&quot;,&quot;type&quot;:&quot;text&quot;},{&quot;apiName&quot;:&quot;pkl_SalesOrg__c&quot;,&quot;guid&quot;:&quot;column-efda&quot;,&quot;editable&quot;:false,&quot;hasCustomHeaderLabel&quot;:false,&quot;customHeaderLabel&quot;:&quot;&quot;,&quot;wrapText&quot;:true,&quot;order&quot;:1,&quot;sortable&quot;:false,&quot;label&quot;:&quot;Sales Organization&quot;,&quot;type&quot;:&quot;text&quot;},{&quot;apiName&quot;:&quot;pkl_DistributionChannel__c&quot;,&quot;guid&quot;:&quot;column-2c2e&quot;,&quot;editable&quot;:false,&quot;hasCustomHeaderLabel&quot;:false,&quot;customHeaderLabel&quot;:&quot;&quot;,&quot;wrapText&quot;:true,&quot;order&quot;:2,&quot;sortable&quot;:false,&quot;label&quot;:&quot;Distribution Channel&quot;,&quot;type&quot;:&quot;text&quot;},{&quot;apiName&quot;:&quot;pkl_Division__c&quot;,&quot;guid&quot;:&quot;column-4d88&quot;,&quot;editable&quot;:false,&quot;hasCustomHeaderLabel&quot;:false,&quot;customHeaderLabel&quot;:&quot;&quot;,&quot;wrapText&quot;:true,&quot;order&quot;:3,&quot;sortable&quot;:false,&quot;label&quot;:&quot;Division&quot;,&quot;type&quot;:&quot;text&quot;}]</stringValue>
+                </value>
+            </inputParameters>
+            <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+            <isRequired>true</isRequired>
+            <outputParameters>
+                <assignToReference>SelectedSalesArea</assignToReference>
+                <name>firstSelectedRow</name>
+            </outputParameters>
+        </fields>
+        <fields>
+            <fieldType>ObjectProvided</fieldType>
+            <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+            <isRequired>false</isRequired>
+            <objectFieldReference>Sales_Data_Customer.pkl_Currency__c</objectFieldReference>
+        </fields>
+        <fields>
+            <fieldType>ObjectProvided</fieldType>
+            <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+            <isRequired>false</isRequired>
+            <objectFieldReference>Sales_Data_Customer.pkl_PaymentTerms__c</objectFieldReference>
+        </fields>
+        <fields>
+            <fieldType>ObjectProvided</fieldType>
+            <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+            <isRequired>false</isRequired>
+            <objectFieldReference>Sales_Data_Customer.pkl_INCOTerms1__c</objectFieldReference>
+        </fields>
+        <fields>
+            <fieldType>ObjectProvided</fieldType>
+            <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+            <isRequired>false</isRequired>
+            <objectFieldReference>Sales_Data_Customer.txt_INCOTerms2__c</objectFieldReference>
+        </fields>
+        <fields>
+            <fieldType>ObjectProvided</fieldType>
+            <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+            <isRequired>false</isRequired>
+            <objectFieldReference>Sales_Data_Customer.txt_Accountatcustomer__c</objectFieldReference>
+        </fields>
+        <fields>
+            <fieldType>ObjectProvided</fieldType>
+            <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+            <isRequired>false</isRequired>
+            <objectFieldReference>Sales_Data_Customer.pkl_BillingBlockforCustomer__c</objectFieldReference>
+        </fields>
+        <fields>
+            <fieldType>ObjectProvided</fieldType>
+            <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+            <isRequired>false</isRequired>
+            <objectFieldReference>Sales_Data_Customer.chk_CompleteDelivery__c</objectFieldReference>
+        </fields>
+        <fields>
+            <fieldType>ObjectProvided</fieldType>
+            <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+            <isRequired>false</isRequired>
+            <objectFieldReference>Sales_Data_Customer.pkl_CustPricProcedure__c</objectFieldReference>
+        </fields>
+        <fields>
+            <fieldType>ObjectProvided</fieldType>
+            <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+            <isRequired>false</isRequired>
+            <objectFieldReference>Sales_Data_Customer.pkl_CustomerDeliveryBlock__c</objectFieldReference>
+        </fields>
+        <fields>
+            <fieldType>ObjectProvided</fieldType>
+            <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+            <isRequired>false</isRequired>
+            <objectFieldReference>Sales_Data_Customer.pkl_CustomerOrderBlock__c</objectFieldReference>
+        </fields>
+        <fields>
+            <fieldType>ObjectProvided</fieldType>
+            <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+            <isRequired>false</isRequired>
+            <objectFieldReference>Sales_Data_Customer.pkl_CustomerGroup__c</objectFieldReference>
+        </fields>
+        <fields>
+            <fieldType>ObjectProvided</fieldType>
+            <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+            <isRequired>false</isRequired>
+            <objectFieldReference>Sales_Data_Customer.pkl_CustomerGroup1__c</objectFieldReference>
+        </fields>
+        <fields>
+            <fieldType>ObjectProvided</fieldType>
+            <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+            <isRequired>false</isRequired>
+            <objectFieldReference>Sales_Data_Customer.pkl_CustomerPriceGroup__c</objectFieldReference>
+        </fields>
+        <fields>
+            <fieldType>ObjectProvided</fieldType>
+            <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+            <isRequired>false</isRequired>
+            <objectFieldReference>Sales_Data_Customer.pkl_InvoicingDates__c</objectFieldReference>
+        </fields>
+        <fields>
+            <fieldType>ObjectProvided</fieldType>
+            <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+            <isRequired>false</isRequired>
+            <objectFieldReference>Sales_Data_Customer.pkl_MaxPartDeliveries__c</objectFieldReference>
+        </fields>
+        <fields>
+            <fieldType>ObjectProvided</fieldType>
+            <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+            <isRequired>false</isRequired>
+            <objectFieldReference>Sales_Data_Customer.pkl_Partdlvitem__c</objectFieldReference>
+        </fields>
+        <fields>
+            <fieldType>ObjectProvided</fieldType>
+            <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+            <isRequired>false</isRequired>
+            <objectFieldReference>Sales_Data_Customer.chk_Rebate__c</objectFieldReference>
+        </fields>
+        <fields>
+            <fieldType>ObjectProvided</fieldType>
+            <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+            <isRequired>false</isRequired>
+            <objectFieldReference>Sales_Data_Customer.pkl_ShippingConditions__c</objectFieldReference>
+        </fields>
+        <fields>
+            <fieldType>ObjectProvided</fieldType>
+            <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+            <isRequired>false</isRequired>
+            <objectFieldReference>Sales_Data_Customer.txt_CustomerStatus__c</objectFieldReference>
+        </fields>
+        <fields>
+            <fieldType>ObjectProvided</fieldType>
+            <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+            <isRequired>false</isRequired>
+            <objectFieldReference>Sales_Data_Customer.chk_Deletionflagforcustomer__c</objectFieldReference>
+        </fields>
+        <fields>
+            <fieldType>ObjectProvided</fieldType>
+            <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+            <isRequired>false</isRequired>
+            <objectFieldReference>Sales_Data_Customer.pkl_SalesBlockCustomer__c</objectFieldReference>
+        </fields>
+        <showFooter>true</showFooter>
+        <showHeader>false</showHeader>
+    </screens>
+    <screens>
+        <name>SDC_Record_Creation_Failed</name>
+        <label>SDC Record Creation Failed</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <allowBack>false</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>false</allowPause>
+        <connector>
+            <targetReference>SDC_Creation_Failed</targetReference>
+        </connector>
+        <fields>
+            <name>Creation_SDC_Failed</name>
+            <fieldText>&lt;p style=&quot;text-align: center;&quot;&gt;&lt;strong style=&quot;background-color: rgb(255, 255, 255); font-size: 16px; color: rgb(208, 54, 16);&quot;&gt;Creation of Sales Data Customer is failed, please contact your System Administrator for the support.&lt;/strong&gt;&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
         <showFooter>true</showFooter>
         <showHeader>false</showHeader>
     </screens>
@@ -1371,10 +1912,34 @@
         <isOutput>false</isOutput>
     </variables>
     <variables>
+        <name>Sales_Data_Customer</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>SalesAreaLink__c</objectType>
+    </variables>
+    <variables>
         <name>selectedRoleCode</name>
         <dataType>String</dataType>
         <isCollection>false</isCollection>
         <isInput>false</isInput>
         <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>SelectedSalesArea</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>SalesArea__c</objectType>
+    </variables>
+    <variables>
+        <name>varList_SalesArea</name>
+        <dataType>SObject</dataType>
+        <isCollection>true</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>SalesArea__c</objectType>
     </variables>
 </Flow>
