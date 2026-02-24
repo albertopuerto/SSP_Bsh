@@ -40,6 +40,7 @@
         <locationX>0</locationX>
         <locationY>0</locationY>
         <defaultConnector>
+            <isGoTo>true</isGoTo>
             <targetReference>upd_QuoteFields</targetReference>
         </defaultConnector>
         <defaultConnectorLabel>No</defaultConnectorLabel>
@@ -64,7 +65,10 @@
         <label>Bill-to or Ship-to?</label>
         <locationX>0</locationX>
         <locationY>0</locationY>
-        <defaultConnectorLabel>Default</defaultConnectorLabel>
+        <defaultConnector>
+            <targetReference>upd_QuoteFields</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>No</defaultConnectorLabel>
         <rules>
             <name>BillTo</name>
             <conditionLogic>and</conditionLogic>
@@ -139,6 +143,7 @@
             <targetReference>decn_BillToShipTo</targetReference>
         </nextValueConnector>
         <noMoreValuesConnector>
+            <isGoTo>true</isGoTo>
             <targetReference>upd_QuoteFields</targetReference>
         </noMoreValuesConnector>
     </loops>
