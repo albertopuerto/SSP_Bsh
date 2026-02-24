@@ -336,6 +336,18 @@
                 <identifier>Recordcur_Current_Credit_Limit_including_VAT_cField</identifier>
             </fieldInstance>
         </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldItem>Record.dtm_CreditLimitCheckDate__c</fieldItem>
+                <identifier>Recorddtm_CreditLimitCheckDate__cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldItem>Record.cur_CreditLimit__c</fieldItem>
+                <identifier>Recordcur_CreditLimit__cField</identifier>
+            </fieldInstance>
+        </itemInstances>
         <name>Facet-0609b9e2-6c3c-426c-b101-c29c1c45dc5e</name>
         <type>Facet</type>
     </flexiPageRegions>
