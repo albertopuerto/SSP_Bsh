@@ -4,8 +4,8 @@ public class CreditLimitApprovalController_Test {
     @TestSetup
     static void setupTestData() {
         Account testAccountList = (Account)TestFactory.createSObject(new Account(),'TestFactoryDefaults.AccountDefaults', false);
-        //testAccountList[0].pkl_PaymentTerms__c= 'Due on receipt';
-        System.debug(testAccountList.RecordTypeId);
+        testAccountList.txt_AthenaUUID__c='4001000001';
+        testAccountList.BillingCountry='DE';
         insert testAccountList;
         
         Contact[] testContactList = (Contact[])TestFactory.createSObjectList(new Contact(), 1);
@@ -62,6 +62,34 @@ public class CreditLimitApprovalController_Test {
        
         Boolean hasSubProducts= CreditLimitApprovalController.hasSubsProducts(quote.Id);
         System.assertEquals(true,hasSubProducts);
+        Test.stopTest();
+    }
+    
+    @isTest
+    static void creditLimitGetQuote(){
+        Test.startTest();
+        
+        SBQQ__Quote__c quoteToSend= [Select id from SBQQ__Quote__c LIMIT 1];
+        StaticResource sr = [SELECT Body FROM StaticResource WHERE Name = 'vertexSuccess'];
+		String vertexBody = sr.Body.toString();
+        HttpCalloutMock res1 = new HTTPMockGenerator(200, vertexBody);
+            
+        StaticResource sr2 = [SELECT Body FROM StaticResource WHERE Name = 'creditLimitQuoteOrderExceded'];
+		String creditLimitBody = sr2.Body.toString();
+        HttpCalloutMock res2 = new HTTPMockGenerator(200, creditLimitBody);
+        String remainingUrlVertex = '/sap-tax-service/tax/v1/quote';
+        HttpMultiRequestMockGenerator multiMock = new HttpMultiRequestMockGenerator();
+        multiMock.putMock('https://api.status.salesforce.com/v1/instances/DEU114S/status',new HTTPMockGenerator(200, '{"status":"OK"}'));
+		multiMock.putMock('callout:vertex_usernamePass'+ remainingUrlVertex,res1);
+		multiMock.putMock('callout:creditLimitCheckOuathCallout',res2);
+        
+        Test.setMock(HttpCalloutMock.class, multiMock);
+        SBQQ__Quote__c quote= CreditLimitApprovalController.callCreditLimit(quoteToSend.Id);
+        
+        System.assertNotEquals(null, quote.cur_CreditLimit__c);
+        
+        System.assertNotEquals(null, quote.cur_Current_Credit_Limit_including_VAT__c);
+         
         Test.stopTest();
     }
 }
