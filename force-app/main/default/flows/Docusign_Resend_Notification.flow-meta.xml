@@ -61,7 +61,7 @@
         </connector>
         <fields>
             <name>ResendForSignature</name>
-            <fieldText>&lt;p&gt;&lt;img src=&quot;https://bosch-ssp--andresdev.sandbox.file.force.com/sfc/servlet.shepherd/version/download/068bY00000C4Rah?asPdf=false&amp;amp;operationContext=CHATTER&quot; alt=&quot;Screenshot 2026-02-09 at 09-21-25 Icons · Lightning Design System 2.png&quot;&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;  Resend the DocuSign email to the same recipient.&lt;/span&gt;&lt;/p&gt;</fieldText>
+            <fieldText>&lt;p&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;Resend the DocuSign email to the same recipient.&lt;/span&gt;&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
         </fields>
         <showFooter>true</showFooter>
