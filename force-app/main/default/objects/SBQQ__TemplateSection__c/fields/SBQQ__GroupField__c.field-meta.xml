@@ -3,7 +3,6 @@
     <fullName>SBQQ__GroupField__c</fullName>
     <deprecated>false</deprecated>
     <description>Field used in grouping lines rendered by this section. Only applicable to Line Items section.</description>
-    <externalId>false</externalId>
     <inlineHelpText>Specify field used in grouping lines rendered by this section. Only applicable to Line Items section.</inlineHelpText>
     <label>Group Field</label>
     <required>false</required>

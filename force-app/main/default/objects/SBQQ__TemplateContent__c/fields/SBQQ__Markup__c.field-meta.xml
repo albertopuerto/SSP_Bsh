@@ -3,7 +3,6 @@
     <fullName>SBQQ__Markup__c</fullName>
     <deprecated>false</deprecated>
     <description>Contains the markup if this content is of type &quot;Markup&quot;.</description>
-    <externalId>false</externalId>
     <inlineHelpText>Contains the markup if this content is of type &quot;Markup&quot;.</inlineHelpText>
     <label>Markup</label>
     <length>32000</length>

@@ -4,7 +4,6 @@
     <deleteConstraint>SetNull</deleteConstraint>
     <deprecated>false</deprecated>
     <description>Source of content for this section.</description>
-    <externalId>false</externalId>
     <inlineHelpText>Select the template content to display in this template section.</inlineHelpText>
     <label>Content</label>
     <referenceTo>SBQQ__TemplateContent__c</referenceTo>

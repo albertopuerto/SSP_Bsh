@@ -3,7 +3,6 @@
     <fullName>SBQQ__KeepTogether__c</fullName>
     <deprecated>false</deprecated>
     <description>Imposes &quot;keep-together.within-page&quot; condition on this block of content.</description>
-    <externalId>false</externalId>
     <inlineHelpText>Specifies whether an attempt should be made to keep contents together on the same page.</inlineHelpText>
     <label>Keep Together</label>
     <required>false</required>

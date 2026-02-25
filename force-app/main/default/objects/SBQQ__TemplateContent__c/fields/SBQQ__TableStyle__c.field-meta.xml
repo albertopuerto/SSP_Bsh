@@ -3,7 +3,6 @@
     <fullName>SBQQ__TableStyle__c</fullName>
     <deprecated>false</deprecated>
     <description>Style of the table used for line items. Standard (default) = user-defined fields as columns with line items listed vertically.</description>
-    <externalId>false</externalId>
     <inlineHelpText>Style of the table used for line items. Standard (default) = user-defined fields as columns with line items listed vertically.</inlineHelpText>
     <label>Table Style</label>
     <required>false</required>

@@ -3,7 +3,6 @@
     <fullName>SBQQ__ConditionalPrintField__c</fullName>
     <deprecated>false</deprecated>
     <description>Field on quote object that controls whether this section prints on generated PDF documents.</description>
-    <externalId>false</externalId>
     <inlineHelpText>Field on quote object that controls whether this section prints on generated PDF documents.</inlineHelpText>
     <label>Conditional Print Field</label>
     <required>false</required>
@@ -21,6 +20,16 @@
                 <fullName>Primary</fullName>
                 <default>false</default>
                 <label>Primary</label>
+            </value>
+            <value>
+                <fullName>fchk_USASectionShown__c</fullName>
+                <default>false</default>
+                <label>fchk_USASectionShown__c</label>
+            </value>
+            <value>
+                <fullName>fchk_DESectionShown__c</fullName>
+                <default>false</default>
+                <label>fchk_DESectionShown__c</label>
             </value>
         </valueSetDefinition>
     </valueSet>
