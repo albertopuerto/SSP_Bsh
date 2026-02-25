@@ -46,7 +46,7 @@
       "\t\t\t<td>&#160;</td>",
       "\t\t</tr>",
       "\t\t<tr style=\"size:100%;margin-top:3%\">",
-      "\t\t\t<td><span style=\"font-size:8px; size:80%\">{!quote.SBQQ__BillingName__c}<br />",
+      "\t\t\t<td><span style=\"font-size:8px; size:80%\">{!quote.ftxt_AccountName__c}<br />",
       "\t\t\t{!primaryContact.Name}<br />",
       "\t\t\t{!primaryContact.Email}<br />",
       "\t\t\t{!primaryContact.Phone}<br />",

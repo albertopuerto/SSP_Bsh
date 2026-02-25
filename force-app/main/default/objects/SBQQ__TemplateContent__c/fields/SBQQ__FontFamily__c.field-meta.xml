@@ -3,7 +3,6 @@
     <fullName>SBQQ__FontFamily__c</fullName>
     <deprecated>false</deprecated>
     <description>Font family to use when rendering this content in the generated PDF quote document.</description>
-    <externalId>false</externalId>
     <inlineHelpText>Font family to use when rendering this content in the generated PDF quote document.</inlineHelpText>
     <label>Font Family</label>
     <required>false</required>

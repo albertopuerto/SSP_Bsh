@@ -3,7 +3,6 @@
     <fullName>SBQQ__Type__c</fullName>
     <deprecated>false</deprecated>
     <description>Type of this content.</description>
-    <externalId>false</externalId>
     <inlineHelpText>Type of this content.</inlineHelpText>
     <label>Type</label>
     <required>false</required>

@@ -2,18 +2,18 @@
   "Object": "SBQQ__TemplateSection__c",
   "Fields": {
     "CurrencyIsoCode": "EUR",
-    "GearsetDisplayName": "Cover Letter",
-    "GearsetExternalId__c": "UAMTsIi000000gFB4a",
-    "Name": "Cover Letter",
+    "GearsetDisplayName": "Terms&Conditions",
+    "GearsetExternalId__c": "CAM90vG100000gFB4a",
+    "Name": "Terms&Conditions",
     "SBQQ__ApplyDocumentLanguageFormatting__c": "false",
     "SBQQ__BorderColor__c": "",
     "SBQQ__BottomMargin__c": "0.0",
     "SBQQ__ColumnHeaderHidden__c": "false",
-    "SBQQ__ConditionalPrintField__c": "fchk_DESectionShown__c",
-    "SBQQ__DisplayOrder__c": "1.0",
-    "SBQQ__FilterField__c": "",
-    "SBQQ__FilterOperator__c": "",
-    "SBQQ__FilterValue__c": "",
+    "SBQQ__ConditionalPrintField__c": "fchk_USASectionShown__c",
+    "SBQQ__DisplayOrder__c": "50.0",
+    "SBQQ__FilterField__c": "Optional",
+    "SBQQ__FilterOperator__c": "equals",
+    "SBQQ__FilterValue__c": "\"Don't show in this quote template\"",
     "SBQQ__GroupField__c": "",
     "SBQQ__KeepTogether__c": "Auto",
     "SBQQ__KeepWithNext__c": "Auto",
@@ -29,14 +29,14 @@
       "Name": "SBQQ__Content__r",
       "ReferencedObject": "SBQQ__TemplateContent__c",
       "ReferencedFields": {
-        "GearsetExternalId__c": "MAUlFB5000000Q9A4a"
+        "GearsetExternalId__c": "AAM5c41100000gFA4a"
       }
     },
     {
       "Name": "SBQQ__Template__r",
       "ReferencedObject": "SBQQ__QuoteTemplate__c",
       "ReferencedFields": {
-        "GearsetExternalId__c": "GAIxjVL000000gFt3a"
+        "GearsetExternalId__c": "GAQ5cGC000000Q9t3a"
       }
     }
   ]

@@ -3,7 +3,6 @@
     <fullName>SBQQ__PageBreak__c</fullName>
     <deprecated>false</deprecated>
     <description>Specifies page breaking behavior for this content.</description>
-    <externalId>false</externalId>
     <inlineHelpText>Specifies whether page break should be inserted before, after or both before/after this content.</inlineHelpText>
     <label>Page Break</label>
     <required>false</required>
