@@ -2,15 +2,17 @@
   "Object": "SBQQ__TemplateContent__c",
   "Fields": {
     "CurrencyIsoCode": "EUR",
-    "GearsetDisplayName": "Summary of pricing and delivery - EN Price Information",
-    "GearsetExternalId__c": "IAUzK36000000Q9A4a",
-    "Name": "Summary of pricing and delivery - EN Price Information",
+    "GearsetDisplayName": "Summary of pricing and delivery - EN Price Information USA",
+    "GearsetExternalId__c": "2AMNBS1100000gFA4a",
+    "Name": "Summary of pricing and delivery - EN Price Information USA",
     "SBQQ__CustomSource__c": "",
     "SBQQ__FontFamily__c": "Open Sans",
     "SBQQ__FontSize__c": "10.0",
     "SBQQ__Markup__c": "",
     "SBQQ__RawMarkup__c": [
       "<p data-pm-slice=\"1 1 [&quot;table&quot;,{&quot;isNumberColumnEnabled&quot;:false,&quot;layout&quot;:&quot;default&quot;,&quot;__autoSize&quot;:false,&quot;localId&quot;:&quot;a884fa1d-532c-409a-bab5-91c0b92f8776&quot;,&quot;width&quot;:760},&quot;tableRow&quot;,null,&quot;tableCell&quot;,{&quot;colspan&quot;:1,&quot;rowspan&quot;:1,&quot;colwidth&quot;:null,&quot;background&quot;:null}]\">Price: The prices are quoted net</p>",
+      "",
+      "<p data-pm-slice=\"1 1 [&quot;table&quot;,{&quot;isNumberColumnEnabled&quot;:false,&quot;layout&quot;:&quot;default&quot;,&quot;__autoSize&quot;:false,&quot;localId&quot;:&quot;a884fa1d-532c-409a-bab5-91c0b92f8776&quot;,&quot;width&quot;:760},&quot;tableRow&quot;,null,&quot;tableCell&quot;,{&quot;colspan&quot;:1,&quot;rowspan&quot;:1,&quot;colwidth&quot;:null,&quot;background&quot;:null}]\">Currency: {!quote.CurrencyIsoCode}</p>",
       "",
       "<p data-pm-slice=\"1 1 [&quot;table&quot;,{&quot;isNumberColumnEnabled&quot;:false,&quot;layout&quot;:&quot;default&quot;,&quot;__autoSize&quot;:false,&quot;localId&quot;:&quot;a884fa1d-532c-409a-bab5-91c0b92f8776&quot;,&quot;width&quot;:760},&quot;tableRow&quot;,null,&quot;tableCell&quot;,{&quot;colspan&quot;:1,&quot;rowspan&quot;:1,&quot;colwidth&quot;:null,&quot;background&quot;:null}]\">Terms of delivery:&#160;{!quote.pkl_INCOTerms1__c} {!quote.txt_INCOTerms2__c}</p>"
     ],

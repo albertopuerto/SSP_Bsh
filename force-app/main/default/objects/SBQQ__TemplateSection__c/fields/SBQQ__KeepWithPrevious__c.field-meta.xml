@@ -3,7 +3,6 @@
     <fullName>SBQQ__KeepWithPrevious__c</fullName>
     <deprecated>false</deprecated>
     <description>Imposes &quot;keep-with-previous.within-page&quot; condition on this block of content.</description>
-    <externalId>false</externalId>
     <inlineHelpText>Specifies whether an attempt should be made to keep contents together on the same page with previous block of content.</inlineHelpText>
     <label>Keep With Previous</label>
     <required>false</required>

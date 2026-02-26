@@ -3,7 +3,6 @@
     <fullName>SBQQ__FilterOperator__c</fullName>
     <deprecated>false</deprecated>
     <description>Operator used for filtering records rendered by this section.</description>
-    <externalId>false</externalId>
     <inlineHelpText>Operator used for filtering records rendered by this section.</inlineHelpText>
     <label>Filter Operator</label>
     <required>false</required>

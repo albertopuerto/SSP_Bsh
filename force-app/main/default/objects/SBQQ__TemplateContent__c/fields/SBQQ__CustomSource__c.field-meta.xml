@@ -3,7 +3,6 @@
     <fullName>SBQQ__CustomSource__c</fullName>
     <deprecated>false</deprecated>
     <description>URL to a VisualForce page that generates content when type is set to &quot;Custom&quot;.</description>
-    <externalId>false</externalId>
     <inlineHelpText>URL to a VisualForce page that generates content when type is set to &quot;Custom&quot;.</inlineHelpText>
     <label>Custom Source</label>
     <required>false</required>

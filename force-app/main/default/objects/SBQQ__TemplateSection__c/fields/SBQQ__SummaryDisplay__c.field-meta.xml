@@ -3,7 +3,6 @@
     <fullName>SBQQ__SummaryDisplay__c</fullName>
     <deprecated>false</deprecated>
     <description>Specifies how line items rendered by this section are summarized.</description>
-    <externalId>false</externalId>
     <inlineHelpText>Choose &quot;Always&quot; to display subtotal, discounts and grand total regardless of any other settings. Choose &quot;Never&quot; to never display regardless of other settings. Leaving this field blank will render summary as defined by template fields.</inlineHelpText>
     <label>Summary Display</label>
     <required>false</required>

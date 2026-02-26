@@ -4,7 +4,6 @@
     <defaultValue>false</defaultValue>
     <deprecated>false</deprecated>
     <description>Flag that determines whether document language formatting is applied to this section. Only applies to sections pointing to template content of type &quot;HTML&quot;.</description>
-    <externalId>false</externalId>
     <inlineHelpText>Select the checkbox to apply document language formatting. Only applies to sections pointing to template content of type &quot;HTML&quot;.</inlineHelpText>
     <label>Apply Document Language Formatting</label>
     <trackTrending>false</trackTrending>

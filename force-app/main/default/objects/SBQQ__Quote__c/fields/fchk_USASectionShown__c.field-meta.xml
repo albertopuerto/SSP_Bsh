@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>fchk_USASectionShown__c</fullName>
+    <description>Used in the quote templates when Sales Organization is USM5</description>
+    <formula>IF( ftxt_SalesOrg__c = &#39;USM5&#39;, true,  false)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Show USA Section</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

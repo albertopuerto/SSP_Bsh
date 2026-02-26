@@ -4,7 +4,6 @@
     <defaultValue>false</defaultValue>
     <deprecated>false</deprecated>
     <description>Forces quote totals to print after line items rendered by this section.</description>
-    <externalId>false</externalId>
     <inlineHelpText>Select the checkbox to print quote totals after this section. Only applicable to Line Items sections.</inlineHelpText>
     <label>Print Quote Totals</label>
     <trackTrending>false</trackTrending>

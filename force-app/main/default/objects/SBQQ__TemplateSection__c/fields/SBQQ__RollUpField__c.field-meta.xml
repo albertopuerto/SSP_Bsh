@@ -3,7 +3,6 @@
     <fullName>SBQQ__RollUpField__c</fullName>
     <deprecated>false</deprecated>
     <description>Field on quote line object that&#39;s used to rollup lines.</description>
-    <externalId>false</externalId>
     <inlineHelpText>Quote line field used for roll-up. All lines where this field returns the same value will be rolled up into the first line where the value occurs.</inlineHelpText>
     <label>Roll-Up Field</label>
     <required>false</required>
