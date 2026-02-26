@@ -42,9 +42,7 @@ export default class CreditLimitApproval extends NavigationMixin(LightningElemen
 
                 if(this.quoteRecord.pkl_PaymentTerms__c == 'Prepayment' && this.quoteRecord.cur_CreditLimit__c >= this.quoteRecord.cur_Current_Credit_Limit_including_VAT__c ){
                     this.openSubmitForApproval();
-                    alert('enough credit limit');
                 }else if(this.quoteRecord.pkl_PaymentTerms__c == 'Prepayment' && this.quoteRecord.cur_CreditLimit__c < this.quoteRecord.cur_Current_Credit_Limit_including_VAT__c){
-                    alert('credit limit exceeded');
                     this.currency=this.quoteRecord.CurrencyIsoCode;
                     this.accountLimit= this.quoteRecord.cur_CreditLimit__c;
                     this.vat= this.quoteRecord.cur_Current_Credit_Limit_including_VAT__c - this.quoteRecord.SBQQ__NetAmount__c;
