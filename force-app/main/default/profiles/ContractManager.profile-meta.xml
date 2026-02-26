@@ -2989,6 +2989,10 @@
         <visible>true</visible>
     </recordTypeVisibilities>
     <tabVisibilities>
+        <tab>Account_Term__c</tab>
+        <visibility>DefaultOn</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
         <tab>Approval_History</tab>
         <visibility>DefaultOff</visibility>
     </tabVisibilities>
