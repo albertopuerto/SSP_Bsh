@@ -62,8 +62,11 @@
     <decisions>
         <name>decn_BillToShipTo</name>
         <label>Bill-to or Ship-to?</label>
-        <locationX>466</locationX>
-        <locationY>778</locationY>
+        <locationX>450</locationX>
+        <locationY>807</locationY>
+        <defaultConnector>
+            <targetReference>lp_PartnerFunctions</targetReference>
+        </defaultConnector>
         <defaultConnectorLabel>No</defaultConnectorLabel>
         <rules>
             <name>BillTo</name>
@@ -131,8 +134,8 @@
     <loops>
         <name>lp_PartnerFunctions</name>
         <label>Loop Partner Functions</label>
-        <locationX>689</locationX>
-        <locationY>696</locationY>
+        <locationX>687</locationX>
+        <locationY>705</locationY>
         <collectionReference>partnerFunction</collectionReference>
         <iterationOrder>Asc</iterationOrder>
         <nextValueConnector>
