@@ -69,6 +69,11 @@
                       &quot;txt_TradingParnerNo__c&quot;: { &quot;type&quot;: &quot;string&quot; },
                       &quot;pkl_CivilianCustomer__c&quot;: { &quot;type&quot;: &quot;string&quot; },
                       &quot;ftxt_GTS__c&quot;: { &quot;type&quot;: &quot;string&quot; },
+					  &quot;txt_AthenaUUID__c&quot;: { &quot;type&quot;: &quot;string&quot; },
+					  &quot;txt_LegalEntity__c&quot;: { &quot;type&quot;: &quot;string&quot; },
+					  &quot;txt_VATID__c&quot;: { &quot;type&quot;: &quot;string&quot; },
+					  &quot;txt_DunsId__c&quot;: { &quot;type&quot;: &quot;string&quot; },
+					  &quot;txt_R3Id__c&quot;: { &quot;type&quot;: &quot;string&quot; },
                       &quot;pkm_BoschPartnerRole__c&quot;: { &quot;type&quot;: &quot;string&quot; },
                       &quot;pkl_Status__c&quot;: { &quot;type&quot;: &quot;string&quot; }					  
                     },
@@ -87,6 +92,8 @@
 				  &quot;SalesAreaData&quot;: {
                           &quot;type&quot;: &quot;object&quot;,
                           &quot;properties&quot;: {
+							&quot;mdr_Account__c&quot;: { &quot;type&quot;: &quot;string&quot; },
+							&quot;mdr_SalesArea__c&quot;: { &quot;type&quot;: &quot;string&quot; },
                             &quot;ftxt_SalesAreaName__c&quot;: { &quot;type&quot;: &quot;string&quot; },
                             &quot;ftxt_DistributionChannel__c&quot;: { &quot;type&quot;: &quot;string&quot; },
                             &quot;ftxt_SalesOrg__c&quot;: { &quot;type&quot;: &quot;string&quot; },

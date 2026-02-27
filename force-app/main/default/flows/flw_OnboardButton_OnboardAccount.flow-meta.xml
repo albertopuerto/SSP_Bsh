@@ -825,6 +825,55 @@
                 <elementReference>Sales_Data_Customer.txt_INCOTerms2__c</elementReference>
             </value>
         </assignmentItems>
+        <assignmentItems>
+            <assignToReference>requestBody.accountCreate.txtx5fAthenaUUIDx5fx5fc</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Get_Account_Info.txt_AthenaUUID__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>requestBody.accountCreate.txtx5fLegalEntityx5fx5fc</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Get_Account_Info.txt_LegalEntity__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>requestBody.accountCreate.txtx5fVATIDx5fx5fc</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Get_Account_Info.txt_VATID__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>requestBody.accountCreate.txtx5fDunsIdx5fx5fc</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Get_Account_Info.txt_DunsId__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>requestBody.accountCreate.txtx5fR3Idx5fx5fc</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Get_Account_Info.txt_R3Id__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>requestBody.SalesAreaData.mdrx5fAccountx5fx5fc</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Sales_Data_Customer.mdr_Account__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>requestBody.SalesAreaData.mdrx5fSalesAreax5fx5fc</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Sales_Data_Customer.mdr_SalesArea__c</elementReference>
+            </value>
+        </assignmentItems>
         <connector>
             <targetReference>send_Account_to_Athena</targetReference>
         </connector>
