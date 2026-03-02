@@ -15,6 +15,21 @@
                 <default>false</default>
                 <label>VERP</label>
             </value>
+            <value>
+                <fullName>SUBS</fullName>
+                <default>false</default>
+                <label>SUBS</label>
+            </value>
+            <value>
+                <fullName>SUBP</fullName>
+                <default>false</default>
+                <label>SUBP</label>
+            </value>
+            <value>
+                <fullName>YSER</fullName>
+                <default>false</default>
+                <label>YSER</label>
+            </value>
         </valueSetDefinition>
     </valueSet>
 </CustomField>
