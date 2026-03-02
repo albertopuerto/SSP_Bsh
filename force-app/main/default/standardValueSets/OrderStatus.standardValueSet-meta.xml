@@ -9,6 +9,12 @@
         <groupingString>Draft</groupingString>
     </standardValue>
     <standardValue>
+        <fullName>Pending Credit Approval</fullName>
+        <default>false</default>
+        <label>Pending Credit Approval</label>
+        <groupingString>Activated</groupingString>
+    </standardValue>
+    <standardValue>
         <fullName>Activated</fullName>
         <default>false</default>
         <label>Activated</label>
