@@ -14,8 +14,20 @@ export default class CreditLimitApproval extends NavigationMixin(LightningElemen
     accountLimit;
     vat;
     quoteAmount;
+    accountName;
+    accountCountry;
 
     @track quoteRecord;
+
+    closeModal() {
+
+        const closeChange = new CustomEvent('CloseChange', {
+
+        });
+
+        this.dispatchEvent(closeChange);
+
+    }
 
     approvalCheck(){
 
@@ -46,7 +58,11 @@ export default class CreditLimitApproval extends NavigationMixin(LightningElemen
                     this.currency=this.quoteRecord.CurrencyIsoCode;
                     this.accountLimit= this.quoteRecord.cur_CreditLimit__c;
                     this.vat= this.quoteRecord.cur_Current_Credit_Limit_including_VAT__c - this.quoteRecord.SBQQ__NetAmount__c;
-                    this.quoteAmount= this.quoteRecord.SBQQ__NetAmount__c;
+
+                    this.vat=((this.quoteRecord.cur_Current_Credit_Limit_including_VAT__c - this.quoteRecord.SBQQ__NetAmount__c) * 100) / this.quoteRecord.SBQQ__NetAmount__c;
+                    this.accountName=this.quoteRecord.SBQQ__Account__r.Name;
+                    this.accountCountry= this.quoteRecord.SBQQ__Account__r.BillingCountry;
+                    this.quoteAmount= this.quoteRecord.cur_Current_Credit_Limit_including_VAT__c;
 
                     this.showSpinner=false;
                     this.showExceeded= true;
