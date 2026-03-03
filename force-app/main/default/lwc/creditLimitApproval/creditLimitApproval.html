@@ -27,7 +27,7 @@
                                 <p>Credit limit :</p>
                             </td>
                             <td>
-                                <p>{currency} {accountLimit}</p>
+                                <p><lightning-formatted-number value={accountLimit} format-style="currency" currency-code={currency} currency-display-as="code"></lightning-formatted-number></p>
                             </td>
                         </tr>
                         <tr>
@@ -35,7 +35,7 @@
                                 <p>Quote Amount incl. {vat}% VAT for {accountCountry}:</p>
                             </td>
                             <td>
-                                <p>{currency} {quoteAmount} </p>
+                                <p><lightning-formatted-number value={quoteAmount} format-style="currency" currency-code={currency} currency-display-as="code"></lightning-formatted-number> </p>
                             </td>
                             <td>
                                 <lightning-icon style="margin-left:80px;" icon-name='utility:warning' alternative-text='warning' variant='warning' size='medium' title='warning'></lightning-icon>

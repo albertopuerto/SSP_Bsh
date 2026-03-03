@@ -28,10 +28,12 @@ public class CreditLimitApprovalController {
 	@AuraEnabled
 	public static SBQQ__Quote__c callCreditLimit(Id quoteId) {
 
+		Set<Id> quoteIds = new Set<Id>();
+        quoteIds.add(quoteId);
 		SBQQ__Quote__c quote = new SBQQ__Quote__c();
     
         CreditLimitManager.callGetLimit('SBQQ__Quote__c', quoteId);
-		quote =  [select id,CurrencyIsoCode,SBQQ__Account__r.Name,SBQQ__Account__r.BillingCountry,cur_CreditLimit__c,pkl_PaymentTerms__c,cur_Current_Credit_Limit_including_VAT__c,SBQQ__NetAmount__c from SBQQ__Quote__c where id = :quoteId];
+		quote = new QuoteSelector().selectQuoteInfo(quoteIds)[0];
 
 		return quote;
 	}
