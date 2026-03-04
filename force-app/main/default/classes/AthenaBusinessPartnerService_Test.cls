@@ -182,6 +182,57 @@ private class AthenaBusinessPartnerService_Test {
 
          }
     }
+    @IsTest
+static void testProcessPersonCreateNew() {
+    User testUser = getIntegrationUser();
+    
+    System.runAs(testUser) {
+        TestFactory.createSObject(new Account(
+            Name = 'Test Customer',
+            txt_AthenaUUID__c = '9000000001'
+        ), true);
+        
+        String json = '{"boschPartnerCategory":"Person","firstName":"Anna","lastName":"Muster","gender":"F","academicTitle":"DR","title":"MS","boschPartnerRoles":[{"boschPartnerRole":"BBCRCP"}],"address":{"streetName":"Boschstraße","houseNumber":"12","city":"Stuttgart","postalCode":"70173","electronicAddress":{"emailAddresses":[{"email":"anna@example.com","isDefault":true}],"phoneNumbers":[{"phoneNumber":"7111234567","isDefault":true}]}},"bPRelationships":[{"boschPartnerNumberSource":"SRC001","boschPartnerNumberTarget":"9000000001","function":"Z1"}]}';
+        AthenaBusinessPartnerDTO dto = AthenaBusinessPartnerDTO.fromJson(json);
+        
+        Test.startTest();
+        AthenaBusinessPartnerService.SvcResult res = AthenaBusinessPartnerService.process(dto);
+        Test.stopTest();
+        
+        Assert.areEqual(true, res.isCreated, 'Expected new Contact');
+        Assert.areNotEqual(null, res.contactId, 'ContactId should not be null');
+    }
+}
+
+@IsTest
+static void testProcessPersonUpdateExisting() {
+    User testUser = getIntegrationUser();
+    
+    System.runAs(testUser) {
+        Account acc = (Account) TestFactory.createSObject(new Account(
+            Name = 'Test Customer',
+            txt_AthenaUUID__c = '9000000001'
+        ), true);
+        
+        TestFactory.createSObject(new Contact(
+            FirstName = 'Anna', LastName = 'Muster', AccountId = acc.Id
+        ), true);
+        
+        String json = '{"boschPartnerCategory":"Person","firstName":"Anna","lastName":"Updated","boschPartnerRoles":[{"boschPartnerRole":"BUP003"}],"bPRelationships":[{"boschPartnerNumberTarget":"9000000001","function":"Z2"}]}';
+        AthenaBusinessPartnerDTO dto = AthenaBusinessPartnerDTO.fromJson(json);
+        
+        Test.startTest();
+        AthenaBusinessPartnerService.SvcResult res = AthenaBusinessPartnerService.process(dto);
+        Test.stopTest();
+        
+        Assert.areEqual(false, res.isCreated, 'Expected update');
+    }
+}
+
+
+
+
+
 
     /**
      * @description Validation test - invalid refferenced Account
