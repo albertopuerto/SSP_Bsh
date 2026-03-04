@@ -4,6 +4,15 @@
     <deleteConstraint>Restrict</deleteConstraint>
     <description>Structure sales based on a regional division of the market.</description>
     <label>Sales Data Customer</label>
+    <lookupFilter>
+        <active>true</active>
+        <filterItems>
+            <field>SalesAreaLink__c.mdr_Account__r.Id</field>
+            <operation>equals</operation>
+            <valueField>$Source.AccountId</valueField>
+        </filterItems>
+        <isOptional>false</isOptional>
+    </lookupFilter>
     <referenceTo>SalesAreaLink__c</referenceTo>
     <relationshipLabel>Opportunities</relationshipLabel>
     <relationshipName>Opportunities</relationshipName>
