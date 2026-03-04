@@ -99,11 +99,11 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>chk_ExistenceAgreementCanBeShared__c</field>
+                <field>pkl_ISPandDataProtection__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>chk_ISPandDataProtection__c</field>
+                <field>pkl_ExistenceAgreementCanBeShared__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>

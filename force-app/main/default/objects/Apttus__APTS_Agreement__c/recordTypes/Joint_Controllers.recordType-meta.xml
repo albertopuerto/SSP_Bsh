@@ -1574,6 +1574,28 @@
         </values>
     </picklistValues>
     <picklistValues>
+        <picklist>pkl_ExistenceAgreementCanBeShared__c</picklist>
+        <values>
+            <fullName>No</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Yes</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>pkl_ISPandDataProtection__c</picklist>
+        <values>
+            <fullName>No</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Yes</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
         <picklist>pkl_Parties_Involved__c</picklist>
         <values>
             <fullName>Multy-Party</fullName>
