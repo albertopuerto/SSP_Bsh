@@ -59,6 +59,14 @@
         <fieldNames>AccountId</fieldNames>
         <fieldNames>OpportunityId</fieldNames>
         <fieldNames>OrderNumber</fieldNames>
+        <fieldNames>Status</fieldNames>
+        <info>&lt;p&gt;&lt;span style=&quot;font-size: 14px;&quot;&gt;The order is pending credit limit approval&lt;/span&gt;&lt;/p&gt;</info>
+        <picklistValueName>Pending Credit Approval</picklistValueName>
+    </pathAssistantSteps>
+    <pathAssistantSteps>
+        <fieldNames>AccountId</fieldNames>
+        <fieldNames>OpportunityId</fieldNames>
+        <fieldNames>OrderNumber</fieldNames>
         <fieldNames>txt_SAPExternalSolutionQuotationId__c</fieldNames>
         <fieldNames>Status</fieldNames>
         <info>&lt;p&gt;&lt;span style=&quot;font-size: 14px;&quot;&gt;SAP is managing the order; the solution quotation was created and partially delivery may be in process.&lt;/span&gt;&lt;/p&gt;</info>
