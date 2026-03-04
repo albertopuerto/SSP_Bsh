@@ -3,7 +3,6 @@
     <customButtons>Apttus__AgreementHierarchy</customButtons>
     <excludeButtons>ChangeOwnerOne</excludeButtons>
     <excludeButtons>ChangeRecordType</excludeButtons>
-    <excludeButtons>OpenSlackRecordChannel</excludeButtons>
     <excludeButtons>PrintableView</excludeButtons>
     <excludeButtons>Share</excludeButtons>
     <excludeButtons>Submit</excludeButtons>
@@ -563,10 +562,6 @@
         <fields>pkl_MultyPartySignatureType__c</fields>
         <fields>LAST_UPDATE</fields>
         <relatedList>Apttus_AgreementParty__c.mdr_Agreement__c</relatedList>
-    </relatedLists>
-    <relatedLists>
-        <fields>NAME</fields>
-        <relatedList>Apttus_AgreementSummary__c.lkp_AgreementID__c</relatedList>
     </relatedLists>
     <relatedLists>
         <customButtons>Apttus__SubmitForClauseApproval</customButtons>
