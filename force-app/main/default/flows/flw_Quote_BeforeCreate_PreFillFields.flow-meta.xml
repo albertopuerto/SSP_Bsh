@@ -5,8 +5,8 @@
     <assignments>
         <name>asn_BillTo</name>
         <label>Assign Bill-to</label>
-        <locationX>0</locationX>
-        <locationY>0</locationY>
+        <locationX>533</locationX>
+        <locationY>995</locationY>
         <assignmentItems>
             <assignToReference>billToAccount</assignToReference>
             <operator>Assign</operator>
@@ -21,8 +21,8 @@
     <assignments>
         <name>asn_ShipTo</name>
         <label>Assign Ship-to</label>
-        <locationX>0</locationX>
-        <locationY>0</locationY>
+        <locationX>670</locationX>
+        <locationY>1000</locationY>
         <assignmentItems>
             <assignToReference>shipToAccount</assignToReference>
             <operator>Assign</operator>
@@ -37,10 +37,9 @@
     <decisions>
         <name>decn_AreFound</name>
         <label>Are Found?</label>
-        <locationX>0</locationX>
-        <locationY>0</locationY>
+        <locationX>776</locationX>
+        <locationY>551</locationY>
         <defaultConnector>
-            <isGoTo>true</isGoTo>
             <targetReference>upd_QuoteFields</targetReference>
         </defaultConnector>
         <defaultConnectorLabel>No</defaultConnectorLabel>
@@ -63,10 +62,10 @@
     <decisions>
         <name>decn_BillToShipTo</name>
         <label>Bill-to or Ship-to?</label>
-        <locationX>0</locationX>
-        <locationY>0</locationY>
+        <locationX>450</locationX>
+        <locationY>807</locationY>
         <defaultConnector>
-            <targetReference>upd_QuoteFields</targetReference>
+            <targetReference>lp_PartnerFunctions</targetReference>
         </defaultConnector>
         <defaultConnectorLabel>No</defaultConnectorLabel>
         <rules>
@@ -103,8 +102,8 @@
     <decisions>
         <name>decn_IsOpportunityFrameContractRecordType</name>
         <label>Is Opportunity Frame Contract Record Type</label>
-        <locationX>0</locationX>
-        <locationY>0</locationY>
+        <locationX>1350</locationX>
+        <locationY>983</locationY>
         <defaultConnectorLabel>No</defaultConnectorLabel>
         <rules>
             <name>decn_IsOpportunityFrameContractRecordType_Yes</name>
@@ -135,15 +134,14 @@
     <loops>
         <name>lp_PartnerFunctions</name>
         <label>Loop Partner Functions</label>
-        <locationX>0</locationX>
-        <locationY>0</locationY>
+        <locationX>687</locationX>
+        <locationY>705</locationY>
         <collectionReference>partnerFunction</collectionReference>
         <iterationOrder>Asc</iterationOrder>
         <nextValueConnector>
             <targetReference>decn_BillToShipTo</targetReference>
         </nextValueConnector>
         <noMoreValuesConnector>
-            <isGoTo>true</isGoTo>
             <targetReference>upd_QuoteFields</targetReference>
         </noMoreValuesConnector>
     </loops>
@@ -156,7 +154,7 @@
     <processMetadataValues>
         <name>CanvasMode</name>
         <value>
-            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+            <stringValue>FREE_FORM_CANVAS</stringValue>
         </value>
     </processMetadataValues>
     <processMetadataValues>
@@ -170,8 +168,8 @@
         <description>Queries for other quotes that are related to the parent Opportunity. And gets the Quote Version of the one that was created latest.</description>
         <name>get_OtherQuotesOfRelatedOpportunity</name>
         <label>Get other Quotes of related Opportunity</label>
-        <locationX>0</locationX>
-        <locationY>0</locationY>
+        <locationX>776</locationX>
+        <locationY>335</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>get_PartnerFunctions</targetReference>
@@ -195,8 +193,8 @@
     <recordLookups>
         <name>get_PartnerFunctions</name>
         <label>Get Partner Functions</label>
-        <locationX>0</locationX>
-        <locationY>0</locationY>
+        <locationX>776</locationX>
+        <locationY>443</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>decn_AreFound</targetReference>
@@ -225,8 +223,8 @@
     <recordUpdates>
         <name>upd_GenerateContractedPrice</name>
         <label>Update Generate Contracted Price</label>
-        <locationX>0</locationX>
-        <locationY>0</locationY>
+        <locationX>1218</locationX>
+        <locationY>1091</locationY>
         <inputAssignments>
             <field>SBQQ__GenerateContractedPrice__c</field>
             <value>
@@ -238,8 +236,8 @@
     <recordUpdates>
         <name>upd_QuoteFields</name>
         <label>Update Quote Fields</label>
-        <locationX>0</locationX>
-        <locationY>0</locationY>
+        <locationX>1350</locationX>
+        <locationY>875</locationY>
         <connector>
             <targetReference>decn_IsOpportunityFrameContractRecordType</targetReference>
         </connector>
@@ -270,8 +268,8 @@
         <inputReference>$Record</inputReference>
     </recordUpdates>
     <start>
-        <locationX>0</locationX>
-        <locationY>0</locationY>
+        <locationX>650</locationX>
+        <locationY>48</locationY>
         <connector>
             <targetReference>get_OtherQuotesOfRelatedOpportunity</targetReference>
         </connector>
