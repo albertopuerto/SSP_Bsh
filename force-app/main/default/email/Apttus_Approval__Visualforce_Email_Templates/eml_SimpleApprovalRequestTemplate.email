@@ -7,6 +7,8 @@
             <p><strong>Opportunity:</strong> {!relatedTo.Quote__r.SBQQ__Opportunity2__r.Name} </p>
             <p><strong>Account:</strong> {!relatedTo.Quote__r.SBQQ__Account__r.Name} </p>
             <p><strong>Primary Contact:</strong> {!relatedTo.Quote__r.SBQQ__PrimaryContact__r.Name}</p>
+            <p><strong>Credit Limit:</strong> {!relatedTo.Quote__r.cur_CreditLimit__c} {!relatedTo.Quote__r.CurrencyIsoCode}</p>
+            <p><strong>VAT:</strong> {!relatedTo.Quote__r.cur_Current_Credit_Limit_including_VAT__c} {!relatedTo.Quote__r.CurrencyIsoCode}</p>
         </div>        
         <p>
         To approve or reject this request, you may reply to this message with one of the words: <strong>“Approve”, “Approved”, “Yes”,</strong> or <strong>“Reject”, “Rejected”, “No”</strong> on the first line of the email. You may comment on your response on the second line.

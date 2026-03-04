@@ -25,4 +25,17 @@ public class CreditLimitApprovalController {
     	return false;
 	}
 
+	@AuraEnabled
+	public static SBQQ__Quote__c callCreditLimit(Id quoteId) {
+
+		Set<Id> quoteIds = new Set<Id>();
+        quoteIds.add(quoteId);
+		SBQQ__Quote__c quote = new SBQQ__Quote__c();
+    
+        CreditLimitManager.callGetLimit('SBQQ__Quote__c', quoteId);
+		quote = new QuoteSelector().selectQuoteInfo(quoteIds)[0];
+
+		return quote;
+	}
+
 }

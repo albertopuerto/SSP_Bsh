@@ -14,6 +14,8 @@
             <th>INCO Terms</th>
             <th>Payment Terms</th>
             <th>Net Amount</th>
+            <th>Credit Limit</th>
+            <th>VAT</th>
             <th>Discount</th>
         </tr>
             <tr style= "background-color:white;">
@@ -24,6 +26,8 @@
                 <td>{!relatedTo.Quote__r.pkl_INCOTerms1__c}</td>
                 <td>{!relatedTo.Quote__r.pkl_PaymentTerms__c}</td>
                 <td>{!relatedTo.Quote__r.SBQQ__NetAmount__c} {!relatedTo.Quote__r.CurrencyIsoCode}</td>
+                <td>{!relatedTo.Quote__r.cur_CreditLimit__c} {!relatedTo.Quote__r.CurrencyIsoCode}</td>
+                <td>{!relatedTo.Quote__r.cur_Current_Credit_Limit_including_VAT__c} {!relatedTo.Quote__r.CurrencyIsoCode}</td>
                 <td>{!relatedTo.Quote__r.SBQQ__AdditionalDiscountAmount__c} {!relatedTo.Quote__r.CurrencyIsoCode}</td>
              </tr>
      </table>

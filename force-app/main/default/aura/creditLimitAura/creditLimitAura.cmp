@@ -1,4 +1,4 @@
-<aura:component implements="force:lightningQuickAction,lightning:availableForFlowActions,force:hasRecordId,lightning:actionOverride,lightning:hasPageReference" access="global">
+<aura:component implements="force:lightningQuickActionWithoutHeader,lightning:availableForFlowActions,force:hasRecordId,lightning:actionOverride,lightning:hasPageReference" access="global">
 <aura:attribute name="recordId" type="String"/>
-<c:creditLimitApproval recordId="{!v.recordId}" />
+<c:creditLimitApproval recordId="{!v.recordId}"  onCloseChange="{!c.closeComponent}"  />
 </aura:component>
