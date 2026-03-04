@@ -32,14 +32,59 @@ public class AthenaBusinessPartnerDTO {
     public String  academicTitle;
     public String  title;
     public List<BoschPartnerRoleDTO> boschPartnerRoles;
+    public PersonAddressDTO address;
+    public List<BPRelationshipDTO> bPRelationships;
     
- 
+    
     public class BoschPartnerRoleDTO {
         public String boschPartnerRole;
         public String boschPartnerRoleValidFrom;
         public String boschPartnerRoleValidTo;
     }
     
+    
+    public class BPRelationshipDTO {
+        public String boschPartnerNumberSource;
+        public String boschPartnerNumberTarget;
+        public String relationshipType;
+        public String function;
+    }
+    /**
+* @description nested DTO - Person Address
+*/
+    public class PersonAddressDTO {
+        public List<String> addressUsages;
+        public String country;
+        public String city;
+        public String postalCode;
+        public String streetName;
+        public String houseNumber;
+        public ElectronicAddressDTO electronicAddress;
+    }
+    
+    /**
+* @description nested DTO - Electronic Address (email + phone)
+*/
+    public class ElectronicAddressDTO {
+        public List<EmailAddressDTO> emailAddresses;
+        public List<PhoneNumberDTO> phoneNumbers;
+    }
+    
+    /**
+* @description nested DTO - Email Address
+*/
+    public class EmailAddressDTO {
+        public String  email;
+        public Boolean isDefault;
+    }
+    /**
+* @description nested DTO - Phone Number
+*/
+    public class PhoneNumberDTO {
+        public String  phoneNumber;
+        public String  countryCode;
+        public Boolean isDefault;
+    }
     /**
 * @description nested DTO - Billing Address
 */
