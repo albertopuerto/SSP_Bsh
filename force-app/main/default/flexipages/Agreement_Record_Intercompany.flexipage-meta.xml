@@ -189,10 +189,10 @@
             <fieldInstance>
                 <fieldInstanceProperties>
                     <name>uiBehavior</name>
-                    <value>none</value>
+                    <value>required</value>
                 </fieldInstanceProperties>
-                <fieldItem>Record.chk_ExistenceAgreementCanBeShared__c</fieldItem>
-                <identifier>Recordchk_ExistenceAgreementCanBeShared_cField</identifier>
+                <fieldItem>Record.pkl_ExistenceAgreementCanBeShared__c</fieldItem>
+                <identifier>Recordpkl_ExistenceAgreementCanBeShared_cField</identifier>
                 <visibilityRule>
                     <criteria>
                         <leftValue>{!Record.APTS_Record_Type_Name__c}</leftValue>
@@ -206,9 +206,9 @@
             <fieldInstance>
                 <fieldInstanceProperties>
                     <name>uiBehavior</name>
-                    <value>none</value>
+                    <value>required</value>
                 </fieldInstanceProperties>
-                <fieldItem>Record.chk_ISPandDataProtection__c</fieldItem>
+                <fieldItem>Record.pkl_ISPandDataProtection__c</fieldItem>
                 <identifier>Recordchk_ISPandDataProtection_cField</identifier>
             </fieldInstance>
         </itemInstances>

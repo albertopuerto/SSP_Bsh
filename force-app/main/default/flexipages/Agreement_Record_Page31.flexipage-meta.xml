@@ -33,7 +33,11 @@
         </itemInstances>
         <itemInstances>
             <fieldInstance>
-                <fieldItem>Record.chk_ISPandDataProtection__c</fieldItem>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.pkl_ISPandDataProtection__c</fieldItem>
                 <identifier>Recordchk_ISPandDataProtection__cField</identifier>
             </fieldInstance>
         </itemInstances>
@@ -197,8 +201,8 @@
                     <name>uiBehavior</name>
                     <value>none</value>
                 </fieldInstanceProperties>
-                <fieldItem>Record.chk_ExistenceAgreementCanBeShared__c</fieldItem>
-                <identifier>Recordchk_ExistenceAgreementCanBeShared__cField</identifier>
+                <fieldItem>Record.pkl_ExistenceAgreementCanBeShared__c</fieldItem>
+                <identifier>Recordpkl_ExistenceAgreementCanBeShared_cField</identifier>
             </fieldInstance>
         </itemInstances>
         <name>Facet-aa7fe113-c549-4372-bc80-4677548f3fb9</name>
@@ -1552,12 +1556,6 @@
                         <rightValue>Multy-Party</rightValue>
                     </criteria>
                 </visibilityRule>
-            </componentInstance>
-        </itemInstances>
-        <itemInstances>
-            <componentInstance>
-                <componentName>force:detailPanel</componentName>
-                <identifier>force_detailPanel</identifier>
             </componentInstance>
         </itemInstances>
         <itemInstances>
