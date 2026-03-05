@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>lkp_PrimaryETASLegalEntity__c</fullName>
+    <deleteConstraint>Restrict</deleteConstraint>
+    <description>Primary ETAS Legal Entity</description>
+    <label>Primary ETAS Legal Entity</label>
+    <referenceTo>Account</referenceTo>
+    <relationshipLabel>Agreements Summary (Primary ETAS Legal Entity)</relationshipLabel>
+    <relationshipName>Agreements_Summary1</relationshipName>
+    <required>true</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

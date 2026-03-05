@@ -3,7 +3,6 @@
     <customButtons>Apttus__AgreementHierarchy</customButtons>
     <excludeButtons>ChangeOwnerOne</excludeButtons>
     <excludeButtons>ChangeRecordType</excludeButtons>
-    <excludeButtons>OpenSlackRecordChannel</excludeButtons>
     <excludeButtons>PrintableView</excludeButtons>
     <excludeButtons>Share</excludeButtons>
     <excludeButtons>Submit</excludeButtons>
@@ -22,12 +21,12 @@
                 <field>APTS_Record_Type_Name__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Edit</behavior>
-                <field>chk_ExistenceAgreementCanBeShared__c</field>
+                <behavior>Required</behavior>
+                <field>pkl_ISPandDataProtection__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Edit</behavior>
-                <field>chk_ISPandDataProtection__c</field>
+                <behavior>Required</behavior>
+                <field>pkl_ExistenceAgreementCanBeShared__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns />

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>pkl_ExistenceAgreementCanBeShared__c</fullName>
+    <description>Please asnwer with &quot;Yes&quot; field if existence is onlypermitted to be shared within own legal entity and ETAS affiliates</description>
+    <inlineHelpText>Relevant only for NDAs.Please select &quot;Yes&quot; if existence is only permitted to be shared within own legal entity and ETAS affiliates. If you select &quot;No&quot;, no users out of your team will be aware of the existence of this record.</inlineHelpText>
+    <label>Existence of agreement can be shared</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Yes</fullName>
+                <default>false</default>
+                <label>Yes</label>
+            </value>
+            <value>
+                <fullName>No</fullName>
+                <default>false</default>
+                <label>No</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>
