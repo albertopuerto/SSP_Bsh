@@ -10,14 +10,14 @@
         <valueSetDefinition>
             <sorted>false</sorted>
             <value>
-                <fullName>BBCRCP</fullName>
+                <fullName>BBCRCP - Bosch External Contact Person</fullName>
                 <default>false</default>
-                <label>BBCRCP-Bosch External Contact Person</label>
+                <label>BBCRCP - Bosch External Contact Person</label>
             </value>
             <value>
-                <fullName>BUP003</fullName>
+                <fullName>BUP003 - Employee</fullName>
                 <default>false</default>
-                <label>BUP003-Employee</label>
+                <label>BUP003 - Employee</label>
             </value>
         </valueSetDefinition>
     </valueSet>
