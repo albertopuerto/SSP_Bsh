@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>pkl_Status__c</fullName>
-    <description>Gives the Sales Coordinator information on status of the business contact person</description>
+    <description>Contact Status in Athena System, describes whether the Person Business Partner is aligned in Athena or Not</description>
     <externalId>false</externalId>
     <label>Status</label>
     <required>true</required>
@@ -12,24 +12,34 @@
         <valueSetDefinition>
             <sorted>false</sorted>
             <value>
-                <fullName>Active</fullName>
+                <fullName>Bosch Partner Number not Received</fullName>
                 <default>false</default>
-                <label>Active</label>
+                <label>Bosch Partner Number not Received</label>
             </value>
             <value>
-                <fullName>Blocked</fullName>
+                <fullName>Created in Athena</fullName>
                 <default>false</default>
-                <label>Blocked</label>
+                <label>Created in Athena</label>
             </value>
             <value>
-                <fullName>In preparation</fullName>
+                <fullName>Draft</fullName>
                 <default>false</default>
-                <label>In preparation</label>
+                <label>Draft</label>
             </value>
             <value>
-                <fullName>Obsolete</fullName>
+                <fullName>Error in sending to Athena</fullName>
                 <default>false</default>
-                <label>Obsolete</label>
+                <label>Error in sending to Athena</label>
+            </value>
+            <value>
+                <fullName>Received in Athena for BP creation</fullName>
+                <default>false</default>
+                <label>Received in Athena for BP creation</label>
+            </value>
+            <value>
+                <fullName>Sent to Athena</fullName>
+                <default>false</default>
+                <label>Sent to Athena</label>
             </value>
         </valueSetDefinition>
     </valueSet>

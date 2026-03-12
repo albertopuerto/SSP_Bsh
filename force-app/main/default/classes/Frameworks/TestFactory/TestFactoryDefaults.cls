@@ -132,7 +132,7 @@ public with sharing class TestFactoryDefaults{
                     Contact.pkl_Language__c => 'English',                   
                     Contact.Email => 'testEmail@invalid.com',
                     Contact.pkl_AccountGroup__c=> 'ETDE Contact ETCN Contact',
-                    Contact.pkl_Status__c => 'Active'
+                    Contact.pkl_Status__c => 'Draft'
             };
         }
     }

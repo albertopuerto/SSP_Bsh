@@ -21,6 +21,7 @@ public class PropagateMainContactRoleTest {
             testContactList[0].mpkl_RoleMainAccount__c = '0001';
             testContactList[0].pkl_Language__c = 'English';
             testContactList[0].pkl_Status__c = 'Active';
+            testContactList[0].pkl_Status__c = 'Draft';
             testContactList[0].pkl_AccountGroup__c = 'ETDE Contact ETCN Contact';
 
             insert testContactList;

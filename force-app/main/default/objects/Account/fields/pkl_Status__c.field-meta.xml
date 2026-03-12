@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>pkl_Status__c</fullName>
+    <description>Account Status in Athena System, describes whether the Organization Business Partner is aligned in Athena or Not</description>
     <externalId>false</externalId>
     <label>Status</label>
     <required>false</required>
