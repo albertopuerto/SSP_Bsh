@@ -2,7 +2,6 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>pkl_Status__c</fullName>
     <description>Contact Status in Athena System, describes whether the Person Business Partner is aligned in Athena or Not</description>
-    <externalId>false</externalId>
     <label>Status</label>
     <required>true</required>
     <trackFeedHistory>false</trackFeedHistory>
@@ -12,32 +11,32 @@
         <valueSetDefinition>
             <sorted>false</sorted>
             <value>
-                <fullName>Bosch Partner Number not Received</fullName>
+                <fullName>BOSCH_PARTNER_NUMBER_NOT_RECEIVED</fullName>
                 <default>false</default>
                 <label>Bosch Partner Number not Received</label>
             </value>
             <value>
-                <fullName>Created in Athena</fullName>
+                <fullName>CREATED_IN_ATHENA</fullName>
                 <default>false</default>
                 <label>Created in Athena</label>
             </value>
             <value>
-                <fullName>Draft</fullName>
+                <fullName>DRAFT</fullName>
                 <default>false</default>
                 <label>Draft</label>
             </value>
             <value>
-                <fullName>Error in sending to Athena</fullName>
+                <fullName>ERROR_IN_SENDING_TO_ATHENA</fullName>
                 <default>false</default>
                 <label>Error in sending to Athena</label>
             </value>
             <value>
-                <fullName>Received in Athena for BP creation</fullName>
+                <fullName>RECEIVED_IN_ATHENA_FOR_BP_CREATION</fullName>
                 <default>false</default>
                 <label>Received in Athena for BP creation</label>
             </value>
             <value>
-                <fullName>Sent to Athena</fullName>
+                <fullName>SENT_TO_ATHENA</fullName>
                 <default>false</default>
                 <label>Sent to Athena</label>
             </value>
