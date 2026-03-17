@@ -216,25 +216,6 @@
         </values>
     </picklistValues>
     <picklistValues>
-        <picklist>Role__c</picklist>
-        <values>
-            <fullName>ETCN Domestic Customer</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>ETDE Domestic Customer</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>ETJP Domestic Customer</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>ETUS Domestic Customer</fullName>
-            <default>false</default>
-        </values>
-    </picklistValues>
-    <picklistValues>
         <picklist>SBQQ__CoTerminationEvent__c</picklist>
         <values>
             <fullName>Add-on</fullName>
@@ -1538,6 +1519,10 @@
         </values>
         <values>
             <fullName>BBCUSH</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>RBWECC</fullName>
             <default>false</default>
         </values>
     </picklistValues>

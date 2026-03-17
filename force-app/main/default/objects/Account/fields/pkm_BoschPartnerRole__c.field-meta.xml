@@ -32,6 +32,11 @@
                 <label>BBCUPR</label>
             </value>
             <value>
+                <fullName>RBWECC</fullName>
+                <default>false</default>
+                <label>RBWECC</label>
+            </value>
+            <value>
                 <fullName>Bill-to</fullName>
                 <default>false</default>
                 <isActive>false</isActive>
