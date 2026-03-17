@@ -120,7 +120,7 @@ public with sharing class AthenaBusinessPartnerService { // NOPMD
             }
         } 
         con.pkl_AccountGroup__c = 'ETDE Contact ETCN Contact';
-        con.pkl_Status__c = 'Active';
+        con.pkl_Status__c = 'Draft';
         con.pkl_Language__c = 'English';
         con.mpkl_RoleMainAccount__c = '0001';
         
