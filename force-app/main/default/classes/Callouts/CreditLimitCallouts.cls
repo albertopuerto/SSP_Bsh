@@ -30,11 +30,11 @@ public with sharing class CreditLimitCallouts {
 
         if(quoteToCalculate != null && (quoteToCalculate.SBQQ__Status__c == 'Accepted' || quoteToCalculate.SBQQ__Status__c== 'Draft' || quoteToCalculate.SBQQ__Status__c == 'In Review')){
 
-            String bodyWrapper = JSON.serialize(VertexIntManager.createRequest(todayDateTime,quoteToCalculate.SBQQ__Account__r.BillingCountry));
+            String bodyWrapper = JSON.serialize(VertexIntManager.createRequest(todayDateTime,quoteToCalculate.SBQQ__Account__r.BillingCountryCode));
             finalVertexBody = CreditLimitUtilMethods.formatRequest(bodyWrapper);
 
         }else if(orderToCalculate != null && orderToCalculate.Status == 'Activated'){
-        	String bodyWrapper = JSON.serialize(VertexIntManager.createRequest(todayDateTime,orderToCalculate.Account.BillingCountry));
+        	String bodyWrapper = JSON.serialize(VertexIntManager.createRequest(todayDateTime,orderToCalculate.Account.BillingCountryCode));
             finalVertexBody = CreditLimitUtilMethods.formatRequest(bodyWrapper);
         }
         vertexRequest.setBody(finalVertexBody);
@@ -81,7 +81,7 @@ public with sharing class CreditLimitCallouts {
         }else if(actualAccount != null){
 
          	request.setEndpoint('callout:CreditLimitOuathAccount');
-            String bodyWrapper = JSON.serialize(CreditLimitWrapperManager.createAccountRequest(orgId,actualAccount.BillingCountry,actualAccount.txt_AthenaUUID__c));
+            String bodyWrapper = JSON.serialize(CreditLimitWrapperManager.createAccountRequest(orgId,actualAccount.BillingCountryCode,actualAccount.txt_AthenaUUID__c));
             finalCreditLimitBody= CreditLimitUtilMethods.formatRequest(bodyWrapper);
 
         }
