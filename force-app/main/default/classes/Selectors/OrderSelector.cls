@@ -36,6 +36,7 @@ public with sharing class OrderSelector extends fflib_SObjectSelector {
                 .selectField(Order.CurrencyIsoCode)
                 .selectField('Account.txt_AthenaUUID__c')
                 .selectField('Account.BillingCountry')
+                .selectField('Account.BillingCountryCode')
                 .setCondition('id in :idSet')
                 .toSOQL()))
     {
