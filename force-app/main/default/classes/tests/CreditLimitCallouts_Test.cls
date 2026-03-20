@@ -46,7 +46,7 @@ public class CreditLimitCallouts_Test {
 
 		User productManagerUser = (User)TestFactory.createSObject(new User(), 'TestFactoryDefaults.ProductManagerUserDefaults', true);
 
-        SBQQ__Quote__c quoteTest = [SELECT Id,SBQQ__Status__c,Bill_To_Country__c,SBQQ__Account__r.BillingCountry,SBQQ__Account__r.txt_AthenaUUID__c from SBQQ__Quote__c LIMIT 1];
+        SBQQ__Quote__c quoteTest = [SELECT Id,SBQQ__Status__c,Bill_To_Country__c,SBQQ__Account__r.BillingCountryCode,SBQQ__Account__r.txt_AthenaUUID__c from SBQQ__Quote__c LIMIT 1];
         quoteTest.SBQQ__Status__c='Accepted';
         update quoteTest;
 
@@ -59,6 +59,7 @@ public class CreditLimitCallouts_Test {
 
             Test.setMock(HttpCalloutMock.class, res2);
 
+            CreditLimitCallouts.getVertexInformation(quoteTest, null);
     	    Assert.isTrue(res2.responseHeaders.get('Content-Type') == 'application/json','The content type is of Content-Type');
 
     	    Assert.areEqual(200, res2.code, 'The status code is 200');
@@ -70,7 +71,7 @@ public class CreditLimitCallouts_Test {
 	static void testCreditLimitCalloutAccount() {
 
 		User productManagerUser = (User)TestFactory.createSObject(new User(), 'TestFactoryDefaults.ProductManagerUserDefaults', true);
-		Account testAccount = [SELECT Id,BillingCountry,txt_AthenaUUID__c from Account LIMIT 1];
+		Account testAccount = [SELECT Id,BillingCountryCode,txt_AthenaUUID__c from Account LIMIT 1];
 
     	Test.startTest();
 		System.runAs(productManagerUser){
@@ -95,8 +96,8 @@ public class CreditLimitCallouts_Test {
 		User productManagerUser = (User)TestFactory.createSObject(new User(), 'TestFactoryDefaults.ProductManagerUserDefaults', true);
 
         SBQQ__Quote__c quoteTest = [SELECT Id,SBQQ__Status__c,Bill_To_Country__c,cur_Current_Credit_Limit_including_VAT__c,CurrencyIsoCode,SBQQ__Account__r.txt_AthenaUUID__c from SBQQ__Quote__c LIMIT 1];
-        quoteTest.SBQQ__Status__c='Accepted';
-        update quoteTest;
+        //quoteTest.SBQQ__Status__c='Accepted';
+        //update quoteTest;
     	Test.startTest();
 		System.runAs(productManagerUser){
         	StaticResource sr2 = [SELECT Body FROM StaticResource WHERE Name = 'creditLimitQuoteOrderExceded'];
@@ -105,7 +106,7 @@ public class CreditLimitCallouts_Test {
             HTTPMockGenerator res2 = new HTTPMockGenerator(200, creditLimitBody);
 
             Test.setMock(HttpCalloutMock.class, res2);
-
+			CreditLimitCallouts.startCreditLimitCallouts(quoteTest, null, null);
     	    Assert.isTrue(res2.responseHeaders.get('Content-Type') == 'application/json','The content type is of Content-Type');
 
     	    Assert.areEqual(200, res2.code, 'The status code is 200');

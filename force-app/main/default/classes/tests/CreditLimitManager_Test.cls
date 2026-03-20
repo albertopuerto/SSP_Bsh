@@ -287,7 +287,7 @@ public class CreditLimitManager_Test {
         System.runAs(productManagerUser){
             Order orderTest = [SELECT Id,Status,cur_Current_Credit_Limit_including_VAT__c,CurrencyIsoCode,Account.txt_AthenaUUID__c from Order LIMIT 1];
 
-          StaticResource sr = [SELECT Body FROM StaticResource WHERE Name = 'vertexSuccess'];
+            StaticResource sr = [SELECT Body FROM StaticResource WHERE Name = 'vertexSuccess'];
 			String vertexBody = sr.Body.toString();
 
            	HTTPMockGenerator res1 = new HTTPMockGenerator(200, vertexBody);

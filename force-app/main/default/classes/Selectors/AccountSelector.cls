@@ -15,6 +15,7 @@ public with sharing class AccountSelector extends fflib_SObjectSelector {
             Account.Description,
             Account.AnnualRevenue,
             Account.BillingCountry,
+            Account.BillingCountryCode,
             Account.txt_AthenaUUID__c,
             Account.CurrencyIsoCode
         };
