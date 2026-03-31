@@ -1,0 +1,2805 @@
+<apex:page showHeader="false" sidebar="false" applyHtmlTag="false" applyBodyTag="false" docType="html-5.0" lightningStyleSheets="true">
+<html>
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>SAP Variant Configuration - API Testing</title>
+    <apex:slds />
+    <script src="/soap/ajax/59.0/connection.js" type="text/javascript"></script>
+    <script src="/soap/ajax/59.0/apex.js" type="text/javascript"></script>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            background-color: #f3f3f3;
+        }
+        
+        .main-container {
+            display: flex;
+            height: 100vh;
+            overflow: hidden;
+        }
+        
+        .sidebar {
+            width: 280px;
+            background: linear-gradient(135deg, #0070d2 0%, #005fb2 100%);
+            color: white;
+            padding: 30px 0;
+            overflow-y: auto;
+            box-shadow: 2px 0 8px rgba(0,0,0,0.1);
+        }
+        
+        .sidebar-header {
+            padding: 0 20px 30px;
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+            margin-bottom: 20px;
+        }
+        
+        .sidebar-header h1 {
+            margin: 0;
+            font-size: 16px;
+            font-weight: 600;
+            color: white;
+            line-height: 1.4;
+        }
+        
+        .sidebar-menu {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .sidebar-menu-item {
+            margin: 0;
+            padding: 0;
+        }
+        
+        .sidebar-menu-link {
+            display: block;
+            padding: 14px 20px;
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+            transition: all 0.2s ease;
+            border-left: 3px solid transparent;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            user-select: none;
+        }
+        
+        .sidebar-menu-link:hover {
+            background-color: rgba(255,255,255,0.1);
+            color: white;
+            border-left-color: rgba(255,255,255,0.3);
+        }
+        
+        .sidebar-menu-link.active {
+            background-color: rgba(255,255,255,0.15);
+            color: white;
+            border-left-color: #fff;
+            font-weight: 600;
+        }
+        
+        .content-area {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+        
+        .content-header {
+            background: white;
+            padding: 30px 40px;
+            border-bottom: 1px solid #e5e5e5;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        
+        .content-header h1 {
+            margin: 0;
+            font-size: 28px;
+            color: #0070d2;
+            font-weight: 600;
+        }
+        
+        .content-body {
+            flex: 1;
+            overflow-y: auto;
+            padding: 40px;
+        }
+        
+        .tab-panel {
+            display: none;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        .tab-panel.active {
+            display: block;
+        }
+        
+        .sub-tab-link {
+            display: inline-block;
+            padding: 10px 16px;
+            margin-right: 5px;
+            background: #f3f3f3;
+            color: #565554;
+            text-decoration: none;
+            border-radius: 4px 4px 0 0;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            user-select: none;
+            transition: all 0.2s ease;
+            border-bottom: 2px solid transparent;
+        }
+        
+        .sub-tab-link:hover {
+            background: #e8e8e8;
+            color: #0070d2;
+        }
+        
+        .sub-tab-link.active {
+            background: white;
+            color: #0070d2;
+            border-bottom-color: #0070d2;
+            font-weight: 600;
+        }
+        
+        .sub-tab-panel {
+            display: none;
+        }
+        
+        .sub-tab-panel.active {
+            display: block;
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .tab-box {
+            background: white;
+            border-radius: 8px;
+            padding: 30px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.12);
+        }
+        
+        .tab-box h2 {
+            margin: 0 0 10px;
+            font-size: 20px;
+            color: #0070d2;
+            font-weight: 600;
+        }
+        
+        .tab-box > p {
+            margin: 0 0 25px;
+            color: #706e6b;
+            font-size: 14px;
+        }
+        
+        .form-section {
+            margin-bottom: 25px;
+        }
+        
+        .form-section label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #16325c;
+            font-size: 13px;
+        }
+        
+        .form-row {
+            display: flex;
+            gap: 30px;
+            align-items: flex-start;
+        }
+        
+        .form-left {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .form-right {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .preview-label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #16325c;
+            font-size: 13px;
+        }
+        
+        .preview-box {
+            background-color: #f9f9f9;
+            border: 1px solid #d8dada;
+            border-radius: 4px;
+            padding: 15px;
+            font-family: 'Courier New', monospace;
+            font-size: 12px;
+            color: #333;
+            line-height: 1.5;
+            max-height: 400px;
+            overflow-y: auto;
+            white-space: pre-wrap;
+            word-break: break-word;
+        }
+        
+        .form-section input,
+        .form-section textarea {
+            width: 100%;
+            max-width: 600px;
+            padding: 10px 12px;
+            border: 1px solid #d8dada;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            font-size: 13px;
+            transition: border-color 0.15s ease;
+        }
+        
+        .form-section textarea {
+            resize: vertical;
+            min-height: 100px;
+            font-family: 'Courier New', monospace;
+        }
+        
+        .form-section input:focus,
+        .form-section textarea:focus {
+            outline: none;
+            border-color: #0070d2;
+            box-shadow: 0 0 0 3px rgba(0,112,210,0.1);
+        }
+        
+        .button-group {
+            margin-bottom: 30px;
+        }
+        
+        .response-section {
+            margin-top: 30px;
+        }
+
+        .config-form {
+            margin-top: 25px;
+        }
+
+        .config-form-header {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-bottom: 16px;
+        }
+
+        .config-kb-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #16325c;
+        }
+
+        .config-group-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .config-group-pill {
+            background: #f3f6f9;
+            color: #16325c;
+            border: 1px solid #d8dada;
+            border-radius: 999px;
+            padding: 4px 10px;
+            font-size: 12px;
+        }
+
+        .config-form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 16px;
+        }
+
+        .config-field {
+            background: #ffffff;
+            border: 1px solid #e5e5e5;
+            border-radius: 6px;
+            padding: 12px;
+        }
+
+        .config-field.readonly {
+            opacity: 0.7;
+        }
+
+        .config-field-title {
+            font-weight: 600;
+            color: #16325c;
+            margin-bottom: 8px;
+            font-size: 13px;
+        }
+
+        .required-indicator {
+            color: #c23934;
+            margin-left: 4px;
+        }
+
+        .config-field-options {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            font-size: 12px;
+            color: #333;
+        }
+
+        .config-field .meta {
+            margin-top: 6px;
+            font-size: 11px;
+            color: #706e6b;
+        }
+        
+        .status-message {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 12px 20px;
+            border-radius: 4px;
+            font-size: 14px;
+            font-weight: 500;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+            z-index: 10000;
+            animation: slideIn 0.3s ease;
+        }
+        
+        .status-message.success {
+            background: #4bca81;
+            color: white;
+        }
+        
+        .status-message.error {
+            background: #c23934;
+            color: white;
+        }
+        
+        .status-message.info {
+            background: #0070d2;
+            color: white;
+        }
+        
+        @keyframes slideIn {
+            from {
+                transform: translateX(400px);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        .response-title {
+            display: block;
+            margin-top: 20px;
+            font-weight: 600;
+            color: #16325c;
+            font-size: 14px;
+        }
+
+        .response-table {
+            margin-top: 20px;
+        }
+
+        .response-table table {
+            width: 100%;
+            border-collapse: collapse;
+            background: #ffffff;
+            border: 1px solid #e5e5e5;
+            font-size: 12px;
+        }
+
+        .response-table th,
+        .response-table td {
+            border: 1px solid #e5e5e5;
+            padding: 8px 10px;
+            text-align: left;
+            vertical-align: top;
+            word-break: break-word;
+        }
+
+        .response-table th:first-child,
+        .response-table td:first-child {
+            min-width: 180px;
+        }
+
+        .response-table th {
+            background: #f3f6f9;
+            font-weight: 600;
+            color: #16325c;
+        }
+        
+        .response-section label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: 600;
+            color: #16325c;
+            font-size: 14px;
+        }
+        
+        .response-section textarea {
+            width: 100%;
+            height: 450px;
+            padding: 15px;
+            border: 1px solid #d8dada;
+            border-radius: 4px;
+            background-color: #f9f9f9;
+            font-family: 'Courier New', monospace;
+            font-size: 12px;
+            color: #333;
+            line-height: 1.5;
+            resize: none;
+        }
+        
+        .endpoint-info {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 25px;
+            padding: 15px;
+            background-color: #f0f4ff;
+            border-left: 3px solid #0070d2;
+            border-radius: 4px;
+        }
+        
+        .endpoint-method {
+            display: inline-block;
+            padding: 4px 8px;
+            background-color: #0070d2;
+            color: white;
+            border-radius: 3px;
+            font-size: 11px;
+            font-weight: 600;
+            min-width: 50px;
+            text-align: center;
+        }
+        
+        .endpoint-path {
+            flex: 1;
+            font-family: 'Courier New', monospace;
+            font-size: 13px;
+            color: #0070d2;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+        }
+        
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: #888;
+            border-radius: 4px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+        
+        .cheatsheet-container {
+            background: white;
+            border-radius: 8px;
+            padding: 30px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.12);
+        }
+        
+        .cheatsheet-title {
+            margin: 0 0 25px;
+            font-size: 24px;
+            color: #0070d2;
+            font-weight: 600;
+            border-bottom: 2px solid #e5e5e5;
+            padding-bottom: 15px;
+        }
+        
+        .cheatsheet-section {
+            margin-bottom: 30px;
+        }
+        
+        .cheatsheet-section-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #16325c;
+            margin: 0 0 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .cheatsheet-section-title::before {
+            content: "";
+            display: inline-block;
+            width: 4px;
+            height: 18px;
+            background: #0070d2;
+            border-radius: 2px;
+        }
+        
+        .cheatsheet-grid {
+            display: grid;
+            grid-template-columns: auto auto 1fr;
+            gap: 10px 20px;
+            background: #f9f9f9;
+            padding: 20px;
+            border-radius: 6px;
+            border: 1px solid #e5e5e5;
+        }
+        
+        .cheatsheet-key {
+            font-weight: 600;
+            color: #16325c;
+            font-size: 13px;
+            white-space: nowrap;
+        }
+        
+        .cheatsheet-value {
+            font-family: 'Courier New', monospace;
+            font-size: 13px;
+            color: #0070d2;
+            font-weight: 500;
+            word-break: break-all;
+        }
+        
+        .cheatsheet-notes {
+            font-size: 12px;
+            color: #706e6b;
+            font-style: italic;
+            line-height: 1.5;
+        }
+        
+        .cheatsheet-notes strong {
+            color: #16325c;
+            font-style: normal;
+        }
+        
+        .cheatsheet-list {
+            background: #f9f9f9;
+            padding: 20px;
+            border-radius: 6px;
+            border: 1px solid #e5e5e5;
+            margin: 0;
+        }
+        
+        .cheatsheet-list-item {
+            font-family: 'Courier New', monospace;
+            font-size: 13px;
+            color: #16325c;
+            padding: 6px 0;
+            border-bottom: 1px solid #e5e5e5;
+        }
+        
+        .cheatsheet-list-item:last-child {
+            border-bottom: none;
+        }
+        
+        .cheatsheet-badge {
+            display: inline-block;
+            background: #0070d2;
+            color: white;
+            padding: 3px 8px;
+            border-radius: 3px;
+            font-size: 11px;
+            font-weight: 600;
+            margin-left: 8px;
+        }
+        
+        .assumption-box {
+            background: #fff8e1;
+            border-left: 4px solid #ff9800;
+            padding: 16px 20px;
+            margin-bottom: 16px;
+            border-radius: 4px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+        }
+        
+        .assumption-title {
+            font-weight: 600;
+            color: #16325c;
+            margin: 0 0 8px;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .assumption-title::before {
+            content: "⚠️";
+            font-size: 16px;
+        }
+        
+        .assumption-description {
+            color: #706e6b;
+            font-size: 13px;
+            line-height: 1.6;
+            margin: 0;
+        }
+        
+        .assumption-code {
+            font-family: 'Courier New', monospace;
+            background: #f4f4f4;
+            padding: 2px 6px;
+            border-radius: 3px;
+            color: #d63031;
+            font-weight: 500;
+        }
+        
+        .info-box {
+            background: #e3f2fd;
+            border-left: 4px solid #2196f3;
+            padding: 12px 16px;
+            margin: 12px 0;
+            border-radius: 4px;
+            font-size: 13px;
+            line-height: 1.6;
+        }
+        
+        .info-box strong {
+            color: #16325c;
+            font-weight: 600;
+        }
+        
+        .info-label {
+            font-weight: 600;
+            color: #0070d2;
+            margin-bottom: 6px;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .code-block {
+            background: #f4f6f9;
+            border: 1px solid #d8dde6;
+            border-radius: 4px;
+            padding: 12px;
+            font-family: 'Courier New', monospace;
+            font-size: 12px;
+            color: #16325c;
+            white-space: pre-wrap;
+            margin: 8px 0;
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+
+<div class="main-container">
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <h1>SAP VC API Testing</h1>
+            <p style="margin: 8px 0 0 0; color: rgba(255,255,255,0.8); font-size: 12px; line-height: 1.4;">Alberto PoC</p>
+        </div>
+        <ul class="sidebar-menu">
+            <li class="sidebar-menu-item">
+                <a href="javascript:void(0)" onclick="switchCategory(event, 'kb')" class="sidebar-menu-link active">
+                    📚 Knowledge Bases
+                </a>
+            </li>
+            <li class="sidebar-menu-item">
+                <a href="javascript:void(0)" onclick="switchCategory(event, 'config')" class="sidebar-menu-link">
+                    ⚙️ Configurations
+                </a>
+            </li>
+            <li class="sidebar-menu-item">
+                <a href="javascript:void(0)" onclick="switchCategory(event, 'pricing')" class="sidebar-menu-link">
+                    💰 Pricing
+                </a>
+            </li>
+            <li class="sidebar-menu-item">
+                <a href="javascript:void(0)" onclick="switchCategory(event, 'cheatsheet')" class="sidebar-menu-link">
+                    🐛 Cheatsheet
+                </a>
+            </li>
+        </ul>
+    </div>
+    
+    <!-- Content Area -->
+    <div class="content-area">
+        <div class="content-header">
+            <h1 id="current-title">Knowledge Bases</h1>
+        </div>
+        
+        <div class="content-body">
+            
+            <!-- Knowledge Bases Category -->
+            <div id="category-kb" class="tab-panel active">
+                <!-- Horizontal Tabs -->
+                <div style="display: flex; gap: 0; border-bottom: 2px solid #e5e5e5; margin-bottom: 30px;">
+                    <a href="javascript:void(0)" onclick="switchSubTab(event, 'kb', 'determine')" class="sub-tab-link active">Determine KB</a>
+                    <a href="javascript:void(0)" onclick="switchSubTab(event, 'kb', 'details')" class="sub-tab-link">Get Details</a>
+                    <a href="javascript:void(0)" onclick="switchSubTab(event, 'kb', 'translations')" class="sub-tab-link">Get Translations</a>
+                </div>
+                
+                <!-- Determine KB -->
+                <div id="subtab-kb-determine" class="sub-tab-panel active">
+                    <div class="tab-box">
+                        <h2>Determine Knowledge Base</h2>
+                        <p>Retrieves a list of knowledge bases (header data only). Possible search criteria are product ID, validity date, type and plant.</p>
+                        <div class="endpoint-info">
+                            <span class="endpoint-method">GET</span>
+                            <span class="endpoint-path" id="determine-endpoint">/api/v2/kbdetermination</span>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-left">
+                                <div class="form-section">
+                                    <label>Product ID</label>
+                                    <input type="text" id="determine-productId" placeholder="e.g., MAC-BOOK" onkeyup="updateDeterminePreview()"/>
+                                </div>
+                                <div class="form-section">
+                                    <label>Validity Date (Optional)</label>
+                                    <input type="date" id="determine-validityDate" onchange="updateDeterminePreview()"/>
+                                </div>
+                                <div class="form-section">
+                                    <label>Type (Optional)</label>
+                                    <input type="text" id="determine-type" placeholder="e.g., MARA" onkeyup="updateDeterminePreview()"/>
+                                </div>
+                                <div class="form-section">
+                                    <label>Plant (Optional)</label>
+                                    <input type="text" id="determine-plant" placeholder="e.g., 1000" onkeyup="updateDeterminePreview()"/>
+                                </div>
+                            </div>
+                            
+                            <div class="form-right">
+                                <label class="preview-label">Request URL Preview</label>
+                                <div class="preview-box" id="determine-preview">/api/v2/kbdetermination</div>
+                            </div>
+                        </div>
+                        
+                        <div class="button-group">
+                            <button class="slds-button slds-button_brand" onclick="callAPI('determine')">Execute Request</button>
+                        </div>
+                        <label class="response-title">Response:</label>
+                        <div class="response-table" id="table-determine"></div>
+                        <div class="response-section">
+                            <textarea id="output-determine" readonly="readonly"></textarea>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Get KB Details -->
+                <div id="subtab-kb-details" class="sub-tab-panel" style="display: none;">
+                    <div class="tab-box">
+                        <h2>Get Knowledge Base Details</h2>
+                        <p>Retrieves the knowledge base identified by the specified identifier and the corresponding localized texts filtered by the language parameter. The relevant information about the master data like characteristic name, long text should be cached by the caller for better performance.</p>
+                        <div class="endpoint-info">
+                            <span class="endpoint-method">GET</span>
+                            <span class="endpoint-path">/api/v2/knowledgebases/{id}</span>
+                        </div>
+                        <div class="form-section">
+                            <label>Knowledge Base ID</label>
+                            <input type="text" id="input-kbid" placeholder="Enter KB ID"/>
+                        </div>
+                        <div class="button-group">
+                            <button class="slds-button slds-button_brand" onclick="callAPI('get-kb')">Execute Request</button>
+                        </div>
+                        <label class="response-title">Response:</label>
+                        <div class="response-table" id="table-get-kb"></div>
+                        <div class="response-section">
+                            <textarea id="output-get-kb" readonly="readonly"></textarea>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Get KB Translations -->
+                <div id="subtab-kb-translations" class="sub-tab-panel" style="display: none;">
+                    <div class="tab-box">
+                        <h2>Get Knowledge Base Translations</h2>
+                        <p>Retrieves localized short and long texts for characteristics, values, and other elements in the knowledge base for the specified language.</p>
+                        <div class="endpoint-info">
+                            <span class="endpoint-method">GET</span>
+                            <span class="endpoint-path">/api/v2/knowledgebases/{kbId}/translations</span>
+                        </div>
+                        <div class="form-section">
+                            <label>Knowledge Base ID</label>
+                            <input type="text" id="input-kb-trans-id" placeholder="Enter KB ID"/>
+                        </div>
+                        <div class="form-section">
+                            <label>Language (Optional)</label>
+                            <input type="text" id="input-kb-trans-language" placeholder="e.g., en, de, es"/>
+                        </div>
+                        <div class="button-group">
+                            <button class="slds-button slds-button_brand" onclick="callAPI('get-translations')">Execute Request</button>
+                        </div>
+                        <label class="response-title">Response:</label>
+                        <div class="response-table" id="table-get-translations"></div>
+                        <div class="response-section">
+                            <textarea id="output-get-translations" readonly="readonly"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Configurations Category -->
+            <div id="category-config" class="tab-panel" style="display: none;">
+                <!-- Horizontal Tabs -->
+                <div style="display: flex; gap: 0; border-bottom: 2px solid #e5e5e5; margin-bottom: 30px;">
+                    <a href="javascript:void(0)" onclick="switchSubTab(event, 'config', 'create')" class="sub-tab-link active">Create</a>
+                    <a href="javascript:void(0)" onclick="switchSubTab(event, 'config', 'patch')" class="sub-tab-link">Patch</a>
+                    <a href="javascript:void(0)" onclick="switchSubTab(event, 'config', 'get')" class="sub-tab-link">Get</a>
+                    <a href="javascript:void(0)" onclick="switchSubTab(event, 'config', 'delete')" class="sub-tab-link">Delete</a>
+                    <a href="javascript:void(0)" onclick="switchSubTab(event, 'config', 'configuration')" class="sub-tab-link">⚙️ Configuration</a>
+                </div>
+                
+                <!-- Create Config -->
+                <div id="subtab-config-create" class="sub-tab-panel active">
+                    <div class="tab-box">
+                        <h2>Create Configuration</h2>
+                        <p>Create a new configuration session with SAP VC. Provide the knowledge base ID, product key, and date.</p>
+                        <div class="endpoint-info">
+                            <span class="endpoint-method">POST</span>
+                            <span class="endpoint-path">/api/v2/configurations</span>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-left">
+                                <div class="form-section">
+                                    <label>Knowledge Base ID *</label>
+                                    <input type="text" id="create-kbId" placeholder="e.g., 31" onkeyup="updateConfigurationPreview()"/>
+                                </div>
+                                <div class="form-section">
+                                    <label>Product Key *</label>
+                                    <input type="text" id="create-productKey" placeholder="e.g., MAC-BOOK" onkeyup="updateConfigurationPreview()"/>
+                                </div>
+                                <div class="form-section">
+                                    <label>Date (YYYY-MM-DD) *</label>
+                                    <input type="date" id="create-date" onchange="updateConfigurationPreview()"/>
+                                </div>
+                                <div class="form-section">
+                                    <label>Auto Cleanup</label>
+                                    <input type="checkbox" id="create-autoCleanup" checked="checked" onchange="updateConfigurationPreview()"/>
+                                    <span style="margin-left: 5px; font-size: 12px; color: #706e6b;">Auto delete after 2 hours (default: true)</span>
+                                </div>
+                            </div>
+                            
+                            <div class="form-right">
+                                <label class="preview-label">Request Body Preview</label>
+                                <div class="preview-box" id="create-preview">{}</div>
+                            </div>
+                        </div>
+                        
+                        <div class="button-group">
+                            <button class="slds-button slds-button_brand" onclick="callAPI('create')">Execute Request</button>
+                        </div>
+                        <label class="response-title">Response:</label>
+                        <div class="response-table" id="table-create"></div>
+                        <div class="response-section">
+                            <textarea id="output-create" readonly="readonly"></textarea>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Configuration (Get + Patch) -->
+                <div id="subtab-config-configuration" class="sub-tab-panel" style="display: none;">
+                    <div class="tab-box">
+                        <h2>⚙️ Configuration Editor</h2>
+                        <p>Load configuration, edit visible fields, and update via PATCH. After updating, the configuration is reloaded automatically.</p>
+                        <div class="endpoint-info">
+                            <span class="endpoint-method">GET</span>
+                            <span class="endpoint-path">/api/v2/configurations/{id}</span>
+                        </div>
+                        <div class="form-section">
+                            <label>Configuration ID</label>
+                            <input type="text" id="input-config-editor-id" placeholder="Enter Configuration ID"/>
+                        </div>
+                        <div class="form-section">
+                            <label>ETag (auto-captured after update, editable for manual override)</label>
+                            <input type="text" id="input-config-etag" placeholder='e.g., W/"1"' title="ETag from last successful operation or manually set"/>
+                        </div>
+                        <div class="button-group">
+                            <button class="slds-button slds-button_brand" onclick="loadConfigurationEditor()">Load Configuration</button>
+                            <button class="slds-button slds-button_neutral" onclick="updateConfigurationEditor()">Update Configuration</button>
+                            <button class="slds-button slds-button_neutral" onclick="loadConfigurationEditor()" title="Reload after PATCH operations">Reload Configuration</button>
+                        </div>
+                        <label class="response-title">Configuration Form:</label>
+                        <div class="config-form" id="config-editor-container"></div>
+                        <label class="response-title">PATCH Preview (changes to be sent):</label>
+                        <div class="preview-box" id="config-patch-preview">No changes detected</div>
+                        <label class="response-title">Response:</label>
+                        <div class="response-table" id="table-config-editor"></div>
+                        <div class="response-section">
+                            <textarea id="output-config-editor" readonly="readonly"></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Patch Config -->
+                <div id="subtab-config-patch" class="sub-tab-panel" style="display: none;">
+                    <div class="tab-box">
+                        <h2>Patch Configuration</h2>
+                        <p>Update configuration with JSON Patch operations</p>
+                        <div class="endpoint-info">
+                            <span class="endpoint-method">PATCH</span>
+                            <span class="endpoint-path">/api/v2/configurations/{id}</span>
+                        </div>
+                        <div class="form-section">
+                            <label>Configuration ID</label>
+                            <input type="text" id="input-patch-id" placeholder="Enter Configuration ID"/>
+                        </div>
+                        <div class="form-section">
+                            <label>Patch Operations (JSON Array)</label>
+                            <textarea id="input-patch" placeholder='[{"op":"replace","path":"/characteristics/COLOR","value":"RED"}]'></textarea>
+                        </div>
+                        <div class="button-group">
+                            <button class="slds-button slds-button_brand" onclick="callAPI('patch')">Execute Request</button>
+                        </div>
+                        <label class="response-title">Response:</label>
+                        <div class="response-table" id="table-patch"></div>
+                        <div class="response-section">
+                            <textarea id="output-patch" readonly="readonly"></textarea>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Get Config -->
+                <div id="subtab-config-get" class="sub-tab-panel" style="display: none;">
+                    <div class="tab-box">
+                        <h2>Get Configuration</h2>
+                        <p>Retrieve current configuration state and values</p>
+                        <div class="endpoint-info">
+                            <span class="endpoint-method">GET</span>
+                            <span class="endpoint-path">/api/v2/configurations/{id}</span>
+                        </div>
+                        <div class="form-section">
+                            <label>Configuration ID</label>
+                            <input type="text" id="input-get-id" placeholder="Enter Configuration ID"/>
+                        </div>
+                        <div class="button-group">
+                            <button class="slds-button slds-button_brand" onclick="callAPI('get')">Execute Request</button>
+                        </div>
+                        <label class="response-title">Configuration Form:</label>
+                        <div class="config-form" id="config-form-container"></div>
+                        <label class="response-title">Response:</label>
+                        <div class="response-table" id="table-get"></div>
+                        <div class="response-section">
+                            <textarea id="output-get" readonly="readonly"></textarea>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Delete Config -->
+                <div id="subtab-config-delete" class="sub-tab-panel" style="display: none;">
+                    <div class="tab-box">
+                        <h2>Delete Configuration</h2>
+                        <p>Delete/complete configuration session in SAP VC</p>
+                        <div class="endpoint-info">
+                            <span class="endpoint-method">DELETE</span>
+                            <span class="endpoint-path">/api/v2/configurations/{id}</span>
+                        </div>
+                        <div class="form-section">
+                            <label>Configuration ID</label>
+                            <input type="text" id="input-delete-id" placeholder="Enter Configuration ID"/>
+                        </div>
+                        <div class="button-group">
+                            <button class="slds-button slds-button_destructive" onclick="callAPI('delete')">Execute Request</button>
+                        </div>
+                        <label class="response-title">Response:</label>
+                        <div class="response-table" id="table-delete"></div>
+                        <div class="response-section">
+                            <textarea id="output-delete" readonly="readonly"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Cheatsheet & Constants Category -->
+            <div id="category-cheatsheet" class="tab-panel" style="display: none;">
+                <!-- Horizontal Tabs for Cheatsheet -->
+                <div style="display: flex; gap: 0; border-bottom: 2px solid #e5e5e5; margin-bottom: 30px;">
+                    <a href="javascript:void(0)" onclick="switchSubTab(event, 'cheatsheet', 'mapping')" class="sub-tab-link active">📋 Mapping</a>
+                    <a href="javascript:void(0)" onclick="switchSubTab(event, 'cheatsheet', 'assumptions')" class="sub-tab-link">⚠️ Assumptions</a>
+                </div>
+
+                <!-- Mapping Tab -->
+                <div id="subtab-cheatsheet-mapping" class="sub-tab-panel active">
+                    <div class="cheatsheet-container">
+                        <h1 class="cheatsheet-title">📋 Field Mapping</h1>
+                        <p>Testing Adesso VC SAP</p>
+                        <div class="cheatsheet-section">
+                            <h3 class="cheatsheet-section-title">Main Data</h3>
+                            <div class="cheatsheet-grid">
+                                <div class="cheatsheet-key">Material:</div>
+                                <div class="cheatsheet-value">MAC-BOOK</div>
+                                <div class="cheatsheet-notes"><strong>Product2.ProductCode</strong> (format F-00X-...)</div>
+                                
+                                <div class="cheatsheet-key">Pricing Procedure ID:</div>
+                                <div class="cheatsheet-value">A10002</div>
+                                <div class="cheatsheet-notes">Query to get procedures, and filter by replicated true, documentCode and perhaps other fields... and get pricingProcedureId</div>
+                            </div>
+                        </div>
+                        
+                        <div class="cheatsheet-section">
+                            <h3 class="cheatsheet-section-title">Sales Area Data</h3>
+                            
+                            <div class="info-box">
+                                <div class="info-label">Data Source</div>
+                                <strong>SalesArea__c</strong> object, retrieved via Account relationship<br/>
+                                <strong>Object Path:</strong> Quote → Account → SalesAreaLink__c (junction) → SalesArea__c
+                            </div>
+                            
+                            <div class="info-box">
+                                <div class="info-label">SOQL Query Example</div>
+                                <div class="code-block">SELECT Id, Name, mdr_SalesArea__c, 
+       mdr_SalesArea__r.pkl_Division__c, 
+       mdr_SalesArea__r.pkl_SalesOrg__c,
+       mdr_Account__c, 
+       mdr_Account__r.Name
+FROM SalesAreaLink__c 
+WHERE mdr_Account__c IN (
+    SELECT SBQQ__Account__c 
+    FROM SBQQ__Quote__c 
+    WHERE Id = 'a3v9O000007NDa1QAG'
+)</div>
+                            </div>
+                            
+                            <div class="cheatsheet-grid">
+                                <div class="cheatsheet-key">Sales Organization (VKORG):</div>
+                                <div class="cheatsheet-value">1010</div>
+                                <div class="cheatsheet-notes"><strong>SalesArea__c.pkl_SalesOrg__c</strong> [DEM5, USM5...]</div>
+                                
+                                <div class="cheatsheet-key">Distribution Channel (VTWEG):</div>
+                                <div class="cheatsheet-value">10</div>
+                                <div class="cheatsheet-notes"><strong>SalesArea__c.pkl_DistributionChannel__c</strong> [A1, B1...]</div>
+                            </div>
+                        </div>
+                        
+                        <div class="cheatsheet-section">
+                            <h3 class="cheatsheet-section-title">Price Conditions</h3>
+                            <div class="cheatsheet-list">
+                                <div class="cheatsheet-list-item">PPR0</div>
+                                <div class="cheatsheet-list-item">VA00</div>
+                                <div class="cheatsheet-list-item">VA01</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Assumptions Tab -->
+                <div id="subtab-cheatsheet-assumptions" class="sub-tab-panel" style="display: none;">
+                    <div class="cheatsheet-container">
+                        <h1 class="cheatsheet-title">⚠️ Technical Assumptions and Storage Requirements</h1>
+                        
+                        <div class="assumption-box">
+                            <h4 class="assumption-title">Configuration ID Storage</h4>
+                            <p class="assumption-description">
+                                The <span class="assumption-code">configurationId</span> must be stored in the Salesforce Quote object (e.g., <span class="assumption-code">SBQQ__Quote__c.SAP_Config_ID__c</span>).
+                                This ID is required to retrieve, update, or delete configurations via SAP VC APIs.
+                            </p>
+                        </div>
+                        
+                        <div class="assumption-box">
+                            <h4 class="assumption-title">Pricing Document ID Storage - Time-To-Live ¿?</h4>
+                            <p class="assumption-description">
+                                The <span class="assumption-code">documentId</span> (UUID format) must be stored after creating a pricing document.
+                                <br/><br/>
+                                <strong>⚠️ CRITICAL:</strong> Pricing documents in SAP have a Time-To-Live (TTL) and will expire/be deleted after a period of inactivity.
+                                If you receive error <span class="assumption-code">404 - documentId not found</span>, the document has expired and you must create a new one.
+                                <br/><br/>
+                                <strong>Recommendation:</strong> Store in <span class="assumption-code">SBQQ__Quote__c.SAP_Pricing_Doc_ID__c</span> and track creation timestamp to detect expiration.
+                            </p>
+                        </div>
+                        
+                        <div class="assumption-box">
+                            <h4 class="assumption-title">ETag Storage for Configuration Updates</h4>
+                            <p class="assumption-description">
+                                The <span class="assumption-code">ETag</span> header from the configuration creation response must be stored in the database.
+                                The GET configuration endpoint does NOT return the ETag in the response body or headers.
+                                When updating a configuration (PATCH), the <span class="assumption-code">If-Match</span> header with the stored ETag value is required.
+                                <br/><br/>
+                                <strong>Recommendation:</strong> Store in <span class="assumption-code">SBQQ__Quote__c.SAP_Config_ETag__c</span> (Text field, 255 chars).
+                            </p>
+                        </div>
+                        
+                        <div class="assumption-box">
+                            <h4 class="assumption-title">If-Match Header for Pricing Operations</h4>
+                            <p class="assumption-description">
+                                Creating items, conditions, or updating pricing documents requires the <span class="assumption-code">If-Match</span> header.
+                                This value is obtained from the <span class="assumption-code">ETag</span> response header of the preceding operation:
+                                <br/><br/>
+                                • <strong>Create Document</strong> → returns ETag (e.g., <span class="assumption-code">W/"1"</span>)<br/>
+                                • <strong>Create Items</strong> → requires If-Match from previous step, returns new ETag<br/>
+                                • <strong>Add Conditions</strong> → requires If-Match from previous step, returns new ETag<br/>
+                                <br/>
+                                <strong>Recommendation:</strong> Store the latest ETag in <span class="assumption-code">SBQQ__Quote__c.SAP_Pricing_ETag__c</span> and update it after each successful operation.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Pricing Category -->
+            <div id="category-pricing" class="tab-panel" style="display: none;">
+                <!-- Horizontal Tabs for Pricing -->
+                <div style="display: flex; gap: 0; border-bottom: 2px solid #e5e5e5; margin-bottom: 30px;">
+                    <a href="javascript:void(0)" onclick="switchSubTab(event, 'pricing', 'procedures')" class="sub-tab-link active">Get Procedures</a>
+                    <a href="javascript:void(0)" onclick="switchSubTab(event, 'pricing', 'create-doc')" class="sub-tab-link">Create Document</a>
+                    <a href="javascript:void(0)" onclick="switchSubTab(event, 'pricing', 'create-items')" class="sub-tab-link">Create Items</a>
+                    <a href="javascript:void(0)" onclick="switchSubTab(event, 'pricing', 'get-doc')" class="sub-tab-link">Get Document</a>
+                    <a href="javascript:void(0)" onclick="switchSubTab(event, 'pricing', 'add-condition')" class="sub-tab-link">Add Condition</a>
+                    <a href="javascript:void(0)" onclick="switchSubTab(event, 'pricing', 'full-flow')" class="sub-tab-link">⚙️ Pricing</a>
+                </div>
+
+                <!-- Get Procedures -->
+                <div id="subtab-pricing-procedures" class="sub-tab-panel active">
+                    <div class="tab-box">
+                        <h2>Get Pricing Procedures</h2>
+                        <p>Retrieve pricing procedures from customizing. Optional filters by sales organization and replication status.</p>
+                        <div class="endpoint-info">
+                            <span class="endpoint-method">GET</span>
+                            <span class="endpoint-path">/api/v1/customizing/procedures</span>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-left">
+                                <div class="form-section">
+                                    <label>Sales Organization (optional)</label>
+                                    <input type="text" id="input-pricing-procedures-salesorg" placeholder="e.g., 1000" oninput="updatePricingProceduresPreview()"/>
+                                </div>
+                                <div class="form-section">
+                                    <label>Replicated only</label>
+                                    <input type="checkbox" id="input-pricing-procedures-replicated" onchange="updatePricingProceduresPreview()"/>
+                                    <span style="margin-left: 5px; font-size: 12px; color: #706e6b;">Filter to replicated procedures</span>
+                                </div>
+                            </div>
+
+                            <div class="form-right">
+                                <label class="preview-label">Request URL Preview</label>
+                                <div class="preview-box" id="pricing-procedures-preview">/api/v1/customizing/procedures</div>
+                            </div>
+                        </div>
+
+                        <div class="button-group">
+                            <button class="slds-button slds-button_brand" onclick="pricingGetProcedures()">Execute Request</button>
+                        </div>
+                        <label class="response-title">Response:</label>
+                        <div class="response-table" id="table-pricing-procedures"></div>
+                        <div class="response-section">
+                            <textarea id="output-pricing-procedures" readonly="readonly"></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Create Document -->
+                <div id="subtab-pricing-create-doc" class="sub-tab-panel" style="display: none;">
+                    <div class="tab-box">
+                        <h2>Create Document</h2>
+                        <p>Create a new pricing document with the specified procedure, currency, and attributes.</p>
+                        <div class="endpoint-info">
+                            <span class="endpoint-method">POST</span>
+                            <span class="endpoint-path">/api/v1/pricing/documents</span>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-left">
+                                <div class="form-section">
+                                    <label>Pricing Procedure * (constant? = A10002)</label>
+                                    <input type="text" id="input-doc-procedure" placeholder="e.g., A10002" oninput="updatePricingDocumentPreview()"/>
+                                </div>
+                                <div class="form-section">
+                                    <label>Currency (ISO code) *</label>
+                                    <input type="text" id="input-doc-currency" placeholder="e.g., EUR" oninput="updatePricingDocumentPreview()"/>
+                                </div>
+                                <div class="form-section">
+                                    <label>Additional Attributes (JSON - optional)</label>
+                                    <textarea id="input-doc-attributes" placeholder='{"salesOrganization":"1000"}' oninput="updatePricingDocumentPreview()"></textarea>
+                                </div>
+                            </div>
+                            
+                            <div class="form-right">
+                                <label class="preview-label">Request Body Preview</label>
+                                <div class="preview-box" id="pricing-doc-preview">{}</div>
+                            </div>
+                        </div>
+                        
+                        <div class="button-group">
+                            <button class="slds-button slds-button_brand" onclick="pricingCreateDocument()">Execute Request</button>
+                        </div>
+                        <label class="response-title">Response:</label>
+                        <div class="response-table" id="table-pricing-create-doc"></div>
+                        <div class="response-section">
+                            <textarea id="output-pricing-create-doc" readonly="readonly"></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Create Items -->
+                <div id="subtab-pricing-create-items" class="sub-tab-panel" style="display: none;">
+                    <div class="tab-box">
+                        <h2>Create Items</h2>
+                        <p>Add items to the pricing document. Document ID is carried from the previous Create Document step.</p>
+                        <div class="endpoint-info">
+                            <span class="endpoint-method">POST</span>
+                            <span class="endpoint-path">/api/v1/pricing/documents/{documentId}/items</span>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-left">
+                                <div class="form-section">
+                                    <label>Pricing Document ID</label>
+                                    <input type="text" id="input-pricing-document-id" placeholder="Auto-filled after Create Document"/>
+                                </div>
+                                <div class="form-section">
+                                    <label>If-Match Header *</label>
+                                    <input type="text" id="input-pricing-items-if-match" placeholder='e.g., W/"1"' oninput="updatePricingItemsPreview()"/>
+                                    <small style="color: #706e6b; margin-top: 4px; display: block;">Obtain from Create Document response header (ETag). Required for API call.</small>
+                                </div>
+                                <div class="form-section">
+                                    <label>Item ID *</label>
+                                    <input type="text" id="input-item-id" placeholder="e.g., 10" oninput="updatePricingItemsPreview()"/>
+                                </div>
+                                <div class="form-section">
+                                    <label>Product ID *</label>
+                                    <input type="text" id="input-item-product" placeholder="e.g., MAT001" oninput="updatePricingItemsPreview()"/>
+                                </div>
+                                <div class="form-section">
+                                    <label>Quantity *</label>
+                                    <input type="number" id="input-item-quantity" placeholder="e.g., 1" value="1" oninput="updatePricingItemsPreview()"/>
+                                </div>
+                                <div class="form-section">
+                                    <label>Additional Item Attributes (JSON - optional)</label>
+                                    <textarea id="input-item-attributes" placeholder='{"plant":"1000"}' oninput="updatePricingItemsPreview()"></textarea>
+                                </div>
+                            </div>
+                            
+                            <div class="form-right">
+                                <label class="preview-label">Request Body Preview</label>
+                                <div class="preview-box" id="pricing-items-preview">{"items":[]}</div>
+                            </div>
+                        </div>
+                        
+                        <div class="button-group">
+                            <button class="slds-button slds-button_brand" onclick="pricingCreateItems()">Execute Request</button>
+                        </div>
+                        <label class="response-title">Response:</label>
+                        <div class="response-table" id="table-pricing-create-items"></div>
+                        <div class="response-section">
+                            <textarea id="output-pricing-create-items" readonly="readonly"></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Get Document -->
+                <div id="subtab-pricing-get-doc" class="sub-tab-panel" style="display: none;">
+                    <div class="tab-box">
+                        <h2>Get Document</h2>
+                        <p>Retrieve the full pricing document with all items and conditions.</p>
+                        <div class="endpoint-info">
+                            <span class="endpoint-method">GET</span>
+                            <span class="endpoint-path">/api/v1/pricing/documents/{id}</span>
+                        </div>
+                        
+                        <div class="form-section">
+                            <label>Pricing Document ID</label>
+                            <input type="text" id="input-pricing-get-id" placeholder="Document ID from Create Document"/>
+                        </div>
+                        
+                        <div class="button-group">
+                            <button class="slds-button slds-button_brand" onclick="pricingGetDocument()">Execute Request</button>
+                        </div>
+                        <label class="response-title">Response:</label>
+                        <div class="response-table" id="table-pricing-get-doc"></div>
+                        <div class="response-section">
+                            <textarea id="output-pricing-get-doc" readonly="readonly"></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Add Condition -->
+                <div id="subtab-pricing-add-condition" class="sub-tab-panel" style="display: none;">
+                    <div class="tab-box">
+                        <h2>Add Header Condition</h2>
+                        <p>Add conditions (like surcharges or discounts) to the document header.</p>
+                        <div class="endpoint-info">
+                            <span class="endpoint-method">POST</span>
+                            <span class="endpoint-path">/api/v1/pricing/documents/{documentId}/conditions</span>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-left">
+                                <div class="form-section">
+                                    <label>Pricing Document ID</label>
+                                    <input type="text" id="input-pricing-condition-doc-id" placeholder="Auto-filled from Create Document"/>
+                                </div>
+                                <div class="form-section">
+                                    <label>Condition Type *</label>
+                                    <input type="text" id="input-condition-type" placeholder="e.g., ZD01" oninput="updatePricingConditionPreview()"/>
+                                </div>
+                                <div class="form-section">
+                                    <label>Condition Rate Value *</label>
+                                    <input type="number" id="input-condition-rate-value" placeholder="e.g., 10" step="0.01" oninput="updatePricingConditionPreview()"/>
+                                </div>
+                                <div class="form-section">
+                                    <label>Condition Rate Unit *</label>
+                                    <input type="text" id="input-condition-rate-unit" placeholder="e.g., EUR or P1 (percentage)" oninput="updatePricingConditionPreview()"/>
+                                </div>
+                            </div>
+                            
+                            <div class="form-right">
+                                <label class="preview-label">Request Body Preview</label>
+                                <div class="preview-box" id="pricing-condition-preview">{"conditions":[]}</div>
+                            </div>
+                        </div>
+                        
+                        <div class="button-group">
+                            <button class="slds-button slds-button_brand" onclick="pricingAddCondition()">Execute Request</button>
+                        </div>
+                        <label class="response-title">Response:</label>
+                        <div class="response-table" id="table-pricing-add-condition"></div>
+                        <div class="response-section">
+                            <textarea id="output-pricing-add-condition" readonly="readonly"></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Full Pricing -->
+                <div id="subtab-pricing-full-flow" class="sub-tab-panel" style="display: none;">
+                    <div class="tab-box">
+                        <h2>⚙️ Pricing</h2>
+                        <p>Complete pricing document workflow: get procedures → create → add items → get → (optional) add condition → get.</p>
+
+                        <div class="form-section">
+                            <label>Pricing Document ID (auto-captured)</label>
+                            <input type="text" id="input-pricing-document-id" placeholder="Will be filled after Create Document" readonly="readonly"/>
+                        </div>
+                        <div class="form-section">
+                            <label>Pricing Procedure ID (optional for info lookup)</label>
+                            <input type="text" id="input-pricing-procedure-id" placeholder="e.g., RVAA01"/>
+                        </div>
+
+                        <hr style="margin: 20px 0; border: none; border-top: 1px solid #e5e5e5;"/>
+
+                        <h3>Step 0: Get Pricing Procedures</h3>
+                        <div class="form-section">
+                            <label>Sales Organization (optional)</label>
+                            <input type="text" id="input-pricing-procedures-salesorg-flow" placeholder="e.g., 1000"/>
+                        </div>
+                        <div class="form-section">
+                            <label>Replicated only</label>
+                            <input type="checkbox" id="input-pricing-procedures-replicated-flow"/>
+                            <span style="margin-left: 5px; font-size: 12px; color: #706e6b;">Filter to replicated procedures</span>
+                        </div>
+                        <div class="button-group">
+                            <button class="slds-button slds-button_neutral" onclick="pricingGetProceduresFlow()">Get Procedures</button>
+                        </div>
+
+                        <hr style="margin: 20px 0; border: none; border-top: 1px solid #e5e5e5;"/>
+                        
+                        <h3>Step 1: Create Document</h3>
+                        <div class="form-section">
+                            <label>Pricing Procedure *</label>
+                            <input type="text" id="input-doc-procedure-flow" placeholder="e.g., RVAA01" oninput="updatePricingDocumentPreview()"/>
+                        </div>
+                        <div class="form-section">
+                            <label>Currency (ISO code) *</label>
+                            <input type="text" id="input-doc-currency-flow" placeholder="e.g., EUR" oninput="updatePricingDocumentPreview()"/>
+                        </div>
+                        <div class="form-section">
+                            <label>Additional Attributes (JSON - optional)</label>
+                            <textarea id="input-doc-attributes-flow" placeholder='{"salesOrganization":"1000"}' oninput="updatePricingDocumentPreview()"></textarea>
+                        </div>
+                        <div class="button-group">
+                            <button class="slds-button slds-button_brand" onclick="pricingCreateDocumentFlow()">Create Document</button>
+                        </div>
+
+                        <hr style="margin: 20px 0; border: none; border-top: 1px solid #e5e5e5;"/>
+
+                        <h3>Step 2: Create Items</h3>
+                        <div class="form-section">
+                            <label>Item ID *</label>
+                            <input type="text" id="input-item-id-flow" placeholder="e.g., 10" oninput="updatePricingItemsPreview()"/>
+                        </div>
+                        <div class="form-section">
+                            <label>Product ID *</label>
+                            <input type="text" id="input-item-product-flow" placeholder="e.g., MAT001" oninput="updatePricingItemsPreview()"/>
+                        </div>
+                        <div class="form-section">
+                            <label>Quantity *</label>
+                            <input type="number" id="input-item-quantity-flow" placeholder="e.g., 1" value="1" oninput="updatePricingItemsPreview()"/>
+                        </div>
+                        <div class="form-section">
+                            <label>Additional Item Attributes (JSON - optional)</label>
+                            <textarea id="input-item-attributes-flow" placeholder='{"plant":"1000"}' oninput="updatePricingItemsPreview()"></textarea>
+                        </div>
+                        <div class="button-group">
+                            <button class="slds-button slds-button_brand" onclick="pricingCreateItemsFlow()">Create Items</button>
+                            <button class="slds-button slds-button_neutral" onclick="pricingGetDocumentFlow()">Get Document</button>
+                        </div>
+
+                        <hr style="margin: 20px 0; border: none; border-top: 1px solid #e5e5e5;"/>
+
+                        <h3>Step 3: (Optional) Add Header Condition</h3>
+                        <div class="form-section">
+                            <label>Condition Type</label>
+                            <input type="text" id="input-condition-type-flow" placeholder="e.g., ZD01" oninput="updatePricingConditionPreview()"/>
+                        </div>
+                        <div class="form-section">
+                            <label>Condition Rate Value</label>
+                            <input type="number" id="input-condition-rate-value-flow" placeholder="e.g., 10" step="0.01" oninput="updatePricingConditionPreview()"/>
+                        </div>
+                        <div class="form-section">
+                            <label>Condition Rate Unit</label>
+                            <input type="text" id="input-condition-rate-unit-flow" placeholder="e.g., EUR or P1 (percentage)" oninput="updatePricingConditionPreview()"/>
+                        </div>
+                        <div class="button-group">
+                            <button class="slds-button slds-button_brand" onclick="pricingAddConditionFlow()">Add Condition</button>
+                            <button class="slds-button slds-button_neutral" onclick="pricingGetDocumentFlow()">Get Document</button>
+                        </div>
+
+                        <hr style="margin: 20px 0; border: none; border-top: 1px solid #e5e5e5;"/>
+
+                        <label class="response-title">Pricing Response:</label>
+                        <div class="response-table" id="table-pricing-full-flow"></div>
+                        <div class="response-section">
+                            <textarea id="output-pricing-full-flow" readonly="readonly"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+//<![CDATA[
+    
+    if (typeof sforce !== 'undefined' && sforce.connection) {
+        sforce.connection.sessionId = '{!$Api.Session_ID}';
+        sforce.connection.serverUrl = '{!$Api.Partner_Server_URL_570}';
+    }
+    
+    const titles = {
+        'kb': 'Knowledge Bases',
+        'config': 'Configurations',
+        'pricing': 'Pricing',
+        'cheatsheet': 'Cheatsheet'
+    };
+
+    let configEditorOriginalValues = {};
+    let configEditorLastId = null;
+    let configEditorCurrentConfig = null;
+    let configEditorCurrentETag = null;
+    let configEditorCharacteristicIndexMap = {};
+    
+    function showStatusMessage(message, type, duration) {
+        const existingMsg = document.querySelector('.status-message');
+        if (existingMsg) {
+            existingMsg.remove();
+        }
+        
+        const msgDiv = document.createElement('div');
+        msgDiv.className = 'status-message ' + (type || 'info');
+        msgDiv.textContent = message;
+        document.body.appendChild(msgDiv);
+        
+        setTimeout(function() {
+            msgDiv.style.opacity = '0';
+            msgDiv.style.transform = 'translateX(400px)';
+            setTimeout(function() {
+                msgDiv.remove();
+            }, 300);
+        }, duration || 3000);
+    }
+    
+    function switchCategory(event, categoryName) {
+        event.preventDefault();
+        
+        // Hide all categories
+        document.querySelectorAll('[id^="category-"]').forEach(cat => {
+            cat.classList.remove('active');
+            cat.style.display = 'none';
+        });
+        
+        // Remove active from sidebar links
+        document.querySelectorAll('.sidebar-menu-link').forEach(link => {
+            link.classList.remove('active');
+        });
+        
+        // Show selected category
+        const selectedCat = document.getElementById('category-' + categoryName);
+        selectedCat.classList.add('active');
+        selectedCat.style.display = 'block';
+        
+        // Mark sidebar link as active
+        event.target.closest('.sidebar-menu-link').classList.add('active');
+        
+        // Update title
+        document.getElementById('current-title').textContent = titles[categoryName];
+    }
+    
+    function switchSubTab(event, category, subtabName) {
+        event.preventDefault();
+        
+        // Hide all subtabs in this category
+        document.querySelectorAll('[id^="subtab-' + category + '-"]').forEach(subtab => {
+            subtab.style.display = 'none';
+            subtab.classList.remove('active');
+        });
+        
+        // Remove active from all sub-tab links in this category
+        document.querySelectorAll('#category-' + category + ' .sub-tab-link').forEach(link => {
+            link.classList.remove('active');
+        });
+        
+        // Show selected subtab
+        const subtabId = 'subtab-' + category + '-' + subtabName;
+        const subtabElement = document.getElementById(subtabId);
+        subtabElement.style.display = 'block';
+        subtabElement.classList.add('active');
+        
+        // Mark link as active
+        event.target.classList.add('active');
+    }
+    
+    function switchTab(tabName) {
+        // Hide all panels
+        const panels = document.querySelectorAll('.tab-panel');
+        panels.forEach(panel => {
+            panel.classList.remove('active');
+        });
+        
+        // Remove active from all menu items
+        const menuItems = document.querySelectorAll('.sidebar-menu-link');
+        menuItems.forEach(item => {
+            item.classList.remove('active');
+        });
+        
+        // Show selected panel
+        const selectedPanel = document.getElementById('tab-' + tabName);
+        if (selectedPanel) {
+            selectedPanel.classList.add('active');
+        }
+        
+        // Mark menu item as active
+        event.target.closest('.sidebar-menu-link').classList.add('active');
+        
+        // Update title
+        document.getElementById('current-title').textContent = titles[tabName];
+    }
+    
+    function buildKbDeterminationUrl(productId, validityDate, type, plant) {
+        let url = '/api/v2/kbdetermination';
+        const params = [];
+        
+        if (productId) params.push('productid=' + encodeURIComponent(productId));
+        if (validityDate) params.push('date=' + encodeURIComponent(validityDate));
+        
+        const filterParts = [];
+        if (type) filterParts.push("type EQ '" + type + "'");
+        if (plant) filterParts.push("plant EQ '" + plant + "'");
+        if (filterParts.length > 0) {
+            params.push('$filter=' + encodeURIComponent(filterParts.join(' AND ')));
+        }
+        
+        if (params.length > 0) {
+            url += '?' + params.join('&');
+        }
+        
+        return url;
+    }
+    
+    function updateDeterminePreview() {
+        const productId = document.getElementById('determine-productId').value;
+        const validityDate = document.getElementById('determine-validityDate').value;
+        const type = document.getElementById('determine-type').value;
+        const plant = document.getElementById('determine-plant').value;
+        
+        const url = buildKbDeterminationUrl(productId, validityDate, type, plant);
+        document.getElementById('determine-preview').textContent = url;
+        document.getElementById('determine-endpoint').textContent = url;
+    }
+    
+    function buildConfigurationPayload() {
+        const kbId = document.getElementById('create-kbId').value;
+        const productKey = document.getElementById('create-productKey').value;
+        const date = document.getElementById('create-date').value;
+        const autoCleanup = document.getElementById('create-autoCleanup').checked;
+        
+        const payload = {};
+        
+        if (kbId) payload.kbId = kbId;
+        if (productKey) payload.productKey = productKey;
+        if (date) payload.date = date;
+        // autoCleanup always included (default is true in SAP, so we must send false explicitly)
+        payload.autoCleanup = autoCleanup;
+        
+        return removeEmpty(payload);
+    }
+    
+    function updateConfigurationPreview() {
+        const payload = buildConfigurationPayload();
+        const preview = JSON.stringify(payload, null, 2);
+        document.getElementById('create-preview').textContent = preview;
+    }
+
+    function clearTable(tableId) {
+        const container = document.getElementById(tableId);
+        if (container) {
+            container.innerHTML = '';
+        }
+    }
+
+    function renderTable(data, tableId) {
+        const container = document.getElementById(tableId);
+        if (!container) {
+            return;
+        }
+
+        container.innerHTML = '';
+
+        if (data === null || data === undefined) {
+            return;
+        }
+
+        const table = document.createElement('table');
+        const thead = document.createElement('thead');
+        const tbody = document.createElement('tbody');
+
+        if (Array.isArray(data)) {
+            if (data.length === 0) {
+                return;
+            }
+
+            const firstRow = data[0] && typeof data[0] === 'object' ? data[0] : { value: data[0] };
+            const headers = Object.keys(firstRow);
+
+            const headerRow = document.createElement('tr');
+            headers.forEach((key) => {
+                const th = document.createElement('th');
+                th.textContent = key;
+                headerRow.appendChild(th);
+            });
+            thead.appendChild(headerRow);
+
+            data.forEach((row) => {
+                const tr = document.createElement('tr');
+                const rowData = row && typeof row === 'object' ? row : { value: row };
+                headers.forEach((key) => {
+                    const td = document.createElement('td');
+                    const value = rowData[key];
+                    td.textContent = typeof value === 'object' ? JSON.stringify(value) : String(value ?? '');
+                    tr.appendChild(td);
+                });
+                tbody.appendChild(tr);
+            });
+        } else if (typeof data === 'object') {
+            const headerRow = document.createElement('tr');
+            const keyHeader = document.createElement('th');
+            keyHeader.textContent = 'Field';
+            const valueHeader = document.createElement('th');
+            valueHeader.textContent = 'Value';
+            headerRow.appendChild(keyHeader);
+            headerRow.appendChild(valueHeader);
+            thead.appendChild(headerRow);
+
+            Object.keys(data).forEach((key) => {
+                const tr = document.createElement('tr');
+                const tdKey = document.createElement('td');
+                tdKey.textContent = key;
+                const tdValue = document.createElement('td');
+                const value = data[key];
+                tdValue.textContent = typeof value === 'object' ? JSON.stringify(value) : String(value ?? '');
+                tr.appendChild(tdKey);
+                tr.appendChild(tdValue);
+                tbody.appendChild(tr);
+            });
+        } else {
+            const headerRow = document.createElement('tr');
+            const keyHeader = document.createElement('th');
+            keyHeader.textContent = 'Value';
+            headerRow.appendChild(keyHeader);
+            thead.appendChild(headerRow);
+
+            const tr = document.createElement('tr');
+            const td = document.createElement('td');
+            td.textContent = String(data);
+            tr.appendChild(td);
+            tbody.appendChild(tr);
+        }
+
+        table.appendChild(thead);
+        table.appendChild(tbody);
+        container.appendChild(table);
+    }
+
+    function clearConfigurationForm(containerId) {
+        const targetId = containerId || 'config-form-container';
+        const container = document.getElementById(targetId);
+        if (container) {
+            container.innerHTML = '';
+        }
+    }
+
+    function renderConfigurationForm(config, containerId, options) {
+        const targetId = containerId || 'config-form-container';
+        const container = document.getElementById(targetId);
+        if (!container) {
+            return;
+        }
+
+        container.innerHTML = '';
+
+        if (!config || !config.rootItem || !Array.isArray(config.rootItem.characteristics)) {
+            return;
+        }
+
+        const settings = options || {};
+        const editable = settings.editable === true;
+        const storeOriginal = settings.storeOriginal === true;
+
+        const header = document.createElement('div');
+        header.className = 'config-form-header';
+
+        const kbTitle = document.createElement('div');
+        kbTitle.className = 'config-kb-title';
+        const kbName = config.kbKey && config.kbKey.name ? config.kbKey.name : 'KB';
+        const kbVersion = config.kbKey && config.kbKey.version ? config.kbKey.version : '';
+        kbTitle.textContent = kbVersion ? (kbName + ' · v' + kbVersion) : kbName;
+        header.appendChild(kbTitle);
+
+        const visibleGroups = Array.isArray(config.rootItem.characteristicGroups)
+            ? config.rootItem.characteristicGroups.filter((group) => group.visible !== false)
+            : [];
+
+        if (visibleGroups.length > 0) {
+            const groupList = document.createElement('div');
+            groupList.className = 'config-group-list';
+            visibleGroups.forEach((group) => {
+                const pill = document.createElement('span');
+                pill.className = 'config-group-pill';
+                pill.textContent = group.id || 'Group';
+                groupList.appendChild(pill);
+            });
+            header.appendChild(groupList);
+        }
+
+        container.appendChild(header);
+
+        const grid = document.createElement('div');
+        grid.className = 'config-form-grid';
+
+        config.rootItem.characteristics.forEach((ch, index) => {
+            if (ch.visible === false) {
+                return;
+            }
+
+            const field = document.createElement('div');
+            field.className = 'config-field' + (ch.readOnly ? ' readonly' : '');
+
+            const title = document.createElement('div');
+            title.className = 'config-field-title';
+            title.textContent = ch.id || 'Characteristic';
+            if (ch.required) {
+                const req = document.createElement('span');
+                req.className = 'required-indicator';
+                req.textContent = '*';
+                title.appendChild(req);
+            }
+            field.appendChild(title);
+
+            const currentValue = (Array.isArray(ch.values) && ch.values[0] && ch.values[0].value)
+                ? ch.values[0].value
+                : '';
+
+            if (storeOriginal && ch.id) {
+                configEditorOriginalValues[ch.id] = currentValue || '';
+            }
+
+            if (Array.isArray(ch.possibleValues) && ch.possibleValues.length > 0) {
+                const options = document.createElement('div');
+                options.className = 'config-field-options';
+
+                ch.possibleValues.forEach((pv, pvIndex) => {
+                    const label = document.createElement('label');
+                    label.style.display = 'flex';
+                    label.style.gap = '8px';
+                    label.style.alignItems = 'center';
+
+                    const input = document.createElement('input');
+                    input.type = 'radio';
+                    input.name = 'char-' + (ch.id || index);
+                    input.value = pv.valueLow || '';
+                    input.disabled = ch.readOnly === true || pv.selectable === false || editable === false;
+                    input.setAttribute('data-char-id', ch.id || '');
+                    if (input.value && input.value === currentValue) {
+                        input.checked = true;
+                    }
+                    
+                    if (editable && targetId === 'config-editor-container') {
+                        input.addEventListener('change', function() {
+                            buildPatchOperationsFromEditor();
+                        });
+                    }
+
+                    const text = document.createElement('span');
+                    text.textContent = pv.valueLow || '(empty)';
+
+                    label.appendChild(input);
+                    label.appendChild(text);
+                    options.appendChild(label);
+                });
+
+                field.appendChild(options);
+            } else {
+                const input = document.createElement('input');
+                input.type = 'text';
+                input.value = currentValue || '';
+                input.disabled = ch.readOnly === true || editable === false;
+                input.setAttribute('data-char-id', ch.id || '');
+                
+                if (editable && targetId === 'config-editor-container') {
+                    input.addEventListener('input', function() {
+                        buildPatchOperationsFromEditor();
+                    });
+                }
+                
+                field.appendChild(input);
+            }
+
+            const metaParts = [];
+            if (ch.readOnly) {
+                metaParts.push('readonly');
+            }
+            if (ch.consistent === false) {
+                metaParts.push('inconsistent');
+            }
+            if (ch.complete === false) {
+                metaParts.push('incomplete');
+            }
+            if (metaParts.length > 0) {
+                const meta = document.createElement('div');
+                meta.className = 'meta';
+                meta.textContent = metaParts.join(' · ');
+                field.appendChild(meta);
+            }
+
+            grid.appendChild(field);
+        });
+
+        container.appendChild(grid);
+    }
+
+    function loadConfigurationEditor() {
+        const configId = document.getElementById('input-config-editor-id').value;
+        const textarea = document.getElementById('output-config-editor');
+        const tableId = 'table-config-editor';
+
+        console.log('=== loadConfigurationEditor called ===');
+        console.log('=== Config ID from input:', configId);
+        console.log('=== Config ID is empty:', !configId);
+
+        if (!configId) {
+            textarea.value = 'Please provide a Configuration ID.';
+            clearTable(tableId);
+            clearConfigurationForm('config-editor-container');
+            showStatusMessage('Please provide a Configuration ID', 'error');
+            return;
+        }
+
+        showStatusMessage('Loading configuration...', 'info');
+        textarea.value = 'Loading...';
+        clearTable(tableId);
+        clearConfigurationForm('config-editor-container');
+        configEditorOriginalValues = {};
+        configEditorCharacteristicIndexMap = {};
+        configEditorLastId = configId;
+        configEditorCurrentConfig = null;
+        configEditorCurrentETag = null;
+
+        try {
+            console.log('=== Calling getConfigurationV2 with configId:', configId);
+            let result = sforce.apex.execute('CPQExternalConfiguratorControllerPoC', 'getConfigurationV2', { configId: configId });
+            
+            console.log('=== getConfigurationV2 result received:', result);
+            console.log('=== result type:', typeof result, 'is array:', Array.isArray(result));
+            
+            if (!result) {
+                textarea.value = 'Error: No response from server';
+                showStatusMessage('No response from server', 'error');
+                return;
+            }
+            
+            // Handle if sforce.apex.execute returns an array with the response inside
+            if (Array.isArray(result) && result.length > 0) {
+                result = result[0];
+                console.log('=== Extracted result from array:', result);
+            }
+            
+            let formatted = '';
+            try {
+                const parsed = JSON.parse(result);
+                
+                console.log('=== Parsed response:', parsed);
+                console.log('=== _eTag from response:', parsed._eTag);
+                
+                // Extract and save ETag in the config object so it's available later
+                const displayConfig = JSON.parse(JSON.stringify(parsed));
+                configEditorCurrentETag = parsed._eTag || null;
+                
+                // Keep _eTag in the config object for updateConfigurationEditor
+                configEditorCurrentConfig = displayConfig;
+                
+                console.log('=== Saved ETag:', configEditorCurrentETag);
+                console.log('=== Config object _eTag:', configEditorCurrentConfig._eTag);
+                
+                // Update ETag input field with the current value
+                const etagInput = document.getElementById('input-config-etag');
+                if (etagInput) {
+                    etagInput.value = configEditorCurrentETag || '';
+                    console.log('=== Updated ETag input field with:', configEditorCurrentETag);
+                }
+                
+                formatted = JSON.stringify(displayConfig, null, 2);
+                
+                // Build index map for characteristics
+                if (displayConfig.rootItem && Array.isArray(displayConfig.rootItem.characteristics)) {
+                    displayConfig.rootItem.characteristics.forEach((ch, idx) => {
+                        if (ch.id) {
+                            configEditorCharacteristicIndexMap[ch.id] = idx;
+                        }
+                    });
+                }
+                
+                renderTable(displayConfig, tableId);
+                renderConfigurationForm(displayConfig, 'config-editor-container', { editable: true, storeOriginal: true });
+                showStatusMessage('Configuration loaded successfully', 'success');
+            } catch (parseError) {
+                formatted = result;
+                renderTable(result, tableId);
+                showStatusMessage('Error parsing response', 'error');
+            }
+            
+            textarea.value = formatted;
+        } catch (error) {
+            const errorMsg = error && error.message ? error.message : String(error);
+            textarea.value = 'Error: ' + errorMsg;
+            console.error('Load Configuration Error:', error);
+            showStatusMessage('Error loading configuration', 'error');
+        }
+    }
+
+    function buildPatchOperationsFromEditor() {
+        const container = document.getElementById('config-editor-container');
+        if (!container || !configEditorCurrentConfig) {
+            return [];
+        }
+
+        const updates = {};
+
+        const radioInputs = container.querySelectorAll('input[type="radio"][data-char-id]');
+        const radioGroups = {};
+        radioInputs.forEach((input) => {
+            const charId = input.getAttribute('data-char-id');
+            if (!charId) {
+                return;
+            }
+            radioGroups[charId] = radioGroups[charId] || [];
+            radioGroups[charId].push(input);
+        });
+
+        Object.keys(radioGroups).forEach((charId) => {
+            const selected = radioGroups[charId].find((input) => input.checked);
+            if (selected) {
+                updates[charId] = selected.value;
+            }
+        });
+
+        const textInputs = container.querySelectorAll('input[type="text"][data-char-id]');
+        textInputs.forEach((input) => {
+            const charId = input.getAttribute('data-char-id');
+            if (!charId) {
+                return;
+            }
+            updates[charId] = input.value;
+        });
+
+        // Build array of PATCH operations for each modified characteristic
+        // Each operation targets: PATCH /api/v2/configurations/{id}/items/{itemId}/characteristics/{charId}
+        const patchOperations = [];
+        const rootItem = configEditorCurrentConfig.rootItem;
+        const itemId = rootItem.itemId || 1; // Default to 1 for root item
+        
+        Object.keys(updates).forEach((charId) => {
+            const newValue = updates[charId];
+            const originalValue = configEditorOriginalValues[charId] ?? '';
+            
+            if (String(newValue ?? '') !== String(originalValue ?? '')) {
+                // Build characteristic input for this specific characteristic
+                // SAP VC requires 'selected' field in each value
+                const charInput = {
+                    characteristicId: charId,
+                    values: newValue ? [{ value: newValue, selected: true }] : []
+                };
+                
+                patchOperations.push({
+                    characteristicId: charId,
+                    itemId: itemId,
+                    input: charInput
+                });
+            }
+        });
+        
+        // Update preview
+        const previewElement = document.getElementById('config-patch-preview');
+        if (previewElement) {
+            if (patchOperations.length === 0) {
+                previewElement.textContent = 'No changes detected';
+            } else {
+                const preview = {
+                    operationCount: patchOperations.length,
+                    operations: patchOperations.map(op => ({
+                        endpoint: `/api/v2/configurations/{id}/items/${op.itemId}/characteristics/${op.characteristicId}`,
+                        method: 'PATCH',
+                        body: op.input
+                    }))
+                };
+                previewElement.textContent = JSON.stringify(preview, null, 2);
+            }
+        }
+
+        return patchOperations.length > 0 ? patchOperations : null;
+    }
+
+    function updateConfigurationEditor() {
+        const textarea = document.getElementById('output-config-editor');
+        const tableId = 'table-config-editor';
+        const configId = document.getElementById('input-config-editor-id').value || configEditorLastId;
+        const etagInput = document.getElementById('input-config-etag');
+
+        if (!configId) {
+            textarea.value = 'Please provide a Configuration ID.';
+            showStatusMessage('Please provide a Configuration ID', 'error');
+            return;
+        }
+
+        // Validate that configuration is loaded
+        if (!configEditorCurrentConfig) {
+            textarea.value = 'Configuration not loaded. Please click "Load Configuration" first.';
+            showStatusMessage('Configuration not loaded', 'error');
+            return;
+        }
+
+        // Get ETag: Priority: input field > config._eTag > config variable > default W/"1"
+        let etag = (etagInput && etagInput.value) ? etagInput.value : null;
+        if (!etag) {
+            etag = configEditorCurrentConfig._eTag || configEditorCurrentETag || 'W/"1"';
+        }
+        
+        console.log('=== Checking ETag ===');
+        console.log('=== ETag from input field:', (etagInput && etagInput.value));
+        console.log('=== configEditorCurrentConfig._eTag:', configEditorCurrentConfig._eTag);
+        console.log('=== configEditorCurrentETag:', configEditorCurrentETag);
+        console.log('=== resolved etag:', etag);
+        console.log('=== All keys in configEditorCurrentConfig:', Object.keys(configEditorCurrentConfig));
+        
+        showStatusMessage('Using ETag: ' + etag, 'info', 3000);
+
+        const patchOps = buildPatchOperationsFromEditor();
+        if (!patchOps) {
+            textarea.value = 'No changes detected.';
+            showStatusMessage('No changes detected', 'info');
+            return;
+        }
+
+        try {
+            showStatusMessage('Updating configuration...', 'info');
+            textarea.value = 'Updating...';
+            clearTable(tableId);
+            
+            console.log('=== updateConfigurationEditor ===');
+            console.log('=== Config ID:', configId);
+            console.log('=== ETag:', etag);
+            console.log('=== Current Config:', configEditorCurrentConfig);
+            console.log('=== PATCH Operations to send:', JSON.stringify(patchOps, null, 2));
+            
+            let patchResult = sforce.apex.execute(
+                'CPQExternalConfiguratorControllerPoC',
+                'patchConfigurationCharacteristics',
+                { 
+                    configId: configId, 
+                    etag: etag,
+                    patchOperations: JSON.stringify(patchOps) 
+                }
+            );
+
+            console.log('=== Apex response received:', patchResult);
+            
+            // Handle if sforce.apex.execute returns an array with the response inside
+            if (Array.isArray(patchResult) && patchResult.length > 0) {
+                patchResult = patchResult[0];
+                console.log('=== Extracted patchResult from array:', patchResult);
+            }
+
+            if (!patchResult) {
+                textarea.value = 'Error: No response from PATCH operation';
+                showStatusMessage('No response from PATCH operation', 'error');
+                return;
+            }
+
+            let formatted = '';
+            try {
+                const parsedPatch = JSON.parse(patchResult);
+                formatted = JSON.stringify(parsedPatch, null, 2);
+                renderTable(parsedPatch, tableId);
+                
+                // Check if PATCH was successful
+                if (parsedPatch.success === true) {
+                    showStatusMessage('Configuration updated successfully. Capturing ETag and reloading...', 'success', 3000);
+                    
+                    // Try to capture ETag from PATCH response
+                    if (parsedPatch.latestETag) {
+                        console.log('=== New ETag captured from PATCH response:', parsedPatch.latestETag);
+                        configEditorCurrentETag = parsedPatch.latestETag;
+                        document.getElementById('input-config-etag').value = parsedPatch.latestETag;
+                    } else if (parsedPatch.results) {
+                        const firstResult = Object.values(parsedPatch.results)[0];
+                        if (firstResult && firstResult.eTag) {
+                            const newETag = firstResult.eTag;
+                            console.log('=== New ETag captured from first result:', newETag);
+                            configEditorCurrentETag = newETag;
+                            document.getElementById('input-config-etag').value = newETag;
+                        }
+                    }
+                    
+                    // Auto-reload configuration to get updated values and latest ETag
+                    setTimeout(function() {
+                        console.log('=== Auto-reloading configuration after successful PATCH ===');
+                        loadConfigurationEditor();
+                    }, 1500);
+                } else if (parsedPatch.success === false) {
+                    // PATCH failed - show error details
+                    let errorMsg = 'PATCH failed: ';
+                    if (parsedPatch.results) {
+                        const resultKeys = Object.keys(parsedPatch.results);
+                        for (const key of resultKeys) {
+                            const result = parsedPatch.results[key];
+                            if (result.error) {
+                                errorMsg += key + ' - ' + (typeof result.error === 'string' ? JSON.parse(result.error).message : result.error.message) + '; ';
+                            }
+                        }
+                    }
+                    showStatusMessage(errorMsg, 'error', 7000);
+                } else {
+                    showStatusMessage('Configuration update completed.', 'info', 5000);
+                }
+            } catch (e) {
+                formatted = patchResult;
+                renderTable(patchResult, tableId);
+                showStatusMessage('Configuration update completed. Reloading...', 'info', 3000);
+                setTimeout(function() {
+                    loadConfigurationEditor();
+                }, 1500);
+            }
+            
+            textarea.value = formatted;
+        } catch (error) {
+            const errorMsg = error && error.message ? error.message : String(error);
+            textarea.value = 'Error: ' + errorMsg;
+            console.error('Update Configuration Error:', error);
+            console.error('Patch operations attempted:', patchOps);
+            showStatusMessage('Error updating configuration', 'error', 5000);
+        }
+    }
+
+    function executePricingRequest(apexMethod, params, tableId, outputId, onSuccess) {
+        const textarea = document.getElementById(outputId);
+        clearTable(tableId);
+        textarea.value = 'Processing...';
+        showStatusMessage('Processing pricing request...', 'info');
+
+        try {
+            let result = sforce.apex.execute('CPQExternalConfiguratorControllerPoC', apexMethod, params);
+            if (Array.isArray(result) && result.length > 0) {
+                result = result[0];
+            }
+
+            if (!result) {
+                textarea.value = 'Error: No response from server';
+                showStatusMessage('No response from server', 'error');
+                return;
+            }
+
+            try {
+                const parsed = JSON.parse(result);
+                textarea.value = JSON.stringify(parsed, null, 2);
+                renderTable(parsed, tableId);
+                if (onSuccess) {
+                    onSuccess(parsed);
+                }
+            } catch (e) {
+                textarea.value = result;
+                renderTable(result, tableId);
+            }
+        } catch (error) {
+            const errorMsg = error && error.message ? error.message : String(error);
+            textarea.value = 'Error: ' + errorMsg;
+            console.error('Pricing Request Error:', error);
+            showStatusMessage('Pricing request failed', 'error', 5000);
+        }
+    }
+
+    function extractPricingDocumentId(parsed) {
+        if (!parsed) {
+            return null;
+        }
+        if (parsed.documentId) {
+            return parsed.documentId;
+        }
+        if (parsed.id) {
+            return parsed.id;
+        }
+        if (parsed.document && parsed.document.documentId) {
+            return parsed.document.documentId;
+        }
+        if (parsed.document && parsed.document.id) {
+            return parsed.document.id;
+        }
+        if (parsed.documentHeader && parsed.documentHeader.documentId) {
+            return parsed.documentHeader.documentId;
+        }
+        if (parsed.header && parsed.header.documentId) {
+            return parsed.header.documentId;
+        }
+        return null;
+    }
+
+    // Helper function to remove empty values from objects recursively
+    function removeEmpty(obj) {
+        if (typeof obj !== 'object' || obj === null) {
+            return obj;
+        }
+        
+        if (Array.isArray(obj)) {
+            return obj.map(removeEmpty).filter(item => {
+                if (typeof item === 'object' && item !== null) {
+                    return Object.keys(item).length > 0;
+                }
+                return item !== '' && item !== null && item !== undefined;
+            });
+        }
+        
+        return Object.keys(obj).reduce((result, key) => {
+            const value = obj[key];
+            const cleaned = removeEmpty(value);
+            
+            // Only include if not empty
+            if (cleaned !== '' && cleaned !== null && cleaned !== undefined) {
+                // For nested objects, only include if has properties
+                if (typeof cleaned === 'object' && !Array.isArray(cleaned)) {
+                    if (Object.keys(cleaned).length > 0) {
+                        result[key] = cleaned;
+                    }
+                } else if (Array.isArray(cleaned)) {
+                    if (cleaned.length > 0) {
+                        result[key] = cleaned;
+                    }
+                } else {
+                    result[key] = cleaned;
+                }
+            }
+            return result;
+        }, {});
+    }
+
+    function buildPricingProceduresPath(salesOrg, replicated) {
+        const params = [];
+        if (salesOrg) params.push('salesOrganization=' + encodeURIComponent(salesOrg));
+        if (replicated) params.push('replicated=true');
+        return '/api/v1/customizing/procedures' + (params.length ? '?' + params.join('&') : '');
+    }
+
+    function updatePricingProceduresPreview() {
+        const salesOrg = document.getElementById('input-pricing-procedures-salesorg').value;
+        const replicated = document.getElementById('input-pricing-procedures-replicated').checked;
+        const preview = document.getElementById('pricing-procedures-preview');
+        preview.textContent = buildPricingProceduresPath(salesOrg, replicated);
+    }
+
+    function updatePricingDocumentPreview() {
+        const procedure = document.getElementById('input-doc-procedure').value;
+        const currency = document.getElementById('input-doc-currency').value;
+        const attributesText = document.getElementById('input-doc-attributes').value;
+        
+        const payload = {};
+        
+        if (procedure) payload.pricingProcedureId = procedure;
+        if (currency) payload.documentCurrencyUnit = currency;
+        
+        if (attributesText) {
+            try {
+                const attrs = JSON.parse(attributesText);
+                Object.assign(payload, attrs);
+            } catch (e) {
+                // Invalid JSON, skip
+            }
+        }
+        
+        const cleaned = removeEmpty(payload);
+        const preview = document.getElementById('pricing-doc-preview');
+        preview.textContent = JSON.stringify(cleaned, null, 2);
+    }
+
+    function updatePricingItemsPreview() {
+        const itemId = document.getElementById('input-item-id').value;
+        const productId = document.getElementById('input-item-product').value;
+        const quantity = document.getElementById('input-item-quantity').value;
+        const attributesText = document.getElementById('input-item-attributes').value;
+        
+        const item = {};
+        
+        if (itemId) item.id = itemId;  // SAP API expects 'id' not 'itemId'
+        if (productId) item.productId = productId;
+        if (quantity) item.quantity = {
+            value: parseFloat(quantity) || 1,
+            unit: "PCE"
+        };
+        
+        if (attributesText) {
+            try {
+                const attrs = JSON.parse(attributesText);
+                Object.assign(item, attrs);
+            } catch (e) {
+                // Invalid JSON, skip
+            }
+        }
+        
+        const payload = { items: [removeEmpty(item)] };
+        const cleaned = removeEmpty(payload);
+        const preview = document.getElementById('pricing-items-preview');
+        preview.textContent = JSON.stringify(cleaned, null, 2);
+    }
+
+    function updatePricingConditionPreview() {
+        const conditionType = document.getElementById('input-condition-type').value;
+        const rateValue = document.getElementById('input-condition-rate-value').value;
+        const rateUnit = document.getElementById('input-condition-rate-unit').value;
+        
+        const condition = {};
+        
+        if (conditionType) condition.conditionType = conditionType;
+        
+        if (rateValue || rateUnit) {
+            condition.conditionRate = {};
+            if (rateValue) condition.conditionRate.value = parseFloat(rateValue);
+            if (rateUnit) condition.conditionRate.unit = rateUnit;
+        }
+        
+        const payload = { conditions: [removeEmpty(condition)] };
+        const cleaned = removeEmpty(payload);
+        const preview = document.getElementById('pricing-condition-preview');
+        preview.textContent = JSON.stringify(cleaned, null, 2);
+    }
+
+    function pricingCreateDocument() {
+        const procedure = document.getElementById('input-doc-procedure').value;
+        const currency = document.getElementById('input-doc-currency').value;
+        const attributesText = document.getElementById('input-doc-attributes').value;
+        
+        const payload = {};
+        
+        if (procedure) payload.pricingProcedureId = procedure;
+        if (currency) payload.documentCurrencyUnit = currency;
+        
+        if (attributesText) {
+            try {
+                const attrs = JSON.parse(attributesText);
+                Object.assign(payload, attrs);
+            } catch (e) {
+                showStatusMessage('Invalid JSON in additional attributes', 'error');
+                return;
+            }
+        }
+        
+        const cleaned = removeEmpty(payload);
+        
+        executePricingRequest(
+            'pricingCreateDocument',
+            { documentBody: JSON.stringify(cleaned) },
+            'table-pricing-create-doc',
+            'output-pricing-create-doc',
+            function(parsed) {
+                const docId = extractPricingDocumentId(parsed);
+                if (docId) {
+                    document.getElementById('input-pricing-document-id').value = docId;
+                    showStatusMessage('Document created: ' + docId, 'success', 4000);
+                }
+            }
+        );
+    }
+
+    function pricingCreateItems() {
+        const docId = document.getElementById('input-pricing-document-id').value;
+        if (!docId) {
+            showStatusMessage('Please provide a Pricing Document ID', 'error');
+            return;
+        }
+        
+        const ifMatch = document.getElementById('input-pricing-items-if-match').value;
+        if (!ifMatch) {
+            showStatusMessage('If-Match header is required. Copy the ETag value from Create Document response.', 'error');
+            return;
+        }
+        
+        const itemId = document.getElementById('input-item-id').value;
+        const productId = document.getElementById('input-item-product').value;
+        const quantity = document.getElementById('input-item-quantity').value;
+        const attributesText = document.getElementById('input-item-attributes').value;
+        
+        const item = {};
+        
+        if (itemId) item.id = itemId;  // SAP API expects 'id' not 'itemId'
+        if (productId) item.productId = productId;
+        if (quantity) item.quantity = {
+            value: parseFloat(quantity) || 1,
+            unit: "PCE"
+        };
+        
+        if (attributesText) {
+            try {
+                const attrs = JSON.parse(attributesText);
+                Object.assign(item, attrs);
+            } catch (e) {
+                showStatusMessage('Invalid JSON in additional attributes', 'error');
+                return;
+            }
+        }
+        
+        const payload = { items: [removeEmpty(item)] };
+        const cleaned = removeEmpty(payload);
+        
+        executePricingRequest(
+            'pricingCreateItems',
+            { documentId: docId, itemsBody: JSON.stringify(cleaned), ifMatch: ifMatch },
+            'table-pricing-create-items',
+            'output-pricing-create-items'
+        );
+    }
+
+    function pricingGetDocument() {
+        const docId = document.getElementById('input-pricing-get-id').value;
+        if (!docId) {
+            showStatusMessage('Please provide a Pricing Document ID', 'error');
+            return;
+        }
+        executePricingRequest(
+            'pricingGetDocument',
+            { documentId: docId },
+            'table-pricing-get-doc',
+            'output-pricing-get-doc'
+        );
+    }
+
+    function pricingAddCondition() {
+        const docId = document.getElementById('input-pricing-condition-doc-id').value;
+        if (!docId) {
+            showStatusMessage('Please provide a Pricing Document ID', 'error');
+            return;
+        }
+        
+        const conditionType = document.getElementById('input-condition-type').value;
+        const rateValue = document.getElementById('input-condition-rate-value').value;
+        const rateUnit = document.getElementById('input-condition-rate-unit').value;
+        
+        const condition = {};
+        
+        if (conditionType) condition.conditionType = conditionType;
+        
+        if (rateValue || rateUnit) {
+            condition.conditionRate = {};
+            if (rateValue) condition.conditionRate.value = parseFloat(rateValue);
+            if (rateUnit) condition.conditionRate.unit = rateUnit;
+        }
+        
+        const payload = { conditions: [removeEmpty(condition)] };
+        const cleaned = removeEmpty(payload);
+        
+        executePricingRequest(
+            'pricingAddHeaderCondition',
+            { documentId: docId, conditionsBody: JSON.stringify(cleaned) },
+            'table-pricing-add-condition',
+            'output-pricing-add-condition'
+        );
+    }
+
+    // Full pricing variations
+    function pricingCreateDocumentFlow() {
+        const procedure = document.getElementById('input-doc-procedure-flow').value;
+        const currency = document.getElementById('input-doc-currency-flow').value;
+        const attributesText = document.getElementById('input-doc-attributes-flow').value;
+        
+        const payload = {};
+        
+        if (procedure) payload.pricingProcedureId = procedure;
+        if (currency) payload.documentCurrencyUnit = currency;
+        
+        if (attributesText) {
+            try {
+                const attrs = JSON.parse(attributesText);
+                Object.assign(payload, attrs);
+            } catch (e) {
+                showStatusMessage('Invalid JSON in additional attributes', 'error');
+                return;
+            }
+        }
+        
+        const cleaned = removeEmpty(payload);
+        
+        executePricingRequest(
+            'pricingCreateDocument',
+            { documentBody: JSON.stringify(cleaned) },
+            'table-pricing-full-flow',
+            'output-pricing-full-flow',
+            function(parsed) {
+                const docId = extractPricingDocumentId(parsed);
+                if (docId) {
+                    document.getElementById('input-pricing-document-id').value = docId;
+                    showStatusMessage('Document created: ' + docId, 'success', 4000);
+                }
+            }
+        );
+    }
+
+    function pricingCreateItemsFlow() {
+        const docId = document.getElementById('input-pricing-document-id').value;
+        if (!docId) {
+            showStatusMessage('Please create a document first', 'error');
+            return;
+        }
+        
+        const itemId = document.getElementById('input-item-id-flow').value;
+        const productId = document.getElementById('input-item-product-flow').value;
+        const quantity = document.getElementById('input-item-quantity-flow').value;
+        const attributesText = document.getElementById('input-item-attributes-flow').value;
+        
+        const item = {};
+        
+        if (itemId) item.id = itemId;  // SAP API expects 'id' not 'itemId'
+        if (productId) item.productId = productId;
+        if (quantity) item.quantity = {
+            value: parseFloat(quantity) || 1,
+            unit: "PCE"
+        };
+        
+        if (attributesText) {
+            try {
+                const attrs = JSON.parse(attributesText);
+                Object.assign(item, attrs);
+            } catch (e) {
+                showStatusMessage('Invalid JSON in additional attributes', 'error');
+                return;
+            }
+        }
+        
+        const payload = { items: [removeEmpty(item)] };
+        const cleaned = removeEmpty(payload);
+        
+        executePricingRequest(
+            'pricingCreateItems',
+            { documentId: docId, itemsBody: JSON.stringify(cleaned) },
+            'table-pricing-full-flow',
+            'output-pricing-full-flow'
+        );
+    }
+
+    function pricingGetDocumentFlow() {
+        const docId = document.getElementById('input-pricing-document-id').value;
+        if (!docId) {
+            showStatusMessage('Please create a document first', 'error');
+            return;
+        }
+        executePricingRequest(
+            'pricingGetDocument',
+            { documentId: docId },
+            'table-pricing-full-flow',
+            'output-pricing-full-flow'
+        );
+    }
+
+    function pricingAddConditionFlow() {
+        const docId = document.getElementById('input-pricing-document-id').value;
+        if (!docId) {
+            showStatusMessage('Please create a document first', 'error');
+            return;
+        }
+        
+        const conditionType = document.getElementById('input-condition-type-flow').value;
+        const rateValue = document.getElementById('input-condition-rate-value-flow').value;
+        const rateUnit = document.getElementById('input-condition-rate-unit-flow').value;
+        
+        if (!conditionType || !rateValue || !rateUnit) {
+            showStatusMessage('Please fill all condition fields', 'error');
+            return;
+        }
+        
+        const condition = {};
+        
+        if (conditionType) condition.conditionType = conditionType;
+        
+        if (rateValue || rateUnit) {
+            condition.conditionRate = {};
+            if (rateValue) condition.conditionRate.value = parseFloat(rateValue);
+            if (rateUnit) condition.conditionRate.unit = rateUnit;
+        }
+        
+        const payload = { conditions: [removeEmpty(condition)] };
+        const cleaned = removeEmpty(payload);
+        
+        executePricingRequest(
+            'pricingAddHeaderCondition',
+            { documentId: docId, conditionsBody: JSON.stringify(cleaned) },
+            'table-pricing-full-flow',
+            'output-pricing-full-flow'
+        );
+    }
+
+    function pricingGetProcedures() {
+        const salesOrg = document.getElementById('input-pricing-procedures-salesorg').value;
+        const replicated = document.getElementById('input-pricing-procedures-replicated').checked;
+
+        executePricingRequest(
+            'pricingGetProcedures',
+            {
+                salesOrganization: salesOrg || '',
+                replicated: replicated ? 'true' : ''
+            },
+            'table-pricing-procedures',
+            'output-pricing-procedures'
+        );
+    }
+
+    function pricingGetProceduresFlow() {
+        const salesOrg = document.getElementById('input-pricing-procedures-salesorg-flow').value;
+        const replicated = document.getElementById('input-pricing-procedures-replicated-flow').checked;
+
+        executePricingRequest(
+            'pricingGetProcedures',
+            {
+                salesOrganization: salesOrg || '',
+                replicated: replicated ? 'true' : ''
+            },
+            'table-pricing-full-flow',
+            'output-pricing-full-flow'
+        );
+    }
+
+    function pricingGetProcedure() {
+        const procedureId = document.getElementById('input-pricing-procedure-id').value;
+        if (!procedureId) {
+            showStatusMessage('Please provide a Pricing Procedure ID', 'error');
+            return;
+        }
+        executePricingRequest(
+            'pricingGetProcedure',
+            { pricingProcedureId: procedureId },
+            'table-pricing-full-flow',
+            'output-pricing-full-flow'
+        );
+    }
+    
+    function callAPI(endpoint) {
+        let method, params = {}, outputId;
+        
+        switch(endpoint) {
+            case 'determine':
+                method = 'determineKnowledgebase';
+                params = { 
+                    productId: document.getElementById('determine-productId').value,
+                    validityDate: document.getElementById('determine-validityDate').value,
+                    type: document.getElementById('determine-type').value,
+                    plant: document.getElementById('determine-plant').value
+                };
+                outputId = 'output-determine';
+                break;
+            case 'get-kb':
+                method = 'getKnowledgebaseById';
+                params = { kbId: document.getElementById('input-kbid').value };
+                outputId = 'output-get-kb';
+                break;
+            case 'get-translations':
+                method = 'getKnowledgebaseTranslations';
+                params = { 
+                    kbId: document.getElementById('input-kb-trans-id').value,
+                    language: document.getElementById('input-kb-trans-language').value
+                };
+                outputId = 'output-get-translations';
+                break;
+            case 'create':
+                method = 'createConfigurationV2';
+                const payload = buildConfigurationPayload();
+                params = { configData: JSON.stringify(payload) };
+                outputId = 'output-create';
+                break;
+            case 'patch':
+                method = 'patchConfigurationV2';
+                params = { 
+                    configId: document.getElementById('input-patch-id').value,
+                    patchData: document.getElementById('input-patch').value
+                };
+                outputId = 'output-patch';
+                break;
+            case 'get':
+                method = 'getConfigurationV2';
+                params = { configId: document.getElementById('input-get-id').value };
+                outputId = 'output-get';
+                break;
+            case 'pricing':
+                method = 'callPricingService';
+                params = { pricingData: document.getElementById('input-pricing').value };
+                outputId = 'output-pricing';
+                break;
+            case 'delete':
+                method = 'completeConfigurationV2';
+                params = { configId: document.getElementById('input-delete-id').value };
+                outputId = 'output-delete';
+                break;
+        }
+        
+        try {
+            const textarea = document.getElementById(outputId);
+            textarea.value = 'Loading...';
+            const tableId = outputId ? outputId.replace('output-', 'table-') : null;
+            if (tableId) {
+                clearTable(tableId);
+            }
+            
+            const result = sforce.apex.execute('CPQExternalConfiguratorControllerPoC', method, params);
+            
+            let formatted = '';
+            try {
+                const parsed = JSON.parse(result);
+                formatted = JSON.stringify(parsed, null, 2);
+                if (tableId) {
+                    renderTable(parsed, tableId);
+                }
+                if (endpoint === 'get') {
+                    renderConfigurationForm(parsed, 'config-form-container', { editable: false, storeOriginal: false });
+                } else {
+                    clearConfigurationForm('config-form-container');
+                }
+            } catch (e) {
+                formatted = result;
+                if (tableId) {
+                    clearTable(tableId);
+                }
+                clearConfigurationForm('config-form-container');
+            }
+            
+            textarea.value = formatted;
+            
+        } catch (error) {
+            document.getElementById(outputId).value = 'Error: ' + error.message;
+            const tableId = outputId ? outputId.replace('output-', 'table-') : null;
+            if (tableId) {
+                clearTable(tableId);
+            }
+            clearConfigurationForm('config-form-container');
+        }
+    }
+
+//]]>
+</script>
+</body>
+</html>
+</apex:page>
+

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Package xmlns="http://soap.sforce.com/2006/04/metadata">
+    <types>
+        <members>CPQExternalConfiguratorController</members>
+        <members>CPQExternalConfiguratorControllerPoC</members>
+        <members>SAPVcProductConfigurationService</members>
+        <name>ApexClass</name>
+    </types>
+    <types>
+        <members>CPQExternalConfiguratorTabs</members>
+        <members>CPQExternalConfiguratorTabsPoC</members>
+        <name>ApexPage</name>
+    </types>
+    <types>
+        <members>SAP_VariantConfiguration_Agent</members>
+        <name>PermissionSet</name>
+    </types>
+    <types>
+        <members>SBQQ__Quote__c.SAP_VCP_Config_ID__c</members>
+        <name>CustomField</name>
+    </types>
+    <version>62.0</version>
+</Package>
+<!--
+    Deployment package for SAP Variant Configuration integration.
+
+    Includes:
+      - CPQExternalConfiguratorController  : Global webservice facade used by the VF page and CPQ
+      - SAPVcProductConfigurationService   : Service layer for all SAP VC Product Configuration callouts
+      - CPQExternalConfiguratorControllerPoC : Legacy PoC controller (kept for reference)
+      - CPQExternalConfiguratorTabs        : Dev/test VF page — main external configurator UI
+      - CPQExternalConfiguratorTabsPoC     : Legacy PoC VF page
+      - SAP_VariantConfiguration_Agent     : Permission set granting class + external credential access
+
+    Deploy command (from workspace root):
+      sf project deploy start --manifest manifest/package-sap-vc-deploy.xml --target-org <alias>
+
+    Retrieve command:
+      sf project retrieve start --manifest manifest/package-sap-vc-deploy.xml --target-org <alias>
+-->
