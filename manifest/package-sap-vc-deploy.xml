@@ -19,6 +19,10 @@
         <members>SBQQ__Quote__c.SAP_VCP_Config_ID__c</members>
         <name>CustomField</name>
     </types>
+    <types>
+        <members>countriesIcons</members>
+        <name>StaticResource</name>
+    </types>
     <version>62.0</version>
 </Package>
 <!--

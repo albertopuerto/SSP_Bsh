@@ -121,6 +121,7 @@ public with sharing class SAPVcProductConfigurationService {
         Integer successCount = 0;
         Integer totalCount = operations.size();
         String latestETag = null;
+        String currentETag = etag;
 
         for (Object operation : operations) {
             Map<String, Object> operationMap = (Map<String, Object>) operation;
@@ -128,18 +129,35 @@ public with sharing class SAPVcProductConfigurationService {
             Integer itemId = Integer.valueOf(String.valueOf(operationMap.get('itemId')));
             String inputBody = JSON.serialize(operationMap.get('input'));
 
-            HttpResponse response = sendRequest(
-                'PATCH',
-                buildCharacteristicPath(configId, itemId, characteristicId),
-                inputBody,
-                buildIfMatchHeader(etag)
-            );
+            String operationPath = buildCharacteristicPath(configId, itemId, characteristicId);
+            HttpResponse response = sendRequest('PATCH', operationPath, inputBody, buildIfMatchHeader(currentETag));
+
+            // If ETag was stale, refresh from GET and retry this operation once.
+            if (response.getStatusCode() == 412) {
+                String refreshedETag = extractExpectedWeakETagFromError(response.getBody());
+                if (String.isBlank(refreshedETag)) {
+                    refreshedETag = extractETagFromConfig(getConfigurationV2(configId));
+                }
+                if (!String.isBlank(refreshedETag) && refreshedETag != currentETag) {
+                    currentETag = refreshedETag;
+                    response = sendRequest('PATCH', operationPath, inputBody, buildIfMatchHeader(currentETag));
+                }
+            }
 
             if (isSuccess(response.getStatusCode())) {
                 successCount++;
                 String operationETag = response.getHeader('ETag');
+                if (String.isBlank(operationETag)) {
+                    // Many SAP characteristic PATCH responses omit ETag header; refresh via GET.
+                    operationETag = extractETagFromConfig(getConfigurationV2(configId));
+                }
+                if (String.isBlank(operationETag)) {
+                    // Last-resort heuristic: SAP appears to increment weak ETags monotonically per successful PATCH.
+                    operationETag = incrementWeakETag(currentETag);
+                }
                 if (!String.isBlank(operationETag)) {
                     latestETag = operationETag;
+                    currentETag = operationETag;
                 }
                 results.put(characteristicId, buildSuccessResult(response.getStatusCode(), operationETag));
             } else {
@@ -147,7 +165,7 @@ public with sharing class SAPVcProductConfigurationService {
             }
         }
 
-        if (successCount == totalCount && String.isBlank(latestETag)) {
+        if (successCount > 0 && String.isBlank(latestETag)) {
             latestETag = extractETagFromConfig(getConfigurationV2(configId));
         }
 
@@ -573,6 +591,69 @@ public with sharing class SAPVcProductConfigurationService {
         return new Map<String, String>{
             'If-Match' => etag
         };
+    }
+
+    /**
+     * @description Extracts the expected weak ETag from a 412 SAP VC error body such as
+     *              "Passed If-Match header parameter value 5 did not match expected value 6".
+     * @param errorBody Raw SAP VC error body
+     * @return Weak ETag in the form W/"6", or null if not found
+     */
+    private static String extractExpectedWeakETagFromError(String errorBody) {
+        if (String.isBlank(errorBody)) {
+            return null;
+        }
+
+        String marker = 'expected value ';
+        Integer markerIndex = errorBody.indexOf(marker);
+        if (markerIndex < 0) {
+            return null;
+        }
+
+        Integer startIndex = markerIndex + marker.length();
+        String digits = '';
+        while (startIndex < errorBody.length()) {
+            String ch = errorBody.substring(startIndex, startIndex + 1);
+            if (ch < '0' || ch > '9') {
+                break;
+            }
+            digits += ch;
+            startIndex++;
+        }
+
+        if (!String.isBlank(digits)) {
+            return 'W/"' + digits + '"';
+        }
+        return null;
+    }
+
+    /**
+     * @description Increments a weak ETag of the form W/"n".
+     * @param etag Weak ETag string
+     * @return Incremented weak ETag, or null if format does not match
+     */
+    private static String incrementWeakETag(String etag) {
+        if (String.isBlank(etag)) {
+            return null;
+        }
+
+        if (!etag.startsWith('W/"') || !etag.endsWith('"')) {
+            return null;
+        }
+
+        String digits = etag.substring(3, etag.length() - 1);
+        if (String.isBlank(digits)) {
+            return null;
+        }
+
+        Integer currentValue;
+        try {
+            currentValue = Integer.valueOf(digits);
+        } catch (Exception ex) {
+            return null;
+        }
+
+        return 'W/"' + String.valueOf(currentValue + 1) + '"';
     }
 
     /**

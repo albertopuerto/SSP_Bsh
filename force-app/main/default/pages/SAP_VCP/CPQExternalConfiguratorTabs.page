@@ -267,6 +267,40 @@
         .button-group {
             margin-bottom: 30px;
         }
+
+        .e2e-actions {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .e2e-action-btn {
+            min-width: 200px;
+            border-radius: 6px;
+            font-weight: 600;
+            letter-spacing: 0.01em;
+            transition: transform 0.12s ease, box-shadow 0.12s ease;
+        }
+
+        .e2e-action-btn.slds-button_brand {
+            box-shadow: 0 2px 8px rgba(1, 118, 211, 0.22);
+        }
+
+        .e2e-action-btn.slds-button_neutral {
+            border-color: #c9d5e3;
+            color: #16325c;
+            background: #ffffff;
+        }
+
+        .e2e-action-btn:hover {
+            transform: translateY(-1px);
+        }
+
+        .e2e-action-btn:focus {
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(1, 118, 211, 0.2);
+        }
         
         .response-section {
             margin-top: 30px;
@@ -304,6 +338,19 @@
             font-size: 12px;
         }
 
+        .config-section {
+            margin-bottom: 18px;
+        }
+
+        .config-section-title {
+            font-size: 13px;
+            font-weight: 700;
+            color: #16325c;
+            margin: 0 0 10px;
+            padding-bottom: 6px;
+            border-bottom: 1px solid #dde3ea;
+        }
+
         .config-form-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
@@ -326,6 +373,54 @@
             color: #16325c;
             margin-bottom: 8px;
             font-size: 13px;
+        }
+
+        .config-badge-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-bottom: 8px;
+        }
+
+        .config-badge {
+            display: inline-flex;
+            align-items: center;
+            border-radius: 999px;
+            padding: 2px 8px;
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.02em;
+        }
+
+        .config-badge.visible {
+            background: #e8f4e8;
+            color: #2e844a;
+        }
+
+        .config-badge.hidden {
+            background: #f3f2f2;
+            color: #706e6b;
+        }
+
+        .config-badge.readonly {
+            background: #eef4ff;
+            color: #0b5cab;
+        }
+
+        .config-badge.required {
+            background: #fdeaea;
+            color: #c23934;
+        }
+
+        .config-badge.inconsistent {
+            background: #fff7e6;
+            color: #8a6d1f;
+        }
+
+        .config-badge.incomplete {
+            background: #fff1f0;
+            color: #ba0517;
         }
 
         .required-indicator {
@@ -714,7 +809,7 @@
             </li>
             <li class="sidebar-menu-item">
                 <a href="javascript:void(0)" onclick="switchCategory(event, 'e2e')" class="sidebar-menu-link">
-                    🔄 End-to-End
+                    🔄 End to End
                 </a>
             </li>
         </ul>
@@ -728,6 +823,7 @@
                 Product Code: <strong id="cpq-product-code"></strong>
                 <span id="cpq-context-raw" style="margin-left:12px; color:#999;"></span>
             </div>
+            <div id="e2e-toast-container" style="position: fixed; top: 24px; right: 24px; z-index: 9999; display: flex; flex-direction: column; gap: 10px; pointer-events: none;"></div>
         </div>
         
         <div class="content-body">
@@ -1267,88 +1363,115 @@ WHERE mdr_Account__c IN (
             <!-- End-to-End Category -->
             <div id="category-e2e" class="tab-panel" style="display: none;">
                 <div style="display: flex; gap: 0; border-bottom: 2px solid #e5e5e5; margin-bottom: 30px;">
-                    <a href="javascript:void(0)" onclick="switchSubTab(event, 'e2e', 'create-config')" class="sub-tab-link active">1. Create Config</a>
+                    <a href="javascript:void(0)" onclick="switchSubTab(event, 'e2e', 'create-config')" class="sub-tab-link active">End to End</a>
                 </div>
 
                 <!-- Step 1: Create Config -->
                 <div id="subtab-e2e-create-config" class="sub-tab-panel active">
                     <div class="tab-box">
-                        <h2>Step 1 — Create Configuration</h2>
-                        <p>Creates a SAP VC configuration session for the product loaded from context. Knowledge Base ID defaults to <strong>-3</strong> (SAP standard for product-based KB resolution). Product Key is auto-populated from the URL.</p>
-                        <div class="endpoint-info">
-                            <span class="endpoint-method">POST</span>
-                            <span class="endpoint-path">/api/v2/configurations</span>
-                        </div>
-
-                        <div id="e2e-create-stage">
-                        <div class="form-row">
-                            <div class="form-left">
-                                <div class="form-section">
-                                    <label>Knowledge Base ID</label>
-                                    <input type="text" id="e2e-kbId" value="-3"/>
-                                    <small style="color: #706e6b; margin-top: 4px; display: block;">-3 lets SAP resolve the KB automatically from the product key</small>
-                                </div>
-                                <div class="form-section">
-                                    <label>Product Key Source</label>
-                                    <select id="e2e-productKey-mode" onchange="e2eApplyProductKeyMode()">
-                                        <option value="context">Use rescued ProductCode from URL</option>
-                                        <option value="working">Use known working key F00K001001</option>
-                                        <option value="custom">Use custom value below</option>
-                                    </select>
-                                    <small style="color: #706e6b; margin-top: 4px; display: block;">Lets you switch between the rescued product code, a known working key, or a custom key</small>
-                                </div>
-                                <div class="form-section">
-                                    <label>Product Key (sent to SAP)</label>
-                                    <input type="text" id="e2e-productKey" placeholder="Will be filled from productCode URL param"/>
-                                </div>
-                                <div class="form-section">
-                                    <label>Date <small style="color: #706e6b; font-weight: normal;">(optional — omitted from request if empty)</small></label>
-                                    <div style="display:flex; gap: 6px; align-items: center;">
-                                        <input type="date" id="e2e-date" style="flex:1;"/>
-                                        <button type="button" onclick="document.getElementById('e2e-date').value=''; e2eUpdatePreview();" style="padding: 4px 8px; font-size: 11px; cursor: pointer;">✕ Clear</button>
-                                    </div>
-                                </div>
-                                <div class="form-section">
-                                    <label>Auto Cleanup</label>
-                                    <input type="checkbox" id="e2e-autoCleanup" checked="checked"/>
-                                    <span style="margin-left: 5px; font-size: 12px; color: #706e6b;">Auto delete after 2 hours</span>
-                                </div>
-                                <div class="form-section">
-                                    <label>Quote ID <span id="e2e-quoteId-source" style="font-size: 11px; color: #706e6b; font-weight: normal;"></span></label>
-                                    <div style="display:flex; gap: 6px; align-items: center;">
-                                        <input type="text" id="e2e-quoteId" placeholder="Will be filled from SBQQ_QuoteId URL param" style="flex:1;"/>
-                                        <button type="button" onclick="document.getElementById('e2e-quoteId').value=''; document.getElementById('e2e-quoteId-source').textContent='(cleared)';" style="padding: 4px 8px; font-size: 11px; cursor: pointer;">✕ Clear</button>
-                                    </div>
-                                    <small style="color: #706e6b; margin-top: 4px; display: block;">Used to save SAP_VCP_Config_ID__c after creation</small>
-                                </div>
-                            </div>
-                            <div class="form-right">
-                                <label class="preview-label">Request Body Preview</label>
-                                <div class="preview-box" id="e2e-create-preview">{}</div>
-                            </div>
-                        </div>
-
-                        <div class="button-group">
-                            <button class="slds-button slds-button_brand" onclick="e2eCreateConfig()">Create Configuration</button>
-                        </div>
-
-                        <div style="margin-top: 24px; padding: 16px; background: #f8f9fb; border: 1px solid #dde3ea; border-radius: 6px;">
-                            <h3 style="margin: 0 0 10px; color: #16325c; font-size: 15px;">Quote Config Storage</h3>
-                            <div class="form-section" style="margin-bottom: 12px;">
+                        <!-- Configuration Management (unified component) -->
+                        <div id="e2e-config-management" style="margin-top: 0; margin-bottom: 24px; padding: 16px; background: #f8f9fb; border: 1px solid #dde3ea; border-radius: 6px;">
+                            <h3 style="margin: 0 0 16px; color: #16325c; font-size: 15px;">📋 Configuration Management</h3>
+                            
+                            <!-- Stored Config ID input -->
+                            <div class="form-section" style="margin-bottom: 16px;">
                                 <label>Stored Config ID in Quote</label>
-                                <input type="text" id="e2e-stored-config-id" readonly="readonly" placeholder="Read from SBQQ__Quote__c.SAP_VCP_Config_ID__c"/>
+                                <input type="text" id="e2e-stored-config-id" readonly="readonly" placeholder="No config stored yet. Use Load, Simulate, or Restart buttons below."/>
                             </div>
-                            <div class="button-group" style="display: flex; gap: 10px; flex-wrap: wrap;">
-                                <button class="slds-button slds-button_neutral" onclick="e2eReadConfigIdFromQuote()">Read Stored Config ID</button>
-                                <button class="slds-button slds-button_destructive" onclick="e2eClearConfigIdFromQuote()">Clear Stored Config ID</button>
+
+                            <!-- Action Buttons - 2x2 Grid -->
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+                                <button class="slds-button slds-button_brand" style="font-size: 11px; padding: 8px 12px;" onclick="e2eLoadStoredConfiguration()">📥 Load Stored</button>
+                                <button class="slds-button slds-button_brand" style="font-size: 11px; padding: 8px 12px;" onclick="e2eSimulateLoading()">▶ Simulate</button>
+                                <button class="slds-button slds-button_neutral" style="font-size: 11px; padding: 8px 12px;" onclick="e2eRestartAndPrepareNewConfig()">↺ Restart &amp; Create New</button>
+                                <button class="slds-button slds-button_destructive" style="font-size: 11px; padding: 8px 12px;" onclick="e2eClearConfigIdFromQuote()">🗑️ Remove</button>
                             </div>
+                            <small style="color: #706e6b; margin-top: 8px; display: block; font-size: 10px;">
+                                <strong>Load:</strong> Loads existing config | <strong>Simulate:</strong> Creates if needed &amp; loads | <strong>Restart:</strong> Force new config | <strong>Remove:</strong> Delete from Salesforce
+                            </small>
+
+                            <button type="button" id="e2e-toggle-create-stage" onclick="e2eSetCreateStageHidden(false)" style="display:none; width: 100%; margin-top: 12px; padding: 6px; font-size: 11px; cursor: pointer;">Show Step 1 Form</button>
                         </div>
 
-                        <label class="response-title">Response:</label>
-                        <div class="response-table" id="table-e2e-create"></div>
-                        <div class="response-section">
-                            <textarea id="output-e2e-create" readonly="readonly"></textarea>
-                        </div>
+                        <!-- Step 1: Create Configuration (third, Accordion) -->
+                        <div id="e2e-step1-section" style="margin-top: 24px; border: 1px solid #dde3ea; border-radius: 6px; overflow: hidden;">
+                            <button type="button" onclick="e2eToggleCreateStage()" style="width: 100%; padding: 16px; background: #f8f9fb; border: none; text-align: left; cursor: pointer; display: flex; align-items: center; justify-content: space-between; font-weight: 600; color: #16325c; transition: all 0.2s ease; border-bottom: 1px solid #dde3ea;">
+                                <span>Step 1 — Create Configuration</span>
+                                <span id="e2e-accordion-icon" style="transform: rotate(0deg); transition: transform 0.2s ease; font-size: 18px;">▼</span>
+                            </button>
+                            <div id="e2e-create-stage" style="display: none;">
+                                <div style="padding: 16px;">
+                                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                                        <!-- Left column: Form fields -->
+                                        <div>
+                                            <!-- Row 1: KB ID + Date + Auto Cleanup -->
+                                            <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; margin-bottom: 16px;">
+                                                <div class="form-section">
+                                                    <label>Knowledge Base ID</label>
+                                                    <input type="text" id="e2e-kbId" value="-3"/>
+                                                    <small style="color: #706e6b; margin-top: 4px; display: block;">-3 = auto from product key</small>
+                                                </div>
+                                                <div class="form-section">
+                                                    <label>Date <small style="color: #706e6b; font-weight: normal;">(optional)</small></label>
+                                                    <div style="display:flex; gap: 6px; align-items: center;">
+                                                        <input type="date" id="e2e-date" style="flex:1;"/>
+                                                        <button type="button" onclick="document.getElementById('e2e-date').value=''; e2eUpdatePreview();" style="padding: 4px 8px; font-size: 11px; cursor: pointer;">✕</button>
+                                                    </div>
+                                                </div>
+                                                <div class="form-section">
+                                                    <label>Auto Cleanup</label>
+                                                    <div style="display: flex; align-items: center; height: 32px;">
+                                                        <input type="checkbox" id="e2e-autoCleanup" checked="checked"/>
+                                                        <span style="margin-left: 5px; font-size: 12px; color: #706e6b;">2 hour TTL</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <!-- Row 2: Product Key Source + Product Key -->
+                                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 16px;">
+                                                <div class="form-section">
+                                                    <label>Product Key Source</label>
+                                                    <select id="e2e-productKey-mode" onchange="e2eApplyProductKeyMode()">
+                                                        <option value="context">Use rescued ProductCode from URL</option>
+                                                        <option value="working">Use working key F00K001001</option>
+                                                        <option value="custom">Use custom value below</option>
+                                                    </select>
+                                                </div>
+                                                <div class="form-section">
+                                                    <label>Product Key (sent to SAP)</label>
+                                                    <input type="text" id="e2e-productKey" placeholder="Will be filled from selection"/>
+                                                </div>
+                                            </div>
+
+                                            <!-- Row 3: Quote ID full width -->
+                                            <div class="form-section">
+                                                <label>Quote ID <span id="e2e-quoteId-source" style="font-size: 11px; color: #706e6b; font-weight: normal;"></span></label>
+                                                <div style="display:flex; gap: 6px; align-items: center;">
+                                                    <input type="text" id="e2e-quoteId" placeholder="Will be filled from SBQQ_QuoteId URL param" style="flex:1;"/>
+                                                    <button type="button" onclick="document.getElementById('e2e-quoteId').value=''; document.getElementById('e2e-quoteId-source').textContent='(cleared)';" style="padding: 4px 8px; font-size: 11px; cursor: pointer;">✕ Clear</button>
+                                                </div>
+                                                <small style="color: #706e6b; margin-top: 4px; display: block;">Used to save SAP_VCP_Config_ID__c after creation</small>
+                                            </div>
+                                        </div>
+
+                                        <!-- Right column: Preview and Response -->
+                                        <div style="display: flex; flex-direction: column; gap: 16px;">
+                                            <div>
+                                                <label class="preview-label">Request Body Preview</label>
+                                                <div class="preview-box" id="e2e-create-preview">{}</div>
+                                            </div>
+                                            <div>
+                                                <label class="preview-label">Response</label>
+                                                <textarea id="output-e2e-create" readonly="readonly" style="min-height: 120px; height: 140px; max-height: 220px; width: 100%; border: 1px solid #d4d4d4; padding: 8px; font-family: monospace; font-size: 11px; border-radius: 4px;"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="button-group" style="padding: 0 16px 16px;">
+                                    <button class="slds-button slds-button_brand" onclick="e2eCreateConfig()">Create Configuration</button>
+                                </div>
+                            </div>
                         </div>
 
                         <div id="e2e-save-section" style="display:none; margin-top: 20px; padding: 16px; background: #e8f4e8; border-left: 4px solid #4bca81; border-radius: 4px;">
@@ -1361,76 +1484,95 @@ WHERE mdr_Account__c IN (
                             <span id="e2e-save-status" style="margin-left: 12px; font-size: 12px; color: #706e6b;"></span>
                         </div>
 
-                        <div id="e2e-simulate-controls" style="margin-top: 24px; padding: 16px; background: #f8f9fb; border: 1px solid #dde3ea; border-radius: 6px;">
-                            <div style="display:flex; align-items:center; justify-content:space-between; gap:10px; margin-bottom:10px;">
-                                <h3 style="margin: 0; color: #16325c; font-size: 15px;">Simulate Loading</h3>
-                                <button type="button" id="e2e-toggle-create-stage" onclick="e2eSetCreateStageHidden(false)" style="display:none; padding: 4px 10px; font-size: 11px; cursor: pointer;">Show Create Section</button>
-                            </div>
-                            <p style="margin: 0 0 16px; color: #3e3e3c;">Reads the stored config ID from the Quote. If none exists, creates one with the current parameters, saves it, and then loads the configuration via GET.</p>
-
-                            <div class="form-row">
-                                <div class="form-left">
-                                    <div class="form-section">
-                                        <label>ETag (captured from GET, editable)</label>
-                                        <input type="text" id="e2e-etag" placeholder='e.g., W/"1"'/>
-                                    </div>
-                                </div>
-                                <div class="form-right">
-                                    <div class="form-section">
-                                        <label>ETag Version Preset</label>
-                                        <select id="e2e-etag-version" onchange="e2eApplyETagPreset()">
-                                            <option value="">Select n for W/"n"</option>
-                                            <option value="0">0</option>
-                                            <option value="1">1</option>
-                                            <option value="2">2</option>
-                                            <option value="3">3</option>
-                                            <option value="4">4</option>
-                                            <option value="5">5</option>
-                                            <option value="6">6</option>
-                                            <option value="7">7</option>
-                                            <option value="8">8</option>
-                                            <option value="9">9</option>
-                                            <option value="10">10</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="button-group" style="display: flex; gap: 10px; flex-wrap: wrap;">
-                                <button class="slds-button slds-button_brand" onclick="e2eSimulateLoading()">Simulate Loading</button>
-                                <button class="slds-button slds-button_neutral" onclick="e2eLoadStoredConfiguration()">Load Stored Configuration</button>
-                            </div>
-
-                        </div>
-
                         <div id="e2e-runtime-section" style="display:none; margin-top: 24px; padding: 16px; background: #f8f9fb; border: 1px solid #dde3ea; border-radius: 6px;">
-                            <div style="display:flex; align-items:center; justify-content:space-between; gap:10px; margin-bottom:10px;">
-                                <h3 style="margin: 0; color: #16325c; font-size: 15px;">Loaded Configuration</h3>
-                                <button type="button" onclick="e2eResetFlow()" style="padding: 4px 10px; font-size: 11px; cursor: pointer;">Reset</button>
+                            <div style="display:flex; align-items:center; justify-content:space-between; gap:10px; margin-bottom:16px;">
+                                <h3 style="margin: 0; color: #16325c; font-size: 15px;">Step 2 — Configure Product</h3>
+                                <div style="display: flex; gap: 12px; align-items: center;">
+                                    <label style="font-size: 12px; color: #3e3e3c; margin: 0;">Language:</label>
+
+                                    <!-- Hidden select keeps JS value references working -->
+                                    <select id="e2e-label-mode" style="display:none;">
+                                        <option value="api" selected="selected">API IDs</option>
+                                        <option value="en">English</option>
+                                        <option value="es">Spanish</option>
+                                        <option value="de">German</option>
+                                    </select>
+
+                                    <!-- Custom flag dropdown -->
+                                    <div id="e2e-lang-dropdown" style="position:relative; display:inline-block;" onmouseleave="document.getElementById('e2e-lang-options').style.display='none';">
+                                        <div onclick="e2eToggleLangDropdown()" style="display:flex; align-items:center; gap:6px; padding:4px 24px 4px 8px; border:1px solid #d4d4d4; border-radius:3px; cursor:pointer; background:white; font-size:11px; min-width:130px; position:relative; user-select:none;">
+                                            <span id="e2e-lang-flag-wrap">🤖</span>
+                                            <span id="e2e-lang-label" style="flex:1;">API IDs</span>
+                                            <span style="position:absolute; right:6px; color:#706e6b; font-size:9px;">▾</span>
+                                        </div>
+                                        <div id="e2e-lang-options" style="display:none; position:absolute; top:100%; left:0; z-index:9999; background:white; border:1px solid #d4d4d4; border-radius:3px; min-width:130px; box-shadow:0 4px 12px rgba(0,0,0,0.15); overflow:hidden;">
+                                            <div onclick="e2eLangSelect('api', 'API IDs', '🤖', '')" style="display:flex; align-items:center; gap:8px; padding:6px 10px; cursor:pointer; font-size:11px;" onmouseover="this.style.background='#f0f3f8'" onmouseout="this.style.background='white'">🤖 API IDs</div>
+                                            <div onclick="e2eLangSelect('en', 'English', '', '{!URLFOR($Resource.countriesIcons, 'united-states.png')}')" style="display:flex; align-items:center; gap:8px; padding:6px 10px; cursor:pointer; font-size:11px;" onmouseover="this.style.background='#f0f3f8'" onmouseout="this.style.background='white'"><img src="{!URLFOR($Resource.countriesIcons, 'united-states.png')}" style="width:18px; height:13px; object-fit:cover; border-radius:2px; flex-shrink:0;"/> English</div>
+                                            <div onclick="e2eLangSelect('es', 'Spanish', '', '{!URLFOR($Resource.countriesIcons, 'spain.png')}')" style="display:flex; align-items:center; gap:8px; padding:6px 10px; cursor:pointer; font-size:11px;" onmouseover="this.style.background='#f0f3f8'" onmouseout="this.style.background='white'"><img src="{!URLFOR($Resource.countriesIcons, 'spain.png')}" style="width:18px; height:13px; object-fit:cover; border-radius:2px; flex-shrink:0;"/> Spanish</div>
+                                            <div onclick="e2eLangSelect('de', 'German', '', '{!URLFOR($Resource.countriesIcons, 'germany.png')}')" style="display:flex; align-items:center; gap:8px; padding:6px 10px; cursor:pointer; font-size:11px;" onmouseover="this.style.background='#f0f3f8'" onmouseout="this.style.background='white'"><img src="{!URLFOR($Resource.countriesIcons, 'germany.png')}" style="width:18px; height:13px; object-fit:cover; border-radius:2px; flex-shrink:0;"/> German</div>
+                                        </div>
+                                    </div>
+                                    <button type="button" onclick="e2eResetFlow()" style="padding: 4px 10px; font-size: 11px; cursor: pointer;">↩ Reset</button>
+                                </div>
                             </div>
 
-                            <div class="form-row" style="margin-bottom: 12px;">
-                                <div class="form-left">
-                                    <div class="form-section">
-                                        <label>Field Visibility Mode</label>
-                                        <select id="e2e-field-visibility-mode" onchange="e2eRenderLoadedConfiguration()">
-                                            <option value="visible">Show visible fields only</option>
-                                            <option value="all">Show visible + hidden/dependent fields</option>
-                                        </select>
-                                    </div>
+                            <!-- Controls row: Field Visibility + Grouping + ETag + ETag preset -->
+                            <div style="display: grid; grid-template-columns: minmax(180px, 1fr) minmax(180px, 1fr) minmax(160px, 220px) minmax(140px, 180px); gap: 12px; margin-bottom: 12px; align-items: end;">
+                                <div class="form-section">
+                                    <label>Field Visibility Mode</label>
+                                    <select id="e2e-field-visibility-mode" onchange="e2eRenderLoadedConfiguration()" style="font-size: 11px; padding: 4px 6px; height: 30px;">
+                                        <option value="visible">Show visible fields only</option>
+                                        <option value="all">Show visible + hidden/dependent fields</option>
+                                    </select>
                                 </div>
-                                <div class="form-right">
-                                    <div class="form-section">
-                                        <label>Configuration Summary</label>
-                                        <div id="e2e-config-summary" class="preview-box">No configuration loaded yet</div>
-                                    </div>
+                                <div class="form-section">
+                                    <label>Grouping Mode</label>
+                                    <select id="e2e-group-mode" onchange="e2eRenderLoadedConfiguration()" style="font-size: 11px; padding: 4px 6px; height: 30px;">
+                                        <option value="flat">Flat list</option>
+                                        <option value="prefix">Group by prefix</option>
+                                        <option value="group">Group by characteristicGroups if available</option>
+                                    </select>
                                 </div>
+                                <div class="form-section">
+                                    <label>ETag (editable)</label>
+                                    <input type="text" id="e2e-etag" value='W/"1"' placeholder='e.g., W/"1"' style="font-size: 11px; padding: 4px 6px; height: 30px;"/>
+                                </div>
+                                <div class="form-section">
+                                    <label>ETag Version Preset</label>
+                                    <select id="e2e-etag-version" onchange="e2eApplyETagPreset()" style="font-size: 11px; padding: 4px 6px; height: 30px;">
+                                        <option value="">Select n for W/"n"</option>
+                                        <option value="0">0</option>
+                                        <option value="1" selected="selected">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                        <option value="6">6</option>
+                                        <option value="7">7</option>
+                                        <option value="8">8</option>
+                                        <option value="9">9</option>
+                                        <option value="10">10</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-section" style="margin-bottom: 10px;">
+                                <label>Configuration Summary</label>
+                                <div id="e2e-config-summary" class="preview-box">No configuration loaded yet</div>
                             </div>
 
                             <label class="response-title" style="margin-top: 18px;">Loaded Configuration Form:</label>
                             <div class="config-form" id="e2e-config-container"></div>
+
+                            <div class="button-group e2e-actions" style="margin: 22px 0 18px;">
+                                <button class="slds-button slds-button_brand e2e-action-btn" onclick="e2eApplyPatch()">✅ Apply Patch</button>
+                                <button class="slds-button slds-button_neutral e2e-action-btn" onclick="e2eReloadRuntimeConfig()">🔄 Reload Configuration</button>
+                            </div>
+
+                            <label class="response-title" style="margin-top: 18px;">PATCH Preview:</label>
+                            <div class="preview-box" id="e2e-patch-preview">No changes detected</div>
+
                             <label class="response-title">Loaded Configuration Response:</label>
-                            <div class="response-table" id="table-e2e-load"></div>
                             <div class="response-section">
                                 <textarea id="output-e2e-load" readonly="readonly"></textarea>
                             </div>
@@ -1876,7 +2018,7 @@ WHERE mdr_Account__c IN (
         'config': 'Configurations',
         'pricing': 'Pricing',
         'cheatsheet': 'Cheatsheet',
-        'e2e': '🔄 End-to-End'
+        'e2e': '🔄 End to End'
     };
 
     let configEditorOriginalValues = {};
@@ -1885,6 +2027,13 @@ WHERE mdr_Account__c IN (
     let configEditorCurrentETag = null;
     let configEditorCharacteristicIndexMap = {};
     let e2eLoadedConfig = null;
+    let e2eEditorOriginalValues = {};
+    let e2eEditorLastId = null;
+    let e2eEditorCurrentConfig = null;
+    let e2eEditorCurrentETag = null;
+    let e2eEditorCharacteristicIndexMap = {};
+    let e2eTranslationCache = {};
+    let e2eTranslationIndex = null;
     
     function showStatusMessage(message, type, duration) {
         const existingMsg = document.querySelector('.status-message');
@@ -2135,6 +2284,39 @@ WHERE mdr_Account__c IN (
         }
     }
 
+    function getCharacteristicCurrentValue(characteristic) {
+        return (Array.isArray(characteristic.values) && characteristic.values[0] && characteristic.values[0].value)
+            ? characteristic.values[0].value
+            : '';
+    }
+
+    function getCharacteristicGroupingKey(characteristic, config, mode) {
+        if (mode === 'group') {
+            if (Array.isArray(characteristic.characteristicGroups) && characteristic.characteristicGroups.length > 0) {
+                return characteristic.characteristicGroups[0];
+            }
+            if (characteristic.groupId) {
+                return characteristic.groupId;
+            }
+            return getCharacteristicGroupingKey(characteristic, config, 'prefix');
+        }
+
+        if (mode === 'prefix') {
+            const id = characteristic.id || 'General';
+            const parts = id.split('_');
+            return parts.length >= 3 ? parts.slice(0, 3).join('_') : parts.length >= 2 ? parts.slice(0, 2).join('_') : parts[0];
+        }
+
+        return 'All Characteristics';
+    }
+
+    function createConfigBadge(label, className) {
+        const badge = document.createElement('span');
+        badge.className = 'config-badge ' + className;
+        badge.textContent = label;
+        return badge;
+    }
+
     function renderConfigurationForm(config, containerId, options) {
         const targetId = containerId || 'config-form-container';
         const container = document.getElementById(targetId);
@@ -2152,6 +2334,12 @@ WHERE mdr_Account__c IN (
         const editable = settings.editable === true;
         const storeOriginal = settings.storeOriginal === true;
         const showHidden = settings.showHidden === true;
+        const groupMode = settings.groupMode || 'flat';
+        const labelMode = settings.labelMode || 'api';
+        const translationIndex = settings.translationIndex || null;
+        const originalValuesStore = settings.originalValuesStore || configEditorOriginalValues;
+        const characteristicIndexMap = settings.characteristicIndexMap || configEditorCharacteristicIndexMap;
+        const onChange = typeof settings.onChange === 'function' ? settings.onChange : null;
 
         const header = document.createElement('div');
         header.className = 'config-form-header';
@@ -2160,7 +2348,10 @@ WHERE mdr_Account__c IN (
         kbTitle.className = 'config-kb-title';
         const kbName = config.kbKey && config.kbKey.name ? config.kbKey.name : 'KB';
         const kbVersion = config.kbKey && config.kbKey.version ? config.kbKey.version : '';
-        kbTitle.textContent = kbVersion ? (kbName + ' · v' + kbVersion) : kbName;
+        const productKeyForTitle = config.productKey || (config.rootItem && config.rootItem.key) || kbName;
+        const translatedProductName = translationIndex && translationIndex.products ? translationIndex.products[productKeyForTitle] : null;
+        const displayKbName = (labelMode !== 'api' && translatedProductName) ? translatedProductName : kbName;
+        kbTitle.textContent = kbVersion ? (displayKbName + ' · v' + kbVersion) : displayKbName;
         header.appendChild(kbTitle);
 
         const visibleGroups = Array.isArray(config.rootItem.characteristicGroups)
@@ -2181,115 +2372,242 @@ WHERE mdr_Account__c IN (
 
         container.appendChild(header);
 
-        const grid = document.createElement('div');
-        grid.className = 'config-form-grid';
+        const groupedCharacteristics = {};
+        const groupOrder = [];
 
         config.rootItem.characteristics.forEach((ch, index) => {
             if (ch.visible === false && !showHidden) {
                 return;
             }
 
-            const field = document.createElement('div');
-            field.className = 'config-field' + (ch.readOnly ? ' readonly' : '');
-            if (ch.visible === false) {
-                field.style.borderStyle = 'dashed';
-                field.style.opacity = '0.92';
+            const groupKey = getCharacteristicGroupingKey(ch, config, groupMode);
+            if (!groupedCharacteristics[groupKey]) {
+                groupedCharacteristics[groupKey] = [];
+                groupOrder.push(groupKey);
+            }
+            groupedCharacteristics[groupKey].push({ characteristic: ch, index: index });
+        });
+
+        groupOrder.forEach((groupKey) => {
+            const section = document.createElement('div');
+            section.className = 'config-section';
+
+            if (groupMode !== 'flat') {
+                const sectionTitle = document.createElement('div');
+                sectionTitle.className = 'config-section-title';
+                // Keep grouping headers on API keys for stable technical grouping semantics.
+                sectionTitle.textContent = groupKey || 'General';
+                section.appendChild(sectionTitle);
             }
 
-            const title = document.createElement('div');
-            title.className = 'config-field-title';
-            title.textContent = ch.id || 'Characteristic';
-            if (ch.required) {
-                const req = document.createElement('span');
-                req.className = 'required-indicator';
-                req.textContent = '*';
-                title.appendChild(req);
-            }
-            field.appendChild(title);
+            const grid = document.createElement('div');
+            grid.className = 'config-form-grid';
 
-            const currentValue = (Array.isArray(ch.values) && ch.values[0] && ch.values[0].value)
-                ? ch.values[0].value
-                : '';
+            groupedCharacteristics[groupKey].forEach((entry) => {
+                const ch = entry.characteristic;
+                const index = entry.index;
 
-            if (storeOriginal && ch.id) {
-                configEditorOriginalValues[ch.id] = currentValue || '';
-            }
+                const field = document.createElement('div');
+                field.className = 'config-field' + (ch.readOnly ? ' readonly' : '');
+                if (ch.visible === false) {
+                    field.style.borderStyle = 'dashed';
+                    field.style.opacity = '0.92';
+                }
 
-            if (Array.isArray(ch.possibleValues) && ch.possibleValues.length > 0) {
-                const options = document.createElement('div');
-                options.className = 'config-field-options';
+                const title = document.createElement('div');
+                title.className = 'config-field-title';
+                const apiId = ch.id || 'Characteristic';
+                const translatedName = translationIndex && translationIndex.characteristics ? translationIndex.characteristics[apiId] : null;
+                title.textContent = (labelMode !== 'api' && translatedName) ? translatedName : apiId;
+                if (ch.required) {
+                    const req = document.createElement('span');
+                    req.className = 'required-indicator';
+                    req.textContent = '*';
+                    title.appendChild(req);
+                }
+                field.appendChild(title);
 
-                ch.possibleValues.forEach((pv, pvIndex) => {
-                    const label = document.createElement('label');
-                    label.style.display = 'flex';
-                    label.style.gap = '8px';
-                    label.style.alignItems = 'center';
+                const badgeRow = document.createElement('div');
+                badgeRow.className = 'config-badge-row';
+                badgeRow.appendChild(createConfigBadge(ch.visible === false ? 'hidden' : 'visible', ch.visible === false ? 'hidden' : 'visible'));
+                if (ch.readOnly === true) {
+                    badgeRow.appendChild(createConfigBadge('readonly', 'readonly'));
+                }
+                if (ch.required === true) {
+                    badgeRow.appendChild(createConfigBadge('required', 'required'));
+                }
+                if (ch.consistent === false) {
+                    badgeRow.appendChild(createConfigBadge('inconsistent', 'inconsistent'));
+                }
+                if (ch.complete === false) {
+                    badgeRow.appendChild(createConfigBadge('incomplete', 'incomplete'));
+                }
+                field.appendChild(badgeRow);
 
+                const currentValue = getCharacteristicCurrentValue(ch);
+
+                if (storeOriginal && ch.id) {
+                    originalValuesStore[ch.id] = currentValue || '';
+                }
+                if (ch.id) {
+                    characteristicIndexMap[ch.id] = index;
+                }
+
+                if (Array.isArray(ch.possibleValues) && ch.possibleValues.length > 0) {
+                    const options = document.createElement('div');
+                    options.className = 'config-field-options';
+
+                    ch.possibleValues.forEach((pv) => {
+                        const label = document.createElement('label');
+                        label.style.display = 'flex';
+                        label.style.gap = '8px';
+                        label.style.alignItems = 'center';
+
+                        const input = document.createElement('input');
+                        input.type = 'radio';
+                        input.name = targetId + '-char-' + (ch.id || index);
+                        input.value = pv.valueLow || '';
+                        input.disabled = ch.readOnly === true || pv.selectable === false || editable === false;
+                        input.setAttribute('data-char-id', ch.id || '');
+                        if (input.value && input.value === currentValue) {
+                            input.checked = true;
+                        }
+
+                        if (editable && onChange) {
+                            input.addEventListener('change', function() {
+                                onChange();
+                            });
+                        }
+
+                        const text = document.createElement('span');
+                        const apiValue = pv.valueLow || '';
+                        const translatedValue = translationIndex
+                            && translationIndex.values
+                            && ch.id
+                            && translationIndex.values[ch.id]
+                            ? translationIndex.values[ch.id][String(apiValue)]
+                            : null;
+                        text.textContent = (labelMode !== 'api' && translatedValue) ? translatedValue : (apiValue || '(empty)');
+
+                        label.appendChild(input);
+                        label.appendChild(text);
+                        options.appendChild(label);
+                    });
+
+                    field.appendChild(options);
+                } else {
                     const input = document.createElement('input');
-                    input.type = 'radio';
-                    input.name = 'char-' + (ch.id || index);
-                    input.value = pv.valueLow || '';
-                    input.disabled = ch.readOnly === true || pv.selectable === false || editable === false;
+                    input.type = 'text';
+                    input.value = currentValue || '';
+                    input.disabled = ch.readOnly === true || editable === false;
                     input.setAttribute('data-char-id', ch.id || '');
-                    if (input.value && input.value === currentValue) {
-                        input.checked = true;
-                    }
-                    
-                    if (editable && targetId === 'config-editor-container') {
-                        input.addEventListener('change', function() {
-                            buildPatchOperationsFromEditor();
+
+                    if (editable && onChange) {
+                        input.addEventListener('input', function() {
+                            onChange();
                         });
                     }
 
-                    const text = document.createElement('span');
-                    text.textContent = pv.valueLow || '(empty)';
-
-                    label.appendChild(input);
-                    label.appendChild(text);
-                    options.appendChild(label);
-                });
-
-                field.appendChild(options);
-            } else {
-                const input = document.createElement('input');
-                input.type = 'text';
-                input.value = currentValue || '';
-                input.disabled = ch.readOnly === true || editable === false;
-                input.setAttribute('data-char-id', ch.id || '');
-                
-                if (editable && targetId === 'config-editor-container') {
-                    input.addEventListener('input', function() {
-                        buildPatchOperationsFromEditor();
-                    });
+                    field.appendChild(input);
                 }
-                
-                field.appendChild(input);
-            }
 
-            const metaParts = [];
-            if (ch.visible === false) {
-                metaParts.push('hidden/dependent');
-            }
-            if (ch.readOnly) {
-                metaParts.push('readonly');
-            }
-            if (ch.consistent === false) {
-                metaParts.push('inconsistent');
-            }
-            if (ch.complete === false) {
-                metaParts.push('incomplete');
-            }
-            if (metaParts.length > 0) {
-                const meta = document.createElement('div');
-                meta.className = 'meta';
-                meta.textContent = metaParts.join(' · ');
-                field.appendChild(meta);
-            }
+                const metaParts = [];
+                if (Array.isArray(ch.possibleValues)) {
+                    metaParts.push('options: ' + ch.possibleValues.length);
+                }
+                if (ch.visible === false) {
+                    metaParts.push('hidden/dependent');
+                }
+                if (metaParts.length > 0) {
+                    const meta = document.createElement('div');
+                    meta.className = 'meta';
+                    if (labelMode !== 'api' && ch.id) {
+                        metaParts.unshift('api: ' + ch.id);
+                    }
+                    meta.textContent = metaParts.join(' · ');
+                    field.appendChild(meta);
+                }
 
-            grid.appendChild(field);
+                grid.appendChild(field);
+            });
+
+            section.appendChild(grid);
+            container.appendChild(section);
+        });
+    }
+
+    function buildPatchOperationsFromContainer(containerId, currentConfig, originalValuesStore, previewElementId) {
+        const container = document.getElementById(containerId);
+        if (!container || !currentConfig) {
+            return null;
+        }
+
+        const updates = {};
+
+        const radioInputs = container.querySelectorAll('input[type="radio"][data-char-id]');
+        const radioGroups = {};
+        radioInputs.forEach((input) => {
+            const charId = input.getAttribute('data-char-id');
+            if (!charId) {
+                return;
+            }
+            radioGroups[charId] = radioGroups[charId] || [];
+            radioGroups[charId].push(input);
         });
 
-        container.appendChild(grid);
+        Object.keys(radioGroups).forEach((charId) => {
+            const selected = radioGroups[charId].find((input) => input.checked);
+            if (selected) {
+                updates[charId] = selected.value;
+            }
+        });
+
+        const textInputs = container.querySelectorAll('input[type="text"][data-char-id]');
+        textInputs.forEach((input) => {
+            const charId = input.getAttribute('data-char-id');
+            if (!charId) {
+                return;
+            }
+            updates[charId] = input.value;
+        });
+
+        const patchOperations = [];
+        const rootItem = currentConfig.rootItem;
+        const itemId = rootItem.itemId || rootItem.id || 1;
+
+        Object.keys(updates).forEach((charId) => {
+            const newValue = updates[charId];
+            const originalValue = originalValuesStore[charId] ?? '';
+
+            if (String(newValue ?? '') !== String(originalValue ?? '')) {
+                patchOperations.push({
+                    characteristicId: charId,
+                    itemId: itemId,
+                    input: {
+                        characteristicId: charId,
+                        values: newValue ? [{ value: newValue, selected: true }] : []
+                    }
+                });
+            }
+        });
+
+        const previewElement = previewElementId ? document.getElementById(previewElementId) : null;
+        if (previewElement) {
+            if (patchOperations.length === 0) {
+                previewElement.textContent = 'No changes detected';
+            } else {
+                previewElement.textContent = JSON.stringify({
+                    operationCount: patchOperations.length,
+                    operations: patchOperations.map((op) => ({
+                        endpoint: '/api/v2/configurations/{id}/items/' + op.itemId + '/characteristics/' + op.characteristicId,
+                        method: 'PATCH',
+                        body: op.input
+                    }))
+                }, null, 2);
+            }
+        }
+
+        return patchOperations.length > 0 ? patchOperations : null;
     }
 
     function loadConfigurationEditor() {
@@ -2374,7 +2692,11 @@ WHERE mdr_Account__c IN (
                 }
                 
                 renderTable(displayConfig, tableId);
-                renderConfigurationForm(displayConfig, 'config-editor-container', { editable: true, storeOriginal: true });
+                renderConfigurationForm(displayConfig, 'config-editor-container', {
+                    editable: true,
+                    storeOriginal: true,
+                    onChange: buildPatchOperationsFromEditor
+                });
                 showStatusMessage('Configuration loaded successfully', 'success');
             } catch (parseError) {
                 formatted = result;
@@ -2392,85 +2714,12 @@ WHERE mdr_Account__c IN (
     }
 
     function buildPatchOperationsFromEditor() {
-        const container = document.getElementById('config-editor-container');
-        if (!container || !configEditorCurrentConfig) {
-            return [];
-        }
-
-        const updates = {};
-
-        const radioInputs = container.querySelectorAll('input[type="radio"][data-char-id]');
-        const radioGroups = {};
-        radioInputs.forEach((input) => {
-            const charId = input.getAttribute('data-char-id');
-            if (!charId) {
-                return;
-            }
-            radioGroups[charId] = radioGroups[charId] || [];
-            radioGroups[charId].push(input);
-        });
-
-        Object.keys(radioGroups).forEach((charId) => {
-            const selected = radioGroups[charId].find((input) => input.checked);
-            if (selected) {
-                updates[charId] = selected.value;
-            }
-        });
-
-        const textInputs = container.querySelectorAll('input[type="text"][data-char-id]');
-        textInputs.forEach((input) => {
-            const charId = input.getAttribute('data-char-id');
-            if (!charId) {
-                return;
-            }
-            updates[charId] = input.value;
-        });
-
-        // Build array of PATCH operations for each modified characteristic
-        // Each operation targets: PATCH /api/v2/configurations/{id}/items/{itemId}/characteristics/{charId}
-        const patchOperations = [];
-        const rootItem = configEditorCurrentConfig.rootItem;
-        const itemId = rootItem.itemId || 1; // Default to 1 for root item
-        
-        Object.keys(updates).forEach((charId) => {
-            const newValue = updates[charId];
-            const originalValue = configEditorOriginalValues[charId] ?? '';
-            
-            if (String(newValue ?? '') !== String(originalValue ?? '')) {
-                // Build characteristic input for this specific characteristic
-                // SAP VC requires 'selected' field in each value
-                const charInput = {
-                    characteristicId: charId,
-                    values: newValue ? [{ value: newValue, selected: true }] : []
-                };
-                
-                patchOperations.push({
-                    characteristicId: charId,
-                    itemId: itemId,
-                    input: charInput
-                });
-            }
-        });
-        
-        // Update preview
-        const previewElement = document.getElementById('config-patch-preview');
-        if (previewElement) {
-            if (patchOperations.length === 0) {
-                previewElement.textContent = 'No changes detected';
-            } else {
-                const preview = {
-                    operationCount: patchOperations.length,
-                    operations: patchOperations.map(op => ({
-                        endpoint: `/api/v2/configurations/{id}/items/${op.itemId}/characteristics/${op.characteristicId}`,
-                        method: 'PATCH',
-                        body: op.input
-                    }))
-                };
-                previewElement.textContent = JSON.stringify(preview, null, 2);
-            }
-        }
-
-        return patchOperations.length > 0 ? patchOperations : null;
+        return buildPatchOperationsFromContainer(
+            'config-editor-container',
+            configEditorCurrentConfig,
+            configEditorOriginalValues,
+            'config-patch-preview'
+        );
     }
 
     function updateConfigurationEditor() {
@@ -3373,17 +3622,107 @@ WHERE mdr_Account__c IN (
         }
     }
 
+    function e2eToast(message, type) {
+        const container = document.getElementById('e2e-toast-container');
+        if (!container || !message) {
+            return;
+        }
+
+        const palette = {
+            success: { background: '#e8f5e9', border: '#2e844a', color: '#16325c' },
+            error: { background: '#fdeaea', border: '#c23934', color: '#8e2c21' },
+            warn: { background: '#fff7e6', border: '#f39c12', color: '#7d4e00' },
+            info: { background: '#eef4ff', border: '#5dade2', color: '#16325c' }
+        };
+        const style = palette[type] || palette.info;
+        const toast = document.createElement('div');
+        toast.style.pointerEvents = 'auto';
+        toast.style.minWidth = '280px';
+        toast.style.maxWidth = '420px';
+        toast.style.padding = '12px 14px';
+        toast.style.borderLeft = '5px solid ' + style.border;
+        toast.style.borderRadius = '10px';
+        toast.style.background = style.background;
+        toast.style.color = style.color;
+        toast.style.boxShadow = '0 12px 24px rgba(0,0,0,0.12)';
+        toast.style.fontSize = '13px';
+        toast.style.lineHeight = '1.45';
+        toast.style.opacity = '0';
+        toast.style.transform = 'translateY(-8px)';
+        toast.style.transition = 'opacity 0.18s ease, transform 0.18s ease';
+        toast.textContent = message;
+
+        container.appendChild(toast);
+        requestAnimationFrame(function() {
+            toast.style.opacity = '1';
+            toast.style.transform = 'translateY(0)';
+        });
+
+        setTimeout(function() {
+            toast.style.opacity = '0';
+            toast.style.transform = 'translateY(-8px)';
+            setTimeout(function() {
+                if (toast.parentNode) {
+                    toast.parentNode.removeChild(toast);
+                }
+            }, 180);
+        }, type === 'error' ? 5200 : 3400);
+    }
+
+    function e2eSetInitialFlowCollapsed(collapsed) {
+        const intro = document.getElementById('e2e-step1-intro');
+        const stage = document.getElementById('e2e-create-stage');
+        const saveSection = document.getElementById('e2e-save-section');
+        const simulateSection = document.getElementById('e2e-config-management');
+        const toggle = document.getElementById('e2e-toggle-create-stage');
+
+        if (intro) {
+            intro.style.display = collapsed ? 'none' : 'block';
+        }
+        if (stage) {
+            stage.style.display = collapsed ? 'none' : 'block';
+        }
+        if (simulateSection) {
+            simulateSection.style.display = collapsed ? 'none' : 'block';
+        }
+        if (saveSection && collapsed) {
+            saveSection.style.display = 'none';
+        }
+        if (toggle) {
+            toggle.style.display = 'none';
+        }
+    }
+
     function e2eSetSimulateControlsHidden(hidden) {
-        const section = document.getElementById('e2e-simulate-controls');
+        const section = document.getElementById('e2e-config-management');
         if (section) {
             section.style.display = hidden ? 'none' : 'block';
         }
     }
 
     function e2eSetRuntimeVisible(visible) {
-        const section = document.getElementById('e2e-runtime-section');
-        if (section) {
-            section.style.display = visible ? 'block' : 'none';
+        const runtimeSection = document.getElementById('e2e-runtime-section');
+        const step1Section = document.getElementById('e2e-step1-section');
+        const configManagement = document.getElementById('e2e-config-management');
+
+        if (runtimeSection) {
+            runtimeSection.style.display = visible ? 'block' : 'none';
+        }
+        if (step1Section) {
+            step1Section.style.display = visible ? 'none' : 'block';
+        }
+        if (configManagement) {
+            configManagement.style.display = visible ? 'none' : 'block';
+        }
+    }
+
+    function e2eScrollToTop() {
+        const contentBody = document.querySelector('.content-body');
+        if (contentBody && typeof contentBody.scrollTo === 'function') {
+            contentBody.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+        if (typeof window.scrollTo === 'function') {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
     }
 
@@ -3407,14 +3746,28 @@ WHERE mdr_Account__c IN (
         section.style.display = 'block';
         section.style.background = style.background;
         section.style.borderLeftColor = style.border;
+        section.style.borderLeftWidth = '6px';
+        section.style.boxShadow = type === 'error' ? '0 0 0 1px rgba(194,57,52,0.15)' : 'none';
         titleEl.textContent = title || 'Configuration Status';
         configIdEl.textContent = configId || '';
         configRow.style.display = configId ? 'block' : 'none';
         messageEl.style.display = message ? 'block' : 'none';
         messageEl.textContent = message || '';
+        messageEl.style.whiteSpace = 'pre-wrap';
+        messageEl.style.padding = message ? '10px 12px' : '0';
+        messageEl.style.borderRadius = '4px';
+        messageEl.style.background = (type === 'error') ? '#fff1f0' : ((type === 'warn') ? '#fff7e6' : '#f3f6f9');
+        messageEl.style.border = message ? ('1px solid ' + style.border) : 'none';
+        messageEl.style.color = (type === 'error') ? '#8e2c21' : '#2f2f2f';
+        messageEl.style.fontSize = (type === 'error') ? '14px' : '13px';
+        messageEl.style.fontWeight = (type === 'error') ? '600' : '400';
         saveButton.style.display = style.buttonDisplay;
         if (!configId) {
             saveStatus.textContent = '';
+        }
+
+        if (type === 'error') {
+            section.scrollIntoView({ behavior: 'smooth', block: 'center' });
         }
     }
 
@@ -3424,28 +3777,76 @@ WHERE mdr_Account__c IN (
         const productCode = getUrlParam('productCode');
         const quoteId     = getUrlParam('SBQQ_QuoteId') || getUrlParam('quoteId') || getUrlParam('qId');
 
-        if (quoteId) {
-            document.getElementById('e2e-quoteId').value = quoteId;
-            document.getElementById('e2e-quoteId-source').textContent = '(from URL: SBQQ_QuoteId)';
+        // Initialize ETag fields
+        const etagEl = document.getElementById('e2e-etag');
+        const etagVersionEl = document.getElementById('e2e-etag-version');
+        if (etagEl) etagEl.value = 'W/"1"';
+        if (etagVersionEl) etagVersionEl.value = '1';
+
+        // Initialize Quote ID
+        const quoteIdEl = document.getElementById('e2e-quoteId');
+        const quoteIdSourceEl = document.getElementById('e2e-quoteId-source');
+        if (quoteId && quoteIdEl) {
+            quoteIdEl.value = quoteId;
+            if (quoteIdSourceEl) quoteIdSourceEl.textContent = '(from URL: SBQQ_QuoteId)';
         }
 
-        if (productCode) {
-            document.getElementById('e2e-productKey-mode').value = 'context';
-        } else {
-            document.getElementById('e2e-productKey-mode').value = 'working';
+        // Initialize Product Key Mode - ALWAYS default to 'working' unless productCode explicitly provided
+        const modeEl = document.getElementById('e2e-productKey-mode');
+        if (modeEl) {
+            const defaultMode = productCode ? 'context' : 'working';
+            modeEl.value = defaultMode;
         }
 
-        e2eApplyProductKeyMode();
-        e2eUpdatePreview();
+        // Now apply the mode to fill in the product key input
+        setTimeout(function() {
+            e2eApplyProductKeyMode();
+            e2eUpdatePreview();
+        }, 0);
 
         if (quoteId || productCode) {
             e2eLog('Context loaded from URL — productCode: ' + (productCode || '—') + ', quoteId: ' + (quoteId || '—'), quoteId ? 'info' : 'warn');
         }
 
+        // Attach change listeners
         ['e2e-kbId', 'e2e-productKey', 'e2e-date', 'e2e-autoCleanup'].forEach(function(id) {
             const el = document.getElementById(id);
             if (el) el.addEventListener('change', e2eUpdatePreview);
         });
+    }
+
+    function e2eToggleCreateStage() {
+        const stage = document.getElementById('e2e-create-stage');
+        const icon = document.getElementById('e2e-accordion-icon');
+        if (stage.style.display === 'none') {
+            stage.style.display = 'block';
+            icon.style.transform = 'rotate(180deg)';
+            // Ensure form is initialized when opened
+            e2eEnsureFormInitialized();
+        } else {
+            stage.style.display = 'none';
+            icon.style.transform = 'rotate(0deg)';
+        }
+    }
+
+    function e2eEnsureFormInitialized() {
+        // This ensures that even if the accordion was closed during DOMContentLoaded,
+        // the form gets properly initialized when opened
+        const modeEl = document.getElementById('e2e-productKey-mode');
+        const inputEl = document.getElementById('e2e-productKey');
+        
+        if (!modeEl || !inputEl) return;
+        
+        // Only initialize if values are empty
+        if (!modeEl.value || modeEl.value === '') {
+            const productCode = getUrlParam('productCode');
+            const defaultMode = productCode ? 'context' : 'working';
+            modeEl.value = defaultMode;
+        }
+        
+        if (!inputEl.value || inputEl.value === '') {
+            e2eApplyProductKeyMode();
+        }
     }
 
     function e2eApplyProductKeyMode() {
@@ -3490,11 +3891,246 @@ WHERE mdr_Account__c IN (
         }
         document.getElementById('e2e-etag').value = 'W/"' + version + '"';
         e2eLog('ETag preset selected: W/"' + version + '"', 'info');
+        e2eToast('ETag preset updated to W/"' + version + '"', 'info');
     }
 
     function e2eSyncETagPreset(etag) {
         const match = /^W\/"(\d+)"$/.exec(etag || '');
         document.getElementById('e2e-etag-version').value = match ? match[1] : '';
+    }
+
+    function e2eGetBestTranslationName(translations, language) {
+        if (!Array.isArray(translations) || translations.length === 0) {
+            return null;
+        }
+
+        if (language) {
+            const exact = translations.find(function(item) {
+                return item && item.language === language && item.name;
+            });
+            if (exact) {
+                return exact.name;
+            }
+            return null;
+        }
+
+        const firstWithName = translations.find(function(item) {
+            return item && item.name;
+        });
+        return firstWithName ? firstWithName.name : null;
+    }
+
+    function e2eHasUsableTranslations(index) {
+        if (!index || typeof index !== 'object') {
+            return false;
+        }
+
+        if (Object.keys(index.characteristics || {}).length > 0) {
+            return true;
+        }
+
+        if (Object.keys(index.products || {}).length > 0) {
+            return true;
+        }
+
+        if (Object.keys(index.groups || {}).length > 0) {
+            return true;
+        }
+
+        const valuesMap = index.values || {};
+        return Object.keys(valuesMap).some(function(characteristicId) {
+            return Object.keys(valuesMap[characteristicId] || {}).length > 0;
+        });
+    }
+
+    function e2eBuildTranslationIndex(payload, language, productKey) {
+        const index = {
+            language: language,
+            productKey: productKey || '',
+            products: {},
+            characteristics: {},
+            values: {},
+            groups: {}
+        };
+
+        if (!payload || typeof payload !== 'object') {
+            return index;
+        }
+
+        if (Array.isArray(payload.characteristics)) {
+            payload.characteristics.forEach(function(item) {
+                if (!item || !item.id) {
+                    return;
+                }
+
+                const characteristicName = e2eGetBestTranslationName(item.translation, language);
+                if (characteristicName) {
+                    index.characteristics[item.id] = characteristicName;
+                }
+
+                if (Array.isArray(item.possibleValues) && item.possibleValues.length > 0) {
+                    index.values[item.id] = index.values[item.id] || {};
+                    item.possibleValues.forEach(function(valueItem) {
+                        if (!valueItem || valueItem.id === undefined || valueItem.id === null) {
+                            return;
+                        }
+                        const valueName = e2eGetBestTranslationName(valueItem.translation, language);
+                        if (valueName) {
+                            index.values[item.id][String(valueItem.id)] = valueName;
+                        }
+                    });
+                }
+            });
+        }
+
+        if (Array.isArray(payload.products)) {
+            const bestProduct = payload.products.find(function(product) {
+                return product && product.id && productKey && product.id === productKey;
+            }) || payload.products[0];
+
+            if (bestProduct && bestProduct.id) {
+                const productName = e2eGetBestTranslationName(bestProduct.translation, language);
+                if (productName) {
+                    index.products[bestProduct.id] = productName;
+                }
+            }
+
+            if (bestProduct && Array.isArray(bestProduct.characteristicGroups)) {
+                bestProduct.characteristicGroups.forEach(function(group) {
+                    if (!group || !group.id) {
+                        return;
+                    }
+                    const groupName = e2eGetBestTranslationName(group.translation, language);
+                    if (groupName) {
+                        index.groups[group.id] = groupName;
+                    }
+                });
+            }
+        }
+
+        return index;
+    }
+
+    function e2eToggleLangDropdown() {
+        const opts = document.getElementById('e2e-lang-options');
+        if (opts) {
+            opts.style.display = opts.style.display === 'none' ? 'block' : 'none';
+        }
+    }
+
+    function e2eLangResetToApi() {
+        document.getElementById('e2e-label-mode').value = 'api';
+        const labelEl = document.getElementById('e2e-lang-label');
+        if (labelEl) {
+            labelEl.textContent = 'API IDs';
+        }
+        const flagWrap = document.getElementById('e2e-lang-flag-wrap');
+        if (flagWrap) {
+            flagWrap.textContent = '🤖';
+        }
+    }
+
+    function e2eLangSelect(value, label, emoji, flagUrl) {
+        const select = document.getElementById('e2e-label-mode');
+        if (select) {
+            select.value = value;
+        }
+        const labelEl = document.getElementById('e2e-lang-label');
+        if (labelEl) {
+            labelEl.textContent = label;
+        }
+        const flagWrap = document.getElementById('e2e-lang-flag-wrap');
+        if (flagWrap) {
+            if (flagUrl) {
+                flagWrap.innerHTML = '<img src="' + flagUrl + '" style="width:18px; height:13px; object-fit:cover; border-radius:2px;"/>';
+            } else {
+                flagWrap.textContent = emoji;
+            }
+        }
+        const opts = document.getElementById('e2e-lang-options');
+        if (opts) {
+            opts.style.display = 'none';
+        }
+        e2eApplyLabelModeChange();
+    }
+
+    function e2eApplyLabelModeChange() {
+        const mode = document.getElementById('e2e-label-mode').value;
+        if (mode === 'api') {
+            e2eTranslationIndex = null;
+            e2eRenderLoadedConfiguration();
+            e2eLog('Display labels set to API IDs', 'info');
+            return;
+        }
+
+        e2eLoadTranslationsForLanguage(mode);
+    }
+
+    function e2eLoadTranslationsForLanguage(language) {
+        if (!e2eLoadedConfig) {
+            e2eToast('Load configuration first to apply translations.', 'warn');
+            return;
+        }
+
+        const kbId = document.getElementById('e2e-kbId').value;
+        const productKey = (e2eLoadedConfig && (e2eLoadedConfig.productKey || (e2eLoadedConfig.rootItem && e2eLoadedConfig.rootItem.key))) || '';
+        const cacheKey = String(kbId || '') + '::' + String(productKey || '') + '::' + String(language || '');
+
+        if (e2eTranslationCache[cacheKey]) {
+            const cachedIndex = e2eTranslationCache[cacheKey];
+            if (!e2eHasUsableTranslations(cachedIndex)) {
+                e2eTranslationIndex = null;
+                e2eLangResetToApi();
+                e2eRenderLoadedConfiguration();
+                e2eLog('⚠️ no translations found in cache for language ' + language + '; reverted to API labels', 'warn');
+                e2eToast('No translations for ' + language + '. Reverted to API labels.', 'warn');
+                return;
+            }
+
+            e2eTranslationIndex = cachedIndex;
+            e2eRenderLoadedConfiguration();
+            e2eLog('Translations loaded from cache | kbId: ' + kbId + ' | language: ' + language, 'info');
+            return;
+        }
+
+        e2eLog('→ getKnowledgebaseTranslations | kbId: ' + kbId + ' | language: ' + language, 'call');
+
+        try {
+            let result = sforce.apex.execute('CPQExternalConfiguratorController', 'getKnowledgebaseTranslations', {
+                kbId: kbId,
+                language: language
+            });
+
+            if (Array.isArray(result) && result.length > 0) {
+                result = result[0];
+            }
+
+            const parsed = JSON.parse(result);
+            const index = e2eBuildTranslationIndex(parsed, language, productKey);
+
+            if (!e2eHasUsableTranslations(index)) {
+                e2eTranslationCache[cacheKey] = index;
+                e2eTranslationIndex = null;
+                e2eLangResetToApi();
+                e2eRenderLoadedConfiguration();
+                e2eLog('⚠️ no translations returned for language ' + language + '; reverted to API labels', 'warn');
+                e2eToast('No translations for ' + language + '. Reverted to API labels.', 'warn');
+                return;
+            }
+
+            e2eTranslationCache[cacheKey] = index;
+            e2eTranslationIndex = index;
+            e2eRenderLoadedConfiguration();
+            e2eLog('✅ translations loaded and indexed | characteristic labels: ' + Object.keys(index.characteristics).length, 'success');
+            e2eToast('Translations applied (' + language + ').', 'success');
+        } catch (error) {
+            const errorText = e2eErrorToString(error);
+            e2eLog('❌ getKnowledgebaseTranslations ERROR: ' + errorText, 'error');
+            e2eToast('Translations load failed: ' + e2eExtractFriendlyError(errorText), 'error');
+            e2eTranslationIndex = null;
+            e2eLangResetToApi();
+            e2eRenderLoadedConfiguration();
+        }
     }
 
     function e2eUpdateConfigSummary(config) {
@@ -3522,6 +4158,8 @@ WHERE mdr_Account__c IN (
 
     function e2eRenderLoadedConfiguration() {
         const mode = document.getElementById('e2e-field-visibility-mode').value;
+        const groupMode = document.getElementById('e2e-group-mode').value;
+        const labelMode = document.getElementById('e2e-label-mode').value;
         if (!e2eLoadedConfig) {
             clearConfigurationForm('e2e-config-container');
             e2eUpdateConfigSummary(null);
@@ -3529,15 +4167,123 @@ WHERE mdr_Account__c IN (
         }
 
         renderConfigurationForm(e2eLoadedConfig, 'e2e-config-container', {
-            editable: false,
-            storeOriginal: false,
-            showHidden: mode === 'all'
+            editable: true,
+            storeOriginal: Object.keys(e2eEditorOriginalValues).length === 0,
+            showHidden: mode === 'all',
+            groupMode: groupMode,
+            labelMode: labelMode,
+            translationIndex: labelMode === 'api' ? null : e2eTranslationIndex,
+            originalValuesStore: e2eEditorOriginalValues,
+            characteristicIndexMap: e2eEditorCharacteristicIndexMap,
+            onChange: e2eBuildPatchPreview
         });
         e2eUpdateConfigSummary(e2eLoadedConfig);
+        e2eBuildPatchPreview();
         e2eLog('Rendered configuration in mode: ' + mode, 'info');
     }
 
+    function e2eBuildPatchPreview() {
+        return buildPatchOperationsFromContainer(
+            'e2e-config-container',
+            e2eEditorCurrentConfig,
+            e2eEditorOriginalValues,
+            'e2e-patch-preview'
+        );
+    }
+
+    function e2eReloadRuntimeConfig() {
+        const configId = e2eEditorLastId || document.getElementById('e2e-stored-config-id').value || document.getElementById('e2e-captured-config-id').textContent;
+        if (!configId) {
+            e2eLog('⚠️ reload skipped: no configId available', 'warn');
+            return;
+        }
+        e2eLog('→ reload runtime configuration | configId: ' + configId, 'call');
+        e2eLoadConfigurationById(configId);
+    }
+
+    function e2eApplyPatch() {
+        const outputEl = document.getElementById('output-e2e-load');
+        const configId = e2eEditorLastId || document.getElementById('e2e-stored-config-id').value || document.getElementById('e2e-captured-config-id').textContent;
+        let etag = document.getElementById('e2e-etag').value;
+
+        if (!configId) {
+            outputEl.value = 'Please provide a Configuration ID.';
+            e2eLog('❌ apply patch aborted: no configId available', 'error');
+            e2eToast('Patch aborted: no configuration ID available.', 'error');
+            return;
+        }
+        if (!e2eEditorCurrentConfig) {
+            outputEl.value = 'Configuration not loaded.';
+            e2eLog('❌ apply patch aborted: configuration not loaded', 'error');
+            e2eToast('Patch aborted: configuration not loaded.', 'error');
+            return;
+        }
+        if (!etag) {
+            etag = e2eEditorCurrentConfig._eTag || e2eEditorCurrentETag || 'W/"1"';
+            document.getElementById('e2e-etag').value = etag;
+        }
+
+        const patchOps = e2eBuildPatchPreview();
+        if (!patchOps) {
+            outputEl.value = 'No changes detected.';
+            e2eLog('ℹ️ apply patch skipped: no changes detected', 'info');
+            e2eToast('No changes detected for patch.', 'info');
+            return;
+        }
+
+        outputEl.value = 'Updating...';
+        e2eLog('→ patchConfigurationCharacteristics | configId: ' + configId + ' | etag: ' + etag + ' | operations: ' + patchOps.length, 'call');
+
+        try {
+            let patchResult = sforce.apex.execute('CPQExternalConfiguratorController', 'patchConfigurationCharacteristics', {
+                configId: configId,
+                etag: etag,
+                patchOperations: JSON.stringify(patchOps)
+            });
+
+            if (Array.isArray(patchResult) && patchResult.length > 0) {
+                patchResult = patchResult[0];
+            }
+
+            const parsedPatch = JSON.parse(patchResult);
+            outputEl.value = JSON.stringify(parsedPatch, null, 2);
+
+            if (parsedPatch.latestETag) {
+                e2eEditorCurrentETag = parsedPatch.latestETag;
+                document.getElementById('e2e-etag').value = parsedPatch.latestETag;
+                e2eSyncETagPreset(parsedPatch.latestETag);
+                e2eLog('ETag updated from patch result: ' + parsedPatch.latestETag, 'info');
+            }
+
+            if (parsedPatch.success === true) {
+                e2eLog('✅ patchConfigurationCharacteristics OK | reloading configuration', 'success');
+                e2eToast('Patch applied successfully. Reloading configuration...', 'success');
+                setTimeout(function() {
+                    e2eReloadRuntimeConfig();
+                }, 1000);
+            } else {
+                const successCount = parsedPatch.successCount || 0;
+                const totalCount = parsedPatch.totalCount || 0;
+                e2eLog('⚠️ patchConfigurationCharacteristics partial result: ' + successCount + '/' + totalCount + ' succeeded', 'warn');
+                e2eToast('Patch partial result: ' + successCount + '/' + totalCount + ' operations succeeded.', 'warn');
+
+                if (successCount > 0) {
+                    e2eLog('↻ reloading after partial success to recalculate visibility/dependencies', 'info');
+                    setTimeout(function() {
+                        e2eReloadRuntimeConfig();
+                    }, 1000);
+                }
+            }
+        } catch (error) {
+            const errorText = e2eErrorToString(error);
+            outputEl.value = 'Error: ' + errorText;
+            e2eLog('❌ patchConfigurationCharacteristics ERROR: ' + errorText, 'error');
+            e2eToast('Patch failed: ' + e2eExtractFriendlyError(errorText), 'error');
+        }
+    }
+
     function e2eResetFlow() {
+        e2eSetInitialFlowCollapsed(false);
         e2eSetCreateStageHidden(false);
         e2eSetSimulateControlsHidden(false);
         e2eSetRuntimeVisible(false);
@@ -3547,12 +4293,53 @@ WHERE mdr_Account__c IN (
         document.getElementById('e2e-save-message').style.display = 'none';
         document.getElementById('e2e-toggle-create-stage').style.display = 'none';
         document.getElementById('e2e-field-visibility-mode').value = 'visible';
+        document.getElementById('e2e-group-mode').value = 'flat';
+        e2eLangResetToApi();
+        document.getElementById('e2e-etag').value = 'W/"1"';
+        document.getElementById('e2e-etag-version').value = '1';
         document.getElementById('e2e-config-summary').textContent = 'No configuration loaded yet';
+        document.getElementById('e2e-patch-preview').textContent = 'No changes detected';
         document.getElementById('output-e2e-load').value = '';
-        clearTable('table-e2e-load');
         clearConfigurationForm('e2e-config-container');
         e2eLoadedConfig = null;
+        e2eEditorCurrentConfig = null;
+        e2eEditorCurrentETag = null;
+        e2eEditorLastId = null;
+        e2eEditorOriginalValues = {};
+        e2eEditorCharacteristicIndexMap = {};
+        e2eTranslationIndex = null;
         e2eLog('Flow reset to initial state', 'info');
+        e2eToast('End to End flow reset.', 'info');
+    }
+
+    function e2eRestartAndPrepareNewConfig() {
+        const quoteId = document.getElementById('e2e-quoteId').value;
+
+        e2eResetFlow();
+
+        // Force Product Key Mode to 'working' (F00K001001)
+        const modeEl = document.getElementById('e2e-productKey-mode');
+        if (modeEl) {
+            modeEl.value = 'working';
+        }
+
+        if (quoteId) {
+            e2eClearConfigIdFromQuote();
+            e2eLog('↺ Restarted flow and cleared stored Config ID to allow regeneration', 'info');
+        } else {
+            document.getElementById('e2e-stored-config-id').value = '';
+            document.getElementById('e2e-captured-config-id').textContent = '';
+            e2eLog('↺ Restarted flow without quote context; ready to create a new configuration', 'info');
+        }
+
+        // Auto-trigger create with the current payload
+        setTimeout(function() {
+            // Apply the product key mode to fill in F00K001001
+            e2eApplyProductKeyMode();
+            e2eUpdatePreview();
+            e2eLog('→ auto-creating new configuration after restart with F00K001001', 'info');
+            e2eCreateConfig();
+        }, 300);
     }
 
     function e2eCreateConfig() {
@@ -3565,10 +4352,8 @@ WHERE mdr_Account__c IN (
         }
 
         const outputEl = document.getElementById('output-e2e-create');
-        const tableId  = 'table-e2e-create';
 
         outputEl.value = 'Loading...';
-        clearTable(tableId);
         document.getElementById('e2e-save-section').style.display = 'none';
 
         e2eLog('→ createConfigurationV2 | payload: ' + JSON.stringify(payload), 'call');
@@ -3583,7 +4368,6 @@ WHERE mdr_Account__c IN (
             try {
                 const parsed = JSON.parse(result);
                 formatted = JSON.stringify(parsed, null, 2);
-                renderTable(parsed, tableId);
 
                 configId = (parsed.id)
                     || (parsed.configId)
@@ -3593,15 +4377,18 @@ WHERE mdr_Account__c IN (
 
                 if (configId) {
                     e2eLog('✅ createConfigurationV2 OK | configId: ' + configId, 'success');
+                    e2eToast('Configuration created successfully.', 'success');
                     e2eSetCreateStatus('success', 'Configuration Created', '', configId);
                 } else {
                     e2eLog('⚠️ createConfigurationV2 responded but no configId found in response', 'warn');
+                    e2eToast('Configuration created without returned config ID.', 'warn');
                     e2eSetCreateStatus('warn', 'Configuration Response Without ID', 'The response did not include a configuration ID.', '');
                 }
             } catch (e) {
                 formatted = result;
                 const rawResponse = (result === null || result === undefined) ? '' : String(result);
                 e2eLog('⚠️ createConfigurationV2 response is not valid JSON: ' + rawResponse.substring(0, 200), 'warn');
+                e2eToast('Configuration create returned a non-JSON response.', 'warn');
                 e2eSetCreateStatus('warn', 'Unexpected Create Response', rawResponse.substring(0, 500), '');
             }
 
@@ -3628,6 +4415,7 @@ WHERE mdr_Account__c IN (
             const errorText = e2eErrorToString(error);
             outputEl.value = 'Error: ' + errorText;
             e2eLog('❌ createConfigurationV2 ERROR: ' + errorText, 'error');
+            e2eToast('Configuration create failed: ' + e2eExtractFriendlyError(errorText), 'error');
             e2eSetCreateStatus('error', 'Configuration Error', e2eExtractFriendlyError(errorText), '');
             return null;
         }
@@ -3654,17 +4442,20 @@ WHERE mdr_Account__c IN (
                 statusEl.textContent = isAuto ? '✅ Auto-saved to SAP_VCP_Config_ID__c!' : '✅ Saved to SAP_VCP_Config_ID__c!';
                 statusEl.style.color = '#2e844a';
                 e2eLog('✅ saveConfigIdToQuote OK | SAP_VCP_Config_ID__c updated on quote ' + quoteId, 'success');
+                e2eToast(isAuto ? 'Config ID auto-saved to Quote.' : 'Config ID saved to Quote.', 'success');
             } else {
                 statusEl.textContent = '⚠️ Response: ' + result;
                 statusEl.style.color = '#c23934';
                 const rawResponse = (result === null || result === undefined) ? '' : String(result);
                 e2eLog('⚠️ saveConfigIdToQuote unexpected response: ' + rawResponse.substring(0, 200), 'warn');
+                e2eToast('Save to Quote returned an unexpected response.', 'warn');
             }
         } catch (error) {
             const errorText = e2eErrorToString(error);
             statusEl.textContent = 'Error: ' + errorText;
             statusEl.style.color = '#c23934';
             e2eLog('❌ saveConfigIdToQuote ERROR: ' + errorText, 'error');
+            e2eToast('Save to Quote failed: ' + e2eExtractFriendlyError(errorText), 'error');
         }
     }
 
@@ -3709,13 +4500,16 @@ WHERE mdr_Account__c IN (
                 document.getElementById('e2e-captured-config-id').textContent = configId;
                 document.getElementById('e2e-save-section').style.display = 'block';
                 e2eLog('✅ Stored Config ID found on quote: ' + configId, 'success');
+                e2eToast('Stored Config ID found on Quote.', 'success');
             } else {
                 e2eLog('ℹ️ No stored Config ID found on quote', 'info');
+                e2eToast('No stored Config ID found on Quote.', 'info');
             }
             return configId || null;
         } catch (error) {
             const errorText = e2eErrorToString(error);
             e2eLog('❌ getConfigIdFromQuote ERROR: ' + errorText, 'error');
+            e2eToast('Read stored Config ID failed: ' + e2eExtractFriendlyError(errorText), 'error');
             return null;
         }
     }
@@ -3738,27 +4532,27 @@ WHERE mdr_Account__c IN (
                 document.getElementById('e2e-save-status').textContent = 'Stored Config ID cleared from Quote';
                 document.getElementById('e2e-save-status').style.color = '#706e6b';
                 e2eLog('✅ Stored Config ID cleared from quote ' + quoteId, 'success');
+                e2eToast('Stored Config ID cleared from Quote.', 'success');
             } else {
                 e2eLog('❌ clearConfigIdFromQuote ERROR: ' + (parsed.error || 'Unknown error'), 'error');
+                e2eToast('Clear stored Config ID failed.', 'error');
             }
         } catch (error) {
             e2eLog('❌ clearConfigIdFromQuote ERROR: ' + e2eErrorToString(error), 'error');
+            e2eToast('Clear stored Config ID failed.', 'error');
         }
     }
 
     function e2eLoadConfigurationById(configId) {
         const outputEl = document.getElementById('output-e2e-load');
-        const tableId = 'table-e2e-load';
 
         if (!configId) {
             outputEl.value = 'Please provide a Configuration ID.';
-            clearTable(tableId);
             clearConfigurationForm('e2e-config-container');
             return null;
         }
 
         outputEl.value = 'Loading...';
-        clearTable(tableId);
         clearConfigurationForm('e2e-config-container');
         e2eLog('→ getConfigurationV2 | configId: ' + configId, 'call');
 
@@ -3770,24 +4564,37 @@ WHERE mdr_Account__c IN (
 
             const parsed = JSON.parse(result);
             e2eLoadedConfig = parsed;
+            e2eEditorCurrentConfig = JSON.parse(JSON.stringify(parsed));
+            const etag = parsed._eTag || e2eEditorCurrentETag || 'W/"1"';
+            e2eEditorCurrentETag = etag;
+            e2eEditorLastId = configId;
+            e2eEditorOriginalValues = {};
+            e2eEditorCharacteristicIndexMap = {};
             outputEl.value = JSON.stringify(parsed, null, 2);
-            renderTable(parsed, tableId);
             e2eRenderLoadedConfiguration();
 
-            const etag = parsed._eTag || '';
+            if (document.getElementById('e2e-label-mode').value !== 'api') {
+                e2eLoadTranslationsForLanguage(document.getElementById('e2e-label-mode').value);
+            }
+
             document.getElementById('e2e-etag').value = etag;
             e2eSyncETagPreset(etag);
+            e2eSetInitialFlowCollapsed(true);
             e2eSetRuntimeVisible(true);
+            setTimeout(function() {
+                e2eScrollToTop();
+            }, 60);
             e2eLog('✅ getConfigurationV2 OK | configId: ' + configId + (etag ? ' | _eTag: ' + etag : ''), 'success');
+            e2eToast('Configuration loaded successfully.', 'success');
             return parsed;
         } catch (error) {
             const errorText = e2eErrorToString(error);
             outputEl.value = 'Error: ' + errorText;
-            clearTable(tableId);
             clearConfigurationForm('e2e-config-container');
             e2eLoadedConfig = null;
             e2eUpdateConfigSummary(null);
             e2eLog('❌ getConfigurationV2 ERROR: ' + errorText, 'error');
+            e2eToast('Configuration load failed: ' + e2eExtractFriendlyError(errorText), 'error');
             return null;
         }
     }
@@ -3803,8 +4610,10 @@ WHERE mdr_Account__c IN (
         e2eLog('▶ simulate loading started', 'info');
         e2eSetCreateStageHidden(true);
         e2eSetSimulateControlsHidden(true);
+        document.getElementById('e2e-save-section').style.display = 'none';
 
         let configId = e2eReadConfigIdFromQuote();
+        const hadStoredConfig = !!configId;
         if (!configId) {
             e2eLog('No stored config found. Creating a new configuration...', 'warn');
             configId = e2eCreateConfig();
@@ -3812,11 +4621,25 @@ WHERE mdr_Account__c IN (
                 e2eSetCreateStageHidden(false);
                 e2eSetSimulateControlsHidden(false);
                 e2eLog('❌ simulate loading aborted: createConfigurationV2 failed', 'error');
+                e2eToast('Simulate loading failed during configuration creation.', 'error');
                 return;
             }
         }
 
-        e2eLoadConfigurationById(configId);
+        const loadedConfig = e2eLoadConfigurationById(configId);
+        if (!loadedConfig) {
+            e2eSetCreateStageHidden(false);
+            e2eSetSimulateControlsHidden(false);
+            e2eSetRuntimeVisible(false);
+
+            if (hadStoredConfig) {
+                e2eLog('⚠️ simulate loading failed for stored Config ID. Use restart button to regenerate a new Config ID.', 'warn');
+                e2eToast('Stored Config ID appears invalid or expired. Restart to generate a new one.', 'warn');
+            } else {
+                e2eLog('⚠️ simulate loading could not load the newly created Config ID', 'warn');
+                e2eToast('Could not load configuration. Please retry create/simulate.', 'warn');
+            }
+        }
     }
 
 //]]>
