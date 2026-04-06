@@ -23,6 +23,10 @@ export default class VcpCharacteristicsWizard extends LightningElement {
         return this.steps[this.currentStep] || null;
     }
 
+    get wizardFieldClass() {
+        return this.currentCharacteristic?.hasPendingChange ? 'wizard-field pending-change' : 'wizard-field';
+    }
+
     get isFirstStep() {
         return this.currentStep === 0;
     }
@@ -46,7 +50,8 @@ export default class VcpCharacteristicsWizard extends LightningElement {
 
     handleChange(event) {
         this.pendingCharId = this.currentCharacteristic?.id || null;
-        this.pendingValue = event.detail.value;
+        const rawValue = event.detail.value;
+        this.pendingValue = Array.isArray(rawValue) ? [...rawValue] : rawValue;
     }
 
     handleNext() {

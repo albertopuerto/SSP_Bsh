@@ -1,0 +1,12 @@
+{
+  "success": true,
+  "statusCode": 200,
+  "message": "Pricing calculated",
+  "data": {
+    "netUnitPrice": 5000.0,
+    "currency": "EUR",
+    "conditions": [
+      { "type": "PR00", "amount": 5000.0 }
+    ]
+  }
+}

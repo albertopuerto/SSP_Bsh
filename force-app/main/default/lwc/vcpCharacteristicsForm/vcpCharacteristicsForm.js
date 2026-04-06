@@ -22,7 +22,8 @@ export default class VcpCharacteristicsForm extends LightningElement {
 
     handleChange(event) {
         const charId = event.target.dataset.charId;
-        const newValue = event.detail.value;
+        const rawValue = event.detail.value;
+        const newValue = Array.isArray(rawValue) ? [...rawValue] : rawValue;
         this.dispatchEvent(
             new CustomEvent('characteristicchange', {
                 detail: { charId, newValue }

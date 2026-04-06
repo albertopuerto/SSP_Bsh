@@ -16,6 +16,9 @@
                         <template if:true={char.badgeReadonly}>
                             <span class="badge badge-readonly">readonly</span>
                         </template>
+                        <template if:true={char.badgePending}>
+                            <span class="badge badge-pending">pending</span>
+                        </template>
                         <template if:true={char.badgeRequired}>
                             <span class="badge badge-required">required</span>
                         </template>
@@ -26,22 +29,34 @@
                             <span class="badge badge-warn">incomplete</span>
                         </template>
                     </div>
-                    <template if:true={char.isRadioGroup}>
-                        <lightning-radio-group
+                    <template if:true={char.isDropdown}>
+                        <lightning-combobox
                             name={char.id}
                             label=" "
                             options={char.options}
                             value={char.currentValue}
-                            type="radio"
+                            required={char.required}
                             data-char-id={char.id}
                             onchange={handleChange}
-                        ></lightning-radio-group>
+                        ></lightning-combobox>
+                    </template>
+                    <template if:true={char.isCheckboxGroup}>
+                        <lightning-checkbox-group
+                            name={char.id}
+                            label=" "
+                            options={char.options}
+                            value={char.currentValues}
+                            required={char.required}
+                            data-char-id={char.id}
+                            onchange={handleChange}
+                        ></lightning-checkbox-group>
                     </template>
                     <template if:true={char.isTextInput}>
                         <lightning-input
                             type="text"
                             label=" "
                             value={char.currentValue}
+                            required={char.required}
                             data-char-id={char.id}
                             onchange={handleChange}
                         ></lightning-input>

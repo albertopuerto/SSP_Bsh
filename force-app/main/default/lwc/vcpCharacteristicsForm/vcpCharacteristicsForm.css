@@ -34,6 +34,12 @@
     opacity: 0.85;
 }
 
+.char-field.char-pending {
+    border-color: #f0b429;
+    box-shadow: 0 0 0 2px rgba(240, 180, 41, 0.2);
+    background: #fffdf5;
+}
+
 .char-label {
     font-size: 0.72rem;
     font-weight: 700;
@@ -73,6 +79,12 @@
     background: #f2f2f2;
     color: #706e6b;
     border: 1px solid #c9c9c9;
+}
+
+.badge-pending {
+    background: #fff3cd;
+    color: #8a6300;
+    border: 1px solid #f0d060;
 }
 
 .badge-required {

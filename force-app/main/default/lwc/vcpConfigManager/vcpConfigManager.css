@@ -100,12 +100,47 @@
     margin-bottom: 0.5rem;
 }
 
+.debug-stats-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+    margin-bottom: 0.45rem;
+}
+
+.debug-stat-pill {
+    background: #f7f9fd;
+    border: 1px solid #d5deeb;
+    border-radius: 999px;
+    padding: 0.15rem 0.55rem;
+    font-size: 0.7rem;
+    color: #2d3e52;
+}
+
 .json-box {
     border: 1px solid #d8dde6;
     border-radius: 0.35rem;
     background: #fafafa;
     padding: 0.5rem;
     margin: 0.5rem 0;
+}
+
+.debug-panels-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.6rem;
+    align-items: start;
+}
+
+.debug-panels-grid .json-box {
+    display: flex;
+    flex-direction: column;
+    min-height: 260px;
+}
+
+.debug-panels-grid pre {
+    flex: 1;
+    min-height: 210px;
+    max-height: 210px;
 }
 
 .json-title {
@@ -330,4 +365,10 @@ pre {
 .log-entry[data-type="info"],
 .log-info {
     color: #a9b7c6;
+}
+
+@media (max-width: 900px) {
+    .debug-panels-grid {
+        grid-template-columns: 1fr;
+    }
 }

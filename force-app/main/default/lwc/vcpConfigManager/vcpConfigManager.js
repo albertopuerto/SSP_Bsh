@@ -56,7 +56,10 @@ export default class VcpConfigManager extends LightningElement {
     translationIndex = null;
     translationCache = {};
     eTag = '';
+    lastKnownETag = '';
     eTagVersion = 0;
+    autoPatchEnabled = true;
+    pendingPatchOperationsByChar = {};
     activityLogEntries = [];
     isBusy = false;
     debugMode = false;
@@ -151,7 +154,7 @@ export default class VcpConfigManager extends LightningElement {
     }
 
     get showSetupSections() {
-        return !this.runtimeVisible || this.debugMode;
+        return !this.runtimeVisible;
     }
 
     get apiModeClass() {
@@ -200,6 +203,62 @@ export default class VcpConfigManager extends LightningElement {
 
     get activityLogForTemplate() {
         return this.activityLogEntries;
+    }
+
+    get autoPatchToggleLabel() {
+        return this.autoPatchEnabled ? 'Auto PATCH: ON' : 'Auto PATCH: OFF';
+    }
+
+    get autoPatchToggleVariant() {
+        return this.autoPatchEnabled ? 'brand' : 'neutral';
+    }
+
+    get showSendPendingButton() {
+        return !this.autoPatchEnabled;
+    }
+
+    get isSendPendingDisabled() {
+        return this.pendingPatchCount === 0;
+    }
+
+    get pendingPatchCount() {
+        return Object.keys(this.pendingPatchOperationsByChar || {}).length;
+    }
+
+    get sendPendingLabel() {
+        return this.pendingPatchCount > 0 ? `Send Pending (${this.pendingPatchCount})` : 'Send Pending';
+    }
+
+    get totalCharacteristicCount() {
+        return (this.loadedCharacteristics || []).length;
+    }
+
+    get visibleCharacteristicCount() {
+        return (this.loadedCharacteristics || []).filter((c) => c.visible).length;
+    }
+
+    get hiddenCharacteristicCount() {
+        return (this.loadedCharacteristics || []).filter((c) => c.badgeHidden).length;
+    }
+
+    get readonlyCharacteristicCount() {
+        return (this.loadedCharacteristics || []).filter((c) => c.badgeReadonly).length;
+    }
+
+    get pendingCharacteristicCount() {
+        return (this.loadedCharacteristics || []).filter((c) => c.hasPendingChange).length;
+    }
+
+    get patchPreviewText() {
+        const operations = Object.values(this.pendingPatchOperationsByChar || {});
+        const preview = {
+            configId: this.storedConfigId || null,
+            mode: this.autoPatchEnabled ? 'auto' : 'manual-batch',
+            pendingCount: operations.length,
+            etag: this.resolveCurrentETag() || null,
+            patchOperations: operations
+        };
+        return JSON.stringify(preview, null, 2);
     }
 
     get productKeyModeOptions() {
@@ -284,6 +343,9 @@ export default class VcpConfigManager extends LightningElement {
         this.step1Collapsed = false;
         this.createResponse = '';
         this.eTag = '';
+        this.lastKnownETag = '';
+        this.eTagVersion = 0;
+        this.pendingPatchOperationsByChar = {};
         this.patchOperationsText = '[]';
         this.showInfo('Restarted', 'Step 1 is active again.');
         this.logActivity('Restart', 'Flow restarted and prepared for new configuration');
@@ -297,6 +359,9 @@ export default class VcpConfigManager extends LightningElement {
             }
             this.storedConfigId = '';
             this.eTag = '';
+            this.lastKnownETag = '';
+            this.eTagVersion = 0;
+            this.pendingPatchOperationsByChar = {};
             this.showInfo('Removed', 'Stored configuration id cleared.');
             this.logActivity('Remove', 'Stored configuration id removed');
         } catch (error) {
@@ -383,11 +448,35 @@ export default class VcpConfigManager extends LightningElement {
     }
 
     handleETagChange(event) {
-        this.eTag = event.detail.value;
+        const nextETag = (event.detail.value || '').trim();
+        this.eTag = nextETag;
+        this.eTagVersion = this.parseETagVersion(nextETag);
+    }
+
+    get eTagVersionStr() {
+        return this.eTagVersion > 0 ? String(this.eTagVersion) : '0';
+    }
+
+    get eTagVersionOptions() {
+        const opts = [{ label: '— (manual)', value: '0' }];
+        for (let i = 1; i <= 20; i++) {
+            opts.push({ label: String(i), value: String(i) });
+        }
+        return opts;
     }
 
     handleETagVersionChange(event) {
         this.eTagVersion = Number(event.detail.value) || 0;
+        this.eTag = this.eTagVersion > 0 ? this.buildWeakETag(this.eTagVersion) : '';
+    }
+
+    handleToggleAutoPatch() {
+        this.autoPatchEnabled = !this.autoPatchEnabled;
+        if (this.autoPatchEnabled && this.pendingPatchCount > 0) {
+            this.logActivity('Patch', `Auto mode enabled with ${this.pendingPatchCount} pending change(s)`);
+        } else {
+            this.logActivity('Patch', this.autoPatchEnabled ? 'Auto PATCH enabled' : 'Auto PATCH disabled (manual batch mode)');
+        }
     }
 
     async handleCharacteristicChange(event) {
@@ -397,36 +486,129 @@ export default class VcpConfigManager extends LightningElement {
             return;
         }
 
-        const operation = {
+        const operation = this.buildCharacteristicPatchOperation(charId, newValue);
+
+        if (this.autoPatchEnabled) {
+            await this.sendPatchOperations([operation], `Patch ${charId}`, { reloadAfterSuccess: true });
+            return;
+        }
+
+        this.pendingPatchOperationsByChar = {
+            ...this.pendingPatchOperationsByChar,
+            [charId]: operation
+        };
+        this.applyCharacteristicValueLocally(charId, newValue);
+        this.syncPendingFlagsInLoadedCharacteristics();
+        this.logActivity('Patch Queue', `Queued ${charId} = ${newValue || '(cleared)'} (${this.pendingPatchCount} pending)`);
+    }
+
+    async handleSendPendingPatches() {
+        const operations = Object.values(this.pendingPatchOperationsByChar || {});
+        if (operations.length === 0) {
+            this.showInfo('No pending changes', 'There are no queued characteristic changes to send.');
+            return;
+        }
+
+        await this.sendPatchOperations(operations, 'Patch Batch', { reloadAfterSuccess: true, clearQueueAfterSuccess: true });
+    }
+
+    buildCharacteristicPatchOperation(charId, newValue) {
+        const values = Array.isArray(newValue)
+            ? newValue
+                  .filter((value) => value !== null && value !== undefined && String(value).trim() !== '')
+                  .map((value) => ({ value: String(value), selected: true }))
+            : newValue
+              ? [{ value: newValue, selected: true }]
+              : [];
+
+        return {
             characteristicId: charId,
             itemId: Number(this.loadedItemId) || 1,
             input: {
                 characteristicId: charId,
-                values: newValue ? [{ value: newValue, selected: true }] : []
+                values
             }
         };
+    }
+
+    applyCharacteristicValueLocally(charId, newValue) {
+        const asArray = Array.isArray(newValue)
+            ? [...newValue]
+            : newValue
+              ? [String(newValue)]
+              : [];
+
+        this.loadedCharacteristics = (this.loadedCharacteristics || []).map((ch) => {
+            if (ch.id !== charId) {
+                return ch;
+            }
+            return {
+                ...ch,
+                currentValues: asArray,
+                currentValue: asArray[0] || ''
+            };
+        });
+    }
+
+    syncPendingFlagsInLoadedCharacteristics() {
+        this.loadedCharacteristics = (this.loadedCharacteristics || []).map((ch) => {
+            const hasPendingChange = Boolean(ch.id && this.pendingPatchOperationsByChar[ch.id]);
+            const baseFieldClass = String(ch.fieldClass || '')
+                .replace(/\schar-pending/g, '')
+                .trim();
+            return {
+                ...ch,
+                hasPendingChange,
+                badgePending: hasPendingChange,
+                fieldClass: hasPendingChange ? `${baseFieldClass} char-pending` : baseFieldClass
+            };
+        });
+    }
+
+    async sendPatchOperations(operations, actionLabel, options = {}) {
+        const { reloadAfterSuccess = true, clearQueueAfterSuccess = false } = options;
+        const resolvedETag = this.resolveCurrentETag();
+        const patchSummary = operations
+            .map((op) => {
+                const values = Array.isArray(op?.input?.values) ? op.input.values.map((v) => v.value) : [];
+                return `${op.characteristicId}=${values.length > 0 ? values.join('|') : '(cleared)'}`;
+            })
+            .join(', ');
 
         this.isBusy = true;
         try {
-            this.logSapRequest(`PATCH /api/v2/configurations/${this.storedConfigId}/…/characteristics/${charId}`, `value="${newValue || ''}", etag="${this.eTag || ''}"`);
+            this.logSapRequest(
+                `PATCH /api/v2/configurations/${this.storedConfigId}/…/characteristics`,
+                `count="${operations.length}", etag="${resolvedETag || ''}", values="${patchSummary}"`
+            );
             const rawPatch = await patchConfigurationCharacteristics({
                 configId: this.storedConfigId,
-                etag: this.eTag || '*',
-                patchOperations: JSON.stringify([operation])
+                etag: resolvedETag,
+                patchOperations: JSON.stringify(operations)
             });
-            this.logSapResponse(`PATCH /characteristics/${charId}`, rawPatch);
+            this.logSapResponse('PATCH /characteristics', rawPatch);
             const patchResult = this.safeParseJson(rawPatch);
+
+            this.throwIfPatchBatchFailed(patchResult, operations);
+
             if (patchResult?.latestETag) {
-                this.eTag = patchResult.latestETag;
-                this.eTagVersion = this.parseETagVersion(patchResult.latestETag);
+                this.applyResolvedETag(patchResult.latestETag);
             } else {
                 this.captureETag(patchResult);
             }
             this.createResponse = this.prettyJson(rawPatch);
-            this.logActivity('Patch', `Set ${charId} = ${newValue || '(cleared)'}`);
-            await this.loadConfiguration(this.storedConfigId, 'Refresh');
+            this.logActivity('Patch', `${actionLabel} applied (${operations.length} change(s))`);
+
+            if (clearQueueAfterSuccess) {
+                this.pendingPatchOperationsByChar = {};
+                this.syncPendingFlagsInLoadedCharacteristics();
+            }
+
+            if (reloadAfterSuccess) {
+                await this.loadConfiguration(this.storedConfigId, 'Refresh', { showSuccessToast: false });
+            }
         } catch (error) {
-            this.logAndToastError(`Patch ${charId}`, error);
+            this.logAndToastError(actionLabel, error);
         } finally {
             this.isBusy = false;
         }
@@ -437,8 +619,7 @@ export default class VcpConfigManager extends LightningElement {
      * session to its default values, then reloads it.
      *
      * The current ETag is sent as the If-Match header to satisfy SAP's optimistic
-     * concurrency check on the /reset endpoint (HTTP 428 otherwise). Falls back to
-     * wildcard '*' when no ETag is held (e.g. before the first GET).
+     * concurrency check on the /reset endpoint (HTTP 428 otherwise).
      */
     async handleResetConfigurationInSap() {
         if (!this.storedConfigId) {
@@ -446,16 +627,21 @@ export default class VcpConfigManager extends LightningElement {
             return;
         }
 
+        const resolvedETag = this.resolveCurrentETag();
+
         this.isBusy = true;
         try {
-            this.logSapRequest(`POST /api/v2/configurations/${this.storedConfigId}/reset`, `etag="${this.eTag || ''}"`);
-            const raw = await resetConfigurationV2({ configId: this.storedConfigId, etag: this.eTag });
+            this.logSapRequest(`POST /api/v2/configurations/${this.storedConfigId}/reset`, `etag="${resolvedETag || ''}"`);
+            const raw = await resetConfigurationV2({ configId: this.storedConfigId, etag: resolvedETag });
             this.logSapResponse(`POST /reset`, raw);
             this.eTag = '';
+            this.lastKnownETag = '';
             this.eTagVersion = 0;
+            this.pendingPatchOperationsByChar = {};
+            this.syncPendingFlagsInLoadedCharacteristics();
             this.createResponse = this.prettyJson(raw);
             this.logActivity('Reset', `Configuration ${this.storedConfigId} reset and reloaded`);
-            await this.loadConfiguration(this.storedConfigId, 'Refresh');
+            await this.loadConfiguration(this.storedConfigId, 'Refresh', { showSuccessToast: false });
         } catch (error) {
             this.logAndToastError('Discard & Reload', error);
         } finally {
@@ -482,14 +668,17 @@ export default class VcpConfigManager extends LightningElement {
     handleStep2Reset() {
         this.runtimeVisible = false;
         this.step1Collapsed = false;
-        this.logActivity('Reset', 'Returned from Step 2 to Step 1');
+        this.pendingPatchOperationsByChar = {};
+        this.syncPendingFlagsInLoadedCharacteristics();
+        this.logActivity('Reset', 'Returned to configuration setup');
     }
 
     handleDebugModeToggle() {
         this.debugMode = !this.debugMode;
     }
 
-    async loadConfiguration(configId, actionLabel) {
+    async loadConfiguration(configId, actionLabel, options = {}) {
+        const { showSuccessToast = true } = options;
         this.isBusy = true;
         try {
             this.logSapRequest(`GET /api/v2/configurations/${configId}`, '');
@@ -498,14 +687,17 @@ export default class VcpConfigManager extends LightningElement {
             const parsed = this.safeParseJson(raw);
             this.createResponse = this.prettyJson(raw);
             this.runtimeVisible = true;
-            this.captureETag(parsed);
             this.loadedConfigRaw = parsed;
+            this.recoverETagAfterRead(parsed);
+            this.pendingPatchOperationsByChar = {};
             this.translationIndex = null;
             this.captureConfigurationMeta(parsed);
             this.processCharacteristics(parsed);
             const loadedProductCode = this.loadedProductKey || this.effectiveProductCode;
             this.logActivity(actionLabel, `Configuration loaded for product ${loadedProductCode}`);
-            this.showSuccess('Configuration loaded', `Product ${loadedProductCode}`);
+            if (showSuccessToast) {
+                this.showSuccess('Configuration loaded', `Product ${loadedProductCode}`);
+            }
         } catch (error) {
             const msg = this.extractErrorMessage(error);
             const is404 = msg.includes('404') || msg.includes('non_existing');
@@ -543,21 +735,22 @@ export default class VcpConfigManager extends LightningElement {
         }
         this.loadedItemId = String(config.rootItem.id || config.rootItem.itemId || '1');
         this.loadedCharacteristics = config.rootItem.characteristics.map((ch) => {
-            const currentValue = this.extractCharValue(ch);
+            const currentValues = this.extractCharValues(ch);
+            const currentValue = currentValues[0] || '';
 
-            // Detect fixed-value options: possibleValues with intervalType '1' OR plain enumerated possibleValues
             const rawPossible = Array.isArray(ch.possibleValues) ? ch.possibleValues : [];
-            const fixedValues = rawPossible.filter(
-                (pv) =>
-                    pv.selectable !== false &&
-                    ((pv.intervalType === '1' && (pv.valueLow != null || pv.value != null)) ||
-                        (pv.intervalType == null && (pv.valueLow != null || pv.value != null)))
-            );
+            const fixedValues = rawPossible.filter((pv) => this.isSelectableFixedValue(pv));
             const hasFixedValues = fixedValues.length > 0;
             const isReadonly = ch.readOnly === true;
+            const hasPossibleValues = rawPossible.length > 0;
+            const hasConstrainedButUnavailableValues = hasPossibleValues && !hasFixedValues;
+            const isDisplayOnly = isReadonly || hasConstrainedButUnavailableValues;
             const displayLabel = this.resolveCharacteristicLabel(ch);
+            const hasPendingChange = Boolean(ch.id && this.pendingPatchOperationsByChar[ch.id]);
+            const isCheckboxGroup = !isDisplayOnly && hasFixedValues && this.isMultiSelectCharacteristic(ch, currentValues);
+            const isDropdown = !isDisplayOnly && hasFixedValues && !isCheckboxGroup;
 
-            const isRequired = ch.required === true;
+            const isRequired = this.isCharacteristicRequired(ch);
 
             return {
                 key: ch.id || String(Math.random()),
@@ -568,27 +761,29 @@ export default class VcpConfigManager extends LightningElement {
                 required: isRequired,
                 complete: ch.complete !== false,
                 consistent: ch.consistent !== false,
+                currentValues,
                 currentValue,
-                isRadioGroup: !isReadonly && hasFixedValues,
-                isTextInput: !isReadonly && !hasFixedValues,
-                isReadonlyDisplay: isReadonly,
+                isCheckboxGroup,
+                isDropdown,
+                isTextInput: !isDisplayOnly && !hasPossibleValues,
+                isReadonlyDisplay: isDisplayOnly,
+                hasPendingChange,
                 options: hasFixedValues
-                    ? [
-                          ...(isRequired ? [] : [{ label: '— (none)', value: '' }]),
-                          ...fixedValues.map((pv) => ({
+                    ? fixedValues.map((pv) => ({
                               label: this.resolvePossibleValueLabel(ch.id || '', pv),
-                              value: pv.valueLow ?? pv.value
+                              value: this.normalizePossibleValue(pv)
                           }))
-                      ]
                     : [],
                 badgeHidden: ch.visible === false,
-                badgeReadonly: isReadonly,
+                badgeReadonly: isDisplayOnly,
+                badgePending: hasPendingChange,
                 badgeRequired: isRequired,
                 badgeInconsistent: ch.consistent === false,
                 badgeIncomplete: ch.complete === false,
                 fieldClass:
                     'char-field' +
-                    (isReadonly ? ' char-readonly' : '') +
+                    (isDisplayOnly ? ' char-readonly' : '') +
+                    (hasPendingChange ? ' char-pending' : '') +
                     (ch.visible === false ? ' char-hidden' : '')
             };
         });
@@ -940,6 +1135,99 @@ export default class VcpConfigManager extends LightningElement {
         return first.valueLow || first.value || '';
     }
 
+    extractCharValues(ch) {
+        if (!Array.isArray(ch?.values) || ch.values.length === 0) {
+            return [];
+        }
+
+        return ch.values
+            .map((valueItem) => valueItem?.valueLow ?? valueItem?.value)
+            .filter((value) => value !== null && value !== undefined && String(value).trim() !== '')
+            .map((value) => String(value));
+    }
+
+    isMultiSelectCharacteristic(ch, currentValues) {
+        if (Array.isArray(currentValues) && currentValues.length > 1) {
+            return true;
+        }
+
+        const candidates = [
+            ch?.multipleValues,
+            ch?.multiValued,
+            ch?.isMultiValued,
+            ch?.allowMultipleValues,
+            ch?.allowsMultipleValues,
+            ch?.maxEntries,
+            ch?.maximumNumberOfValues,
+            ch?.maxNumberOfValues
+        ];
+
+        return candidates.some((candidate) => {
+            if (candidate === true) {
+                return true;
+            }
+            if (candidate === false || candidate === null || candidate === undefined) {
+                return false;
+            }
+            const numericCandidate = Number(candidate);
+            return Number.isFinite(numericCandidate) && numericCandidate > 1;
+        });
+    }
+
+    isCharacteristicRequired(ch) {
+        const candidates = [
+            ch?.required,
+            ch?.isRequired,
+            ch?.requiredInput,
+            ch?.input?.required,
+            ch?.inputRequired,
+            ch?.mandatory
+        ];
+
+        return candidates.some((candidate) => {
+            if (candidate === true) {
+                return true;
+            }
+
+            if (candidate === false || candidate === null || candidate === undefined) {
+                return false;
+            }
+
+            if (typeof candidate === 'string') {
+                const normalized = candidate.trim().toLowerCase();
+                return normalized === 'true' || normalized === 'x' || normalized === 'required' || normalized === '1';
+            }
+
+            if (typeof candidate === 'number') {
+                return candidate === 1;
+            }
+
+            return false;
+        });
+    }
+
+    normalizePossibleValue(pv) {
+        if (!pv) {
+            return '';
+        }
+
+        const rawValue = pv.valueLow ?? pv.value;
+        return rawValue === null || rawValue === undefined ? '' : String(rawValue).trim();
+    }
+
+    isSelectableFixedValue(pv) {
+        if (!pv || pv.selectable === false) {
+            return false;
+        }
+
+        const normalizedValue = this.normalizePossibleValue(pv);
+        if (!normalizedValue) {
+            return false;
+        }
+
+        return pv.intervalType === '1' || pv.intervalType == null;
+    }
+
     applyProductKeyMode() {
         if (this.productKeyMode === 'context') {
             this.productKey = this.productCode || DEMO_DEFAULTS.productCode;
@@ -978,12 +1266,108 @@ export default class VcpConfigManager extends LightningElement {
         );
     }
 
+    /**
+     * Aligns LWC behavior with VF after each GET:
+     * 1) prefer response _eTag/etag
+     * 2) reuse last known good ETag from previous PATCH/GET
+     * 3) fallback to weak default W/"1" so next PATCH has a valid If-Match shape
+     */
+    recoverETagAfterRead(payload) {
+        const payloadETag = this.extractPayloadETag(payload);
+        if (payloadETag) {
+            this.applyResolvedETag(payloadETag);
+            return;
+        }
+
+        const reusedETag = this.lastKnownETag || (this.eTagVersion > 0 ? this.buildWeakETag(this.eTagVersion) : '');
+        if (reusedETag) {
+            this.applyResolvedETag(reusedETag);
+            this.logActivity('ETag', `GET returned no _eTag; reusing ${reusedETag}`);
+            return;
+        }
+
+        const inferredDefault = this.buildWeakETag(1);
+        this.applyResolvedETag(inferredDefault);
+        this.logActivity('ETag', `GET returned no _eTag; inferred default ${inferredDefault}`);
+    }
+
     captureETag(payload) {
         const found = this.findFirstValueByKey(payload, 'etag');
         if (found && typeof found === 'string') {
-            this.eTag = found;
-            this.eTagVersion = this.parseETagVersion(found);
+            this.applyResolvedETag(found);
         }
+    }
+
+    throwIfPatchFailed(patchResult, charId) {
+        if (!patchResult || patchResult.success !== false) {
+            return;
+        }
+
+        const result = patchResult.results?.[charId];
+        const statusCode = result?.statusCode || 'unknown';
+        const rawError = result?.error || patchResult.message || 'PATCH failed';
+        let message = rawError;
+
+        if (typeof rawError === 'string') {
+            const parsedError = this.safeParseJson(rawError);
+            if (parsedError?.message) {
+                message = parsedError.message;
+            }
+        }
+
+        throw new Error(`SAP PATCH failed (${statusCode}): ${message}`);
+    }
+
+    throwIfPatchBatchFailed(patchResult, operations) {
+        if (!patchResult || patchResult.success !== false) {
+            return;
+        }
+
+        const failedOperation = operations.find((op) => patchResult?.results?.[op.characteristicId]?.status === 'error') || operations[0];
+        this.throwIfPatchFailed(patchResult, failedOperation.characteristicId);
+    }
+
+    applyResolvedETag(etag) {
+        const normalizedETag = typeof etag === 'string' ? etag.trim() : '';
+        if (!normalizedETag) {
+            return;
+        }
+
+        this.eTag = normalizedETag;
+        this.lastKnownETag = normalizedETag;
+        this.eTagVersion = this.parseETagVersion(normalizedETag);
+    }
+
+    resolveCurrentETag() {
+        const manualETag = typeof this.eTag === 'string' ? this.eTag.trim() : '';
+        if (manualETag) {
+            return manualETag;
+        }
+
+        const configETag = this.extractPayloadETag(this.loadedConfigRaw);
+        if (configETag) {
+            return configETag;
+        }
+
+        if (this.lastKnownETag) {
+            return this.lastKnownETag;
+        }
+
+        if (this.eTagVersion > 0) {
+            return this.buildWeakETag(this.eTagVersion);
+        }
+
+        return this.buildWeakETag(1);
+    }
+
+    extractPayloadETag(payload) {
+        const found = this.findFirstValueByKey(payload, 'etag');
+        return typeof found === 'string' ? found.trim() : '';
+    }
+
+    buildWeakETag(version) {
+        const numericVersion = Number(version) || 0;
+        return numericVersion > 0 ? `W/"${numericVersion}"` : '';
     }
 
     /** Extracts the numeric version from a weak ETag such as W/"6" → 6. Returns 0 if not parseable. */
@@ -1161,8 +1545,7 @@ export default class VcpConfigManager extends LightningElement {
 
     logSapResponse(operation, raw) {
         const body = typeof raw === 'string' ? raw : JSON.stringify(raw ?? '');
-        const truncated = body.length > 500 ? `${body.substring(0, 500)} …` : body;
-        this.logActivity('← SAP', `${operation} | ${truncated}`);
+        this.logActivity('← SAP', `${operation} | ${body}`);
     }
 
     get isFormMode() {

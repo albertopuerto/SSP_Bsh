@@ -91,7 +91,7 @@
                             <div class="banner-controls">
                                 <div class="lang-group">
                                     <span class="lang-label">Language</span>
-                                    <button class={apiModeClass} onclick={handleLabelModeApi}>API</button>
+                                    <button class={apiModeClass} onclick={handleLabelModeApi}>🤖 API</button>
                                     <button class={enModeClass} onclick={handleLabelModeEn}><img src={usFlagUrl} alt="EN" class="flag-icon"/> EN</button>
                                     <button class={esModeClass} onclick={handleLabelModeEs}><img src={esFlagUrl} alt="ES" class="flag-icon"/> ES</button>
                                     <button class={deModeClass} onclick={handleLabelModeDe}><img src={deFlagUrl} alt="DE" class="flag-icon"/> DE</button>
@@ -110,8 +110,15 @@
                         <div class="grid-4">
                             <lightning-combobox label="Field Visibility" value={visibilityMode} options={visibilityOptions} onchange={handleVisibilityChange}></lightning-combobox>
                             <lightning-combobox label="Grouping Mode" value={groupingMode} options={groupingOptions} onchange={handleGroupingChange}></lightning-combobox>
-                            <lightning-input type="text" label="ETag" value={eTag} onchange={handleETagChange}></lightning-input>
-                            <lightning-input type="number" label="ETag Version" value={eTagVersion} onchange={handleETagVersionChange}></lightning-input>
+                            <lightning-input type="text" label="ETag (editable)" value={eTag} placeholder='W/"n"' onchange={handleETagChange}></lightning-input>
+                            <lightning-combobox label="ETag Version Preset" value={eTagVersionStr} options={eTagVersionOptions} onchange={handleETagVersionChange}></lightning-combobox>
+                        </div>
+                        <div class="debug-stats-row">
+                            <span class="debug-stat-pill">Total: {totalCharacteristicCount}</span>
+                            <span class="debug-stat-pill">Visible: {visibleCharacteristicCount}</span>
+                            <span class="debug-stat-pill">Hidden: {hiddenCharacteristicCount}</span>
+                            <span class="debug-stat-pill">Readonly: {readonlyCharacteristicCount}</span>
+                            <span class="debug-stat-pill">Pending: {pendingCharacteristicCount}</span>
                         </div>
                     </template>
 
@@ -133,16 +140,24 @@
                         ></c-vcp-characteristics-wizard>
                     </template>
 
-                    <template if:true={debugMode}>
-                        <template if:true={createResponse}>
-                            <div class="json-box">
-                                <p class="json-title">Last Response</p>
-                                <pre>{createResponse}</pre>
-                            </div>
-                        </template>
-                    </template>
-
                     <div class="form-footer">
+                        <lightning-button
+                            label={autoPatchToggleLabel}
+                            variant={autoPatchToggleVariant}
+                            icon-name="utility:settings"
+                            onclick={handleToggleAutoPatch}
+                            title="Toggle automatic characteristic PATCH on change"
+                        ></lightning-button>
+                        <template if:true={showSendPendingButton}>
+                            <lightning-button
+                                label={sendPendingLabel}
+                                variant="brand-outline"
+                                icon-name="utility:upload"
+                                onclick={handleSendPendingPatches}
+                                disabled={isSendPendingDisabled}
+                                title="Send all queued characteristic changes in one PATCH"
+                            ></lightning-button>
+                        </template>
                         <lightning-button
                             label="Discard &amp; Reload"
                             icon-name="utility:refresh"
@@ -150,11 +165,24 @@
                             title="Reset configuration to initial state and reload from SAP VC"
                         ></lightning-button>
                         <lightning-button
-                            label="Back to Step 1"
+                            label="Reset Config"
                             icon-name="utility:back"
                             onclick={handleStep2Reset}
                         ></lightning-button>
                     </div>
+
+                    <template if:true={debugMode}>
+                        <div class="debug-panels-grid">
+                            <div class="json-box">
+                                <p class="json-title">PATCH Preview</p>
+                                <pre>{patchPreviewText}</pre>
+                            </div>
+                            <div class="json-box">
+                                <p class="json-title">Last Response</p>
+                                <pre>{createResponse}</pre>
+                            </div>
+                        </div>
+                    </template>
                 </section>
             </template>
 

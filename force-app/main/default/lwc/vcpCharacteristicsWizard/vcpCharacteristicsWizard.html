@@ -7,7 +7,7 @@
             <lightning-progress-bar value={progressPercent} size="x-small"></lightning-progress-bar>
 
             <template if:true={currentCharacteristic}>
-                <div class="wizard-field">
+                <div class={wizardFieldClass}>
                     <div class="char-label">
                         {currentCharacteristic.label}
                         <template if:true={currentCharacteristic.required}>
@@ -17,6 +17,9 @@
                     <div class="char-badges">
                         <template if:true={currentCharacteristic.badgeReadonly}>
                             <span class="badge badge-readonly">readonly</span>
+                        </template>
+                        <template if:true={currentCharacteristic.badgePending}>
+                            <span class="badge badge-pending">pending</span>
                         </template>
                         <template if:true={currentCharacteristic.badgeRequired}>
                             <span class="badge badge-required">required</span>
@@ -28,21 +31,32 @@
                             <span class="badge badge-warn">incomplete</span>
                         </template>
                     </div>
-                    <template if:true={currentCharacteristic.isRadioGroup}>
-                        <lightning-radio-group
+                    <template if:true={currentCharacteristic.isDropdown}>
+                        <lightning-combobox
                             name={currentCharacteristic.id}
                             label=" "
                             options={currentCharacteristic.options}
                             value={currentCharacteristic.currentValue}
-                            type="radio"
+                            required={currentCharacteristic.required}
                             onchange={handleChange}
-                        ></lightning-radio-group>
+                        ></lightning-combobox>
+                    </template>
+                    <template if:true={currentCharacteristic.isCheckboxGroup}>
+                        <lightning-checkbox-group
+                            name={currentCharacteristic.id}
+                            label=" "
+                            options={currentCharacteristic.options}
+                            value={currentCharacteristic.currentValues}
+                            required={currentCharacteristic.required}
+                            onchange={handleChange}
+                        ></lightning-checkbox-group>
                     </template>
                     <template if:true={currentCharacteristic.isTextInput}>
                         <lightning-input
                             type="text"
                             label=" "
                             value={currentCharacteristic.currentValue}
+                            required={currentCharacteristic.required}
                             onchange={handleChange}
                         ></lightning-input>
                     </template>

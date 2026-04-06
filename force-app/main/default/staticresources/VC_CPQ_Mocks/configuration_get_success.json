@@ -1,0 +1,20 @@
+{
+  "id": "CFG-10001",
+  "rootItem": {
+    "id": 1,
+    "characteristics": [
+      {
+        "id": "SSD",
+        "required": true,
+        "readOnly": false,
+        "visible": true,
+        "values": [
+          {
+            "value": "SSD512GB",
+            "selected": true
+          }
+        ]
+      }
+    ]
+  }
+}
