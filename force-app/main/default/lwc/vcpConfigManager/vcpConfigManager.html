@@ -1,0 +1,176 @@
+<template>
+    <lightning-card title="Add Product" icon-name="standard:product">
+        <template if:true={isBusy}>
+            <lightning-spinner size="medium" alternative-text="Loading"></lightning-spinner>
+        </template>
+
+        <div class="panel">
+            <div class="context-row">
+                <span class="context-pill">Source: {launchSource}</span>
+                <span class="context-pill">Quote: {effectiveQuoteId}</span>
+                <span class="context-pill">Product: {effectiveProductCode}</span>
+            </div>
+
+            <template if:true={showSetupSections}>
+                <section class="section">
+                    <h3 class="section-title">Configuration Management</h3>
+                    <lightning-input
+                        type="text"
+                        label="Stored Config ID"
+                        value={storedConfigId}
+                        onchange={handleStoredConfigChange}
+                    ></lightning-input>
+
+                    <div class="button-grid">
+                        <lightning-button label="Load Stored" onclick={handleLoadStored}></lightning-button>
+                        <lightning-button label="Simulate Loading" onclick={handleSimulateLoading}></lightning-button>
+                        <lightning-button label="Restart & Create New" onclick={handleRestartCreate}></lightning-button>
+                        <lightning-button label="Remove" onclick={handleRemoveStored}></lightning-button>
+                    </div>
+                    <p class="helper-text">
+                        Load: existing config | Simulate: creates if needed and loads | Restart: force new config | Remove: clear from Salesforce
+                    </p>
+                </section>
+
+                <section class="section">
+                    <button class="accordion-btn" onclick={toggleStep1}>
+                        Step 1: Create Configuration
+                    </button>
+
+                    <div class={step1SectionClass}>
+                        <div class="grid-3">
+                            <div>
+                                <lightning-input type="text" label="KB ID" value={kbId} onchange={handleKbIdChange}></lightning-input>
+                                <p class="helper-text">-3 = auto from product key</p>
+                            </div>
+                            <div class="date-field">
+                                <lightning-input type="date" label="Date (optional)" value={selectedDate} onchange={handleDateChange}></lightning-input>
+                                <template if:true={selectedDate}>
+                                    <button class="clear-btn" onclick={handleClearDate} title="Clear date">×</button>
+                                </template>
+                            </div>
+                            <lightning-input type="checkbox" label="Auto cleanup (2h TTL)" checked={autoCleanup} onchange={handleAutoCleanupChange}></lightning-input>
+                        </div>
+
+                        <div class="grid-2">
+                            <lightning-combobox label="Product Key Source" value={productKeyMode} options={productKeyModeOptions} onchange={handleProductKeyModeChange}></lightning-combobox>
+                            <lightning-input type="text" label="Product Key (sent to SAP)" value={productKey} readonly={productKeyReadonly} onchange={handleProductKeyChange} placeholder="Will be filled from selection"></lightning-input>
+                        </div>
+
+                        <div class="json-box">
+                            <p class="json-title">Request Preview</p>
+                            <pre>{requestPreview}</pre>
+                        </div>
+
+                        <lightning-button variant="brand" label="Create Configuration" onclick={handleCreateConfiguration}></lightning-button>
+                    </div>
+                </section>
+            </template>
+
+            <template if:true={runtimeVisible}>
+                <section class="section">
+                    <div class="config-context-banner">
+                        <div class="banner-left">
+                            <div class="config-context-title">Product Configuration: {headerProductName}</div>
+                            <div class="config-context-subtitle">
+                                <template if:true={loadedKbName}>
+                                    <span class="config-context-pill">KB Name: {loadedKbName}</span>
+                                </template>
+                                <template if:true={loadedKbVersion}>
+                                    <span class="config-context-pill">Version: {loadedKbVersion}</span>
+                                </template>
+                                <template if:true={loadedKbLogsys}>
+                                    <span class="config-context-pill">System: {loadedKbLogsys}</span>
+                                </template>
+                                <template if:true={loadedKbId}>
+                                    <span class="config-context-pill">KB ID: {loadedKbId}</span>
+                                </template>
+                            </div>
+                        </div>
+                        <div class="banner-right">
+                            <div class="banner-controls">
+                                <div class="lang-group">
+                                    <span class="lang-label">Language</span>
+                                    <button class={apiModeClass} onclick={handleLabelModeApi}>API</button>
+                                    <button class={enModeClass} onclick={handleLabelModeEn}><img src={usFlagUrl} alt="EN" class="flag-icon"/> EN</button>
+                                    <button class={esModeClass} onclick={handleLabelModeEs}><img src={esFlagUrl} alt="ES" class="flag-icon"/> ES</button>
+                                    <button class={deModeClass} onclick={handleLabelModeDe}><img src={deFlagUrl} alt="DE" class="flag-icon"/> DE</button>
+                                </div>
+                                <div class="display-mode-group">
+                                    <span class="lang-label">View</span>
+                                    <button class={formModeClass} onclick={handleDisplayModeForm}>📋 Form</button>
+                                    <button class={wizardModeClass} onclick={handleDisplayModeWizard}>🧙 Wizard</button>
+                                </div>
+                                <button class={debugToggleClass} onclick={handleDebugModeToggle} title="Toggle debug mode">🔧 Debug</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <template if:true={debugMode}>
+                        <div class="grid-4">
+                            <lightning-combobox label="Field Visibility" value={visibilityMode} options={visibilityOptions} onchange={handleVisibilityChange}></lightning-combobox>
+                            <lightning-combobox label="Grouping Mode" value={groupingMode} options={groupingOptions} onchange={handleGroupingChange}></lightning-combobox>
+                            <lightning-input type="text" label="ETag" value={eTag} onchange={handleETagChange}></lightning-input>
+                            <lightning-input type="number" label="ETag Version" value={eTagVersion} onchange={handleETagVersionChange}></lightning-input>
+                        </div>
+                    </template>
+
+                    <template if:true={isFormMode}>
+                        <c-vcp-characteristics-form
+                            characteristics={loadedCharacteristics}
+                            visibility-mode={visibilityMode}
+                            label-mode={labelMode}
+                            oncharacteristicchange={handleCharacteristicChange}
+                        ></c-vcp-characteristics-form>
+                    </template>
+                    <template if:true={isWizardMode}>
+                        <c-vcp-characteristics-wizard
+                            characteristics={loadedCharacteristics}
+                            visibility-mode={visibilityMode}
+                            label-mode={labelMode}
+                            oncharacteristicchange={handleCharacteristicChange}
+                            onwizardfinish={handleWizardFinish}
+                        ></c-vcp-characteristics-wizard>
+                    </template>
+
+                    <template if:true={debugMode}>
+                        <template if:true={createResponse}>
+                            <div class="json-box">
+                                <p class="json-title">Last Response</p>
+                                <pre>{createResponse}</pre>
+                            </div>
+                        </template>
+                    </template>
+
+                    <div class="form-footer">
+                        <lightning-button
+                            label="Discard &amp; Reload"
+                            icon-name="utility:refresh"
+                            onclick={handleResetConfigurationInSap}
+                            title="Reset configuration to initial state and reload from SAP VC"
+                        ></lightning-button>
+                        <lightning-button
+                            label="Back to Step 1"
+                            icon-name="utility:back"
+                            onclick={handleStep2Reset}
+                        ></lightning-button>
+                    </div>
+                </section>
+            </template>
+
+            <template if:true={showActivityLog}>
+                <section class="section activity-log">
+                    <h3 class="section-title">Activity Log</h3>
+                    <div class="log-box">
+                        <template if:false={activityLogForTemplate.length}>
+                            <span class="log-entry log-info">- No operations yet -</span>
+                        </template>
+                        <template for:each={activityLogForTemplate} for:item="entry">
+                            <div key={entry.key} class="log-entry" data-type={entry.type}>{entry.message}</div>
+                        </template>
+                    </div>
+                </section>
+            </template>
+        </div>
+    </lightning-card>
+</template>

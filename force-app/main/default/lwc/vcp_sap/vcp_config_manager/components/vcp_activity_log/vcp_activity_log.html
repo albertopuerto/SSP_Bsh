@@ -1,0 +1,57 @@
+<template>
+  <div class="vcp-activity-log">
+    <!-- Controls -->
+    <div class="slds-grid slds-wrap slds-gap_small slds-m-bottom_medium">
+      <div class="slds-grow">
+        <label for="filter-select" class="slds-form-element__label">Filter:</label>
+        <select id="filter-select" class="slds-select" onchange={handleFilterChange}>
+          <option value="all">All Activities</option>
+          <option value="success">Success</option>
+          <option value="error">Errors</option>
+          <option value="pending">Pending</option>
+        </select>
+      </div>
+      <div>
+        <button class="slds-button slds-button_outline-brand" onclick={clearLogs}>
+          Clear Log
+        </button>
+      </div>
+    </div>
+
+    <!-- Activity List -->
+    <div class="vcp-log-container" data-id="log-container">
+      <template if:false={filteredActivities.length}>
+        <div class="slds-text-align_center slds-text-color_weak slds-p-vertical_medium">
+          No activities yet
+        </div>
+      </template>
+
+      <template for:each={filteredActivities} for:item="activity" for:index="idx">
+        <div key={activity.id} class="vcp-activity-entry">
+          <div class="vcp-activity-header">
+            <span class="vcp-activity-time">{{ formatTime(activity.timestamp) }}</span>
+            <span class="vcp-activity-action">{{ activity.action }}</span>
+            <span class={getStatusClass(activity.status)} class="vcp-activity-status">
+              <template if:true={activity.duration}>
+                ({{ formatDuration(activity.duration) }})
+              </template>
+            </span>
+          </div>
+          <template if:true={activity.details}>
+            <div class="vcp-activity-details">
+              <span class="vcp-activity-detail-label"
+                >Details:</span
+              >
+              <code>{{ JSON.stringify(activity.details) }}</code>
+            </div>
+          </template>
+        </div>
+      </template>
+    </div>
+
+    <!-- Stats Footer -->
+    <div class="slds-text-color_weak slds-font-size_small slds-m-top_small">
+      Total: {{ activities.length }} activities
+    </div>
+  </div>
+</template>

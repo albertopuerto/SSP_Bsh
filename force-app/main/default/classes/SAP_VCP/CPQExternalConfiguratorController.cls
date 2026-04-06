@@ -255,11 +255,17 @@ global with sharing class CPQExternalConfiguratorController {
     /**
      * @description Resets a configuration session to its initial default values (v2).
      * Calls POST /api/v2/configurations/{configId}/reset.
+     *
+     * The etag parameter was added to support optimistic concurrency (If-Match header)
+     * required by SAP on this endpoint. Passing null is safe and omits the header,
+     * preserving backwards compatibility for existing callers (e.g. Visualforce page).
+     *
      * @param configId Unique configuration session ID
+     * @param etag     Current ETag value for If-Match header. Pass null to omit.
      * @return JSON response with the reset configuration state
      */
-    webservice static String resetConfigurationV2(String configId) {
-        return SAPVcProductConfigurationService.resetConfigurationV2(configId);
+    webservice static String resetConfigurationV2(String configId, String etag) {
+        return SAPVcProductConfigurationService.resetConfigurationV2(configId, etag);
     }
 
     /**

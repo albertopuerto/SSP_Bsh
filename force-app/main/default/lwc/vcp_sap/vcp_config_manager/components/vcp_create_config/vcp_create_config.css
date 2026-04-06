@@ -1,0 +1,16 @@
+.vcp-create-config {
+  padding: 1rem 0;
+}
+
+.vcp-create-config pre {
+  background-color: #f3f3f3;
+  padding: 1rem;
+  border-radius: 0.25rem;
+  overflow-x: auto;
+  font-size: 0.75rem;
+}
+
+.vcp-create-config code {
+  font-family: 'Courier New', monospace;
+  color: #545454;
+}

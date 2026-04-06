@@ -1,0 +1,98 @@
+<template>
+  <div class="vcp-configure-product">
+    <!-- Header with Language Selector -->
+    <div class="vcp-header">
+      <h3 class="vcp-title">Product Configuration</h3>
+      <c-vcp-lang-selector></c-vcp-lang-selector>
+    </div>
+
+    <!-- Controls Row -->
+    <div class="vcp-controls">
+      <div class="slds-grid slds-wrap slds-gap_medium">
+        <!-- Field Visibility Mode -->
+        <div class="slds-col slds-size_1-of-4">
+          <label class="slds-form-element__label">Field Visibility</label>
+          <select class="slds-select" value={visibilityMode} onchange={handleVisibilityModeChange}>
+            <option value="all">All Fields</option>
+            <option value="editable">Editable Only</option>
+            <option value="grouped">Grouped</option>
+          </select>
+        </div>
+
+        <!-- Grouping Mode -->
+        <div class="slds-col slds-size_1-of-4">
+          <label class="slds-form-element__label">Grouping Mode</label>
+          <select class="slds-select" value={groupingMode} onchange={handleGroupingModeChange}>
+            <option value="flat">Flat</option>
+            <option value="byCharacteristics">By Characteristics</option>
+            <option value="byValue">By Value</option>
+          </select>
+        </div>
+
+        <!-- ETag -->
+        <div class="slds-col slds-size_1-of-4">
+          <lightning-input
+            type="text"
+            label="ETag"
+            value={eTag}
+            onchange={handleETagChange}
+            placeholder="Generated automatically"
+          ></lightning-input>
+        </div>
+
+        <!-- ETag Version Preset -->
+        <div class="slds-col slds-size_1-of-4">
+          <lightning-input
+            type="number"
+            label="ETag Version"
+            value={eTagVersion}
+            onchange={handleETagVersionChange}
+            min="0"
+          ></lightning-input>
+        </div>
+      </div>
+    </div>
+
+    <!-- Action Buttons -->
+    <div class="slds-m-top_medium">
+      <button class="slds-button slds-button_brand" onclick={handlePatch} disabled={isLoading}>
+        <template if:false={isLoading}>
+          <lightning-icon icon-name="utility:upload" size="small"></lightning-icon>
+          Generate PATCH
+        </template>
+        <template if:true={isLoading}>
+          <lightning-spinner size="small"></lightning-spinner>
+          Patching...
+        </template>
+      </button>
+
+      <button class="slds-button slds-button_neutral slds-m-left_small" onclick={handleReset}>
+        <lightning-icon icon-name="utility:undo" size="small"></lightning-icon>
+        Back to Step 1
+      </button>
+    </div>
+
+    <!-- Error Display -->
+    <template if:true={error}>
+      <div class="slds-notify slds-notify_alert slds-alert_error slds-m-top_medium">
+        <span>{{ error }}</span>
+      </div>
+    </template>
+
+    <!-- Configuration Summary -->
+    <template if:true={configuration}>
+      <div class="slds-m-top_large">
+        <h3 class="slds-text-title">Configuration Summary</h3>
+        <pre><code>{{ JSON.stringify(configuration, null, 2) }}</code></pre>
+      </div>
+    </template>
+
+    <!-- PATCH Preview -->
+    <template if:true={patchJson}>
+      <div class="slds-m-top_large">
+        <h3 class="slds-text-title">PATCH Request</h3>
+        <pre><code>{{ JSON.stringify(patchJson, null, 2) }}</code></pre>
+      </div>
+    </template>
+  </div>
+</template>

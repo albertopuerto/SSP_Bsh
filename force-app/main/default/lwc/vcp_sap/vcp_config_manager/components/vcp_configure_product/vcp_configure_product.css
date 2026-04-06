@@ -1,0 +1,39 @@
+.vcp-configure-product {
+  padding: 1rem 0;
+}
+
+.vcp-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #d8dde6;
+}
+
+.vcp-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #0a132e;
+  margin: 0;
+}
+
+.vcp-controls {
+  background-color: #f3f3f3;
+  padding: 1rem;
+  border-radius: 0.25rem;
+  margin-bottom: 1.5rem;
+}
+
+.vcp-configure-product pre {
+  background-color: #f3f3f3;
+  padding: 1rem;
+  border-radius: 0.25rem;
+  overflow-x: auto;
+  font-size: 0.75rem;
+}
+
+.vcp-configure-product code {
+  font-family: 'Courier New', monospace;
+  color: #545454;
+}

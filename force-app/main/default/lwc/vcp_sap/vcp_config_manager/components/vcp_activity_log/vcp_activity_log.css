@@ -1,0 +1,68 @@
+.vcp-activity-log {
+  display: flex;
+  flex-direction: column;
+}
+
+.vcp-log-container {
+  border: 1px solid #d8dde6;
+  border-radius: 0.25rem;
+  background-color: #ffffff;
+  overflow-y: auto;
+  max-height: 350px;
+  padding: 0;
+}
+
+.vcp-activity-entry {
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid #f0f0f0;
+  font-family: monospace;
+  font-size: 0.8125rem;
+}
+
+.vcp-activity-entry:last-child {
+  border-bottom: none;
+}
+
+.vcp-activity-header {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  margin-bottom: 0.25rem;
+}
+
+.vcp-activity-time {
+  color: #706e6b;
+  min-width: 8rem;
+}
+
+.vcp-activity-action {
+  font-weight: 600;
+  color: #0a132e;
+  flex: 1;
+}
+
+.vcp-activity-status {
+  color: #54698d;
+  font-weight: 500;
+}
+
+.vcp-activity-details {
+  margin-left: 8rem;
+  margin-top: 0.5rem;
+  padding: 0.5rem;
+  background-color: #f0f0f0;
+  border-left: 2px solid #0070d2;
+  border-radius: 0.125rem;
+}
+
+.vcp-activity-detail-label {
+  display: inline-block;
+  font-weight: 600;
+  color: #0a132e;
+  margin-right: 0.5rem;
+}
+
+.vcp-activity-details code {
+  color: #545454;
+  word-break: break-all;
+}

@@ -1,0 +1,56 @@
+<template>
+    <template if:true={hasCharacteristics}>
+        <div class="char-grid">
+            <template for:each={filteredCharacteristics} for:item="char">
+                <div key={char.key} class={char.fieldClass}>
+                    <div class="char-label">
+                        {char.label}
+                        <template if:true={char.required}>
+                            <span class="required-indicator"> *</span>
+                        </template>
+                    </div>
+                    <div class="char-badges">
+                        <template if:true={char.badgeHidden}>
+                            <span class="badge badge-hidden">hidden</span>
+                        </template>
+                        <template if:true={char.badgeReadonly}>
+                            <span class="badge badge-readonly">readonly</span>
+                        </template>
+                        <template if:true={char.badgeRequired}>
+                            <span class="badge badge-required">required</span>
+                        </template>
+                        <template if:true={char.badgeInconsistent}>
+                            <span class="badge badge-warn">inconsistent</span>
+                        </template>
+                        <template if:true={char.badgeIncomplete}>
+                            <span class="badge badge-warn">incomplete</span>
+                        </template>
+                    </div>
+                    <template if:true={char.isRadioGroup}>
+                        <lightning-radio-group
+                            name={char.id}
+                            label=" "
+                            options={char.options}
+                            value={char.currentValue}
+                            type="radio"
+                            data-char-id={char.id}
+                            onchange={handleChange}
+                        ></lightning-radio-group>
+                    </template>
+                    <template if:true={char.isTextInput}>
+                        <lightning-input
+                            type="text"
+                            label=" "
+                            value={char.currentValue}
+                            data-char-id={char.id}
+                            onchange={handleChange}
+                        ></lightning-input>
+                    </template>
+                    <template if:true={char.isReadonlyDisplay}>
+                        <span class="char-value-readonly">{char.currentValue}</span>
+                    </template>
+                </div>
+            </template>
+        </div>
+    </template>
+</template>

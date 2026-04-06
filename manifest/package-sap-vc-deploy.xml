@@ -4,6 +4,7 @@
         <members>CPQExternalConfiguratorController</members>
         <members>CPQExternalConfiguratorControllerPoC</members>
         <members>SAPVcProductConfigurationService</members>
+        <members>VcpConfigManagerController</members>
         <name>ApexClass</name>
     </types>
     <types>
@@ -21,9 +22,20 @@
     </types>
     <types>
         <members>countriesIcons</members>
+        <members>VC_CPQ_Mocks</members>
         <name>StaticResource</name>
     </types>
-    <version>62.0</version>
+    <types>
+        <members>vcpCharacteristicsForm</members>
+        <members>vcpCharacteristicsWizard</members>
+        <members>vcpConfigManager</members>
+        <name>LightningComponentBundle</name>
+    </types>
+    <types>
+        <members>SBQQ__Quote__c.VCP_Add_Product</members>
+        <name>QuickAction</name>
+    </types>
+    <version>66.0</version>
 </Package>
 <!--
     Deployment package for SAP Variant Configuration integration.
@@ -35,6 +47,16 @@
       - CPQExternalConfiguratorTabs        : Dev/test VF page — main external configurator UI
       - CPQExternalConfiguratorTabsPoC     : Legacy PoC VF page
       - SAP_VariantConfiguration_Agent     : Permission set granting class + external credential access
+
+            - Lightning Web Components (LWC):
+                * vcpConfigManager : Deployable LWC entry point for Quote product configuration demo and direct Record Action usage
+
+            - Quick Actions:
+                * SBQQ__Quote__c.VCP_Add_Product : Quote action to launch the VCP product flow
+        
+      - Static Resources:
+        * countriesIcons : Flag PNG images (16x18px) for language selector
+        * VC_CPQ_Mocks   : Mock API responses for testing and development
 
     Deploy command (from workspace root):
       sf project deploy start --manifest manifest/package-sap-vc-deploy.xml --target-org <alias>

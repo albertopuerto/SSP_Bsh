@@ -220,12 +220,29 @@ public with sharing class SAPVcProductConfigurationService {
     /**
      * @description Resets a configuration session to its initial default values.
      * Calls POST /api/v2/configurations/{configId}/reset.
+     *
+     * SAP requires a valid If-Match header on this endpoint (wildcards such as '*' are
+     * rejected with 400 "Malformed ETag"). If the caller does not supply a usable ETag,
+     * this method fetches the current configuration via GET to obtain a fresh one before
+     * calling /reset. This covers the case where the LWC has not yet captured a valid ETag
+     * (e.g. when SAP omits the ETag header from certain GET responses).
+     *
+     * Backwards-compatible: the Visualforce page calls this with etag = null; a GET is made
+     * automatically to resolve a valid ETag, so the VF page also benefits from this fix.
+     *
      * @param configId Unique configuration session ID
+     * @param etag     Current ETag value for optimistic concurrency (If-Match header).
+     *                 Pass null, blank, or '*' to have the method auto-resolve via GET.
      * @return JSON response with reset configuration state
      */
-    public static String resetConfigurationV2(String configId) {
+    public static String resetConfigurationV2(String configId, String etag) {
         validateRequired(configId, 'Configuration ID cannot be blank');
-        return callApi('POST', '/api/v2/configurations/' + encode(configId) + '/reset', null, null, false);
+        String resolvedETag = etag;
+        if (String.isBlank(resolvedETag) || resolvedETag == '*') {
+            // SAP rejects '*' with 400; fetch the current ETag before calling /reset.
+            resolvedETag = extractETagFromConfig(getConfigurationV2(configId));
+        }
+        return callApi('POST', '/api/v2/configurations/' + encode(configId) + '/reset', null, buildIfMatchHeader(resolvedETag), false);
     }
 
     /**

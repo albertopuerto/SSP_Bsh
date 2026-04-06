@@ -1,0 +1,39 @@
+.vcp-config-manager {
+  padding: 1.5rem;
+  background-color: #f3f3f3;
+  min-height: 100vh;
+}
+
+.vcp-section {
+  background-color: #ffffff;
+  border: 1px solid #d8dde6;
+  border-radius: 0.25rem;
+  margin-bottom: 1.5rem;
+  padding: 1.5rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.vcp-section h2 {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: #0070d2;
+  margin-bottom: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.vcp-section_log {
+  background-color: #fafbfc;
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.slds-badge {
+  background-color: #0070d2;
+  color: #ffffff;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+}

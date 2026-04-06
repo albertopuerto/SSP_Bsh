@@ -1,0 +1,58 @@
+<template>
+  <div class="vcp-lang-selector" data-id="dropdown-container">
+    <!-- Language Selector Button -->
+    <button
+      class="slds-button slds-button_neutral vcp-lang-button"
+      onclick={toggleDropdown}
+      title="Select language"
+    >
+      <span class="vcp-lang-flag">
+        <template if:false={currentLanguage || currentLanguage === 'api'}>
+          <!-- API IDs emoji -->
+          <span>🤖</span>
+        </template>
+        <template if:true={supportedLanguages[currentLanguage]?.flagUrl}>
+          <!-- Flag image for en, es, de -->
+          <img
+            src={getFlagUrl(currentLanguage)}
+            alt="Flag"
+            class="vcp-lang-flag-img"
+          />
+        </template>
+      </span>
+      <span class="vcp-lang-label">{{ getCurrentLabel() }}</span>
+      <lightning-icon
+        icon-name={isDropdownOpen ? 'utility:chevronup' : 'utility:chevrondown'}
+        size="x-small"
+        class="vcp-lang-caret"
+      ></lightning-icon>
+    </button>
+
+    <!-- Dropdown Menu -->
+    <template if:true={isDropdownOpen}>
+      <div class="vcp-lang-dropdown">
+        <template for:each={supportedLanguages} for:item="lang" for:index="idx">
+          <button
+            key={lang.code}
+            class="slds-button slds-button_reset vcp-lang-option"
+            data-language={lang.code}
+            onclick={selectLanguage}
+            type="button"
+          >
+            <span class="vcp-lang-option-flag">
+              <template if:false={lang.flagUrl}>
+                <!-- Emoji for API IDs -->
+                <span>{{ lang.flag }}</span>
+              </template>
+              <template if:true={lang.flagUrl}>
+                <!-- Flag image -->
+                <img src={getFlagUrl(lang.code)} alt="Flag" class="vcp-lang-flag-img-option" />
+              </template>
+            </span>
+            <span class="vcp-lang-option-label">{{ lang.label }}</span>
+          </button>
+        </template>
+      </div>
+    </template>
+  </div>
+</template>

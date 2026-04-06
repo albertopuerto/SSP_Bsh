@@ -1,0 +1,79 @@
+<template>
+    <template if:true={hasSteps}>
+        <div class="wizard-container">
+            <div class="wizard-header">
+                <span class="step-indicator">Field {stepIndicator}</span>
+            </div>
+            <lightning-progress-bar value={progressPercent} size="x-small"></lightning-progress-bar>
+
+            <template if:true={currentCharacteristic}>
+                <div class="wizard-field">
+                    <div class="char-label">
+                        {currentCharacteristic.label}
+                        <template if:true={currentCharacteristic.required}>
+                            <span class="required-indicator"> *</span>
+                        </template>
+                    </div>
+                    <div class="char-badges">
+                        <template if:true={currentCharacteristic.badgeReadonly}>
+                            <span class="badge badge-readonly">readonly</span>
+                        </template>
+                        <template if:true={currentCharacteristic.badgeRequired}>
+                            <span class="badge badge-required">required</span>
+                        </template>
+                        <template if:true={currentCharacteristic.badgeInconsistent}>
+                            <span class="badge badge-warn">inconsistent</span>
+                        </template>
+                        <template if:true={currentCharacteristic.badgeIncomplete}>
+                            <span class="badge badge-warn">incomplete</span>
+                        </template>
+                    </div>
+                    <template if:true={currentCharacteristic.isRadioGroup}>
+                        <lightning-radio-group
+                            name={currentCharacteristic.id}
+                            label=" "
+                            options={currentCharacteristic.options}
+                            value={currentCharacteristic.currentValue}
+                            type="radio"
+                            onchange={handleChange}
+                        ></lightning-radio-group>
+                    </template>
+                    <template if:true={currentCharacteristic.isTextInput}>
+                        <lightning-input
+                            type="text"
+                            label=" "
+                            value={currentCharacteristic.currentValue}
+                            onchange={handleChange}
+                        ></lightning-input>
+                    </template>
+                    <template if:true={currentCharacteristic.isReadonlyDisplay}>
+                        <span class="char-value-readonly">{currentCharacteristic.currentValue}</span>
+                    </template>
+                </div>
+            </template>
+
+            <div class="wizard-buttons">
+                <lightning-button
+                    variant="neutral"
+                    label="← Back"
+                    onclick={handlePrevious}
+                    disabled={isFirstStep}
+                ></lightning-button>
+                <template if:false={isLastStep}>
+                    <lightning-button
+                        variant="brand"
+                        label="Next →"
+                        onclick={handleNext}
+                    ></lightning-button>
+                </template>
+                <template if:true={isLastStep}>
+                    <lightning-button
+                        variant="success"
+                        label="Finish ✓"
+                        onclick={handleFinish}
+                    ></lightning-button>
+                </template>
+            </div>
+        </div>
+    </template>
+</template>

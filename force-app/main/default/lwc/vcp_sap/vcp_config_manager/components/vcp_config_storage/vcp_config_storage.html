@@ -1,0 +1,60 @@
+<template>
+  <div class="vcp-config-storage">
+    <div class="slds-grid slds-wrap slds-gap_medium">
+      <!-- Stored Config ID Display -->
+      <div class="slds-col slds-size_full">
+        <lightning-input
+          type="text"
+          label="Stored Config ID"
+          value={storedConfigId}
+          readonly
+          data-id="stored-config"
+          placeholder="No configuration stored"
+        ></lightning-input>
+      </div>
+
+      <!-- Action Buttons Grid -->
+      <div class="slds-col slds-size_full">
+        <div class="slds-grid slds-wrap slds-gap_medium">
+          <button
+            class="slds-button slds-button_brand slds-col slds-size_1-of-2"
+            onclick={loadStoredConfig}
+            disabled={isLoading}
+          >
+            <span class="slds-icon_container slds-m-right_small">
+              <lightning-icon icon-name="utility:download" size="small"></lightning-icon>
+            </span>
+            Load Stored
+          </button>
+
+          <button
+            class="slds-button slds-button_neutral slds-col slds-size_1-of-2"
+            onclick={clearConfig}
+            disabled={isLoading}
+          >
+            <span class="slds-icon_container slds-m-right_small">
+              <lightning-icon icon-name="utility:delete" size="small"></lightning-icon>
+            </span>
+            Clear
+          </button>
+        </div>
+      </div>
+
+      <!-- Error Display -->
+      <template if:true={error}>
+        <div class="slds-col slds-size_full">
+          <div class="slds-notify slds-notify_alert slds-alert_error" role="alert">
+            <span class="slds-text-color_error">{{ error }}</span>
+          </div>
+        </div>
+      </template>
+
+      <!-- Loading Indicator -->
+      <template if:true={isLoading}>
+        <div class="slds-col slds-size_full">
+          <lightning-spinner size="small"></lightning-spinner>
+        </div>
+      </template>
+    </div>
+  </div>
+</template>

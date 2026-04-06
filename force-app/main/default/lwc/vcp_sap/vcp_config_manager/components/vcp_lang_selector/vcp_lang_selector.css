@@ -1,0 +1,99 @@
+.vcp-lang-selector {
+  position: relative;
+  display: inline-block;
+}
+
+.vcp-lang-button {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  border: 1px solid #d8dde6;
+  border-radius: 0.25rem;
+  background-color: #ffffff;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.vcp-lang-button:hover {
+  background-color: #f3f3f3;
+  border-color: #0070d2;
+}
+
+.vcp-lang-button:focus {
+  box-shadow: 0 0 0 2px #ffffff, 0 0 0 3px #0070d2;
+  outline: none;
+}
+
+.vcp-lang-flag {
+  display: inline-flex;
+  align-items: center;
+  width: 18px;
+  height: 13px;
+}
+
+.vcp-lang-flag-img,
+.vcp-lang-flag-img-option {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 2px;
+}
+
+.vcp-lang-label {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #0a132e;
+}
+
+.vcp-lang-caret {
+  margin-left: 0.25rem;
+  color: #706e6b;
+}
+
+.vcp-lang-dropdown {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  background-color: #ffffff;
+  border: 1px solid #d8dde6;
+  border-radius: 0.25rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  z-index: 1000;
+  min-width: 150px;
+}
+
+.vcp-lang-option {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+  text-align: left;
+}
+
+.vcp-lang-option:hover {
+  background-color: #f3f3f3;
+}
+
+.vcp-lang-option:focus {
+  background-color: #e8f1ff;
+  outline: none;
+}
+
+.vcp-lang-option-flag {
+  display: inline-flex;
+  align-items: center;
+  width: 18px;
+  height: 13px;
+  flex-shrink: 0;
+}
+
+.vcp-lang-option-label {
+  font-size: 0.875rem;
+  color: #0a132e;
+}

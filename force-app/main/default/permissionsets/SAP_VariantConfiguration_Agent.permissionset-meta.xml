@@ -12,6 +12,10 @@
         <apexClass>SAPVcProductConfigurationService</apexClass>
         <enabled>true</enabled>
     </classAccesses>
+    <classAccesses>
+        <apexClass>VcpConfigManagerController</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
     <description>Permission Set for SAP Variant Configuration Integration - grants access to External Credentials for SAP BTP</description>
     <externalCredentialPrincipalAccesses>
         <enabled>true</enabled>

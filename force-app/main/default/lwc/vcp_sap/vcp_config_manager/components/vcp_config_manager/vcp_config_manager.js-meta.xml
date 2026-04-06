@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>62.0</apiVersion>
+    <isExposed>true</isExposed>
+    <masterLabel>VCP Config Manager</masterLabel>
+    <description>Main container for E2E testing of SAP Variant Configuration integration. Launched from Quote Quick Action with product parameters and demo fallback defaults.</description>
+    <targets>
+        <target>lightning__FlexiPage</target>
+        <target>lightning__HomePage</target>
+        <target>lightning__RecordPage</target>
+        <target>lightning__RecordAction</target>
+    </targets>
+    <targetConfigs>
+        <targetConfig targets="lightning__RecordPage">
+            <property name="quoteId" type="String" description="Quote ID to load configuration from" />
+            <property name="productCode" type="String" description="Product code (e.g. F-00K-115-059)" />
+            <property name="productId" type="String" description="Product record ID" />
+            <property name="quoteLineId" type="String" description="Quote Line Item ID (optional)" />
+        </targetConfig>
+        <targetConfig targets="lightning__RecordAction">
+            <actionType>ScreenAction</actionType>
+        </targetConfig>
+    </targetConfigs>
+</LightningComponentBundle>
