@@ -1,0 +1,16 @@
+<template>
+    <template if:true={hasGroups}>
+        <lightning-tabset variant="scoped">
+            <template for:each={groups} for:item="group">
+                <lightning-tab key={group.key} label={group.groupLabel} value={group.groupId}>
+                    <c-vcp-characteristics-form
+                        characteristics={group.characteristics}
+                        visibility-mode={visibilityMode}
+                        label-mode={labelMode}
+                        oncharacteristicchange={handleCharacteristicChange}
+                    ></c-vcp-characteristics-form>
+                </lightning-tab>
+            </template>
+        </lightning-tabset>
+    </template>
+</template>

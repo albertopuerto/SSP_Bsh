@@ -1,0 +1,9 @@
+{
+  "success": false,
+  "statusCode": 401,
+  "message": "Unauthorized",
+  "data": {
+    "errorCode": "VC_AUTH_401",
+    "correlationId": "mock-corr-401"
+  }
+}

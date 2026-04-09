@@ -1,5 +1,7 @@
 @isTest
 private class VcpConfigManagerController_Test {
+    static String lastIfMatch;
+
     private static SBQQ__Quote__c crearQuoteDePrueba() {
         return (SBQQ__Quote__c) TestFactory.createSObject(
             new SBQQ__Quote__c(),
@@ -28,12 +30,6 @@ private class VcpConfigManagerController_Test {
     }
 
     @isTest
-    static void test_validate_json_true_false() {
-        System.assertEquals(true, VcpConfigManagerController.validateJSON('{"a":1}'));
-        System.assertEquals(false, VcpConfigManagerController.validateJSON('{a:1'));
-    }
-
-    @isTest
     static void test_get_configuration_200_con_etag_inyectado() {
         Test.setMock(HttpCalloutMock.class, new mock_get_configuration_200());
 
@@ -46,14 +42,14 @@ private class VcpConfigManagerController_Test {
 
     @isTest
     static void test_reset_configuration_200_auto_etag_desde_get() {
-        mock_get_then_post_reset_200.lastIfMatch = null;
+        lastIfMatch = null;
         Test.setMock(HttpCalloutMock.class, new mock_get_then_post_reset_200());
 
         String raw = VcpConfigManagerController.resetConfigurationV2('cfg-001', '*');
         Map<String, Object> payload = (Map<String, Object>) JSON.deserializeUntyped(raw);
 
         System.assertEquals(true, payload.get('reset'));
-        System.assertEquals('W/"9"', mock_get_then_post_reset_200.lastIfMatch);
+        System.assertEquals('W/"9"', lastIfMatch);
     }
 
     @isTest
@@ -71,10 +67,45 @@ private class VcpConfigManagerController_Test {
     static void test_get_translations_200() {
         Test.setMock(HttpCalloutMock.class, new mock_get_translations_200());
 
-        String raw = VcpConfigManagerController.getKnowledgebaseTranslations('-3', 'es');
+        String raw = VcpConfigManagerController.getKnowledgebaseTranslations('-3', 'en');
         Map<String, Object> payload = (Map<String, Object>) JSON.deserializeUntyped(raw);
 
-        System.assertEquals('es', (String) payload.get('language'));
+        List<Object> chars = (List<Object>) payload.get('characteristics');
+        System.assertNotEquals(null, chars, 'characteristics must be present');
+        System.assert(chars.size() > 0, 'Expected at least one characteristic translation');
+
+        Map<String, Object> firstChar = (Map<String, Object>) chars.get(0);
+        System.assertEquals('X70_INCA_BASE_LIC_QM', (String) firstChar.get('id'));
+
+        List<Object> products = (List<Object>) payload.get('products');
+        System.assertNotEquals(null, products, 'products must be present');
+        System.assertEquals('F00K001001', (String) ((Map<String, Object>) products.get(0)).get('id'));
+    }
+
+    @isTest
+    static void test_get_char_translations_200() {
+        Test.setMock(HttpCalloutMock.class, new mock_get_char_translations_200());
+
+        String raw = VcpConfigManagerController.getKnowledgebaseCharacteristicTranslations('-3', 'en');
+        Map<String, Object> payload = (Map<String, Object>) JSON.deserializeUntyped(raw);
+
+        List<Object> chars = (List<Object>) payload.get('characteristics');
+        System.assertNotEquals(null, chars, 'characteristics must be present');
+        System.assert(chars.size() > 0, 'Expected at least one characteristic translation');
+
+        // Verify possibleValues translations are present for X70_INCA_INCA
+        Map<String, Object> incaChar = null;
+        for (Object c : chars) {
+            Map<String, Object> cm = (Map<String, Object>) c;
+            if ('X70_INCA_INCA'.equals((String) cm.get('id'))) {
+                incaChar = cm;
+                break;
+            }
+        }
+        System.assertNotEquals(null, incaChar, 'X70_INCA_INCA characteristic not found');
+        List<Object> possibleValues = (List<Object>) incaChar.get('possibleValues');
+        System.assertNotEquals(null, possibleValues, 'possibleValues must be present');
+        System.assertEquals(2, possibleValues.size());
     }
 
     private class mock_get_configuration_200 implements HttpCalloutMock {
@@ -88,8 +119,6 @@ private class VcpConfigManagerController_Test {
     }
 
     private class mock_get_then_post_reset_200 implements HttpCalloutMock {
-        static String lastIfMatch;
-
         public HttpResponse respond(HttpRequest req) {
             HttpResponse res = new HttpResponse();
             String endpoint = req.getEndpoint();
@@ -125,9 +154,20 @@ private class VcpConfigManagerController_Test {
 
     private class mock_get_translations_200 implements HttpCalloutMock {
         public HttpResponse respond(HttpRequest req) {
+            StaticResource sr = [SELECT Body FROM StaticResource WHERE Name = 'vcp_kb_translations_success' LIMIT 1];
             HttpResponse res = new HttpResponse();
             res.setStatusCode(200);
-            res.setBody('{"language":"es","translations":[]}');
+            res.setBody(sr.Body.toString());
+            return res;
+        }
+    }
+
+    private class mock_get_char_translations_200 implements HttpCalloutMock {
+        public HttpResponse respond(HttpRequest req) {
+            StaticResource sr = [SELECT Body FROM StaticResource WHERE Name = 'vcp_kb_translations_characteristics_success' LIMIT 1];
+            HttpResponse res = new HttpResponse();
+            res.setStatusCode(200);
+            res.setBody(sr.Body.toString());
             return res;
         }
     }

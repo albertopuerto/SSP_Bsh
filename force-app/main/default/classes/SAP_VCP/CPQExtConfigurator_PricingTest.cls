@@ -1,5 +1,7 @@
 @isTest
-private class CPQExternalConfiguratorController_Pricing_Test {
+private class CPQExtConfigurator_PricingTest {
+    static String lastIfMatch;
+
     @isTest
     static void test_post_pricingCreateDocument_201() {
         Test.setMock(HttpCalloutMock.class, new mock_post_pricingCreateDocument_201());
@@ -12,14 +14,14 @@ private class CPQExternalConfiguratorController_Pricing_Test {
 
     @isTest
     static void test_post_pricingCreateItems_200_con_ifmatch() {
-        mock_post_pricingCreateItems_200.lastIfMatch = null;
+        lastIfMatch = null;
         Test.setMock(HttpCalloutMock.class, new mock_post_pricingCreateItems_200());
 
         String raw = CPQExternalConfiguratorController.pricingCreateItems('doc-001', '{"items":[]}', 'W/"4"');
         Map<String, Object> payload = (Map<String, Object>) JSON.deserializeUntyped(raw);
 
         System.assertEquals(true, payload.get('ok'));
-        System.assertEquals('W/"4"', mock_post_pricingCreateItems_200.lastIfMatch);
+        System.assertEquals('W/"4"', lastIfMatch);
     }
 
     @isTest
@@ -47,8 +49,6 @@ private class CPQExternalConfiguratorController_Pricing_Test {
     }
 
     private class mock_post_pricingCreateItems_200 implements HttpCalloutMock {
-        static String lastIfMatch;
-
         public HttpResponse respond(HttpRequest req) {
             lastIfMatch = req.getHeader('If-Match');
             HttpResponse res = new HttpResponse();

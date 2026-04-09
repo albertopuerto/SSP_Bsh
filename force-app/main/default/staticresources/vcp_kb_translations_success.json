@@ -1,0 +1,207 @@
+{
+  "products": [
+    {
+      "id": "F00K001001",
+      "translation": [
+        { "language": "en", "name": "INCA-SW(Bundle)" }
+      ],
+      "characteristicGroups": [
+        {
+          "id": "$general",
+          "translation": [
+            { "language": "en", "name": "General" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "F00K001007",
+      "translation": [
+        { "language": "en", "name": "INCA BASE Licenses" }
+      ],
+      "characteristicGroups": [
+        {
+          "id": "$general",
+          "translation": [
+            { "language": "en", "name": "General" }
+          ]
+        }
+      ]
+    }
+  ],
+  "classes": [
+    {
+      "id": "X70_CL_INCA_LIC",
+      "translation": [
+        { "language": "en", "name": "INCA LICENSE" }
+      ]
+    },
+    {
+      "id": "X70_CL_INCA_SOL",
+      "translation": [
+        { "language": "en", "name": "INCA Solution Bundle" }
+      ]
+    }
+  ],
+  "characteristics": [
+    {
+      "id": "X70_INCA_BASE_LIC_QM",
+      "translation": [{ "language": "en", "name": "Licenses Quantity" }]
+    },
+    {
+      "id": "X70_INCA_MIP_LIC_DUR",
+      "translation": [{ "language": "en", "name": "License Duration" }]
+    },
+    {
+      "id": "X70_INCA_QMB_SRV",
+      "translation": [{ "language": "en", "name": "Add-on QM BASIC SrvContract" }]
+    },
+    {
+      "id": "X70_INCA_FLX_SRV",
+      "translation": [{ "language": "en", "name": "Add-on Flexray Srv Contract" }]
+    },
+    {
+      "id": "X70_INCA_MIP_LIC_DES",
+      "translation": [{ "language": "en", "name": "Add-on MIP Short text" }]
+    },
+    {
+      "id": "X70_INCA_MIP_HLP_SRV",
+      "translation": [{ "language": "en", "name": "MIP Help Srv" }]
+    },
+    {
+      "id": "X70_INCA_BASE_LIC_DUR",
+      "translation": [{ "language": "en", "name": "License Duration" }]
+    },
+    {
+      "id": "X70_INCA_INCA",
+      "translation": [{ "language": "en", "name": "INCA" }],
+      "possibleValues": [
+        { "id": "0", "translation": [{ "language": "en", "name": "NO" }] },
+        { "id": "1", "translation": [{ "language": "en", "name": "YES" }] }
+      ]
+    },
+    {
+      "id": "X70_INCA_QMB_SRV_DES",
+      "translation": [{ "language": "en", "name": "Add-on QM BASIC Short text" }]
+    },
+    {
+      "id": "X70_INCA_FLX_HLP_LIC_DUR_TYPE",
+      "translation": [{ "language": "en", "name": "Flexray Help Duration Type" }]
+    },
+    {
+      "id": "X70_INCA_MIP",
+      "translation": [{ "language": "en", "name": "Add-on Matlab Integration Pack" }]
+    },
+    {
+      "id": "X70_INCA_BASE_LIC",
+      "translation": [{ "language": "en", "name": "INCA BASE LICENSE" }],
+      "possibleValues": [
+        { "id": "CP", "translation": [{ "language": "en", "name": "Floating License" }] },
+        { "id": "MP", "translation": [{ "language": "en", "name": "Machine-named License" }] },
+        { "id": "UP", "translation": [{ "language": "en", "name": "User-named license" }] }
+      ]
+    },
+    {
+      "id": "X70_INCA_MIP_LIC",
+      "translation": [{ "language": "en", "name": "Add-on MIP Licenses" }]
+    },
+    {
+      "id": "X70_INCA_MIP_LIC_DUR_TYPE",
+      "translation": [{ "language": "en", "name": "Access Duration" }]
+    },
+    {
+      "id": "X70_INCA_FLX",
+      "translation": [{ "language": "en", "name": "Add-on Flexray" }],
+      "possibleValues": [
+        { "id": "0", "translation": [{ "language": "en", "name": "NO" }] },
+        { "id": "1", "translation": [{ "language": "en", "name": "YES" }] }
+      ]
+    },
+    {
+      "id": "X70_INCA_FLX_LIC_DUR",
+      "translation": [{ "language": "en", "name": "License Duration" }]
+    },
+    {
+      "id": "X70_INCA_INCA_LIC_DES",
+      "translation": [{ "language": "en", "name": "INCA Bases Short Text" }]
+    },
+    {
+      "id": "X70_INCA_FLX_LIC_DES",
+      "translation": [{ "language": "en", "name": "Add-on Flexray Short Text" }]
+    },
+    {
+      "id": "X70_INCA_FLX_HLP_SRV",
+      "translation": [{ "language": "en", "name": "MIP Help Srv" }]
+    },
+    {
+      "id": "X70_INCA_QMB_LIC",
+      "translation": [{ "language": "en", "name": "Add-on QM BASIC LICENSE" }],
+      "possibleValues": [
+        { "id": "CP", "translation": [{ "language": "en", "name": "Floating License" }] },
+        { "id": "MP", "translation": [{ "language": "en", "name": "Machine-named License" }] },
+        { "id": "UP", "translation": [{ "language": "en", "name": "User-named license" }] }
+      ]
+    },
+    {
+      "id": "X70_INCA_MIP_SRV_DES",
+      "translation": [{ "language": "en", "name": "Add-on MIP Short text" }]
+    },
+    {
+      "id": "X70_INCA_QMB_LIC_QM",
+      "translation": [{ "language": "en", "name": "Licenses Quantity" }]
+    },
+    {
+      "id": "X70_INCA_FLX_LIC_QM",
+      "translation": [{ "language": "en", "name": "License Quantity" }]
+    },
+    {
+      "id": "X70_INCA_FLX_SRV_DES",
+      "translation": [{ "language": "en", "name": "Add-on Flexray Short Text" }]
+    },
+    {
+      "id": "X70_INCA_BASE_SRV_DES",
+      "translation": [{ "language": "en", "name": "INCA Bases Short Text" }]
+    },
+    {
+      "id": "X70_INCA_MIP_LIC_QM",
+      "translation": [{ "language": "en", "name": "License Quantity" }]
+    },
+    {
+      "id": "X70_INCA_QMB_LIC_DES",
+      "translation": [{ "language": "en", "name": "Add-on QM BASIC Short text" }]
+    },
+    {
+      "id": "X70_INCA_FLX_LIC",
+      "translation": [{ "language": "en", "name": "Add-on Flexray License" }],
+      "possibleValues": [
+        { "id": "CP", "translation": [{ "language": "en", "name": "Floating License" }] },
+        { "id": "MP", "translation": [{ "language": "en", "name": "Machine-named License" }] },
+        { "id": "UP", "translation": [{ "language": "en", "name": "User-named license" }] }
+      ]
+    },
+    {
+      "id": "X70_INCA_QM_BASIC",
+      "translation": [{ "language": "en", "name": "Add-on QM BASIC" }],
+      "possibleValues": [
+        { "id": "0", "translation": [{ "language": "en", "name": "NO" }] },
+        { "id": "1", "translation": [{ "language": "en", "name": "YES" }] }
+      ]
+    },
+    {
+      "id": "X70_INCA_MIP_HLP_LIC_DUR_TYPE",
+      "translation": [{ "language": "en", "name": "MIP Help Duration Type" }]
+    },
+    {
+      "id": "X70_INCA_BASE_SRV",
+      "translation": [{ "language": "en", "name": "INCA Base Product SrvContract" }]
+    },
+    {
+      "id": "X70_INCA_QMB_LIC_DUR",
+      "translation": [{ "language": "en", "name": "License Duration" }]
+    },
+    {
+      "id": "X70_INCA_MIP_SRV",
+      "translation": [{ "language": "en", "name": "Add-on MIP Integration Srv Con" }]
+    }
+  ]
+}

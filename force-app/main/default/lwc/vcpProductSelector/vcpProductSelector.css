@@ -1,0 +1,85 @@
+.filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.25rem;
+    align-items: flex-end;
+    padding-top: 0.25rem;
+}
+
+.filters lightning-combobox {
+    min-width: 240px;
+}
+
+.filters lightning-input {
+    padding-top: 0.1rem;
+}
+
+.result-count {
+    font-size: 0.78rem;
+    color: #706e6b;
+    letter-spacing: 0.02em;
+}
+
+.table-scroll {
+    overflow-x: auto;
+    overflow-y: auto;
+    max-height: 45vh;
+    width: 100%;
+}
+
+.error-box {
+    padding: 0.75rem 1rem;
+    background: #fef0ef;
+    border-left: 4px solid #c23934;
+    border-radius: 4px;
+    color: #c23934;
+    font-size: 0.875rem;
+}
+
+.back-nav {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.5rem 0.75rem;
+    margin-bottom: 0.25rem;
+}
+
+.back-label {
+    font-size: 0.82rem;
+    color: #706e6b;
+    font-style: italic;
+}
+
+.footer-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0.75rem 1rem;
+    border-top: 1px solid #e5e5e5;
+    background: #f8f9fb;
+}
+
+.selection-pill {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    background: #eaf5ea;
+    border: 1px solid #2e844a;
+    border-radius: 4px;
+    padding: 5px 12px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #2e844a;
+    letter-spacing: 0.01em;
+}
+
+.selection-icon {
+    --lwc-colorTextIconDefault: #2e844a;
+}
+
+.no-selection {
+    font-size: 0.82rem;
+    color: #aeaeae;
+    font-style: italic;
+}

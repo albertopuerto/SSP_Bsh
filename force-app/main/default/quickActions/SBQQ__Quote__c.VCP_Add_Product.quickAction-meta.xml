@@ -2,7 +2,7 @@
 <QuickAction xmlns="http://soap.sforce.com/2006/04/metadata">
     <actionSubtype>ScreenAction</actionSubtype>
     <label>VCP Add Product</label>
-    <lightningWebComponent>vcpConfigManager</lightningWebComponent>
+    <lightningWebComponent>vcpProductSelector</lightningWebComponent>
     <optionsCreateFeedItem>false</optionsCreateFeedItem>
     <type>LightningWebComponent</type>
 </QuickAction>

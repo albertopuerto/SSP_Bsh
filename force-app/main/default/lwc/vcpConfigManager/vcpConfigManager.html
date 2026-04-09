@@ -1,5 +1,15 @@
 <template>
     <lightning-card title="Add Product" icon-name="standard:product">
+        <template if:true={showBack}>
+            <lightning-button
+                slot="actions"
+                label="Back"
+                icon-name="utility:back"
+                icon-position="left"
+                variant="neutral"
+                onclick={handleBack}
+            ></lightning-button>
+        </template>
         <template if:true={isBusy}>
             <lightning-spinner size="medium" alternative-text="Loading"></lightning-spinner>
         </template>
@@ -100,6 +110,7 @@
                                     <span class="lang-label">View</span>
                                     <button class={formModeClass} onclick={handleDisplayModeForm}>📋 Form</button>
                                     <button class={wizardModeClass} onclick={handleDisplayModeWizard}>🧙 Wizard</button>
+                                    <button class={tabsModeClass} onclick={handleDisplayModeTabs}>🗂 Tabs</button>
                                 </div>
                                 <button class={debugToggleClass} onclick={handleDebugModeToggle} title="Toggle debug mode">🔧 Debug</button>
                             </div>
@@ -138,6 +149,14 @@
                             oncharacteristicchange={handleCharacteristicChange}
                             onwizardfinish={handleWizardFinish}
                         ></c-vcp-characteristics-wizard>
+                    </template>
+                    <template if:true={isTabsMode}>
+                        <c-vcp-characteristics-group-tabs
+                            groups={characteristicsByGroup}
+                            visibility-mode={visibilityMode}
+                            label-mode={labelMode}
+                            oncharacteristicchange={handleCharacteristicChange}
+                        ></c-vcp-characteristics-group-tabs>
                     </template>
 
                     <div class="form-footer">
@@ -189,14 +208,7 @@
             <template if:true={showActivityLog}>
                 <section class="section activity-log">
                     <h3 class="section-title">Activity Log</h3>
-                    <div class="log-box">
-                        <template if:false={activityLogForTemplate.length}>
-                            <span class="log-entry log-info">- No operations yet -</span>
-                        </template>
-                        <template for:each={activityLogForTemplate} for:item="entry">
-                            <div key={entry.key} class="log-entry" data-type={entry.type}>{entry.message}</div>
-                        </template>
-                    </div>
+                    <c-util-activity-log entries={activityLogForTemplate}></c-util-activity-log>
                 </section>
             </template>
         </div>

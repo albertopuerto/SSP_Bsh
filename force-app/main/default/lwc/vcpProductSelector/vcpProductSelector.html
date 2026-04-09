@@ -1,0 +1,81 @@
+<template>
+    <!-- Product list view -->
+    <template if:false={showConfigurator}>
+        <lightning-card title="Add Product — VCP LWC PoC" icon-name="standard:product_catalog">
+            <div class="filters slds-p-horizontal_medium slds-p-bottom_medium">
+                <lightning-combobox
+                    label="Product Family"
+                    value={selectedFamily}
+                    options={familyOptions}
+                    placeholder="— All Families —"
+                    onchange={handleFamilyChange}
+                ></lightning-combobox>
+                <lightning-input
+                    type="toggle"
+                    label="Externally Configurable only"
+                    checked={externallyConfigurableOnly}
+                    message-toggle-active="Yes"
+                    message-toggle-inactive="No"
+                    onchange={handleExternallyConfigurableChange}
+                ></lightning-input>
+            </div>
+
+            <template if:true={isBusy}>
+                <lightning-spinner size="medium" alternative-text="Loading products"></lightning-spinner>
+            </template>
+
+            <template if:true={hasError}>
+                <div class="error-box slds-m-horizontal_medium slds-m-bottom_medium">
+                    {errorMessage}
+                </div>
+            </template>
+
+            <template if:false={isBusy}>
+                <div class="slds-p-horizontal_medium slds-p-bottom_small result-count">
+                    {productCount} product(s) found
+                </div>
+                <div class="table-scroll">
+                    <lightning-datatable
+                        key-field="id"
+                        data={products}
+                        columns={columns}
+                        selected-rows={selectedRowIds}
+                        hide-checkbox-column
+                        sorted-by={sortField}
+                        sorted-direction={sortDirection}
+                        onsort={handleSort}
+                        onrowaction={handleRowAction}
+                    ></lightning-datatable>
+                </div>
+                <div class="footer-bar">
+                    <template if:true={hasSelection}>
+                        <span class="selection-pill">
+                            <lightning-icon icon-name="utility:check" size="x-small" class="selection-icon"></lightning-icon>
+                            {selectionLabel}
+                        </span>
+                    </template>
+                    <template if:false={hasSelection}>
+                        <span class="no-selection">No product selected</span>
+                    </template>
+                    <lightning-button
+                        label="Continue →"
+                        variant="brand"
+                        disabled={continueDisabled}
+                        onclick={handleContinue}
+                    ></lightning-button>
+                </div>
+            </template>
+        </lightning-card>
+    </template>
+
+    <!-- Configurator view — back button injected into child card's actions slot -->
+    <template if:true={showConfigurator}>
+        <c-vcp-config-manager
+            record-id={recordId}
+            product-code={selectedProduct.productCode}
+            product-id={selectedProduct.id}
+            show-back
+            onback={handleBackToList}
+        ></c-vcp-config-manager>
+    </template>
+</template>

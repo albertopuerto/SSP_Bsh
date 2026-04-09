@@ -32,6 +32,18 @@ public with sharing class VcpConfigManagerController {
         return CPQExternalConfiguratorController.getKnowledgebaseTranslations(kbId, language);
     }
 
+    /**
+     * @description AuraEnabled facade to retrieve KB characteristic value (enum) translations.
+     * Uses $select=characteristics&$filter to include possibleValues translations.
+     * @param kbId     Knowledge base id
+     * @param language BCP-47 language code, e.g. en, es, de
+     * @return Raw SAP JSON with characteristics and possibleValues translations
+     */
+    @AuraEnabled
+    public static String getKnowledgebaseCharacteristicTranslations(String kbId, String language) {
+        return CPQExternalConfiguratorController.getKnowledgebaseCharacteristicTranslations(kbId, language);
+    }
+
     @AuraEnabled
     public static String patchConfigurationCharacteristics(String configId, String etag, String patchOperations) {
         return CPQExternalConfiguratorController.patchConfigurationCharacteristics(configId, etag, patchOperations);

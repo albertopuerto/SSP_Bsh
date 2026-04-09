@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
     <types>
-        <!--<members>CPQExternalConfiguratorController_Pricing_Test</members>-->
+        <members>CPQExtConfigurator_PricingTest</members>
         <members>CPQExternalConfiguratorController</members>
         <members>CPQExternalConfiguratorControllerPoC</members>
         <members>SAPVcProductConfigurationService</members>
-        <!--<members>VcpConfigManagerController_Test</members>-->
+        <members>VcpConfigManagerController_Test</members>
         <members>VcpConfigManagerController</members>
+        <members>VcpProductSelectorController</members>
         <name>ApexClass</name>
     </types>
     <types>
@@ -25,12 +26,24 @@
     <types>
         <members>countriesIcons</members>
         <members>VC_CPQ_Mocks</members>
+        <members>vcp_configuration_create_success</members>
+        <members>vcp_configuration_get_success</members>
+        <members>vcp_configuration_patch_success</members>
+        <members>vcp_error_401_unauthorized</members>
+        <members>vcp_error_412_etag_mismatch</members>
+        <members>vcp_kb_determination_success</members>
+        <members>vcp_kb_translations_success</members>
+        <members>vcp_kb_translations_characteristics_success</members>
+        <members>vcp_pricing_calculate_success</members>
         <name>StaticResource</name>
     </types>
     <types>
+        <members>utilActivityLog</members>
         <members>vcpCharacteristicsForm</members>
+        <members>vcpCharacteristicsGroupTabs</members>
         <members>vcpCharacteristicsWizard</members>
         <members>vcpConfigManager</members>
+        <members>vcpProductSelector</members>
         <name>LightningComponentBundle</name>
     </types>
     <types>
@@ -43,22 +56,49 @@
     Deployment package for SAP Variant Configuration integration.
 
     Includes:
-      - CPQExternalConfiguratorController  : Global webservice facade used by the VF page and CPQ
-      - SAPVcProductConfigurationService   : Service layer for all SAP VC Product Configuration callouts
-      - CPQExternalConfiguratorControllerPoC : Legacy PoC controller (kept for reference)
-      - CPQExternalConfiguratorTabs        : Dev/test VF page — main external configurator UI
-      - CPQExternalConfiguratorTabsPoC     : Legacy PoC VF page
-      - SAP_VariantConfiguration_Agent     : Permission set granting class + external credential access
+      - CPQExternalConfiguratorController          : Global webservice facade used by the VF page and CPQ
+      - CPQExtConfigurator_PricingTest : Apex unit tests for pricing controller
+      - SAPVcProductConfigurationService           : Service layer for all SAP VC Product Configuration callouts
+      - CPQExternalConfiguratorControllerPoC       : Legacy PoC controller (kept for reference)
+      - VcpConfigManagerController                 : @AuraEnabled facade for LWC
+      - VcpConfigManagerController_Test            : Apex unit tests for LWC controller
 
-            - Lightning Web Components (LWC):
-                * vcpConfigManager : Deployable LWC entry point for Quote product configuration demo and direct Record Action usage
+      - Visualforce pages:
+        * CPQExternalConfiguratorTabs    : Dev/test VF page — main external configurator UI
+        * CPQExternalConfiguratorTabsPoC : Legacy PoC VF page
 
-            - Quick Actions:
-                * SBQQ__Quote__c.VCP_Add_Product : Quote action to launch the VCP product flow
-        
+      - Lightning Web Components (LWC):
+        * utilActivityLog          : Reusable dark-terminal activity log with collapsible JSON rows,
+                                     status code badges and copy-to-clipboard. Accepts @api entries[].
+        * vcpProductSelector       : LWC entry point — product search/filter list, launches vcpConfigManager
+        * vcpConfigManager         : LWC configurator — KB determination + characteristics form
+                                     Supports 3 display modes: Form / Wizard / Tabs (selected via View buttons)
+        * vcpCharacteristicsForm       : LWC child — Form mode: flat grid of all characteristics
+        * vcpCharacteristicsWizard     : LWC child — Wizard mode: one characteristic at a time with progress bar
+        * vcpCharacteristicsGroupTabs  : LWC child — Tabs mode: one lightning-tab per characteristicGroup (from KB)
+                                         Group order and membership come from GET /knowledgebases/{id}/translations
+                                         (products[0].characteristicGroups[].characteristicIDs).
+                                         The group layout is cached in groupOrderCache on first KB translation load,
+                                         so Tabs mode keeps showing groups even after switching back to API mode.
+
+      - Quick Actions:
+        * SBQQ__Quote__c.VCP_Add_Product : Quote action to launch the VCP product flow
+
+      - Permission Sets:
+        * SAP_VariantConfiguration_Agent : Grants class + external credential access
+
       - Static Resources:
-        * countriesIcons : Flag PNG images (16x18px) for language selector
-        * VC_CPQ_Mocks   : Mock API responses for testing and development
+        * countriesIcons                         : Flag PNG images (16x18px) for language selector
+        * VC_CPQ_Mocks                           : Zip folder — mock API responses (reference copy)
+        * vcp_kb_determination_success           : GET /api/v2/kbdetermination mock
+        * vcp_kb_translations_success            : GET /api/v2/knowledgebases/{id}/translations mock
+        * vcp_kb_translations_characteristics_success : GET .../translations?$select=characteristics mock
+        * vcp_configuration_create_success       : POST /api/v2/configurations mock
+        * vcp_configuration_get_success          : GET /api/v2/configurations/{id} mock
+        * vcp_configuration_patch_success        : PATCH /api/v2/configurations/{id} mock
+        * vcp_pricing_calculate_success          : POST /api/v1/pricing/documents mock
+        * vcp_error_401_unauthorized             : 401 error response mock
+        * vcp_error_412_etag_mismatch            : 412 ETag mismatch error mock
 
     Deploy command (from workspace root):
       sf project deploy start --manifest manifest/package-sap-vc-deploy.xml --target-org <alias>

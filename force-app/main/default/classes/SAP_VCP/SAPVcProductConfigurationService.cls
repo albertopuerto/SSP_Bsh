@@ -66,6 +66,21 @@ public with sharing class SAPVcProductConfigurationService {
     }
 
     /**
+     * @description Retrieves characteristic-level translations (with enum values) from a knowledge base.
+     * Uses OData system query options to select only the characteristics section and filter by language.
+     * Calls GET /api/v2/knowledgebases/{kbId}/translations?$select=characteristics&$filter=language EQ '{language}'
+     * @param kbId     Knowledge base ID
+     * @param language BCP-47 language code, e.g. 'en', 'de'
+     * @return JSON with characteristics array including possibleValues translations
+     */
+    public static String getKnowledgebaseCharacteristicTranslations(String kbId, String language) {
+        String path = '/api/v2/knowledgebases/' + encode(kbId) + '/translations'
+            + '?$select=characteristics'
+            + '&$filter=language%20EQ%20%27' + encode(language) + '%27';
+        return callApi('GET', path, null, null, false);
+    }
+
+    /**
      * @description Creates a new variant configuration session in SAP VC.
      * Calls POST /api/v2/configurations.
      * @param configData JSON string with the configuration creation request body
@@ -440,11 +455,25 @@ public with sharing class SAPVcProductConfigurationService {
             throw buildCalloutException(response, 'SAP VC Product Configuration API Error');
         }
 
-        if (includeETagInBody == true) {
-            return withETagInBody(response.getBody(), response.getHeader('ETag'));
-        }
+        String responseBody = includeETagInBody == true
+            ? withETagInBody(response.getBody(), response.getHeader('ETag'))
+            : response.getBody();
 
-        return response.getBody();
+        return withHttpStatusInBody(responseBody, response.getStatusCode());
+    }
+
+    /**
+     * @description Injects the HTTP status code into the top-level JSON body under '_httpStatus'.
+     * If the body is not valid JSON the original body is returned unchanged.
+     */
+    private static String withHttpStatusInBody(String body, Integer httpStatus) {
+        try {
+            Map<String, Object> payload = (Map<String, Object>) JSON.deserializeUntyped(body);
+            payload.put('_httpStatus', httpStatus);
+            return JSON.serialize(payload);
+        } catch (Exception ex) {
+            return body;
+        }
     }
 
     /**

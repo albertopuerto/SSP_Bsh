@@ -182,6 +182,17 @@ global with sharing class CPQExternalConfiguratorController {
     }
 
     /**
+     * @description Get knowledge base characteristic (enum value) translations (v2)
+     * Calls GET /api/v2/knowledgebases/{kbId}/translations?$select=characteristics&$filter=language EQ '{language}'
+     * @param kbId Knowledge base id
+     * @param language Language code, e.g. en, de, es
+     * @return Response with characteristics and possibleValues translations
+     */
+    webservice static String getKnowledgebaseCharacteristicTranslations(String kbId, String language) {
+        return SAPVcProductConfigurationService.getKnowledgebaseCharacteristicTranslations(kbId, language);
+    }
+
+    /**
      * @description Create configuration (v2)
      * @param configData JSON string with configuration data
      * @return Response from SAP VC create configuration

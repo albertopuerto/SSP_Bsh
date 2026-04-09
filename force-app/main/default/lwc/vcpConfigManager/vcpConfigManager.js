@@ -7,6 +7,7 @@ import createConfigurationV2 from '@salesforce/apex/VcpConfigManagerController.c
 import determineKnowledgebase from '@salesforce/apex/VcpConfigManagerController.determineKnowledgebase';
 import getConfigIdFromQuote from '@salesforce/apex/VcpConfigManagerController.getConfigIdFromQuote';
 import getConfigurationV2 from '@salesforce/apex/VcpConfigManagerController.getConfigurationV2';
+import getKnowledgebaseCharacteristicTranslations from '@salesforce/apex/VcpConfigManagerController.getKnowledgebaseCharacteristicTranslations';
 import getKnowledgebaseTranslations from '@salesforce/apex/VcpConfigManagerController.getKnowledgebaseTranslations';
 import patchConfigurationCharacteristics from '@salesforce/apex/VcpConfigManagerController.patchConfigurationCharacteristics';
 import resetConfigurationV2 from '@salesforce/apex/VcpConfigManagerController.resetConfigurationV2';
@@ -26,6 +27,7 @@ export default class VcpConfigManager extends LightningElement {
     @api productCode;
     @api productId;
     @api quoteLineId;
+    @api showBack = false;
 
     storedConfigId = '';
     step1Collapsed = true;
@@ -55,6 +57,7 @@ export default class VcpConfigManager extends LightningElement {
     loadedKbLogsys = '';
     translationIndex = null;
     translationCache = {};
+    groupOrderCache = null; // persisted after first KB translation load; used in API mode for tab grouping
     eTag = '';
     lastKnownETag = '';
     eTagVersion = 0;
@@ -64,6 +67,10 @@ export default class VcpConfigManager extends LightningElement {
     isBusy = false;
     debugMode = false;
     modalStyleApplied = false;
+
+    handleBack() {
+        this.dispatchEvent(new CustomEvent('back'));
+    }
 
     connectedCallback() {
         if (!this.quoteId) {
@@ -854,22 +861,33 @@ export default class VcpConfigManager extends LightningElement {
         const cacheKey = `${kbId}::${productKey}::${language}`;
         if (this.translationCache[cacheKey]) {
             this.translationIndex = this.translationCache[cacheKey];
+            this._refreshGroupOrderCache(this.translationIndex);
             this.logActivity('Language', `Translations from cache (${language.toUpperCase()})`);
             return true;
         }
 
         try {
             this.logSapRequest(`GET /api/v2/knowledgebases/${kbId}/translations`, `language="${language}"`);
-            const raw = await getKnowledgebaseTranslations({ kbId, language });
+            const [raw, rawChar] = await Promise.all([
+                getKnowledgebaseTranslations({ kbId, language }),
+                getKnowledgebaseCharacteristicTranslations({ kbId, language }).catch((e) => {
+                    this.logActivity('Language', `Char translations non-critical error: ${this.extractErrorMessage(e)}`);
+                    return null;
+                })
+            ]);
             this.logSapResponse(`GET /knowledgebases/${kbId}/translations`, raw);
+            this.logSapResponse(`GET /knowledgebases/${kbId}/translations?$select=characteristics`, rawChar ?? '(skipped)');
             const parsed = this.safeParseJson(raw);
+            const parsedChar = this.safeParseJson(rawChar);
             const index = this.buildTranslationIndex(parsed, language, productKey);
+            this.mergeCharacteristicValueTranslations(index, parsedChar, language);
             this.translationCache = {
                 ...this.translationCache,
                 [cacheKey]: index
             };
             if (this.hasUsableTranslations(index)) {
                 this.translationIndex = index;
+                this._refreshGroupOrderCache(index);
                 this.logActivity('Language', `Translations fetched (${language.toUpperCase()}) for kbId ${kbId}`);
                 return true;
             }
@@ -1020,7 +1038,34 @@ export default class VcpConfigManager extends LightningElement {
             return apiValue;
         }
         const translated = this.translationIndex?.values?.[characteristicId]?.[apiValue];
-        return translated || apiValue;
+        if (translated) {
+            return `${translated} (${apiValue})`;
+        }
+        return apiValue;
+    }
+
+    /** Merges possibleValues translations from a $select=characteristics response into an existing translation index. */
+    mergeCharacteristicValueTranslations(index, payload, language) {
+        if (!payload || !Array.isArray(payload.characteristics)) {
+            return;
+        }
+        payload.characteristics.forEach((item) => {
+            if (!item || !item.id) {
+                return;
+            }
+            if (Array.isArray(item.possibleValues) && item.possibleValues.length > 0) {
+                index.values[item.id] = index.values[item.id] || {};
+                item.possibleValues.forEach((valueItem) => {
+                    if (!valueItem || valueItem.id === undefined || valueItem.id === null) {
+                        return;
+                    }
+                    const valueName = this.getBestTranslationName(valueItem.translation, language);
+                    if (valueName) {
+                        index.values[item.id][String(valueItem.id)] = valueName;
+                    }
+                });
+            }
+        });
     }
 
     /** Reads inline descriptions from configuration payload, supporting case-insensitive language keys. */
@@ -1052,7 +1097,9 @@ export default class VcpConfigManager extends LightningElement {
             products: {},
             characteristics: {},
             values: {},
-            groups: {}
+            groups: {},
+            groupOrder: [],
+            groupCharacteristics: {}
         };
 
         if (!payload || typeof payload !== 'object') {
@@ -1105,6 +1152,10 @@ export default class VcpConfigManager extends LightningElement {
                     const groupName = this.getBestTranslationName(group.translation, language);
                     if (groupName) {
                         index.groups[group.id] = groupName;
+                    }
+                    index.groupOrder.push(group.id);
+                    if (Array.isArray(group.characteristicIDs)) {
+                        index.groupCharacteristics[group.id] = [...group.characteristicIDs];
                     }
                 });
             }
@@ -1383,6 +1434,12 @@ export default class VcpConfigManager extends LightningElement {
             return direct;
         }
 
+        // Exact top-level 'id' check first — SAP v2 POST returns the config UUID here.
+        // findFirstValueByKey uses partial key matching which picks up 'kbId' before 'id'.
+        if (payload?.id && typeof payload.id === 'string' && payload.id.length > 10) {
+            return payload.id;
+        }
+
         const genericId = this.findFirstValueByKey(payload, 'id');
         if (genericId && typeof genericId === 'string' && genericId.length > 10) {
             return genericId;
@@ -1521,7 +1578,7 @@ export default class VcpConfigManager extends LightningElement {
         return 'Unknown error';
     }
 
-    logActivity(action, detail) {
+    logActivity(action, detail, options = {}) {
         const time = new Date().toLocaleTimeString();
         let type = 'info';
         const a = action.toUpperCase();
@@ -1532,20 +1589,43 @@ export default class VcpConfigManager extends LightningElement {
         else if (a === 'PATCH' || a === 'CREATE' || a === 'RESET' || a === 'REFRESH') type = 'action';
         const next = {
             key: `${Date.now()}-${Math.random()}`,
-            message: `[${time}] ${action}: ${detail}`,
-            type
+            type,
+            summary: `[${time}] ${action}: ${detail}`,
+            bodyDetail: options.bodyDetail || null,
+            statusCode: options.statusCode || null,
+            isExpanded: false
         };
         this.activityLogEntries = [...this.activityLogEntries, next].slice(-100);
     }
 
     logSapRequest(operation, params) {
-        const detail = params ? `${operation} | ${params}` : operation;
-        this.logActivity('→ SAP', detail);
+        let bodyDetail = null;
+        let summaryParams = '';
+        if (params) {
+            try {
+                bodyDetail = JSON.stringify(JSON.parse(params), null, 2);
+                summaryParams = ' | {…}';
+            } catch (e) {
+                summaryParams = params.length > 60 ? ` | ${params.substring(0, 60)}…` : ` | ${params}`;
+            }
+        }
+        this.logActivity('→ SAP', `${operation}${summaryParams}`, { bodyDetail });
     }
 
     logSapResponse(operation, raw) {
         const body = typeof raw === 'string' ? raw : JSON.stringify(raw ?? '');
-        this.logActivity('← SAP', `${operation} | ${body}`);
+        let statusCode = null;
+        let bodyDetail = null;
+        let summaryStatus = '';
+        try {
+            const parsed = JSON.parse(body);
+            statusCode = parsed?._httpStatus ?? parsed?.status ?? parsed?.statusCode ?? null;
+            bodyDetail = JSON.stringify(parsed, null, 2);
+            summaryStatus = statusCode ? ` [${statusCode}]` : '';
+        } catch (e) {
+            bodyDetail = body || null;
+        }
+        this.logActivity('← SAP', `${operation}${summaryStatus}`, { bodyDetail, statusCode });
     }
 
     get isFormMode() {
@@ -1556,12 +1636,74 @@ export default class VcpConfigManager extends LightningElement {
         return this.displayMode === 'wizard';
     }
 
+    get isTabsMode() {
+        return this.displayMode === 'tabs';
+    }
+
     get formModeClass() {
         return `lang-btn ${this.isFormMode ? 'active' : ''}`;
     }
 
     get wizardModeClass() {
         return `lang-btn ${this.isWizardMode ? 'active' : ''}`;
+    }
+
+    get tabsModeClass() {
+        return `lang-btn ${this.isTabsMode ? 'active' : ''}`;
+    }
+
+    get characteristicsByGroup() {
+        const chars = this.loadedCharacteristics || [];
+        const charMap = {};
+        chars.forEach((c) => {
+            charMap[c.id] = c;
+        });
+
+        // Use live translation index when available (non-API modes);
+        // fall back to groupOrderCache (populated on first KB load) so Tabs
+        // mode still shows groups even after switching back to API mode.
+        const source = this.translationIndex?.groupOrder?.length
+            ? this.translationIndex
+            : this.groupOrderCache;
+
+        if (!source?.groupOrder?.length) {
+            return [{ key: '$general', groupId: '$general', groupLabel: 'All', characteristics: chars }];
+        }
+
+        const result = [];
+        const placedIds = new Set();
+
+        for (const groupId of source.groupOrder) {
+            const charIds = source.groupCharacteristics?.[groupId] || [];
+            const groupChars = charIds.map((id) => charMap[id]).filter(Boolean);
+            if (groupChars.length === 0) {
+                continue;
+            }
+            groupChars.forEach((c) => placedIds.add(c.id));
+            // Labels: prefer live translation index; cache has ids only in API mode
+            const groupLabel =
+                this.translationIndex?.groups?.[groupId] ||
+                this.groupOrderCache?.groups?.[groupId] ||
+                groupId;
+            result.push({
+                key: groupId,
+                groupId,
+                groupLabel,
+                characteristics: groupChars
+            });
+        }
+
+        const unplaced = chars.filter((c) => !placedIds.has(c.id));
+        if (unplaced.length > 0) {
+            result.push({
+                key: '$general',
+                groupId: '$general',
+                groupLabel: 'General',
+                characteristics: unplaced
+            });
+        }
+
+        return result;
     }
 
     handleDisplayModeForm() {
@@ -1574,9 +1716,31 @@ export default class VcpConfigManager extends LightningElement {
         this.logActivity('Display', 'Switched to Wizard view');
     }
 
+    handleDisplayModeTabs() {
+        this.displayMode = 'tabs';
+        this.logActivity('Display', 'Switched to Tabs view');
+    }
+
     handleWizardFinish() {
         this.displayMode = 'form';
         this.logActivity('Wizard', 'Configuration complete — returned to Form view');
         this.showSuccess('Configuration complete', 'All fields saved. Switched to Form view.');
+    }
+
+    /**
+     * Persists group structure from a translation index into groupOrderCache so
+     * that the Tabs view can show groups even when the user switches back to API
+     * mode (which clears translationIndex but does not lose the KB group layout).
+     * Only updates the cache when the incoming index actually contains group data.
+     */
+    _refreshGroupOrderCache(index) {
+        if (!index?.groupOrder?.length) {
+            return;
+        }
+        this.groupOrderCache = {
+            groupOrder: [...index.groupOrder],
+            groupCharacteristics: { ...index.groupCharacteristics },
+            groups: { ...index.groups }
+        };
     }
 }

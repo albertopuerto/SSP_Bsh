@@ -471,6 +471,7 @@ global with sharing class CPQExternalConfiguratorControllerPoC {
                     }
                     
                     bodyObj.put('_eTag', etag);
+                    bodyObj.put('_httpStatus', res.getStatusCode());
                     String result = JSON.serialize(bodyObj);
                     System.debug('=== Response with ETag added: ' + result.substring(0, Math.min(500, result.length())));
                     return result;

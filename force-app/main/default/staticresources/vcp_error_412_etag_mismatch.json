@@ -1,0 +1,9 @@
+{
+  "success": false,
+  "statusCode": 412,
+  "message": "ETag mismatch. Reload configuration.",
+  "data": {
+    "errorCode": "VC_ETAG_MISMATCH",
+    "correlationId": "mock-corr-412"
+  }
+}
