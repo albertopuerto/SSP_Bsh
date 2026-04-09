@@ -1,0 +1,42 @@
+<template>
+    <div class="log-box">
+        <template if:true={isEmpty}>
+            <span class="log-entry log-info">- No operations yet -</span>
+        </template>
+        <template for:each={enriched} for:item="entry">
+            <div key={entry.key} class={entry.rowClass} data-type={entry.type}>
+
+                <!-- Header row: chevron + summary + status badge + copy btn -->
+                <div class="log-entry-header"
+                     data-key={entry.key}
+                     onclick={handleHeaderClick}>
+                    <template if:true={entry.hasDetail}>
+                        <span class={entry.chevronClass}></span>
+                    </template>
+                    <template if:false={entry.hasDetail}>
+                        <span class="log-chevron-spacer"></span>
+                    </template>
+
+                    <span class="log-summary">{entry.summary}</span>
+
+                    <template if:true={entry.statusCode}>
+                        <span class={entry.statusBadgeClass}>{entry.statusCode}</span>
+                    </template>
+
+                    <template if:true={entry.hasDetail}>
+                        <button class="copy-btn"
+                                title="Copy JSON to clipboard"
+                                data-key={entry.key}
+                                onclick={handleCopyClick}>⎘</button>
+                    </template>
+                </div>
+
+                <!-- Expanded detail: click inside allows text selection/copy -->
+                <template if:true={entry.isExpanded}>
+                    <pre class="log-detail" onclick={handleDetailClick}>{entry.bodyDetail}</pre>
+                </template>
+
+            </div>
+        </template>
+    </div>
+</template>
