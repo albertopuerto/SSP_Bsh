@@ -1,0 +1,451 @@
+{
+  "openapi": "3.0.1",
+  "security": [
+    {
+      "OAuth2": []
+    }
+  ],
+  "info": {
+    "description": "Use our administration APIs to upload extensions for using them in Configuration or Pricing Service.",
+    "version": "v1",
+    "title": "Administration Service"
+  },
+  "x-sap-shortText": "Administer the configuration and pricing services.",
+  "externalDocs": {
+    "description": "Extension Guide",
+    "url": "https://help.sap.com/docs/variant-configuration-and-pricing/extension-guide-for-sap-variant-configuration-and-pricing/extensions"
+  },
+  "tags": [
+    {
+      "description": "Manage uploaded extension archives.",
+      "name": "Archives"
+    }
+  ],
+  "paths": {
+    "/api/localExtension/v1/archives": {
+      "get": {
+        "tags": [
+          "Extension Upload"
+        ],
+        "summary": "Get list of uploaded local extension functions",
+        "description": "Returns a list of uploaded zip files which contain local extension functions (without the zipped content) for a particular service type.",
+        "operationId": "getUploadedExtensions",
+        "parameters": [
+          {
+            "name": "serviceType",
+            "in": "query",
+            "description": "For which service type to fetch the uploaded functions",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "examples": {
+              "Configuration": {
+                "description": "Configuration",
+                "value": "CFG"
+              },
+              "Pricing": {
+                "description": "Pricing",
+                "value": "PRC"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of local extensions archive was successfully gathered and returned.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CpsExtension"
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "List of local extensions archive wasn't successfully gathered. Exception occured"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Extension Upload"
+        ],
+        "summary": "Uploads local extension functions",
+        "description": "The expected data are .js .xml files zipped in a an archive and send as an application/zip. The uploaded data is checked to ensure no malicious content gets uploaded.",
+        "operationId": "uploadExtensions",
+        "parameters": [
+          {
+            "name": "serviceType",
+            "in": "query",
+            "description": "For which service type to fetch the uploaded functions",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "examples": {
+              "Configuration": {
+                "description": "Configuration",
+                "value": "CFG"
+              },
+              "Pricing": {
+                "description": "Pricing",
+                "value": "PRC"
+              }
+            }
+          },
+          {
+            "name": "fileName",
+            "in": "query",
+            "description": "The fileName to identify the uploaded local extension archive",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "someLocalExtensionArchiveUpload.zip"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/zip": {
+              "schema": {
+                "type": "string",
+                "format": "binary"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Local extension archive was successfully uploaded.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/RequestResult"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Local extension archive wasn't successfully uploaded. Missing binary data in request body",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/RequestResult"
+                  }
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Local extension archive wasn't successfully uploaded. Submitted archive or fileName doesn't meet requirements",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/RequestResult"
+                  }
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Local extension archive wasn't successfully uploaded. Too many concurrent uploads",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/RequestResult"
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Local extension archive wasn't successfully uploaded. Exception occured",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/RequestResult"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/localExtension/v1/archives/{guid}": {
+      "delete": {
+        "tags": [
+          "Extension Upload"
+        ],
+        "summary": "Delete uploaded local extension functions",
+        "description": "Deletes uploaded zip file identified by the provided guid. Guids without a matching upload are silently ignored",
+        "operationId": "deleteUploadedExtensions",
+        "parameters": [
+          {
+            "name": "guid",
+            "in": "path",
+            "description": "GUID of the archive",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Local extensions archive was successfully deleted.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RequestResult"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Local extensions archive wasn't successfully deleted. Exception occured"
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "Extension Upload"
+        ],
+        "summary": "Update an uploaded local extension function",
+        "description": "Updates the uploaded local extension functions identified by the specified guid and servicetype. Currently used to activate a local extension archive. If another local extension archive was already active it becomes inactive. There can be only one active uploaded local extension archive per service type.",
+        "operationId": "activateUploadedExtension",
+        "parameters": [
+          {
+            "name": "guid",
+            "in": "path",
+            "description": "GUID of the archive",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "local extension update request",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CpsExtensionUpdateRequestBody"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Local extensions archive activation state was succesfully changed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RequestResult"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Local extensions archive wasn't successfully activated. No archive found matching the specified guid"
+          },
+          "500": {
+            "description": "Local extensions archive wasn't successfully activated. Exception occured"
+          }
+        }
+      }
+    },
+    "/api/localExtension/v1/archives/{guid}/content": {
+      "get": {
+        "tags": [
+          "Extension Upload"
+        ],
+        "summary": "Download an uploaded local extension archive",
+        "description": "Downloads the uploaded local extension archive identified by the specified guid.A guid not matching an uploaded local extension archive is silently ignored",
+        "operationId": "downloadUploadedExtensions",
+        "parameters": [
+          {
+            "name": "guid",
+            "in": "path",
+            "description": "GUID of the archive",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Uploaded local extension archive provided successfully for download",
+            "content": {
+              "application/zip": {
+                "schema": {
+                  "type": "string",
+                  "format": "binary"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Local extensions archive wasn't successfully downloaded. No archive found matching the specified guid"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "RequestResult": {
+        "type": "object",
+        "properties": {
+          "messageCode": {
+            "type": "string",
+            "enum": [
+              "S01",
+              "S02",
+              "S03",
+              "UE00",
+              "UE01",
+              "UE02",
+              "UE03",
+              "UE04",
+              "UE05",
+              "UE06",
+              "UP00",
+              "UP01",
+              "UP02",
+              "UP03",
+              "UP04",
+              "UP05",
+              "UP06",
+              "UP09",
+              "UP10",
+              "UP11",
+              "UP12",
+              "UP13",
+              "UP14",
+              "UP15",
+              "ZE01",
+              "ZE02",
+              "ZE03",
+              "ZE04",
+              "ZE05",
+              "ZE06",
+              "ZE07",
+              "ZE08",
+              "ZE09",
+              "ZE10",
+              "ZE11",
+              "ZE12"
+            ]
+          },
+          "messageText": {
+            "type": "string"
+          },
+          "idsOfInvolvedObjects": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "CpsExtensionUpdateRequestBody": {
+        "type": "object",
+        "properties": {
+          "active": {
+            "type": "boolean"
+          }
+        }
+      },
+      "CpsExtension": {
+        "required": [
+          "blob",
+          "fileName",
+          "guid",
+          "serviceType",
+          "status",
+          "uploadDate",
+          "uploadedBy"
+        ],
+        "type": "object",
+        "properties": {
+          "guid": {
+            "type": "string",
+            "readOnly": true
+          },
+          "serviceType": {
+            "type": "string",
+            "readOnly": true
+          },
+          "fileName": {
+            "type": "string",
+            "readOnly": true
+          },
+          "status": {
+            "type": "string",
+            "readOnly": true
+          },
+          "blob": {
+            "type": "string",
+            "format": "byte"
+          },
+          "uploadDate": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true
+          },
+          "uploadedBy": {
+            "type": "string",
+            "readOnly": true
+          },
+          "activationChangeAt": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true
+          },
+          "activationChangeBy": {
+            "type": "string",
+            "readOnly": true
+          },
+          "active": {
+            "type": "boolean",
+            "readOnly": true
+          },
+          "uploadedAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "OAuth2": {
+        "type": "oauth2",
+        "description": "You need to get OAuth client credentials (Client Id and Secret) from the SAP Business Technology Platform using the cockpit. After that, you need to pass the obtained client credentials to the SAP Business Technology Platform token endpoint to obtain an access token.",
+        "flows": {
+          "clientCredentials": {
+            "tokenUrl": "https://{identityzone}.authentication.{region}.hana.ondemand.com/oauth/token",
+            "scopes": {}
+          }
+        }
+      }
+    }
+  }
+}
