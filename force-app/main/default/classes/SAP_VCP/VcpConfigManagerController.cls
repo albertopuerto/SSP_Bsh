@@ -6,7 +6,65 @@ public with sharing class VcpConfigManagerController {
 
     @AuraEnabled
     public static String createConfigurationV2(String configData) {
-        return CPQExternalConfiguratorController.createConfigurationV2(configData);
+        String operation = 'POST /api/v2/configurations';
+        String endpoint = 'callout:SAP_VC_Product_Configuration/api/v2/configurations';
+        
+        try {
+            // Validate input
+            if (String.isBlank(configData)) {
+                VcpErrorHandler.VcpError validationErr = VcpErrorHandler.handleValidationError(
+                    operation,
+                    'Configuration data is required',
+                    new Map<String, Object> {
+                        'userId' => UserInfo.getUserId(),
+                        'userName' => UserInfo.getUserName()
+                    }
+                );
+                throw new AuraHandledException(
+                    validationErr.userMessage + '\n[Error ID: ' + validationErr.correlationId + ']'
+                );
+            }
+            
+            // Parse to validate JSON structure
+            Map<String, Object> payload = (Map<String, Object>) JSON.deserializeUntyped(configData);
+            if (!payload.containsKey('productKey') || String.isBlank((String)payload.get('productKey'))) {
+                VcpErrorHandler.VcpError validationErr = VcpErrorHandler.handleValidationError(
+                    operation,
+                    'Product key is required in configuration request',
+                    payload
+                );
+                throw new AuraHandledException(
+                    validationErr.userMessage + '\n[Error ID: ' + validationErr.correlationId + ']'
+                );
+            }
+            
+            // Call business logic
+            String result = CPQExternalConfiguratorController.createConfigurationV2(configData);
+            return result;
+            
+        } catch (AuraHandledException ex) {
+            // Already handled — re-throw with correlation ID
+            throw ex;
+            
+        } catch (Exception ex) {
+            // Catch unexpected errors (API timeouts, parse errors, system limits, etc)
+            VcpErrorHandler.VcpError err = VcpErrorHandler.handleException(
+                ex,
+                operation,
+                endpoint,
+                new Map<String, Object> {
+                    'configData' => configData,
+                    'userId' => UserInfo.getUserId(),
+                    'orgId' => UserInfo.getOrganizationId(),
+                    'userName' => UserInfo.getUserName()
+                }
+            );
+            
+            // Return to user with user-friendly message + correlation ID
+            throw new AuraHandledException(
+                err.userMessage + '\n[Error ID: ' + err.correlationId + ']'
+            );
+        }
     }
 
     @AuraEnabled
@@ -16,7 +74,43 @@ public with sharing class VcpConfigManagerController {
 
     @AuraEnabled
     public static String getConfigurationV2(String configId) {
-        return CPQExternalConfiguratorController.getConfigurationV2(configId);
+        String operation = 'GET /api/v2/configurations/{configId}';
+        String endpoint = 'callout:SAP_VC_Product_Configuration/api/v2/configurations/' + configId;
+        
+        try {
+            // Validate input
+            if (String.isBlank(configId)) {
+                VcpErrorHandler.VcpError validationErr = VcpErrorHandler.handleValidationError(
+                    operation,
+                    'Configuration ID is required',
+                    null
+                );
+                throw new AuraHandledException(
+                    validationErr.userMessage + '\n[Error ID: ' + validationErr.correlationId + ']'
+                );
+            }
+            
+            // Call business logic
+            return CPQExternalConfiguratorController.getConfigurationV2(configId);
+            
+        } catch (AuraHandledException ex) {
+            throw ex;
+            
+        } catch (Exception ex) {
+            VcpErrorHandler.VcpError err = VcpErrorHandler.handleException(
+                ex,
+                operation,
+                endpoint,
+                new Map<String, Object> {
+                    'configId' => configId,
+                    'userId' => UserInfo.getUserId()
+                }
+            );
+            
+            throw new AuraHandledException(
+                err.userMessage + '\n[Error ID: ' + err.correlationId + ']'
+            );
+        }
     }
 
     /**

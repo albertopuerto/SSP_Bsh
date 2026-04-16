@@ -440,7 +440,32 @@ export default class VcpConfigManager extends LightningElement {
                 this.logActivity('Create', 'Create response received without configurationId');
             }
         } catch (error) {
-            this.logAndToastError('Create', error);
+            // Extract full message from exception
+            const fullMessage = this.extractErrorMessage(error);
+            
+            // Extract correlation ID (if present from VcpErrorHandler)
+            const correlationId = this.extractCorrelationId(fullMessage);
+            
+            // Extract just the user message (remove "[Error ID: ...]" part)
+            const userMessage = fullMessage.split('[Error ID:')[0].trim() || 'An error occurred';
+            
+            // Log to activity log with correlation ID for support tracing
+            this.logActivity('Create ERROR', userMessage, {
+                bodyDetail: JSON.stringify({
+                    correlationId,
+                    timestamp: new Date().toISOString(),
+                    endpoint: 'POST /api/v2/configurations',
+                    userMessage
+                })
+            });
+            
+            // Display to user with correlation ID
+            let displayMessage = userMessage;
+            if (correlationId) {
+                displayMessage += `\n\nError ID: ${correlationId}\nShare this ID with support for faster resolution.`;
+            }
+            
+            this.showError('Configuration Failed', displayMessage);
         } finally {
             this.isBusy = false;
         }
@@ -1576,6 +1601,27 @@ export default class VcpConfigManager extends LightningElement {
         }
 
         return 'Unknown error';
+    }
+
+    /**
+     * Extract correlation ID from error message
+     * Looks for pattern: [VCP-YYYYMMDD-HHMMSS-8hexchars]
+     * @param message Error message that may contain correlation ID
+     * @return Correlation ID string or null if not found
+     */
+    extractCorrelationId(message) {
+        if (!message) {
+            return null;
+        }
+
+        const startIdx = message.indexOf('[VCP-');
+        const endIdx = message.indexOf(']', startIdx);
+        
+        if (startIdx !== -1 && endIdx !== -1) {
+            return message.substring(startIdx + 1, endIdx);
+        }
+
+        return null;
     }
 
     logActivity(action, detail, options = {}) {

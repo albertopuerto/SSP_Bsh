@@ -7,6 +7,9 @@
         <members>SAPVcProductConfigurationService</members>
         <members>VcpConfigManagerController_Test</members>
         <members>VcpConfigManagerController</members>
+        <members>VcpErrorHandler</members>
+        <members>VcpErrorHandlerTest</members>
+        <members>VcpMonitoringQueries</members>
         <members>VcpProductSelectorController</members>
         <name>ApexClass</name>
     </types>
