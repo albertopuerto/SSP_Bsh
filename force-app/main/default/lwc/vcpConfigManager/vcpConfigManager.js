@@ -44,7 +44,7 @@ export default class VcpConfigManager extends LightningElement {
     requestPreview = '';
     createResponse = '';
 
-    labelMode = 'api';
+    labelMode = 'en';
     visibilityMode = 'visible';
     displayMode = 'form';
     loadedCharacteristics = [];
@@ -725,6 +725,7 @@ export default class VcpConfigManager extends LightningElement {
             this.translationIndex = null;
             this.captureConfigurationMeta(parsed);
             this.processCharacteristics(parsed);
+            await this.applyLabelMode(this.labelMode || 'en');
             const loadedProductCode = this.loadedProductKey || this.effectiveProductCode;
             this.logActivity(actionLabel, `Configuration loaded for product ${loadedProductCode}`);
             // Prefetch KB translations silently so tab groups are available in API mode
@@ -913,7 +914,25 @@ export default class VcpConfigManager extends LightningElement {
         }
 
         this.loadedItemId = String(selected.id || '1');
-        this.loadedCharacteristics = selected.characteristics || [];
+        const baseCharacteristics = selected.characteristics || [];
+        this.loadedCharacteristics = selected.configurable === false ? this.buildReadonlyCharacteristics(baseCharacteristics) : baseCharacteristics;
+    }
+
+    buildReadonlyCharacteristics(characteristics) {
+        return (characteristics || []).map((ch) => ({
+            ...ch,
+            readOnly: true,
+            isCheckboxGroup: false,
+            isDropdown: false,
+            isTextInput: false,
+            isReadonlyDisplay: true,
+            badgeReadonly: true,
+            fieldClass: String(ch.fieldClass || '')
+                .replace(/\schar-readonly/g, '')
+                .trim()
+                .concat(' char-readonly')
+                .trim()
+        }));
     }
 
     handleProductSelection(event) {
@@ -1929,7 +1948,7 @@ export default class VcpConfigManager extends LightningElement {
                 ...product,
                 displayName,
                 label: `${displayName}${suffix}`,
-                buttonClass: `product-node-btn ${product.id === this.selectedProductId ? 'active' : ''} ${product.isRoot ? 'root' : ''}`
+                buttonClass: `product-node-btn ${product.id === this.selectedProductId ? 'active' : ''} ${product.isRoot ? 'root' : ''} ${product.configurable === false ? 'non-configurable' : ''}`
             };
         });
     }

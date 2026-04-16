@@ -419,7 +419,7 @@ pre {
     letter-spacing: 0.04em;
     color: #ffffff;
     margin-bottom: 0.6rem;
-    background: linear-gradient(135deg, #3d82c2 0%, #2c6fae 100%);
+    background: linear-gradient(135deg, #78abdb 0%, ##739ec7 100%);
     border-radius: 0.62rem;
     border: 1px solid #2a679f;
     padding: 0.38rem 0.55rem;
@@ -445,6 +445,11 @@ pre {
     flex-direction: column;
     gap: 0.1rem;
     transition: border-color 120ms ease, background-color 120ms ease;
+}
+
+.product-node-btn.non-configurable:not(.root) {
+    border-color: #d0d5dd;
+    background: #f2f4f7;
 }
 
 .product-node-btn[data-depth='1'] {
@@ -479,6 +484,16 @@ pre {
 .product-node-btn.active {
     border-color: #0d5ea8;
     background: #dfeeff;
+}
+
+.product-node-btn.non-configurable:hover:not(.root) {
+    border-color: #b8c0cc;
+    background: #eceff3;
+}
+
+.product-node-btn.non-configurable.active:not(.root) {
+    border-color: #9aa4b2;
+    background: #e2e6ec;
 }
 
 .product-node-btn.root {

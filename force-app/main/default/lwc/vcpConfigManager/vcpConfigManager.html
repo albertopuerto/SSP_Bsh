@@ -104,7 +104,7 @@
                                     <span class="lang-label">Language</span>
                                     <button class={apiModeClass} onclick={handleLabelModeApi}>🤖 API</button>
                                     <button class={enModeClass} onclick={handleLabelModeEn}><img src={usFlagUrl} alt="EN" class="flag-icon"/> English</button>
-                                    <button class={esModeClass} onclick={handleLabelModeEs}><img src={esFlagUrl} alt="ES" class="flag-icon"/> Espanol</button>
+                                    <button class={esModeClass} onclick={handleLabelModeEs}><img src={esFlagUrl} alt="ES" class="flag-icon"/> Spanish</button>
                                     <button class={deModeClass} onclick={handleLabelModeDe}><img src={deFlagUrl} alt="DE" class="flag-icon"/> Deutsch</button>
                                 </div>
                                 <div class="display-mode-group">
@@ -187,21 +187,20 @@
                                     </template>
                                 </div>
 
-                                <template if:true={selectedProductIsConfigurable}>
-                                    <template if:true={selectedProductHasCharacteristics}>
-                                        <c-vcp-characteristics-group-tabs
-                                            groups={characteristicsByGroup}
-                                            visibility-mode={visibilityMode}
-                                            label-mode={labelMode}
-                                            oncharacteristicchange={handleCharacteristicChange}
-                                        ></c-vcp-characteristics-group-tabs>
-                                    </template>
-                                    <template if:false={selectedProductHasCharacteristics}>
-                                        <p class="helper-text">This product has no characteristics to configure.</p>
-                                    </template>
-                                </template>
                                 <template if:false={selectedProductIsConfigurable}>
-                                    <p class="helper-text">This product is not configurable.</p>
+                                    <p class="helper-text">This product is not configurable. Characteristics are shown as readonly.</p>
+                                </template>
+
+                                <template if:true={selectedProductHasCharacteristics}>
+                                    <c-vcp-characteristics-group-tabs
+                                        groups={characteristicsByGroup}
+                                        visibility-mode={visibilityMode}
+                                        label-mode={labelMode}
+                                        oncharacteristicchange={handleCharacteristicChange}
+                                    ></c-vcp-characteristics-group-tabs>
+                                </template>
+                                <template if:false={selectedProductHasCharacteristics}>
+                                    <p class="helper-text">This product has no characteristics to configure.</p>
                                 </template>
                             </section>
                         </div>
