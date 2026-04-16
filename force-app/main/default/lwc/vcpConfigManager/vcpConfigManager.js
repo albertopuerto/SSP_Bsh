@@ -885,10 +885,17 @@ export default class VcpConfigManager extends LightningElement {
 
         const cacheKey = `${kbId}::${productKey}::${language}`;
         if (this.translationCache[cacheKey]) {
-            this.translationIndex = this.translationCache[cacheKey];
-            this._refreshGroupOrderCache(this.translationIndex);
-            this.logActivity('Language', `Translations from cache (${language.toUpperCase()})`);
-            return true;
+            const cachedIndex = this.translationCache[cacheKey];
+            if (this.hasUsableTranslations(cachedIndex)) {
+                this.translationIndex = cachedIndex;
+                this._refreshGroupOrderCache(this.translationIndex);
+                this.logActivity('Language', `Translations from cache (${language.toUpperCase()})`);
+                return true;
+            }
+
+            this.translationIndex = null;
+            this.logActivity('Language', `No translations in cache for ${language.toUpperCase()} (kbId ${kbId})`);
+            return false;
         }
 
         try {
