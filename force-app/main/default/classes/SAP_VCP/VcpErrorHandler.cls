@@ -172,34 +172,35 @@ public class VcpErrorHandler {
         LoggingLevel level
     ) {
         try {
-            nlogs.LogMessage logMsg = new nlogs.LogMessage()
-                .setMessage('VCP Integration Error')
-                .setExceptionDetails(new Map<String, String> {
-                    'Correlation_ID' => err.correlationId,
-                    'Operation' => operation,
-                    'Error_Category' => String.valueOf(err.category),
-                    'HTTP_Status' => String.valueOf(err.sapStatusCode),
-                    'SAP_Endpoint' => err.sapEndpoint,
-                    'User_Message' => err.userMessage,
-                    'Technical_Message' => err.technicalMessage,
-                    'Stack_Trace' => err.stackTrace,
-                    'Occurred_At' => err.occurredAt.format('yyyy-MM-dd HH:mm:ss.SSS')
-                });
-            
-            if (context != null) {
-                logMsg.setExceptionDetails(new Map<String, String> {
-                    'Context' => JSON.serialize(context)
-                });
+            Map<String, Object> details = new Map<String, Object> {
+                'correlationId' => err.correlationId,
+                'operation' => operation,
+                'category' => String.valueOf(err.category),
+                'httpStatus' => err.sapStatusCode,
+                'sapEndpoint' => err.sapEndpoint,
+                'userMessage' => err.userMessage,
+                'technicalMessage' => err.technicalMessage,
+                'stackTrace' => err.stackTrace,
+                'occurredAt' => err.occurredAt,
+                'userId' => UserInfo.getUserId(),
+                'orgId' => UserInfo.getOrganizationId(),
+                'userName' => UserInfo.getUserName(),
+                'context' => context
+            };
+
+            // Align with existing Nebula usage in this repo (e.g. FlowLogger): direct Logger API.
+            Logger.setScenario('VCP_Configuration');
+            String message = 'VCP Integration Error | ' + JSON.serialize(details);
+
+            if (level == LoggingLevel.WARN) {
+                Logger.warn(message).addTag('VCP').addTag('Integration');
+            } else if (level == LoggingLevel.INFO) {
+                Logger.info(message).addTag('VCP').addTag('Integration');
+            } else {
+                Logger.error(message).addTag('VCP').addTag('Integration');
             }
-            
-            nlogs.Logger.log(level, logMsg)
-                .setExceptionDetails(new Map<String, String> {
-                    'UserId' => UserInfo.getUserId(),
-                    'OrgId' => UserInfo.getOrganizationId(),
-                    'UserName' => UserInfo.getUserName()
-                });
-            
-            nlogs.Logger.saveLog();
+
+            Logger.saveLog();
             
         } catch (Exception e) {
             System.debug(LoggingLevel.ERROR, 'VCP ERROR LOGGING FAILED');
@@ -220,16 +221,11 @@ public class VcpErrorHandler {
     }
     
     private static String generateRandomSuffix(Integer length) {
-        String chars = 'abcdef0123456789';
-        String result = '';
-        Long seed = System.currentTimeMillis() + Crypto.getRandomLong();
-        Random rand = new Random();
-        
-        for (Integer i = 0; i < length; i++) {
-            result += chars.charAt(Math.mod(Math.abs(rand.nextInteger()), chars.length()));
-        }
-        
-        return result;
+        String seed = String.valueOf(DateTime.now().getTime()) + '-' + String.valueOf(Crypto.getRandomLong());
+        Blob digest = Crypto.generateDigest('SHA-256', Blob.valueOf(seed));
+        String hex = EncodingUtil.convertToHex(digest).toLowerCase();
+        Integer safeLen = Math.max(1, Math.min(length, hex.length()));
+        return hex.substring(0, safeLen);
     }
     
     // UTILITY METHODS

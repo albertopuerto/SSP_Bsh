@@ -49,7 +49,7 @@ private class VcpErrorHandlerTest {
         );
         
         // Assert
-        System.assertNotNull(err, 'Should return error for 404 status');
+        System.assert(err != null, 'Should return error for 404 status');
         System.assertEquals(VcpErrorHandler.ErrorCategory.USER_NOT_FOUND, err.category);
         System.assertEquals(404, err.sapStatusCode);
         System.assert(err.userMessage.contains('no longer available'), 'User message should be reassuring');
@@ -132,7 +132,7 @@ private class VcpErrorHandlerTest {
         );
         
         // Assert
-        System.assertNotNull(err);
+        System.assert(err != null);
         System.assertEquals(VcpErrorHandler.ErrorCategory.TECHNICAL_API, err.category);
         System.assertEquals(500, err.sapStatusCode);
     }
@@ -153,7 +153,7 @@ private class VcpErrorHandlerTest {
         );
         
         // Assert
-        System.assertNull(err, 'Should return null for successful response');
+        System.assertEquals(null, err, 'Should return null for successful response');
     }
     
     @IsTest
@@ -204,7 +204,7 @@ private class VcpErrorHandlerTest {
         String extractedId = VcpErrorHandler.extractCorrelationIdFromMessage(message);
         
         // Assert
-        System.assertNull(extractedId);
+        System.assertEquals(null, extractedId);
     }
     
     @IsTest
@@ -218,7 +218,7 @@ private class VcpErrorHandlerTest {
         DateTime afterCreate = DateTime.now();
         
         // Assert
-        System.assertNotNull(err.occurredAt);
+        System.assert(err.occurredAt != null);
         System.assert(err.occurredAt >= beforeCreate, 'Timestamp should be set during creation');
         System.assert(err.occurredAt <= afterCreate.addSeconds(1), 'Timestamp should be reasonable');
     }
@@ -242,7 +242,7 @@ private class VcpErrorHandlerTest {
         
         // Assert (Nebula Logger creates Log__c records)
         // Note: In test context, Nebula Logger may not persist, but the method should not throw
-        System.assertNotNull(err.correlationId);
+        System.assert(err.correlationId != null);
         System.assertEquals(VcpErrorHandler.ErrorCategory.USER_VALIDATION, err.category);
     }
     
@@ -262,7 +262,7 @@ private class VcpErrorHandlerTest {
         );
         
         // Assert
-        System.assertNotNull(err);
+        System.assert(err != null);
         System.assertEquals(500, err.sapStatusCode);
         System.assert(err.technicalMessage.contains('html'), 'Should include raw response when JSON parse fails');
     }
