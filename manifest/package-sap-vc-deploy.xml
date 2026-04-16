@@ -35,6 +35,7 @@
         <members>vcp_error_401_unauthorized</members>
         <members>vcp_error_412_etag_mismatch</members>
         <members>vcp_kb_determination_success</members>
+        <members>vcp_kb_by_id_success</members>
         <members>vcp_kb_translations_success</members>
         <members>vcp_kb_translations_characteristics_success</members>
         <members>vcp_pricing_calculate_success</members>

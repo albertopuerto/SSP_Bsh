@@ -114,6 +114,17 @@ public with sharing class VcpConfigManagerController {
     }
 
     /**
+     * @description AuraEnabled facade for GET /api/v2/knowledgebases/{kbId}.
+     * Returns KB header + products with characteristicGroups, used for tab grouping.
+     * @param kbId Knowledge base id
+     * @return Raw SAP JSON with KB data including products[].characteristicGroups[]
+     */
+    @AuraEnabled
+    public static String getKnowledgebaseById(String kbId) {
+        return CPQExternalConfiguratorController.getKnowledgebaseById(kbId);
+    }
+
+    /**
      * @description AuraEnabled facade to retrieve KB translations used by the LWC label switcher.
      * Delegates to CPQExternalConfiguratorController.getKnowledgebaseTranslations.
      *

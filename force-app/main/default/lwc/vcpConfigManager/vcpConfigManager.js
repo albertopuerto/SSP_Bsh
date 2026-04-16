@@ -7,6 +7,7 @@ import createConfigurationV2 from '@salesforce/apex/VcpConfigManagerController.c
 import determineKnowledgebase from '@salesforce/apex/VcpConfigManagerController.determineKnowledgebase';
 import getConfigIdFromQuote from '@salesforce/apex/VcpConfigManagerController.getConfigIdFromQuote';
 import getConfigurationV2 from '@salesforce/apex/VcpConfigManagerController.getConfigurationV2';
+import getKnowledgebaseById from '@salesforce/apex/VcpConfigManagerController.getKnowledgebaseById';
 import getKnowledgebaseCharacteristicTranslations from '@salesforce/apex/VcpConfigManagerController.getKnowledgebaseCharacteristicTranslations';
 import getKnowledgebaseTranslations from '@salesforce/apex/VcpConfigManagerController.getKnowledgebaseTranslations';
 import patchConfigurationCharacteristics from '@salesforce/apex/VcpConfigManagerController.patchConfigurationCharacteristics';
@@ -48,6 +49,8 @@ export default class VcpConfigManager extends LightningElement {
     groupingMode = 'flat';
     displayMode = 'form';
     loadedCharacteristics = [];
+    loadedProducts = [];
+    selectedProductId = '';
     loadedItemId = '1';
     loadedConfigRaw = null;
     loadedProductKey = '';
@@ -198,6 +201,15 @@ export default class VcpConfigManager extends LightningElement {
 
     get headerProductName() {
         return this.translationIndex?.products?.[this.loadedProductKey] || this.headerProductCode;
+    }
+
+    get headerProductLabel() {
+        const name = this.headerProductName;
+        const code = this.headerProductCode;
+        if (!code || code === name) {
+            return name;
+        }
+        return `${name} (${code})`;
     }
 
     get showActivityLog() {
@@ -727,6 +739,8 @@ export default class VcpConfigManager extends LightningElement {
             this.processCharacteristics(parsed);
             const loadedProductCode = this.loadedProductKey || this.effectiveProductCode;
             this.logActivity(actionLabel, `Configuration loaded for product ${loadedProductCode}`);
+            // Prefetch KB translations silently so tab groups are available in API mode
+            this.prefetchGroupOrderCache();
             if (showSuccessToast) {
                 this.showSuccess('Configuration loaded', `Product ${loadedProductCode}`);
             }
@@ -761,12 +775,84 @@ export default class VcpConfigManager extends LightningElement {
     }
 
     processCharacteristics(config) {
-        if (!config?.rootItem || !Array.isArray(config.rootItem.characteristics)) {
+        if (!config?.rootItem) {
             this.loadedCharacteristics = [];
+            this.loadedProducts = [];
+            this.selectedProductId = '';
             return;
         }
-        this.loadedItemId = String(config.rootItem.id || config.rootItem.itemId || '1');
-        this.loadedCharacteristics = config.rootItem.characteristics.map((ch) => {
+
+        const flattenedProducts = [];
+        const productById = {};
+
+        const buildProductNode = (item, depth, isRoot, parentId) => {
+            if (!item || typeof item !== 'object') {
+                return null;
+            }
+
+            const rawId = item.id || item.itemId || item.key || `${parentId || 'root'}-${flattenedProducts.length + 1}`;
+            const id = String(rawId);
+            const name = item.name || item.description || item.key || `Item ${id}`;
+            const code = item.code || item.productKey || item.key || '';
+            const rawCharacteristics = Array.isArray(item.characteristics) ? item.characteristics : [];
+            const characteristics = this.mapCharacteristics(rawCharacteristics);
+            const configurable = item.configurable !== undefined ? Boolean(item.configurable) : characteristics.length > 0;
+
+            const node = {
+                id,
+                key: item.key || '',
+                code,
+                name,
+                configurable,
+                isRoot,
+                parentId: parentId || null,
+                depth,
+                characteristics,
+                childCount: 0
+            };
+
+            flattenedProducts.push(node);
+            productById[id] = node;
+
+            const children = []
+                .concat(Array.isArray(item.items) ? item.items : [])
+                .concat(Array.isArray(item.subItems) ? item.subItems : [])
+                .concat(Array.isArray(item.childItems) ? item.childItems : []);
+
+            const uniqueChildren = [];
+            const seen = new Set();
+            for (const child of children) {
+                const childId = String(child?.id || child?.itemId || child?.key || Math.random());
+                if (!seen.has(childId)) {
+                    seen.add(childId);
+                    uniqueChildren.push(child);
+                }
+            }
+
+            for (const child of uniqueChildren) {
+                buildProductNode(child, depth + 1, false, id);
+            }
+
+            node.childCount = uniqueChildren.length;
+            return node;
+        };
+
+        const rootNode = buildProductNode(config.rootItem, 0, true, null);
+        this.loadedProducts = flattenedProducts;
+
+        if (!this.selectedProductId || !productById[this.selectedProductId]) {
+            this.selectedProductId = rootNode?.id || (flattenedProducts[0]?.id ?? '');
+        }
+
+        this.applySelectedProductCharacteristics();
+    }
+
+    mapCharacteristics(characteristics) {
+        if (!Array.isArray(characteristics)) {
+            return [];
+        }
+
+        return characteristics.map((ch) => {
             const currentValues = this.extractCharValues(ch);
             const currentValue = currentValues[0] || '';
 
@@ -784,9 +870,18 @@ export default class VcpConfigManager extends LightningElement {
 
             const isRequired = this.isCharacteristicRequired(ch);
 
+            // Capture group assignment from raw SAP response (multiple possible field names)
+            const rawGroup =
+                ch.characteristicGroup ||
+                ch.groupId ||
+                ch.group ||
+                ch.characteristicGroupId ||
+                null;
+
             return {
                 key: ch.id || String(Math.random()),
                 id: ch.id || '',
+                group: rawGroup ? String(rawGroup) : null,
                 label: displayLabel,
                 visible: ch.visible !== false,
                 readOnly: isReadonly,
@@ -819,6 +914,116 @@ export default class VcpConfigManager extends LightningElement {
                     (ch.visible === false ? ' char-hidden' : '')
             };
         });
+    }
+
+    applySelectedProductCharacteristics() {
+        const selected = (this.loadedProducts || []).find((product) => product.id === this.selectedProductId);
+        if (!selected) {
+            this.loadedCharacteristics = [];
+            this.loadedItemId = '1';
+            return;
+        }
+
+        this.loadedItemId = String(selected.id || '1');
+        this.loadedCharacteristics = selected.characteristics || [];
+    }
+
+    handleProductSelection(event) {
+        const productId = event.currentTarget?.dataset?.productId;
+        if (!productId || productId === this.selectedProductId) {
+            return;
+        }
+
+        this.selectedProductId = productId;
+        this.applySelectedProductCharacteristics();
+        this.logActivity('Product', `Selected ${this.selectedProductName || productId}`);
+    }
+
+    /**
+     * Background fetch of GET /api/v2/knowledgebases/{kbId} to populate groupOrderCache.
+     * Reads products[].characteristicGroups[].characteristicIDs which defines tab order
+     * and which characteristics belong to each group.
+     * Does NOT set translationIndex so API-mode labels stay as technical IDs.
+     */
+    async prefetchGroupOrderCache() {
+        if (this.groupOrderCache?.groupOrder?.length > 0) {
+            this.logActivity('Groups', `Using cached group map (${this.groupOrderCache.groupOrder.length} groups)`);
+            return; // already populated
+        }
+        try {
+            const kbId = await this.resolveKbIdForTranslations();
+            if (!kbId) {
+                return;
+            }
+            const cacheKey = `kb::groups::${kbId}`;
+            let groupData = this.translationCache[cacheKey];
+            if (!groupData) {
+                this.logSapRequest(`GET /api/v2/knowledgebases/${kbId}`, `kbId="${kbId}"`);
+                const raw = await getKnowledgebaseById({ kbId });
+                this.logSapResponse(`GET /knowledgebases/${kbId}`, raw);
+                const parsed = this.safeParseJson(raw);
+                groupData = this.buildGroupOrderFromKb(parsed, this.loadedProductKey || '');
+                this.translationCache = { ...this.translationCache, [cacheKey]: groupData };
+            } else {
+                this.logActivity('Groups', `KB groups cache hit for kbId ${kbId}`);
+            }
+            if (groupData?.groupOrder?.length > 0) {
+                this._refreshGroupOrderCache(groupData);
+                this.logActivity('Groups', `Tab groups loaded from KB (${groupData.groupOrder.length} groups)`);
+            }
+        } catch (e) {
+            // non-critical, ignore silently
+        }
+    }
+
+    /**
+     * Parses GET /api/v2/knowledgebases/{kbId} response into a groupOrder structure.
+     * Picks the matching product by productKey (or root product), reads characteristicGroups.
+     * $general is kept for last-tab logic (matches SAP advancedVariantConfiguration convention).
+     */
+    buildGroupOrderFromKb(payload, productKey) {
+        const result = {
+            groupOrder: [],
+            groupCharacteristics: {},
+            groups: {}
+        };
+
+        if (!payload || !Array.isArray(payload.products)) {
+            return result;
+        }
+
+        const product =
+            payload.products.find((p) => p && p.id && productKey && p.id === productKey) ||
+            payload.products.find((p) => p?.isRoot) ||
+            payload.products[0];
+
+        if (!product || !Array.isArray(product.characteristicGroups)) {
+            return result;
+        }
+
+        const generalGroups = [];
+        const otherGroups = [];
+
+        for (const group of product.characteristicGroups) {
+            if (!group || !group.id) {
+                continue;
+            }
+            const charIds = Array.isArray(group.characteristicIDs) ? [...group.characteristicIDs] : [];
+            // Label: use name if present, else id
+            const label = group.name || group.id;
+            result.groups[group.id] = label;
+            result.groupCharacteristics[group.id] = charIds;
+
+            if (group.id === '$general') {
+                generalGroups.push(group.id);
+            } else {
+                otherGroups.push(group.id);
+            }
+        }
+
+        // Non-$general groups first, $general always last (SAP advancedVariantConfiguration convention)
+        result.groupOrder = [...otherGroups, ...generalGroups];
+        return result;
     }
 
     captureConfigurationMeta(config) {
@@ -1165,16 +1370,19 @@ export default class VcpConfigManager extends LightningElement {
         }
 
         if (Array.isArray(payload.products)) {
+            payload.products.forEach((product) => {
+                if (!product || !product.id) {
+                    return;
+                }
+                const translatedName = this.getBestTranslationName(product.translation, language);
+                if (translatedName) {
+                    index.products[product.id] = translatedName;
+                }
+            });
+
             const bestProduct =
                 payload.products.find((product) => product && product.id && productKey && product.id === productKey) ||
                 payload.products[0];
-
-            if (bestProduct && bestProduct.id) {
-                const productName = this.getBestTranslationName(bestProduct.translation, language);
-                if (productName) {
-                    index.products[bestProduct.id] = productName;
-                }
-            }
 
             if (bestProduct && Array.isArray(bestProduct.characteristicGroups)) {
                 bestProduct.characteristicGroups.forEach((group) => {
@@ -1705,6 +1913,108 @@ export default class VcpConfigManager extends LightningElement {
         return `lang-btn ${this.isTabsMode ? 'active' : ''}`;
     }
 
+    getTranslatedProductName(product) {
+        if (!product || this.labelMode === 'api') {
+            return null;
+        }
+
+        const candidates = [product.code, product.key, product.name, product.id]
+            .map((value) => (value ? String(value) : ''))
+            .filter((value) => value);
+
+        for (const key of candidates) {
+            const translated = this.translationIndex?.products?.[key];
+            if (translated) {
+                return translated;
+            }
+        }
+
+        return null;
+    }
+
+    get productListForTemplate() {
+        return (this.loadedProducts || []).map((product) => {
+            const translatedName = this.getTranslatedProductName(product);
+            const displayName = translatedName || product.name;
+            const suffix = product.code && product.code !== displayName ? ` (${product.code})` : '';
+            return {
+                ...product,
+                displayName,
+                label: `${displayName}${suffix}`,
+                buttonClass: `product-node-btn ${product.id === this.selectedProductId ? 'active' : ''} ${product.isRoot ? 'root' : ''}`
+            };
+        });
+    }
+
+    get hasProductsTree() {
+        return (this.loadedProducts || []).length > 0;
+    }
+
+    get selectedProduct() {
+        return (this.loadedProducts || []).find((product) => product.id === this.selectedProductId) || null;
+    }
+
+    get selectedProductTranslatedName() {
+        return this.getTranslatedProductName(this.selectedProduct);
+    }
+
+    get selectedProductName() {
+        return this.selectedProductTranslatedName || this.selectedProduct?.name || this.headerProductName || this.headerProductCode;
+    }
+
+    get selectedProductCode() {
+        return this.selectedProduct?.code || this.selectedProduct?.key || '';
+    }
+
+    get selectedProductLabel() {
+        const name = this.selectedProductName;
+        const code = this.selectedProductCode;
+        if (!code || code === name) {
+            return name;
+        }
+        return `${name} (${code})`;
+    }
+
+    get selectedProductIsConfigurable() {
+        const selected = this.selectedProduct;
+        if (!selected) {
+            return true;
+        }
+        return selected.configurable !== false;
+    }
+
+    get selectedProductHasCharacteristics() {
+        return (this.loadedCharacteristics || []).length > 0;
+    }
+
+    buildGroupsFromRawCharacteristics(chars) {
+        const rawGrouped = {};
+        const rawGroupOrder = [];
+
+        chars.forEach((c) => {
+            const g = c.group || '$general';
+            if (!rawGrouped[g]) {
+                rawGrouped[g] = [];
+                rawGroupOrder.push(g);
+            }
+            rawGrouped[g].push(c);
+        });
+
+        const nonGeneral = rawGroupOrder.filter((g) => g !== '$general');
+        const finalOrder = rawGroupOrder.includes('$general') ? [...nonGeneral, '$general'] : nonGeneral;
+
+        if (finalOrder.length === 1 && finalOrder[0] === '$general') {
+            return [{ key: '$general', groupId: '$general', groupLabel: 'All', characteristics: chars }];
+        }
+
+        return finalOrder.map((g) => ({
+            key: g,
+            groupId: g,
+            groupLabel: g === '$general' ? 'General' : g,
+            characteristics: rawGrouped[g] || []
+        }));
+    }
+
     get characteristicsByGroup() {
         const chars = this.loadedCharacteristics || [];
         const charMap = {};
@@ -1712,21 +2022,29 @@ export default class VcpConfigManager extends LightningElement {
             charMap[c.id] = c;
         });
 
-        // Use live translation index when available (non-API modes);
-        // fall back to groupOrderCache (populated on first KB load) so Tabs
-        // mode still shows groups even after switching back to API mode.
-        const source = this.translationIndex?.groupOrder?.length
-            ? this.translationIndex
-            : this.groupOrderCache;
+        // Group mapping source priority:
+        // 1) groupOrderCache from /knowledgebases/{kbId} (stable characteristicIDs)
+        // 2) translationIndex as fallback only
+        const source = this.groupOrderCache?.groupOrder?.length
+            ? this.groupOrderCache
+            : this.translationIndex;
+        const rawFallbackGroups = this.buildGroupsFromRawCharacteristics(chars);
 
         if (!source?.groupOrder?.length) {
-            return [{ key: '$general', groupId: '$general', groupLabel: 'All', characteristics: chars }];
+            return rawFallbackGroups;
         }
 
         const result = [];
         const placedIds = new Set();
+        let generalGroupCharacteristics = [];
 
         for (const groupId of source.groupOrder) {
+            if (groupId === '$general') {
+                const generalIds = source.groupCharacteristics?.[groupId] || [];
+                generalGroupCharacteristics = generalIds.map((id) => charMap[id]).filter(Boolean);
+                continue;
+            }
+
             const charIds = source.groupCharacteristics?.[groupId] || [];
             const groupChars = charIds.map((id) => charMap[id]).filter(Boolean);
             if (groupChars.length === 0) {
@@ -1746,14 +2064,24 @@ export default class VcpConfigManager extends LightningElement {
             });
         }
 
+        generalGroupCharacteristics.forEach((c) => placedIds.add(c.id));
         const unplaced = chars.filter((c) => !placedIds.has(c.id));
-        if (unplaced.length > 0) {
+        const generalFromUnplaced = unplaced.filter((c) => !generalGroupCharacteristics.some((g) => g.id === c.id));
+        const finalGeneral = [...generalGroupCharacteristics, ...generalFromUnplaced];
+
+        if (finalGeneral.length > 0) {
             result.push({
                 key: '$general',
                 groupId: '$general',
                 groupLabel: 'General',
-                characteristics: unplaced
+                characteristics: finalGeneral
             });
+        }
+
+        const isCollapsedToGeneral = result.length === 1 && result[0].groupId === '$general';
+        if ((result.length === 0 || isCollapsedToGeneral) && rawFallbackGroups.length > 1) {
+            this.logActivity('Groups', 'Using raw group mapping fallback for current item (translation/cache mismatch)');
+            return rawFallbackGroups;
         }
 
         return result;
@@ -1790,10 +2118,33 @@ export default class VcpConfigManager extends LightningElement {
         if (!index?.groupOrder?.length) {
             return;
         }
+        const previous = this.groupOrderCache || { groupOrder: [], groupCharacteristics: {}, groups: {} };
+        const incomingGroupChars = index.groupCharacteristics || {};
+        const mergedGroupCharacteristics = { ...previous.groupCharacteristics };
+
+        // Keep previous characteristic mappings when incoming source has labels-only groups
+        // (common with /translations payloads that may omit characteristicIDs).
+        Object.keys(incomingGroupChars).forEach((groupId) => {
+            const incomingIds = Array.isArray(incomingGroupChars[groupId]) ? incomingGroupChars[groupId] : [];
+            if (incomingIds.length > 0) {
+                mergedGroupCharacteristics[groupId] = [...incomingIds];
+            } else if (!mergedGroupCharacteristics[groupId]) {
+                mergedGroupCharacteristics[groupId] = [];
+            }
+        });
+
+        const incomingOrder = [...(index.groupOrder || [])];
+        const incomingOnlyGeneral = incomingOrder.length === 1 && incomingOrder[0] === '$general';
+        const previousHasSpecificGroups = (previous.groupOrder || []).some((id) => id !== '$general');
+        const effectiveOrder = incomingOnlyGeneral && previousHasSpecificGroups ? [...previous.groupOrder] : incomingOrder;
+
         this.groupOrderCache = {
-            groupOrder: [...index.groupOrder],
-            groupCharacteristics: { ...index.groupCharacteristics },
-            groups: { ...index.groups }
+            groupOrder: effectiveOrder,
+            groupCharacteristics: mergedGroupCharacteristics,
+            groups: {
+                ...previous.groups,
+                ...(index.groups || {})
+            }
         };
     }
 }

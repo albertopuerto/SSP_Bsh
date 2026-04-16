@@ -1,0 +1,1084 @@
+{
+  "_httpStatus": 200,
+  "characteristics": [
+    {
+      "additionalValues": false,
+      "caseSensitive": false,
+      "length": 3,
+      "possibleValues": [
+        {
+          "id": "CE"
+        },
+        {
+          "id": "ME"
+        },
+        {
+          "id": "UE"
+        },
+        {
+          "id": "XX"
+        }
+      ],
+      "multiValued": false,
+      "type": "string",
+      "id": "X70_INCA_BASE_HLP_SRV"
+    },
+    {
+      "additionalValues": false,
+      "caseSensitive": false,
+      "length": 2,
+      "possibleValues": [
+        {
+          "name": "Floating License",
+          "id": "CP"
+        },
+        {
+          "name": "Machine-named License",
+          "id": "MP"
+        },
+        {
+          "name": "User-named license",
+          "id": "UP"
+        },
+        {
+          "id": "CS"
+        },
+        {
+          "id": "MS"
+        }
+      ],
+      "name": "INCA BASE LICENSE",
+      "multiValued": false,
+      "type": "string",
+      "id": "X70_INCA_BASE_LIC"
+    },
+    {
+      "additionalValues": false,
+      "unitOfMeasure": "MON",
+      "entryFieldMask": "__",
+      "caseSensitive": false,
+      "length": 2,
+      "possibleValues": [
+        {
+          "intervalType": "1",
+          "valueLow": "1"
+        },
+        {
+          "intervalType": "1",
+          "valueLow": "3"
+        },
+        {
+          "intervalType": "1",
+          "valueLow": "6"
+        },
+        {
+          "intervalType": "1",
+          "valueLow": "9"
+        },
+        {
+          "intervalType": "1",
+          "valueLow": "12"
+        },
+        {
+          "intervalType": "1",
+          "valueLow": "18"
+        },
+        {
+          "intervalType": "1",
+          "valueLow": "24"
+        },
+        {
+          "intervalType": "1",
+          "valueLow": "36"
+        }
+      ],
+      "name": "License Duration",
+      "numberDecimals": 0,
+      "multiValued": false,
+      "type": "float",
+      "id": "X70_INCA_BASE_LIC_DUR"
+    },
+    {
+      "additionalValues": false,
+      "entryFieldMask": "__,___",
+      "caseSensitive": false,
+      "length": 5,
+      "name": "Licenses Quantity",
+      "numberDecimals": 0,
+      "multiValued": false,
+      "type": "float",
+      "id": "X70_INCA_BASE_LIC_QM"
+    },
+    {
+      "additionalValues": false,
+      "caseSensitive": false,
+      "length": 2,
+      "possibleValues": [
+        {
+          "id": "CE"
+        },
+        {
+          "id": "ME"
+        },
+        {
+          "id": "UE"
+        }
+      ],
+      "name": "INCA Base Product SrvContract",
+      "multiValued": false,
+      "type": "string",
+      "id": "X70_INCA_BASE_SRV"
+    },
+    {
+      "additionalValues": false,
+      "caseSensitive": false,
+      "length": 30,
+      "name": "INCA Bases Short Text",
+      "multiValued": false,
+      "type": "string",
+      "id": "X70_INCA_BASE_SRV_DES"
+    },
+    {
+      "additionalValues": false,
+      "caseSensitive": false,
+      "length": 1,
+      "possibleValues": [
+        {
+          "name": "NO",
+          "id": "0"
+        },
+        {
+          "name": "YES",
+          "id": "1"
+        }
+      ],
+      "name": "Add-on Flexray",
+      "multiValued": false,
+      "type": "string",
+      "id": "X70_INCA_FLX"
+    },
+    {
+      "additionalValues": false,
+      "entryFieldMask": "_",
+      "caseSensitive": false,
+      "length": 1,
+      "possibleValues": [
+        {
+          "intervalType": "1",
+          "valueLow": "0"
+        },
+        {
+          "intervalType": "1",
+          "valueLow": "1"
+        }
+      ],
+      "name": "Flexray Help Duration Type",
+      "numberDecimals": 0,
+      "multiValued": false,
+      "type": "float",
+      "id": "X70_INCA_FLX_HLP_LIC_DUR_TYPE"
+    },
+    {
+      "additionalValues": false,
+      "caseSensitive": false,
+      "length": 3,
+      "possibleValues": [
+        {
+          "id": "CE"
+        },
+        {
+          "id": "ME"
+        },
+        {
+          "id": "UE"
+        },
+        {
+          "id": "XX"
+        }
+      ],
+      "name": "MIP Help Srv",
+      "multiValued": false,
+      "type": "string",
+      "id": "X70_INCA_FLX_HLP_SRV"
+    },
+    {
+      "additionalValues": false,
+      "caseSensitive": false,
+      "length": 2,
+      "possibleValues": [
+        {
+          "name": "Floating License",
+          "id": "CP"
+        },
+        {
+          "name": "Machine-named License",
+          "id": "MP"
+        },
+        {
+          "name": "User-named license",
+          "id": "UP"
+        },
+        {
+          "id": "CS"
+        },
+        {
+          "id": "MS"
+        }
+      ],
+      "name": "Add-on Flexray License",
+      "multiValued": false,
+      "type": "string",
+      "id": "X70_INCA_FLX_LIC"
+    },
+    {
+      "additionalValues": false,
+      "caseSensitive": false,
+      "length": 30,
+      "name": "Add-on Flexray Short Text",
+      "multiValued": false,
+      "type": "string",
+      "id": "X70_INCA_FLX_LIC_DES"
+    },
+    {
+      "additionalValues": false,
+      "unitOfMeasure": "MON",
+      "entryFieldMask": "__",
+      "caseSensitive": false,
+      "length": 2,
+      "possibleValues": [
+        {
+          "intervalType": "1",
+          "valueLow": "1"
+        },
+        {
+          "intervalType": "1",
+          "valueLow": "3"
+        },
+        {
+          "intervalType": "1",
+          "valueLow": "6"
+        },
+        {
+          "intervalType": "1",
+          "valueLow": "9"
+        },
+        {
+          "intervalType": "1",
+          "valueLow": "12"
+        },
+        {
+          "intervalType": "1",
+          "valueLow": "18"
+        },
+        {
+          "intervalType": "1",
+          "valueLow": "24"
+        },
+        {
+          "intervalType": "1",
+          "valueLow": "36"
+        }
+      ],
+      "name": "License Duration",
+      "numberDecimals": 0,
+      "multiValued": false,
+      "type": "float",
+      "id": "X70_INCA_FLX_LIC_DUR"
+    },
+    {
+      "additionalValues": false,
+      "caseSensitive": false,
+      "length": 2,
+      "possibleValues": [
+        {
+          "id": "P"
+        },
+        {
+          "id": "L"
+        }
+      ],
+      "multiValued": false,
+      "type": "string",
+      "id": "X70_INCA_FLX_LIC_DUR_TYPE"
+    },
+    {
+      "additionalValues": false,
+      "entryFieldMask": "__,___",
+      "caseSensitive": false,
+      "length": 5,
+      "name": "License Quantity",
+      "numberDecimals": 0,
+      "multiValued": false,
+      "type": "float",
+      "id": "X70_INCA_FLX_LIC_QM"
+    },
+    {
+      "additionalValues": false,
+      "caseSensitive": false,
+      "length": 2,
+      "possibleValues": [
+        {
+          "id": "CE"
+        },
+        {
+          "id": "ME"
+        },
+        {
+          "id": "UE"
+        }
+      ],
+      "name": "Add-on Flexray Srv Contract",
+      "multiValued": false,
+      "type": "string",
+      "id": "X70_INCA_FLX_SRV"
+    },
+    {
+      "additionalValues": false,
+      "caseSensitive": false,
+      "length": 30,
+      "name": "Add-on Flexray Short Text",
+      "multiValued": false,
+      "type": "string",
+      "id": "X70_INCA_FLX_SRV_DES"
+    },
+    {
+      "additionalValues": false,
+      "caseSensitive": false,
+      "length": 1,
+      "possibleValues": [
+        {
+          "name": "NO",
+          "id": "0"
+        },
+        {
+          "name": "YES",
+          "id": "1"
+        }
+      ],
+      "name": "INCA",
+      "multiValued": false,
+      "type": "string",
+      "id": "X70_INCA_INCA"
+    },
+    {
+      "additionalValues": false,
+      "entryFieldMask": "_",
+      "caseSensitive": false,
+      "length": 1,
+      "possibleValues": [
+        {
+          "intervalType": "1",
+          "valueLow": "0"
+        },
+        {
+          "intervalType": "1",
+          "valueLow": "1"
+        }
+      ],
+      "numberDecimals": 0,
+      "multiValued": false,
+      "type": "float",
+      "id": "X70_INCA_INCA_HLP_LIC_DUR_TYPE"
+    },
+    {
+      "additionalValues": false,
+      "caseSensitive": false,
+      "length": 30,
+      "name": "INCA Bases Short Text",
+      "multiValued": false,
+      "type": "string",
+      "id": "X70_INCA_INCA_LIC_DES"
+    },
+    {
+      "additionalValues": false,
+      "caseSensitive": false,
+      "length": 2,
+      "possibleValues": [
+        {
+          "id": "P"
+        },
+        {
+          "id": "L"
+        }
+      ],
+      "multiValued": false,
+      "type": "string",
+      "id": "X70_INCA_INCA_LIC_DUR_TYPE"
+    },
+    {
+      "additionalValues": false,
+      "caseSensitive": false,
+      "length": 1,
+      "possibleValues": [
+        {
+          "id": "0"
+        },
+        {
+          "id": "1"
+        }
+      ],
+      "name": "Add-on Matlab Integration Pack",
+      "multiValued": false,
+      "type": "string",
+      "id": "X70_INCA_MIP"
+    },
+    {
+      "additionalValues": false,
+      "entryFieldMask": "_",
+      "caseSensitive": false,
+      "length": 1,
+      "possibleValues": [
+        {
+          "intervalType": "1",
+          "valueLow": "0"
+        },
+        {
+          "intervalType": "1",
+          "valueLow": "1"
+        }
+      ],
+      "name": "MIP Help Duration Type",
+      "numberDecimals": 0,
+      "multiValued": false,
+      "type": "float",
+      "id": "X70_INCA_MIP_HLP_LIC_DUR_TYPE"
+    },
+    {
+      "additionalValues": false,
+      "caseSensitive": false,
+      "length": 3,
+      "possibleValues": [
+        {
+          "id": "CE"
+        },
+        {
+          "id": "ME"
+        },
+        {
+          "id": "UE"
+        },
+        {
+          "id": "XX"
+        }
+      ],
+      "name": "MIP Help Srv",
+      "multiValued": false,
+      "type": "string",
+      "id": "X70_INCA_MIP_HLP_SRV"
+    },
+    {
+      "additionalValues": false,
+      "caseSensitive": false,
+      "length": 2,
+      "possibleValues": [
+        {
+          "id": "CP"
+        },
+        {
+          "id": "MP"
+        },
+        {
+          "id": "UP"
+        },
+        {
+          "id": "CS"
+        },
+        {
+          "id": "MS"
+        }
+      ],
+      "name": "Add-on MIP Licenses",
+      "multiValued": false,
+      "type": "string",
+      "id": "X70_INCA_MIP_LIC"
+    },
+    {
+      "additionalValues": false,
+      "caseSensitive": false,
+      "length": 30,
+      "name": "Add-on MIP Short text",
+      "multiValued": false,
+      "type": "string",
+      "id": "X70_INCA_MIP_LIC_DES"
+    },
+    {
+      "additionalValues": false,
+      "unitOfMeasure": "MON",
+      "entryFieldMask": "__",
+      "caseSensitive": false,
+      "length": 2,
+      "possibleValues": [
+        {
+          "intervalType": "1",
+          "valueLow": "1"
+        },
+        {
+          "intervalType": "1",
+          "valueLow": "3"
+        },
+        {
+          "intervalType": "1",
+          "valueLow": "6"
+        },
+        {
+          "intervalType": "1",
+          "valueLow": "9"
+        },
+        {
+          "intervalType": "1",
+          "valueLow": "12"
+        },
+        {
+          "intervalType": "1",
+          "valueLow": "18"
+        },
+        {
+          "intervalType": "1",
+          "valueLow": "24"
+        },
+        {
+          "intervalType": "1",
+          "valueLow": "36"
+        }
+      ],
+      "name": "License Duration",
+      "numberDecimals": 0,
+      "multiValued": false,
+      "type": "float",
+      "id": "X70_INCA_MIP_LIC_DUR"
+    },
+    {
+      "additionalValues": false,
+      "caseSensitive": false,
+      "length": 2,
+      "possibleValues": [
+        {
+          "id": "P"
+        },
+        {
+          "id": "L"
+        }
+      ],
+      "name": "Access Duration",
+      "multiValued": false,
+      "type": "string",
+      "id": "X70_INCA_MIP_LIC_DUR_TYPE"
+    },
+    {
+      "additionalValues": false,
+      "entryFieldMask": "__,___",
+      "caseSensitive": false,
+      "length": 5,
+      "name": "License Quantity",
+      "numberDecimals": 0,
+      "multiValued": false,
+      "type": "float",
+      "id": "X70_INCA_MIP_LIC_QM"
+    },
+    {
+      "additionalValues": false,
+      "caseSensitive": false,
+      "length": 2,
+      "possibleValues": [
+        {
+          "id": "CE"
+        },
+        {
+          "id": "ME"
+        },
+        {
+          "id": "UE"
+        }
+      ],
+      "name": "Add-on MIP Integration Srv Con",
+      "multiValued": false,
+      "type": "string",
+      "id": "X70_INCA_MIP_SRV"
+    },
+    {
+      "additionalValues": false,
+      "caseSensitive": false,
+      "length": 30,
+      "name": "Add-on MIP Short text",
+      "multiValued": false,
+      "type": "string",
+      "id": "X70_INCA_MIP_SRV_DES"
+    },
+    {
+      "additionalValues": false,
+      "entryFieldMask": "_",
+      "caseSensitive": false,
+      "length": 1,
+      "possibleValues": [
+        {
+          "intervalType": "1",
+          "valueLow": "0"
+        },
+        {
+          "intervalType": "1",
+          "valueLow": "1"
+        }
+      ],
+      "numberDecimals": 0,
+      "multiValued": false,
+      "type": "float",
+      "id": "X70_INCA_QMB_HLP_LIC_DUR_TYPE"
+    },
+    {
+      "additionalValues": false,
+      "caseSensitive": false,
+      "length": 3,
+      "possibleValues": [
+        {
+          "id": "CE"
+        },
+        {
+          "id": "ME"
+        },
+        {
+          "id": "UE"
+        },
+        {
+          "id": "XX"
+        }
+      ],
+      "multiValued": false,
+      "type": "string",
+      "id": "X70_INCA_QMB_HLP_SRV"
+    },
+    {
+      "additionalValues": false,
+      "caseSensitive": false,
+      "length": 2,
+      "possibleValues": [
+        {
+          "name": "Floating License",
+          "id": "CP"
+        },
+        {
+          "name": "Machine-named License",
+          "id": "MP"
+        },
+        {
+          "name": "User-named license",
+          "id": "UP"
+        },
+        {
+          "id": "CS"
+        },
+        {
+          "id": "MS"
+        }
+      ],
+      "name": "Add-on QM BASIC LICENSE",
+      "multiValued": false,
+      "type": "string",
+      "id": "X70_INCA_QMB_LIC"
+    },
+    {
+      "additionalValues": false,
+      "caseSensitive": false,
+      "length": 30,
+      "name": "Add-on QM BASIC Short text",
+      "multiValued": false,
+      "type": "string",
+      "id": "X70_INCA_QMB_LIC_DES"
+    },
+    {
+      "additionalValues": false,
+      "unitOfMeasure": "MON",
+      "entryFieldMask": "__",
+      "caseSensitive": false,
+      "length": 2,
+      "possibleValues": [
+        {
+          "intervalType": "1",
+          "valueLow": "1"
+        },
+        {
+          "intervalType": "1",
+          "valueLow": "3"
+        },
+        {
+          "intervalType": "1",
+          "valueLow": "6"
+        },
+        {
+          "intervalType": "1",
+          "valueLow": "9"
+        },
+        {
+          "intervalType": "1",
+          "valueLow": "12"
+        },
+        {
+          "intervalType": "1",
+          "valueLow": "18"
+        },
+        {
+          "intervalType": "1",
+          "valueLow": "24"
+        },
+        {
+          "intervalType": "1",
+          "valueLow": "36"
+        }
+      ],
+      "name": "License Duration",
+      "numberDecimals": 0,
+      "multiValued": false,
+      "type": "float",
+      "id": "X70_INCA_QMB_LIC_DUR"
+    },
+    {
+      "additionalValues": false,
+      "caseSensitive": false,
+      "length": 2,
+      "possibleValues": [
+        {
+          "id": "P"
+        },
+        {
+          "id": "L"
+        }
+      ],
+      "multiValued": false,
+      "type": "string",
+      "id": "X70_INCA_QMB_LIC_DUR_TYPE"
+    },
+    {
+      "additionalValues": false,
+      "entryFieldMask": "__,___",
+      "caseSensitive": false,
+      "length": 5,
+      "name": "Licenses Quantity",
+      "numberDecimals": 0,
+      "multiValued": false,
+      "type": "float",
+      "id": "X70_INCA_QMB_LIC_QM"
+    },
+    {
+      "additionalValues": false,
+      "caseSensitive": false,
+      "length": 2,
+      "possibleValues": [
+        {
+          "id": "CE"
+        },
+        {
+          "id": "ME"
+        },
+        {
+          "id": "UE"
+        }
+      ],
+      "name": "Add-on QM BASIC SrvContract",
+      "multiValued": false,
+      "type": "string",
+      "id": "X70_INCA_QMB_SRV"
+    },
+    {
+      "additionalValues": false,
+      "caseSensitive": false,
+      "length": 30,
+      "name": "Add-on QM BASIC Short text",
+      "multiValued": false,
+      "type": "string",
+      "id": "X70_INCA_QMB_SRV_DES"
+    },
+    {
+      "additionalValues": false,
+      "caseSensitive": false,
+      "length": 1,
+      "possibleValues": [
+        {
+          "name": "NO",
+          "id": "0"
+        },
+        {
+          "name": "YES",
+          "id": "1"
+        }
+      ],
+      "name": "Add-on QM BASIC",
+      "multiValued": false,
+      "type": "string",
+      "id": "X70_INCA_QM_BASIC"
+    }
+  ],
+  "classes": [
+    {
+      "name": "INCA FLEXRAY LICENSE",
+      "id": "X70_INCA_FXL_LIC"
+    },
+    {
+      "name": "INCA BASE SERVICE CONTRACT",
+      "id": "X70_INCA_BASE_SRV"
+    },
+    {
+      "name": "QM BASIC SERVICE Contract",
+      "id": "X70_INCA_QMB_SRV"
+    },
+    {
+      "name": "INCA Solution Bundle",
+      "id": "X70_CL_INCA_SOL"
+    },
+    {
+      "name": "INCA LICENSE",
+      "id": "X70_CL_INCA_LIC"
+    },
+    {
+      "name": "INCA QM BASIC LICENSE",
+      "id": "X70_INCA_QMB_LIC"
+    }
+  ],
+  "products": [
+    {
+      "multilevel": false,
+      "characteristicGroups": [
+        {
+          "characteristicIDs": [
+            "X70_INCA_QMB_SRV_DES",
+            "X70_INCA_QMB_SRV"
+          ],
+          "name": "General",
+          "id": "$general"
+        }
+      ],
+      "isRoot": false,
+      "configurable": true,
+      "name": "QM BASIC Service Contract",
+      "id": "F00K001017"
+    },
+    {
+      "multilevel": false,
+      "characteristicGroups": [
+        {
+          "characteristicIDs": [
+            "X70_INCA_FLX_LIC",
+            "X70_INCA_FLX_LIC_DES",
+            "X70_INCA_FLX_LIC_QM",
+            "X70_INCA_FLX_LIC_DUR_TYPE"
+          ],
+          "name": "General",
+          "id": "$general"
+        }
+      ],
+      "isRoot": false,
+      "configurable": true,
+      "name": "Flexray License",
+      "id": "F00K001010"
+    },
+    {
+      "bomItems": [
+        {
+          "salesRelevant": true,
+          "fixedQuantity": false,
+          "quantity": {
+            "unit": "ST",
+            "value": 1
+          },
+          "objectKey": {
+            "classType": "300",
+            "type": "MARA",
+            "id": "F00K001007"
+          },
+          "position": "0010"
+        },
+        {
+          "salesRelevant": true,
+          "fixedQuantity": false,
+          "quantity": {
+            "unit": "ST",
+            "value": 1
+          },
+          "objectKey": {
+            "classType": "300",
+            "type": "MARA",
+            "id": "F00K001008"
+          },
+          "position": "0020"
+        },
+        {
+          "salesRelevant": true,
+          "fixedQuantity": false,
+          "quantity": {
+            "unit": "ST",
+            "value": 1
+          },
+          "objectKey": {
+            "classType": "300",
+            "type": "MARA",
+            "id": "F00K001010"
+          },
+          "position": "0030"
+        },
+        {
+          "salesRelevant": true,
+          "fixedQuantity": false,
+          "quantity": {
+            "unit": "ST",
+            "value": 1
+          },
+          "objectKey": {
+            "classType": "300",
+            "type": "MARA",
+            "id": "F00K001016"
+          },
+          "position": "0050"
+        },
+        {
+          "salesRelevant": true,
+          "fixedQuantity": false,
+          "quantity": {
+            "unit": "ST",
+            "value": 1
+          },
+          "objectKey": {
+            "classType": "300",
+            "type": "MARA",
+            "id": "F00K001017"
+          },
+          "position": "0060"
+        }
+      ],
+      "multilevel": true,
+      "characteristicGroups": [
+        {
+          "characteristicIDs": [
+            "X70_INCA_FLX",
+            "X70_INCA_FLX_LIC",
+            "X70_INCA_FLX_LIC_DES",
+            "X70_INCA_FLX_LIC_DUR",
+            "X70_INCA_FLX_LIC_QM",
+            "X70_INCA_FLX_SRV",
+            "X70_INCA_FLX_SRV_DES",
+            "X70_INCA_FLX_LIC_DUR_TYPE",
+            "X70_INCA_INCA_LIC_DUR_TYPE",
+            "X70_INCA_INCA_HLP_LIC_DUR_TYPE",
+            "X70_INCA_BASE_HLP_SRV",
+            "X70_INCA_MIP",
+            "X70_INCA_MIP_LIC",
+            "X70_INCA_MIP_LIC_DES",
+            "X70_INCA_MIP_LIC_DUR",
+            "X70_INCA_MIP_LIC_QM",
+            "X70_INCA_MIP_SRV",
+            "X70_INCA_MIP_SRV_DES",
+            "X70_INCA_MIP_LIC_DUR_TYPE",
+            "X70_INCA_MIP_HLP_LIC_DUR_TYPE",
+            "X70_INCA_MIP_HLP_SRV",
+            "X70_INCA_FLX_HLP_LIC_DUR_TYPE",
+            "X70_INCA_FLX_HLP_SRV"
+          ],
+          "name": "General",
+          "id": "$general"
+        },
+        {
+          "characteristicIDs": [
+            "X70_INCA_INCA",
+            "X70_INCA_BASE_LIC",
+            "X70_INCA_INCA_LIC_DES",
+            "X70_INCA_BASE_LIC_DUR",
+            "X70_INCA_BASE_LIC_QM",
+            "X70_INCA_BASE_SRV",
+            "X70_INCA_BASE_SRV_DES"
+          ],
+          "name": "INCA",
+          "id": "INCA"
+        },
+        {
+          "characteristicIDs": [
+            "X70_INCA_QM_BASIC",
+            "X70_INCA_QMB_LIC_DES",
+            "X70_INCA_QMB_LIC",
+            "X70_INCA_QMB_SRV_DES",
+            "X70_INCA_QMB_SRV",
+            "X70_INCA_QMB_LIC_DUR",
+            "X70_INCA_QMB_LIC_QM",
+            "X70_INCA_QMB_LIC_DUR_TYPE",
+            "X70_INCA_QMB_HLP_LIC_DUR_TYPE",
+            "X70_INCA_QMB_HLP_SRV"
+          ],
+          "name": "INCA QM BASIC",
+          "id": "INCA_QMB"
+        }
+      ],
+      "isRoot": true,
+      "configurable": true,
+      "name": "INCA-SW(Bundle)",
+      "id": "F00K001001"
+    },
+    {
+      "multilevel": false,
+      "characteristicGroups": [
+        {
+          "characteristicIDs": [
+            "X70_INCA_QMB_LIC",
+            "X70_INCA_QMB_LIC_DES",
+            "X70_INCA_QMB_LIC_QM",
+            "X70_INCA_QMB_LIC_DUR_TYPE"
+          ],
+          "name": "General",
+          "id": "$general"
+        }
+      ],
+      "isRoot": false,
+      "configurable": true,
+      "name": "QM BASIC License",
+      "id": "F00K001008"
+    },
+    {
+      "multilevel": false,
+      "characteristicGroups": [
+        {
+          "characteristicIDs": [
+            "X70_INCA_BASE_SRV_DES",
+            "X70_INCA_BASE_SRV"
+          ],
+          "name": "General",
+          "id": "$general"
+        }
+      ],
+      "isRoot": false,
+      "configurable": true,
+      "name": "INCA BASE Service Contract",
+      "id": "F00K001016"
+    },
+    {
+      "multilevel": false,
+      "characteristicGroups": [
+        {
+          "characteristicIDs": [
+            "X70_INCA_BASE_LIC",
+            "X70_INCA_INCA_LIC_DES",
+            "X70_INCA_BASE_LIC_DUR",
+            "X70_INCA_INCA_LIC_DUR_TYPE"
+          ],
+          "name": "General",
+          "id": "$general"
+        }
+      ],
+      "isRoot": false,
+      "configurable": true,
+      "name": "INCA BASE Licenses",
+      "id": "F00K001007"
+    }
+  ],
+  "language": "en",
+  "headerInfo": {
+    "type": "advancedVariantConfiguration",
+    "bomApplication": "SD01",
+    "plant": "6430",
+    "structureHash": "2B2EC41D6891A4C8032F9947F2D606FE",
+    "build": 1,
+    "changeDate": "2026-04-14",
+    "validFromDate": "2026-04-14",
+    "key": {
+      "uploaded": true,
+      "version": "VER_2026_04_14",
+      "name": "F00K001001",
+      "logsys": "SAP0Q1E011"
+    },
+    "id": -4
+  }
+}

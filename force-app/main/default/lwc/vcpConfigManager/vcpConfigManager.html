@@ -81,7 +81,8 @@
                 <section class="section">
                     <div class="config-context-banner">
                         <div class="banner-left">
-                            <div class="config-context-title">Product Configuration: {headerProductName}</div>
+                            <div class="config-context-title">Product Configuration</div>
+                            <div class="config-context-product">{headerProductLabel}</div>
                             <div class="config-context-subtitle">
                                 <template if:true={loadedKbName}>
                                     <span class="config-context-pill">KB Name: {loadedKbName}</span>
@@ -102,9 +103,9 @@
                                 <div class="lang-group">
                                     <span class="lang-label">Language</span>
                                     <button class={apiModeClass} onclick={handleLabelModeApi}>🤖 API</button>
-                                    <button class={enModeClass} onclick={handleLabelModeEn}><img src={usFlagUrl} alt="EN" class="flag-icon"/> EN</button>
-                                    <button class={esModeClass} onclick={handleLabelModeEs}><img src={esFlagUrl} alt="ES" class="flag-icon"/> ES</button>
-                                    <button class={deModeClass} onclick={handleLabelModeDe}><img src={deFlagUrl} alt="DE" class="flag-icon"/> DE</button>
+                                    <button class={enModeClass} onclick={handleLabelModeEn}><img src={usFlagUrl} alt="EN" class="flag-icon"/> English</button>
+                                    <button class={esModeClass} onclick={handleLabelModeEs}><img src={esFlagUrl} alt="ES" class="flag-icon"/> Espanol</button>
+                                    <button class={deModeClass} onclick={handleLabelModeDe}><img src={deFlagUrl} alt="DE" class="flag-icon"/> Deutsch</button>
                                 </div>
                                 <div class="display-mode-group">
                                     <span class="lang-label">View</span>
@@ -151,12 +152,60 @@
                         ></c-vcp-characteristics-wizard>
                     </template>
                     <template if:true={isTabsMode}>
-                        <c-vcp-characteristics-group-tabs
-                            groups={characteristicsByGroup}
-                            visibility-mode={visibilityMode}
-                            label-mode={labelMode}
-                            oncharacteristicchange={handleCharacteristicChange}
-                        ></c-vcp-characteristics-group-tabs>
+                        <div class="tabs-layout">
+                            <aside class="product-tree-panel">
+                                <div class="product-tree-title">Configurable Items</div>
+                                <template if:true={hasProductsTree}>
+                                    <div class="product-tree-list">
+                                        <template for:each={productListForTemplate} for:item="product">
+                                            <button
+                                                key={product.id}
+                                                class={product.buttonClass}
+                                                data-depth={product.depth}
+                                                data-product-id={product.id}
+                                                onclick={handleProductSelection}
+                                            >
+                                                <span class="product-node-main">
+                                                    {product.label}
+                                                    <template if:true={product.isRoot}>
+                                                        <span class="product-root-badge">ROOT</span>
+                                                    </template>
+                                                </span>
+                                            </button>
+                                        </template>
+                                    </div>
+                                </template>
+                                <template if:false={hasProductsTree}>
+                                    <p class="helper-text">No products available yet.</p>
+                                </template>
+                            </aside>
+
+                            <section class="tabs-content-panel">
+                                <div class="tabs-content-header">
+                                    <div class="tabs-content-title">{selectedProductName}</div>
+                                    <template if:true={selectedProductCode}>
+                                        <div class="tabs-content-subtitle">Code: {selectedProductCode}</div>
+                                    </template>
+                                </div>
+
+                                <template if:true={selectedProductIsConfigurable}>
+                                    <template if:true={selectedProductHasCharacteristics}>
+                                        <c-vcp-characteristics-group-tabs
+                                            groups={characteristicsByGroup}
+                                            visibility-mode={visibilityMode}
+                                            label-mode={labelMode}
+                                            oncharacteristicchange={handleCharacteristicChange}
+                                        ></c-vcp-characteristics-group-tabs>
+                                    </template>
+                                    <template if:false={selectedProductHasCharacteristics}>
+                                        <p class="helper-text">This product has no characteristics to configure.</p>
+                                    </template>
+                                </template>
+                                <template if:false={selectedProductIsConfigurable}>
+                                    <p class="helper-text">This product is not configurable.</p>
+                                </template>
+                            </section>
+                        </div>
                     </template>
 
                     <div class="form-footer">
