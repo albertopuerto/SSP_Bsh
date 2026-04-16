@@ -1,7 +1,11 @@
 <template>
     <!-- Product list view -->
     <template if:false={showConfigurator}>
-        <lightning-card title="Add Product — VCP LWC PoC" icon-name="standard:product_catalog">
+        <lightning-card icon-name="standard:product_catalog">
+            <div slot="title" class="selector-card-title">
+                <span class="selector-card-title-main">Add Product</span>
+                <span class="selector-card-title-sub">VCP LWC PoC</span>
+            </div>
             <div class="filters slds-p-horizontal_medium slds-p-bottom_medium">
                 <lightning-combobox
                     label="Product Family"
@@ -34,8 +38,11 @@
                 <div class="slds-p-horizontal_medium slds-p-bottom_small result-count">
                     {productCount} product(s) found
                 </div>
-                <div class="table-scroll">
+                <div class="table-shell slds-m-horizontal_medium slds-m-bottom_small">
+                    <div class="table-shell-header">Products</div>
+                    <div class="table-scroll">
                     <lightning-datatable
+                        class="products-table"
                         key-field="id"
                         data={products}
                         columns={columns}
@@ -46,6 +53,7 @@
                         onsort={handleSort}
                         onrowaction={handleRowAction}
                     ></lightning-datatable>
+                    </div>
                 </div>
                 <div class="footer-bar">
                     <template if:true={hasSelection}>

@@ -119,9 +119,8 @@
                     </div>
 
                     <template if:true={debugMode}>
-                        <div class="grid-4">
+                        <div class="grid-3">
                             <lightning-combobox label="Field Visibility" value={visibilityMode} options={visibilityOptions} onchange={handleVisibilityChange}></lightning-combobox>
-                            <lightning-combobox label="Grouping Mode" value={groupingMode} options={groupingOptions} onchange={handleGroupingChange}></lightning-combobox>
                             <lightning-input type="text" label="ETag (editable)" value={eTag} placeholder='W/"n"' onchange={handleETagChange}></lightning-input>
                             <lightning-combobox label="ETag Version Preset" value={eTagVersionStr} options={eTagVersionOptions} onchange={handleETagVersionChange}></lightning-combobox>
                         </div>
@@ -240,16 +239,19 @@
                     </div>
 
                     <template if:true={debugMode}>
-                        <div class="debug-panels-grid">
-                            <div class="json-box">
-                                <p class="json-title">PATCH Preview</p>
-                                <pre>{patchPreviewText}</pre>
+                        <details class="json-collapsible">
+                            <summary class="json-collapsible-summary">API JSON View (PATCH Preview + Last Response)</summary>
+                            <div class="debug-panels-grid debug-panels-grid-collapsible">
+                                <div class="json-box json-box-collapsible">
+                                    <p class="json-title">PATCH Preview</p>
+                                    <pre>{patchPreviewText}</pre>
+                                </div>
+                                <div class="json-box json-box-collapsible">
+                                    <p class="json-title">Last Response</p>
+                                    <pre>{createResponse}</pre>
+                                </div>
                             </div>
-                            <div class="json-box">
-                                <p class="json-title">Last Response</p>
-                                <pre>{createResponse}</pre>
-                            </div>
-                        </div>
+                        </details>
                     </template>
                 </section>
             </template>

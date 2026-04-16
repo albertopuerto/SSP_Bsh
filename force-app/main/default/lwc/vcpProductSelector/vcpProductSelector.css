@@ -1,9 +1,39 @@
+.selector-card-title {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.48rem;
+}
+
+.selector-card-title-main {
+    font-size: 1.02rem;
+    font-weight: 800;
+    color: #153a61;
+    letter-spacing: 0.01em;
+}
+
+.selector-card-title-sub {
+    display: inline-flex;
+    align-items: center;
+    background: #e8f3ff;
+    border: 1px solid #bed8f3;
+    color: #21598d;
+    border-radius: 999px;
+    padding: 0.08rem 0.5rem;
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+}
+
 .filters {
     display: flex;
     flex-wrap: wrap;
     gap: 1.25rem;
     align-items: flex-end;
-    padding-top: 0.25rem;
+    padding-top: 0.4rem;
+    background: linear-gradient(180deg, #f8fbff 0%, #f0f7ff 100%);
+    border-top: 1px solid #d7e6f6;
+    border-bottom: 1px solid #d7e6f6;
 }
 
 .filters lightning-combobox {
@@ -16,15 +46,42 @@
 
 .result-count {
     font-size: 0.78rem;
-    color: #706e6b;
+    color: #4f6d8b;
     letter-spacing: 0.02em;
+    font-weight: 600;
+}
+
+.table-shell {
+    border: 1px solid #c7dbef;
+    border-radius: 0.75rem;
+    background: linear-gradient(180deg, #fbfdff 0%, #f5f9ff 100%);
+    overflow: hidden;
+}
+
+.table-shell-header {
+    font-size: 0.72rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.045em;
+    color: #ffffff;
+    background: linear-gradient(135deg, #3a80c2 0%, #2b6ea8 100%);
+    border-bottom: 1px solid #2a689f;
+    padding: 0.35rem 0.6rem;
 }
 
 .table-scroll {
     overflow-x: auto;
     overflow-y: auto;
-    max-height: 45vh;
+    max-height: 48vh;
     width: 100%;
+}
+
+.products-table {
+    --slds-c-table-color-background-header: #e8f1fb;
+    --slds-c-table-heading-color-background: #e8f1fb;
+    --slds-c-table-heading-text-color: #1f578c;
+    --slds-c-table-heading-font-weight: 700;
+    --slds-c-table-cell-color-border: #d8e4f1;
 }
 
 .error-box {

@@ -5,9 +5,6 @@
                 <div key={char.key} class={char.fieldClass}>
                     <div class="char-label">
                         {char.label}
-                        <template if:true={char.required}>
-                            <span class="required-indicator"> *</span>
-                        </template>
                     </div>
                     <div class="char-badges">
                         <template if:true={char.badgeHidden}>
@@ -32,7 +29,8 @@
                     <template if:true={char.isDropdown}>
                         <lightning-combobox
                             name={char.id}
-                            label=" "
+                            label={char.label}
+                            variant="label-hidden"
                             options={char.options}
                             value={char.currentValue}
                             required={char.required}
@@ -43,7 +41,8 @@
                     <template if:true={char.isCheckboxGroup}>
                         <lightning-checkbox-group
                             name={char.id}
-                            label=" "
+                            label={char.label}
+                            variant="label-hidden"
                             options={char.options}
                             value={char.currentValues}
                             required={char.required}
@@ -54,7 +53,8 @@
                     <template if:true={char.isTextInput}>
                         <lightning-input
                             type="text"
-                            label=" "
+                            label={char.label}
+                            variant="label-hidden"
                             value={char.currentValue}
                             required={char.required}
                             data-char-id={char.id}

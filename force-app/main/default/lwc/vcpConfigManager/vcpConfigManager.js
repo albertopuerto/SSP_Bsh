@@ -46,7 +46,6 @@ export default class VcpConfigManager extends LightningElement {
 
     labelMode = 'api';
     visibilityMode = 'visible';
-    groupingMode = 'flat';
     displayMode = 'form';
     loadedCharacteristics = [];
     loadedProducts = [];
@@ -295,13 +294,6 @@ export default class VcpConfigManager extends LightningElement {
         ];
     }
 
-    get groupingOptions() {
-        return [
-            { label: 'Flat', value: 'flat' },
-            { label: 'By Group', value: 'group' }
-        ];
-    }
-
     async initializeContext() {
         this.isBusy = true;
         try {
@@ -485,10 +477,6 @@ export default class VcpConfigManager extends LightningElement {
 
     handleVisibilityChange(event) {
         this.visibilityMode = event.detail.value;
-    }
-
-    handleGroupingChange(event) {
-        this.groupingMode = event.detail.value;
     }
 
     handleETagChange(event) {

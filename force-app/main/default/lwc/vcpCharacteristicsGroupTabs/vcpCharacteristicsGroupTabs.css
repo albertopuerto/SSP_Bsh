@@ -1,3 +1,62 @@
 :host {
     display: block;
 }
+
+.group-tabs-shell {
+    border: 1px solid #c4d9ef;
+    border-radius: 0.9rem;
+    background: linear-gradient(180deg, #f9fcff 0%, #f2f8ff 100%);
+    padding: 0.5rem;
+}
+
+.group-tabs-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.22rem;
+    margin-bottom: 0;
+    border-bottom: 1px solid #b7cfe8;
+    padding: 0 0.15rem;
+}
+
+.group-tab-btn {
+    border: 1px solid #b7cfe8;
+    border-bottom-color: #b7cfe8;
+    background: linear-gradient(180deg, #edf5ff 0%, #e4f0ff 100%);
+    color: #1f578c;
+    border-radius: 0.55rem 0.55rem 0 0;
+    padding: 0.34rem 0.78rem;
+    font-size: 0.74rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 120ms ease;
+    margin-bottom: -1px;
+}
+
+.group-tab-btn:hover {
+    border-color: #8eb6dc;
+    background: linear-gradient(180deg, #e4effe 0%, #d8e8fd 100%);
+    color: #174773;
+}
+
+.group-tab-btn.active {
+    border-color: #6fa3d2;
+    border-bottom-color: #f7fbff;
+    background: linear-gradient(180deg, #ffffff 0%, #f7fbff 100%);
+    color: #154d7e;
+    box-shadow: 0 -1px 0 rgba(255, 255, 255, 0.7) inset;
+}
+
+.group-tab-content {
+    min-height: 314px;
+    background: linear-gradient(180deg, #ffffff 0%, #f7fbff 100%);
+    border: 1px solid #b7cfe8;
+    border-top: none;
+    border-radius: 0 0 0.65rem 0.65rem;
+    padding: 0.5rem;
+}
+
+@media (max-width: 900px) {
+    .group-tab-content {
+        min-height: 0;
+    }
+}

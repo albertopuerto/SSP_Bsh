@@ -1,16 +1,33 @@
 <template>
     <template if:true={hasGroups}>
-        <lightning-tabset variant="scoped">
-            <template for:each={groups} for:item="group">
-                <lightning-tab key={group.key} label={group.groupLabel} value={group.groupId}>
+        <div class="group-tabs-shell">
+            <div class="group-tabs-list" role="tablist" aria-label="Characteristic groups">
+                <template for:each={groupsForTemplate} for:item="group">
+                    <button
+                        key={group.key}
+                        class={group.buttonClass}
+                        data-group-id={group.groupId}
+                        onclick={handleGroupSelect}
+                        role="tab"
+                        aria-selected={group.ariaSelected}
+                        tabindex={group.tabIndexValue}
+                        type="button"
+                    >
+                        {group.groupLabel}
+                    </button>
+                </template>
+            </div>
+
+            <div class="group-tab-content">
+                <template if:true={hasActiveGroup}>
                     <c-vcp-characteristics-form
-                        characteristics={group.characteristics}
+                        characteristics={activeGroupCharacteristics}
                         visibility-mode={visibilityMode}
                         label-mode={labelMode}
                         oncharacteristicchange={handleCharacteristicChange}
                     ></c-vcp-characteristics-form>
-                </lightning-tab>
-            </template>
-        </lightning-tabset>
+                </template>
+            </div>
+        </div>
     </template>
 </template>

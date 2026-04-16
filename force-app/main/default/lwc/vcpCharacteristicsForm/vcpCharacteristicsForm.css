@@ -49,10 +49,6 @@
     word-break: break-all;
 }
 
-.required-indicator {
-    color: #c23934;
-}
-
 .char-badges {
     display: flex;
     flex-wrap: wrap;
