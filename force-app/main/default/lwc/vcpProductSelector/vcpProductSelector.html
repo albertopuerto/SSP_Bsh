@@ -1,8 +1,9 @@
 <template>
     <!-- Product list view -->
     <template if:false={showConfigurator}>
-        <lightning-card icon-name="standard:product_catalog">
+        <lightning-card>
             <div slot="title" class="selector-card-title">
+                <lightning-icon icon-name="standard:product_catalog" size="x-small" class="selector-card-title-icon"></lightning-icon>
                 <span class="selector-card-title-main">Add Product</span>
                 <span class="selector-card-title-sub">VCP LWC PoC</span>
             </div>

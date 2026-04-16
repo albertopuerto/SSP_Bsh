@@ -1,5 +1,7 @@
-import { LightningElement, api } from 'lwc';
+import { LightningElement, api, wire } from 'lwc';
+import { getFieldValue, getRecord } from 'lightning/uiRecordApi';
 
+import QUOTE_NUMBER_FIELD from '@salesforce/schema/Quote.QuoteNumber';
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 import clearConfigIdFromQuote from '@salesforce/apex/VcpConfigManagerController.clearConfigIdFromQuote';
 import countriesIcons from '@salesforce/resourceUrl/countriesIcons';
@@ -25,6 +27,7 @@ const DEMO_DEFAULTS = {
 export default class VcpConfigManager extends LightningElement {
     @api recordId;
     @api quoteId;
+    @api quoteNumber;
     @api productCode;
     @api productId;
     @api quoteLineId;
@@ -69,6 +72,12 @@ export default class VcpConfigManager extends LightningElement {
     isBusy = false;
     debugMode = false;
     modalStyleApplied = false;
+    quoteNumberResolved = '';
+
+    @wire(getRecord, { recordId: '$quoteId', fields: [QUOTE_NUMBER_FIELD] })
+    wiredQuoteRecord({ data }) {
+        this.quoteNumberResolved = data ? getFieldValue(data, QUOTE_NUMBER_FIELD) || '' : '';
+    }
 
     handleBack() {
         this.dispatchEvent(new CustomEvent('back'));
@@ -140,6 +149,10 @@ export default class VcpConfigManager extends LightningElement {
 
     get effectiveQuoteId() {
         return this.quoteId || DEMO_DEFAULTS.quoteId;
+    }
+
+    get effectiveQuoteNumber() {
+        return this.quoteNumber || this.quoteNumberResolved || this.effectiveQuoteId;
     }
 
     get effectiveProductCode() {

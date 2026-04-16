@@ -1,7 +1,14 @@
 .selector-card-title {
-    display: inline-flex;
+    display: flex;
     align-items: center;
+    justify-content: center;
     gap: 0.48rem;
+    width: 100%;
+    text-align: center;
+}
+
+.selector-card-title-icon {
+    --lwc-colorTextIconDefault: #2a659a;
 }
 
 .selector-card-title-main {
@@ -64,8 +71,8 @@
     text-transform: uppercase;
     letter-spacing: 0.045em;
     color: #ffffff;
-    background: linear-gradient(135deg, #3a80c2 0%, #2b6ea8 100%);
-    border-bottom: 1px solid #2a689f;
+    background: linear-gradient(135deg, #739ec7 0%, #6b94bc 100%);
+    border-bottom: 1px solid #5f84a8;
     padding: 0.35rem 0.6rem;
 }
 
