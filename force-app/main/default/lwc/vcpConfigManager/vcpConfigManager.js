@@ -1,7 +1,5 @@
 import { LightningElement, api, wire } from 'lwc';
-import { getFieldValue, getRecord } from 'lightning/uiRecordApi';
 
-import QUOTE_NUMBER_FIELD from '@salesforce/schema/Quote.QuoteNumber';
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 import clearConfigIdFromQuote from '@salesforce/apex/VcpConfigManagerController.clearConfigIdFromQuote';
 import countriesIcons from '@salesforce/resourceUrl/countriesIcons';
@@ -12,6 +10,7 @@ import getConfigurationV2 from '@salesforce/apex/VcpConfigManagerController.getC
 import getKnowledgebaseById from '@salesforce/apex/VcpConfigManagerController.getKnowledgebaseById';
 import getKnowledgebaseCharacteristicTranslations from '@salesforce/apex/VcpConfigManagerController.getKnowledgebaseCharacteristicTranslations';
 import getKnowledgebaseTranslations from '@salesforce/apex/VcpConfigManagerController.getKnowledgebaseTranslations';
+import { getRecord } from 'lightning/uiRecordApi';
 import patchConfigurationCharacteristics from '@salesforce/apex/VcpConfigManagerController.patchConfigurationCharacteristics';
 import resetConfigurationV2 from '@salesforce/apex/VcpConfigManagerController.resetConfigurationV2';
 import resolveProductCodeFromContext from '@salesforce/apex/VcpConfigManagerController.resolveProductCodeFromContext';
@@ -74,9 +73,18 @@ export default class VcpConfigManager extends LightningElement {
     modalStyleApplied = false;
     quoteNumberResolved = '';
 
-    @wire(getRecord, { recordId: '$quoteId', fields: [QUOTE_NUMBER_FIELD] })
+    @wire(getRecord, { recordId: '$effectiveQuoteId', layoutTypes: ['Compact'], modes: ['View'] })
     wiredQuoteRecord({ data }) {
-        this.quoteNumberResolved = data ? getFieldValue(data, QUOTE_NUMBER_FIELD) || '' : '';
+        if (!data?.fields) {
+            this.quoteNumberResolved = '';
+            return;
+        }
+
+        this.quoteNumberResolved =
+            data.fields.QuoteNumber?.value ||
+            data.fields.SBQQ__QuoteNumber__c?.value ||
+            data.fields.Name?.value ||
+            '';
     }
 
     handleBack() {
@@ -738,11 +746,10 @@ export default class VcpConfigManager extends LightningElement {
             this.translationIndex = null;
             this.captureConfigurationMeta(parsed);
             this.processCharacteristics(parsed);
+            await this.prefetchGroupOrderCache();
             await this.applyLabelMode(this.labelMode || 'en');
             const loadedProductCode = this.loadedProductKey || this.effectiveProductCode;
             this.logActivity(actionLabel, `Configuration loaded for product ${loadedProductCode}`);
-            // Prefetch KB translations silently so tab groups are available in API mode
-            this.prefetchGroupOrderCache();
             if (showSuccessToast) {
                 this.showSuccess('Configuration loaded', `Product ${loadedProductCode}`);
             }
@@ -966,7 +973,7 @@ export default class VcpConfigManager extends LightningElement {
      * Does NOT set translationIndex so API-mode labels stay as technical IDs.
      */
     async prefetchGroupOrderCache() {
-        if (this.groupOrderCache?.groupOrder?.length > 0) {
+        if (this.hasUsableGroupCharacteristics(this.groupOrderCache)) {
             this.logActivity('Groups', `Using cached group map (${this.groupOrderCache.groupOrder.length} groups)`);
             return; // already populated
         }
@@ -994,6 +1001,15 @@ export default class VcpConfigManager extends LightningElement {
         } catch (e) {
             // non-critical, ignore silently
         }
+    }
+
+    hasUsableGroupCharacteristics(index) {
+        if (!index?.groupOrder?.length) {
+            return false;
+        }
+
+        const map = index.groupCharacteristics || {};
+        return Object.keys(map).some((groupId) => Array.isArray(map[groupId]) && map[groupId].length > 0);
     }
 
     /**
@@ -1165,9 +1181,11 @@ export default class VcpConfigManager extends LightningElement {
      */
     async resolveKbIdForTranslations() {
         if (this.isUsableKbId(this.loadedKbId)) {
+            this.logActivity('Language', `Using kbId ${this.loadedKbId} from loaded configuration`);
             return this.loadedKbId;
         }
         if (this.isUsableKbId(this.kbId)) {
+            this.logActivity('Language', `Using kbId ${this.kbId} from UI input`);
             return String(this.kbId);
         }
 
